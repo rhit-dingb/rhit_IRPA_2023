@@ -13,7 +13,7 @@ cd into the github folder.
 
 Create a new environment by typing this into the prompt: conda create --name irpa_chatbot python==3.8
 
-Activate the environment. We will have to do this everytime.
+Activate the environment: conda activate irpa_chatbot
 
 Install the following packages:
 
