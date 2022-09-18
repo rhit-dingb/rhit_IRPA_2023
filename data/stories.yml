@@ -31,28 +31,27 @@ stories:
 
 
 #A test story to lay out my logic of user asking about enrollment info:
-- story: ask about enrollment in general
+- story: ask about enrollment in general, and ask about total undergraduate
   steps:
   - intent: ask_enrollment
   # - action: set_entities
   - slot_was_set:
-    - enrollment_status: none
-    - student_level: none
-    - undergraduate_grade_level: none
+    - enrollment_status: null
+    - student_level: null
+    - undergraduate_grade_level: null
     # - degree-goal: null
     # - is_first_time: null
     # - gender: null
   - action: utter_test_options
-  - slot_was_set: 
+  - intent: inform
+    entities: 
     - student_level: undergraduate 
+  - slot_was_set:
+    - enrollment_status: null
+    - undergraduate_grade_level: null
   - action: utter_test_total_undergraduates
 
 
-
-# -story: ask about total enrollment
-#   steps: 
-#   - intent: enrollment
-#   - slot_was_set: 
 
 
 

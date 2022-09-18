@@ -90,6 +90,11 @@ nlu:
     - am I talking to a bot?
     - am I talking to a human?
 
+- intent: inform
+  examples: |
+    - total undergraduate enrollment.
+    - I want to know about total [undergraduate]{"entity":"student_level"} enrollment.
+
 - intent: ask_enrollment
   examples: |
     - I want to know about enrollment.
