@@ -89,3 +89,11 @@ nlu:
     - are you a human?
     - am I talking to a bot?
     - am I talking to a human?
+
+- intent: ask_enrollment
+  examples: |
+    - I want to know about enrollment.
+    - I want to know about enrollment at Rose-Hulman.
+    - How many [full-time]{"entity": "enrollment_status"} [undergraduate student]{"entity":"student_level"} are there in Rose-Hulman?
+    - How many [part-time]{"entity": "enrollment_status"} [undergraduate student]{"entity":"student_level"} are there in Rose-Hulman?
+    - How many [full-time]{"entity": "enrollment_status"} [graduate student]{"entity":"student_level"} are there in Rose-Hulman?

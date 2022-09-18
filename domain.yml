@@ -5,9 +5,65 @@ intents:
   - goodbye
   - affirm
   - deny
+  # Intents for different topics on the IRPA common dataset
+  - ask_enrollment
+
+
   - mood_great
   - mood_unhappy
   - bot_challenge
+
+entities:
+  # full time, part-time
+  - enrollment_status
+
+  # graduate, undergraduate
+  - student_level
+  
+  #for our case, student_grade will only be freshman or non-freshman(i.e "all other")
+  - undergraduate_grade_level
+
+  #degree-seeking, non-degree-seeking (i.e. "all other")
+  - degree-goal
+
+  #First-time, or not first time.
+  - is_first_time
+
+  #male, female
+  - gender
+
+slots:
+  enrollment_status:
+    type: categorical
+    values:
+      - full-time
+      - part-time
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: enrollment_status
+
+  student_level:
+    type: categorical
+    values:
+      - undergraduate
+      - graduate
+    influence_conversation: true
+    mappings:
+     - type: from_entity
+       entity: student_level
+
+  undergraduate_grade_level:
+    type: categorical
+    values:
+      - freshman
+      - non-freshman
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: undergraduate_grade_level
+
+  
 
 responses:
   utter_greet:
@@ -28,6 +84,12 @@ responses:
 
   utter_iamabot:
   - text: "I am a bot, powered by Rasa."
+
+  utter_test_options:
+  - text: "For enrollment, you can ask about: how many undergradute students, total graduate students, etc"
+
+  utter_test_total_undergraduates:
+  - text: "Rose-Hulman has 2000 undergraduates"
 
 session_config:
   session_expiration_time: 60
