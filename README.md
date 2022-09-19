@@ -7,8 +7,8 @@ Instructions are from this video: https://www.youtube.com/watch?v=oNLhg29aykc
 
 Install Anaconda.
 
-Windows: Search anaconda prompt on the windows tab and open anaconda prompt 
-Mac: open terminal
+**Windows:** Search anaconda prompt on the windows tab and open anaconda prompt 
+  **Mac:** open terminal
 
 cd into the github folder.
 
