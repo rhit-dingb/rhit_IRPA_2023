@@ -3,7 +3,7 @@ Rose-hulman Institute of Technology Class of Senior Design 2023 IRPA Chatbots Pr
 
 
 ## Setup instructions:
-Required: Python 3.8.x; Anaconda; Rasa; ujson; Tensorflow
+- Required: Python 3.8.x; Anaconda; Rasa; ujson; Tensorflow
 Instructions are from this video: https://www.youtube.com/watch?v=oNLhg29aykc
 
 Install Anaconda.
