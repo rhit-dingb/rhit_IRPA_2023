@@ -7,7 +7,8 @@ Instructions are from this video: https://www.youtube.com/watch?v=oNLhg29aykc
 
 Install Anaconda.
 
-Search anaconda prompt on the windows tab and open anaconda prompt 
+Windows: Search anaconda prompt on the windows tab and open anaconda prompt 
+Mac: open terminal
 
 cd into the github folder.
 
@@ -22,3 +23,7 @@ conda install ujson
 Conda install tensorflow
 
 pip install rasa
+
+- NEVER run rasa init, it will recreate another project
+- run 'rasa train' everytime after git pull
+- run 'rasa shell' to open interactive shell
