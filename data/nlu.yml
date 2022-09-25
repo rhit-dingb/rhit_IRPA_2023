@@ -98,7 +98,36 @@ nlu:
 - intent: ask_enrollment
   examples: |
     - I want to know about enrollment.
-    - I want to know about enrollment at Rose-Hulman.
-    - How many [full-time]{"entity": "enrollment_status"} [undergraduate student]{"entity":"student_level"} are there in Rose-Hulman?
-    - How many [part-time]{"entity": "enrollment_status"} [undergraduate student]{"entity":"student_level"} are there in Rose-Hulman?
-    - How many [full-time]{"entity": "enrollment_status"} [graduate student]{"entity":"student_level"} are there in Rose-Hulman?
+    - I want to know about enrollment at Rose-Hulman
+
+    - How many [full-time]{"entity": "enrollment_status", "value": "full-time"} [undergraduate student]{"entity":"student_level"} are there in Rose-Hulman?
+    - How many [full time]{"entity": "enrollment_status", "value": "full-time"} [undergraduate student]{"entity":"student_level"} are there in Rose-Hulman?
+
+    - How many [full-time]{"entity": "enrollment_status" , "value": "full-time"} [graduate student]{"entity":"student_level", "value":"graduate"} are there in Rose-Hulman?
+    - I want to know about the number of [graduate students]{"entity":"student_level", "value":"graduate"} here
+    
+    - How many [part-time]{"entity": "enrollment_status", "value": "part-time"} [undergraduate student]{"entity":"student_level"} are there in Rose-Hulman?
+    - Tell me the number of [undergraduates]{"entity":"student_level", "value": "undergraduates"}  at Rose-Hulman
+
+    - How many undergraduate [men]{"entity": "gender", "value": "men"} are there in Rose-Hulman?
+    - How many undergraduate [woman]{"entity": "gender", "value": "woman"} are there in Rose-Hulman?
+
+    - How many [male]{"entity": "gender", "value": "men"} student are there?
+    - How many [female]{"entity": "gender", "value": "woman"} student are there?
+
+
+
+
+
+
+
+
+#synonym example, We can also put it in the entity annotation in the above training data sentences
+
+# - synonym: men
+# example: | 
+#   - male
+
+
+
+
