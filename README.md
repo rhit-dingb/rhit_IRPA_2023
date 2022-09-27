@@ -28,3 +28,4 @@ pip install rasa
 - NEVER run rasa init, it will recreate another project
 - run 'rasa train' everytime after git pull
 - run 'rasa shell' to open interactive shell
+- Also need to run 'rasa run actions' to start action server so custom actions can be run
