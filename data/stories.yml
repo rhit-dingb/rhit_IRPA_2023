@@ -30,8 +30,9 @@ stories:
   - action: utter_goodbye
 
 
+
 #A test story to lay out my logic of user asking about enrollment info:
-# Note: entities condition will only detect if that entity has been extracted, not its actual value
+# Note: entities condition will only detect if that entity has been extracted, not its actual value. For slots it will depend on the slot type
 
 #maybe instead of considering every branch, we can define some sort of algorithm in the custom action
 - story: ask about enrollment in general, and ask about total undergraduate
@@ -76,8 +77,13 @@ stories:
       - degree-goal: null 
       - is_first_time: null
       - gender: men
-
   - action: utter_test_total_full_time_undergraduate_men
 
-
-
+#generalize the process for enrollment
+# - story: ask_about_enrollment_in_general
+#   steps: 
+#     - intent: ask_enrollment
+#     - action: action_query_enrollment
+#     - action: utter_did_that_help
+#     - intent: affirm
+#     - action: utter_great

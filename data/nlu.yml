@@ -99,7 +99,7 @@ nlu:
   examples: |
     - I want to know about enrollment.
     - I want to know about enrollment at Rose-Hulman
-
+    
     - How many [full-time]{"entity": "enrollment_status", "value": "full-time"} [undergraduate student]{"entity":"student_level"} are there in Rose-Hulman?
     - How many [full time]{"entity": "enrollment_status", "value": "full-time"} [undergraduate student]{"entity":"student_level"} are there in Rose-Hulman?
 
@@ -114,6 +114,7 @@ nlu:
 
     - How many [male]{"entity": "gender", "value": "men"} student are there?
     - How many [female]{"entity": "gender", "value": "woman"} student are there?
+
 
 
 

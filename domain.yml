@@ -112,6 +112,9 @@ responses:
 
   utter_happy:
   - text: "Great, carry on!"
+  
+  utter_great:
+  - text: "Great! Do you have anymore questions?"
 
   utter_goodbye:
   - text: "Bye"
