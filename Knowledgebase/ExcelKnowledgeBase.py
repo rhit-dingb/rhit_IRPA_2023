@@ -1,7 +1,9 @@
 
+import math
 from Knowledgebase.Knowledgebase import KnowledgeBase
 from Knowledgebase.LevenshteinMatcher import LevenshteinMatcher
 import pandas as pd
+import copy
 
 class ExcelKnowledgeBase(KnowledgeBase):
     def __init__(self, filePath):
@@ -10,35 +12,77 @@ class ExcelKnowledgeBase(KnowledgeBase):
         self.data = dict()
         self.processExcel()
         #use this matcher for now, if it is not doing too good we can swap it out.
-        self.matcher = LevenshteinMatcher()
+        self.matcher = LevenshteinMatcher(2)
 
     def initialize():
       pass
 
 
-    def getAvailableOptions(self, key):
-       pass
+    def getAvailableOptions(self, intent, entities):
+      def getKeys(res):
+        return res.keys()
 
-    def searchForAnswer(self, intent, entities):
+      return self.searchForAnswer(intent, entities, getKeys)
+
+    def searchForAnswer(self, intent, entities, outputStrategy):
       #Algorithm to search in knowledgebase for answers:
-      #For each possible sheet of given intent
+      #For given intent, access the data.
       #Use matcher - first check if anything match, if so, drill down, remove that entity
-      #In the new drill downed part, check for anything match, if so drill down. If not, get the total of the rest of key. 
-
-      # this is very simplistic search code and not completed yet. 
+      #In the new drill downed part, check for anything match, if so drill down.
+      #  If not, apply the output function on the remaining data
       if intent.lower() not in self.data:
         raise Exception("The intent provided has no data associated with it")
       else:
         data = self.data[intent]
-        while len(entities) > 0:
-          match = self.matcher.match(entities, data.keys())
-          print(match)
-          entities.remove(match[1])
-          keyToGoInto = match[0]
-          data = data[keyToGoInto]
+        dataFound = None
+        entityCopy = copy.deepcopy(entities)
 
-      return data
+        while len(entityCopy) > 0:
+          match = self.matcher.match(entityCopy, data.keys())
+          if len(match) > 0:
+            entityCopy.remove(match[1])
+            keyToGoInto = match[0]
+            data = data[keyToGoInto]
+            dataFound = data
+          else:
+            break
 
+        if dataFound:
+          return outputStrategy(data)
+        else:
+          return None
+
+
+
+    # def searchForAnswerBackup(self, entities, data):
+      
+     
+    #   if len(entities) == 0:
+    #     return self.aggregateTotal(data)
+
+    #   entityCopy =  copy.deepcopy(entities)
+    #   match = self.matcher.match(entities, data.keys())
+    #   total = 0
+    #   if len(match) == 0:
+    #     for key in data:
+    #       total = total + self.searchForAnswerBackup(entityCopy, data[key])
+    #   else: 
+    #     entityCopy.remove(match[1])
+    #     keyMatched = match[0]
+    #     data = data[keyMatched]
+    #     total = total + self.searchForAnswerBackup(entityCopy, data)
+    
+    #   return total
+
+    # def searchAnswerBackup(self, entities, data):
+    #   entitiesCopy = entities.deepCopy()
+    #   if len(entitiesCopy) == 0:
+    #     # assume we aggregate total for now
+    #     return self.aggregateTotal(data)
+    #   for key in data:
+        
+
+      
 
     def processExcel(self):
 
@@ -51,7 +95,6 @@ class ExcelKnowledgeBase(KnowledgeBase):
             #print(topic_key_words)
             if("enrollment" in topic_key_words):
               ## get the top left value of the excel--this value specifies undergradudate or graduate for enrollment
-          
               subName = df.columns[0]
               df = df.set_index(subName)
               index = df.index

@@ -2,8 +2,10 @@ from Knowledgebase.Matcher import Matcher
 import numpy as np
 
 class LevenshteinMatcher(Matcher):
-    def __init__(self):
-       pass
+    # threshold is the max number of difference in characters that should be allowed.
+    # so if the closest match strings have a difference greater than threshold, an empty list will be returned.
+    def __init__(self, threshold):
+        self.threshold = threshold
 
     
     def match(self, keys, entities) -> tuple:
@@ -14,8 +16,13 @@ class LevenshteinMatcher(Matcher):
                 keyNoSpace = key.lower().replace(" ", "")
                 editLength = self.levenshtein(entityNoSpace, keyNoSpace)
                 similarities.append((entity, key, editLength))
-
-        return self.findMin(similarities)
+        
+        
+        minSim = self.findMin(similarities)
+        if minSim[2] > self.threshold:
+            return ()
+        else:
+            return minSim
 
     def findMin(self, similarities):
         min = None
