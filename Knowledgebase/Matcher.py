@@ -7,3 +7,4 @@ class Matcher:
 
     def match(self, key, entity) -> bool:
         raise Exception("This method must be implemented by a class implementing this interface")
+        

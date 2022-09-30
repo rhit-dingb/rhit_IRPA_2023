@@ -57,7 +57,7 @@ slots:
     type: categorical
     values:
       - freshman
-      - non-freshman
+      - all other
     influence_conversation: true
     mappings:
       - type: from_entity
@@ -67,7 +67,7 @@ slots:
     type: categorical
     values:
       - degree-seeking
-      - non-degree-seeking
+      - all other undergraduates enrolled in credit courses 
     influence_conversation: true
     mappings:
       - type: from_entity
@@ -78,7 +78,7 @@ slots:
     type: categorical
     values:
       - first-time
-      - not-first-time
+      - other
     influence_conversation: true
     mappings:
       - type: from_entity

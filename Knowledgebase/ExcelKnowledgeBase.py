@@ -1,16 +1,19 @@
 
-import math
 from Knowledgebase.Knowledgebase import KnowledgeBase
 from Knowledgebase.LevenshteinMatcher import LevenshteinMatcher
+from Data_Ingestion.ExcelProcessor import ExcelProcessor
 import pandas as pd
 import copy
+
+"""
+"""
 
 class ExcelKnowledgeBase(KnowledgeBase):
     def __init__(self, filePath):
         self.filePath = filePath
-        self.xl = pd.ExcelFile(filePath)
-        self.data = dict()
-        self.processExcel()
+        self.excelProcessor = ExcelProcessor()
+        self.topicToParse = ["enrollment"]
+        self.data = self.excelProcessor.processExcel(filePath, self.topicToParse)
         #use this matcher for now, if it is not doing too good we can swap it out.
         self.matcher = LevenshteinMatcher(2)
 
@@ -52,84 +55,17 @@ class ExcelKnowledgeBase(KnowledgeBase):
         else:
           return None
 
-
-
-    # def searchForAnswerBackup(self, entities, data):
       
-     
-    #   if len(entities) == 0:
-    #     return self.aggregateTotal(data)
-
-    #   entityCopy =  copy.deepcopy(entities)
-    #   match = self.matcher.match(entities, data.keys())
-    #   total = 0
-    #   if len(match) == 0:
-    #     for key in data:
-    #       total = total + self.searchForAnswerBackup(entityCopy, data[key])
-    #   else: 
-    #     entityCopy.remove(match[1])
-    #     keyMatched = match[0]
-    #     data = data[keyMatched]
-    #     total = total + self.searchForAnswerBackup(entityCopy, data)
-    
-    #   return total
-
-    # def searchAnswerBackup(self, entities, data):
-    #   entitiesCopy = entities.deepCopy()
-    #   if len(entitiesCopy) == 0:
-    #     # assume we aggregate total for now
-    #     return self.aggregateTotal(data)
-    #   for key in data:
-        
-
-      
-
-    def processExcel(self):
-
-        enrollmentSubColumns = pd.MultiIndex.from_product([['Full-Time','Part-time'], ["Men", "Woman"]])
-        for name in self.xl.sheet_names: 
-            df = self.xl.parse(name)
-           
-            topic_key_words = [x.lower() for x in name.split(" ")]
-            #only parse enrollment for now
-            #print(topic_key_words)
-            if("enrollment" in topic_key_words):
-              ## get the top left value of the excel--this value specifies undergradudate or graduate for enrollment
-              subName = df.columns[0]
-              df = df.set_index(subName)
-              index = df.index
-              data = df.values
-            
-              # convert to multi index dataframe for full-time and gender
-              df = pd.DataFrame(data, columns=enrollmentSubColumns, index = index)
-              df = self.df_to_nested_dict(df)
-      
-              if ("enrollment" in self.data): 
-                enrollmentData = self.data["enrollment"]
-                enrollmentData[subName.lower()] = df
-               
-              else:
-                newDf = dict()
-                newDf[subName.lower()] = df
-                self.data["enrollment"] = newDf
-      
+    def aggregateTotal(self, startingPoint):
+        sum = 0
+        if not type(startingPoint) is dict:
+            return 0
+        for key in startingPoint:
+            if type(startingPoint[key]) is int or type(startingPoint[key]) is float:
+                sum = sum+startingPoint[key]
+            else: 
+                sum = sum + self.aggregateTotal(startingPoint[key])
+        return sum
 
 
-    #helper to convert enrollment data to json format, represented by python dictionary.
-    def df_to_nested_dict(self, df: pd.DataFrame) -> dict:
-        d = df.to_dict(orient='index')
-        return {k: self.nest(v) for k, v in d.items()}
-
-    def nest(self, dataInDictionaryFormat):
-        result = {}
-        for key, value in dataInDictionaryFormat.items():
-            target = result
-            #print(key[:-1])
-            for k in key[:-1]:# traverse all keys but the last
-                # will return the reference to the dictionary we passed in as value for k. 
-                target = target.setdefault(k, {})
-                
-            #put in final key in along with the value
-            target[key[-1]] = value
-            
-        return result
+  

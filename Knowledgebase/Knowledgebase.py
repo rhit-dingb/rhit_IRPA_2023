@@ -12,12 +12,5 @@ class KnowledgeBase:
 
     # this function will drill down to the numerical value givien a starting point and add up all the numbers 
     def aggregateTotal(self, startingPoint):
-        sum = 0
-        if not type(startingPoint) is dict:
-            return 0
-        for key in startingPoint:
-            if type(startingPoint[key]) is int or type(startingPoint[key]) is float:
-                sum = sum+startingPoint[key]
-            else: 
-                sum = sum + self.aggregateTotal(startingPoint[key])
-        return sum
+        raise Exception("This method must be implemented by a concrete class")
+        

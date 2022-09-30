@@ -35,55 +35,84 @@ stories:
 # Note: entities condition will only detect if that entity has been extracted, not its actual value. For slots it will depend on the slot type
 
 #maybe instead of considering every branch, we can define some sort of algorithm in the custom action
-- story: ask about enrollment in general, and ask about total undergraduate
-  steps:
-  - intent: ask_enrollment
-  # - action: set_entities
-  # - slot_was_set:
-  #   - enrollment_status: null
-  #   - student_level: null
-  #   - undergraduate_grade_level: null
-  - slot_was_set: 
-      - enrollment_status: null
-      - student_level: null
-      - undergraduate_grade_level: null
-      - degree-goal: null 
-      - is_first_time: null
-      - gender: null
-  - action: action_get_available_options
-  - intent: inform
-  - slot_was_set: 
-    - student_level: undergraduate 
-    - enrollment_status: null
-    - undergraduate_grade_level: null
-    - degree-goal: null 
-    - is_first_time: null
-    - gender: null
-  - action: action_query_enrollment
+# - story: ask about enrollment in general, and ask about total undergraduate
+#   steps:
+#   - intent: ask_enrollment
+#   # - action: set_entities
+#   # - slot_was_set:
+#   #   - enrollment_status: null
+#   #   - student_level: null
+#   #   - undergraduate_grade_level: null
+#   - slot_was_set: 
+#       - enrollment_status: null
+#       - student_level: null
+#       - undergraduate_grade_level: null
+#       - degree-goal: null 
+#       - is_first_time: null
+#       - gender: null
+#   - action: action_get_available_options
+#   - intent: inform
+#   - slot_was_set: 
+#     - student_level: undergraduate 
+#     - enrollment_status: null
+#     - undergraduate_grade_level: null
+#     - degree-goal: null 
+#     - is_first_time: null
+#     - gender: null
+#   - action: action_query_enrollment
 
 
-- story: ask about full-time undergraduate men enrollment
-  steps:
-  - intent: ask_enrollment
-  # - action: set_entities
-  # - slot_was_set:
-  #   - enrollment_status: null
-  #   - student_level: null
-  #   - undergraduate_grade_level: null
-  - slot_was_set: 
-      - enrollment_status: full-time
-      - student_level: undergraduate
-      - undergraduate_grade_level: null
-      - degree-goal: null 
-      - is_first_time: null
-      - gender: men
-  - action: utter_test_total_full_time_undergraduate_men
+
+# - story: ask about full-time undergraduate men enrollment
+#   steps:
+#   - intent: ask_enrollment
+#   # - action: set_entities
+#   # - slot_was_set:
+#   #   - enrollment_status: null
+#   #   - student_level: null
+#   #   - undergraduate_grade_level: null
+#   - slot_was_set: 
+#       - enrollment_status: full-time
+#       - student_level: undergraduate
+#       - undergraduate_grade_level: null
+#       - degree-goal: null 
+#       - is_first_time: null
+#       - gender: men
+#   - action: utter_test_total_full_time_undergraduate_men
+
+
+# - story: ask about enrollment with nothing provided
+#   steps:
+#   - intent: ask_enrollment
+#   # - action: set_entities
+#   # - slot_was_set:
+#   #   - enrollment_status: null
+#   #   - student_level: null
+#   #   - undergraduate_grade_level: null
+#   - slot_was_set: 
+#       - enrollment_status: null
+#       - student_level: null
+#       - undergraduate_grade_level: null
+#       - degree-goal: null 
+#       - is_first_time: null
+#       - gender: null
+#   - action: action_get_available_options
+
+
 
 #generalize the process for enrollment
-# - story: ask_about_enrollment_in_general
-#   steps: 
-#     - intent: ask_enrollment
-#     - action: action_query_enrollment
-#     - action: utter_did_that_help
-#     - intent: affirm
-#     - action: utter_great
+- story: ask_about_enrollment_in_general
+  steps: 
+    - intent: ask_enrollment 
+    #query enrollment will ask if the answer provided helped
+    - action: action_query_enrollment
+    - intent: affirm
+    - action: utter_great
+
+- story: ask_about_enrollment_in_general
+  steps: 
+    - intent: ask_enrollment 
+    #query enrollment will ask if the answer provided helped
+    - action: action_query_enrollment
+    - intent: deny
+    - action: action_get_available_options

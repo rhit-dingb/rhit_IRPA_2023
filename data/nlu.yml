@@ -107,27 +107,60 @@ nlu:
     - I want to know about the number of [graduate students]{"entity":"student_level", "value":"graduate"} here
     
     - How many [part-time]{"entity": "enrollment_status", "value": "part-time"} [undergraduate student]{"entity":"student_level"} are there in Rose-Hulman?
-    - Tell me the number of [undergraduates]{"entity":"student_level", "value": "undergraduates"}  at Rose-Hulman
+    - Tell me the number of [undergraduates]{"entity":"student_level", "value": "undergraduate"}  at Rose-Hulman
 
-    - How many undergraduate [men]{"entity": "gender", "value": "men"} are there in Rose-Hulman?
-    - How many undergraduate [woman]{"entity": "gender", "value": "woman"} are there in Rose-Hulman?
+    - How many [men]{"entity": "gender", "value": "men"} students are there in Rose-Hulman?
+    - How many  [woman]{"entity": "gender", "value": "woman"} students are there in Rose-Hulman?
 
     - How many [male]{"entity": "gender", "value": "men"} student are there?
     - How many [female]{"entity": "gender", "value": "woman"} student are there?
 
+    - [undergrad]{"entity":"student_level", "value": "undergraduate"} student please tell me
 
+    - How many [degree-seeking]{"entity":"degree-goal"} [first-time]{"entity": "is_first_time"} [freshman]{"entity": "undergraduate_grade_level"} are there?
 
+    - How many [non-degree-seeking]{"entity":"degree-goal", "value":"all other"} [first-time]{"entity": "is_first_time"} [freshman]{"entity": "undergraduate_grade_level"} are there?
+    
+    - I want to know about how many [non-degree-seeking]{"entity":"degree-goal", "value":"all other"} [first-time]{"entity": "is_first_time"} students.
 
-
-
-
+    - Tell me about the number of [degree seeking]{"entity": "degree-goal"} students who are [not freshman]{"entity":"undergraduate_grade_level", "value": "all other" }
 
 
 #synonym example, We can also put it in the entity annotation in the above training data sentences
+- synonym: graduate
+  examples: |
+    - grad student
+    - non-bachelors
+    - grad 
 
-# - synonym: men
-# example: | 
-#   - male
+- synonym:  first-time
+  examples: |
+    - first time
+
+- synonym: freshman
+  examples: |
+    - fresh man
+    - freshmen
+    - fresh men
+    - first year
+    - 1st year
+
+- synonym: undergraduate
+  examples: |
+    - undergrad
+    - undergrade
+    - bachelors
+    - under grad
+    - under-grad
+
+  
+
+  
+
+
+
+
+
 
 
 
