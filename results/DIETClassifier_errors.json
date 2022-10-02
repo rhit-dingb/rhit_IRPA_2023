@@ -1,0 +1,23 @@
+[
+  {
+    "text": "I want to know about the number of graduate students here",
+    "entities": [
+      {
+        "start": 35,
+        "end": 52,
+        "value": "graduate",
+        "entity": "student_level"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "student_level",
+        "start": 35,
+        "end": 43,
+        "confidence_entity": 0.7021225094795227,
+        "value": "graduate",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  }
+]

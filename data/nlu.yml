@@ -38,6 +38,7 @@ nlu:
     - of course
     - that sounds good
     - correct
+    - Yes
 
 - intent: deny
   examples: |
@@ -90,23 +91,23 @@ nlu:
     - am I talking to a bot?
     - am I talking to a human?
 
-- intent: inform
-  examples: |
-    - total undergraduate enrollment.
-    - I want to know about total [undergraduate]{"entity":"student_level"} enrollment.
+# - intent: inform
+#   examples: |
+#     - total undergraduate enrollment.
+#     - I want to know about total [undergraduate]{"entity":"student_level"} enrollment.
 
 - intent: ask_enrollment
   examples: |
     - I want to know about enrollment.
     - I want to know about enrollment at Rose-Hulman
     
-    - How many [full-time]{"entity": "enrollment_status", "value": "full-time"} [undergraduate student]{"entity":"student_level"} are there in Rose-Hulman?
-    - How many [full time]{"entity": "enrollment_status", "value": "full-time"} [undergraduate student]{"entity":"student_level"} are there in Rose-Hulman?
+    - How many [full-time]{"entity": "enrollment_status", "value": "full-time"} [undergraduate]{"entity":"student_level"}  studentare there in Rose-Hulman?
+    - How many [full time]{"entity": "enrollment_status", "value": "full-time"} [undergraduate]{"entity":"student_level"} student are there in Rose-Hulman?
 
-    - How many [full-time]{"entity": "enrollment_status" , "value": "full-time"} [graduate student]{"entity":"student_level", "value":"graduate"} are there in Rose-Hulman?
+    - How many [full-time]{"entity": "enrollment_status" , "value": "full-time"} [graduate]{"entity":"student_level", "value":"graduate"} are there in Rose-Hulman?
     - I want to know about the number of [graduate students]{"entity":"student_level", "value":"graduate"} here
     
-    - How many [part-time]{"entity": "enrollment_status", "value": "part-time"} [undergraduate student]{"entity":"student_level"} are there in Rose-Hulman?
+    - How many [part-time]{"entity": "enrollment_status", "value": "part-time"} [undergraduate]{"entity":"student_level"} students are there in Rose-Hulman?
     - Tell me the number of [undergraduates]{"entity":"student_level", "value": "undergraduate"}  at Rose-Hulman
 
     - How many [men]{"entity": "gender", "value": "men"} students are there in Rose-Hulman?
@@ -121,9 +122,9 @@ nlu:
 
     - How many [non-degree-seeking]{"entity":"degree-goal"} [first-time]{"entity": "is_first_time"} [freshman]{"entity": "undergraduate_grade_level"} are there?
     
-    - I want to know about how many [non-degree-seeking]{"entity":"degree-goal"} [first-time]{"entity": "is_first_time"} students.
+    - I want to know about how many [non degree-seeking]{"entity":"degree-goal", "value":"non-degree-seeking"} [first-time]{"entity": "is_first_time"} students.
 
-    - Tell me about the number of [degree seeking]{"entity": "degree-goal"} students who are [not freshman]{"entity":"undergraduate_grade_level", "value":"not-freshman"}
+    - Tell me about the number of [degree seeking]{"entity": "degree-goal"} students who are [not freshman]{"entity":"undergraduate_grade_level", "value":"non-freshman"}
 
     - How many [nonresident-alien]{"entity": "race"} students are enrolled? 
     - How many [hispanic]{"entity": "race"} students are enrolled? 
@@ -131,7 +132,7 @@ nlu:
     - How many [white]{"entity": "race"} students are enrolled? 
     - How many [american-indian]{"entity": "race"} students are enrolled? 
     - How many [asian]{"entity": "race"} students are enrolled? 
-    - How many [pacific-islander]{"entity": "race"} students are enrolled? 
+    - How many [pacific islander]{"entity": "race"} students are enrolled? 
     - How many students of [two-or-more]{"entity": "race"} races are enrolled? 
     - How many students of [unknown]{"entity": "race"} race are enrolled? 
 
@@ -165,31 +166,34 @@ nlu:
   examples: |
     - 1st year
 
-- synonym: nonresident-alien
+- synonym: nonresident alien
   examples: |
     - nonresident
-    - nonresident alien
+    - nonresident-alien
     - international
 
-- synonym: african-american
+- synonym: african american
   examples: |
-    - african american
+    - african-american
 
 - synonym: white
   examples: |
     - caucasian
 
-- synonym: american-indian
+- synonym: american indian
   examples: |
-    - american indian
+    - american-indian
+    - native-american
+    - native american
 
-- synonym: pacific-islander
+- synonym: pacific islander
   examples: |
-    - pacific islander
+    - pacific-islander
 
-- synonym: two-or-more
+- synonym: two or more races
   examples: |
     - two or more
+    - two or more race
     - multiple
   
 

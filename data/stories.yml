@@ -101,16 +101,17 @@ stories:
 
 
 #generalize the process for enrollment
-- story: ask_about_enrollment_in_general
+- story: ask_about_enrollment_and_answer_helpful
   steps: 
     - intent: ask_enrollment 
     #query enrollment will ask if the answer provided helped
     - action: action_query_enrollment
     - action: utter_ask_answer_helpful
     - intent: affirm
-    - action: utter_great
+    # - action: utter_ask_any_more_question
+    - action: action_ask_more_question
 
-- story: ask_about_enrollment_in_general
+- story: ask_about_enrollment_and_answer_not_helpful
   steps: 
     - intent: ask_enrollment 
     #query enrollment will ask if the answer provided helped

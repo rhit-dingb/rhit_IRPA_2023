@@ -7,8 +7,6 @@ intents:
   - deny
   # Intents for different topics on the IRPA common dataset
   - ask_enrollment
-
-  - inform
   - mood_great
   - mood_unhappy
   - bot_challenge
@@ -118,6 +116,7 @@ slots:
 actions:
   - action_get_available_options
   - action_query_enrollment
+  - action_ask_more_question
   
 
 responses:
@@ -134,7 +133,7 @@ responses:
   utter_happy:
   - text: "Great, carry on!"
   
-  utter_great:
+  utter_ask_any_more_question:
   - text: "Great! Do you have anymore questions?"
 
   utter_goodbye:
