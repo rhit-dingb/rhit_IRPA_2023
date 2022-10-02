@@ -34,5 +34,7 @@ class ActionQueryEnrollment(Action):
     
     def run(self, dispatcher, tracker, domain):
         # we will want to check entities, slot and intents here
-        dispatcher.utter_message("Rose-Hulman has 2000 undergraduates")
+        # refactor this once the knowledge base is changed into sparse matrix form
+        answer = knowledgeBase.searchForAnswer(tracker.latest_message.intent.name, tracker.latest_message.entities, lambda x: x)
+        dispatcher.utter_message(answer)
 
