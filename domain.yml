@@ -32,6 +32,9 @@ entities:
   #male, female
   - gender
 
+  #race/ethnicity
+  - race
+
 slots:
   enrollment_status:
     type: categorical
@@ -57,7 +60,7 @@ slots:
     type: categorical
     values:
       - freshman
-      - all other
+      - not-freshman
     influence_conversation: true
     mappings:
       - type: from_entity
@@ -67,7 +70,7 @@ slots:
     type: categorical
     values:
       - degree-seeking
-      - all other undergraduates enrolled in credit courses 
+      - non-degree-seeking 
     influence_conversation: true
     mappings:
       - type: from_entity
@@ -78,7 +81,7 @@ slots:
     type: categorical
     values:
       - first-time
-      - other
+      - non-first-time
     influence_conversation: true
     mappings:
       - type: from_entity
@@ -93,6 +96,24 @@ slots:
     mappings:
       - type: from_entity
         entity: gender
+
+  race:
+    type: categorical
+    values:
+      - nonresident-alien
+      - hispanic
+      - african-american
+      - white
+      - american-indian
+      - asian
+      - pacific-islander
+      - two-or-more
+      - unknown
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: race
+
 
 actions:
   - action_get_available_options
@@ -130,6 +151,9 @@ responses:
 
   utter_test_total_full_time_undergraduate_men:
   - text: "Rose-Hulman has 1000 full-time undergraduate students that are male."
+
+  utter_ask_answer_helpful:
+  - text: "Was this answer helpful?"
 
 session_config:
   session_expiration_time: 60

@@ -119,11 +119,21 @@ nlu:
 
     - How many [degree-seeking]{"entity":"degree-goal"} [first-time]{"entity": "is_first_time"} [freshman]{"entity": "undergraduate_grade_level"} are there?
 
-    - How many [non-degree-seeking]{"entity":"degree-goal", "value":"all other"} [first-time]{"entity": "is_first_time"} [freshman]{"entity": "undergraduate_grade_level"} are there?
+    - How many [non-degree-seeking]{"entity":"degree-goal"} [first-time]{"entity": "is_first_time"} [freshman]{"entity": "undergraduate_grade_level"} are there?
     
-    - I want to know about how many [non-degree-seeking]{"entity":"degree-goal", "value":"all other"} [first-time]{"entity": "is_first_time"} students.
+    - I want to know about how many [non-degree-seeking]{"entity":"degree-goal"} [first-time]{"entity": "is_first_time"} students.
 
-    - Tell me about the number of [degree seeking]{"entity": "degree-goal"} students who are [not freshman]{"entity":"undergraduate_grade_level", "value": "all other" }
+    - Tell me about the number of [degree seeking]{"entity": "degree-goal"} students who are [not freshman]{"entity":"undergraduate_grade_level", "value":"not-freshman"}
+
+    - How many [nonresident-alien]{"entity": "race"} students are enrolled? 
+    - How many [hispanic]{"entity": "race"} students are enrolled? 
+    - How many [african-american]{"entity": "race"} students are enrolled? 
+    - How many [white]{"entity": "race"} students are enrolled? 
+    - How many [american-indian]{"entity": "race"} students are enrolled? 
+    - How many [asian]{"entity": "race"} students are enrolled? 
+    - How many [pacific-islander]{"entity": "race"} students are enrolled? 
+    - How many students of [two-or-more]{"entity": "race"} races are enrolled? 
+    - How many students of [unknown]{"entity": "race"} race are enrolled? 
 
 
 #synonym example, We can also put it in the entity annotation in the above training data sentences
@@ -142,8 +152,6 @@ nlu:
     - fresh man
     - freshmen
     - fresh men
-    - first year
-    - 1st year
 
 - synonym: undergraduate
   examples: |
@@ -153,6 +161,36 @@ nlu:
     - under grad
     - under-grad
 
+- synonym: first year
+  examples: |
+    - 1st year
+
+- synonym: nonresident-alien
+  examples: |
+    - nonresident
+    - nonresident alien
+    - international
+
+- synonym: african-american
+  examples: |
+    - african american
+
+- synonym: white
+  examples: |
+    - caucasian
+
+- synonym: american-indian
+  examples: |
+    - american indian
+
+- synonym: pacific-islander
+  examples: |
+    - pacific islander
+
+- synonym: two-or-more
+  examples: |
+    - two or more
+    - multiple
   
 
   
