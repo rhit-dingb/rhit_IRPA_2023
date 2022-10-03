@@ -49,4 +49,25 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         self.m_df['pacific islander'] = np.random.choice([0, 1], size=20, p=[.8, .2])
         self.m_df['two or more races'] = np.random.choice([0, 1], size=20, p=[.9, .1])
         self.m_df['ethinicity unknown'] = np.random.choice([0, 1], size=20, p=[.6, .4])
+<<<<<<< HEAD
         self.m_df['Total?'] = np.random.choice([0, 1], size=20, p=[.9, .1])
+=======
+        self.m_df['Total?'] = np.random.choice([0, 1], size=20, p=[.9, .1])
+
+
+  
+
+    def searchForAnswer(self, intent, entities):
+        count=0
+        col_index=0
+        for i in range(self.m_df['male'].size):
+            temp_count = 0
+            for entity in self.m_df.columns:
+                if entity in entities: 
+                    if self.m_df.loc[i,entity] == 1:
+                        temp_count += 1
+            if temp_count == len(entities):
+                count += self.m_df.loc[i,'Value']
+                
+        return str(count)
+>>>>>>> d9f96d9b92815d42f99b28ab5d9d3e34cd729cd3
