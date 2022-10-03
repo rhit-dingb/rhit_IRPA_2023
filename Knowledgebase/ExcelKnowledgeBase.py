@@ -12,7 +12,7 @@ class ExcelKnowledgeBase(KnowledgeBase):
     def __init__(self, filePath):
         self.filePath = filePath
         self.excelProcessor = ExcelProcessor()
-        self.topicToParse = ["enrollment"]
+        self.topicToParse = ["general_enrollment"]
         self.data = self.excelProcessor.processExcel(filePath, self.topicToParse)
         #use this matcher for now, if it is not doing too good we can swap it out.
         self.matcher = LevenshteinMatcher(2)
