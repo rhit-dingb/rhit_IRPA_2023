@@ -3,6 +3,18 @@ import pandas as pd
 
 class ExcelProcessor():
 
+    def processExcelSparse(self, path, topicToParse):
+        data = dict()
+        xl = pd.ExcelFile(path)
+        for name in xl.sheet_names: 
+            df = xl.parse(name)
+            self.df = df
+            topic_key_words = [x.lower() for x in name.split(" ")]
+            subName = df.columns[0]
+            data[name] = df
+        
+        return data
+
     def processExcel(self, path, topicToParse):
         data = dict()
         xl = pd.ExcelFile(path)
