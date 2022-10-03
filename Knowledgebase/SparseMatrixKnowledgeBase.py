@@ -2,7 +2,6 @@ from Knowledgebase.Knowledgebase import KnowledgeBase
 from Knowledgebase.LevenshteinMatcher import LevenshteinMatcher
 from Data_Ingestion.ExcelProcessor import ExcelProcessor
 import pandas as pd
-import copy
 import numpy as np
 
 class SparseMatrixKnowledgeBase(KnowledgeBase):
@@ -29,6 +28,8 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         self.m_df['ethinicity unknown'] = np.random.choice([0, 1], size=20, p=[.6, .4])
         self.m_df['Total?'] = np.random.choice([0, 1], size=20, p=[.9, .1])
 
+
+  
 
     def searchForAnswer(self, intent, entities):
         count=0

@@ -101,4 +101,4 @@ stories:
   - user: |
       Yes
     intent: affirm
-  - action: utter_great
+  - action: action_ask_more_question
