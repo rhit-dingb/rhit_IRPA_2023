@@ -1,5 +1,4 @@
 from Knowledgebase.Knowledgebase import KnowledgeBase
-from Knowledgebase.LevenshteinMatcher import LevenshteinMatcher
 from Data_Ingestion.ExcelProcessor import ExcelProcessor
 import pandas as pd
 import copy
@@ -9,10 +8,10 @@ from Knowledgebase.Knowledgebase import KnowledgeBase
 from Data_Ingestion.ExcelProcessor import ExcelProcessor
 import copy
 class SparseMatrixKnowledgeBase(KnowledgeBase):
-    def __init__(self):
+    def __init__(self, filePath):
         self.excelProcessor = ExcelProcessor()
         self.topicToParse = ["General_Enrollment"]
-        self.data = self.excelProcessor.processExcelSparse("./Data_Ingestion/CDS_SPARSE_ENR.xlsx", self.topicToParse)
+        self.data = self.excelProcessor.processExcelSparse(filePath, self.topicToParse)
         self.m_df = self.data["General_Enrollment"] # this is HARD CODED NOW
 
     def searchForAnswer(self, intent, entities):
@@ -30,7 +29,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
                     if self.m_df.loc[i,entity] == 1:
                         temp_count += 1
             if temp_count == len(entities):
-                print("Im ADDING " + str(self.m_df.loc[i,'Value']))
+                #print("Im ADDING " + str(self.m_df.loc[i,'Value']))
                 count += self.m_df.loc[i,'Value']
                 
         return str(count)

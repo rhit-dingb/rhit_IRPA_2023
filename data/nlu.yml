@@ -147,6 +147,7 @@ nlu:
     - grad student
     - non-bachelors
     - grad 
+    - graduates
 
 - synonym: degree-seeking
   examples: |
@@ -188,6 +189,7 @@ nlu:
     - bachelors
     - under grad
     - under-grad
+    - undergraduates
 
 - synonym: first year
   examples: |

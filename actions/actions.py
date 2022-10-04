@@ -19,7 +19,7 @@ import os
 # print(os.listdir("./"))
 from Knowledgebase.ExcelKnowledgeBase import ExcelKnowledgeBase
 
-knowledgeBase = SparseMatrixKnowledgeBase()
+knowledgeBase = SparseMatrixKnowledgeBase("./Data_Ingestion/CDS_SPARSE_ENR.xlsx")
 
 class ActionGetAvailableOptions(Action):
     def name(self) -> Text:
