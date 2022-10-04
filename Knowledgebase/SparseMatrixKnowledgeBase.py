@@ -14,6 +14,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         self.topicToParse = ["General_Enrollment"]
         self.data = self.excelProcessor.processExcelSparse("./Data_Ingestion/CDS_SPARSE_ENR.xlsx", self.topicToParse)
         self.m_df = self.data["General_Enrollment"] # this is HARD CODED NOW
+        
     def searchForAnswer(self, intent, entities):
         count=0
         col_index=0
@@ -49,9 +50,6 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         self.m_df['pacific islander'] = np.random.choice([0, 1], size=20, p=[.8, .2])
         self.m_df['two or more races'] = np.random.choice([0, 1], size=20, p=[.9, .1])
         self.m_df['ethinicity unknown'] = np.random.choice([0, 1], size=20, p=[.6, .4])
-<<<<<<< HEAD
-        self.m_df['Total?'] = np.random.choice([0, 1], size=20, p=[.9, .1])
-=======
         self.m_df['Total?'] = np.random.choice([0, 1], size=20, p=[.9, .1])
 
 
@@ -70,4 +68,3 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
                 count += self.m_df.loc[i,'Value']
                 
         return str(count)
->>>>>>> d9f96d9b92815d42f99b28ab5d9d3e34cd729cd3
