@@ -89,3 +89,16 @@ stories:
       are you a bot?
     intent: bot_challenge
   - action: utter_iamabot
+
+
+- story: ask_about_enrollment_and_answer_helpful
+  steps: 
+  - user: |
+      How many undergraduate students are there at Rose-Hulman?
+    intent: ask_enrollment
+  - action: action_query_enrollment
+  - action: utter_ask_answer_helpful
+  - user: |
+      Yes
+    intent: affirm
+  - action: action_ask_more_question

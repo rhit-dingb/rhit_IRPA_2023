@@ -1,5 +1,6 @@
 
 from Knowledgebase.Knowledgebase import KnowledgeBase
+from Knowledgebase.SparseMatrixKnowledgeBase import SparseMatrixKnowledgeBase
 from Knowledgebase.LevenshteinMatcher import LevenshteinMatcher
 from Data_Ingestion.ExcelProcessor import ExcelProcessor
 import pandas as pd
@@ -11,11 +12,11 @@ import copy
 class ExcelKnowledgeBase(KnowledgeBase):
     def __init__(self, filePath):
         self.filePath = filePath
-        self.excelProcessor = ExcelProcessor()
-        self.topicToParse = ["enrollment"]
-        self.data = self.excelProcessor.processExcel(filePath, self.topicToParse)
+     
+        self.sparseMatrix = SparseMatrixKnowledgeBase(self.data["General_Enrollment"]) # NOTE: current data is hard coded
+        self.sparseMatrix.searchForAnswer()
         #use this matcher for now, if it is not doing too good we can swap it out.
-        self.matcher = LevenshteinMatcher(2)
+        #self.matcher = LevenshteinMatcher(2)
 
     def initialize():
       pass
