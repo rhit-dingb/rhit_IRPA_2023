@@ -14,17 +14,23 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         self.topicToParse = ["General_Enrollment"]
         self.data = self.excelProcessor.processExcelSparse("./Data_Ingestion/CDS_SPARSE_ENR.xlsx", self.topicToParse)
         self.m_df = self.data["General_Enrollment"] # this is HARD CODED NOW
-        
+
     def searchForAnswer(self, intent, entities):
         count=0
         col_index=0
+        #TODO filter out entities that are not under this intent
+
         for i in range(self.m_df['men'].size):
             temp_count = 0
+            if self.m_df.loc[i,"total"] == 1:
+                continue
+
             for entity in self.m_df.columns:
                 if entity in entities: 
                     if self.m_df.loc[i,entity] == 1:
                         temp_count += 1
             if temp_count == len(entities):
+                print("Im ADDING " + str(self.m_df.loc[i,'Value']))
                 count += self.m_df.loc[i,'Value']
                 
         return str(count)
@@ -54,17 +60,3 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
 
 
   
-
-    def searchForAnswer(self, intent, entities):
-        count=0
-        col_index=0
-        for i in range(self.m_df['male'].size):
-            temp_count = 0
-            for entity in self.m_df.columns:
-                if entity in entities: 
-                    if self.m_df.loc[i,entity] == 1:
-                        temp_count += 1
-            if temp_count == len(entities):
-                count += self.m_df.loc[i,'Value']
-                
-        return str(count)
