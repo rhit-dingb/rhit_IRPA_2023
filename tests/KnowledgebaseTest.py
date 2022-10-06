@@ -7,6 +7,7 @@ from Data_Ingestion.ExcelProcessor import ExcelProcessor
 from Knowledgebase.SparseMatrixKnowledgeBase import SparseMatrixKnowledgeBase
 
 TOTAL_UNDERGRADUATES = 1972
+TOTAL_GRADUATES = 21
 class SparseMatrixKnowledgebaseTest_Enrollment (unittest.TestCase):
     def setUp(self):
         
@@ -23,6 +24,10 @@ class SparseMatrixKnowledgebaseTest_Enrollment (unittest.TestCase):
         answer = self.knowledgeBase.searchForAnswer("enrollment", ["undergraduate"])
         self.assertEqual(answer, str(TOTAL_UNDERGRADUATES))
 
+    def test_when_ask_for_total_graduates_enrollment(self):
+        answer = self.knowledgeBase.searchForAnswer("enrollment", ["graduate"])
+        self.assertEqual(answer, str(TOTAL_GRADUATES))
+        
 
 if __name__ == '__main__':
     unittest.main()
