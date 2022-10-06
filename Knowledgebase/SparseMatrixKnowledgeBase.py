@@ -13,18 +13,45 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         self.excelProcessor = ExcelProcessor()
         self.topicToParse = ["enrollment"]
         self.data = self.excelProcessor.processExcelSparse(filePath, self.topicToParse)
+        
 
-        #self.m_df = self.data["General_Enrollment"] # this is HARD CODED NOW
-
-    def shouldRowBeAdded(row, entities):
-        if row has all column marked as 1 corresponding to given entities and row has no extra column marked as 1:
-            return true
-
-        else:
-            return false
+    # def searchForAnswer(self, intent, entities, shouldAddRowStrategy):
+    #     if not intent in self.data:
+    #         raise Exception("No such intent found in data", intent, self.data)
 
 
-    def searchForAnswer(self, intent, entities, lambda):
+    #     sparseMatrices = self.data[intent]
+    #     sparseMatrixToSearch = self.determineMatrixToSearch(sparseMatrices, entities)
+
+    #     if sparseMatrixToSearch is None:
+    #         raise Exception("No valid sparse matrix found for given intent and entities", intent, entities)
+
+    def searchForAnswer(self, intent, entities, shouldAddRowStrategy):
+        count=0
+        col_index=0
+        #TODO filter out entities that are not under this intent? 
+
+        sparseMatrices = self.data[intent]
+        sparseMatrixToSearch = self.determineMatrixToSearch(sparseMatrices, entities)
+        if sparseMatrixToSearch is None:
+            raise Exception("No valid sparse matrix found for given intent and entities", intent, entities)
+        
+        for i in range(sparseMatrixToSearch.shape[0]):
+            if sparseMatrixToSearch.loc[i,"total"] == 1:
+                continue
+            
+            row = sparseMatrixToSearch.loc[i]
+            shouldAdd = shouldAddRowStrategy.determineShouldAddRow(row, entities)
+            if shouldAdd:
+                #print("Im ADDING " + str(self.m_df.loc[i,'Value']))
+                count += sparseMatrixToSearch.loc[i,'Value']
+                
+        return str(count)    
+
+
+
+
+    def searchForAnswerBasic(self, intent, entities):
         count=0
         col_index=0
         #TODO filter out entities that are not under this intent
@@ -47,6 +74,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
                 count += sparseMatrixToSearch.loc[i,'Value']
                 
         return str(count)
+
 
     def determineMatrixToSearch(self, sparseMatrices, entities):
         entitiesMatchCountForEachMatrix = []
