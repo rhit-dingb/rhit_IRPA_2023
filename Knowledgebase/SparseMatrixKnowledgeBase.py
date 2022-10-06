@@ -1,3 +1,4 @@
+from logging import raiseExceptions
 from Knowledgebase.Knowledgebase import KnowledgeBase
 from Data_Ingestion.ExcelProcessor import ExcelProcessor
 import pandas as pd
@@ -10,29 +11,54 @@ import copy
 class SparseMatrixKnowledgeBase(KnowledgeBase):
     def __init__(self, filePath):
         self.excelProcessor = ExcelProcessor()
-        self.topicToParse = ["General_Enrollment"]
+        self.topicToParse = ["enrollment"]
         self.data = self.excelProcessor.processExcelSparse(filePath, self.topicToParse)
-        self.m_df = self.data["General_Enrollment"] # this is HARD CODED NOW
 
-    def searchForAnswer(self, intent, entities):
+        #self.m_df = self.data["General_Enrollment"] # this is HARD CODED NOW
+
+    def shouldRowBeAdded(row, entities):
+        if row has all column marked as 1 corresponding to given entities and row has no extra column marked as 1:
+            return true
+
+        else:
+            return false
+
+
+    def searchForAnswer(self, intent, entities, lambda):
         count=0
         col_index=0
         #TODO filter out entities that are not under this intent
-
-        for i in range(self.m_df['men'].size):
+        sparseMatrices = self.data[intent]
+        sparseMatrixToSearch = self.determineMatrixToSearch(sparseMatrices, entities)
+        if sparseMatrixToSearch is None:
+            raise Exception("No valid sparse matrix found for given intent and entities", intent, entities)
+        
+        for i in range(sparseMatrixToSearch.shape[0]):
             temp_count = 0
-            if self.m_df.loc[i,"total"] == 1:
+            if sparseMatrixToSearch.loc[i,"total"] == 1:
                 continue
 
-            for entity in self.m_df.columns:
+            for entity in sparseMatrixToSearch.columns:
                 if entity in entities: 
-                    if self.m_df.loc[i,entity] == 1:
+                    if sparseMatrixToSearch.loc[i,entity] == 1:
                         temp_count += 1
             if temp_count == len(entities):
                 #print("Im ADDING " + str(self.m_df.loc[i,'Value']))
-                count += self.m_df.loc[i,'Value']
+                count += sparseMatrixToSearch.loc[i,'Value']
                 
         return str(count)
+
+    def determineMatrixToSearch(self, sparseMatrices, entities):
+        entitiesMatchCountForEachMatrix = []
+        for sparseMatrix in sparseMatrices:
+            entitiesMatchCount = 0
+            for entity in entities:
+                if entity in sparseMatrix.columns:
+                    entitiesMatchCount = entitiesMatchCount+1
+            entitiesMatchCountForEachMatrix.append(entitiesMatchCount)
+
+        index = entitiesMatchCountForEachMatrix.index(max(entitiesMatchCountForEachMatrix))
+        return sparseMatrices[index]
 
     def dummyRandomGeneratedDF(self):
         self.m_df = pd.DataFrame()

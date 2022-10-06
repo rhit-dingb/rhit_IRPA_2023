@@ -204,10 +204,13 @@ nlu:
 - synonym: african american
   examples: |
     - african-american
+    - black
+    - non-hispanic
 
 - synonym: white
   examples: |
     - caucasian
+    - european descent
 
 - synonym: american indian
   examples: |
