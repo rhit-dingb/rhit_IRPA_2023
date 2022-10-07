@@ -5,6 +5,7 @@ class ExcelProcessor():
     def __init__(self):
         pass
 
+  
     def processExcelSparse(self, path, topicToParse):
         data = dict()
         xl = pd.ExcelFile(path)
@@ -13,11 +14,13 @@ class ExcelProcessor():
 
         return data
 
-
-    # This function will get all the sparse matrices 
-    # numbers: sequence or iterable, all the elements must be numbers
-    # Returns the sum of all the numbers in the sequence or iterable
-    # Throws ArithmeticError if any of the element is not a number
+    """ 
+    Given a topic, this function will find all the sparse matrix for a topic. Currently it is getting it from excel file, but 
+    we can swap out for database easily.
+    topic: the topic to get the sparse matrix for
+    dataSourceConnector: some sort of connector that we can use to retrieve data.
+    Returns: a list of sparse matrix represented by pandas dataframe.
+    """
     def getAllSparseMatrixForTopic(self, topic, dataSourceConnector):
         sparseMatrices = []
         for name in dataSourceConnector.sheet_names:

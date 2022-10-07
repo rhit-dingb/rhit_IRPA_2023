@@ -8,24 +8,22 @@ import numpy as np
 from Knowledgebase.Knowledgebase import KnowledgeBase
 from Data_Ingestion.ExcelProcessor import ExcelProcessor
 import copy
+
+
 class SparseMatrixKnowledgeBase(KnowledgeBase):
     def __init__(self, filePath):
         self.excelProcessor = ExcelProcessor()
         self.topicToParse = ["enrollment"]
         self.data = self.excelProcessor.processExcelSparse(filePath, self.topicToParse)
         
-
-    # def searchForAnswer(self, intent, entities, shouldAddRowStrategy):
-    #     if not intent in self.data:
-    #         raise Exception("No such intent found in data", intent, self.data)
-
-
-    #     sparseMatrices = self.data[intent]
-    #     sparseMatrixToSearch = self.determineMatrixToSearch(sparseMatrices, entities)
-
-    #     if sparseMatrixToSearch is None:
-    #         raise Exception("No valid sparse matrix found for given intent and entities", intent, entities)
-
+    """
+    This function will search in the sparse matrices retrieved by the given intent and calculate the total sum 
+    based on the shouldAddRowStrategy.
+    intent: intent of the user message
+    entities: entities extracted by user input
+    shouldAddRowStrategy: for each row, this function will determine if we should add the value of this row to the total sum.
+    Return: answer calculated and returned as string.
+    """
     def searchForAnswer(self, intent, entities, shouldAddRowStrategy):
         count=0
         col_index=0
@@ -39,7 +37,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         for i in range(sparseMatrixToSearch.shape[0]):
             if sparseMatrixToSearch.loc[i,"total"] == 1:
                 continue
-            
+
             row = sparseMatrixToSearch.loc[i]
             shouldAdd = shouldAddRowStrategy.determineShouldAddRow(row, entities)
             if shouldAdd:
@@ -75,7 +73,17 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
                 
         return str(count)
 
-
+    """
+    This function will determine which sparse matrix under an intent should we search based on the given entities.
+    For each sparse matrix, it will calculate the number of entities that the sparse matrix has corresponding columns for.
+    Then this function will find and return sparse matrix with the highest match number.
+    We do this because for example, for enrollment, there are two matrix, one for general enrollment info and one for enrollment by race
+    and if the user asks something like "how many hispanics male student are enrolled?" Should we use the general matrix that has gender
+    or should we use the enrollment by race that has information on hispanic student enrollment?  
+    If enrollment by race matrix has information about hispanic male enrollment, this algorithm would choose that. But in this cause,
+    there is no such information and it is out of scope, so we can use any matrix, it will return 0 anywas.
+    In this case, we just use the first matrix.
+    """
     def determineMatrixToSearch(self, sparseMatrices, entities):
         entitiesMatchCountForEachMatrix = []
         for sparseMatrix in sparseMatrices:

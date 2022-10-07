@@ -96,7 +96,7 @@ nlu:
 #     - total undergraduate enrollment.
 #     - I want to know about total [undergraduate]{"entity":"student_level"} enrollment.
 
-- intent: ask_enrollment
+- intent: enrollment
   examples: |
     - I want to know about enrollment.
     - I want to know about enrollment at Rose-Hulman
@@ -210,17 +210,29 @@ nlu:
 - synonym: white
   examples: |
     - caucasian
+    - whites
+    - caucasians
     - european descent
 
 - synonym: american indian
   examples: |
     - american-indian
+    - american-indians
     - native-american
     - native american
+
+- synonym: hispanic
+  examples: |
+    - hispanics
+    - latino
+    - mexican
+
 
 - synonym: pacific islander
   examples: |
     - pacific-islander
+    - pacific-islanders
+    - pacific island
 
 - synonym: two or more races
   examples: |

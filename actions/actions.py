@@ -8,18 +8,23 @@
 # This is a simple example for a custom action which utters "Hello World!"
 
 from typing import Any, Text, Dict, List
+from Knowledgebase.ChooseFromOptionsAddRowStrategy import ChooseFromOptionsAddRowStrategy
+from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
 from Knowledgebase.SparseMatrixKnowledgeBase import SparseMatrixKnowledgeBase
 
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 
-import sys
-import os
-# sys.path.append('..')
-# print(os.listdir("./"))
-from Knowledgebase.ExcelKnowledgeBase import ExcelKnowledgeBase
-
 knowledgeBase = SparseMatrixKnowledgeBase("./Data_Ingestion/CDS_SPARSE_ENR.xlsx")
+defaultShouldAddRowStrategy = DefaultShouldAddRowStrategy()
+chooseFromOptionsAddRowStrategy = ChooseFromOptionsAddRowStrategy(choices=[{
+            "columns": ["degree-seeking", "first-time", "first-year"]
+        }, 
+        {
+            "columns": ["degree-seeking", "non-first-time", "non-first-year"],
+            "isDefault":True
+        }])
+
 
 class ActionGetAvailableOptions(Action):
     def name(self) -> Text:
@@ -30,7 +35,7 @@ class ActionGetAvailableOptions(Action):
         return []
 
 
-class ActionGetAvailableOptions(Action):
+class ActionAskMoreQuestion(Action):
     def name(self) -> Text:
         return "action_ask_more_question"
 
@@ -46,11 +51,17 @@ class ActionQueryEnrollment(Action):
         # we will want to check entities, slot and intents here
         # refactor this once the knowledge base is changed into sparse matrix form
         entityValue = []
-        for entity in tracker.latest_message['entities']:
-            entityValue.append(entity["value"])
-
+        haveRaceEnrollmentEntity = False
+        for entityObj in tracker.latest_message['entities']:
+            if entityObj["entity"] == "race":
+                haveRaceEnrollmentEntity = True
+            entityValue.append(entityObj["value"])
+        
         print(tracker.latest_message["intent"])
         print(tracker.latest_message["entities"])
-        answer = knowledgeBase.searchForAnswer("_", entityValue)
+        selectedShouldAddRowStrategy = defaultShouldAddRowStrategy
+        if haveRaceEnrollmentEntity:
+            selectedShouldAddRowStrategy = chooseFromOptionsAddRowStrategy
+        answer = knowledgeBase.searchForAnswer(tracker.latest_message["intent"]["name"], entityValue, selectedShouldAddRowStrategy)
         dispatcher.utter_message(answer)
         return []
