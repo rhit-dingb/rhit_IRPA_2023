@@ -8,7 +8,7 @@ sys.path.append('..')
 from Data_Ingestion.ExcelProcessor import ExcelProcessor
 from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
 from Knowledgebase.SparseMatrixKnowledgeBase import SparseMatrixKnowledgeBase
-from Knowledgebase.AllMustMatchAddRowStrategy import AllMustMatchAddRowStrategy
+from Knowledgebase.ChooseFromOptionsAddRowStrategy import ChooseFromOptionsAddRowStrategy
 
 
 TOTAL_UNDERGRADUATES = 1972
@@ -26,7 +26,13 @@ class SparseMatrixKnowledgebaseTest_Enrollment (unittest.TestCase):
         self.excelProcessor = ExcelProcessor()
         self.topicToParse = ["enrollment"]
         self.defaultShouldAddRowStrategy = DefaultShouldAddRowStrategy()
-        self.allMustMatchStrategy = AllMustMatchAddRowStrategy()
+        self.chooseFromOptionAddRowStrategy = ChooseFromOptionsAddRowStrategy(choices=[{
+            "columns": ["degree-seeking", "first-time", "first-year"]
+        }, 
+        {
+            "columns": ["degree-seeking", "non-first-time", "non-first-year"],
+            "isDefault":True
+        }])
         #Making sure the data loaded is consistent for testing
         self.data = self.excelProcessor.processExcelSparse("../Data_Ingestion/CDS_SPARSE_ENR.xlsx", self.topicToParse)
     
@@ -55,14 +61,20 @@ class SparseMatrixKnowledgebaseTest_Enrollment (unittest.TestCase):
         answer = self.knowledgeBase.searchForAnswer("enrollment", ["full-time", "degree-seeking", "men", "non-freshman"], self.defaultShouldAddRowStrategy)
         self.assertEqual(answer, str(DEGREE_SEEKING_FIRST_TIME_NON_FRESHMAN))
 
-    #for this test, I am assuming if we asked for data that the CDS does not have, the knowledge base default to zero.
+    #for this test, I am assuming if we asked for data that the CDS does not have, the knowledge base default to zero for now.
+    #However, in the future, we should recognize that and have the knowledgebase some how return -1 to indicate that so we can return an appropriate response.
     def test_ask_for_out_of_scope_data_should_return_zero(self):
-        answer = self.knowledgeBase.searchForAnswer("enrollment", ["men", "asian"], self.allMustMatchStrategy)
+        answer = self.knowledgeBase.searchForAnswer("enrollment", ["men", "asian"], self.chooseFromOptionAddRowStrategy)
         self.assertEqual(answer, str(0))
     
     def test_ask_for_african_american_first_time_first_year_degree_seeking(self):
-        answer = self.knowledgeBase.searchForAnswer("enrollment", ["african-american", "first-year", "first-time", "degree-seeking"], self.allMustMatchStrategy)
-        self.assertEqual(answer, str(0))
+        answer = self.knowledgeBase.searchForAnswer("enrollment", ["african-american", "first-year", "first-time", "degree-seeking"], self.chooseFromOptionAddRowStrategy)
+        self.assertEqual(answer, str(31))
+
+    def test_ask_for_asian_student_enrollment_should_not_sum_up_two_row(self):
+        answer = self.knowledgeBase.searchForAnswer("enrollment", ["asian"], self.chooseFromOptionAddRowStrategy)
+        self.assertEqual(answer, str(127))
+          
 
 if __name__ == '__main__':
     unittest.main()

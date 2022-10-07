@@ -103,7 +103,7 @@ stories:
 #generalize the process for enrollment
 - story: ask_about_enrollment_and_answer_helpful
   steps: 
-    - intent: ask_enrollment 
+    - intent: enrollment 
     #query enrollment will ask if the answer provided helped
     - action: action_query_enrollment
     - action: utter_ask_answer_helpful
@@ -114,7 +114,7 @@ stories:
 
 - story: ask_about_enrollment_and_answer_not_helpful
   steps: 
-    - intent: ask_enrollment 
+    - intent: enrollment 
     #query enrollment will ask if the answer provided helped
     - action: action_query_enrollment
     - action: utter_ask_answer_helpful
