@@ -27,11 +27,15 @@ entities:
   #First-time, or not first time.
   - is_first_time
 
+  #First-year, non-first-year
+  - is_first_year
+
   #male, female
   - gender
 
   #race/ethnicity
   - race
+
 
 slots:
   enrollment_status:

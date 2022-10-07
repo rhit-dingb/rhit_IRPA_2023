@@ -50,18 +50,18 @@ class ActionQueryEnrollment(Action):
     def run(self, dispatcher, tracker, domain):
         # we will want to check entities, slot and intents here
         # refactor this once the knowledge base is changed into sparse matrix form
-        entityValue = []
         haveRaceEnrollmentEntity = False
+        entitiesExtracted = tracker.latest_message["entities"]
         for entityObj in tracker.latest_message['entities']:
             if entityObj["entity"] == "race":
                 haveRaceEnrollmentEntity = True
-            entityValue.append(entityObj["value"])
+           
         
         print(tracker.latest_message["intent"])
         print(tracker.latest_message["entities"])
         selectedShouldAddRowStrategy = defaultShouldAddRowStrategy
         if haveRaceEnrollmentEntity:
             selectedShouldAddRowStrategy = chooseFromOptionsAddRowStrategy
-        answer = knowledgeBase.searchForAnswer(tracker.latest_message["intent"]["name"], entityValue, selectedShouldAddRowStrategy)
+        answer = knowledgeBase.searchForAnswer(tracker.latest_message["intent"]["name"], entitiesExtracted , selectedShouldAddRowStrategy)
         dispatcher.utter_message(answer)
         return []

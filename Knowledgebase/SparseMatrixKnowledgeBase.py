@@ -1,4 +1,5 @@
 from logging import raiseExceptions
+from re import I
 from Knowledgebase.Knowledgebase import KnowledgeBase
 from Data_Ingestion.ExcelProcessor import ExcelProcessor
 import pandas as pd
@@ -20,14 +21,18 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
     This function will search in the sparse matrices retrieved by the given intent and calculate the total sum 
     based on the shouldAddRowStrategy.
     intent: intent of the user message
-    entities: entities extracted by user input
+    entitiesExtracted: list entities extracted by user input, each individual element is an object with the entity label, value and other information
     shouldAddRowStrategy: for each row, this function will determine if we should add the value of this row to the total sum.
     Return: answer calculated and returned as string.
     """
-    def searchForAnswer(self, intent, entities, shouldAddRowStrategy):
+    def searchForAnswer(self, intent, entitiesExtracted, shouldAddRowStrategy):
         count=0
         col_index=0
-        #TODO filter out entities that are not under this intent? 
+
+        #this list contains the value of the entities extracted.
+        entities = []
+        for entityObj in entitiesExtracted:
+            entities.append(entityObj["value"])
 
         sparseMatrices = self.data[intent]
         sparseMatrixToSearch = self.determineMatrixToSearch(sparseMatrices, entities)
@@ -82,19 +87,27 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
     or should we use the enrollment by race that has information on hispanic student enrollment?  
     If enrollment by race matrix has information about hispanic male enrollment, this algorithm would choose that. But in this cause,
     there is no such information and it is out of scope, so we can use any matrix, it will return 0 anywas.
-    In this case, we just use the first matrix.
+
+    For now, we will always use the last matrix if there is a tie.
     """
-    def determineMatrixToSearch(self, sparseMatrices, entities):
-        entitiesMatchCountForEachMatrix = []
+    def determineMatrixToSearch(self, sparseMatrices, entities,):
+        maxMatch = []
+        currMax = 0
         for sparseMatrix in sparseMatrices:
             entitiesMatchCount = 0
             for entity in entities:
                 if entity in sparseMatrix.columns:
                     entitiesMatchCount = entitiesMatchCount+1
-            entitiesMatchCountForEachMatrix.append(entitiesMatchCount)
+                    
+            if entitiesMatchCount>currMax:
+                maxMatch = []
+                maxMatch.append(sparseMatrix)
+                currMax = entitiesMatchCount
+            elif entitiesMatchCount == currMax:
+                maxMatch.append(sparseMatrix)
 
-        index = entitiesMatchCountForEachMatrix.index(max(entitiesMatchCountForEachMatrix))
-        return sparseMatrices[index]
+
+        return maxMatch[len(maxMatch)-1]
 
     def dummyRandomGeneratedDF(self):
         self.m_df = pd.DataFrame()

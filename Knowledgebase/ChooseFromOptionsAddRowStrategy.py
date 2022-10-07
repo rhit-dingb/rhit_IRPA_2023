@@ -69,8 +69,8 @@ class ChooseFromOptionsAddRowStrategy(ShouldAddRowStrategy):
                 currMax = matchCount
             
             elif matchCount == currMax:
-                
                 maxMatches.append(choice)
+                
         if len(maxMatches) == 1:
             return self.defaultShouldAddRow.determineShouldAddRow(row, list(set(maxMatches[0]["columns"]+entities)) )
         else:

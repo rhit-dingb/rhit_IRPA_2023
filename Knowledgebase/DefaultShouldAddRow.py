@@ -12,11 +12,20 @@ class DefaultShouldAddRowStrategy(ShouldAddRowStrategy):
     """
     def determineShouldAddRow(self, row, entities):
         temp_count = 0
+
+        #Note: we only want to consider entities that are supported by this sparse matrix, so we can answer the user's question as best as possible
+        filteredEntities = []
+        for entity in entities:
+            if entity in row.index:
+                filteredEntities.append(entity)
+        
+        filteredEntities = set(filteredEntities)
+
         for entity in row.index:
-            if entity in entities: 
+            if entity in filteredEntities: 
                 if row[entity] == 1:
                     temp_count += 1
-        if temp_count == len(entities):
+        if temp_count == len(filteredEntities):
             return True
         else: 
             return False 

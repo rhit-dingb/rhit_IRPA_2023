@@ -95,7 +95,7 @@ stories:
   steps: 
   - user: |
       How many undergraduate students are there at Rose-Hulman?
-    intent: ask_enrollment
+    intent: enrollment
   - action: action_query_enrollment
   - action: utter_ask_answer_helpful
   - user: |
