@@ -57,11 +57,12 @@ class ActionQueryEnrollment(Action):
                 haveRaceEnrollmentEntity = True
            
         
-        print(tracker.latest_message["intent"])
-        print(tracker.latest_message["entities"])
+        # print(tracker.latest_message["intent"])
+        # print(tracker.latest_message["entities"])
         selectedShouldAddRowStrategy = defaultShouldAddRowStrategy
         if haveRaceEnrollmentEntity:
             selectedShouldAddRowStrategy = chooseFromOptionsAddRowStrategy
         answer = knowledgeBase.searchForAnswer(tracker.latest_message["intent"]["name"], entitiesExtracted , selectedShouldAddRowStrategy)
         dispatcher.utter_message(answer)
-        return []
+        return [{
+        "responses": [answer]}]
