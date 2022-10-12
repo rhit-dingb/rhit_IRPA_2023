@@ -30,3 +30,4 @@ pip install rasa
 - run 'rasa shell' to open interactive shell
 - run 'rasa data validate' to validate the training data after making changes.
 - Also need to run 'rasa run actions' to start action server so custom actions can be run
+- To activate rasa server, run 'rasa run --cors "*" --enable-api'
