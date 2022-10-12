@@ -33,7 +33,7 @@ function Basic() {
   const rasaAPI = async function handleClick(name, msg) {
     //chatData.push({sender : "user", sender_id : name, msg : msg});
 
-    await fetch("http://localhost:5005/webhooks/rest/webhook", {
+    await fetch("http://137.112.205.50:5005/webhooks/rest/webhook", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -41,6 +41,7 @@ function Basic() {
         charset: "UTF-8",
       },
       credentials: "same-origin",
+      mode: "cors",
       body: JSON.stringify({ sender: name, message: msg }),
     })
       .then((response) => response.json())
