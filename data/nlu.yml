@@ -96,7 +96,7 @@ nlu:
 #     - total undergraduate enrollment.
 #     - I want to know about total [undergraduate]{"entity":"student_level"} enrollment.
 
-- intent: ask_enrollment
+- intent: enrollment
   examples: |
     - I want to know about enrollment.
     - I want to know about enrollment at Rose-Hulman
@@ -138,7 +138,17 @@ nlu:
     - How many [asian]{"entity": "race"} students are enrolled? 
     - How many [pacific islander]{"entity": "race"} students are enrolled? 
     - How many students of [two-or-more]{"entity": "race"} races are enrolled? 
+    - How many students of [two- or more races]{"entity": "race"} races are enrolled? 
     - How many students of [unknown]{"entity": "race"} race are enrolled? 
+
+    - how many [first time]{"entity": "is_first_time"} [first year]{"entity": "is_first_year"} [hispanic]{"entity":"race"} students are there?
+  
+    - how many [first-year]{"entity": "is_first_year"} students are there?
+  
+
+    - how many [non-first-year]{"entity": "is_first_year"} students are there? 
+
+    - how many students who are [not first year]{"entity": "is_first_year"} are enrolled? 
 
 
 #synonym example, We can also put it in the entity annotation in the above training data sentences
@@ -147,6 +157,7 @@ nlu:
     - grad student
     - non-bachelors
     - grad 
+    - graduates
 
 - synonym: degree-seeking
   examples: |
@@ -188,11 +199,21 @@ nlu:
     - bachelors
     - under grad
     - under-grad
+    - undergraduates
 
-- synonym: first year
+- synonym: first-year
   examples: |
     - 1st year
+    - first year
+    - first-year
 
+- synonym: non-first-year
+  examples: |
+    - not-first-year
+    - not first year
+    - non first year
+
+    
 - synonym: nonresident alien
   examples: |
     - nonresident
@@ -202,25 +223,42 @@ nlu:
 - synonym: african american
   examples: |
     - african-american
+    - black
+    - non-hispanic
 
 - synonym: white
   examples: |
     - caucasian
+    - whites
+    - caucasians
+    - european descent
 
 - synonym: american indian
   examples: |
     - american-indian
+    - american-indians
     - native-american
     - native american
+
+- synonym: hispanic
+  examples: |
+    - hispanics
+    - latino
+    - mexican
+
 
 - synonym: pacific islander
   examples: |
     - pacific-islander
+    - pacific-islanders
+    - pacific island
 
 - synonym: two or more races
   examples: |
     - two or more
+    - two-or-more
     - two or more race
+    - two or more races
     - multiple
   
 
