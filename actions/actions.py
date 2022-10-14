@@ -8,6 +8,7 @@
 # This is a simple example for a custom action which utters "Hello World!"
 
 from typing import Any, Text, Dict, List
+from DataManager.ExcelDataManager import ExcelDataManager
 from Knowledgebase.ChooseFromOptionsAddRowStrategy import ChooseFromOptionsAddRowStrategy
 from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
 from Knowledgebase.SparseMatrixKnowledgeBase import SparseMatrixKnowledgeBase
@@ -15,7 +16,10 @@ from Knowledgebase.SparseMatrixKnowledgeBase import SparseMatrixKnowledgeBase
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 
-knowledgeBase = SparseMatrixKnowledgeBase("./Data_Ingestion/CDS_SPARSE_ENR.xlsx")
+# knowledgeBase = SparseMatrixKnowledgeBase("./Data_Ingestion/CDS_SPARSE_ENR.xlsx")
+
+knowledgeBase = SparseMatrixKnowledgeBase(ExcelDataManager("./CDSData"))
+
 defaultShouldAddRowStrategy = DefaultShouldAddRowStrategy()
 chooseFromOptionsAddRowStrategy = ChooseFromOptionsAddRowStrategy(choices=[{
             "columns": ["degree-seeking", "first-time", "first-year"]
@@ -57,12 +61,11 @@ class ActionQueryEnrollment(Action):
                 haveRaceEnrollmentEntity = True
            
         
-        # print(tracker.latest_message["intent"])
-        # print(tracker.latest_message["entities"])
+        print(tracker.latest_message["intent"])
+        print(tracker.latest_message["entities"])
         selectedShouldAddRowStrategy = defaultShouldAddRowStrategy
         if haveRaceEnrollmentEntity:
             selectedShouldAddRowStrategy = chooseFromOptionsAddRowStrategy
         answer = knowledgeBase.searchForAnswer(tracker.latest_message["intent"]["name"], entitiesExtracted , selectedShouldAddRowStrategy)
         dispatcher.utter_message(answer)
-        return [{
-        "responses": [answer]}]
+        return []

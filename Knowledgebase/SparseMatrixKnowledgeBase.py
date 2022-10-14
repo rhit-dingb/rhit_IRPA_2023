@@ -1,5 +1,6 @@
 from logging import raiseExceptions
 from re import I
+from DataManager.DataManager import DataManager
 from Knowledgebase.Knowledgebase import KnowledgeBase
 from Data_Ingestion.ExcelProcessor import ExcelProcessor
 import pandas as pd
@@ -7,16 +8,14 @@ import copy
 import numpy as np
 
 from Knowledgebase.Knowledgebase import KnowledgeBase
-from Data_Ingestion.ExcelProcessor import ExcelProcessor
+
 import copy
 
 
 class SparseMatrixKnowledgeBase(KnowledgeBase):
-    def __init__(self, filePath):
-        self.excelProcessor = ExcelProcessor()
-        self.topicToParse = ["enrollment"]
-        self.data = self.excelProcessor.processExcelSparse(filePath, self.topicToParse)
-        
+    def __init__(self, dataManager):
+        self.dataManager = dataManager
+
     """
     This function will search in the sparse matrices retrieved by the given intent and calculate the total sum 
     based on the shouldAddRowStrategy.
@@ -34,8 +33,14 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         for entityObj in entitiesExtracted:
             entities.append(entityObj["value"])
 
-        sparseMatrices = self.data[intent]
-        sparseMatrixToSearch = self.determineMatrixToSearch(sparseMatrices, entities)
+        try:
+          
+            sparseMatrixToSearch, startYear, endYear = self.determineMatrixToSearch(intent, entitiesExtracted)
+            print(startYear) 
+            print(endYear)
+        except Exception as e:
+            return str(e).replace("(", "").replace(")", "")
+
         if sparseMatrixToSearch is None:
             raise Exception("No valid sparse matrix found for given intent and entities", intent, entities)
         
@@ -58,8 +63,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         count=0
         col_index=0
         #TODO filter out entities that are not under this intent
-        sparseMatrices = self.data[intent]
-        sparseMatrixToSearch = self.determineMatrixToSearch(sparseMatrices, entities)
+        sparseMatrixToSearch = self.determineMatrixToSearch(intent, entities)
         if sparseMatrixToSearch is None:
             raise Exception("No valid sparse matrix found for given intent and entities", intent, entities)
         
@@ -78,36 +82,9 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
                 
         return str(count)
 
-    """
-    This function will determine which sparse matrix under an intent should we search based on the given entities.
-    For each sparse matrix, it will calculate the number of entities that the sparse matrix has corresponding columns for.
-    Then this function will find and return sparse matrix with the highest match number.
-    We do this because for example, for enrollment, there are two matrix, one for general enrollment info and one for enrollment by race
-    and if the user asks something like "how many hispanics male student are enrolled?" Should we use the general matrix that has gender
-    or should we use the enrollment by race that has information on hispanic student enrollment?  
-    If enrollment by race matrix has information about hispanic male enrollment, this algorithm would choose that. But in this cause,
-    there is no such information and it is out of scope, so we can use any matrix, it will return 0 anywas.
 
-    For now, we will always use the last matrix if there is a tie.
-    """
-    def determineMatrixToSearch(self, sparseMatrices, entities,):
-        maxMatch = []
-        currMax = 0
-        for sparseMatrix in sparseMatrices:
-            entitiesMatchCount = 0
-            for entity in entities:
-                if entity in sparseMatrix.columns:
-                    entitiesMatchCount = entitiesMatchCount+1
-                    
-            if entitiesMatchCount>currMax:
-                maxMatch = []
-                maxMatch.append(sparseMatrix)
-                currMax = entitiesMatchCount
-            elif entitiesMatchCount == currMax:
-                maxMatch.append(sparseMatrix)
-
-
-        return maxMatch[len(maxMatch)-1]
+    def determineMatrixToSearch(self, intent, entities):
+        return self.dataManager.determineMatrixToSearch(intent, entities)
 
     def dummyRandomGeneratedDF(self):
         self.m_df = pd.DataFrame()
