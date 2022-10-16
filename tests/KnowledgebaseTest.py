@@ -2,30 +2,144 @@
 import unittest
 import os
 import sys
+
+
 sys.path.append('..')
-from Knowledgebase.ExcelKnowledgeBase import ExcelKnowledgeBase
+from Data_Ingestion.ExcelProcessor import ExcelProcessor
+from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
+from Knowledgebase.SparseMatrixKnowledgeBase import SparseMatrixKnowledgeBase
+from Knowledgebase.ChooseFromOptionsAddRowStrategy import ChooseFromOptionsAddRowStrategy
 
 
+TOTAL_UNDERGRADUATES = 1972
+TOTAL_UNDERGRADUATE_PART_TIME = 20
+DEGREE_SEEKING_FIRST_TIME_FRESHMAN = 531
+HISPANIC_STUDENTS_ENROLLMENT = 138
+NON_FRESHMAN = 1459
+DEGREE_SEEKING_FIRST_TIME_NON_FRESHMAN = 1100
+TOTAL_GRADUATES = 18
+DEGREE_SEEKING_UNDERGRADUATE_ASIAN_STUDENTS_ENROLLED = 127
+UNDERGRADUATE_DEGREE_SEEKING_HISPANIC_STUDENTS_ENROLLED = 104
+UNDERGRADUATE_FIRST_TIME_DEGREE_SEEKING_UNKNOWN_RACE_STUDENT_ENROLLED = 6
 
-class ExcelKnowledgebaseTest (unittest.TestCase):
+class SparseMatrixKnowledgebaseTest_Enrollment (unittest.TestCase):
     def setUp(self):
-        self.excelKnowledgeBase = ExcelKnowledgeBase("../Data_Ingestion/CDS_SPARSE_ENR.xlsx")
-        self.parsedData = {'enrollment': {'Undergraduate': {'Degree-seeking, first-time freshman': {'Full-Time': {'Men': 387, 'Woman': 143}, 'Part-time': {'Men': 1, 'Woman': 
-0}}, 'Other first year, degree-seeking': {'Full-Time': {'Men': 9, 'Woman': 2}, 'Part-time': {'Men': 0, 'Woman': 0}}, 'All Other degree-seeking non-freshman': {'Full-Time': {'Men': 1082, 'Woman': 329}, 'Part-time': {'Men': 15, 'Woman': 1}}, 'Total degree-seeking': {'Full-Time': {'Men': 1478, 'Woman': 474}, 'Part-time': {'Men': 16, 'Woman': 1}}, 'All other undergraduates enrolled in credit courses ': {'Full-Time': {'Men': 0, 'Woman': 0}, 'Part-time': {'Men': 2, 'Woman': 1}}, 'Total undergraduates': {'Full-Time': {'Men': 1478, 'Woman': 474}, 'Part-time': {'Men': 18, 'Woman': 2}}}, 'Graduates': {'Degree-seeking, first-time': {'Full-Time': {'Men': 3, 'Woman': 0}, 'Part-time': {'Men': 2, 'Woman': 1}}, 'All other degree-seeking': {'Full-Time': {'Men': 6, 'Woman': 1}, 'Part-time': {'Men': 5, 'Woman': 0}}, 'All other graduates enrolled in credit courses ': {'Full-Time': {'Men': 0, 'Woman': 0}, 'Part-time': {'Men': 2, 'Woman': 1}}, 'Total graduates': {'Full-Time': {'Men': 9, 'Woman': 1}, 'Part-time': {'Men': 7, 'Woman': 1}}}, 'Nonresident alien': {'Degree-seeking First-time First year': 36, 'Degree-seeking Undergraduates': 226}, 'Hispanic': {'Degree-seeking First-time First year': 34, 'Degree-seeking Undergraduates': 104}, 'African American': {'Degree-seeking First-time First year': 31, 'Degree-seeking Undergraduates': 93}, 'White': {'Degree-seeking First-time First year': 356, 'Degree-seeking Undergraduates': 1295}, 'American Indian': {'Degree-seeking First-time First year': 1, 'Degree-seeking Undergraduates': 3}, 'Asian': {'Degree-seeking First-time First year': 36, 'Degree-seeking Undergraduates': 127}, 'Pacific Islander': {'Degree-seeking First-time First year': 0, 'Degree-seeking Undergraduates': 0}, 'Two or more races': {'Degree-seeking First-time First year': 31, 'Degree-seeking Undergraduates': 99}, 'Ethnicity Unknown': {'Degree-seeking First-time First year': 6, 'Degree-seeking Undergraduates': 22}, 'Total': {'Degree-seeking First-time First year': 531, 'Degree-seeking Undergraduates': 1969}}}
+        
+        self.knowledgeBase = SparseMatrixKnowledgeBase("../Data_Ingestion/CDS_SPARSE_ENR.xlsx")
+        self.excelProcessor = ExcelProcessor()
+        self.topicToParse = ["enrollment"]
+        self.defaultShouldAddRowStrategy = DefaultShouldAddRowStrategy()
+        self.chooseFromOptionAddRowStrategy = ChooseFromOptionsAddRowStrategy(choices=[{
+            "columns": ["degree-seeking", "first-time", "first-year"]
+        }, 
+        {
+            "columns": ["degree-seeking", "non-first-time", "non-first-year"],
+            "isDefault":True
+        }])
+        #Making sure the data loaded is consistent for testing
+        self.data = self.excelProcessor.processExcelSparse("../Data_Ingestion/CDS_SPARSE_ENR.xlsx", self.topicToParse)
 
-    # def test_search_answers(self):
-    #     #     answer = knowledgeBase.searchForAnswer(
-    #     #     "enrollment", ["full-time"], knowledgeBase.aggregateTotal)
-    #     # options = knowledgeBase.getAvailableOptions(
-    #     #     "enrollment", ["undergraduates"])
-    #     # print(answer)
-    #     # print(options)
-    #     pass
+    def test_when_ask_for_total_graduates_enrollment(self):
+        answer = self.knowledgeBase.searchForAnswer("enrollment", [
+        self.createEntityObjHelper("graduate")
+        ], self.defaultShouldAddRowStrategy)
+        self.assertEqual(answer, str(TOTAL_GRADUATES))
 
-    def test_when_process_data_in_excel_knowledgebase_should_have_correct_data(self):
-        self.assertEqual(self.parsedData,self.excelKnowledgeBase.data)
+    def test_ask_for_total_undergraduates_enrollment(self):
+        answer = self.knowledgeBase.searchForAnswer("enrollment", [
+        self.createEntityObjHelper("undergraduate")
+        ], self.defaultShouldAddRowStrategy)
+        self.assertEqual(answer, str(TOTAL_UNDERGRADUATES))
+
+    def test_ask_for_full_time_undergraduates_enrollment(self):
+        answer = self.knowledgeBase.searchForAnswer("enrollment", [
+            self.createEntityObjHelper("undergraduate"), 
+            self.createEntityObjHelper("full-time")], self.defaultShouldAddRowStrategy)
+        self.assertEqual(answer, str(TOTAL_UNDERGRADUATES-TOTAL_UNDERGRADUATE_PART_TIME))
+
+    #degree-seeking, first_time, freshman/all other, first-year
+    def test_ask_for_full_time_undergradutes_enrollment(self):
+        answer = self.knowledgeBase.searchForAnswer("enrollment", [
+        self.createEntityObjHelper("degree-seeking"), 
+        self.createEntityObjHelper("first-time"), 
+        self.createEntityObjHelper("freshman")], self.defaultShouldAddRowStrategy)
+        self.assertEqual(answer, str(DEGREE_SEEKING_FIRST_TIME_FRESHMAN))
+    
+    def test_ask_for_hispanics_students_enrollment(self):
+        answer = self.knowledgeBase.searchForAnswer("enrollment", [
+        self.createEntityObjHelper("hispanic")
+        ], self.defaultShouldAddRowStrategy)
+        self.assertEqual(answer, str(HISPANIC_STUDENTS_ENROLLMENT))
+
+    def test_ask_for_non_freshmans(self):
+        answer = self.knowledgeBase.searchForAnswer("enrollment", 
+        [
+        self.createEntityObjHelper("non-freshman")
+        ], self.defaultShouldAddRowStrategy)
+        self.assertEqual(answer, str(NON_FRESHMAN))
 
 
+    def test_ask_for_full_time_undergraduate_men_non_freshmans(self):
+        answer = self.knowledgeBase.searchForAnswer("enrollment", [
+            self.createEntityObjHelper("full-time"), 
+            self.createEntityObjHelper("degree-seeking"), 
+            self.createEntityObjHelper("men"), 
+            self.createEntityObjHelper("non-freshman")], self.defaultShouldAddRowStrategy)
+        self.assertEqual(answer, str(DEGREE_SEEKING_FIRST_TIME_NON_FRESHMAN))
+
+    #for this test, I am assuming if we asked for data that the CDS does not have, 
+    # the algorithm current will try to answer to its best of its ability.
+    def test_ask_for_out_of_scope_data_should_answer_to_best_ability(self):
+        answer = self.knowledgeBase.searchForAnswer("enrollment", 
+        [self.createEntityObjHelper("men"), 
+        self.createEntityObjHelper("asian")], 
+        self.chooseFromOptionAddRowStrategy)
+        
+        self.assertEqual(answer, str(DEGREE_SEEKING_UNDERGRADUATE_ASIAN_STUDENTS_ENROLLED))
+
+    #It might be worth thinking about which matrix will be used for this test case compared to the previous test case.
+    #The entities in the above test case are mutually exclusive, meaning one exist in the first matrix(general enrollment) for enrollment while
+    # the second one exist in the second matrix(enrollment by race) for enrollment. So there will be a tie. For this case,
+    # degree-seeking exist in the first matrix but also the second, and "asian" exist only in the second matrix,
+    # since more entities are in the second matrix, the second matrix will be used.
+    def test_ask_for_degree_seeking_asian_student_enrolled_should_return_degree_seeking_undergraduate_asian_students(self):
+        answer = self.knowledgeBase.searchForAnswer("enrollment", 
+        [self.createEntityObjHelper("degree-seeking"), 
+        self.createEntityObjHelper("asian")], 
+        self.chooseFromOptionAddRowStrategy)
+        self.assertEqual(answer, str(DEGREE_SEEKING_UNDERGRADUATE_ASIAN_STUDENTS_ENROLLED))
+    
+    def test_ask_for_african_american_first_time_first_year_degree_seeking(self):
+        answer = self.knowledgeBase.searchForAnswer("enrollment", [self.createEntityObjHelper("african-american"), 
+        self.createEntityObjHelper("first-year"),
+        self.createEntityObjHelper("first-time"), 
+        self.createEntityObjHelper("degree-seeking")], self.chooseFromOptionAddRowStrategy)
+        self.assertEqual(answer, str(31))
+
+    def test_ask_for_asian_student_enrollment_should_not_sum_up_two_row(self):
+        answer = self.knowledgeBase.searchForAnswer("enrollment", [
+        self.createEntityObjHelper("asian")
+        ], self.chooseFromOptionAddRowStrategy)
+        self.assertEqual(answer, str(DEGREE_SEEKING_UNDERGRADUATE_ASIAN_STUDENTS_ENROLLED))
+          
+    def test_ask_for_hispanic_enrollment_but_given_included_invalid_entity_should_return_only_hispanic_enrollment(self):
+        answer = self.knowledgeBase.searchForAnswer("enrollment", [
+            self.createEntityObjHelper("hispanic"), 
+            self.createEntityObjHelper("pizza")
+        ], self.chooseFromOptionAddRowStrategy)
+        self.assertEqual(answer, str(104))
+
+    def test_ask_for_first_time_unknown_race_but_entity_provided_twice(self):
+        answer = self.knowledgeBase.searchForAnswer("enrollment", [
+            self.createEntityObjHelper("unknown"), 
+            self.createEntityObjHelper("first-time"),
+            self.createEntityObjHelper("first-time")
+        ], self.chooseFromOptionAddRowStrategy)
+        self.assertEqual(answer, str(UNDERGRADUATE_FIRST_TIME_DEGREE_SEEKING_UNKNOWN_RACE_STUDENT_ENROLLED))
+
+
+    def createEntityObjHelper(self,entityValue):
+        return {"value":entityValue}
 
 if __name__ == '__main__':
     unittest.main()

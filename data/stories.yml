@@ -1,7 +1,6 @@
 version: "3.1"
 
 stories:
-
 - story: happy path
   steps:
   - intent: greet
@@ -99,21 +98,20 @@ stories:
 #   - action: action_get_available_options
 
 
-
 #generalize the process for enrollment
 - story: ask_about_enrollment_and_answer_helpful
   steps: 
-    - intent: ask_enrollment 
+    - intent: enrollment 
     #query enrollment will ask if the answer provided helped
     - action: action_query_enrollment
     - action: utter_ask_answer_helpful
     - intent: affirm
-    # - action: utter_ask_any_more_question
     - action: action_ask_more_question
+
 
 - story: ask_about_enrollment_and_answer_not_helpful
   steps: 
-    - intent: ask_enrollment 
+    - intent: enrollment 
     #query enrollment will ask if the answer provided helped
     - action: action_query_enrollment
     - action: utter_ask_answer_helpful
