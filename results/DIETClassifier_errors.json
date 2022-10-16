@@ -1,0 +1,52 @@
+[
+  {
+    "text": "I want to know about the number of graduate students here",
+    "entities": [
+      {
+        "start": 35,
+        "end": 52,
+        "value": "graduate",
+        "entity": "student_level"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "student_level",
+        "start": 35,
+        "end": 43,
+        "confidence_entity": 0.732566773891449,
+        "value": "graduate",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "How many students of two- or more races races are enrolled?",
+    "entities": [
+      {
+        "start": 21,
+        "end": 39,
+        "value": "two- or more races",
+        "entity": "race"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "race",
+        "start": 21,
+        "end": 24,
+        "confidence_entity": 0.9969953298568726,
+        "value": "two",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "race",
+        "start": 26,
+        "end": 33,
+        "confidence_entity": 0.9915958046913147,
+        "value": "or more",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  }
+]

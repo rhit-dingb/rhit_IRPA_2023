@@ -1,0 +1,9 @@
+version: "3.1"
+stories:
+- story: ask_about_enrollment_and_answer_helpful (.\tests\test_stories.yml)
+  steps:
+  - intent: ask_enrollment  # predicted: enrollment: How many [undergraduate](student_level) students are there at Rose-Hulman?
+  - action: action_query_enrollment
+  - action: utter_ask_answer_helpful
+  - intent: affirm
+  - action: action_ask_more_question  # predicted: action_default_fallback

@@ -6,15 +6,13 @@ intents:
   - affirm
   - deny
   # Intents for different topics on the IRPA common dataset
-  - ask_enrollment
-
-  - inform
+  - enrollment
   - mood_great
   - mood_unhappy
   - bot_challenge
 
 entities:
-  # full time, part-time
+  # full-time, part-time
   - enrollment_status
 
   # graduate, undergraduate
@@ -29,8 +27,15 @@ entities:
   #First-time, or not first time.
   - is_first_time
 
+  #First-year, non-first-year
+  - is_first_year
+
   #male, female
   - gender
+
+  #race/ethnicity
+  - race
+
 
 slots:
   enrollment_status:
@@ -57,12 +62,65 @@ slots:
     type: categorical
     values:
       - freshman
-      - non-freshman
+      - not-freshman
     influence_conversation: true
     mappings:
       - type: from_entity
         entity: undergraduate_grade_level
 
+  degree-goal:
+    type: categorical
+    values:
+      - degree-seeking
+      - non-degree-seeking 
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: degree-goal
+
+#might use boolean type here
+  is_first_time:
+    type: categorical
+    values:
+      - first-time
+      - non-first-time
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: is_first_time
+
+  gender:
+    type: categorical
+    values:
+      - male
+      - female
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: gender
+
+  race:
+    type: categorical
+    values:
+      - nonresident-alien
+      - hispanic
+      - african-american
+      - white
+      - american-indian
+      - asian
+      - pacific-islander
+      - two-or-more
+      - unknown
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: race
+
+
+actions:
+  - action_get_available_options
+  - action_query_enrollment
+  - action_ask_more_question
   
 
 responses:
@@ -78,6 +136,9 @@ responses:
 
   utter_happy:
   - text: "Great, carry on!"
+  
+  utter_ask_any_more_question:
+  - text: "Great! Do you have anymore questions?"
 
   utter_goodbye:
   - text: "Bye"
@@ -90,6 +151,12 @@ responses:
 
   utter_test_total_undergraduates:
   - text: "Rose-Hulman has 2000 undergraduates"
+
+  utter_test_total_full_time_undergraduate_men:
+  - text: "Rose-Hulman has 1000 full-time undergraduate students that are male."
+
+  utter_ask_answer_helpful:
+  - text: "Was this answer helpful?"
 
 session_config:
   session_expiration_time: 60
