@@ -1,19 +1,35 @@
 {
-  "student_level": {
-    "precision": 0.9,
-    "recall": 0.9,
-    "f1-score": 0.9,
-    "support": 10,
+  "race": {
+    "precision": 0.9166666666666666,
+    "recall": 1.0,
+    "f1-score": 0.9565217391304348,
+    "support": 22,
     "confused_with": {}
   },
+  "is_first_year": {
+    "precision": 0.8888888888888888,
+    "recall": 0.8888888888888888,
+    "f1-score": 0.8888888888888888,
+    "support": 9,
+    "confused_with": {
+      "is_first_time": 1
+    }
+  },
   "year.to": {
-    "precision": 0.8,
-    "recall": 0.6666666666666666,
-    "f1-score": 0.7272727272727272,
+    "precision": 1.0,
+    "recall": 0.3333333333333333,
+    "f1-score": 0.5,
     "support": 6,
     "confused_with": {
-      "year.from": 2
+      "year.from": 4
     }
+  },
+  "year": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1,
+    "confused_with": {}
   },
   "degree-goal": {
     "precision": 1.0,
@@ -29,25 +45,11 @@
     "support": 5,
     "confused_with": {}
   },
-  "race": {
-    "precision": 0.9130434782608695,
-    "recall": 1.0,
-    "f1-score": 0.9545454545454545,
-    "support": 21,
-    "confused_with": {}
-  },
-  "\"race\"": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 1,
-    "confused_with": {}
-  },
-  "undergraduate_grade_level": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4,
+  "student_level": {
+    "precision": 0.9,
+    "recall": 0.9,
+    "f1-score": 0.9,
+    "support": 10,
     "confused_with": {}
   },
   "gender": {
@@ -57,55 +59,51 @@
     "support": 5,
     "confused_with": {}
   },
-  "is_first_time": {
+  "undergraduate_grade_level": {
     "precision": 1.0,
-    "recall": 0.875,
-    "f1-score": 0.9333333333333333,
-    "support": 8,
-    "confused_with": {
-      "is_first_year": 1
-    }
-  },
-  "is_first_year": {
-    "precision": 0.875,
     "recall": 1.0,
-    "f1-score": 0.9333333333333333,
+    "f1-score": 1.0,
+    "support": 4,
+    "confused_with": {}
+  },
+  "year.from": {
+    "precision": 0.6363636363636364,
+    "recall": 1.0,
+    "f1-score": 0.7777777777777778,
     "support": 7,
     "confused_with": {}
   },
-  "year": {
+  "is_first_time": {
+    "precision": 0.9090909090909091,
+    "recall": 1.0,
+    "f1-score": 0.9523809523809523,
+    "support": 10,
+    "confused_with": {}
+  },
+  "\"race\"": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
     "support": 1,
     "confused_with": {}
   },
-  "year.from": {
-    "precision": 0.75,
-    "recall": 0.8571428571428571,
-    "f1-score": 0.7999999999999999,
-    "support": 7,
-    "confused_with": {
-      "year.to": 1
-    }
-  },
   "micro avg": {
-    "precision": 0.9166666666666666,
-    "recall": 0.9390243902439024,
-    "f1-score": 0.9277108433734941,
-    "support": 82
+    "precision": 0.9,
+    "recall": 0.9310344827586207,
+    "f1-score": 0.9152542372881356,
+    "support": 87
   },
   "macro avg": {
-    "precision": 0.9365036231884059,
-    "recall": 0.9415674603174603,
-    "f1-score": 0.9373737373737375,
-    "support": 82
+    "precision": 0.937584175084175,
+    "recall": 0.9268518518518518,
+    "f1-score": 0.9146307798481712,
+    "support": 87
   },
   "weighted avg": {
-    "precision": 0.918889183457052,
-    "recall": 0.9390243902439024,
-    "f1-score": 0.926940133037694,
-    "support": 82
+    "precision": 0.9162312783002438,
+    "recall": 0.9310344827586207,
+    "f1-score": 0.9081808302198107,
+    "support": 87
   },
-  "accuracy": 0.9842829076620825
+  "accuracy": 0.9807321772639692
 }

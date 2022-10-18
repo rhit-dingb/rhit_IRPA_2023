@@ -145,6 +145,8 @@ nlu:
 
     - how many [first time]{"entity": "is_first_time"} [first year]{"entity": "is_first_year"} [hispanic]{"entity":"race"} students are there?
   
+    - how many [non first-time]{"entity": "is_first_time"} [first year]{"entity": "is_first_year"} [hispanic]{"entity":"race"} students are there?
+  
     - how many [first-year]{"entity": "is_first_year"} students are there?
   
 
@@ -165,11 +167,17 @@ nlu:
     - How many [two or more race]{"entity": "race"} are there in academic year of [2222-2223]{"entity": "year"}?
     - How many students are there from [2020]{"entity": "year", "role":"from"} to [2021]{"entity":"year", "role":"to"}?
     - for academic year [2123]{"entity": "year", "role":"from"} to [2124]{"entity": "year", "role":"to"} how  many [non-degree-seeking]{"entity":"degree-goal"} are there?
+
+- intent: cohort
+  examples: |
+
+
+
 #synonym example, We can also put it in the entity annotation in the above training data sentences
 - synonym: graduate
   examples: |
     - grad student
-    - non-bachelorsto
+    - non-bachelors
     - grad 
     - graduates
 
@@ -189,6 +197,8 @@ nlu:
   examples: |
     - non-first-time
     - not first time
+    - non first time 
+    - non first-time
     - second time 
 
 - synonym: non-degree-seeking
@@ -276,9 +286,10 @@ nlu:
     - two or more race
     - two or more races
     - multiple
+
+
   
 
-#used specifically to handle the case like 2021-2022
 # - regex: year
 #   examples: |
 #     - -*\d+-*

@@ -7,9 +7,12 @@ intents:
   - deny
   # Intents for different topics on the IRPA common dataset
   - enrollment
+  - cohort
+
   - mood_great
   - mood_unhappy
   - bot_challenge
+
 
 entities:
   # full-time, part-time
@@ -36,10 +39,46 @@ entities:
   #race/ethnicity
   - race
 
+
+
+  #cohort by year - for example: 2015 cohort, 2016 cohort, etc.
+  - cohort_by_year
+
+
+# used for something like: Initial 2015 cohort of first-time, fulltime, bachelor's (or equivalent) degreeseeking undergraduate students
+# and also something like: Final 2015 cohort, after adjusting for allowable exclusions
+  - cohort_initial_final
+
+# This is entity is used for these rows:
+# of a specific cohort, how many completed the program in more than four but in five years or less
+# Of the initial 2015 cohort, how many completed the program in more than four years but in five years or less
+# of the initial 2015 cohort, how many completed the program in more than five years but in six years or less
+# Total graduating within six years 
+  - graduation_time
+
+# for six-year graduation rate for 2015 cohort row 
+  - graduate rate
+
+
+  # exemptions - students for did not persist or graduate due to other circumstances.
+  # also know as allowable exclusions.
+  - exemptions
+
+
+# what if the user doesn't specify "did not receive pell grant and similary for stafford loan"
+  - Recipients_of_Federal_Pell_Grant
+  - Recipients_of_a_Subsidized_Stafford_Loan_who_did_not_receive_a_Pell_Grant 
+  - Students_who_did_not_receive_either_a_Pell_Grant_or_a_subsidized_Stafford_Loan
+
+
   #year to query the dataset.
   - year
 
-  - DATE
+
+
+
+  
+
 
 slots:
   enrollment_status:

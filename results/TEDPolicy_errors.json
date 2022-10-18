@@ -1,5 +1,37 @@
 [
   {
+    "text": "How many students are there at Rose-Hulman from 3053  to 3054?",
+    "entities": [
+      {
+        "start": 48,
+        "end": 52,
+        "value": "3053",
+        "entity": "year",
+        "role": "from"
+      },
+      {
+        "start": 57,
+        "end": 61,
+        "value": "3054",
+        "entity": "year",
+        "role": "to"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "How many students are there at Rose-Hulman from 2033-2034?",
+    "entities": [
+      {
+        "start": 48,
+        "end": 57,
+        "value": "2033-2034",
+        "entity": "year"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
     "text": "How many undergraduate students are there at Rose-Hulman?",
     "entities": [
       {
@@ -7,6 +39,38 @@
         "end": 22,
         "value": "undergraduate",
         "entity": "student_level"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "How many degree-seeking non-first-time students are there at Rose-Hulman in 2013 to 2014 academic year?",
+    "entities": [
+      {
+        "start": 9,
+        "end": 23,
+        "value": "degree-seeking",
+        "entity": "degree-goal"
+      },
+      {
+        "start": 24,
+        "end": 38,
+        "value": "non-first-time",
+        "entity": "is_first_time"
+      },
+      {
+        "start": 76,
+        "end": 80,
+        "value": "2013",
+        "entity": "year",
+        "role": "from"
+      },
+      {
+        "start": 84,
+        "end": 88,
+        "value": "2014",
+        "entity": "year",
+        "role": "to"
       }
     ],
     "predicted_entities": []
