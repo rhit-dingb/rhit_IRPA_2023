@@ -1,16 +1,23 @@
 
+from copy import deepcopy
 import unittest
 import os
 import sys
+from unittest import mock
+from unittest.mock import patch
 
 
 sys.path.append('..')
+from DataManager.ExcelDataManager import ExcelDataManager
+
 from Data_Ingestion.ExcelProcessor import ExcelProcessor
 from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
 from Knowledgebase.SparseMatrixKnowledgeBase import SparseMatrixKnowledgeBase
 from Knowledgebase.ChooseFromOptionsAddRowStrategy import ChooseFromOptionsAddRowStrategy
 
 
+
+# These values are data from the 2020-2021 CDS dataset.
 TOTAL_UNDERGRADUATES = 1972
 TOTAL_UNDERGRADUATE_PART_TIME = 20
 DEGREE_SEEKING_FIRST_TIME_FRESHMAN = 531
@@ -21,12 +28,16 @@ TOTAL_GRADUATES = 18
 DEGREE_SEEKING_UNDERGRADUATE_ASIAN_STUDENTS_ENROLLED = 127
 UNDERGRADUATE_DEGREE_SEEKING_HISPANIC_STUDENTS_ENROLLED = 104
 UNDERGRADUATE_FIRST_TIME_DEGREE_SEEKING_UNKNOWN_RACE_STUDENT_ENROLLED = 6
+UNDERGRADUATE_DEGREE_SEEKING_AFRICAN_AMERICAN_STUDEN_ENROLLED = 93
+NO_DATA_FOR_GIVE_YEAR_ERROR_MESSAGE_FORMAT = "No data fround for given year range {start}-{end}"
+NON_FIRST_TIME = 1969
 
 class SparseMatrixKnowledgebaseTest_Enrollment (unittest.TestCase):
     def setUp(self):
         
-        self.knowledgeBase = SparseMatrixKnowledgeBase("../Data_Ingestion/CDS_SPARSE_ENR.xlsx")
-        self.excelProcessor = ExcelProcessor()
+        # self.knowledgeBase = SparseMatrixKnowledgeBase("../Data_Ingestion/CDS_SPARSE_ENR.xlsx")
+        self.knowledgeBase = SparseMatrixKnowledgeBase(ExcelDataManager("./testMaterials"))
+       
         self.topicToParse = ["enrollment"]
         self.defaultShouldAddRowStrategy = DefaultShouldAddRowStrategy()
         self.chooseFromOptionAddRowStrategy = ChooseFromOptionsAddRowStrategy(choices=[{
@@ -36,8 +47,10 @@ class SparseMatrixKnowledgebaseTest_Enrollment (unittest.TestCase):
             "columns": ["degree-seeking", "non-first-time", "non-first-year"],
             "isDefault":True
         }])
-        #Making sure the data loaded is consistent for testing
-        self.data = self.excelProcessor.processExcelSparse("../Data_Ingestion/CDS_SPARSE_ENR.xlsx", self.topicToParse)
+
+
+        # #Making sure the data loaded is consistent for testing
+        # self.data = self.excelProcessor.processExcelSparse("../Data_Ingestion/CDS_SPARSE_ENR.xlsx", self.topicToParse)
 
     def test_when_ask_for_total_graduates_enrollment(self):
         answer = self.knowledgeBase.searchForAnswer("enrollment", [
@@ -137,9 +150,58 @@ class SparseMatrixKnowledgebaseTest_Enrollment (unittest.TestCase):
         ], self.chooseFromOptionAddRowStrategy)
         self.assertEqual(answer, str(UNDERGRADUATE_FIRST_TIME_DEGREE_SEEKING_UNKNOWN_RACE_STUDENT_ENROLLED))
 
+    def test_ask_for_african_american_student_enrollment(self):
+        answer = self.knowledgeBase.searchForAnswer("enrollment", [
+            self.createEntityObjHelper("african-american"), 
+        ], self.chooseFromOptionAddRowStrategy)
+        self.assertEqual(answer, str(UNDERGRADUATE_DEGREE_SEEKING_AFRICAN_AMERICAN_STUDEN_ENROLLED))
 
-    def createEntityObjHelper(self,entityValue):
-        return {"value":entityValue}
+
+    def test_ask_for_data_for_invalid_year_should_return_error_message(self):
+        answer = self.knowledgeBase.searchForAnswer("enrollment", [
+            self.createEntityObjHelper("african-american"), 
+             self.createEntityObjHelper("3000-3001", "year")
+        ], self.chooseFromOptionAddRowStrategy)
+
+        self.assertEqual(answer, NO_DATA_FOR_GIVE_YEAR_ERROR_MESSAGE_FORMAT.format(start = 3000, end = 3001))
+
+    def test_ask_for_data_for_give_start_year_should_return_correct_data(self):
+        answer = self.knowledgeBase.searchForAnswer("enrollment", [
+            self.createEntityObjHelper("degree-seeking"),
+            self.createEntityObjHelper("non-first-time"),
+            self.createEntityObjHelper("2020","year", "from")
+        ], self.defaultShouldAddRowStrategy)
+     
+        self.assertEqual(answer, str(NON_FIRST_TIME))
+
+    
+    def test_ask_for_data_for_give_end_year_with_no_data_should_return_error_message(self):
+
+        # remove 2019 data so it doesn't exist, and test that given 2020 year but with role "to", it shouldn't look up 2020 data 
+        # but instead return an error message.
+        parsedData = deepcopy(self.knowledgeBase.dataManager.excelProcessor.data)
+        yearToRemove = "2019_2020"
+        if  yearToRemove in parsedData:
+            del parsedData[yearToRemove]
+
+        with patch("Data_Ingestion.ExcelProcessor") as mock:
+            mockExcelProcessor = mock.return_value
+            mockExcelProcessor.getData.return_value = parsedData
+            answer = self.knowledgeBase.searchForAnswer("enrollment", [
+                self.createEntityObjHelper("degree-seeking"),
+                self.createEntityObjHelper("non-first-time"),
+                self.createEntityObjHelper("2020","year", "to")
+            ], self.defaultShouldAddRowStrategy)
+        
+            self.assertEqual(answer, str(NO_DATA_FOR_GIVE_YEAR_ERROR_MESSAGE_FORMAT.format(start = 2019, end =2020)))
+
+    def createEntityObjHelper(self, entityValue, entityLabel="none",  entityRole = None):
+        # we set the value of the entity key to any for now.
+        res =  {"entity": entityLabel, "value":entityValue}
+        if(entityRole):
+            res["role"] = entityRole
+
+        return res 
 
 if __name__ == '__main__':
     unittest.main()

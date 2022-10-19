@@ -94,7 +94,45 @@ stories:
 - story: ask_about_enrollment_and_answer_helpful
   steps: 
   - user: |
-      How many undergraduate students are there at Rose-Hulman?
+      How many [undergraduate](student_level) students are there at Rose-Hulman?
+    intent: enrollment
+  - action: action_query_enrollment
+  - action: utter_ask_answer_helpful
+  - user: |
+      Yes
+    intent: affirm
+  - action: action_ask_more_question
+
+- story: ask_about_enrollment_and_answer_helpful
+  steps: 
+  - user: |
+      How many [degree-seeking](degree-goal) [non-first-time](is_first_time) students are there at Rose-Hulman in [2013]{"entity":"year", "role":"from"} to [2014]{"entity":"year", "role":"to"} academic year?
+    intent: enrollment
+  - action: action_query_enrollment
+  - action: utter_ask_answer_helpful
+  - user: |
+      Yes
+    intent: affirm
+  - action: action_ask_more_question
+
+- story: ask_about_enrollment_and_answer_helpful
+  steps: 
+  - user: |
+      How many students are there at Rose-Hulman from [3053]{"entity":"year", "role":"from"}  to [3054]{"entity":"year", "role":"to"}?
+    intent: enrollment
+  - action: action_query_enrollment
+  - action: utter_ask_answer_helpful
+  - user: |
+      Yes
+    intent: affirm
+  - action: action_ask_more_question
+
+
+
+- story: ask_about_enrollment_and_answer_helpful
+  steps: 
+  - user: |
+      How many students are there at Rose-Hulman from [2033-2034](year)?
     intent: enrollment
   - action: action_query_enrollment
   - action: utter_ask_answer_helpful

@@ -16,6 +16,7 @@ nlu:
     - goodmorning
     - goodevening
     - good afternoon
+    
 
 - intent: goodbye
   examples: |
@@ -132,7 +133,8 @@ nlu:
 
     - How many [nonresident-alien]{"entity": "race"} students are enrolled? 
     - How many [hispanic]{"entity": "race"} students are enrolled? 
-    - How many [african-american]{"entity": "race"} students are enrolled? 
+    - How many [african-american]{"entity": "race"} students are enrolled?
+    - how many [black]{"entity": "race"} students are enrolled? 
     - How many [white]{"entity": "race"} students are enrolled? 
     - How many [american-indian]{"entity": "race"} students are enrolled? 
     - How many [asian]{"entity": "race"} students are enrolled? 
@@ -148,14 +150,26 @@ nlu:
 
     - how many [non-first-year]{"entity": "is_first_year"} students are there? 
 
-    - how many students who are [not first year]{"entity": "is_first_year"} are enrolled? 
+    - how many students who are [not first year]{"entity": "is_first_year"} are enrolled?
+    
+    # training data for asking about specific year.
+    - I want to know about total undergraduate enrollment in [2022]{"entity": "year", "role":"from"}
 
+    - How many [asian]{"entity": "race"} students are enrolled in [2019]{"entity": "year", "role":"from"} to [2022]{"entity": "year", "role":"to"}
 
+    - How many [undergraduates]{"entity": "student_level"} are there in [2020]{"entity": "year", "role":"from"} - [2021]{"entity": "year", "role":"to"} academic year?
+    
+    - How many [female]{"entity": "gender"} [undergraduates]{"entity": "student_level"} are there in academic year [2021]{"entity": "year", "role":"from"} to [2022]{"entity": "year", "role":"to"}?
+    - How many [hispanics]("race") student are there in academic year [3032]{"entity": "year", "role":"from"} - [3033]{"entity": "year", "role":"to"}?
+
+    - How many [two or more race]{"entity": "race"} are there in academic year of [2222-2223]{"entity": "year"}?
+    - How many students are there from [2020]{"entity": "year", "role":"from"} to [2021]{"entity":"year", "role":"to"}?
+    - for academic year [2123]{"entity": "year", "role":"from"} to [2124]{"entity": "year", "role":"to"} how  many [non-degree-seeking]{"entity":"degree-goal"} are there?
 #synonym example, We can also put it in the entity annotation in the above training data sentences
 - synonym: graduate
   examples: |
     - grad student
-    - non-bachelors
+    - non-bachelorsto
     - grad 
     - graduates
 
@@ -224,6 +238,8 @@ nlu:
   examples: |
     - african-american
     - black
+    - african american
+    - african
     - non-hispanic
 
 - synonym: white
@@ -262,6 +278,10 @@ nlu:
     - multiple
   
 
+#used specifically to handle the case like 2021-2022
+# - regex: year
+#   examples: |
+#     - -*\d+-*
   
 
 

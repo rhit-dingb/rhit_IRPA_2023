@@ -36,6 +36,10 @@ entities:
   #race/ethnicity
   - race
 
+  #year to query the dataset.
+  - year
+
+  - DATE
 
 slots:
   enrollment_status:
