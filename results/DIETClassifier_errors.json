@@ -14,48 +14,19 @@
         "entity": "student_level",
         "start": 35,
         "end": 43,
-        "confidence_entity": 0.6374050378799438,
+        "confidence_entity": 0.6561108827590942,
         "value": "graduate",
         "extractor": "DIETClassifier"
       }
     ]
   },
   {
-    "text": "How many students that are not first-time?",
-    "entities": [
-      {
-        "start": 27,
-        "end": 41,
-        "value": "not first-time",
-        "entity": "is_first_time"
-      }
-    ],
-    "predicted_entities": [
-      {
-        "entity": "is_first_year",
-        "start": 27,
-        "end": 30,
-        "confidence_entity": 0.39190873503685,
-        "value": "not",
-        "extractor": "DIETClassifier"
-      },
-      {
-        "entity": "is_first_time",
-        "start": 31,
-        "end": 41,
-        "confidence_entity": 0.7549188733100891,
-        "value": "first-time",
-        "extractor": "DIETClassifier"
-      }
-    ]
-  },
-  {
-    "text": "How many students of two-or-more races are enrolled?",
+    "text": "How many students of two- or more races races are enrolled?",
     "entities": [
       {
         "start": 21,
-        "end": 32,
-        "value": "two-or-more",
+        "end": 39,
+        "value": "two- or more races",
         "entity": "race"
       }
     ],
@@ -63,9 +34,17 @@
       {
         "entity": "race",
         "start": 21,
-        "end": 38,
-        "confidence_entity": 0.5004685521125793,
-        "value": "two-or-more races",
+        "end": 24,
+        "confidence_entity": 0.9854654669761658,
+        "value": "two",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "race",
+        "start": 26,
+        "end": 33,
+        "confidence_entity": 0.9941157102584839,
+        "value": "or more",
         "extractor": "DIETClassifier"
       }
     ]
@@ -85,7 +64,7 @@
         "entity": "race",
         "start": 21,
         "end": 33,
-        "confidence_entity": 0.6504603028297424,
+        "confidence_entity": 0.5394701957702637,
         "value": "unknown race",
         "extractor": "DIETClassifier"
       }
@@ -107,7 +86,7 @@
         "entity": "student_level",
         "start": 27,
         "end": 40,
-        "confidence_entity": 0.9168247580528259,
+        "confidence_entity": 0.9005002379417419,
         "value": "undergraduate",
         "extractor": "DIETClassifier"
       },
@@ -115,9 +94,9 @@
         "entity": "year",
         "start": 55,
         "end": 59,
-        "confidence_entity": 0.998320996761322,
+        "confidence_entity": 0.9985164999961853,
         "role": "to",
-        "confidence_role": 0.503869891166687,
+        "confidence_role": 0.5723462104797363,
         "value": "2022",
         "extractor": "DIETClassifier"
       }
@@ -152,7 +131,7 @@
         "entity": "student_level",
         "start": 9,
         "end": 23,
-        "confidence_entity": 0.9813832640647888,
+        "confidence_entity": 0.9876930117607117,
         "value": "undergraduate",
         "extractor": "DIETClassifier",
         "processors": [
@@ -163,9 +142,9 @@
         "entity": "year",
         "start": 37,
         "end": 41,
-        "confidence_entity": 0.998223602771759,
+        "confidence_entity": 0.9986617565155029,
         "role": "from",
-        "confidence_role": 0.6601699590682983,
+        "confidence_role": 0.7369205951690674,
         "value": "2020",
         "extractor": "DIETClassifier"
       },
@@ -173,9 +152,9 @@
         "entity": "year",
         "start": 44,
         "end": 48,
-        "confidence_entity": 0.9984115362167358,
+        "confidence_entity": 0.9986188411712646,
         "role": "from",
-        "confidence_role": 0.5034182071685791,
+        "confidence_role": 0.5098627805709839,
         "value": "2021",
         "extractor": "DIETClassifier"
       }
@@ -210,9 +189,9 @@
         "entity": "year",
         "start": 18,
         "end": 22,
-        "confidence_entity": 0.9982587695121765,
+        "confidence_entity": 0.9983713030815125,
         "role": "from",
-        "confidence_role": 0.6141504049301147,
+        "confidence_role": 0.6516896486282349,
         "value": "2123",
         "extractor": "DIETClassifier"
       },
@@ -220,9 +199,9 @@
         "entity": "year",
         "start": 26,
         "end": 30,
-        "confidence_entity": 0.9983516931533813,
+        "confidence_entity": 0.998485267162323,
         "role": "from",
-        "confidence_role": 0.6204932332038879,
+        "confidence_role": 0.6420533657073975,
         "value": "2124",
         "extractor": "DIETClassifier"
       },
@@ -230,7 +209,7 @@
         "entity": "degree-goal",
         "start": 41,
         "end": 59,
-        "confidence_entity": 0.9722896814346313,
+        "confidence_entity": 0.9577261209487915,
         "value": "non-degree-seeking",
         "extractor": "DIETClassifier"
       }

@@ -1,20 +1,4 @@
 {
-  "student_level": {
-    "precision": 0.9,
-    "recall": 0.9,
-    "f1-score": 0.9,
-    "support": 10,
-    "confused_with": {}
-  },
-  "year.to": {
-    "precision": 0.8,
-    "recall": 0.6666666666666666,
-    "f1-score": 0.7272727272727272,
-    "support": 6,
-    "confused_with": {
-      "year.from": 2
-    }
-  },
   "degree-goal": {
     "precision": 1.0,
     "recall": 1.0,
@@ -29,51 +13,14 @@
     "support": 5,
     "confused_with": {}
   },
-  "race": {
-    "precision": 0.9130434782608695,
-    "recall": 1.0,
-    "f1-score": 0.9545454545454545,
-    "support": 21,
-    "confused_with": {}
-  },
-  "\"race\"": {
+  "year": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
     "support": 1,
     "confused_with": {}
   },
-  "undergraduate_grade_level": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4,
-    "confused_with": {}
-  },
-  "gender": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 5,
-    "confused_with": {}
-  },
-  "is_first_time": {
-    "precision": 1.0,
-    "recall": 0.875,
-    "f1-score": 0.9333333333333333,
-    "support": 8,
-    "confused_with": {
-      "is_first_year": 1
-    }
-  },
-  "is_first_year": {
-    "precision": 0.875,
-    "recall": 1.0,
-    "f1-score": 0.9333333333333333,
-    "support": 7,
-    "confused_with": {}
-  },
-  "year": {
+  "\"race\"": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
@@ -89,23 +36,74 @@
       "year.to": 1
     }
   },
+  "gender": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 5,
+    "confused_with": {}
+  },
+  "race": {
+    "precision": 0.9523809523809523,
+    "recall": 0.9523809523809523,
+    "f1-score": 0.9523809523809523,
+    "support": 21,
+    "confused_with": {}
+  },
+  "undergraduate_grade_level": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 4,
+    "confused_with": {}
+  },
+  "is_first_time": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 8,
+    "confused_with": {}
+  },
+  "student_level": {
+    "precision": 0.9,
+    "recall": 0.9,
+    "f1-score": 0.9,
+    "support": 10,
+    "confused_with": {}
+  },
+  "is_first_year": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 7,
+    "confused_with": {}
+  },
+  "year.to": {
+    "precision": 0.8,
+    "recall": 0.6666666666666666,
+    "f1-score": 0.7272727272727272,
+    "support": 6,
+    "confused_with": {
+      "year.from": 2
+    }
+  },
   "micro avg": {
-    "precision": 0.9166666666666666,
+    "precision": 0.9390243902439024,
     "recall": 0.9390243902439024,
-    "f1-score": 0.9277108433734941,
+    "f1-score": 0.9390243902439024,
     "support": 82
   },
   "macro avg": {
-    "precision": 0.9365036231884059,
-    "recall": 0.9415674603174603,
-    "f1-score": 0.9373737373737375,
+    "precision": 0.9501984126984128,
+    "recall": 0.9480158730158731,
+    "f1-score": 0.9483044733044733,
     "support": 82
   },
   "weighted avg": {
-    "precision": 0.918889183457052,
+    "precision": 0.9396341463414634,
     "recall": 0.9390243902439024,
-    "f1-score": 0.926940133037694,
+    "f1-score": 0.938580931263858,
     "support": 82
   },
-  "accuracy": 0.9842829076620825
+  "accuracy": 0.9862475442043221
 }
