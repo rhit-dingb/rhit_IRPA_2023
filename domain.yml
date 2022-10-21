@@ -50,14 +50,14 @@ entities:
   - cohort_initial_final
 
 # This is entity is used for these rows:
-# of a specific cohort, how many completed the program in more than four but in five years or less
-# Of the initial 2015 cohort, how many completed the program in more than four years but in five years or less
-# of the initial 2015 cohort, how many completed the program in more than five years but in six years or less
-# Total graduating within six years 
-  - graduation_time
+#Example: five year or less, four year or less
+  - upper_bound_graduation_time
+
+#Example: more than four years.
+  - lower_bound_graduation_time
 
 # for six-year graduation rate for 2015 cohort row 
-  - graduate rate
+  - graduate_rate
 
 
   # exemptions - students for did not persist or graduate due to other circumstances.
@@ -66,18 +66,14 @@ entities:
 
 
 # what if the user doesn't specify "did not receive pell grant and similary for stafford loan"
-  - Recipients_of_Federal_Pell_Grant
-  - Recipients_of_a_Subsidized_Stafford_Loan_who_did_not_receive_a_Pell_Grant 
-  - Students_who_did_not_receive_either_a_Pell_Grant_or_a_subsidized_Stafford_Loan
+  - recipients_of_federal_pell_grant
+  - recipients_of_a_subsidized_stafford_loan_who_did_not_receive_a_pell_grant 
+  - students_who_did_not_receive_either_a_pell_grant_or_a_subsidized_stafford_loan
 
 
   #year to query the dataset.
   - year
 
-
-
-
-  
 
 
 slots:
@@ -162,8 +158,9 @@ slots:
 
 actions:
   - action_get_available_options
-  - action_query_enrollment
   - action_ask_more_question
+  - action_query_cohort
+  - action_query_enrollment
   
 
 responses:

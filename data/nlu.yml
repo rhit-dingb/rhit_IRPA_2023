@@ -168,8 +168,78 @@ nlu:
     - How many students are there from [2020]{"entity": "year", "role":"from"} to [2021]{"entity":"year", "role":"to"}?
     - for academic year [2123]{"entity": "year", "role":"from"} to [2124]{"entity": "year", "role":"to"} how  many [non-degree-seeking]{"entity":"degree-goal"} are there?
 
+
 - intent: cohort
   examples: |
+    - I want to know about [2015 cohort](cohort_by_year)
+    - What is the [initial](cohort_initial_final) [2014 cohort](cohort_by_year) of [first-time](is_first_time), [fulltime](enrollment_status), [bachelor's](student_level) [degree-seeking](degree-goal) students?
+    - Of the [initial](cohort_initial_final) [2014 cohort](cohort_by_year), how many [did not persist](exemptions) and [did not graduate](exemptions) for the following reasons: [deceased](exemptions), [permanently disabled](exemptions), [armed forces](exemptions), [foreign aid service of the federal government](exemptions), or [official church missions](exemptions)?
+    - What is the total [allowable exclusions](exemptions) of the [3564 cohort](cohort_by_year)
+
+    - How many students [left](exemptions) the school due to some reason for the [2014 cohort](cohort_by_year)?
+    - What is the [Final](cohort_initial_final) [2014 cohort](cohort_by_year), after adjusting for [allowable exclusions](exemptions)
+    - Of the [initial](cohort_initial_final) [2120 cohort](cohort_by_year), how many completed the program in [four years or less](upper_bound_graduation_time)?
+    - Of the [initial](cohort_initial_final) [9208 cohort](cohort_by_year), how many completed the program in [more than four years](lower_bound_graduation_time) but in [five years or less](upper_bound_graduation_time)? 
+    - Of the [initial](cohort_initial_final) [2013 cohort](cohort_by_year), how many completed the program in [more than five years](lower_bound_graduation_time) but in [six years or less](upper_bound_graduation_time)?
+    
+    - Of the [initial](cohort_initial_final) [4014 cohort](cohort_by_year), how many completed the program in [more than four years](lower_bound_graduation_time) but in [five years or less](upper_bound_graduation_time) and are [recipients of subsidized stafford loan and did not receive a pell grant](recipients_of_a_subsidized_stafford_loan_who_did_not_receive_a_pell_grant)
+    - What is the [six year](upper_bound_graduation_time) [graduation rate] (graduation_rate) for students who are [recipients of a federal pell grant](recipients_of_federal_pell_grant) in the [2013 cohort](cohort_by_year)?
+    - How many students in the [6590 cohort](cohort_by_year) are [recipients of subsidized loan and did not receive federal pell grant](recipients_of_a_subsidized_stafford_loan_who_did_not_receive_a_pell_grant)?
+    - How many students in the [2019 cohort](cohort_by_year) are [did not receive subsidized loan and did not receive federal pell grant](students_who_did_not_receive_either_a_pell_grant_or_a_subsidized_stafford_loan)?
+    - what is the total number of students graduating within [six years](upper_bound_graduation_time) for [2019 cohort](cohort_by_year) who [did not receive either a pell grant or a subsidized stafford loan](students_who_did_not_receive_either_a_pell_grant_or_a_subsidized_stafford_loan)
+
+    
+    - What is the [six year](upper_bound_graduation_time) [graduation_rate](graduation_rate) for the [2013 cohort](cohort_by_year)?
+    - What is the [five year](upper_bound_graduation_time) [graduation_rate](graduation_rate) for the [2013 cohort](cohort_by_year)?
+    - What is the [four year](upper_bound_graduation_time) [graduation_rate](graduation_rate) for the [2013 cohort](cohort_by_year)?
+    
+
+- synonym: six year 
+  examples: |
+    - 6 year 
+    - 6-years
+    - six-year
+
+
+- synonym: five year 
+  examples: |
+    - 5 year 
+    - 5-years
+    - five-year
+
+- synonym: four year 
+  examples: |
+    - 4 year 
+    - 4-years
+    - four-year
+   
+   
+
+- synonym: initial
+  examples: |
+    - starting
+    - beginning
+    - at the start
+
+- synonym: final  
+  examples: |
+    - end
+    - ending
+    - at the end
+
+- synonym: exemptions
+  examples: |
+   - did not persist
+   - did not graduate
+   - allowable exclusions
+   - allowable exclusion
+
+   # Im not sure if we should include these in the exemptions, but i'll include it for now.
+   - deceased
+   - permanently disabled
+   - armed forces 
+   - foreign aid service of the federal government
+   - official church missions
 
 
 
@@ -201,14 +271,22 @@ nlu:
     - non first-time
     - second time 
 
+- synonym: full-time
+  examples: |
+    - full time
+    - fulltime
+
+- synonym: part-time
+  examples: |
+    - part time
+    - parttime
+
+
+
 - synonym: non-degree-seeking
   examples: |
     - non degree seeking
     - not looking for a degree
-    
-- synonym:  first-time
-  examples: |
-    - first time
 
 - synonym: freshman
   examples: |
@@ -236,7 +314,6 @@ nlu:
     - not-first-year
     - not first year
     - non first year
-
     
 - synonym: nonresident alien
   examples: |

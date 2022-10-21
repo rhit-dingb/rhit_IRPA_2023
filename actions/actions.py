@@ -69,3 +69,12 @@ class ActionQueryEnrollment(Action):
         answer = knowledgeBase.searchForAnswer(tracker.latest_message["intent"]["name"], entitiesExtracted , selectedShouldAddRowStrategy)
         dispatcher.utter_message(answer)
         return []
+
+class ActionQueryEnrollment(Action):
+    def name(self) -> Text:
+        return "action_query_cohort"
+    
+    def run(self, dispatcher, tracker, domain):
+        print(tracker.latest_message["intent"])
+        print(tracker.latest_message["entities"])
+        return []
