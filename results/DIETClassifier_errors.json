@@ -14,91 +14,9 @@
         "entity": "student_level",
         "start": 35,
         "end": 43,
-        "confidence_entity": 0.46973860263824463,
+        "confidence_entity": 0.8291515111923218,
         "value": "graduate",
         "extractor": "DIETClassifier"
-      }
-    ]
-  },
-  {
-    "text": "How many students of two- or more races races are enrolled?",
-    "entities": [
-      {
-        "start": 21,
-        "end": 39,
-        "value": "two- or more races",
-        "entity": "race"
-      }
-    ],
-    "predicted_entities": [
-      {
-        "entity": "race",
-        "start": 21,
-        "end": 24,
-        "confidence_entity": 0.9940326809883118,
-        "value": "two",
-        "extractor": "DIETClassifier"
-      },
-      {
-        "entity": "race",
-        "start": 26,
-        "end": 45,
-        "confidence_entity": 0.5984507203102112,
-        "value": "or more races races",
-        "extractor": "DIETClassifier"
-      }
-    ]
-  },
-  {
-    "text": "How many students of unknown race are enrolled?",
-    "entities": [
-      {
-        "start": 21,
-        "end": 28,
-        "value": "unknown",
-        "entity": "race"
-      }
-    ],
-    "predicted_entities": [
-      {
-        "entity": "race",
-        "start": 21,
-        "end": 33,
-        "confidence_entity": 0.6985887289047241,
-        "value": "unknown race",
-        "extractor": "DIETClassifier"
-      }
-    ]
-  },
-  {
-    "text": "how many students who are not first year are enrolled?",
-    "entities": [
-      {
-        "start": 26,
-        "end": 40,
-        "value": "not first year",
-        "entity": "is_first_year"
-      }
-    ],
-    "predicted_entities": [
-      {
-        "entity": "is_first_time",
-        "start": 26,
-        "end": 29,
-        "confidence_entity": 0.3839576542377472,
-        "value": "not",
-        "extractor": "DIETClassifier"
-      },
-      {
-        "entity": "is_first_year",
-        "start": 30,
-        "end": 40,
-        "confidence_entity": 0.5608672499656677,
-        "value": "first-year",
-        "extractor": "DIETClassifier",
-        "processors": [
-          "EntitySynonymMapper"
-        ]
       }
     ]
   },
@@ -118,7 +36,7 @@
         "entity": "student_level",
         "start": 27,
         "end": 40,
-        "confidence_entity": 0.9095017313957214,
+        "confidence_entity": 0.5593152642250061,
         "value": "undergraduate",
         "extractor": "DIETClassifier"
       },
@@ -126,64 +44,9 @@
         "entity": "year",
         "start": 55,
         "end": 59,
-        "confidence_entity": 0.9985413551330566,
+        "confidence_entity": 0.99937504529953,
         "role": "from",
-        "confidence_role": 0.49930277466773987,
-        "value": "2022",
-        "extractor": "DIETClassifier"
-      }
-    ]
-  },
-  {
-    "text": "How many asian students are enrolled in 2019 to 2022",
-    "entities": [
-      {
-        "start": 9,
-        "end": 14,
-        "value": "asian",
-        "entity": "race"
-      },
-      {
-        "start": 40,
-        "end": 44,
-        "value": "2019",
-        "entity": "year",
-        "role": "from"
-      },
-      {
-        "start": 48,
-        "end": 52,
-        "value": "2022",
-        "entity": "year",
-        "role": "to"
-      }
-    ],
-    "predicted_entities": [
-      {
-        "entity": "race",
-        "start": 9,
-        "end": 14,
-        "confidence_entity": 0.9976085424423218,
-        "value": "asian",
-        "extractor": "DIETClassifier"
-      },
-      {
-        "entity": "year",
-        "start": 40,
-        "end": 44,
-        "confidence_entity": 0.9989031553268433,
-        "role": "from",
-        "confidence_role": 0.6077311635017395,
-        "value": "2019",
-        "extractor": "DIETClassifier"
-      },
-      {
-        "entity": "year",
-        "start": 48,
-        "end": 52,
-        "confidence_entity": 0.9985517859458923,
-        "role": "from",
-        "confidence_role": 0.49379098415374756,
+        "confidence_role": 0.5531005859375,
         "value": "2022",
         "extractor": "DIETClassifier"
       }
@@ -218,7 +81,7 @@
         "entity": "student_level",
         "start": 9,
         "end": 23,
-        "confidence_entity": 0.9863744974136353,
+        "confidence_entity": 0.9960405826568604,
         "value": "undergraduate",
         "extractor": "DIETClassifier",
         "processors": [
@@ -229,9 +92,9 @@
         "entity": "year",
         "start": 37,
         "end": 41,
-        "confidence_entity": 0.9988951086997986,
+        "confidence_entity": 0.9992892742156982,
         "role": "from",
-        "confidence_role": 0.5923627614974976,
+        "confidence_role": 0.8898434042930603,
         "value": "2020",
         "extractor": "DIETClassifier"
       },
@@ -239,56 +102,10 @@
         "entity": "year",
         "start": 44,
         "end": 48,
-        "confidence_entity": 0.9981110095977783,
+        "confidence_entity": 0.9993172883987427,
         "role": "from",
-        "confidence_role": 0.540141761302948,
+        "confidence_role": 0.636385977268219,
         "value": "2021",
-        "extractor": "DIETClassifier"
-      }
-    ]
-  },
-  {
-    "text": "How many two or more race are there in academic year of 2222-2223?",
-    "entities": [
-      {
-        "start": 9,
-        "end": 25,
-        "value": "two or more race",
-        "entity": "race"
-      },
-      {
-        "start": 56,
-        "end": 65,
-        "value": "2222-2223",
-        "entity": "year"
-      }
-    ],
-    "predicted_entities": [
-      {
-        "entity": "race",
-        "start": 9,
-        "end": 25,
-        "confidence_entity": 0.8276554346084595,
-        "value": "two or more races",
-        "extractor": "DIETClassifier",
-        "processors": [
-          "EntitySynonymMapper"
-        ]
-      },
-      {
-        "entity": "is_first_year",
-        "start": 48,
-        "end": 52,
-        "confidence_entity": 0.5374898314476013,
-        "value": "year",
-        "extractor": "DIETClassifier"
-      },
-      {
-        "entity": "year",
-        "start": 56,
-        "end": 65,
-        "confidence_entity": 0.9960466027259827,
-        "value": "2222-2223",
         "extractor": "DIETClassifier"
       }
     ]
@@ -316,9 +133,9 @@
         "entity": "year",
         "start": 33,
         "end": 37,
-        "confidence_entity": 0.9989462494850159,
+        "confidence_entity": 0.9990338087081909,
         "role": "from",
-        "confidence_role": 0.5952500104904175,
+        "confidence_role": 0.7861911654472351,
         "value": "2020",
         "extractor": "DIETClassifier"
       },
@@ -326,16 +143,16 @@
         "entity": "year",
         "start": 41,
         "end": 45,
-        "confidence_entity": 0.9986549615859985,
+        "confidence_entity": 0.999406099319458,
         "role": "from",
-        "confidence_role": 0.4990716576576233,
+        "confidence_role": 0.5336726307868958,
         "value": "2021",
         "extractor": "DIETClassifier"
       }
     ]
   },
   {
-    "text": "for academic year 2123 to 2124 how  many non-degree-seeking are there?",
+    "text": "for academic year 2123 to 2124 how many non-degree-seeking are there?",
     "entities": [
       {
         "start": 18,
@@ -352,8 +169,8 @@
         "role": "to"
       },
       {
-        "start": 41,
-        "end": 59,
+        "start": 40,
+        "end": 58,
         "value": "non-degree-seeking",
         "entity": "degree-goal"
       }
@@ -363,9 +180,9 @@
         "entity": "year",
         "start": 18,
         "end": 22,
-        "confidence_entity": 0.9988977909088135,
+        "confidence_entity": 0.9990448355674744,
         "role": "from",
-        "confidence_role": 0.6083399057388306,
+        "confidence_role": 0.7146806120872498,
         "value": "2123",
         "extractor": "DIETClassifier"
       },
@@ -373,19 +190,160 @@
         "entity": "year",
         "start": 26,
         "end": 30,
-        "confidence_entity": 0.9989514350891113,
+        "confidence_entity": 0.9989547729492188,
         "role": "from",
-        "confidence_role": 0.5879335999488831,
+        "confidence_role": 0.7087775468826294,
         "value": "2124",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "degree-goal",
+        "start": 40,
+        "end": 58,
+        "confidence_entity": 0.9937694668769836,
+        "value": "non-degree-seeking",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "for the year 2025  - 2053, how many many non-degree-seeking are there?",
+    "entities": [
+      {
+        "start": 13,
+        "end": 17,
+        "value": "2025",
+        "entity": "year",
+        "role": "from"
+      },
+      {
+        "start": 21,
+        "end": 25,
+        "value": "2053",
+        "entity": "year",
+        "role": "to"
+      },
+      {
+        "start": 41,
+        "end": 59,
+        "value": "non-degree-seeking",
+        "entity": "degree-goal"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "year",
+        "start": 13,
+        "end": 17,
+        "confidence_entity": 0.9992660880088806,
+        "role": "from",
+        "confidence_role": 0.8626540899276733,
+        "value": "2025",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "year",
+        "start": 21,
+        "end": 25,
+        "confidence_entity": 0.9991012811660767,
+        "role": "from",
+        "confidence_role": 0.5281121730804443,
+        "value": "2053",
         "extractor": "DIETClassifier"
       },
       {
         "entity": "degree-goal",
         "start": 41,
         "end": 59,
-        "confidence_entity": 0.9692084789276123,
+        "confidence_entity": 0.993798553943634,
         "value": "non-degree-seeking",
         "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Of the initial 4014 cohort, how many completed the program in more than four years but in five years or less and are recipients of subsidized stafford loan and did not receive a pell grant",
+    "entities": [
+      {
+        "start": 7,
+        "end": 14,
+        "value": "initial",
+        "entity": "cohort_initial_final"
+      },
+      {
+        "start": 15,
+        "end": 26,
+        "value": "4014 cohort",
+        "entity": "cohort_by_year"
+      },
+      {
+        "start": 62,
+        "end": 82,
+        "value": "more than 5 years",
+        "entity": "lower_bound_graduation_time"
+      },
+      {
+        "start": 90,
+        "end": 108,
+        "value": "5 years or less",
+        "entity": "upper_bound_graduation_time"
+      },
+      {
+        "start": 117,
+        "end": 188,
+        "value": "stafford-loan",
+        "entity": "recipients_of_a_subsidized_stafford_loan_who_did_not_receive_a_pell_grant"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "cohort_initial_final",
+        "start": 7,
+        "end": 14,
+        "confidence_entity": 0.9989712238311768,
+        "value": "initial",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "cohort_by_year",
+        "start": 15,
+        "end": 26,
+        "confidence_entity": 0.9849189519882202,
+        "value": "4014 cohort",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "lower_bound_graduation_time",
+        "start": 62,
+        "end": 82,
+        "confidence_entity": 0.8337360620498657,
+        "value": "more than 5 years",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "upper_bound_graduation_time",
+        "start": 90,
+        "end": 112,
+        "confidence_entity": 0.652730405330658,
+        "value": "5 years or less",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "recipients_of_a_subsidized_stafford_loan_who_did_not_receive_a_pell_grant",
+        "start": 117,
+        "end": 188,
+        "confidence_entity": 0.7524189352989197,
+        "value": "stafford-loan",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
       }
     ]
   }

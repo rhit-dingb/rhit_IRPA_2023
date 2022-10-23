@@ -11,6 +11,9 @@ from Knowledgebase.Knowledgebase import KnowledgeBase
 
 import copy
 
+from Knowledgebase.ShouldAddRowStrategy import ShouldAddRowStrategy
+from actions.entititesHelper import copyEntities
+
 
 class SparseMatrixKnowledgeBase(KnowledgeBase):
     def __init__(self, dataManager):
@@ -23,6 +26,9 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
     entitiesExtracted: list entities extracted by user input, each individual element is an object with the entity label, value and other information
     shouldAddRowStrategy: for each row, this function will determine if we should add the value of this row to the total sum.
     Return: answer calculated and returned as string.
+
+    Throws: exception when given year or intent for the data is not found or when exception encountered when parsing year entity values
+
     """
     def searchForAnswer(self, intent, entitiesExtracted, shouldAddRowStrategy):
         count=0
@@ -33,14 +39,9 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         for entityObj in entitiesExtracted:
             entities.append(entityObj["value"])
 
-        try:
-          
-            sparseMatrixToSearch, startYear, endYear = self.determineMatrixToSearch(intent, entitiesExtracted)
-            print(startYear) 
-            print(endYear)
-        except Exception as e:
-            return str(e).replace("(", "").replace(")", "")
-
+        
+        sparseMatrixToSearch, startYear, endYear = self.determineMatrixToSearch(intent, entitiesExtracted)
+    
         if sparseMatrixToSearch is None:
             raise Exception("No valid sparse matrix found for given intent and entities", intent, entities)
         
@@ -54,7 +55,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
                 #print("Im ADDING " + str(self.m_df.loc[i,'Value']))
                 count += sparseMatrixToSearch.loc[i,'Value']
                 
-        return str(count)    
+        return str(int(count))    
 
 
 
@@ -63,6 +64,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         count=0
         col_index=0
         #TODO filter out entities that are not under this intent
+        
         sparseMatrixToSearch = self.determineMatrixToSearch(intent, entities)
         if sparseMatrixToSearch is None:
             raise Exception("No valid sparse matrix found for given intent and entities", intent, entities)
@@ -82,9 +84,29 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
                 
         return str(count)
 
+    def aggregateDiscreteRange(self, intent, filteredEntities, start, end, generator):
+        shouldAddRowStrategy = ShouldAddRowStrategy()
+        total = 0
+        for i in range(start, end+1):
+            filteredEntitiesCopy = copyEntities(filteredEntities)
+            entityValue = generator(i, start, end)
+            # we can make the entity key more descriptive later 
+            fakeEntity = {
+                "entity": i,
+                "value": entityValue,
+                "isFake": True
+            }
+
+            filteredEntitiesCopy.append(fakeEntity)
+            answer = self.searchForAnswer(intent, filteredEntitiesCopy, shouldAddRowStrategy )
+            total = total + answer
+
+        return total
+
 
     def determineMatrixToSearch(self, intent, entities):
         return self.dataManager.determineMatrixToSearch(intent, entities)
+
 
     def dummyRandomGeneratedDF(self):
         self.m_df = pd.DataFrame()

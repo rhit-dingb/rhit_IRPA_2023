@@ -49,15 +49,21 @@ entities:
 # and also something like: Final 2015 cohort, after adjusting for allowable exclusions
   - cohort_initial_final
 
-# This is entity is used for these rows:
-#Example: five year or less, four year or less
+ # This is entity is used for these rows:
+ #Example: five year or less, four year or less
   - upper_bound_graduation_time
 
-#Example: more than four years.
+ #Example: more than four years.
   - lower_bound_graduation_time
 
+
+  # - graduate_within_four_years
+  # - graduated_in_five_years
+  # - graduated_in_six_years
+
+
 # for six-year graduation rate for 2015 cohort row 
-  - graduate_rate
+  - graduation_rate
 
 
   # exemptions - students for did not persist or graduate due to other circumstances.

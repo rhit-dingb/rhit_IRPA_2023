@@ -141,3 +141,13 @@ stories:
       Yes
     intent: affirm
   - action: action_ask_more_question
+
+
+- story: ask_about_cohort_general
+  steps:
+  - user: |
+      How many students graduated in [five year]{"entity": "upper_bound_graduation_time", "value": "five years or less"} but in [more than four years]{"entity": "lower_bound_graduation_time", "value": "more than four years"} for [2046 cohort](cohort_by_year)?
+    intent: cohort
+  - action: action_query_cohort
+  - action: utter_ask_answer_helpful
+    

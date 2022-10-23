@@ -1,6 +1,6 @@
 
 from DataManager.YearDataSelector import YearlyDataSelector
-
+from DataManager.YearDataSelectorByCohort import YearlyDataSelectorByCohort
 """
 "Abstract" class to abstract sub classes responsible for retrieving sparse matrix to be searched
  given intent and entities containing year information.
@@ -9,7 +9,8 @@ There probably will be two implementation of this class one is for excel and ano
 """
 class DataManager():
     def __init__(self):
-        self.dataSelector = YearlyDataSelector()
+        self.cohortYearDataSelector = YearlyDataSelectorByCohort()
+        self.academicYearDataSelector = YearlyDataSelector()
 
     """
     This is an abstract method.
@@ -20,9 +21,11 @@ class DataManager():
     start: start year of the cds data we want
     end: end year of the cds data we want.
 
+    exceptionToThrow: the exception to throw if no data is found for the given year
+
     return: a list of sparse matrices corresponding to the given intent. Each matrix is reprsented by pandas dataframe.
     """
-    def getSparseMatricesByStartEndYearAndIntent(self, intent, start, end):
+    def getSparseMatricesByStartEndYearAndIntent(self, intent, start, end, exceptionToThrow):
         raise Exception("This method should be override by a concrete class")
 
 
@@ -38,9 +41,15 @@ class DataManager():
 
     """
     def determineMatrixToSearch(self, intent, entities):
-        sparseMatrices, startYear, endYear = self.dataSelector.selectDataToSearchByYear(self, intent, entities)
-        selectedSparseMatrix = self.determineBestMatchingMatrix(sparseMatrices, entities)
+        sparseMatrices, startYear, endYear = self.cohortYearDataSelector.selectDataToSearchByYear(self, intent, entities)
+        print(startYear)
+        # print(sparseMatrices)
+        if sparseMatrices == None:
+            sparseMatrices, startYear, endYear = self.academicYearDataSelector.selectDataToSearchByYear(self, intent, entities)   
+        
+        selectedSparseMatrix = self.determineBestMatchingMatrix(sparseMatrices, entities)      
         return (selectedSparseMatrix, startYear, endYear)
+       
 
 
     """
@@ -73,7 +82,8 @@ class DataManager():
             elif entitiesMatchCount == currMax:
                 maxMatch.append(sparseMatrix)
 
-
+        #TODO: raise an error if no best matching matrix is found
+       
         return maxMatch[len(maxMatch)-1]
 
 

@@ -3,6 +3,11 @@
 """
 A class used to determine which CDS data to use given the year.
 """
+from Exceptions.ExceptionMessages import NO_DATA_FOUND_FOR_ACADEMIC_YEAR_ERROR_MESSAGE_FORMAT
+from Exceptions.ExceptionTypes import ExceptionTypes
+from Exceptions.NoDataFoundException import NoDataFoundException
+
+
 class YearlyDataSelector():
     """
     This function will get the specific sparse matrix that will be used based on the intent and entities that contains 
@@ -49,12 +54,12 @@ class YearlyDataSelector():
             if start is None and not end is None:
 
                 start = self.calculateYearHelper(end, -1)
-               
 
             elif not start is None and end is None:
                 end = self.calculateYearHelper(start, 1)
 
-        sparseMatrices = dataManager.getSparseMatricesByStartEndYearAndIntent(intent, start, end); 
+        exceptionToThrow = NoDataFoundException(NO_DATA_FOUND_FOR_ACADEMIC_YEAR_ERROR_MESSAGE_FORMAT.format(start=start, end=end), ExceptionTypes.NoDataFoundForAcademicYearException)
+        sparseMatrices = dataManager.getSparseMatricesByStartEndYearAndIntent(intent, start, end, exceptionToThrow)
         return (sparseMatrices, start, end)
 
     def calculateYearHelper(self, year, delta):

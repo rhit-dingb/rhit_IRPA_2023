@@ -29,3 +29,11 @@ pip install rasa
 - run 'rasa train' everytime after git pull
 - run 'rasa shell' to open interactive shell
 - Also need to run 'rasa run actions' to start action server so custom actions can be run
+
+
+## Testing:
+1. Don't need to cd into test directory. At the project's root directory run the following command:
+   - To run all test: py -m unittest discover tests test*.py
+   - To run individual test: py -m unittest .\tests\{name_of the test}. 
+      - For example: py -m unittest \tests\test_knowledgebaseTest_Enrollment.py
+      - Note: all test files should start with prefix "test"

@@ -7,11 +7,15 @@
 
 # This is a simple example for a custom action which utters "Hello World!"
 
-from typing import Any, Text, Dict, List
+from copy import deepcopy
+from re import L
 from DataManager.ExcelDataManager import ExcelDataManager
 from Knowledgebase.ChooseFromOptionsAddRowStrategy import ChooseFromOptionsAddRowStrategy
 from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
 from Knowledgebase.SparseMatrixKnowledgeBase import SparseMatrixKnowledgeBase
+from actions.constants import COHORT_GRADUATION_TIME_ENTITY_FORMAT, COHORT_GRADUATION_TIME_START_FORMAT
+from actions.entititesHelper import copyEntities, filterEntities
+from entititesHelper import findEntityHelper
 
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
@@ -66,15 +70,71 @@ class ActionQueryEnrollment(Action):
         selectedShouldAddRowStrategy = defaultShouldAddRowStrategy
         if haveRaceEnrollmentEntity:
             selectedShouldAddRowStrategy = chooseFromOptionsAddRowStrategy
-        answer = knowledgeBase.searchForAnswer(tracker.latest_message["intent"]["name"], entitiesExtracted , selectedShouldAddRowStrategy)
+
+        answer = None
+        try:
+            answer = knowledgeBase.searchForAnswer(tracker.latest_message["intent"]["name"], entitiesExtracted , selectedShouldAddRowStrategy)
+        except Exception as e:
+            answer = str(e).replace("(", "").replace(")", "")
+      
         dispatcher.utter_message(answer)
         return []
 
-class ActionQueryEnrollment(Action):
+class ActionQueryCohort(Action):
     def name(self) -> Text:
         return "action_query_cohort"
     
+    def extractYearFromGraduationYearEntityValue(self, entityObj ):
+        indexes = []
+        for i in range(4,6+1):
+            index_value = None
+            try:
+                index_value = entityObj["value"].index(str(i))
+            except ValueError:
+                index_value = -1
+            indexes.append(index_value)
+        
+        for index in indexes:
+            if index > -1:
+                return entityObj["value"][index]
+        
+        return -1
+
+
     def run(self, dispatcher, tracker, domain):
         print(tracker.latest_message["intent"])
         print(tracker.latest_message["entities"])
+
+        entitiesExtracted = tracker.latest_message["entities"]
+        intent = tracker.latest_message["intent"]["name"]
+
+        # we might want to refactor this later with some classes.
+
+        entitiesExtractedCopy = copyEntities(entitiesExtracted)
+        askForGraduationRate = findEntityHelper(entitiesExtractedCopy, "graduation_rate")
+        lowerBoundGraduationYearEntity = findEntityHelper(entitiesExtractedCopy, "lower_bound_graduation_time")
+        upperBoundGraduationYearEntity = findEntityHelper(entitiesExtractedCopy, "upper_bound_graduation_time")
+        
+        maxYear = 6
+        minYear = 4
+        entitiesFiltered = filterEntities(entitiesExtractedCopy, ["upper_bound_graduation_time", "lower_bound_graduation_time"])
+        lowerBoundYear = max(self.extractYearFromGraduationYearEntityValue(lowerBoundGraduationYearEntity), minYear)
+        upperBoundYear = min(self.extractYearFromGraduationYearEntityValue(upperBoundGraduationYearEntity), maxYear)
+
+        def generator(curr, start, end):
+            if curr == start:
+                return COHORT_GRADUATION_TIME_START_FORMAT.format(upperBound = upperBoundYear)
+            else:
+                return COHORT_GRADUATION_TIME_ENTITY_FORMAT.format(lowerBound = lowerBoundYear, upperBoundYear =upperBoundYear)
+
+
+        if lowerBoundGraduationYearEntity or upperBoundGraduationYearEntity:
+            answer = None
+            try:
+                answer = knowledgeBase.aggregateDiscreteRange(intent, entitiesFiltered, lowerBoundYear, upperBoundYear, generator)
+            except Exception as e:
+                answer = str(e).replace("(", "").replace(")", "")
+
+            dispatcher.utter_message(answer)
+
         return []

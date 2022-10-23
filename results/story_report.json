@@ -1,9 +1,9 @@
 {
-  "affirm": {
+  "action_query_cohort": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 5
+    "support": 1
   },
   "deny": {
     "precision": 1.0,
@@ -17,85 +17,7 @@
     "f1-score": 1.0,
     "support": 5
   },
-  "utter_did_that_help": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 3
-  },
-  "[non-first-time](is_first_time)": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 1
-  },
-  "utter_goodbye": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4
-  },
   "[undergraduate](student_level)": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 1
-  },
-  "utter_cheer_up": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 3
-  },
-  "action_query_enrollment": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4
-  },
-  "[2014](year)": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 1
-  },
-  "[2033-2034](year)": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 1
-  },
-  "action_listen": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 24
-  },
-  "goodbye": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 2
-  },
-  "[degree-seeking](degree-goal)": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 1
-  },
-  "action_ask_more_question": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4
-  },
-  "[2013](year)": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 1
-  },
-  "[3054](year)": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
@@ -107,7 +29,19 @@
     "f1-score": 1.0,
     "support": 4
   },
-  "bot_challenge": {
+  "affirm": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 5
+  },
+  "mood_great": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 2
+  },
+  "[non-first-time](is_first_time)": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
@@ -119,23 +53,17 @@
     "f1-score": 1.0,
     "support": 1
   },
-  "utter_happy": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 3
-  },
-  "utter_iamabot": {
+  "bot_challenge": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
     "support": 1
   },
-  "mood_unhappy": {
+  "[2046 cohort](cohort_by_year)": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 3
+    "support": 1
   },
   "greet": {
     "precision": 1.0,
@@ -143,41 +71,143 @@
     "f1-score": 1.0,
     "support": 5
   },
-  "utter_ask_answer_helpful": {
+  "action_listen": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 25
+  },
+  "utter_happy": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 3
+  },
+  "[degree-seeking](degree-goal)": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1
+  },
+  "cohort": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1
+  },
+  "[2013](year)": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1
+  },
+  "utter_goodbye": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
     "support": 4
   },
-  "mood_great": {
+  "[2033-2034](year)": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1
+  },
+  "[five year]{\"entity\": \"upper_bound_graduation_time\", \"value\": \"five years or less\"}": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 1
+  },
+  "goodbye": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
     "support": 2
   },
-  "accuracy": 1.0,
-  "macro avg": {
+  "mood_unhappy": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 87
+    "support": 3
   },
-  "weighted avg": {
+  "utter_ask_answer_helpful": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 87
+    "support": 5
+  },
+  "utter_iamabot": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1
+  },
+  "utter_cheer_up": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 3
+  },
+  "[3054](year)": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1
+  },
+  "[more than four years](lower_bound_graduation_time)": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 1
+  },
+  "utter_did_that_help": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 3
+  },
+  "[2014](year)": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1
+  },
+  "action_ask_more_question": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 4
+  },
+  "action_query_enrollment": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 4
   },
   "micro avg": {
     "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 87
+    "recall": 0.9787234042553191,
+    "f1-score": 0.989247311827957,
+    "support": 94
   },
+  "macro avg": {
+    "precision": 0.9354838709677419,
+    "recall": 0.9354838709677419,
+    "f1-score": 0.9354838709677419,
+    "support": 94
+  },
+  "weighted avg": {
+    "precision": 0.9787234042553191,
+    "recall": 0.9787234042553191,
+    "f1-score": 0.9787234042553191,
+    "support": 94
+  },
+  "accuracy": 0.9787234042553191,
   "conversation_accuracy": {
-    "accuracy": 1.0,
+    "accuracy": 0.9166666666666666,
     "correct": 11,
     "with_warnings": 0,
-    "total": 11
+    "total": 12
   }
 }

@@ -32,6 +32,33 @@
     "predicted_entities": []
   },
   {
+    "text": "How many students graduated in five year but in more than four years for 2046 cohort?",
+    "entities": [
+      {
+        "text": "How many students graduated in five year but in more than four years for 2046 cohort?",
+        "start": 31,
+        "end": 40,
+        "entity": "upper_bound_graduation_time",
+        "value": "five years or less"
+      },
+      {
+        "text": "How many students graduated in five year but in more than four years for 2046 cohort?",
+        "start": 48,
+        "end": 68,
+        "entity": "lower_bound_graduation_time",
+        "value": "more than four years"
+      },
+      {
+        "text": "How many students graduated in five year but in more than four years for 2046 cohort?",
+        "start": 73,
+        "end": 84,
+        "entity": "cohort_by_year",
+        "value": "2046 cohort"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
     "text": "How many undergraduate students are there at Rose-Hulman?",
     "entities": [
       {

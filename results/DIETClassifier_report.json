@@ -1,62 +1,16 @@
 {
-  "race": {
-    "precision": 0.9166666666666666,
-    "recall": 1.0,
-    "f1-score": 0.9565217391304348,
-    "support": 22,
-    "confused_with": {}
-  },
-  "is_first_year": {
-    "precision": 0.8888888888888888,
-    "recall": 0.8888888888888888,
-    "f1-score": 0.8888888888888888,
-    "support": 9,
-    "confused_with": {
-      "is_first_time": 1
-    }
-  },
-  "year.to": {
-    "precision": 1.0,
-    "recall": 0.3333333333333333,
-    "f1-score": 0.5,
-    "support": 6,
-    "confused_with": {
-      "year.from": 4
-    }
-  },
-  "year": {
+  "lower_bound_graduation_time": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 1,
+    "support": 12,
     "confused_with": {}
   },
-  "degree-goal": {
-    "precision": 1.0,
+  "upper_bound_graduation_time": {
+    "precision": 0.972972972972973,
     "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 7,
-    "confused_with": {}
-  },
-  "enrollment_status": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 5,
-    "confused_with": {}
-  },
-  "student_level": {
-    "precision": 0.9,
-    "recall": 0.9,
-    "f1-score": 0.9,
-    "support": 10,
-    "confused_with": {}
-  },
-  "gender": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 5,
+    "f1-score": 0.9863013698630138,
+    "support": 36,
     "confused_with": {}
   },
   "undergraduate_grade_level": {
@@ -66,44 +20,144 @@
     "support": 4,
     "confused_with": {}
   },
-  "year.from": {
-    "precision": 0.6363636363636364,
-    "recall": 1.0,
-    "f1-score": 0.7777777777777778,
-    "support": 7,
-    "confused_with": {}
-  },
-  "is_first_time": {
-    "precision": 0.9090909090909091,
-    "recall": 1.0,
-    "f1-score": 0.9523809523809523,
-    "support": 10,
-    "confused_with": {}
-  },
-  "\"race\"": {
+  "cohort_initial_final": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 1,
+    "support": 7,
+    "confused_with": {}
+  },
+  "graduation_rate": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 5,
+    "confused_with": {}
+  },
+  "year": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 2,
+    "confused_with": {}
+  },
+  "is_first_year": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 9,
+    "confused_with": {}
+  },
+  "recipients_of_a_subsidized_stafford_loan_who_did_not_receive_a_pell_grant": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 23,
+    "confused_with": {}
+  },
+  "students_who_did_not_receive_either_a_pell_grant_or_a_subsidized_stafford_loan": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 26,
+    "confused_with": {}
+  },
+  "cohort_by_year": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 40,
+    "confused_with": {}
+  },
+  "year.to": {
+    "precision": 1.0,
+    "recall": 0.42857142857142855,
+    "f1-score": 0.6,
+    "support": 7,
+    "confused_with": {
+      "year.from": 4
+    }
+  },
+  "degree-goal": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 9,
+    "confused_with": {}
+  },
+  "student_level": {
+    "precision": 0.9230769230769231,
+    "recall": 0.9230769230769231,
+    "f1-score": 0.9230769230769231,
+    "support": 13,
+    "confused_with": {}
+  },
+  "year.from": {
+    "precision": 0.7142857142857143,
+    "recall": 1.0,
+    "f1-score": 0.8333333333333333,
+    "support": 10,
+    "confused_with": {}
+  },
+  "exemptions": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 26,
+    "confused_with": {}
+  },
+  "gender": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 5,
+    "confused_with": {}
+  },
+  "is_first_time": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 11,
+    "confused_with": {}
+  },
+  "enrollment_status": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 6,
+    "confused_with": {}
+  },
+  "race": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 27,
+    "confused_with": {}
+  },
+  "recipients_of_federal_pell_grant": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 6,
     "confused_with": {}
   },
   "micro avg": {
-    "precision": 0.9,
-    "recall": 0.9310344827586207,
-    "f1-score": 0.9152542372881356,
-    "support": 87
+    "precision": 0.9789473684210527,
+    "recall": 0.9823943661971831,
+    "f1-score": 0.9806678383128296,
+    "support": 284
   },
   "macro avg": {
-    "precision": 0.937584175084175,
-    "recall": 0.9268518518518518,
-    "f1-score": 0.9146307798481712,
-    "support": 87
+    "precision": 0.9805167805167805,
+    "recall": 0.9675824175824175,
+    "f1-score": 0.9671355813136635,
+    "support": 284
   },
   "weighted avg": {
-    "precision": 0.9162312783002438,
-    "recall": 0.9310344827586207,
-    "f1-score": 0.9081808302198107,
-    "support": 87
+    "precision": 0.9829925498939585,
+    "recall": 0.9823943661971831,
+    "f1-score": 0.9790147276352177,
+    "support": 284
   },
-  "accuracy": 0.9807321772639692
+  "accuracy": 0.9922907488986784
 }

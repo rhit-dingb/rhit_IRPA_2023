@@ -1,1 +1,11 @@
-# None of the test stories failed - all good!
+version: "3.1"
+stories:
+- story: ask_about_cohort_general (.\tests\test_stories.yml)
+  steps:
+  - intent: cohort
+    entities:
+    - upper_bound_graduation_time: five years or less
+    - lower_bound_graduation_time: more than four years
+    - cohort_by_year: 2046 cohort
+  - action: action_query_cohort
+  - action: utter_ask_answer_helpful

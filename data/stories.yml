@@ -80,18 +80,24 @@ stories:
 #   - action: utter_test_total_full_time_undergraduate_men
 
 
+# - story: ask_about_cohort_graduation_rates
+#   steps: 
+#     - intent: cohort
+   
+#       entities:
+#       - or:
+#       #NOTE: the specific values of entities does not matter, this just checks if the entity itself is extracted
+#         - upper_bound_graduation_time: "more than four year"
+#         - lower_bound_graduation_time: "less than five years"
+#     - action: action_query_cohort
+#     - action: utter_ask_answer_helpful
 
-- story: ask_about_cohort_graduation_rates
+- story: ask_about_cohort_general
   steps: 
     - intent: cohort
-   
-      entities:
-      - or:
-      #NOTE: the specific values of entities does not matter, this just checks if the entity itself is extracted
-        - upper_bound_graduation_time: "more than four year"
-        - lower_bound_graduation_time: "less than five years"
     - action: action_query_cohort
     - action: utter_ask_answer_helpful
+    
     
 
 #generalize the process for enrollment
