@@ -1,6 +1,7 @@
 from logging import raiseExceptions
 from re import I
 from DataManager.DataManager import DataManager
+from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
 from Knowledgebase.Knowledgebase import KnowledgeBase
 from Data_Ingestion.ExcelProcessor import ExcelProcessor
 import pandas as pd
@@ -11,7 +12,6 @@ from Knowledgebase.Knowledgebase import KnowledgeBase
 
 import copy
 
-from Knowledgebase.ShouldAddRowStrategy import ShouldAddRowStrategy
 from actions.entititesHelper import copyEntities
 
 
@@ -41,14 +41,14 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
 
         
         sparseMatrixToSearch, startYear, endYear = self.determineMatrixToSearch(intent, entitiesExtracted)
-    
+      
         if sparseMatrixToSearch is None:
             raise Exception("No valid sparse matrix found for given intent and entities", intent, entities)
         
         for i in range(sparseMatrixToSearch.shape[0]):
             if sparseMatrixToSearch.loc[i,"total"] == 1:
                 continue
-
+           
             row = sparseMatrixToSearch.loc[i]
             shouldAdd = shouldAddRowStrategy.determineShouldAddRow(row, entities)
             if shouldAdd:
@@ -84,9 +84,10 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
                 
         return str(count)
 
-    def aggregateDiscreteRange(self, intent, filteredEntities, start, end, generator):
-        shouldAddRowStrategy = ShouldAddRowStrategy()
+    def aggregateDiscreteRange(self, intent, filteredEntities, start, end, generator, shouldAddRow):
+        shouldAddRowStrategy = shouldAddRow
         total = 0
+       
         for i in range(start, end+1):
             filteredEntitiesCopy = copyEntities(filteredEntities)
             entityValue = generator(i, start, end)
@@ -96,12 +97,13 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
                 "value": entityValue,
                 "isFake": True
             }
-
+            
             filteredEntitiesCopy.append(fakeEntity)
+             
             answer = self.searchForAnswer(intent, filteredEntitiesCopy, shouldAddRowStrategy )
-            total = total + answer
+            total = total + int(answer)
 
-        return total
+        return str(total)
 
 
     def determineMatrixToSearch(self, intent, entities):

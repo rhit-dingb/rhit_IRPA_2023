@@ -42,7 +42,6 @@ class DataManager():
     """
     def determineMatrixToSearch(self, intent, entities):
         sparseMatrices, startYear, endYear = self.cohortYearDataSelector.selectDataToSearchByYear(self, intent, entities)
-        print(startYear)
         # print(sparseMatrices)
         if sparseMatrices == None:
             sparseMatrices, startYear, endYear = self.academicYearDataSelector.selectDataToSearchByYear(self, intent, entities)   
