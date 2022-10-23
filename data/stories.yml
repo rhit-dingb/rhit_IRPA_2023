@@ -92,12 +92,26 @@ stories:
 #     - action: action_query_cohort
 #     - action: utter_ask_answer_helpful
 
-- story: ask_about_cohort_general
+- story: ask_about_cohort_answer_helpful
   steps: 
     - intent: cohort
     - action: action_query_cohort
     - action: utter_ask_answer_helpful
-    
+    - intent: affirm
+    - checkpoint: ask_feedback
+
+
+
+
+- story: ask_about_cohort_answer_not_helpful
+  steps: 
+    - intent: cohort
+    - action: action_query_cohort
+    - action: utter_ask_answer_helpful
+    - intent: deny
+    - action: utter_sorry_question_not_helpful
+    - action: action_get_available_options
+
 
 #generalize the process for enrollment
 - story: ask_about_enrollment_and_answer_helpful
@@ -107,8 +121,29 @@ stories:
     - action: action_query_enrollment
     - action: utter_ask_answer_helpful
     - intent: affirm
-    - action: action_ask_more_question
+    - checkpoint: ask_feedback
+    
+    
 
+
+   
+    
+    
+
+- story: ask_more_question
+  steps:
+  - checkpoint: ask_feedback
+  - action: action_ask_more_question
+  - intent: affirm
+  - action: utter_ask_whats_the_question
+
+
+- story: as_no_more_question
+  steps:
+  - checkpoint: ask_feedback
+  - action: action_ask_more_question
+  - intent: deny
+  - action: utter_no_more_question
 
 - story: ask_about_enrollment_and_answer_not_helpful
   steps: 
@@ -117,4 +152,5 @@ stories:
     - action: action_query_enrollment
     - action: utter_ask_answer_helpful
     - intent: deny
+    - action: utter_sorry_question_not_helpful
     - action: action_get_available_options

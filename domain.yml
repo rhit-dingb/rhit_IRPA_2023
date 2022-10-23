@@ -186,8 +186,18 @@ responses:
   utter_ask_any_more_question:
   - text: "Great! Do you have anymore questions?"
 
+  utter_ask_whats_the_question:
+  - text: "I am glad to help you with that, whats the question?"
+
+  utter_no_more_question:
+  - text: "Have a good day!"
+
   utter_goodbye:
   - text: "Bye"
+
+
+  utter_sorry_question_not_helpful:
+  - text: "I am sorry it does not help, thak you for your reply, we will update chatbot."
 
   utter_iamabot:
   - text: "I am a bot, powered by Rasa."
