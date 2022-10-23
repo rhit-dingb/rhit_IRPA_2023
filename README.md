@@ -32,8 +32,9 @@ pip install rasa
 
 
 ## Testing:
-1. Don't need to cd into test directory. At the project's root directory run the following command:
-   - To run all test: py -m unittest discover tests test*.py
-   - To run individual test: py -m unittest .\tests\{name_of the test}. 
-      - For example: py -m unittest \tests\test_knowledgebaseTest_Enrollment.py
+1. Open anaconda terminal, cd into the project directory
+2. Don't need to cd into test directory. At the project's root directory run the following command:
+   - To run all test: python -m unittest discover tests test*.py
+   - To run individual test: python -m unittest tests/{name of test}.py 
+      - For example: python -m unittest tests/test_knowledgebase_enrollment.py
       - Note: all test files should start with prefix "test"

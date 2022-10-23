@@ -98,7 +98,6 @@ stories:
     - action: action_query_cohort
     - action: utter_ask_answer_helpful
     
-    
 
 #generalize the process for enrollment
 - story: ask_about_enrollment_and_answer_helpful

@@ -1,8 +1,7 @@
 from copy import deepcopy
 import unittest
-import os
-import sys
 from DataManager.constants import COHORT_BY_YEAR_ENTITY_LABEL
+from Knowledgebase.Knowledgebase import KnowledgeBase
 
 from Knowledgebase.SparseMatrixKnowledgeBase import SparseMatrixKnowledgeBase
 from Knowledgebase.ChooseFromOptionsAddRowStrategy import ChooseFromOptionsAddRowStrategy
@@ -13,17 +12,16 @@ from Exceptions.ExceptionTypes import ExceptionTypes
 from Exceptions.ExceptionMessages import NO_DATA_FOUND_FOR_ACADEMIC_YEAR_ERROR_MESSAGE_FORMAT
 from unittest.mock import patch
 from unittest import mock
-
 from tests.testUtils import createEntityObjHelper
+from actions.actions import *
 
 
 #These values are from the 2014 cohort in the 2013-2014 dataset 
 INITIAL_2014_COHORT_TOTAL = 582
 
 
-class SparseMatrixKnowledgebaseTest_Cohort(unittest.TestCase):
+class cohort_test(unittest.TestCase):
     def setUp(self):
-        print("SS")
         self.topicToParse = ["enrollment", "cohort"]
         self.knowledgeBase = SparseMatrixKnowledgeBase(
             ExcelDataManager("./tests/testMaterials", self.topicToParse))
@@ -40,7 +38,7 @@ class SparseMatrixKnowledgebaseTest_Cohort(unittest.TestCase):
 
        
     #Cohorts actually uses the label of the entities.
-    def test_when_ask_for_initial_cohort_should_return_correct_value(self):
+    def test_knowledgebase_when_ask_for_initial_cohort_should_return_correct_value(self):
         answer = self.knowledgeBase.searchForAnswer(
             "cohort",
             [
@@ -50,6 +48,22 @@ class SparseMatrixKnowledgebaseTest_Cohort(unittest.TestCase):
         )
 
         self.assertEqual(answer, str(INITIAL_2014_COHORT_TOTAL))
+
+    def test_when_ask_for_graduation_time_five_to_six_year_should_give_correct_value(self):
+        answer = self.knowledgeBase.searchForAnswer(
+            "cohort",
+            [
+            createEntityObjHelper("initial"),
+            createEntityObjHelper("2014 cohort", entityLabel=COHORT_BY_YEAR_ENTITY_LABEL),
+            createEntityObjHelper("", entityLabel=COHORT_BY_YEAR_ENTITY_LABEL)
+            
+            ], self.defaultShouldAddRowStrategy
+        )
+
+        # knowledgeBase = 
+        # queryCohort = ActionQueryCohort()
+
+        #self.assertEqual(answer, str(INITIAL_2014_COHORT_TOTAL))
 
 
 

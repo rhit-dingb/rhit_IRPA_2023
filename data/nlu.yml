@@ -203,20 +203,6 @@ nlu:
     - How many students in the [2019 cohort](cohort_by_year) are [did not receive subsidized loan and did not receive federal pell grant]{"entity": "students_who_did_not_receive_either_a_pell_grant_or_a_subsidized_stafford_loan", "value":"no-aid")?
     - How many students in the [6590 cohort](cohort_by_year) are [recipients of subsidized loan and did not receive federal pell grant]{"entity": "recipients_of_a_subsidized_stafford_loan_who_did_not_receive_a_pell_grant", "value": "stafford-loan"}?
     - How many students in the [2019 cohort](cohort_by_year) are [did not receive subsidized loan and did not receive federal pell grant]{"entity": "students_who_did_not_receive_either_a_pell_grant_or_a_subsidized_stafford_loan", "value": "no-aid"}?
-   
-
-    # - what is the total number of students graduating within [six years](graduated_in_six_year) for [2019 cohort](cohort_by_year) who [did not receive either a pell grant or a subsidized stafford loan](students_who_did_not_receive_either_a_pell_grant_or_a_subsidized_stafford_loan)
-    # - What is the [six year](graduated_in_six_year) [graduation_rate](graduation_rate) for the [2013 cohort](cohort_by_year)?
-    # - What is the [five year]{"entity":"graduated_in_five_years", "value": "five"} [graduation_rate](graduation_rate) for the [2013 cohort](cohort_by_year)?
-    # - What is the [four year](graduate_within_four_years) [graduation_rate](graduation_rate) for the [2013 cohort](cohort_by_year)?
-  
-    # - Of the [initial](cohort_initial_final) [4014 cohort](cohort_by_year), how many completed the program in [more than four years but in five years or less](graduated_in_five_years) and are [recipients of subsidized stafford loan and did not receive a pell grant](recipients_of_a_subsidized_stafford_loan_who_did_not_receive_a_pell_grant)
-    # - What is the [six year](graduated_in_six_year) [graduation rate](graduation_rate) for students who are [recipients of a federal pell grant](recipients_of_federal_pell_grant) in the [2013 cohort](cohort_by_year)?
-    
-    # - Of the [initial](cohort_initial_final) [2120 cohort](cohort_by_year), how many completed the program in [four years or less](graduate_within_four_years)?
-    # - Of the [initial](cohort_initial_final) [9208 cohort](cohort_by_year), how many completed the program in [more than four years but in five years or less](graduated_in_five_years)? 
-    # - Of the [initial]{"entity":"cohort_initial_final"} [2013 cohort](cohort_by_year), how many completed the program in [more than five years but in six years or less](graduated_in_six_year)?
-  
 
 - synonym: pell-grant
   examples: |

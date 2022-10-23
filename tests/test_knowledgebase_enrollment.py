@@ -34,7 +34,7 @@ UNDERGRADUATE_DEGREE_SEEKING_AFRICAN_AMERICAN_STUDEN_ENROLLED = 93
 NON_FIRST_TIME = 1969
 
 
-class SparseMatrixKnowledgebaseTest_Enrollment(unittest.TestCase):
+class enrollment_test(unittest.TestCase):
     def setUp(self):
         # self.knowledgeBase = SparseMatrixKnowledgeBase("../Data_Ingestion/CDS_SPARSE_ENR.xlsx")
         self.knowledgeBase = SparseMatrixKnowledgeBase(
