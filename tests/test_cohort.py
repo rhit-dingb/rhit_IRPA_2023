@@ -1,7 +1,7 @@
 from copy import deepcopy
 import json
 import unittest
-from DataManager.constants import COHORT_BY_YEAR_ENTITY_LABEL, COHORT_INTENT, INITIAL_COHORT_ENTITY_LABEL, LOWER_BOUND_GRADUATION_TIME_ENTITY_LABEL, UPPER_BOUND_GRADUATION_TIME_ENTITY_LABEL
+from DataManager.constants import COHORT_BY_YEAR_ENTITY_LABEL, COHORT_INTENT, FINAL_COHORT_ENTITY_LABEL, GRADUATION_RATE_ENTITY_LABEL, INITIAL_COHORT_ENTITY_LABEL, LOWER_BOUND_GRADUATION_TIME_ENTITY_LABEL, UPPER_BOUND_GRADUATION_TIME_ENTITY_LABEL
 from Knowledgebase.Knowledgebase import KnowledgeBase
 
 from Knowledgebase.SparseMatrixKnowledgeBase import SparseMatrixKnowledgeBase
@@ -21,6 +21,7 @@ from rasa_sdk.executor import CollectingDispatcher
 
 #These values are from the 2014 cohort in the 2013-2014 dataset 
 INITIAL_2014_COHORT_TOTAL = 582
+FINAL_2014_COHORT = 581
 COHORT_2014_STUDENT_GRADUATING_IN_MORE_THAN_4_YEARS_AND_IN_FIVE_OR_LESS = 49
 
 class cohort_test(unittest.TestCase):
@@ -53,7 +54,7 @@ class cohort_test(unittest.TestCase):
         self.assertEqual(answer, str(INITIAL_2014_COHORT_TOTAL))
 
   
-    def test_when_ask_for_graduation_time_five_to_six_year_should_give_correct_value(self):
+    def test_when_ask_for_graduation_time_five_to_six_year_should_give_correct_value_for_action(self):
         entities =  [
             createEntityObjHelper("initial", entityLabel=INITIAL_COHORT_ENTITY_LABEL),
             createEntityObjHelper("2014 cohort", entityLabel=COHORT_BY_YEAR_ENTITY_LABEL),
@@ -67,9 +68,37 @@ class cohort_test(unittest.TestCase):
         tracker = Tracker.from_dict(createFakeTracker(COHORT_INTENT, entities))
         queryCohort.run(dispatcher=dispatcher, tracker=tracker, domain=None )
         
-        self.assertEquals(dispatcher.messages[0]["text"], str(COHORT_2014_STUDENT_GRADUATING_IN_MORE_THAN_4_YEARS_AND_IN_FIVE_OR_LESS))
+        self.assertEqual(dispatcher.messages[0]["text"], str(COHORT_2014_STUDENT_GRADUATING_IN_MORE_THAN_4_YEARS_AND_IN_FIVE_OR_LESS))
         #self.assertEqual(answer, str(INITIAL_2014_COHORT_TOTAL))
+   
+   
+    def test_when_ask_for_final_cohort_should_give_correct_value_for_action(self):
+        entities =  [
+            createEntityObjHelper("final", entityLabel=FINAL_COHORT_ENTITY_LABEL),
+            createEntityObjHelper("2014 cohort", entityLabel=COHORT_BY_YEAR_ENTITY_LABEL),
+            ]
+            
+        knowledgeBaseInAction.dataManager = self.knowledgeBase.dataManager
+        queryCohort = ActionQueryCohort()
+        dispatcher = CollectingDispatcher()
+        tracker = Tracker.from_dict(createFakeTracker(COHORT_INTENT, entities))
+        queryCohort.run(dispatcher=dispatcher, tracker=tracker, domain=None )
+        self.assertEqual(dispatcher.messages[0]["text"], str(FINAL_2014_COHORT))
 
+    def test_when_ask_for_six_year_graduation_rate_should_give_correct_value_for_action(self):
+        entities =  [
+            createEntityObjHelper("2014 cohort", entityLabel=COHORT_BY_YEAR_ENTITY_LABEL),
+            createEntityObjHelper("6 or less years", entityLabel=UPPER_BOUND_GRADUATION_TIME_ENTITY_LABEL),
+            createEntityObjHelper(GRADUATION_RATE_ENTITY_LABEL, entityLabel=GRADUATION_RATE_ENTITY_LABEL)
+            ]
+            
+        knowledgeBaseInAction.dataManager = self.knowledgeBase.dataManager
+        queryCohort = ActionQueryCohort()
+        dispatcher = CollectingDispatcher()
+        tracker = Tracker.from_dict(createFakeTracker(COHORT_INTENT, entities))
+        queryCohort.run(dispatcher=dispatcher, tracker=tracker, domain=None )
+        print(dispatcher.messages[0]["text"])
+        # self.assertEqual(dispatcher.messages[0]["text"], str(FINAL_2014_COHORT))
 
 
 if __name__ == '__main__':

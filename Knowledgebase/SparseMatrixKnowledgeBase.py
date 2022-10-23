@@ -1,16 +1,14 @@
-from logging import raiseExceptions
-from re import I
+
 from DataManager.DataManager import DataManager
 from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
 from Knowledgebase.Knowledgebase import KnowledgeBase
 from Data_Ingestion.ExcelProcessor import ExcelProcessor
 import pandas as pd
-import copy
 import numpy as np
 
 from Knowledgebase.Knowledgebase import KnowledgeBase
 
-import copy
+from Knowledgebase.constants import PERCENTAGE_FORMAT
 
 from actions.entititesHelper import copyEntities
 
@@ -23,8 +21,12 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
     This function will search in the sparse matrices retrieved by the given intent and calculate the total sum 
     based on the shouldAddRowStrategy.
     intent: intent of the user message
-    entitiesExtracted: list entities extracted by user input, each individual element is an object with the entity label, value and other information
+
+    entitiesExtracted: list of entities extracted by user input, each individual element is an object with the entity label, value and other information
+    or this could be a list of entities used to gather information for an aggregation method, in this case, the entities could be fake or real entities from user input.
+
     shouldAddRowStrategy: for each row, this function will determine if we should add the value of this row to the total sum.
+
     Return: answer calculated and returned as string.
 
     Throws: exception when given year or intent for the data is not found or when exception encountered when parsing year entity values
@@ -84,6 +86,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
                 
         return str(count)
 
+
     def aggregateDiscreteRange(self, intent, filteredEntities, start, end, generator, shouldAddRow):
         shouldAddRowStrategy = shouldAddRow
         total = 0
@@ -95,7 +98,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
             fakeEntity = {
                 "entity": i,
                 "value": entityValue,
-                "isFake": True
+                "aggregation": True
             }
             
             filteredEntitiesCopy.append(fakeEntity)
@@ -105,10 +108,15 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
 
         return str(total)
 
+    def aggregatePercentage(self, intent, numerator, entitiesToCalculateDenominator, shouldAddRowStrategy):
+        denominator = self.searchForAnswer(intent, entitiesToCalculateDenominator, shouldAddRowStrategy)
+        percentageCalc = numerator/float(denominator)*100
+        percentage = round(percentageCalc, 1)
+        return PERCENTAGE_FORMAT.format(value = percentage)
+
 
     def determineMatrixToSearch(self, intent, entities):
         return self.dataManager.determineMatrixToSearch(intent, entities)
-
 
     def dummyRandomGeneratedDF(self):
         self.m_df = pd.DataFrame()

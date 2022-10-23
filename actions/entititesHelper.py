@@ -17,3 +17,12 @@ def filterEntities(entities, toFilter):
         if not entityObj["entity"] in toFilter:
             res.append(entityObj)
     return res
+
+
+def createEntityObj(entityValue, entityLabel="none",  entityRole=None):
+        res = {"entity": entityLabel, "value": entityValue}
+        if (entityRole):
+            res["role"] = entityRole
+
+        return res
+

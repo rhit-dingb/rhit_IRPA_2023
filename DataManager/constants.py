@@ -3,3 +3,6 @@ COHORT_INTENT = "cohort"
 UPPER_BOUND_GRADUATION_TIME_ENTITY_LABEL = "upper_bound_graduation_time"
 LOWER_BOUND_GRADUATION_TIME_ENTITY_LABEL = "lower_bound_graduation_time"
 INITIAL_COHORT_ENTITY_LABEL = "initial"
+FINAL_COHORT_ENTITY_LABEL = 'final'
+EXEMPTION_ENTITY_LABEL = "exemptions"
+GRADUATION_RATE_ENTITY_LABEL = "graduation_rate"
