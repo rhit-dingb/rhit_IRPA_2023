@@ -1,6 +1,7 @@
 from DataManager.DataManager import DataManager
 from Data_Ingestion.ExcelProcessor import ExcelProcessor
-from Exceptions.ExceptionMessages import NOT_ENOUGH_DATA_EXCEPTION_MESSAGE_FORMAT
+from Exceptions.ExceptionMessages import NO_DATA_AVAILABLE_FOR_GIVEN_INTENT_FORMAT
+from Exceptions.NoDataFoundException import NoDataFoundException
 from Exceptions.NotEnoughInformationException import NotEnoughInformationException
 
 """
@@ -23,8 +24,8 @@ class ExcelDataManager(DataManager):
 
         data = self.excelProcessor.getData()
         dataForEachTopic = data[fileNameByYear]
-        if not intent in dataForEachTopic:
-            raise NotEnoughInformationException(NOT_ENOUGH_DATA_EXCEPTION_MESSAGE_FORMAT.format(topic = intent))
+        if not intent in dataForEachTopic.keys() or dataForEachTopic[intent] is []:
+            raise NoDataFoundException(NO_DATA_AVAILABLE_FOR_GIVEN_INTENT_FORMAT.format(topic = intent, start= start, end=end))
         sparseMatricesForTopic = dataForEachTopic[intent]
         return sparseMatricesForTopic
 

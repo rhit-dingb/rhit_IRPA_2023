@@ -1,6 +1,10 @@
 
 from DataManager.YearDataSelector import YearlyDataSelector
 from DataManager.YearDataSelectorByCohort import YearlyDataSelectorByCohort
+from Exceptions.ExceptionTypes import ExceptionTypes
+
+from Exceptions.ExceptionMessages import NO_DATA_AVAILABLE_FOR_GIVEN_INTENT_FORMAT
+from Exceptions.NoDataFoundException import NoDataFoundException
 """
 "Abstract" class to abstract sub classes responsible for retrieving sparse matrix to be searched
  given intent and entities containing year information.
@@ -45,8 +49,8 @@ class DataManager():
         # print(sparseMatrices)
         if sparseMatrices == None:
             sparseMatrices, startYear, endYear = self.academicYearDataSelector.selectDataToSearchByYear(self, intent, entities)   
-        
-        selectedSparseMatrix = self.determineBestMatchingMatrix(sparseMatrices, entities)      
+        errorMessage = NO_DATA_AVAILABLE_FOR_GIVEN_INTENT_FORMAT.format(topic = intent, start= startYear, end =endYear)
+        selectedSparseMatrix = self.determineBestMatchingMatrix(sparseMatrices, entities, errorMessage)      
         return (selectedSparseMatrix, startYear, endYear)
        
 
@@ -63,7 +67,7 @@ class DataManager():
 
     For now, we will always use the last matrix if there is a tie.
     """
-    def determineBestMatchingMatrix(self, sparseMatrices, entities,):
+    def determineBestMatchingMatrix(self, sparseMatrices, entities, errorMessage):
 
         #print(sparseMatrices)
         maxMatch = []
@@ -82,7 +86,9 @@ class DataManager():
                 maxMatch.append(sparseMatrix)
 
         #TODO: raise an error if no best matching matrix is found
-       
+        if len(maxMatch) == 0:
+            raise NoDataFoundException(errorMessage, ExceptionTypes.NoSparseMatrixDataAvailableForGivenIntent)
+            
         return maxMatch[len(maxMatch)-1]
 
 
