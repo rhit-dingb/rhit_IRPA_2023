@@ -6,3 +6,6 @@ INITIAL_COHORT_ENTITY_LABEL = "initial"
 FINAL_COHORT_ENTITY_LABEL = 'final'
 EXEMPTION_ENTITY_LABEL = "exemptions"
 GRADUATION_RATE_ENTITY_LABEL = "graduation_rate"
+RECIPIENT_OF_PELL_GRANT_ENTITY_LABEL = "recipients_of_federal_pell_grant"
+RECIPIENT_OF_STAFFORD_LOAN_NO_PELL_GRANT_ENTITY_LABEL = "recipients_of_a_subsidized_stafford_loan_who_did_not_receive_a_pell_grant"
+NO_AID_ENTITY_LABEL = "students_who_did_not_receive_either_a_pell_grant_or_a_subsidized_stafford_loan"

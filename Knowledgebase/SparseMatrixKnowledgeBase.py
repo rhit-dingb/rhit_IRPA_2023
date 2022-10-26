@@ -90,7 +90,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
     def aggregateDiscreteRange(self, intent, filteredEntities, start, end, generator, shouldAddRow):
         shouldAddRowStrategy = shouldAddRow
         total = 0
-       
+        # print(start,end)
         for i in range(start, end+1):
             filteredEntitiesCopy = copyEntities(filteredEntities)
             entityValue = generator(i, start, end)
@@ -100,9 +100,9 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
                 "value": entityValue,
                 "aggregation": True
             }
-            
+        
             filteredEntitiesCopy.append(fakeEntity)
-             
+           
             answer = self.searchForAnswer(intent, filteredEntitiesCopy, shouldAddRowStrategy )
             total = total + int(answer)
 

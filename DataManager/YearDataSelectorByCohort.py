@@ -1,9 +1,10 @@
 
 from Exceptions.EntityValueException import EntityValueException
-from Exceptions.ExceptionMessages import COHORT_YEAR_VALUE_ERROR_MESSAGE_FORMAT, NO_DATA_FOUND_FOR_COHORT_YEAR_ERROR_MESSAGE_FORMAT
+from Exceptions.ExceptionMessages import COHORT_YEAR_VALUE_ERROR_MESSAGE_FORMAT, NO_DATA_FOUND_FOR_COHORT_YEAR_ERROR_MESSAGE_FORMAT, NOT_ENOUGH_DATA_EXCEPTION_MESSAGE_FORMAT
 from Exceptions.ExceptionTypes import ExceptionTypes
 from DataManager.constants import COHORT_BY_YEAR_ENTITY_LABEL, COHORT_INTENT
 from Exceptions.NoDataFoundException import NoDataFoundException
+from Exceptions.NotEnoughInformationException import NotEnoughInformationException
 from actions.entititesHelper import findEntityHelper
 
 """
@@ -13,7 +14,9 @@ class YearlyDataSelectorByCohort():
 
     def selectDataToSearchByYear(self, dataManager, intent : str, entities : object) -> object:
         cohortByYearEntity = findEntityHelper(entities, COHORT_BY_YEAR_ENTITY_LABEL)
-
+        if intent == COHORT_INTENT and cohortByYearEntity == None:
+            raise NotEnoughInformationException(NOT_ENOUGH_DATA_EXCEPTION_MESSAGE_FORMAT.format(topic = intent))
+            
 
         if cohortByYearEntity:
             tokens = cohortByYearEntity["value"].replace("_", " ").split(" ")
@@ -23,16 +26,19 @@ class YearlyDataSelectorByCohort():
                 raise EntityValueException(COHORT_YEAR_VALUE_ERROR_MESSAGE_FORMAT, 
                 ExceptionTypes.CohortByYearEntityValueException)
 
-            year = tokens[0]
-            try:
-                year = int(year)
-            except ValueError as e:
+            year = None
+            for word in tokens:
+                if word.isdigit(): 
+                    year = int(word)
+                    break
+                
+            if year == None:
                 raise EntityValueException(COHORT_YEAR_VALUE_ERROR_MESSAGE_FORMAT, 
                 ExceptionTypes.CohortByYearEntityValueException)
 
-            #Here I am assuming for example 2014 cohort is in 2013-2014 data. However, this may not be the case, we have to ask the client.
-            startYear = year -1
-            endYear = year
+            #Here I am assuming for example 2014 cohort is in 2014-2015 data. However, this may not be the case, we have to ask the client.
+            startYear = year
+            endYear = year+1
 
             exceptionToThrow = NoDataFoundException(NO_DATA_FOUND_FOR_COHORT_YEAR_ERROR_MESSAGE_FORMAT.format(year=str(year)), ExceptionTypes.NoDataFoundForCohortYearException)
             sparseMatrices = dataManager.getSparseMatricesByStartEndYearAndIntent(intent, str(startYear), str(endYear), exceptionToThrow); 

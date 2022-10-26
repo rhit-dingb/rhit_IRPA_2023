@@ -123,12 +123,7 @@ stories:
     - intent: affirm
     - checkpoint: ask_feedback
     
-    
 
-
-   
-    
-    
 
 - story: ask_more_question
   steps:

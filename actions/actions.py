@@ -10,21 +10,21 @@
 from copy import deepcopy
 from re import L
 from DataManager.ExcelDataManager import ExcelDataManager
-from DataManager.constants import EXEMPTION_ENTITY_LABEL, FINAL_COHORT_ENTITY_LABEL, GRADUATION_RATE_ENTITY_LABEL, INITIAL_COHORT_ENTITY_LABEL, LOWER_BOUND_GRADUATION_TIME_ENTITY_LABEL, UPPER_BOUND_GRADUATION_TIME_ENTITY_LABEL
+from DataManager.constants import COHORT_BY_YEAR_ENTITY_LABEL, EXEMPTION_ENTITY_LABEL, FINAL_COHORT_ENTITY_LABEL, GRADUATION_RATE_ENTITY_LABEL, INITIAL_COHORT_ENTITY_LABEL, LOWER_BOUND_GRADUATION_TIME_ENTITY_LABEL, NO_AID_ENTITY_LABEL, RECIPIENT_OF_PELL_GRANT_ENTITY_LABEL, RECIPIENT_OF_STAFFORD_LOAN_NO_PELL_GRANT_ENTITY_LABEL, UPPER_BOUND_GRADUATION_TIME_ENTITY_LABEL
 from Exceptions.ExceptionTypes import ExceptionTypes
 from Knowledgebase.ChooseFromOptionsAddRowStrategy import ChooseFromOptionsAddRowStrategy
 from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
 from Knowledgebase.IgnoreRowPiece import IgnoreRowPiece
 from Knowledgebase.SparseMatrixKnowledgeBase import SparseMatrixKnowledgeBase
-from actions.constants import ANY_AID_COLUMN_NAME, COHORT_GRADUATION_TIME_ENTITY_FORMAT, COHORT_GRADUATION_TIME_START_FORMAT
-from actions.entititesHelper import copyEntities, createEntityObj, filterEntities, findEntityHelper
+from actions.constants import ANY_AID_COLUMN_NAME, COHORT_GRADUATION_TIME_ENTITY_FORMAT, COHORT_GRADUATION_TIME_START_FORMAT, NO_AID_COLUMN_NAME, PELL_GRANT_COLUMN_NAME, STAFFORD_LOAN_COLUMN_NAME
+from actions.entititesHelper import changeEntityValue, copyEntities, createEntityObj, filterEntities, findEntityHelper
 from typing import Text
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 
 # knowledgeBase = SparseMatrixKnowledgeBase("./Data_Ingestion/CDS_SPARSE_ENR.xlsx")
 
-knowledgeBase = SparseMatrixKnowledgeBase(ExcelDataManager("./CDSData"))
+knowledgeBase = SparseMatrixKnowledgeBase(ExcelDataManager("./CDSData", ["enrollment", "cohort"]))
 
 defaultShouldAddRowStrategy = DefaultShouldAddRowStrategy()
 chooseFromOptionsAddRowStrategy = ChooseFromOptionsAddRowStrategy(choices=[{
@@ -60,8 +60,7 @@ class ActionQueryEnrollment(Action):
         return "action_query_enrollment"
 
     def run(self, dispatcher, tracker, domain):
-        # we will want to check entities, slot and intents here
-        # refactor this once the knowledge base is changed into sparse matrix form
+
         haveRaceEnrollmentEntity = False
         entitiesExtracted = tracker.latest_message["entities"]
         for entityObj in tracker.latest_message['entities']:
@@ -86,18 +85,22 @@ class ActionQueryEnrollment(Action):
 
 
 class ActionQueryCohort(Action):
+    def __init__(self) -> None:
+        super().__init__()
+        self.maxYear = 6
+        self.minYear = 4
 
     def name(self) -> Text:
         return "action_query_cohort"
 
     def extractYearFromGraduationYearEntityValue(self, entityObj):
-
+        
         if entityObj is None:
             return -1
 
         indexes = []
 
-        for i in range(4, 6+1):
+        for i in range(self.minYear, self.maxYear+1):
             index_value = None
             try:
                 index_value = entityObj["value"].index(str(i))
@@ -111,6 +114,20 @@ class ActionQueryCohort(Action):
 
         return -1
 
+    def preprocessCohortEntities(self,entities):
+        #Since for financial aid part, the entity value may not be extracted perfectly, we map it to the column using entity label
+        #Im not sure if this is the best approach but let me know if you have some better idea.
+        entityColumnMap = { 
+            RECIPIENT_OF_PELL_GRANT_ENTITY_LABEL : PELL_GRANT_COLUMN_NAME,
+            RECIPIENT_OF_STAFFORD_LOAN_NO_PELL_GRANT_ENTITY_LABEL: STAFFORD_LOAN_COLUMN_NAME,
+            NO_AID_ENTITY_LABEL: NO_AID_COLUMN_NAME
+        }
+
+        for key in entityColumnMap.keys():
+            changeEntityValue(entities, key, entityColumnMap[key])
+
+
+
     def run(self, dispatcher, tracker, domain):
         print(tracker.latest_message["intent"])
         print(tracker.latest_message["entities"])
@@ -118,13 +135,19 @@ class ActionQueryCohort(Action):
         entitiesExtracted = tracker.latest_message["entities"]
         intent = tracker.latest_message["intent"]["name"]
 
+        self.preprocessCohortEntities(entitiesExtracted)
+        #If the user only ask for pell grant or subsized loan of cohort, we should only get the value from the first row, which is the initial cohort
+        askPellGrant = findEntityHelper(entitiesExtracted, RECIPIENT_OF_PELL_GRANT_ENTITY_LABEL )
+        askStaffordLoan = findEntityHelper(entitiesExtracted, RECIPIENT_OF_STAFFORD_LOAN_NO_PELL_GRANT_ENTITY_LABEL)
+        askNoAid = findEntityHelper(entitiesExtracted, NO_AID_ENTITY_LABEL)
+        filteredEntities = filterEntities(entitiesExtracted, [RECIPIENT_OF_PELL_GRANT_ENTITY_LABEL, RECIPIENT_OF_STAFFORD_LOAN_NO_PELL_GRANT_ENTITY_LABEL, NO_AID_ENTITY_LABEL, COHORT_BY_YEAR_ENTITY_LABEL])
+        if (askPellGrant or askStaffordLoan or askNoAid) and len(filteredEntities) == 0:
+            entitiesExtracted.append(createEntityObj("initial", INITIAL_COHORT_ENTITY_LABEL))
+        
         # we might want to refactor this later with some classes.
-        maxYear = 6
-        minYear = 4
-
         def generator(curr, start, end):
-            if curr == minYear:
-                return COHORT_GRADUATION_TIME_START_FORMAT.format(upperBound=minYear)
+            if curr == self.minYear:
+                return COHORT_GRADUATION_TIME_START_FORMAT.format(upperBound=self.minYear)
             else:
                 return COHORT_GRADUATION_TIME_ENTITY_FORMAT.format(upperBound=curr, lowerBound=curr-1)
 
@@ -145,29 +168,33 @@ class ActionQueryCohort(Action):
             # For question about graduation date and year,the initial and final entity is still extracted, but I want to filter that out.
             entitiesFiltered = filterEntities(entitiesExtractedCopy, [
                                                 LOWER_BOUND_GRADUATION_TIME_ENTITY_LABEL, UPPER_BOUND_GRADUATION_TIME_ENTITY_LABEL, INITIAL_COHORT_ENTITY_LABEL, FINAL_COHORT_ENTITY_LABEL])
-
             lowerBoundYear = max(self.extractYearFromGraduationYearEntityValue(
-                lowerBoundGraduationYearEntity)+1, minYear)
+                lowerBoundGraduationYearEntity)+1, self.minYear)
+      
             upperBoundYear = min(self.extractYearFromGraduationYearEntityValue(
-                upperBoundGraduationYearEntity), maxYear)
+                upperBoundGraduationYearEntity), self.maxYear)
 
+            isUpperFoundBoundNotFound = upperBoundYear == -1
+            if isUpperFoundBoundNotFound:
+                upperBoundYear = self.maxYear
+            
+            print(lowerBoundYear, upperBoundYear)
+            
             answer = None
 
             try:
                 answer = knowledgeBase.aggregateDiscreteRange(
-                    intent, entitiesFiltered, lowerBoundYear, upperBoundYear, generator, ignoreAnyAidShouldAddRow)
+                intent, entitiesFiltered, lowerBoundYear, upperBoundYear, generator, ignoreAnyAidShouldAddRow)
 
                 if askForGraduationRate:
                     answer = self.calculateGraduationRate(intent, entitiesFiltered, float(answer), ignoreAnyAidShouldAddRow)
-                  
-                dispatcher.utter_message(answer)
-                
+                    
+                dispatcher.utter_message(answer)    
             except Exception as e:
                 utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
         else:
             try:
-                answer = knowledgeBase.searchForAnswer(
-                    intent, entitiesExtracted, ignoreAnyAidShouldAddRow)
+                answer = knowledgeBase.searchForAnswer(intent, entitiesExtracted, ignoreAnyAidShouldAddRow)
                 dispatcher.utter_message(answer)
             except Exception as e:
                 utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
@@ -181,12 +208,12 @@ class ActionQueryCohort(Action):
         
 
 
-
 def utterAppropriateAnswerWhenExceptionHappen(exceptionReceived, dispatcher):
     print(exceptionReceived)
     try:
         exceptionType = exceptionReceived.type
         dispatcher.utter_message(str(exceptionReceived.fallBackMessage))
     except:
+        print(exceptionReceived)
         dispatcher.utter_message(
             "Sorry something went wrong, can you please ask again?")

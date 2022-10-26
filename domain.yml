@@ -71,7 +71,6 @@ entities:
   - exemptions
 
 
-# what if the user doesn't specify "did not receive pell grant and similary for stafford loan"
   - recipients_of_federal_pell_grant
   - recipients_of_a_subsidized_stafford_loan_who_did_not_receive_a_pell_grant 
   - students_who_did_not_receive_either_a_pell_grant_or_a_subsidized_stafford_loan
@@ -79,6 +78,7 @@ entities:
 
   #year to query the dataset.
   - year
+  
 
 
 
@@ -202,14 +202,14 @@ responses:
   utter_iamabot:
   - text: "I am a bot, powered by Rasa."
 
-  utter_test_options:
-  - text: "For enrollment, you can ask about: how many undergradute students, total graduate students, etc"
+  # utter_test_options:
+  # - text: "For enrollment, you can ask about: how many undergradute students, total graduate students, etc"
 
-  utter_test_total_undergraduates:
-  - text: "Rose-Hulman has 2000 undergraduates"
+  # utter_test_total_undergraduates:
+  # - text: "Rose-Hulman has 2000 undergraduates"
 
-  utter_test_total_full_time_undergraduate_men:
-  - text: "Rose-Hulman has 1000 full-time undergraduate students that are male."
+  # utter_test_total_full_time_undergraduate_men:
+  # - text: "Rose-Hulman has 1000 full-time undergraduate students that are male."
 
   utter_ask_answer_helpful:
   - text: "Was this answer helpful?"
