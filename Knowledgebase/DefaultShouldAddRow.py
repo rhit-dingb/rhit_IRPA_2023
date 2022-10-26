@@ -33,6 +33,6 @@ class DefaultShouldAddRowStrategy(ShouldAddRowStrategy):
                 if row[entity] == 1:
                     temp_count += 1
         if temp_count == len(filteredEntities):
-            return True
+            return filteredEntities
         else:
-            return False
+            return []
