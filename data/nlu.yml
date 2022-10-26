@@ -218,8 +218,8 @@ nlu:
     - How many students in [3532 cohort](cohort_by_year) year [did not receive any aid]{"entity": "students_who_did_not_receive_either_a_pell_grant_or_a_subsidized_stafford_loan", "value": "no-aid"} at all?
     - How many students received [pell grant]{"entity": "recipients_of_federal_pell_grant", "value":"pell-grant"}?
     - How many students received [subsidized stafford loan]{"entity": "recipients_of_a_subsidized_stafford_loan_who_did_not_receive_a_pell_grant", "value": "stafford-loan"} for [2014 cohort](cohort_by_year)?
-    - How many studetns are [recipients of pell grant]{"entity": "recipients_of_federal_pell_grant", "value":"pell-grant"}? for [2135 cohort]?
-
+    - How many students are [recipients of pell grant]{"entity": "recipients_of_federal_pell_grant", "value":"pell-grant"}? for [2135 cohort]?
+    - Number of student who [didn't receive aid]{"entity": "students_who_did_not_receive_either_a_pell_grant_or_a_subsidized_stafford_loan", "value": "no-aid"}
 
 - synonym: graduation rate
   examples: |
@@ -230,7 +230,7 @@ nlu:
   examples: |
     - no-aid
     - did not receive federal pell grant and did not receive subsidized loan
-    - did not receive subsidized
+    - did not receive aid
 
 - synonym: pell-grant
   examples: |

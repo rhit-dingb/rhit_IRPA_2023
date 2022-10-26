@@ -1,6 +1,6 @@
 
 from Exceptions.EntityValueException import EntityValueException
-from Exceptions.ExceptionMessages import COHORT_YEAR_VALUE_ERROR_MESSAGE_FORMAT, NO_DATA_FOUND_FOR_COHORT_YEAR_ERROR_MESSAGE_FORMAT, NOT_ENOUGH_DATA_EXCEPTION_MESSAGE_FORMAT
+from Exceptions.ExceptionMessages import COHORT_YEAR_VALUE_ERROR_MESSAGE_FORMAT, NO_DATA_FOUND_FOR_COHORT_YEAR_ERROR_MESSAGE_FORMAT, NOT_ENOUGH_DATA_EXCEPTION_MESSAGE_FORMAT, NOT_ENOUGH_DATA_SPECIFIED_FOR_COHORT_YEAR_FORMAT
 from Exceptions.ExceptionTypes import ExceptionTypes
 from DataManager.constants import COHORT_BY_YEAR_ENTITY_LABEL, COHORT_INTENT
 from Exceptions.NoDataFoundException import NoDataFoundException
@@ -15,7 +15,7 @@ class YearlyDataSelectorByCohort():
     def selectDataToSearchByYear(self, dataManager, intent : str, entities : object) -> object:
         cohortByYearEntity = findEntityHelper(entities, COHORT_BY_YEAR_ENTITY_LABEL)
         if intent == COHORT_INTENT and cohortByYearEntity == None:
-            raise NotEnoughInformationException(NOT_ENOUGH_DATA_EXCEPTION_MESSAGE_FORMAT.format(topic = intent))
+            raise NotEnoughInformationException(NOT_ENOUGH_DATA_SPECIFIED_FOR_COHORT_YEAR_FORMAT, ExceptionTypes.NotEnoughDataForCohortYearException)
             
 
         if cohortByYearEntity:
