@@ -17,7 +17,7 @@ function Basic() {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    const name = "shreyas";
+    const name = "user1";
     const request_temp = { sender: "user", sender_id: name, msg: inputMessage };
 
     if (inputMessage !== "") {
@@ -33,7 +33,7 @@ function Basic() {
   const rasaAPI = async function handleClick(name, msg) {
     //chatData.push({sender : "user", sender_id : name, msg : msg});
 
-    await fetch("http://137.112.205.50:5005/webhooks/rest/webhook", {
+    await fetch("http://localhost:5005/webhooks/rest/webhook", {
       method: "POST",
       headers: {
         Accept: "application/json",
