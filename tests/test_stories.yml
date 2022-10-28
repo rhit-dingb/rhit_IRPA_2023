@@ -91,6 +91,7 @@ stories:
     intent: bot_challenge
   - action: utter_iamabot
 
+#ENROLLMENT TESTS
 
 - story: ask_about_enrollment_and_answer_helpful
   steps: 
@@ -146,7 +147,39 @@ stories:
     intent: affirm
   - action: utter_ask_whats_the_question
 
+- story: ask_about_enrollment_and_answer_helpful_non_first_time_non_first_year
+  steps: 
+  - user: |
+      How many [non first time]{"entity": "is_first_time", "value": "non-first-time"} [non first year]{"entity": "is_first_year", "value": "non-first-time"} students are enrolled?
+    intent: enrollment
+  - action: action_query_enrollment
+  - action: utter_ask_answer_helpful
+  - user: |
+      Yes
+    intent: affirm
+  - action: action_ask_more_question
+  - user: |
+      Yes! I do!
+    intent: affirm
+  - action: utter_ask_whats_the_question
 
+- story: ask_about_enrollment_and_answer_helpful_male_non_freshman
+  steps: 
+  - user: |
+      How many [male]{"entity": "gender", "value": "male"} [non freshman]{"entity": "undergraduate_grade_level", "value": "non-freshman"} students are enrolled?
+    intent: enrollment
+  - action: action_query_enrollment
+  - action: utter_ask_answer_helpful
+  - user: |
+      Yes
+    intent: affirm
+  - action: action_ask_more_question
+  - user: |
+      Yes! I do!
+    intent: affirm
+  - action: utter_ask_whats_the_question
+
+#COHORT TESTS
 
 - story: ask_about_cohort_general_should_extract_five_year
   steps:

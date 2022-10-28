@@ -102,28 +102,29 @@ nlu:
     - I want to know about enrollment.
     - I want to know about enrollment at Rose-Hulman
     
-    - How many [full-time]{"entity": "enrollment_status", "value": "full-time"} [undergraduate]{"entity":"student_level", "value": "undergraduate"}  studentare there in Rose-Hulman?
-    - How many [full time]{"entity": "enrollment_status", "value": "full-time"} [undergraduate]{"entity":"student_level", "value": "undergraduate"} student are there in Rose-Hulman?
+    - How many [full-time]{"entity": "enrollment_status", "value": "full-time"} [undergraduate]{"entity":"student_level", "value": "undergraduate"} students are there in Rose-Hulman?
+    - How many [full time]{"entity": "enrollment_status", "value": "full-time"} [undergraduate]{"entity":"student_level", "value": "undergraduate"} students are there in Rose-Hulman?
 
     - How many [full-time]{"entity": "enrollment_status" , "value": "full-time"} [graduate]{"entity":"student_level", "value":"graduate"} are there in Rose-Hulman?
     - I want to know about the number of [graduate students]{"entity":"student_level", "value":"graduate"} here
     
     - How many [part-time]{"entity": "enrollment_status", "value": "part-time"} [undergraduate]{"entity":"student_level", "value": "undergraduate"} students are there in Rose-Hulman?
-    - Tell me the number of [undergraduates]{"entity":"student_level", "value": "undergraduate"}  at Rose-Hulman
+    - Tell me the number of [undergraduates]{"entity":"student_level", "value": "undergraduate"} at Rose-Hulman
 
     - How many [men]{"entity": "gender", "value": "male"} students are there in Rose-Hulman?
-    - How many  [woman]{"entity": "gender", "value": "female"} students are there in Rose-Hulman?
+    - How many [woman]{"entity": "gender", "value": "female"} students are there in Rose-Hulman?
 
     - How many [male]{"entity": "gender", "value": "male"} student are there?
     - How many [female]{"entity": "gender", "value": "female"} student are there?
 
     - [undergrad]{"entity":"student_level", "value": "undergraduate"} student please tell me
 
-    - How many [degree-seeking]{"entity":"degree-goal"} [first-time]{"entity": "is_first_time"} [freshman]{"entity": "undergraduate_grade_level"} are there?
+    - How many [degree-seeking]{"entity":"degree-goal", "value": "degree-seeking"} [first-time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} are there?
 
     - How many students that are [not first-time]{"entity": "is_first_time", "value": "non-first-time"}?
+    - How many students that are [non first time]{"entity": "is_first_time", "value": "non-first-time"}?
 
-    - How many students that are [non-first-time]{"entity": "is_first_time"}?
+    - How many students that are [non-first-time]{"entity": "is_first_time", "value": "non-first-time"}?
 
     - How many [non-degree-seeking]{"entity":"degree-goal"} [first-time]{"entity": "is_first_time"} [freshman]{"entity": "undergraduate_grade_level"} are there?
     
@@ -144,6 +145,8 @@ nlu:
     - How many students of [unknown]{"entity": "race"} race are enrolled? 
 
     - how many [first time]{"entity": "is_first_time", "value": "first-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [hispanic]{"entity":"race"} students are there?
+    - how many [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} students are there?
+    - how many [first time]{"entity": "is_first_time", "value": "first-time"} [first year]{"entity": "is_first_year", "value": "first-year"} students are there?
   
     - how many [non first-time]{"entity": "is_first_time", "value": "non-first-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [hispanic]{"entity":"race"} students are there?
   
@@ -153,6 +156,7 @@ nlu:
     - how many [non-first-year]{"entity": "is_first_year"} students are there? 
 
     - how many students who are [not first year]{"entity": "is_first_year", "value": "non-first-year"} are enrolled?
+    - how many students who are [non first year]{"entity": "is_first_year", "value": "non-first-year"} are enrolled?
     
     # training data for asking about specific year.
     - I want to know about total [undergraduate]{"entity": "student_level", "value": "undergraduate"} enrollment in [2022]{"entity": "year", "role":"from"}
