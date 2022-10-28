@@ -107,7 +107,7 @@ slots:
     type: categorical
     values:
       - freshman
-      - not-freshman
+      - non-freshman
     influence_conversation: true
     mappings:
       - type: from_entity
