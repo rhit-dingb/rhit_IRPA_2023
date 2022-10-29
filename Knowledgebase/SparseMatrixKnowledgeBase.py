@@ -38,10 +38,12 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
 
         #this list contains the value of the entities extracted.
         entities = []
+        usedEntities = []
+        printEntities = []
         for entityObj in entitiesExtracted:
             entities.append(entityObj["value"])
 
-        
+        print(entities)
         sparseMatrixToSearch, startYear, endYear = self.determineMatrixToSearch(intent, entitiesExtracted)
       
         if sparseMatrixToSearch is None:
@@ -52,12 +54,14 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
                 continue
            
             row = sparseMatrixToSearch.loc[i]
-            shouldAdd = shouldAddRowStrategy.determineShouldAddRow(row, entities)
-            if shouldAdd:
+            usedEntities = shouldAddRowStrategy.determineShouldAddRow(row, entities)
+            if len(usedEntities) > 0:
                 #print("Im ADDING " + str(self.m_df.loc[i,'Value']))
                 count += sparseMatrixToSearch.loc[i,'Value']
+                if len(printEntities) <= 0:
+                    printEntities = usedEntities
                 
-        return str(int(count))    
+        return str(int(count)) + "\n" + str(printEntities)   
 
 
 
@@ -81,7 +85,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
                     if sparseMatrixToSearch.loc[i,entity] == 1:
                         temp_count += 1
             if temp_count == len(entities):
-                #print("Im ADDING " + str(self.m_df.loc[i,'Value']))
+                print("Im ADDING " + str(self.m_df.loc[i,'Value']))
                 count += sparseMatrixToSearch.loc[i,'Value']
                 
         return str(count)

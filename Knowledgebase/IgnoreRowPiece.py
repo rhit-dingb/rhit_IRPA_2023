@@ -14,6 +14,6 @@ class IgnoreRowPiece(ShouldAddRowDecorator):
     def determineShouldAddRow(self, row, entities):
         for column in self.targetedColumns:
             if row[column] == 1:
-                return False
+                return []
 
         return self.decorated.determineShouldAddRow(row, entities)
