@@ -24,7 +24,7 @@ from rasa_sdk.executor import CollectingDispatcher
 
 # knowledgeBase = SparseMatrixKnowledgeBase("./Data_Ingestion/CDS_SPARSE_ENR.xlsx")
 
-knowledgeBase = SparseMatrixKnowledgeBase(ExcelDataManager("./CDSData", ["enrollment", "cohort"]))
+knowledgeBase = SparseMatrixKnowledgeBase(ExcelDataManager("./CDSData", ["enrollment", "cohort", "admission" ]))
 
 defaultShouldAddRowStrategy = DefaultShouldAddRowStrategy()
 chooseFromOptionsAddRowStrategy = ChooseFromOptionsAddRowStrategy(choices=[{
