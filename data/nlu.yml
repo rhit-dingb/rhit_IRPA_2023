@@ -221,6 +221,23 @@ nlu:
     - How many students are [recipients of pell grant]{"entity": "recipients_of_federal_pell_grant", "value":"pell-grant"}? for [2135 cohort]?
     - Number of student who [didn't receive aid]{"entity": "students_who_did_not_receive_either_a_pell_grant_or_a_subsidized_stafford_loan", "value": "no-aid"}
 
+
+- intent: admission
+  examples: |
+    - I want to know about admission.
+    - I want to know about admission data.
+    Total first-time, first-year (freshman) men who applied
+    Total first-time, first-year (freshman) men who were admitted
+    Total full-time, first-time, first-year (freshman) men who enrolled 
+    Total full-time, first-time, first-year (freshman) women who enrolled
+    - How many [male]{"entity": "gender", "value": "man"} [freshman]{"entity":"freshman"}  [applied]{"entity": "action", "value": "applied"} in Rose-Hulman?
+    - How many [male]{"entity": "gender", "value": "man"} [freshman]{"entity":"freshman"}  [applied]{"entity": "action", "value": "applied"} in Rose-Hulman?
+    - How many [full time]{"entity": "enrollment_status", "value": "full-time"} [undergraduate]{"entity":"student_level"} student are there in Rose-Hulman?
+
+    - How many [full-time]{"entity": "enrollment_status" , "value": "full-time"} [graduate]{"entity":"student_level", "value":"graduate"} are there in Rose-Hulman?
+    - I want to know about the number of [graduate students]{"entity":"student_level", "value":"graduate"} here
+
+
 - synonym: graduation rate
   examples: |
     - rate of graduation
