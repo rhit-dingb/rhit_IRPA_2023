@@ -6,6 +6,34 @@
     "support": 1,
     "confused_with": {}
   },
+  "is_first_time": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 4,
+    "confused_with": {}
+  },
+  "undergraduate_grade_level": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 2,
+    "confused_with": {}
+  },
+  "retention-rate": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 2,
+    "confused_with": {}
+  },
+  "is_first_year": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 3,
+    "confused_with": {}
+  },
   "student_level": {
     "precision": 0.0,
     "recall": 0.0,
@@ -20,18 +48,25 @@
     "support": 4,
     "confused_with": {}
   },
-  "is_first_time": {
+  "cohort_by_year": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 12,
+    "confused_with": {}
+  },
+  "year": {
     "precision": 0.0,
     "recall": 0.0,
     "f1-score": 0.0,
     "support": 1,
     "confused_with": {}
   },
-  "year.to": {
+  "gender": {
     "precision": 0.0,
     "recall": 0.0,
     "f1-score": 0.0,
-    "support": 2,
+    "support": 1,
     "confused_with": {}
   },
   "upper_bound_graduation_time": {
@@ -41,18 +76,18 @@
     "support": 13,
     "confused_with": {}
   },
+  "year.to": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 2,
+    "confused_with": {}
+  },
   "lower_bound_graduation_time": {
     "precision": 0.0,
     "recall": 0.0,
     "f1-score": 0.0,
     "support": 16,
-    "confused_with": {}
-  },
-  "graduation_rate": {
-    "precision": 0.0,
-    "recall": 0.0,
-    "f1-score": 0.0,
-    "support": 4,
     "confused_with": {}
   },
   "year.from": {
@@ -69,37 +104,30 @@
     "support": 5,
     "confused_with": {}
   },
-  "year": {
+  "graduation_rate": {
     "precision": 0.0,
     "recall": 0.0,
     "f1-score": 0.0,
-    "support": 1,
-    "confused_with": {}
-  },
-  "cohort_by_year": {
-    "precision": 0.0,
-    "recall": 0.0,
-    "f1-score": 0.0,
-    "support": 10,
+    "support": 4,
     "confused_with": {}
   },
   "micro avg": {
     "precision": 0.0,
     "recall": 0.0,
     "f1-score": 0.0,
-    "support": 60
+    "support": 73
   },
   "macro avg": {
     "precision": 0.0,
     "recall": 0.0,
     "f1-score": 0.0,
-    "support": 60
+    "support": 73
   },
   "weighted avg": {
     "precision": 0.0,
     "recall": 0.0,
     "f1-score": 0.0,
-    "support": 60
+    "support": 73
   },
-  "accuracy": 0.5804195804195804
+  "accuracy": 0.5705882352941176
 }

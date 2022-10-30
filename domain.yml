@@ -40,9 +40,11 @@ entities:
   - race
 
 
-
   #cohort by year - for example: 2015 cohort, 2016 cohort, etc.
   - cohort_by_year
+
+  #retention rate
+  - retention-rate
 
 
 # used for something like: Initial 2015 cohort of first-time, fulltime, bachelor's (or equivalent) degreeseeking undergraduate students
@@ -50,10 +52,10 @@ entities:
   - cohort_initial_final
 
  # This is entity is used for these rows:
- #Example: five year or less, four year or less
+ #Example: 5 year or less, 4 year or less
   - upper_bound_graduation_time
 
- #Example: more than four years.
+ #Example: more than 4 years.
   - lower_bound_graduation_time
 
 

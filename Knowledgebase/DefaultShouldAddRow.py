@@ -1,6 +1,6 @@
 from Knowledgebase.ShouldAddRowStrategy import ShouldAddRowStrategy
 """
-Default strategy to determine whether a row should be added. More detail below
+Default strategy to determine whether a row of a sparse matrix should be used in the total value while searching. More detail below
 """
 
 

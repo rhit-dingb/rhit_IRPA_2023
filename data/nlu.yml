@@ -123,7 +123,7 @@ nlu:
 
     - How many students that are [not first-time]{"entity": "is_first_time", "value": "non-first-time"}?
     - How many students that are [non first time]{"entity": "is_first_time", "value": "non-first-time"}?
-
+    - how many [non first time]{"entity": "is_first_time", "value": "non-first-time"}? students are there?
     - How many students that are [non-first-time]{"entity": "is_first_time", "value": "non-first-time"}?
 
     - How many [non-degree-seeking]{"entity":"degree-goal"} [first-time]{"entity": "is_first_time"} [freshman]{"entity": "undergraduate_grade_level"} are there?
@@ -225,14 +225,29 @@ nlu:
     - How many students are [recipients of pell grant]{"entity": "recipients_of_federal_pell_grant", "value":"pell-grant"}? for [2135 cohort]?
     - Number of student who [didn't receive aid]{"entity": "students_who_did_not_receive_either_a_pell_grant_or_a_subsidized_stafford_loan", "value": "no-aid"}
 
+    #Retention rate training data:
+    - What is the [retention rate]{"entity": "retention-rate", "value": "retention-rate"} for [2019 cohort](cohort_by_year)?
+    - I want to know about the [retention rate]{"entity": "retention-rate", "value": "retention-rate"}
+    - [retention rate][retention-rate]{"entity": "retention-rate", "value": "retention-rate"}
+    - [retention-rate]{"entity": "retention-rate", "value": "retention-rate"} at rose-hulman in [2019]{"entity":"year", "role": "from"}
+    - What is the [rate of retention]{"entity": "retention-rate", "value": "retention-rate"} for [2021]{"entity":"year", "role": "from"} academic year ?
+
+- synonym: retention-rate
+  examples: |
+    - retention rate
+    - retenton rate
+    - retention-rate
+    - rate of retention
+
 - synonym: graduation rate
   examples: |
     - rate of graduation
     - percentage of graduating students
 
-- synonym: no aid
+- synonym: no-aid
   examples: |
     - no-aid
+    - no aid
     - did not receive federal pell grant and did not receive subsidized loan
     - did not receive aid
 

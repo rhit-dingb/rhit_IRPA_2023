@@ -2,7 +2,7 @@
 from Exceptions.EntityValueException import EntityValueException
 from Exceptions.ExceptionMessages import COHORT_YEAR_VALUE_ERROR_MESSAGE_FORMAT, NO_DATA_FOUND_FOR_COHORT_YEAR_ERROR_MESSAGE_FORMAT, NOT_ENOUGH_DATA_SPECIFIED_FOR_COHORT_YEAR_FORMAT
 from Exceptions.ExceptionTypes import ExceptionTypes
-from DataManager.constants import COHORT_BY_YEAR_ENTITY_LABEL, COHORT_INTENT
+from DataManager.constants import COHORT_BY_YEAR_ENTITY_LABEL, COHORT_INTENT, YEAR_ENTITY_LABEL
 from Exceptions.NoDataFoundException import NoDataFoundException
 from Exceptions.NotEnoughInformationException import NotEnoughInformationException
 from actions.entititesHelper import findEntityHelper
@@ -14,11 +14,14 @@ class YearlyDataSelectorByCohort():
 
     def selectDataToSearchByYear(self, dataManager, intent : str, entities : object) -> object:
         cohortByYearEntity = findEntityHelper(entities, COHORT_BY_YEAR_ENTITY_LABEL)
-        if intent == COHORT_INTENT and cohortByYearEntity == None:
+        yearEntity = findEntityHelper(entities, YEAR_ENTITY_LABEL)
+
+        if intent == COHORT_INTENT and cohortByYearEntity == None and yearEntity == None:
             raise NotEnoughInformationException(NOT_ENOUGH_DATA_SPECIFIED_FOR_COHORT_YEAR_FORMAT, ExceptionTypes.NotEnoughDataForCohortYearException)
             
 
         if cohortByYearEntity:
+            # preprocess the entity value
             tokens = cohortByYearEntity["value"].replace("_", " ").split(" ")
 
             #Handle the case if the intent is cohort (the user ask for cohort info) but they didn't provide the year or if RASA parsed the wrong entity value.
