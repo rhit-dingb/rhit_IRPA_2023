@@ -45,7 +45,7 @@ class ExcelProcessor():
             topic_key_words = [x.lower() for x in nameReplace.split(" ")]
             if topic in topic_key_words:
                 df = dataSourceConnector.parse(name)
-                
+                df["Value"] = df["Value"].astype(float)
                 sparseMatrices.append(df)
 
         return sparseMatrices    

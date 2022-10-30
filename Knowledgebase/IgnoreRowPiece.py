@@ -13,7 +13,7 @@ class IgnoreRowPiece(ShouldAddRowDecorator):
 
     def determineShouldAddRow(self, row, entities):
         for column in self.targetedColumns:
-            if row[column] == 1:
+            if column in row and row[column] == 1:
                 return []
 
         return self.decorated.determineShouldAddRow(row, entities)
