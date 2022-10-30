@@ -1,5 +1,7 @@
 
+from tracemalloc import start
 from DataManager.DataManager import DataManager
+from Data_Ingestion.SparseMatrix import SparseMatrix
 from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
 from Knowledgebase.Knowledgebase import KnowledgeBase
 from Data_Ingestion.ExcelProcessor import ExcelProcessor
@@ -44,11 +46,17 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
             entities.append(entityObj["value"])
 
         
+        sparseMatrixToSearch : SparseMatrix; startYear : str; endYear : str 
         sparseMatrixToSearch, startYear, endYear = self.determineMatrixToSearch(intent, entitiesExtracted)
-      
+
+    
+
         if sparseMatrixToSearch is None:
             raise Exception("No valid sparse matrix found for given intent and entities", intent, entities)
-        
+
+        # get the underlying pandas dataframe from the internal data model
+        sparseMatrixToSearch = sparseMatrixToSearch.getSparseMatrixDf()
+
         for i in range(sparseMatrixToSearch.shape[0]):
             row = sparseMatrixToSearch.loc[i]
             
@@ -56,13 +64,15 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
                 continue
            
             usedEntities = shouldAddRowStrategy.determineShouldAddRow(row, entities)
+
             if len(usedEntities) > 0:
                 #print("Im ADDING " + str(self.m_df.loc[i,'Value']))
                 count += sparseMatrixToSearch.loc[i,'Value']
                 if len(printEntities) <= 0:
                     printEntities = usedEntities
-                
-        return str(count) + "\n" + str(printEntities)   
+
+        return str(int(count))              
+        #return str(count) + "\n" + str(printEntities)   
 
 
 

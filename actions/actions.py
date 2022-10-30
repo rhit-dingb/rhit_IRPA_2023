@@ -74,12 +74,12 @@ class ActionQueryEnrollment(Action):
             selectedShouldAddRowStrategy = chooseFromOptionsAddRowStrategy
 
         answer = None
-        try:
-            answer = knowledgeBase.searchForAnswer(
+        #try:
+        answer = knowledgeBase.searchForAnswer(
                 tracker.latest_message["intent"]["name"], entitiesExtracted, selectedShouldAddRowStrategy)
-            dispatcher.utter_message(answer)
-        except Exception as e:
-            utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
+        dispatcher.utter_message(answer)
+        #except Exception as e:
+            #utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
 
         return []
 

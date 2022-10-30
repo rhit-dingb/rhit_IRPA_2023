@@ -126,7 +126,7 @@ nlu:
     - how many [non first time]{"entity": "is_first_time", "value": "non-first-time"}? students are there?
     - How many students that are [non-first-time]{"entity": "is_first_time", "value": "non-first-time"}?
 
-    - How many [non-degree-seeking]{"entity":"degree-goal"} [first-time]{"entity": "is_first_time"} [freshman]{"entity": "undergraduate_grade_level"} are there?
+    - How many [non-degree-seeking]{"entity":"degree-goal", "value": "non-degree-seeking"} [first-time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level"} are there?
     
     - I want to know about how many [non degree-seeking]{"entity":"degree-goal", "value":"non-degree-seeking"} [first-time]{"entity": "is_first_time"} students.
 
