@@ -193,11 +193,11 @@ class ActionQueryCohort(Action):
             except Exception as e:
                 utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
         else:
-            #try:
+            try:
                 answer = knowledgeBase.searchForAnswer(intent, entitiesExtracted, ignoreAnyAidShouldAddRow)
                 dispatcher.utter_message(answer)
-            #except Exception as e:
-                #utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
+            except Exception as e:
+                utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
 
         return []
 

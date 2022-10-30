@@ -16,8 +16,8 @@ class YearlyDataSelectorByCohort():
         cohortByYearEntity = findEntityHelper(entities, COHORT_BY_YEAR_ENTITY_LABEL)
         yearEntity = findEntityHelper(entities, YEAR_ENTITY_LABEL)
 
-        if intent == COHORT_INTENT and cohortByYearEntity == None and yearEntity == None:
-            raise NotEnoughInformationException(NOT_ENOUGH_DATA_SPECIFIED_FOR_COHORT_YEAR_FORMAT, ExceptionTypes.NotEnoughDataForCohortYearException)
+        # if intent == COHORT_INTENT and cohortByYearEntity == None and yearEntity == None:
+        #     raise NotEnoughInformationException(NOT_ENOUGH_DATA_SPECIFIED_FOR_COHORT_YEAR_FORMAT, ExceptionTypes.NotEnoughDataForCohortYearException)
             
 
         if cohortByYearEntity:
