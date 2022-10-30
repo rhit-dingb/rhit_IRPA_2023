@@ -32,6 +32,150 @@
     "predicted_entities": []
   },
   {
+    "text": "How many students graduated in five year but in more than four years for 2046 cohort?",
+    "entities": [
+      {
+        "text": "How many students graduated in five year but in more than four years for 2046 cohort?",
+        "start": 31,
+        "end": 40,
+        "entity": "upper_bound_graduation_time",
+        "value": "5 years or less"
+      },
+      {
+        "text": "How many students graduated in five year but in more than four years for 2046 cohort?",
+        "start": 48,
+        "end": 68,
+        "entity": "lower_bound_graduation_time",
+        "value": "more than 4 years"
+      },
+      {
+        "text": "How many students graduated in five year but in more than four years for 2046 cohort?",
+        "start": 73,
+        "end": 84,
+        "entity": "cohort_by_year",
+        "value": "2046 cohort"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "How many students graduated within five years but in more than four years for 2046 cohort?",
+    "entities": [
+      {
+        "text": "How many students graduated within five years but in more than four years for 2046 cohort?",
+        "start": 28,
+        "end": 45,
+        "entity": "upper_bound_graduation_time",
+        "value": "5 years or less"
+      },
+      {
+        "text": "How many students graduated within five years but in more than four years for 2046 cohort?",
+        "start": 53,
+        "end": 73,
+        "entity": "lower_bound_graduation_time",
+        "value": "more than 4 years"
+      },
+      {
+        "text": "How many students graduated within five years but in more than four years for 2046 cohort?",
+        "start": 78,
+        "end": 89,
+        "entity": "cohort_by_year",
+        "value": "2046 cohort"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "I want to know the graduation rate of students graduated in 5 years and more than four year for cohort of 2014",
+    "entities": [
+      {
+        "text": "I want to know the graduation rate of students graduated in 5 years and more than four year for cohort of 2014",
+        "start": 19,
+        "end": 34,
+        "entity": "graduation_rate",
+        "value": "graduation rate"
+      },
+      {
+        "text": "I want to know the graduation rate of students graduated in 5 years and more than four year for cohort of 2014",
+        "start": 47,
+        "end": 67,
+        "entity": "upper_bound_graduation_time",
+        "value": "5 years or less"
+      },
+      {
+        "text": "I want to know the graduation rate of students graduated in 5 years and more than four year for cohort of 2014",
+        "start": 72,
+        "end": 91,
+        "entity": "lower_bound_graduation_time",
+        "value": "more than 4 years"
+      },
+      {
+        "text": "I want to know the graduation rate of students graduated in 5 years and more than four year for cohort of 2014",
+        "start": 96,
+        "end": 110,
+        "entity": "cohort_by_year",
+        "value": "cohort of 2014"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "What is the graduation rate for students who graduated in 5 years and more than four year for the cohort of 2014?",
+    "entities": [
+      {
+        "start": 12,
+        "end": 27,
+        "value": "graduation rate",
+        "entity": "graduation_rate"
+      },
+      {
+        "start": 45,
+        "end": 65,
+        "value": "5 years or less",
+        "entity": "upper_bound_graduation_time"
+      },
+      {
+        "start": 70,
+        "end": 89,
+        "value": "more than 4 years",
+        "entity": "lower_bound_graduation_time"
+      },
+      {
+        "start": 98,
+        "end": 112,
+        "value": "cohort of 2014",
+        "entity": "cohort_by_year"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "I want to know about students who did not receive any aid",
+    "entities": [
+      {
+        "text": "I want to know about students who did not receive any aid",
+        "start": 34,
+        "end": 57,
+        "entity": "students_who_did_not_receive_either_a_pell_grant_or_a_subsidized_stafford_loan",
+        "value": "did not receive any aid"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "I want to know about students who are recipient of pell grant",
+    "entities": [
+      {
+        "text": "I want to know about students who are recipient of pell grant",
+        "start": 38,
+        "end": 61,
+        "entity": "recipients_of_federal_pell_grant",
+        "value": "pell-grant"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
     "text": "How many undergraduate students are there at Rose-Hulman?",
     "entities": [
       {

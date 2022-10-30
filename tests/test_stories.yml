@@ -1,5 +1,6 @@
 #### This file contains tests to evaluate that your bot behaves as expected.
 #### If you want to learn more, please see the docs: https://rasa.com/docs/rasa/testing-your-assistant
+version: "3.1"
 
 stories:
 - story: happy path 1
@@ -90,6 +91,7 @@ stories:
     intent: bot_challenge
   - action: utter_iamabot
 
+#ENROLLMENT TESTS
 
 - story: ask_about_enrollment_and_answer_helpful
   steps: 
@@ -140,3 +142,101 @@ stories:
       Yes
     intent: affirm
   - action: action_ask_more_question
+  - user: |
+      Yes! I do!
+    intent: affirm
+  - action: utter_ask_whats_the_question
+
+- story: ask_about_enrollment_and_answer_helpful_non_first_time_non_first_year
+  steps: 
+  - user: |
+      How many [non first time]{"entity": "is_first_time", "value": "non-first-time"} [non first year]{"entity": "is_first_year", "value": "non-first-time"} students are enrolled?
+    intent: enrollment
+  - action: action_query_enrollment
+  - action: utter_ask_answer_helpful
+  - user: |
+      Yes
+    intent: affirm
+  - action: action_ask_more_question
+  - user: |
+      Yes! I do!
+    intent: affirm
+  - action: utter_ask_whats_the_question
+
+- story: ask_about_enrollment_and_answer_helpful_male_non_freshman
+  steps: 
+  - user: |
+      How many [male]{"entity": "gender", "value": "male"} [non freshman]{"entity": "undergraduate_grade_level", "value": "non-freshman"} students are enrolled?
+    intent: enrollment
+  - action: action_query_enrollment
+  - action: utter_ask_answer_helpful
+  - user: |
+      Yes
+    intent: affirm
+  - action: action_ask_more_question
+  - user: |
+      Yes! I do!
+    intent: affirm
+  - action: utter_ask_whats_the_question
+
+#COHORT TESTS
+
+- story: ask_about_cohort_general_should_extract_five_year
+  steps:
+  - user: |
+      How many students graduated in [five year]{"entity": "upper_bound_graduation_time", "value": "5 years or less"} but in [more than four years]{"entity": "lower_bound_graduation_time", "value": "more than 4 years"} for [2046 cohort](cohort_by_year)?
+    intent: cohort
+  - action: action_query_cohort
+  - action: utter_ask_answer_helpful
+  - user: |
+      Yes
+    intent: affirm
+  - action: action_ask_more_question
+  - user: |
+      Yes! I do!
+    intent: affirm
+  - action: utter_ask_whats_the_question
+
+
+- story: ask_about_cohort_general_should_extract_five_year_2
+  steps:
+  - user: |
+      How many students graduated [within five years]{"entity": "upper_bound_graduation_time", "value": "5 years or less"} but in [more than four years]{"entity": "lower_bound_graduation_time", "value": "more than 4 years"} for [2046 cohort](cohort_by_year)?
+    intent: cohort
+  - action: action_query_cohort
+  - action: utter_ask_answer_helpful
+
+- story: ask_about_cohort_general_5_year_graduation_time_should_extract_gradution_time_successfully
+  steps:
+  - user: |
+     I want to know the [graduation rate](graduation_rate) of students [graduated in 5 years]{"entity": "upper_bound_graduation_time", "value": "5 years or less"} and [more than four year]{"entity": "lower_bound_graduation_time", "value": "more than 4 years"} for [cohort of 2014](cohort_by_year)
+    intent: cohort
+  - action: action_query_cohort
+  - action: utter_ask_answer_helpful
+    
+
+- story: ask_about_cohort_general_should_extract_graduation_time_successfully
+  steps:
+  - user: |
+      What is the [graduation rate](graduation_rate) for students who [graduated in 5 years]{"entity": "upper_bound_graduation_time", "value": "5 years or less"} and [more than four year]{"entity": "lower_bound_graduation_time", "value": "more than 4 years"} for the [cohort of 2014](cohort_by_year)?
+    intent: cohort
+  - action: action_query_cohort
+  - action: utter_ask_answer_helpful
+
+
+
+- story: ask_about_cohort_financial_aid_should_extract_entity_successfully
+  steps:
+  - user: |
+      I want to know about students who [did not receive any aid](students_who_did_not_receive_either_a_pell_grant_or_a_subsidized_stafford_loan)
+    intent: cohort
+  - action: action_query_cohort
+  - action: utter_ask_answer_helpful
+
+- story: ask_about_cohort_recipient_of_pell_grant
+  steps:
+  - user: |
+      I want to know about students who are [recipient of pell grant]{"entity": "recipients_of_federal_pell_grant", "value":"pell-grant"}
+    intent: cohort
+  - action: action_query_cohort
+  - action: utter_ask_answer_helpful

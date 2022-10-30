@@ -7,9 +7,12 @@ intents:
   - deny
   # Intents for different topics on the IRPA common dataset
   - enrollment
+  - cohort
+
   - mood_great
   - mood_unhappy
   - bot_challenge
+
 
 entities:
   # full-time, part-time
@@ -36,10 +39,48 @@ entities:
   #race/ethnicity
   - race
 
+
+
+  #cohort by year - for example: 2015 cohort, 2016 cohort, etc.
+  - cohort_by_year
+
+
+# used for something like: Initial 2015 cohort of first-time, fulltime, bachelor's (or equivalent) degreeseeking undergraduate students
+# and also something like: Final 2015 cohort, after adjusting for allowable exclusions
+  - cohort_initial_final
+
+ # This is entity is used for these rows:
+ #Example: five year or less, four year or less
+  - upper_bound_graduation_time
+
+ #Example: more than four years.
+  - lower_bound_graduation_time
+
+
+  # - graduate_within_four_years
+  # - graduated_in_five_years
+  # - graduated_in_six_years
+
+
+# for six-year graduation rate for 2015 cohort row 
+  - graduation_rate
+
+
+  # exemptions - students for did not persist or graduate due to other circumstances.
+  # also know as allowable exclusions.
+  - exemptions
+
+
+  - recipients_of_federal_pell_grant
+  - recipients_of_a_subsidized_stafford_loan_who_did_not_receive_a_pell_grant 
+  - students_who_did_not_receive_either_a_pell_grant_or_a_subsidized_stafford_loan
+
+
   #year to query the dataset.
   - year
+  
 
-  - DATE
+
 
 slots:
   enrollment_status:
@@ -66,7 +107,7 @@ slots:
     type: categorical
     values:
       - freshman
-      - not-freshman
+      - non-freshman
     influence_conversation: true
     mappings:
       - type: from_entity
@@ -123,8 +164,9 @@ slots:
 
 actions:
   - action_get_available_options
-  - action_query_enrollment
   - action_ask_more_question
+  - action_query_cohort
+  - action_query_enrollment
   
 
 responses:
@@ -144,20 +186,30 @@ responses:
   utter_ask_any_more_question:
   - text: "Great! Do you have anymore questions?"
 
+  utter_ask_whats_the_question:
+  - text: "I am glad to help you with that, whats the question?"
+
+  utter_no_more_question:
+  - text: "Have a good day!"
+
   utter_goodbye:
   - text: "Bye"
+
+
+  utter_sorry_question_not_helpful:
+  - text: "I am sorry it does not help, thak you for your reply, we will update chatbot."
 
   utter_iamabot:
   - text: "I am a bot, powered by Rasa."
 
-  utter_test_options:
-  - text: "For enrollment, you can ask about: how many undergradute students, total graduate students, etc"
+  # utter_test_options:
+  # - text: "For enrollment, you can ask about: how many undergradute students, total graduate students, etc"
 
-  utter_test_total_undergraduates:
-  - text: "Rose-Hulman has 2000 undergraduates"
+  # utter_test_total_undergraduates:
+  # - text: "Rose-Hulman has 2000 undergraduates"
 
-  utter_test_total_full_time_undergraduate_men:
-  - text: "Rose-Hulman has 1000 full-time undergraduate students that are male."
+  # utter_test_total_full_time_undergraduate_men:
+  # - text: "Rose-Hulman has 1000 full-time undergraduate students that are male."
 
   utter_ask_answer_helpful:
   - text: "Was this answer helpful?"

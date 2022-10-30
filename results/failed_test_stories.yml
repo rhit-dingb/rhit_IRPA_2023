@@ -1,1 +1,48 @@
-# None of the test stories failed - all good!
+version: "3.1"
+stories:
+- story: ask_about_cohort_general_should_extract_five_year (.\tests\test_stories.yml)
+  steps:
+  - intent: cohort
+    entities:
+    - upper_bound_graduation_time: 5 years or less
+    - lower_bound_graduation_time: more than 4 years
+    - cohort_by_year: 2046 cohort
+  - action: action_query_cohort
+  - action: utter_ask_answer_helpful
+  - intent: affirm
+  - action: action_ask_more_question
+  - intent: affirm
+  - action: utter_ask_whats_the_question
+- story: ask_about_cohort_general_should_extract_five_year_2 (.\tests\test_stories.yml)
+  steps:
+  - intent: cohort
+    entities:
+    - upper_bound_graduation_time: 5 years or less
+    - lower_bound_graduation_time: more than 4 years
+    - cohort_by_year: 2046 cohort
+  - action: action_query_cohort
+  - action: utter_ask_answer_helpful
+- story: ask_about_cohort_general_5_year_graduation_time_should_extract_gradution_time_successfully (.\tests\test_stories.yml)
+  steps:
+  - intent: cohort
+    entities:
+    - graduation_rate: graduation rate
+    - upper_bound_graduation_time: 5 years or less
+    - lower_bound_graduation_time: more than 4 years
+    - cohort_by_year: cohort of 2014
+  - action: action_query_cohort
+  - action: utter_ask_answer_helpful
+- story: ask_about_cohort_financial_aid_should_extract_entity_successfully (.\tests\test_stories.yml)
+  steps:
+  - intent: cohort
+    entities:
+    - students_who_did_not_receive_either_a_pell_grant_or_a_subsidized_stafford_loan: did not receive any aid
+  - action: action_query_cohort
+  - action: utter_ask_answer_helpful
+- story: ask_about_cohort_recipient_of_pell_grant (.\tests\test_stories.yml)
+  steps:
+  - intent: cohort
+    entities:
+    - recipients_of_federal_pell_grant: pell-grant
+  - action: action_query_cohort
+  - action: utter_ask_answer_helpful
