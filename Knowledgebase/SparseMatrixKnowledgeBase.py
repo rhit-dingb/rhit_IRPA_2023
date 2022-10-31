@@ -49,8 +49,6 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         sparseMatrixToSearch : SparseMatrix; startYear : str; endYear : str 
         sparseMatrixToSearch, startYear, endYear = self.determineMatrixToSearch(intent, entitiesExtracted)
 
-    
-
         if sparseMatrixToSearch is None:
             raise Exception("No valid sparse matrix found for given intent and entities", intent, entities)
 
@@ -70,7 +68,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
                 count += sparseMatrixToSearch.loc[i,'Value']
                 if len(printEntities) <= 0:
                     printEntities = usedEntities
-                    
+
         return str(int(count)) + "\n" + str(printEntities)   
 
 
