@@ -80,22 +80,36 @@ stories:
 #   - action: utter_test_total_full_time_undergraduate_men
 
 
-# - story: ask about enrollment with nothing provided
-#   steps:
-#   - intent: ask_enrollment
-#   # - action: set_entities
-#   # - slot_was_set:
-#   #   - enrollment_status: null
-#   #   - student_level: null
-#   #   - undergraduate_grade_level: null
-#   - slot_was_set: 
-#       - enrollment_status: null
-#       - student_level: null
-#       - undergraduate_grade_level: null
-#       - degree-goal: null 
-#       - is_first_time: null
-#       - gender: null
-#   - action: action_get_available_options
+# - story: ask_about_cohort_graduation_rates
+#   steps: 
+#     - intent: cohort
+   
+#       entities:
+#       - or:
+#       #NOTE: the specific values of entities does not matter, this just checks if the entity itself is extracted
+#         - upper_bound_graduation_time: "more than four year"
+#         - lower_bound_graduation_time: "less than five years"
+#     - action: action_query_cohort
+#     - action: utter_ask_answer_helpful
+
+
+- story: ask_about_cohort_answer_helpful
+  steps: 
+    - intent: cohort
+    - action: action_query_cohort
+    - action: utter_ask_answer_helpful
+    - intent: affirm
+    - checkpoint: ask_feedback
+
+
+- story: ask_about_cohort_answer_not_helpful
+  steps: 
+    - intent: cohort
+    - action: action_query_cohort
+    - action: utter_ask_answer_helpful
+    - intent: deny
+    - action: utter_sorry_question_not_helpful
+    - action: action_get_available_options
 
 
 #generalize the process for enrollment
@@ -106,8 +120,24 @@ stories:
     - action: action_query_enrollment
     - action: utter_ask_answer_helpful
     - intent: affirm
-    - action: action_ask_more_question
+    - checkpoint: ask_feedback
+    
 
+
+- story: ask_more_question
+  steps:
+  - checkpoint: ask_feedback
+  - action: action_ask_more_question
+  - intent: affirm
+  - action: utter_ask_whats_the_question
+
+
+- story: as_no_more_question
+  steps:
+  - checkpoint: ask_feedback
+  - action: action_ask_more_question
+  - intent: deny
+  - action: utter_no_more_question
 
 - story: ask_about_enrollment_and_answer_not_helpful
   steps: 
@@ -116,4 +146,5 @@ stories:
     - action: action_query_enrollment
     - action: utter_ask_answer_helpful
     - intent: deny
+    - action: utter_sorry_question_not_helpful
     - action: action_get_available_options

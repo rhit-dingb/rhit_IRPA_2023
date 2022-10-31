@@ -3,28 +3,42 @@
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 6,
+    "support": 9,
     "confused_with": {}
   },
-  "gender": {
+  "is_first_time": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 4,
+    "support": 18,
     "confused_with": {}
   },
-  "enrollment_status": {
+  "is_first_year": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 5,
+    "support": 16,
     "confused_with": {}
   },
-  "race": {
+  "cohort_initial_final": {
     "precision": 1.0,
-    "recall": 0.9285714285714286,
-    "f1-score": 0.962962962962963,
-    "support": 14,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 7,
+    "confused_with": {}
+  },
+  "retention-rate": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 8,
+    "confused_with": {}
+  },
+  "exemptions": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 26,
     "confused_with": {}
   },
   "undergraduate_grade_level": {
@@ -34,37 +48,121 @@
     "support": 4,
     "confused_with": {}
   },
-  "student_level": {
-    "precision": 1.0,
-    "recall": 0.875,
-    "f1-score": 0.9333333333333333,
-    "support": 8,
+  "cohort_by_year": {
+    "precision": 0.9857142857142858,
+    "recall": 1.0,
+    "f1-score": 0.9928057553956835,
+    "support": 69,
     "confused_with": {}
   },
-  "is_first_time": {
+  "gender": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 5,
+    "confused_with": {}
+  },
+  "graduation_rate": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 9,
+    "confused_with": {}
+  },
+  "student_level": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 14,
+    "confused_with": {}
+  },
+  "race": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 27,
+    "confused_with": {}
+  },
+  "enrollment_status": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
     "support": 6,
     "confused_with": {}
   },
-  "micro avg": {
+  "recipients_of_a_subsidized_stafford_loan_who_did_not_receive_a_pell_grant": {
     "precision": 1.0,
-    "recall": 0.9574468085106383,
-    "f1-score": 0.9782608695652174,
-    "support": 47
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 36,
+    "confused_with": {}
+  },
+  "students_who_did_not_receive_either_a_pell_grant_or_a_subsidized_stafford_loan": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 48,
+    "confused_with": {}
+  },
+  "recipients_of_federal_pell_grant": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 12,
+    "confused_with": {}
+  },
+  "year": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 2,
+    "confused_with": {}
+  },
+  "upper_bound_graduation_time": {
+    "precision": 0.9841269841269841,
+    "recall": 1.0,
+    "f1-score": 0.9919999999999999,
+    "support": 62,
+    "confused_with": {}
+  },
+  "year.to": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 7,
+    "confused_with": {}
+  },
+  "lower_bound_graduation_time": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 20,
+    "confused_with": {}
+  },
+  "year.from": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 12,
+    "confused_with": {}
+  },
+  "micro avg": {
+    "precision": 0.9952267303102625,
+    "recall": 1.0,
+    "f1-score": 0.9976076555023923,
+    "support": 417
   },
   "macro avg": {
-    "precision": 1.0,
-    "recall": 0.9719387755102041,
-    "f1-score": 0.9851851851851852,
-    "support": 47
+    "precision": 0.9985638699924415,
+    "recall": 1.0,
+    "f1-score": 0.9992764645426516,
+    "support": 417
   },
   "weighted avg": {
-    "precision": 1.0,
-    "recall": 0.9574468085106383,
-    "f1-score": 0.9776201733648543,
-    "support": 47
+    "precision": 0.9952761600243615,
+    "recall": 1.0,
+    "f1-score": 0.997620136983938,
+    "support": 417
   },
-  "accuracy": 0.9948051948051948
+  "accuracy": 0.9982876712328768
 }

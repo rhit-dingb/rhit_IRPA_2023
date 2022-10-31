@@ -1,9 +1,16 @@
 {
-  "mood_unhappy": {
+  "goodbye": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 14,
+    "support": 10,
+    "confused_with": {}
+  },
+  "enrollment": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 51,
     "confused_with": {}
   },
   "mood_great": {
@@ -13,13 +20,6 @@
     "support": 14,
     "confused_with": {}
   },
-  "deny": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 7,
-    "confused_with": {}
-  },
   "affirm": {
     "precision": 1.0,
     "recall": 1.0,
@@ -27,11 +27,18 @@
     "support": 7,
     "confused_with": {}
   },
-  "enrollment": {
+  "cohort": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 29,
+    "support": 40,
+    "confused_with": {}
+  },
+  "mood_unhappy": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 14,
     "confused_with": {}
   },
   "greet": {
@@ -41,6 +48,13 @@
     "support": 13,
     "confused_with": {}
   },
+  "deny": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 7,
+    "confused_with": {}
+  },
   "bot_challenge": {
     "precision": 1.0,
     "recall": 1.0,
@@ -48,30 +62,23 @@
     "support": 4,
     "confused_with": {}
   },
-  "goodbye": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 10,
-    "confused_with": {}
-  },
   "accuracy": 1.0,
   "macro avg": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 98
+    "support": 160
   },
   "weighted avg": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 98
+    "support": 160
   },
   "micro avg": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 98
+    "support": 160
   }
 }
