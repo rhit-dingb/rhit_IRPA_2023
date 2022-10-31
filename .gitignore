@@ -1,6 +1,6 @@
 .rasa/
 models/
-
+node_modules/
 # dependencies
 chatbot_app/node_modules
 chatbot_app/.pnp
