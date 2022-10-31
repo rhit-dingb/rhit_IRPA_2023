@@ -105,10 +105,27 @@ nlu:
     - How many [full-time]{"entity": "enrollment_status", "value": "full-time"} [undergraduate]{"entity":"student_level", "value": "undergraduate"} students are there in Rose-Hulman?
     - How many [full time]{"entity": "enrollment_status", "value": "full-time"} [undergraduate]{"entity":"student_level", "value": "undergraduate"} students are there in Rose-Hulman?
 
-    - How many [full-time]{"entity": "enrollment_status" , "value": "full-time"} [graduate]{"entity":"student_level", "value":"graduate"} are there in Rose-Hulman?
-    - I want to know about the number of [graduate students]{"entity":"student_level", "value":"graduate"} here
-    
+    - How many [full-time]{"entity": "enrollment_status", "value": "full-time"} [undergraduates]{"entity":"student_level", "value": "undergraduate"} are there in Rose-Hulman?
+    - How many [full time]{"entity": "enrollment_status", "value": "full-time"} [undergraduates]{"entity":"student_level", "value": "undergraduate"} are there in Rose-Hulman?
+
+    - How many [full-time]{"entity": "enrollment_status" , "value": "full-time"} [graduates]{"entity":"student_level", "value":"graduate"} are there in Rose-Hulman?
+    - How many [full time]{"entity": "enrollment_status" , "value": "full-time"} [graduates]{"entity":"student_level", "value":"graduate"} are there in Rose-Hulman?
+
     - How many [part-time]{"entity": "enrollment_status", "value": "part-time"} [undergraduate]{"entity":"student_level", "value": "undergraduate"} students are there in Rose-Hulman?
+    - How many [part time]{"entity": "enrollment_status", "value": "part-time"} [undergraduate]{"entity":"student_level", "value": "undergraduate"} students are there in Rose-Hulman?
+
+    - How many [part-time]{"entity": "enrollment_status", "value": "part-time"} [undergraduates]{"entity":"student_level", "value": "undergraduate"} are there in Rose-Hulman?
+    - How many [part time]{"entity": "enrollment_status", "value": "part-time"} [undergraduates]{"entity":"student_level", "value": "undergraduate"} are there in Rose-Hulman?
+
+    - How many [part-time]{"entity": "enrollment_status", "value": "part-time"} [graduate]{"entity":"student_level", "value": "undergraduate"} students are there in Rose-Hulman?
+    - How many [part time]{"entity": "enrollment_status", "value": "part-time"} [graduate]{"entity":"student_level", "value": "undergraduate"} students are there in Rose-Hulman?
+
+    - How many [full time]{"entity": "enrollment_status", "value": "full-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"}
+    
+    - I want to know about the number of [graduate students]{"entity":"student_level", "value":"graduate"} here
+    - I want to know about the number of [graduates]{"entity":"student_level", "value":"graduate"} here
+    
+    - How many [non full time]{"entity": "enrollment_status", "value": "part-time"} [undergraduate]{"entity":"student_level", "value": "undergraduate"} students are there in Rose-Hulman?
     - Tell me the number of [undergraduates]{"entity":"student_level", "value": "undergraduate"} at Rose-Hulman
 
     - How many [men]{"entity": "gender", "value": "male"} students are there in Rose-Hulman?
@@ -117,7 +134,12 @@ nlu:
     - How many [male]{"entity": "gender", "value": "male"} student are there?
     - How many [female]{"entity": "gender", "value": "female"} student are there?
 
-    - [undergrad]{"entity":"student_level", "value": "undergraduate"} student please tell me
+    - How many [male]{"entity": "gender", "value": "male"} [non freshman]{"entity": "undergraduate_grade_level", "value": "non-freshman"} students are enrolled?
+    - How many [male]{"entity": "gender", "value": "male"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students are enrolled?
+    - How many [male]{"entity": "gender", "value": "male"} [non first time]{"entity": "is_first_time", "value": "non-first-time"} students are enrolled?
+    - How many [male]{"entity": "gender", "value": "male"} [first time]{"entity": "is_first_time", "value": "first-time"} students are enrolled?
+
+    - How many [non degree seeking]{"entity": "degree-goal", "value": "non-degree-seeking"} [undergrad]{"entity":"student_level", "value": "undergraduate"} student please tell me
 
     - How many [degree-seeking]{"entity":"degree-goal", "value": "degree-seeking"} [first-time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} are there?
 
@@ -126,11 +148,71 @@ nlu:
     - how many [non first time]{"entity": "is_first_time", "value": "non-first-time"}? students are there?
     - How many students that are [non-first-time]{"entity": "is_first_time", "value": "non-first-time"}?
 
-    - How many [non-degree-seeking]{"entity":"degree-goal", "value": "non-degree-seeking"} [first-time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level"} are there?
+    - How many [non-degree-seeking]{"entity":"degree-goal", "value":"non-degree-seeking"} [first-time]{"entity": "is_first_time", "value":"first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} are there?
     
-    - I want to know about how many [non degree-seeking]{"entity":"degree-goal", "value":"non-degree-seeking"} [first-time]{"entity": "is_first_time"} students.
+    - I want to know about how many [non degree-seeking]{"entity":"degree-goal", "value":"non-degree-seeking"} [first-time]{"entity": "is_first_time", "value": "first-time"} students.
 
     - Tell me about the number of [degree seeking]{"entity": "degree-goal", "value": "degree-seeking"} students who are [not freshman]{"entity":"undergraduate_grade_level", "value":"non-freshman"}
+
+    - How many [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} [first time]{"entity": "is_first_time", "value": "first-time"} students are enrolled?
+    - How many [non freshman]{"entity": "undergraduate_grade_level", "value": "non-freshman"} [first time]{"entity": "is_first_time", "value": "first-time"} students are enrolled?
+    - How many [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} [non first time]{"entity": "is_first_time", "value": "non-first-time"} students are enrolled?
+    - How many [non freshman]{"entity": "undergraduate_grade_level", "value": "non-freshman"} [non first time]{"entity": "is_first_time", "value": "non-first-time"} students are enrolled?
+
+    - How many [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} [first time]{"entity": "is_first_time", "value": "first-time"} [first year]{"entity": "is_first_year", "value": "first-year"} students are enrolled?
+    - How many [non freshman]{"entity": "undergraduate_grade_level", "value": "non-freshman"} [first time]{"entity": "is_first_time", "value": "first-time"} [first year]{"entity": "is_first_year", "value": "first-year"} students are enrolled?
+    - How many [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} [non first time]{"entity": "is_first_time", "value": "non-first-time"} [first year]{"entity": "is_first_year", "value": "first-year"} students are enrolled?
+    - How many [non freshman]{"entity": "undergraduate_grade_level", "value": "non-freshman"} [non first time]{"entity": "is_first_time", "value": "non-first-time"} [first year]{"entity": "is_first_year", "value": "first-year"} students are enrolled?
+    - How many [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} [first time]{"entity": "is_first_time", "value": "first-time"} [non first year]{"entity": "is_first_year", "value": "non-first-year"} students are enrolled?
+    - How many [non freshman]{"entity": "undergraduate_grade_level", "value": "non-freshman"} [first time]{"entity": "is_first_time", "value": "first-time"} [non first year]{"entity": "is_first_year", "value": "non-first-year"} students are enrolled?
+    - How many [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} [non first time]{"entity": "is_first_time", "value": "non-first-time"} [non first year]{"entity": "is_first_year", "value": "non-first-year"} students are enrolled?
+    - How many [non freshman]{"entity": "undergraduate_grade_level", "value": "non-freshman"} [non first time]{"entity": "is_first_time", "value": "non-first-time"} [non first year]{"entity": "is_first_year", "value": "non-first-year"} students are enrolled?
+
+    - How many [first time]{"entity": "is_first_time", "value": "first-time"} [part time]{"entity": "enrollment_status", "value": "part-time"} students are enrolled?
+    - How many [first time]{"entity": "is_first_time", "value": "first-time"} [full time]{"entity": "enrollment_status", "value": "full-time"} students are enrolled?
+    - How many [non first time]{"entity": "is_first_time", "value": "non-first-time"} [part time]{"entity": "enrollment_status", "value": "part-time"} students are enrolled?
+    - How many [non first time]{"entity": "is_first_time", "value": "non-first-time"} [full time]{"entity": "enrollment_status", "value": "full-time"} students are enrolled?
+
+    - How many [full time]{"entity": "enrollment_status", "value": "full-time"} [first year]{"entity": "is_first_year", "value": "first-year"} students are enrolled?
+    - How many [full time]{"entity": "enrollment_status", "value": "full-time"} [non first year]{"entity": "is_first_year", "value": "non-first-year"} students are enrolled?
+    - How many [part time]{"entity": "enrollment_status", "value": "part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} students are enrolled?
+    - How many [part time]{"entity": "enrollment_status", "value": "part-time"} [non first year]{"entity": "is_first_year", "value": "non-first-year"} students are enrolled?
+
+    - How many [first time]{"entity": "is_first_time", "value": "first-time"} [first year]{"entity": "is_first_year", "value": "first-year"} students are enrolled?
+    - How many [first time]{"entity": "is_first_time", "value": "first-time"} [non first year]{"entity": "is_first_year", "value": "non-first-year"} students are enrolled?
+    - How many [non first time]{"entity": "is_first_time", "value": "non-first-time"} [first year]{"entity": "is_first_year", "value": "first-year"} students are enrolled?
+    - How many [non first time]{"entity": "is_first_time", "value": "non-first-time"} [non first year]{"entity": "is_first_year", "value": "non-first-year"} students are enrolled?
+
+    - How many [first year]{"entity": "is_first_year", "value": "first-year"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} are enrolled?
+    - How many [first year]{"entity": "is_first_year", "value": "first-year"} [non freshman]{"entity": "undergraduate_grade_level", "value": "non-freshman"} are enrolled?
+    - How many [non first year]{"entity": "is_first_year", "value": "non-first-year"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} are enrolled?
+    - How many [non first year]{"entity": "is_first_year", "value": "non-first-year"} [non freshman]{"entity": "undergraduate_grade_level", "value": "non-freshman"} are enrolled?
+
+    - How many [first year]{"entity": "is_first_year", "value": "first-year"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} [first time]{"entity": "is_first_time", "value": "first-time"} students are enrolled?
+    - How many [first year]{"entity": "is_first_year", "value": "first-year"} [non freshman]{"entity": "undergraduate_grade_level", "value": "non-freshman"} [first time]{"entity": "is_first_time", "value": "first-time"} students are enrolled?
+    - How many [non first year]{"entity": "is_first_year", "value": "non-first-year"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} [first time]{"entity": "is_first_time", "value": "first-time"} students are enrolled?
+    - How many [non first year]{"entity": "is_first_year", "value": "non-first-year"} [non freshman]{"entity": "undergraduate_grade_level", "value": "non-freshman"} [first time]{"entity": "is_first_time", "value": "first-time"} students are enrolled?
+    - How many [first year]{"entity": "is_first_year", "value": "first-year"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} [non first time]{"entity": "is_first_time", "value": "non-first-time"} students are enrolled?
+    - How many [first year]{"entity": "is_first_year", "value": "first-year"} [non freshman]{"entity": "undergraduate_grade_level", "value": "non-freshman"} [non first time]{"entity": "is_first_time", "value": "non-first-time"} students are enrolled?
+    - How many [non first year]{"entity": "is_first_year", "value": "non-first-year"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} [non first time]{"entity": "is_first_time", "value": "non-first-time"} students are enrolled?
+    - How many [non first year]{"entity": "is_first_year", "value": "non-first-year"} [non freshman]{"entity": "undergraduate_grade_level", "value": "non-freshman"} [non first time]{"entity": "is_first_time", "value": "non-first-time"} students are enrolled?
+
+    - How many [first year]{"entity": "is_first_year", "value": "first-year"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} [first time]{"entity": "is_first_time", "value": "first-time"} [part time]{"entity": "enrollment_status", "value": "part-time"} students are enrolled?
+    - How many [first year]{"entity": "is_first_year", "value": "first-year"} [non freshman]{"entity": "undergraduate_grade_level", "value": "non-freshman"} [first time]{"entity": "is_first_time", "value": "first-time"} [part time]{"entity": "enrollment_status", "value": "part-time"} students are enrolled?
+    - How many [non first year]{"entity": "is_first_year", "value": "non-first-year"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} [first time]{"entity": "is_first_time", "value": "first-time"} [part time]{"entity": "enrollment_status", "value": "part-time"} students are enrolled?
+    - How many [non first year]{"entity": "is_first_year", "value": "non-first-year"} [non freshman]{"entity": "undergraduate_grade_level", "value": "non-freshman"} [first time]{"entity": "is_first_time", "value": "first-time"} [part time]{"entity": "enrollment_status", "value": "part-time"} students are enrolled?
+    - How many [first year]{"entity": "is_first_year", "value": "first-year"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} [non first time]{"entity": "is_first_time", "value": "non-first-time"} [part time]{"entity": "enrollment_status", "value": "part-time"} students are enrolled?
+    - How many [first year]{"entity": "is_first_year", "value": "first-year"} [non freshman]{"entity": "undergraduate_grade_level", "value": "non-freshman"} [non first time]{"entity": "is_first_time", "value": "non-first-time"} [part time]{"entity": "enrollment_status", "value": "part-time"} students are enrolled?
+    - How many [non first year]{"entity": "is_first_year", "value": "non-first-year"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} [non first time]{"entity": "is_first_time", "value": "non-first-time"} [part time]{"entity": "enrollment_status", "value": "part-time"} students are enrolled?
+    - How many [non first year]{"entity": "is_first_year", "value": "non-first-year"} [non freshman]{"entity": "undergraduate_grade_level", "value": "non-freshman"} [non first time]{"entity": "is_first_time", "value": "non-first-time"} [part time]{"entity": "enrollment_status", "value": "part-time"} students are enrolled?
+    - How many [first year]{"entity": "is_first_year", "value": "first-year"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} [first time]{"entity": "is_first_time", "value": "first-time"} [full time]{"entity": "enrollment_status", "value": "full-time"} students are enrolled?
+    - How many [first year]{"entity": "is_first_year", "value": "first-year"} [non freshman]{"entity": "undergraduate_grade_level", "value": "non-freshman"} [first time]{"entity": "is_first_time", "value": "first-time"} [full time]{"entity": "enrollment_status", "value": "full-time"} students are enrolled?
+    - How many [non first year]{"entity": "is_first_year", "value": "non-first-year"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} [first time]{"entity": "is_first_time", "value": "first-time"} [full time]{"entity": "enrollment_status", "value": "full-time"} students are enrolled?
+    - How many [non first year]{"entity": "is_first_year", "value": "non-first-year"} [non freshman]{"entity": "undergraduate_grade_level", "value": "non-freshman"} [first time]{"entity": "is_first_time", "value": "first-time"} [full time]{"entity": "enrollment_status", "value": "full-time"} students are enrolled?
+    - How many [first year]{"entity": "is_first_year", "value": "first-year"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} [non first time]{"entity": "is_first_time", "value": "non-first-time"} [full time]{"entity": "enrollment_status", "value": "full-time"} students are enrolled?
+    - How many [first year]{"entity": "is_first_year", "value": "first-year"} [non freshman]{"entity": "undergraduate_grade_level", "value": "non-freshman"} [non first time]{"entity": "is_first_time", "value": "non-first-time"} [full time]{"entity": "enrollment_status", "value": "full-time"} students are enrolled?
+    - How many [non first year]{"entity": "is_first_year", "value": "non-first-year"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} [non first time]{"entity": "is_first_time", "value": "non-first-time"} [full time]{"entity": "enrollment_status", "value": "full-time"} students are enrolled?
+    - How many [non first year]{"entity": "is_first_year", "value": "non-first-year"} [non freshman]{"entity": "undergraduate_grade_level", "value": "non-freshman"} [non first time]{"entity": "is_first_time", "value": "non-first-time"} [full time]{"entity": "enrollment_status", "value": "full-time"} students are enrolled?
 
     - How many [nonresident-alien]{"entity": "race"} students are enrolled? 
     - How many [hispanic]{"entity": "race"} students are enrolled? 
@@ -145,15 +227,20 @@ nlu:
     - How many students of [unknown]{"entity": "race"} race are enrolled? 
 
     - how many [first time]{"entity": "is_first_time", "value": "first-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [hispanic]{"entity":"race"} students are there?
+    
     - how many [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} students are there?
     - how many [first time]{"entity": "is_first_time", "value": "first-time"} [first year]{"entity": "is_first_year", "value": "first-year"} students are there?
+    - how many [non first year]{"entity": "is_first_year", "value": "non-first-year"} [non first time]{"entity": "is_first_time", "value": "non-first-time"} students are there?
+    - how many [non first time]{"entity": "is_first_time", "value": "non-first-time"} [non first year]{"entity": "is_first_year", "value": "non-first-year"} students are there?
+    - how many [non freshmen]{"entity": "undergraduate_grade_level", "value": "non-freshman"} are enrolled?
   
     - how many [non first-time]{"entity": "is_first_time", "value": "non-first-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [hispanic]{"entity":"race"} students are there?
   
-    - how many [first-year]{"entity": "is_first_year"} students are there?
+    - how many [first-year]{"entity": "is_first_year", "value": "first-year"} students are there?
   
 
-    - how many [non-first-year]{"entity": "is_first_year"} students are there? 
+    - how many [non-first-year]{"entity": "is_first_year", "value": "non-first-year"} students are there?
+    - how many [non first-year]{"entity": "is_first_year", "value": "non-first-year"} students are there?
 
     - how many students who are [not first year]{"entity": "is_first_year", "value": "non-first-year"} are enrolled?
     - how many students who are [non first year]{"entity": "is_first_year", "value": "non-first-year"} are enrolled?

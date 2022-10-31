@@ -150,7 +150,7 @@ stories:
 - story: ask_about_enrollment_and_answer_helpful_non_first_time_non_first_year
   steps: 
   - user: |
-      How many [non first time]{"entity": "is_first_time", "value": "non-first-time"} [non first year]{"entity": "is_first_year", "value": "non-first-time"} students are enrolled?
+      How many [non first time]{"entity": "is_first_time", "value": "non-first-time"} [non first year]{"entity": "is_first_year", "value": "non-first-year"} students are enrolled?
     intent: enrollment
   - action: action_query_enrollment
   - action: utter_ask_answer_helpful
