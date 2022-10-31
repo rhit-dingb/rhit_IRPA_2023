@@ -1,49 +1,55 @@
 [
   {
-    "text": "graduation rate for students who graduated in 5 years of 2052 cohort",
+    "text": "for academic year 2123 to 2124 how many non-degree-seeking are there?",
     "entities": [
       {
-        "start": 0,
-        "end": 15,
-        "value": "graduation rate",
-        "entity": "graduation_rate"
+        "start": 18,
+        "end": 22,
+        "value": "2123",
+        "entity": "year",
+        "role": "from"
       },
       {
-        "start": 33,
-        "end": 53,
-        "value": "5 years or less",
-        "entity": "upper_bound_graduation_time"
+        "start": 26,
+        "end": 30,
+        "value": "2124",
+        "entity": "year",
+        "role": "to"
       },
       {
-        "start": 57,
-        "end": 68,
-        "value": "2052 cohort",
-        "entity": "cohort_by_year"
+        "start": 40,
+        "end": 58,
+        "value": "non-degree-seeking",
+        "entity": "degree-goal"
       }
     ],
     "predicted_entities": [
       {
-        "entity": "graduation_rate",
-        "start": 0,
-        "end": 15,
-        "confidence_entity": 0.9835970997810364,
-        "value": "graduation rate",
+        "entity": "year",
+        "start": 18,
+        "end": 22,
+        "confidence_entity": 0.9995386600494385,
+        "role": "from",
+        "confidence_role": 0.6701135039329529,
+        "value": "2123",
         "extractor": "DIETClassifier"
       },
       {
-        "entity": "upper_bound_graduation_time",
-        "start": 33,
-        "end": 56,
-        "confidence_entity": 0.6317397356033325,
-        "value": "graduated in 5 years of",
+        "entity": "year",
+        "start": 26,
+        "end": 30,
+        "confidence_entity": 0.9995037317276001,
+        "role": "from",
+        "confidence_role": 0.5675902366638184,
+        "value": "2124",
         "extractor": "DIETClassifier"
       },
       {
-        "entity": "cohort_by_year",
-        "start": 57,
-        "end": 68,
-        "confidence_entity": 0.5214216113090515,
-        "value": "2052 cohort",
+        "entity": "degree-goal",
+        "start": 40,
+        "end": 58,
+        "confidence_entity": 0.9942581653594971,
+        "value": "non-degree-seeking",
         "extractor": "DIETClassifier"
       }
     ]
@@ -63,7 +69,7 @@
         "entity": "recipients_of_federal_pell_grant",
         "start": 22,
         "end": 46,
-        "confidence_entity": 0.9111031889915466,
+        "confidence_entity": 0.933867871761322,
         "value": "pell-grant",
         "extractor": "DIETClassifier",
         "processors": [
@@ -74,7 +80,7 @@
         "entity": "cohort_by_year",
         "start": 58,
         "end": 64,
-        "confidence_entity": 0.6490474343299866,
+        "confidence_entity": 0.5487545132637024,
         "value": "cohort",
         "extractor": "DIETClassifier"
       }

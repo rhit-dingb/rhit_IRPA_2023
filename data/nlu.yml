@@ -233,6 +233,60 @@ nlu:
     - What is the [rate of retention]{"entity": "retention-rate", "value": "retention-rate"} for [2021]{"entity":"year", "role": "from"} academic year ?
 
 
+- intent: high_school_units
+  examples: | 
+    - What is the distribution of high school units required and/or recommended?
+    - How many [units should I take]{"entity": "unit_level", "value": "units-required"} if I want to get into this school?
+
+    - How many [units are required]{"entity": "unit_level", "value": "units-required"} for [english]{"entity": "subject", "value": "english"} for admission at this school?
+    - How many [units are recommended]{"entity": "unit_level", "value": "units-recommended"} for [math]{"entity": "subject", "value": "mathematics"} for admission?
+    - what is the [unit required]{"entity": "unit_level", "value": "units-required"} for [science]{"entity": "subject", "value": "science"} to get into this school?
+    - what is the [unit recommended]{"entity": "unit_level", "value": "units-recommended"} for [science]{"entity": "subject", "value": "science"} I should take during high-school for admission into this school?
+    
+    - How many [lab]{"entity": "subject", "value": "lab"} [units are required]{"entity": "unit_level", "value": "units-required"} 
+
+    - For admission, how many [lab]{"entity": "subject", "value": "lab"} [units are recommended]{"entity": "unit_level", "value": "units-recommended"}?
+
+    - For admission, how many [science]{"entity": "subject", "value": "science"} [lab]{"entity": "subject", "value": "lab"} [units are required]{"entity": "unit_level", "value": "units-required"} 
+    - For admission, how many [science]{"entity": "subject", "value": "science"} [lab]{"entity": "subject", "value": "lab"} [units are recommended]{"entity": "unit_level", "value": "units-recommended"} 
+    - What is the [required unit]{"entity": "unit_level", "value": "units-required"} for [laboratory]{"entity": "subject", "value": "lab"} [science]{"entity": "subject", "value": "science"} ? 
+
+    - What is the [recommended units]{"entity": "unit_level", "value": "units-recommended"} for [foreign language]{"entity": "subject", "value": "foreign-language"}
+    - What is the [required units]{"entity": "unit_level", "value": "units-required"} for [foreign-language]{"entity": "subject", "value": "foreign-language"}
+
+    - What is the [required units]{"entity": "unit_level", "value": "units-required"} for [social studies]{"entity": "subject", "value": "social-studies"}?
+    - What is the [recommended units]{"entity": "unit_level", "value": "units-recommended"} for [social-studies]{"entity": "subject", "value": "social-studies"}?
+    - What is the [required units]{"entity": "unit_level", "value": "units-required"} for [social study]{"entity": "subject", "value": "social-studies"}?
+    - For admission, how many [social-study]{"entity": "subject", "value": "social-studies"} [units are recommended]{"entity": "unit_level", "value": "units-recommended"} 
+
+    - What is the [recommended units]{"entity": "unit_level", "value": "units-recommended"} for [history]{"entity": "subject", "value": "history"}
+    - What is the [required units]{"entity": "unit_level", "value": "units-required"} for [history]{"entity": "subject", "value": "history"}
+
+    - What is the [recommended units]{"entity": "unit_level", "value": "units-recommended"} for [academic electives]{"entity": "subject", "value": "academic-electives"}
+    - What is the [units required]{"entity": "unit_level", "value": "units-required"} for [academic-elective]{"entity": "subject", "value": "academic-electives"}
+    - What is the [required unit]{"entity": "unit_level", "value": "units-required"} for [academic electives]{"entity": "subject", "value": "academic-electives"}
+
+    - What is the [required units]{"entity": "unit_level", "value": "units-required"} for [computer science]{"entity": "subject", "value": "computer-science"}
+    - What is the [recommended units]{"entity": "unit_level", "value": "units-recommended"} for [computer science]{"entity": "subject", "value": "computer-science"}
+    - What is the [required units]{"entity": "unit_level", "value": "units-required"} for [computer-science]{"entity": "subject", "value": "computer-science"}
+
+
+
+    # For visual and performing arts
+    - What is the [required units]{"entity": "unit_level", "value": "units-required"} for [visual/performing-arts]{"entity": "subject", "value": "visual/performing-arts"}
+    - How many [visual performing arts]{"entity": "subject", "value": "visual/performing-arts"} [unit are required]{"entity": "unit_level", "value": "units-required"} 
+    - How many [visual-performing art]{"entity": "subject", "value": "visual/performing-arts"} [unit are required]{"entity": "unit_level", "value": "units-required"} 
+    - How many [visual-performing-arts]{"entity": "subject", "value": "visual/performing-arts"} [unit are required]{"entity": "unit_level", "value": "units-required"} 
+    - How many [visual/performing arts]{"entity": "subject", "value": "visual/performing-arts"} [unit are recommended]{"entity": "unit_level", "value": "units-recommended"} 
+
+    - How many [visual arts]{"entity": "subject", "value": "visual/performing-arts"} credit [units are recommended]{"entity": "unit_level", "value": "units-recommended"}
+    - How many [performing arts]{"entity": "subject", "value": "visual/performing-arts"} credit [units are recommended]{"entity": "unit_level", "value": "units-recommended"}
+    
+    - What is the [required units]{"entity": "unit_level", "value": "units-required"} for [all other]{"entity": "subject", "value": "other"} subjects?
+    - What is the [recommended units]{"entity": "unit_level", "value": "units-recommended"} for [other]{"entity": "subject", "value": "other"} subjects?
+
+
+
 - synonym: retention-rate
   examples: |
     - retention rate

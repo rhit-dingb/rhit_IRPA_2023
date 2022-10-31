@@ -4,11 +4,6 @@
 # See this guide on how to implement these action:
 # https://rasa.com/docs/rasa/custom-actions
 
-
-# This is a simple example for a custom action which utters "Hello World!"
-
-from copy import deepcopy
-from re import L
 from DataManager.ExcelDataManager import ExcelDataManager
 from DataManager.constants import COHORT_BY_YEAR_ENTITY_LABEL, EXEMPTION_ENTITY_LABEL, FINAL_COHORT_ENTITY_LABEL, GRADUATION_RATE_ENTITY_LABEL, INITIAL_COHORT_ENTITY_LABEL, LOWER_BOUND_GRADUATION_TIME_ENTITY_LABEL, NO_AID_ENTITY_LABEL, RECIPIENT_OF_PELL_GRANT_ENTITY_LABEL, RECIPIENT_OF_STAFFORD_LOAN_NO_PELL_GRANT_ENTITY_LABEL, UPPER_BOUND_GRADUATION_TIME_ENTITY_LABEL
 from Exceptions.ExceptionTypes import ExceptionTypes
@@ -27,13 +22,7 @@ from rasa_sdk.executor import CollectingDispatcher
 knowledgeBase = SparseMatrixKnowledgeBase(ExcelDataManager("./CDSData", ["enrollment", "cohort"]))
 
 defaultShouldAddRowStrategy = DefaultShouldAddRowStrategy()
-chooseFromOptionsAddRowStrategy = ChooseFromOptionsAddRowStrategy(choices=[{
-    "columns": ["degree-seeking", "first-time", "first-year"]
-},
-    {
-    "columns": ["degree-seeking", "non-first-time", "non-first-year"],
-    "isDefault":True
-}])
+
 
 
 class ActionGetAvailableOptions(Action):
@@ -55,7 +44,41 @@ class ActionAskMoreQuestion(Action):
         return []
 
 
+class ActionQueryHighSchoolUnits(Action):
+    def __init__(self) -> None:
+        super().__init__()
+        # This strategy is specifically used to handle science and lab subject entity both have science column marked as 1, 
+        # we want to choose between them. Check out the comments in this class to know more in detail what it is doing.
+        self.chooseFromOptionsAddRowStrategy = ChooseFromOptionsAddRowStrategy(choices=[
+            {"columns": ["science"]},
+            {"columns": ["science", "lab"] },
+            {"columns": [], "isDefault": True}
+        ])
+
+    def name(self) -> Text:
+        return "action_query_high_school_units"
+
+    def run(self, dispatcher, tracker, domain):
+        entitiesExtracted = tracker.latest_message["entities"]
+        intent = tracker.latest_message["intent"]["name"]
+        try:
+            answer = knowledgeBase.searchForAnswer(intent, entitiesExtracted, self.chooseFromOptionsAddRowStrategy )
+            dispatcher.utter_message(answer)    
+        except Exception as e:
+            utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
+
+
 class ActionQueryEnrollment(Action):
+    def __init__(self) -> None:
+        self.chooseFromOptionsAddRowStrategy = ChooseFromOptionsAddRowStrategy(choices=[{
+            "columns": ["degree-seeking", "first-time", "first-year"]
+        },
+            {
+            "columns": ["degree-seeking", "non-first-time", "non-first-year"],
+            "isDefault":True
+        }])
+
+
     def name(self) -> Text:
         return "action_query_enrollment"
 
@@ -71,15 +94,15 @@ class ActionQueryEnrollment(Action):
         print(tracker.latest_message["entities"])
         selectedShouldAddRowStrategy = defaultShouldAddRowStrategy
         if haveRaceEnrollmentEntity:
-            selectedShouldAddRowStrategy = chooseFromOptionsAddRowStrategy
+            selectedShouldAddRowStrategy = self.chooseFromOptionsAddRowStrategy
 
         answer = None
-        #try:
-        answer = knowledgeBase.searchForAnswer(
-                tracker.latest_message["intent"]["name"], entitiesExtracted, selectedShouldAddRowStrategy)
-        dispatcher.utter_message(answer)
-        #except Exception as e:
-            #utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
+        try:
+            answer = knowledgeBase.searchForAnswer(
+                    tracker.latest_message["intent"]["name"], entitiesExtracted, selectedShouldAddRowStrategy)
+            dispatcher.utter_message(answer)
+        except Exception as e:
+            utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
 
         return []
 

@@ -1,74 +1,32 @@
 {
-  "utter_ask_whats_the_question": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4
-  },
-  "goodbye": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 2
-  },
-  "[more than four year]{\"entity\": \"lower_bound_graduation_time\", \"value\": \"more than 4 years\"}": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 2
-  },
-  "action_ask_more_question": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 7
-  },
-  "utter_ask_answer_helpful": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 13
-  },
-  "[2014](year)": {
+  "[3053](year)": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
     "support": 1
-  },
-  "utter_did_that_help": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 3
-  },
-  "[3054](year)": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 1
-  },
-  "utter_goodbye": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4
-  },
-  "[retention rate]{\"entity\": \"retention-rate\", \"value\": \"retention-rate\"}": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 1
-  },
-  "action_listen": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 40
   },
   "[within five years]{\"entity\": \"upper_bound_graduation_time\", \"value\": \"5 years or less\"}": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 1
+  },
+  "utter_ask_answer_helpful": {
+    "precision": 0.7647058823529411,
+    "recall": 0.7647058823529411,
+    "f1-score": 0.7647058823529412,
+    "support": 17
+  },
+  "deny": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
+    "support": 5
+  },
+  "[recipient of pell grant]{\"entity\": \"recipients_of_federal_pell_grant\", \"value\": \"pell-grant\"}": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
     "support": 1
   },
   "utter_cheer_up": {
@@ -77,83 +35,11 @@
     "f1-score": 1.0,
     "support": 3
   },
-  "[3053](year)": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 1
-  },
-  "action_query_enrollment": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 6
-  },
-  "utter_happy": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 3
-  },
-  "[degree-seeking](degree-goal)": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 1
-  },
-  "utter_greet": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 5
-  },
-  "[did not receive any aid](students_who_did_not_receive_either_a_pell_grant_or_a_subsidized_stafford_loan)": {
-    "precision": 0.0,
-    "recall": 0.0,
-    "f1-score": 0.0,
-    "support": 1
-  },
-  "[2033-2034](year)": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 1
-  },
-  "greet": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 5
-  },
-  "[male](gender)": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 1
-  },
-  "[undergraduate](student_level)": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 1
-  },
-  "deny": {
+  "[more than four years]{\"entity\": \"lower_bound_graduation_time\", \"value\": \"more than 4 years\"}": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
     "support": 2
-  },
-  "[graduated in 5 years]{\"entity\": \"upper_bound_graduation_time\", \"value\": \"5 years or less\"}": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 2
-  },
-  "utter_iamabot": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 1
   },
   "[cohort of 2014](cohort_by_year)": {
     "precision": 1.0,
@@ -161,61 +47,7 @@
     "f1-score": 1.0,
     "support": 2
   },
-  "[more than four years]{\"entity\": \"lower_bound_graduation_time\", \"value\": \"more than 4 years\"}": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 2
-  },
-  "action_query_cohort": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 7
-  },
-  "[recipient of pell grant]{\"entity\": \"recipients_of_federal_pell_grant\", \"value\": \"pell-grant\"}": {
-    "precision": 0.0,
-    "recall": 0.0,
-    "f1-score": 0.0,
-    "support": 1
-  },
-  "[graduation rate](graduation_rate)": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 2
-  },
-  "affirm": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 12
-  },
-  "[non first year]{\"entity\": \"is_first_year\", \"value\": \"non-first-time\"}": {
-    "precision": 0.0,
-    "recall": 0.0,
-    "f1-score": 0.0,
-    "support": 1
-  },
-  "cohort": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 7
-  },
-  "[five year]{\"entity\": \"upper_bound_graduation_time\", \"value\": \"5 years or less\"}": {
-    "precision": 0.0,
-    "recall": 0.0,
-    "f1-score": 0.0,
-    "support": 1
-  },
-  "mood_unhappy": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 3
-  },
-  "[3252 cohort](cohort_by_year)": {
+  "[laboratory]{\"entity\": \"subject\", \"value\": \"lab\"}": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
@@ -227,13 +59,19 @@
     "f1-score": 1.0,
     "support": 2
   },
-  "enrollment": {
+  "action_query_high_school_units": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 4
+  },
+  "high_school_units": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 6
+    "support": 4
   },
-  "[non-first-time](is_first_time)": {
+  "[degree-seeking](degree-goal)": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
@@ -245,13 +83,31 @@
     "f1-score": 1.0,
     "support": 2
   },
+  "mood_unhappy": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 3
+  },
+  "cohort": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 7
+  },
+  "[did not receive any aid](students_who_did_not_receive_either_a_pell_grant_or_a_subsidized_stafford_loan)": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 1
+  },
   "None": {
     "precision": 0.0,
     "recall": 0.0,
     "f1-score": 0.0,
-    "support": 7
+    "support": 5
   },
-  "[non first time]{\"entity\": \"is_first_time\", \"value\": \"non-first-time\"}": {
+  "[non first year]{\"entity\": \"is_first_year\", \"value\": \"non-first-time\"}": {
     "precision": 0.0,
     "recall": 0.0,
     "f1-score": 0.0,
@@ -263,11 +119,83 @@
     "f1-score": 1.0,
     "support": 1
   },
-  "[non freshman]{\"entity\": \"undergraduate_grade_level\", \"value\": \"non-freshman\"}": {
+  "[retention rate]{\"entity\": \"retention-rate\", \"value\": \"retention-rate\"}": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1
+  },
+  "utter_iamabot": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1
+  },
+  "utter_sorry_question_not_helpful": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 2
+  },
+  "affirm": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 15
+  },
+  "[units are recommended]{\"entity\": \"unit_level\", \"value\": \"units-recommended\"}": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 2
+  },
+  "[graduated in 5 years]{\"entity\": \"upper_bound_graduation_time\", \"value\": \"5 years or less\"}": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 2
+  },
+  "utter_greet": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 5
+  },
+  "action_get_available_options": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 2
+  },
+  "[male](gender)": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1
+  },
+  "action_listen": {
+    "precision": 0.9259259259259259,
+    "recall": 1.0,
+    "f1-score": 0.9615384615384615,
+    "support": 50
+  },
+  "[2033-2034](year)": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1
+  },
+  "[five year]{\"entity\": \"upper_bound_graduation_time\", \"value\": \"5 years or less\"}": {
     "precision": 0.0,
     "recall": 0.0,
     "f1-score": 0.0,
     "support": 1
+  },
+  "[more than four year]{\"entity\": \"lower_bound_graduation_time\", \"value\": \"more than 4 years\"}": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 2
   },
   "[2013](year)": {
     "precision": 1.0,
@@ -275,29 +203,173 @@
     "f1-score": 1.0,
     "support": 1
   },
+  "[undergraduate](student_level)": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1
+  },
+  "[3054](year)": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1
+  },
+  "[2014](year)": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1
+  },
+  "enrollment": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 6
+  },
+  "utter_no_more_question": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1
+  },
+  "[non-first-time](is_first_time)": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1
+  },
+  "[visual performing art]{\"entity\": \"subject\", \"value\": \"visual/performing-arts\"}": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 1
+  },
+  "[required unit]{\"entity\": \"unit_level\", \"value\": \"units-required\"}": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 2
+  },
+  "[3252 cohort](cohort_by_year)": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1
+  },
+  "utter_did_that_help": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 3
+  },
+  "[non freshman]{\"entity\": \"undergraduate_grade_level\", \"value\": \"non-freshman\"}": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 1
+  },
+  "action_query_enrollment": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 6
+  },
+  "utter_ask_whats_the_question": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 5
+  },
+  "[graduation rate](graduation_rate)": {
+    "precision": 1.0,
+    "recall": 0.5,
+    "f1-score": 0.6666666666666666,
+    "support": 2
+  },
+  "[science](subject)": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1
+  },
+  "utter_happy": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 3
+  },
+  "utter_goodbye": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 4
+  },
+  "action_ask_more_question": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 9
+  },
+  "goodbye": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 2
+  },
+  "[visual arts]{\"entity\": \"subject\", \"value\": \"visual/performing-arts\"}": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1
+  },
+  "[non first time]{\"entity\": \"is_first_time\", \"value\": \"non-first-time\"}": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1
+  },
+  "greet": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 5
+  },
+  "action_query_cohort": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 7
+  },
+  "[social study]{\"entity\": \"subject\", \"value\": \"social-studies\"}": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1
+  },
   "micro avg": {
-    "precision": 0.9815950920245399,
-    "recall": 0.9248554913294798,
-    "f1-score": 0.9523809523809523,
-    "support": 173
+    "precision": 0.9420289855072463,
+    "recall": 0.9027777777777778,
+    "f1-score": 0.9219858156028369,
+    "support": 216
   },
   "macro avg": {
-    "precision": 0.8478260869565217,
-    "recall": 0.8478260869565217,
-    "f1-score": 0.8478260869565217,
-    "support": 173
+    "precision": 0.839493651866877,
+    "recall": 0.8321501014198783,
+    "f1-score": 0.8343605346647943,
+    "support": 216
   },
   "weighted avg": {
-    "precision": 0.9248554913294798,
-    "recall": 0.9248554913294798,
-    "f1-score": 0.9248554913294798,
-    "support": 173
+    "precision": 0.8902606310013718,
+    "recall": 0.9027777777777778,
+    "f1-score": 0.8954178537511871,
+    "support": 216
   },
-  "accuracy": 0.9248554913294798,
+  "accuracy": 0.9027777777777778,
   "conversation_accuracy": {
-    "accuracy": 0.7,
-    "correct": 14,
+    "accuracy": 0.5416666666666666,
+    "correct": 13,
     "with_warnings": 0,
-    "total": 20
+    "total": 24
   }
 }

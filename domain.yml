@@ -14,6 +14,10 @@ intents:
   - enrollment
   - cohort
 
+  - high_school_units
+
+
+
 
 entities:
   # full-time, part-time
@@ -80,7 +84,12 @@ entities:
   #year to query the dataset.
   - year
   
- 
+  # School subjects such as english, mathematics, science, etc.
+  - subject
+
+  #Number of unit-required or unit-recommended for particular subjects for rose-hulman admission requirement.
+  #Specific values: unit-required, unit-recommend 
+  - unit_level
 
 
 slots:
@@ -168,6 +177,7 @@ actions:
   - action_ask_more_question
   - action_query_cohort
   - action_query_enrollment
+  - action_query_high_school_units
   
 
 responses:
@@ -202,15 +212,6 @@ responses:
 
   utter_iamabot:
   - text: "I am a bot, powered by Rasa."
-
-  # utter_test_options:
-  # - text: "For enrollment, you can ask about: how many undergradute students, total graduate students, etc"
-
-  # utter_test_total_undergraduates:
-  # - text: "Rose-Hulman has 2000 undergraduates"
-
-  # utter_test_total_full_time_undergraduate_men:
-  # - text: "Rose-Hulman has 1000 full-time undergraduate students that are male."
 
   utter_ask_answer_helpful:
   - text: "Was this answer helpful?"

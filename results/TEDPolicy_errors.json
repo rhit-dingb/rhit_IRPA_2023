@@ -129,28 +129,32 @@
     "text": "I want to know the graduation rate of students graduated in 5 years and more than four year for cohort of 2014",
     "entities": [
       {
+        "text": "I want to know the graduation rate of students graduated in 5 years and more than four year for cohort of 2014",
         "start": 19,
         "end": 34,
-        "value": "graduation rate",
-        "entity": "graduation_rate"
+        "entity": "graduation_rate",
+        "value": "graduation rate"
       },
       {
+        "text": "I want to know the graduation rate of students graduated in 5 years and more than four year for cohort of 2014",
         "start": 47,
         "end": 67,
-        "value": "5 years or less",
-        "entity": "upper_bound_graduation_time"
+        "entity": "upper_bound_graduation_time",
+        "value": "5 years or less"
       },
       {
+        "text": "I want to know the graduation rate of students graduated in 5 years and more than four year for cohort of 2014",
         "start": 72,
         "end": 91,
-        "value": "more than 4 years",
-        "entity": "lower_bound_graduation_time"
+        "entity": "lower_bound_graduation_time",
+        "value": "more than 4 years"
       },
       {
+        "text": "I want to know the graduation rate of students graduated in 5 years and more than four year for cohort of 2014",
         "start": 96,
         "end": 110,
-        "value": "cohort of 2014",
-        "entity": "cohort_by_year"
+        "entity": "cohort_by_year",
+        "value": "cohort of 2014"
       }
     ],
     "predicted_entities": []
@@ -225,6 +229,86 @@
         "end": 42,
         "value": "3252 cohort",
         "entity": "cohort_by_year"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "How many visual arts credit units are recommended ?",
+    "entities": [
+      {
+        "start": 9,
+        "end": 20,
+        "value": "visual/performing-arts",
+        "entity": "subject"
+      },
+      {
+        "start": 28,
+        "end": 49,
+        "value": "units-recommended",
+        "entity": "unit_level"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "How many visual performing art units are recommended ?",
+    "entities": [
+      {
+        "text": "How many visual performing art units are recommended ?",
+        "start": 9,
+        "end": 30,
+        "entity": "subject",
+        "value": "visual/performing-arts"
+      },
+      {
+        "text": "How many visual performing art units are recommended ?",
+        "start": 31,
+        "end": 52,
+        "entity": "unit_level",
+        "value": "units-recommended"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "What is the required unit for social study?",
+    "entities": [
+      {
+        "start": 12,
+        "end": 25,
+        "value": "units-required",
+        "entity": "unit_level"
+      },
+      {
+        "start": 30,
+        "end": 42,
+        "value": "social-studies",
+        "entity": "subject"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "What is the required unit for laboratory science ?",
+    "entities": [
+      {
+        "start": 12,
+        "end": 25,
+        "value": "units-required",
+        "entity": "unit_level"
+      },
+      {
+        "start": 30,
+        "end": 40,
+        "value": "lab",
+        "entity": "subject"
+      },
+      {
+        "start": 41,
+        "end": 48,
+        "value": "science",
+        "entity": "subject"
       }
     ],
     "predicted_entities": []
