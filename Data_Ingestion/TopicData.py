@@ -1,4 +1,5 @@
 from Data_Ingestion.SparseMatrix import SparseMatrix
+from typing import Dict, Tuple
 
 """
 Internal data model representing a topic in the CDS data. A topic can have many sparse matrices, each sparse matrix represents
@@ -13,14 +14,14 @@ class TopicData():
     def addSparseMatrix(self, key: str, sparseMatrix : SparseMatrix):
         self.sparseMatrices[key] = sparseMatrix
 
-    def getSparseMatrices(self) -> dict[str, SparseMatrix]:
+    def getSparseMatrices(self) -> Dict[str, SparseMatrix]:
         return self.sparseMatrices
 
     def hasData(self) -> bool : 
         return not len(self.sparseMatrices.keys()) == 0
 
 
-    def doesEntityIncludeAnySubsections(self, entities) ->  tuple[bool, SparseMatrix]:
+    def doesEntityIncludeAnySubsections(self, entities) ->  Tuple[bool, SparseMatrix]:
         for entity in entities:
             label : str = entity["entity"]
             if label in self.sparseMatrices:

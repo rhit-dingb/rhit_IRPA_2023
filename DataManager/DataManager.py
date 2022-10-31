@@ -1,5 +1,5 @@
 
-from typing import Dict
+from typing import Dict, Tuple
 from DataManager.YearDataSelector import YearlyDataSelector
 from DataManager.YearDataSelectorByCohort import YearlyDataSelectorByCohort
 from Data_Ingestion.SparseMatrix import SparseMatrix
@@ -47,7 +47,7 @@ class DataManager():
     The year values is the what year CDS data was used.
 
     """
-    def determineMatrixToSearch(self, intent, entities) -> tuple[SparseMatrix, str, str]: 
+    def determineMatrixToSearch(self, intent, entities) -> Tuple[SparseMatrix, str, str]: 
         sparseMatrices, startYear, endYear = self.cohortYearDataSelector.selectDataToSearchByYear(self, intent, entities)
         # print(sparseMatrices)
         if sparseMatrices == None:
@@ -89,7 +89,7 @@ class DataManager():
         else:
             maxMatch = []
             currMax = 0
-            sparseMatricesDictionary : dict[SparseMatrix] = topicData.getSparseMatrices()
+            sparseMatricesDictionary : Dict[SparseMatrix] = topicData.getSparseMatrices()
             for key in sparseMatricesDictionary.keys():
 
                 sparseMatrix : SparseMatrix = sparseMatricesDictionary[key]
@@ -114,5 +114,5 @@ class DataManager():
     if there are 2019-2020 data and 2020-2021 data, it will return a tuple: (2020, 2021)
     This function serves as the fallback. If the user didn't specify a year in their query, we will use the most recent year.
     """
-    def getMostRecentYearRange() -> tuple[str, str]:
+    def getMostRecentYearRange() -> Tuple[str, str]:
         raise Exception("This method should be override by a concrete class")

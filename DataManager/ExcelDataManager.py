@@ -1,3 +1,4 @@
+from typing import Tuple
 from DataManager.DataManager import DataManager
 from Data_Ingestion.ExcelProcessor import ExcelProcessor
 from Data_Ingestion.SparseMatrix import SparseMatrix
@@ -42,7 +43,7 @@ class ExcelDataManager(DataManager):
     """
     See docuementation in DataManager.py
     """
-    def getMostRecentYearRange(self) -> tuple[str, str] :
+    def getMostRecentYearRange(self) -> Tuple[str, str] :
         def sortFunc(e):
             yearRange = e.split("_")
             startYear= int(yearRange[0])

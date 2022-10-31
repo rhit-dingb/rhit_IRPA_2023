@@ -232,6 +232,7 @@ nlu:
     - [retention-rate]{"entity": "retention-rate", "value": "retention-rate"} at rose-hulman in [2019]{"entity":"year", "role": "from"}
     - What is the [rate of retention]{"entity": "retention-rate", "value": "retention-rate"} for [2021]{"entity":"year", "role": "from"} academic year ?
 
+
 - synonym: retention-rate
   examples: |
     - retention rate
