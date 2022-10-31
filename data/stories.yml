@@ -92,6 +92,7 @@ stories:
 #     - action: action_query_cohort
 #     - action: utter_ask_answer_helpful
 
+
 - story: ask_about_cohort_answer_helpful
   steps: 
     - intent: cohort
@@ -99,8 +100,6 @@ stories:
     - action: utter_ask_answer_helpful
     - intent: affirm
     - checkpoint: ask_feedback
-
-
 
 
 - story: ask_about_cohort_answer_not_helpful

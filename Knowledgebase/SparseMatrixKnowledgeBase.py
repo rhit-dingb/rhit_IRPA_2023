@@ -1,5 +1,7 @@
 
+from tracemalloc import start
 from DataManager.DataManager import DataManager
+from Data_Ingestion.SparseMatrix import SparseMatrix
 from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
 from Knowledgebase.Knowledgebase import KnowledgeBase
 from Data_Ingestion.ExcelProcessor import ExcelProcessor
@@ -38,26 +40,36 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
 
         #this list contains the value of the entities extracted.
         entities = []
+        usedEntities = []
+        printEntities = []
         for entityObj in entitiesExtracted:
             entities.append(entityObj["value"])
 
         
+        sparseMatrixToSearch : SparseMatrix; startYear : str; endYear : str 
         sparseMatrixToSearch, startYear, endYear = self.determineMatrixToSearch(intent, entitiesExtracted)
-      
+
         if sparseMatrixToSearch is None:
             raise Exception("No valid sparse matrix found for given intent and entities", intent, entities)
-        
+
+        # get the underlying pandas dataframe from the internal data model
+        sparseMatrixToSearch = sparseMatrixToSearch.getSparseMatrixDf()
+
         for i in range(sparseMatrixToSearch.shape[0]):
-            if sparseMatrixToSearch.loc[i,"total"] == 1:
+            row = sparseMatrixToSearch.loc[i]
+            
+            if "total" in row.index and sparseMatrixToSearch.loc[i,"total"] == 1:
                 continue
            
-            row = sparseMatrixToSearch.loc[i]
-            shouldAdd = shouldAddRowStrategy.determineShouldAddRow(row, entities)
-            if shouldAdd:
+            usedEntities = shouldAddRowStrategy.determineShouldAddRow(row, entities)
+
+            if len(usedEntities) > 0:
                 #print("Im ADDING " + str(self.m_df.loc[i,'Value']))
                 count += sparseMatrixToSearch.loc[i,'Value']
-                
-        return str(int(count))    
+                if len(printEntities) <= 0:
+                    printEntities = usedEntities
+
+        return str(int(count)) + "\n" + str(printEntities)   
 
 
 
@@ -81,7 +93,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
                     if sparseMatrixToSearch.loc[i,entity] == 1:
                         temp_count += 1
             if temp_count == len(entities):
-                #print("Im ADDING " + str(self.m_df.loc[i,'Value']))
+                print("Im ADDING " + str(self.m_df.loc[i,'Value']))
                 count += sparseMatrixToSearch.loc[i,'Value']
                 
         return str(count)

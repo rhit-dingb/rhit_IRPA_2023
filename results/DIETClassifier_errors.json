@@ -1,32 +1,81 @@
 [
   {
-    "text": "I want to know about total undergraduate enrollment in 2022",
+    "text": "graduation rate for students who graduated in 5 years of 2052 cohort",
     "entities": [
       {
-        "start": 55,
-        "end": 59,
-        "value": "2022",
-        "entity": "year",
-        "role": "from"
+        "start": 0,
+        "end": 15,
+        "value": "graduation rate",
+        "entity": "graduation_rate"
+      },
+      {
+        "start": 33,
+        "end": 53,
+        "value": "5 years or less",
+        "entity": "upper_bound_graduation_time"
+      },
+      {
+        "start": 57,
+        "end": 68,
+        "value": "2052 cohort",
+        "entity": "cohort_by_year"
       }
     ],
     "predicted_entities": [
       {
-        "entity": "student_level",
-        "start": 27,
-        "end": 40,
-        "confidence_entity": 0.6953991651535034,
-        "value": "undergraduate",
+        "entity": "graduation_rate",
+        "start": 0,
+        "end": 15,
+        "confidence_entity": 0.9835970997810364,
+        "value": "graduation rate",
         "extractor": "DIETClassifier"
       },
       {
-        "entity": "year",
-        "start": 55,
-        "end": 59,
-        "confidence_entity": 0.999229907989502,
-        "role": "from",
-        "confidence_role": 0.9046095609664917,
-        "value": "2022",
+        "entity": "upper_bound_graduation_time",
+        "start": 33,
+        "end": 56,
+        "confidence_entity": 0.6317397356033325,
+        "value": "graduated in 5 years of",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "cohort_by_year",
+        "start": 57,
+        "end": 68,
+        "confidence_entity": 0.5214216113090515,
+        "value": "2052 cohort",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "How many students are recipients of pell grant? for [2135 cohort]?",
+    "entities": [
+      {
+        "start": 22,
+        "end": 46,
+        "value": "pell-grant",
+        "entity": "recipients_of_federal_pell_grant"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "recipients_of_federal_pell_grant",
+        "start": 22,
+        "end": 46,
+        "confidence_entity": 0.9111031889915466,
+        "value": "pell-grant",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "cohort_by_year",
+        "start": 58,
+        "end": 64,
+        "confidence_entity": 0.6490474343299866,
+        "value": "cohort",
         "extractor": "DIETClassifier"
       }
     ]

@@ -5,13 +5,14 @@ intents:
   - goodbye
   - affirm
   - deny
-  # Intents for different topics on the IRPA common dataset
-  - enrollment
-  - cohort
 
   - mood_great
   - mood_unhappy
   - bot_challenge
+
+  # Intents for different topics on the IRPA common dataset
+  - enrollment
+  - cohort
 
 
 entities:
@@ -40,9 +41,11 @@ entities:
   - race
 
 
-
   #cohort by year - for example: 2015 cohort, 2016 cohort, etc.
   - cohort_by_year
+
+  #retention rate
+  - retention-rate
 
 
 # used for something like: Initial 2015 cohort of first-time, fulltime, bachelor's (or equivalent) degreeseeking undergraduate students
@@ -50,10 +53,10 @@ entities:
   - cohort_initial_final
 
  # This is entity is used for these rows:
- #Example: five year or less, four year or less
+ #Example: 5 year or less, 4 year or less
   - upper_bound_graduation_time
 
- #Example: more than four years.
+ #Example: more than 4 years.
   - lower_bound_graduation_time
 
 
@@ -70,16 +73,14 @@ entities:
   # also know as allowable exclusions.
   - exemptions
 
-
   - recipients_of_federal_pell_grant
   - recipients_of_a_subsidized_stafford_loan_who_did_not_receive_a_pell_grant 
   - students_who_did_not_receive_either_a_pell_grant_or_a_subsidized_stafford_loan
 
-
   #year to query the dataset.
   - year
   
-
+ 
 
 
 slots:

@@ -240,3 +240,14 @@ stories:
     intent: cohort
   - action: action_query_cohort
   - action: utter_ask_answer_helpful
+
+#COHORT RETENTION RATE:
+- story: ask_about_cohort_retention_rate_should_extract_retention_successfully
+  steps:
+  - user: |
+      What is the [retention rate]{"entity": "retention-rate", "value": "retention-rate"} for [3252 cohort](cohort_by_year)?
+    intent: cohort
+  - action: action_query_cohort
+  - action: utter_ask_answer_helpful
+
+  

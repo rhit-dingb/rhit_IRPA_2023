@@ -1,15 +1,23 @@
 from copy import deepcopy
 """
-Consist all the helpers for entities
+Consist all the helpers to process entity obj extracted by rasa.
 """
 
-#There might be multiple of the same entity extracted, so might be better to use an array in the future?
+
 def findEntityHelper(entities, key):
+    entitiesFound = findMultipleSameEntitiesHelper(entities, key)
+    if len(entitiesFound) == 0:
+        return None
+    return entitiesFound[0]
+
+
+def findMultipleSameEntitiesHelper(entities, key):
+    res = []
     for entityObj in entities:
         if entityObj["entity"] == key:
-            return entityObj
+            res.append(entityObj)
 
-    return None
+    return res
 
 def copyEntities(entities):
     entitiesExtractedCopy = deepcopy(entities)

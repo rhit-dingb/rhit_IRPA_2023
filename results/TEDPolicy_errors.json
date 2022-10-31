@@ -32,6 +32,46 @@
     "predicted_entities": []
   },
   {
+    "text": "How many non first time non first year students are enrolled?",
+    "entities": [
+      {
+        "text": "How many non first time non first year students are enrolled?",
+        "start": 9,
+        "end": 23,
+        "entity": "is_first_time",
+        "value": "non-first-time"
+      },
+      {
+        "text": "How many non first time non first year students are enrolled?",
+        "start": 24,
+        "end": 38,
+        "entity": "is_first_year",
+        "value": "non-first-time"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "How many male non freshman students are enrolled?",
+    "entities": [
+      {
+        "text": "How many male non freshman students are enrolled?",
+        "start": 9,
+        "end": 13,
+        "entity": "gender",
+        "value": "male"
+      },
+      {
+        "text": "How many male non freshman students are enrolled?",
+        "start": 14,
+        "end": 26,
+        "entity": "undergraduate_grade_level",
+        "value": "non-freshman"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
     "text": "How many students graduated in five year but in more than four years for 2046 cohort?",
     "entities": [
       {
@@ -89,32 +129,28 @@
     "text": "I want to know the graduation rate of students graduated in 5 years and more than four year for cohort of 2014",
     "entities": [
       {
-        "text": "I want to know the graduation rate of students graduated in 5 years and more than four year for cohort of 2014",
         "start": 19,
         "end": 34,
-        "entity": "graduation_rate",
-        "value": "graduation rate"
+        "value": "graduation rate",
+        "entity": "graduation_rate"
       },
       {
-        "text": "I want to know the graduation rate of students graduated in 5 years and more than four year for cohort of 2014",
         "start": 47,
         "end": 67,
-        "entity": "upper_bound_graduation_time",
-        "value": "5 years or less"
+        "value": "5 years or less",
+        "entity": "upper_bound_graduation_time"
       },
       {
-        "text": "I want to know the graduation rate of students graduated in 5 years and more than four year for cohort of 2014",
         "start": 72,
         "end": 91,
-        "entity": "lower_bound_graduation_time",
-        "value": "more than 4 years"
+        "value": "more than 4 years",
+        "entity": "lower_bound_graduation_time"
       },
       {
-        "text": "I want to know the graduation rate of students graduated in 5 years and more than four year for cohort of 2014",
         "start": 96,
         "end": 110,
-        "entity": "cohort_by_year",
-        "value": "cohort of 2014"
+        "value": "cohort of 2014",
+        "entity": "cohort_by_year"
       }
     ],
     "predicted_entities": []
@@ -171,6 +207,24 @@
         "end": 61,
         "entity": "recipients_of_federal_pell_grant",
         "value": "pell-grant"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "What is the retention rate for 3252 cohort?",
+    "entities": [
+      {
+        "start": 12,
+        "end": 26,
+        "value": "retention-rate",
+        "entity": "retention-rate"
+      },
+      {
+        "start": 31,
+        "end": 42,
+        "value": "3252 cohort",
+        "entity": "cohort_by_year"
       }
     ],
     "predicted_entities": []

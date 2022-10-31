@@ -18,7 +18,7 @@ choices: list of choices that look something like this:
 ]
 
 Each choice is an object describing the entities that applies to the specific column of the table in quetion on cds. 
-This example is for the enrollment by race table on csd. The first column for that table says:
+This example is for the enrollment by race table on cds. The first column for that table says:
 "Degree-seeking, First-time First year" and the second column says "Degree-seeking, Undergraduates (include first-time first-year)"
 
 If we represent it in sparse matrix, these two rows will have almost no difference and the values under the columns mentioned above will
