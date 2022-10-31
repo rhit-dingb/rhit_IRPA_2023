@@ -126,7 +126,7 @@ nlu:
     - how many [non first time]{"entity": "is_first_time", "value": "non-first-time"}? students are there?
     - How many students that are [non-first-time]{"entity": "is_first_time", "value": "non-first-time"}?
 
-    - How many [non-degree-seeking]{"entity":"degree-goal"} [first-time]{"entity": "is_first_time"} [freshman]{"entity": "undergraduate_grade_level"} are there?
+    - How many [non-degree-seeking]{"entity":"degree-goal", "value": "non-degree-seeking"} [first-time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level"} are there?
     
     - I want to know about how many [non degree-seeking]{"entity":"degree-goal", "value":"non-degree-seeking"} [first-time]{"entity": "is_first_time"} students.
 
@@ -236,6 +236,7 @@ nlu:
     - [retention rate][retention-rate]{"entity": "retention-rate", "value": "retention-rate"}
     - [retention-rate]{"entity": "retention-rate", "value": "retention-rate"} at rose-hulman in [2019]{"entity":"year", "role": "from"}
     - What is the [rate of retention]{"entity": "retention-rate", "value": "retention-rate"} for [2021]{"entity":"year", "role": "from"} academic year ?
+
 
 - synonym: retention-rate
   examples: |

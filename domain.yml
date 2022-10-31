@@ -5,13 +5,14 @@ intents:
   - goodbye
   - affirm
   - deny
-  # Intents for different topics on the IRPA common dataset
-  - enrollment
-  - cohort
 
   - mood_great
   - mood_unhappy
   - bot_challenge
+
+  # Intents for different topics on the IRPA common dataset
+  - enrollment
+  - cohort
 
 
 entities:
@@ -72,16 +73,14 @@ entities:
   # also know as allowable exclusions.
   - exemptions
 
-
   - recipients_of_federal_pell_grant
   - recipients_of_a_subsidized_stafford_loan_who_did_not_receive_a_pell_grant 
   - students_who_did_not_receive_either_a_pell_grant_or_a_subsidized_stafford_loan
 
-
   #year to query the dataset.
   - year
   
-
+ 
 
 
 slots:

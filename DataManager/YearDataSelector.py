@@ -27,7 +27,7 @@ class YearlyDataSelector():
     entities: list of entities each entity is a object.
     return: list of sparse matrices represented by pandas dataframe, start year and end year.
     """
-    def selectDataToSearchByYear(self, dataManager, intent, entities):
+    def selectDataToSearchByYear(self, dataManager , intent, entities):
         entityProvidedWithStartAndEndYear = None
         start = None
         end = None
