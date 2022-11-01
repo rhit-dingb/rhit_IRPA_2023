@@ -1,6 +1,6 @@
 import "../App.css";
 import Basic from "./Basic";
-import rose_icon from "./rose_icon.png";
+import rose_icon from "../rose_icon.png";
 // import firebase from "firebase/app";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/js/dist/dropdown";

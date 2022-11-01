@@ -11,6 +11,7 @@ import {
   Redirect,
 } from "react-router-dom";
 import { Link } from "react-router-dom";
+import Home from "./component/Home";
 import Admin from "./component/Admin";
 import ReportIssue from "./component/ReportIssue";
 // firebase.initializeApp({
@@ -27,28 +28,7 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Switch>
-          {/* This route is for home component 
-          with exact path "/", in component props 
-          we passes the imported component*/}
-          {/* <Route exact path="/" component={Home} /> */}
-
-          {/* This route is for about component 
-          with exact path "/about", in component 
-          props we passes the imported component*/}
-          <Route path="/admin_portal" component={Admin} />
-
-          {/* This route is for contactus component
-          with exact path "/contactus", in 
-          component props we passes the imported component*/}
-          <Route path="/report_issue" component={ReportIssue} />
-
-          {/* If any route mismatches the upper 
-          route endpoints then, redirect triggers 
-          and redirects app to home component with to="/" */}
-          <Redirect to="/" />
-        </Switch>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        {/* <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <a class="navbar-brand">
             <img
               style={roseIconStyle}
@@ -78,10 +58,31 @@ function App() {
             </div>
           </div>
           <h1 id="homepageTitle">IRPA ChatBot</h1>
-        </nav>
+        </nav> */}
+        <Switch>
+          {/* This route is for home component 
+          with exact path "/", in component props 
+          we passes the imported component*/}
+          <Route exact path="/" component={Home} />
+
+          {/* This route is for about component 
+          with exact path "/about", in component 
+          props we passes the imported component*/}
+          <Route path="/admin_portal" component={Admin} />
+
+          {/* This route is for contactus component
+          with exact path "/contactus", in 
+          component props we passes the imported component*/}
+          <Route path="/report_issue" component={ReportIssue} />
+
+          {/* If any route mismatches the upper 
+          route endpoints then, redirect triggers 
+          and redirects app to home component with to="/" */}
+          <Redirect to="/" />
+        </Switch>
       </Router>
 
-      <Basic />
+      {/* <Basic /> */}
     </div>
   );
 }
