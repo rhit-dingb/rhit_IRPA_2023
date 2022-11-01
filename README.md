@@ -39,3 +39,12 @@ pip install rasa
       - Note: all test files should start with prefix "test"
 - To activate rasa server, run 'rasa run --cors "*" --enable-api'
 - Also need to run 'rasa run actions' to start action server so custom actions can be run
+
+**frontend environment**
+
+Install React package
+_npm install -g create-react-app_
+Install Bootstap
+_npm i bootstrap@4.4.1_
+_npm i --save bootstrap jquery popper.js_
+_npm install react-router-dom@5.2.0_
