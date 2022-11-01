@@ -30,15 +30,19 @@ pip install rasa
 - run 'rasa train' everytime after git pull
 - run 'rasa shell' to open interactive shell
 - run 'rasa data validate' to validate the training data after making changes.
-- Also need to run 'rasa run actions' to start action server so custom actions can be run
-- To activate rasa server, run 'rasa run --cors "\*" --enable-api'
+
+1. Open anaconda terminal, cd into the project directory
+2. Don't need to cd into test directory. At the project's root directory run the following command:
+   - To run all test: python -m unittest discover tests test*.py
+   - To run individual test: python -m unittest tests/{name of test}.py 
+      - For example: python -m unittest tests/test_knowledgebase_enrollment.py
+      - Note: all test files should start with prefix "test"
+- To activate rasa server, run 'rasa run --cors "*" --enable-api'
 - Also need to run 'rasa run actions' to start action server so custom actions can be run
 
 **frontend environment**
-
-Install React package
-_npm install -g create-react-app_
-Install Bootstap
-_npm i bootstrap@4.4.1_
-_npm i --save bootstrap jquery popper.js_
-_npm install react-router-dom@5.2.0_
+Here are the packages I install, you may try go to the chatbot_app folder and run 'npm install'
+- npm install -g create-react-app
+- npm i bootstrap@4.4.1
+- npm i --save bootstrap jquery popper.js
+- npm install react-router-dom@5.2.0
