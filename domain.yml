@@ -40,7 +40,18 @@ entities:
   #race/ethnicity
   - race
 
+  #applied addmitted
+  - action
 
+  - waiting-list
+
+  - college-preparatory-program
+
+  - completion-requirement
+
+  - waiting-list-detail
+
+  - policy
 
   #cohort by year - for example: 2015 cohort, 2016 cohort, etc.
   - cohort_by_year
@@ -71,6 +82,7 @@ entities:
   # also know as allowable exclusions.
   - exemptions
 
+  
 
   - recipients_of_federal_pell_grant
   - recipients_of_a_subsidized_stafford_loan_who_did_not_receive_a_pell_grant 
