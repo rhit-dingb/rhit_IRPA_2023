@@ -154,7 +154,7 @@ nlu:
 
     - how many students who are [not first year]{"entity": "is_first_year"} are enrolled?
     
-    # training data for asking about specific year.
+    
     - I want to know about total undergraduate enrollment in [2022]{"entity": "year", "role":"from"}
     - How many [undergraduate](student_level) students are there in [2054]{"entity": "year", "role": "from"} ?
     - In [2015]{"entity": "year", "role": "from"} how many students from there?
@@ -208,7 +208,7 @@ nlu:
     
     - What is the [graduation rate](graduation_rate) for students who [graduated in 5 years]{"entity": "upper_bound_graduation_time", "value": "5 years or less"} and [more than four year]{"entity": "lower_bound_graduation_time", "value": "more than 4 years"} for the [cohort of 2014](cohort_by_year)?
 
-    #Financial aid training data for cohorts.
+    
     - How many students in the [6590 cohort](cohort_by_year) are [recipients of subsidized loan and did not receive federal pell grant]{"entity": "recipients_of_a_subsidized_stafford_loan_who_did_not_receive_a_pell_grant", "value": "stafford-loan"}?
     - How many students in the [2019 cohort](cohort_by_year) are [did not receive subsidized loan and did not receive federal pell grant]{"entity": "students_who_did_not_receive_either_a_pell_grant_or_a_subsidized_stafford_loan", "value":"no-aid")?
     - How many students in the [6590 cohort](cohort_by_year) are [recipients of subsidized loan and did not receive federal pell grant]{"entity": "recipients_of_a_subsidized_stafford_loan_who_did_not_receive_a_pell_grant", "value": "stafford-loan"}?
@@ -226,27 +226,24 @@ nlu:
   examples: |
     - I want to know about admission.
     - I want to know about admission data.
-    Total first-time, first-year (freshman) men who applied
-    Total first-time, first-year (freshman) men who were admitted
-    Total full-time, first-time, first-year (freshman) men who enrolled 
-    Total full-time, first-time, first-year (freshman) women who enrolled
-    - How many [male]{"entity": "gender", "value": "man"} [freshman]{"entity":"freshman"}  [applied]{"entity": "action", "value": "applied"} in Rose-Hulman?
-    - How many [female]{"entity": "gender", "value": "woman"} [freshman]{"entity":"freshman"}  [applied]{"entity": "action", "value": "applied"} in Rose-Hulman?
+    
+    - How many [male]{"entity": "gender", "value": "male"} [freshman]{"entity":"freshman"}  [applied]{"entity": "action", "value": "applied"} in Rose-Hulman?
+    - How many [female]{"entity": "gender", "value": "female"} [freshman]{"entity":"freshman"}  [applied]{"entity": "action", "value": "applied"} in Rose-Hulman?
 
-    - How many [men]{"entity": "gender", "value": "man"} [freshman]{"entity":"freshman"}  [applied]{"entity": "action", "value": "applied"} in Rose-Hulman?
-    - How many [women]{"entity": "gender", "value": "woman"} [freshman]{"entity":"freshman"}  [applied]{"entity": "action", "value": "applied"} in Rose-Hulman?
+    - How many [men]{"entity": "gender", "value": "male"} [freshman]{"entity":"freshman"}  [applied]{"entity": "action", "value": "applied"} in Rose-Hulman?
+    - How many [women]{"entity": "gender", "value": "female"} [freshman]{"entity":"freshman"}  [applied]{"entity": "action", "value": "applied"} in Rose-Hulman?
 
-    - How many [male]{"entity": "gender", "value": "man"} [freshman]{"entity":"freshman"}  [admitted]{"entity": "action", "value": "admitted"} in Rose-Hulman?
-    - How many [female]{"entity": "gender", "value": "woman"} [freshman]{"entity":"freshman"}  [admitted]{"entity": "action", "value": "admitted"} in Rose-Hulman?
+    - How many [male]{"entity": "gender", "value": "male"} [freshman]{"entity":"freshman"}  [admitted]{"entity": "action", "value": "admitted"} in Rose-Hulman?
+    - How many [female]{"entity": "gender", "value": "female"} [freshman]{"entity":"freshman"}  [admitted]{"entity": "action", "value": "admitted"} in Rose-Hulman?
 
-    - How many [men]{"entity": "gender", "value": "man"} [freshman]{"entity":"freshman"}  [admitted]{"entity": "action", "value": "admitted"} in Rose-Hulman?
-    - How many [women]{"entity": "gender", "value": "woman"} [freshman]{"entity":"freshman"}  [admitted]{"entity": "action", "value": "admitted"} in Rose-Hulman?
+    - How many [men]{"entity": "gender", "value": "male"} [freshman]{"entity":"freshman"}  [admitted]{"entity": "action", "value": "admitted"} in Rose-Hulman?
+    - How many [women]{"entity": "gender", "value": "female"} [freshman]{"entity":"freshman"}  [admitted]{"entity": "action", "value": "admitted"} in Rose-Hulman?
 
-    - How many [male]{"entity": "gender", "value": "man"} [first-time]{"entity":"first-time"} [first-year]{"entity":"first-year"}   [applied]{"entity": "action", "value": "applied"} in Rose-Hulman?
-    - How many [female]{"entity": "gender", "value": "woman"} [first-time]{"entity":"first-time"} [first-year]{"entity":"first-year"}  [applied]{"entity": "action", "value": "applied"} in Rose-Hulman?
+    - How many [male]{"entity": "gender", "value": "male"} [first-time]{"entity":"first-time"} [first-year]{"entity":"first-year"}   [applied]{"entity": "action", "value": "applied"} in Rose-Hulman?
+    - How many [female]{"entity": "gender", "value": "female"} [first-time]{"entity":"first-time"} [first-year]{"entity":"first-year"}  [applied]{"entity": "action", "value": "applied"} in Rose-Hulman?
 
-    - How many [male]{"entity": "gender", "value": "man"} [first-time]{"entity":"first-time"} [first-year]{"entity":"first-year"}  [admitted]{"entity": "action", "value": "admitted"} in Rose-Hulman?
-    - How many [female]{"entity": "gender", "value": "woman"} [first-time]{"entity":"first-time"} [first-year]{"entity":"first-year"}  [admitted]{"entity": "action", "value": "admitted"} in Rose-Hulman?
+    - How many [male]{"entity": "gender", "value": "male"} [first-time]{"entity":"first-time"} [first-year]{"entity":"first-year"}  [admitted]{"entity": "action", "value": "admitted"} in Rose-Hulman?
+    - How many [female]{"entity": "gender", "value": "female"} [first-time]{"entity":"first-time"} [first-year]{"entity":"first-year"}  [admitted]{"entity": "action", "value": "admitted"} in Rose-Hulman?
 
     - Do you have [policy]{"entity":"policy"} of placting [waiting-list]{"entity":"waiting-list"}?
     - Is there any [waiting-list]{"entity":"waiting-list"} [policy]{"entity":"policy"}?
