@@ -231,12 +231,43 @@ nlu:
     Total full-time, first-time, first-year (freshman) men who enrolled 
     Total full-time, first-time, first-year (freshman) women who enrolled
     - How many [male]{"entity": "gender", "value": "man"} [freshman]{"entity":"freshman"}  [applied]{"entity": "action", "value": "applied"} in Rose-Hulman?
-    - How many [male]{"entity": "gender", "value": "man"} [freshman]{"entity":"freshman"}  [applied]{"entity": "action", "value": "applied"} in Rose-Hulman?
-    - How many [full time]{"entity": "enrollment_status", "value": "full-time"} [undergraduate]{"entity":"student_level"} student are there in Rose-Hulman?
-    
-    - How many [full-time]{"entity": "enrollment_status" , "value": "full-time"} [graduate]{"entity":"student_level", "value":"graduate"} are there in Rose-Hulman?
-    - I want to know about the number of [graduate students]{"entity":"student_level", "value":"graduate"} here
+    - How many [female]{"entity": "gender", "value": "woman"} [freshman]{"entity":"freshman"}  [applied]{"entity": "action", "value": "applied"} in Rose-Hulman?
 
+    - How many [men]{"entity": "gender", "value": "man"} [freshman]{"entity":"freshman"}  [applied]{"entity": "action", "value": "applied"} in Rose-Hulman?
+    - How many [women]{"entity": "gender", "value": "woman"} [freshman]{"entity":"freshman"}  [applied]{"entity": "action", "value": "applied"} in Rose-Hulman?
+
+    - How many [male]{"entity": "gender", "value": "man"} [freshman]{"entity":"freshman"}  [admitted]{"entity": "action", "value": "admitted"} in Rose-Hulman?
+    - How many [female]{"entity": "gender", "value": "woman"} [freshman]{"entity":"freshman"}  [admitted]{"entity": "action", "value": "admitted"} in Rose-Hulman?
+
+    - How many [men]{"entity": "gender", "value": "man"} [freshman]{"entity":"freshman"}  [admitted]{"entity": "action", "value": "admitted"} in Rose-Hulman?
+    - How many [women]{"entity": "gender", "value": "woman"} [freshman]{"entity":"freshman"}  [admitted]{"entity": "action", "value": "admitted"} in Rose-Hulman?
+
+    - How many [male]{"entity": "gender", "value": "man"} [first-time]{"entity":"first-time"} [first-year]{"entity":"first-year"}   [applied]{"entity": "action", "value": "applied"} in Rose-Hulman?
+    - How many [female]{"entity": "gender", "value": "woman"} [first-time]{"entity":"first-time"} [first-year]{"entity":"first-year"}  [applied]{"entity": "action", "value": "applied"} in Rose-Hulman?
+
+    - How many [male]{"entity": "gender", "value": "man"} [first-time]{"entity":"first-time"} [first-year]{"entity":"first-year"}  [admitted]{"entity": "action", "value": "admitted"} in Rose-Hulman?
+    - How many [female]{"entity": "gender", "value": "woman"} [first-time]{"entity":"first-time"} [first-year]{"entity":"first-year"}  [admitted]{"entity": "action", "value": "admitted"} in Rose-Hulman?
+
+    - Do you have [policy]{"entity":"policy"} of placting [waiting-list]{"entity":"waiting-list"}?
+    - Is there any [waiting-list]{"entity":"waiting-list"} [policy]{"entity":"policy"}?
+
+    - What's the number of students did you [offered]{"entity": "waiting-list-detail", "value": "offered-list"} a place on [waiting-list]{"entity":"waiting-list"}?
+    - How many students [offered]{"entity": "waiting-list-detail", "value": "offered-list"} a [waiting-list]{"entity":"waiting-list"} position?
+
+    - How many students [accepted]{"entity": "waiting-list-detail", "value": "accepted-list"} [waiting-list]{"entity":"waiting-list"} ?
+    - What's the number of students who [accepted]{"entity": "waiting-list-detail", "value": "accepted-list"} [waiting-list]{"entity":"waiting-list"} ?
+
+    - Does your institution require or recommend a general [college-preparatory] {"entity": "college-preparatory-program"} program for degree-seeking students?
+
+    - Does your institution require [high school completion]{"entity": "completion-requirement"} for degree-seeking entering student? 
+
+- synonym: waiting-list
+  examples: |
+    - waiting list
+    - waiting-list
+    - wait list
+    - wait-list
+    
 
 - synonym: graduation rate
   examples: |
