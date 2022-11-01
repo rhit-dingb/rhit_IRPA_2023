@@ -42,9 +42,8 @@ pip install rasa
 
 **frontend environment**
 
-Install React package
-_npm install -g create-react-app_
-Install Bootstap
-_npm i bootstrap@4.4.1_
-_npm i --save bootstrap jquery popper.js_
-_npm install react-router-dom@5.2.0_
+Here are the packages I install, you may try go to the chatbot_app folder and run 'npm install'
+- npm install -g create-react-app
+- npm i bootstrap@4.4.1
+- npm i --save bootstrap jquery popper.js
+- npm install react-router-dom@5.2.0
