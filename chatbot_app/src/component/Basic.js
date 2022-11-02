@@ -10,7 +10,7 @@ function Basic() {
   const [botTyping, setbotTyping] = useState(false);
 
   useEffect(() => {
-    console.log("called");
+    //console.log("called");
     const objDiv = document.getElementById("messageArea");
     objDiv.scrollTop = objDiv.scrollHeight;
   }, [chat]);
@@ -32,7 +32,7 @@ function Basic() {
 
   const rasaAPI = async function handleClick(name, msg) {
     //chatData.push({sender : "user", sender_id : name, msg : msg});
-
+    console.log(chat);
     await fetch("http://localhost:5005/webhooks/rest/webhook", {
       method: "POST",
       headers: {
@@ -64,7 +64,7 @@ function Basic() {
       });
   };
 
-  console.log(chat);
+
 
   const stylecard = {
     maxWidth: "35rem",
@@ -78,13 +78,13 @@ function Basic() {
     height: "4.5rem",
     borderBottom: "1px solid black",
     borderRadius: "30px 30px 0px 0px",
-    backgroundColor: "#8012c4",
+    backgroundColor: "#800000",
   };
   const styleFooter = {
-    //maxWidth : '32rem',
+    maxWidth : '35rem',
     borderTop: "1px solid black",
     borderRadius: "0px 0px 30px 30px",
-    backgroundColor: "#8012c4",
+    backgroundColor: "#800000",
   };
   const styleBody = {
     paddingTop: "10px",
