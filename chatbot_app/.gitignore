@@ -1,16 +1,15 @@
-.rasa/
-models/
-node_modules/
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
 # dependencies
-chatbot_app/node_modules
-chatbot_app/.pnp
+/node_modules
+/.pnp
 .pnp.js
 
 # testing
-chatbot_app/coverage
+/coverage
 
 # production
-chatbot_app/build
+/build
 
 # misc
 .DS_Store
@@ -22,4 +21,3 @@ chatbot_app/build
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-

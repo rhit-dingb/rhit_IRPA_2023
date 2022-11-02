@@ -1,15 +1,16 @@
 # rhit_IRPA_2023
+
 Rose-hulman Institute of Technology Class of Senior Design 2023 IRPA Chatbots Project
 
-
 ## Setup instructions:
+
 - Required: Python 3.8.x; Anaconda; Rasa; ujson; Tensorflow
-Instructions are from this video: https://www.youtube.com/watch?v=oNLhg29aykc
+  Instructions are from this video: https://www.youtube.com/watch?v=oNLhg29aykc
 
 Install Anaconda.
 
-**Windows:** Search anaconda prompt on the windows tab and open anaconda prompt 
-  **Mac:** open terminal
+**Windows:** Search anaconda prompt on the windows tab and open anaconda prompt
+**Mac:** open terminal
 
 cd into the github folder.
 
@@ -29,7 +30,6 @@ pip install rasa
 - run 'rasa train' everytime after git pull
 - run 'rasa shell' to open interactive shell
 - run 'rasa data validate' to validate the training data after making changes.
-- Also need to run 'rasa run actions' to start action server so custom actions can be run
 
 1. Open anaconda terminal, cd into the project directory
 2. Don't need to cd into test directory. At the project's root directory run the following command:
@@ -41,7 +41,6 @@ pip install rasa
 - Also need to run 'rasa run actions' to start action server so custom actions can be run
 
 **frontend environment**
-
 Here are the packages I install, you may try go to the chatbot_app folder and run 'npm install'
 - npm install -g create-react-app
 - npm i bootstrap@4.4.1
