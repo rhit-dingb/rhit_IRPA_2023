@@ -1,6 +1,10 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
 .rasa/
 models/
 node_modules/
+**/__pycache__/
+
 # dependencies
 chatbot_app/node_modules
 chatbot_app/.pnp
