@@ -1463,7 +1463,7 @@ nlu:
     - How many [african-american]{"entity": "race"} students are enrolled?
     - how many [black]{"entity": "race"} students are enrolled? 
     - How many [white]{"entity": "race"} students are enrolled? 
-    - How many [american-indian]{"entity": "race"} students are enrolled? f
+    - How many [american-indian]{"entity": "race"} students are enrolled?
     - How many [asian]{"entity": "race"} students are enrolled? 
     - How many [pacific islander]{"entity": "race"} students are enrolled? 
     - How many students of [two-or-more]{"entity": "race"} races are enrolled? 
