@@ -12,7 +12,7 @@ from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
 from Knowledgebase.IgnoreRowPiece import IgnoreRowPiece
 from Knowledgebase.SparseMatrixKnowledgeBase import SparseMatrixKnowledgeBase
 from actions.constants import ANY_AID_COLUMN_NAME, COHORT_GRADUATION_TIME_ENTITY_FORMAT, COHORT_GRADUATION_TIME_START_FORMAT, NO_AID_COLUMN_NAME, PELL_GRANT_COLUMN_NAME, STAFFORD_LOAN_COLUMN_NAME
-from actions.entititesHelper import changeEntityValue, copyEntities, createEntityObj, filterEntities, findEntityHelper
+from actions.entititesHelper import changeEntityValue, copyEntities, createEntityObj, filterEntities, findEntityHelper, findMultipleSameEntitiesHelper
 from typing import Text
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
@@ -116,24 +116,27 @@ class ActionQueryCohort(Action):
     def name(self) -> Text:
         return "action_query_cohort"
 
-    def extractYearFromGraduationYearEntityValue(self, entityObj):
+    def extractYearFromGraduationYearEntityValue(self, entitiesFound):
         
-        if entityObj is None:
+        if entitiesFound is None or len(entitiesFound) == 0:
             return -1
 
         indexes = []
 
-        for i in range(self.minYear, self.maxYear+1):
-            index_value = None
-            try:
-                index_value = entityObj["value"].index(str(i))
-            except ValueError:
-                index_value = -1
-            indexes.append(index_value)
+        for entityObj in entitiesFound:
+            for i in range(self.minYear, self.maxYear+1):
+                index_value = None
+                try:
+                    index_value = entityObj["value"].index(str(i))
+                    
+                except ValueError:
+                    index_value = -1
 
-        for index in indexes:
-            if index > -1:
-                return int(entityObj["value"][index])
+                indexes.append(index_value)
+
+            for index in indexes:
+                if index > -1:
+                    return int(entityObj["value"][index])
 
         return -1
 
@@ -179,23 +182,28 @@ class ActionQueryCohort(Action):
         askForGraduationRate = findEntityHelper(
             entitiesExtractedCopy, GRADUATION_RATE_ENTITY_LABEL)
 
-        lowerBoundGraduationYearEntity = findEntityHelper(
+        lowerBoundGraduationYearEntities = findMultipleSameEntitiesHelper(
             entitiesExtractedCopy, LOWER_BOUND_GRADUATION_TIME_ENTITY_LABEL)
-        upperBoundGraduationYearEntity = findEntityHelper(
+        upperBoundGraduationYearEntities = findMultipleSameEntitiesHelper(
             entitiesExtractedCopy, UPPER_BOUND_GRADUATION_TIME_ENTITY_LABEL)
 
         ignoreAnyAidShouldAddRow = IgnoreRowPiece(
             defaultShouldAddRowStrategy, [ANY_AID_COLUMN_NAME])
             
-        if lowerBoundGraduationYearEntity or upperBoundGraduationYearEntity:
+        if askForGraduationRate or lowerBoundGraduationYearEntities or upperBoundGraduationYearEntities:
             # For question about graduation date and year,the initial and final entity is still extracted, but I want to filter that out.
             entitiesFiltered = filterEntities(entitiesExtractedCopy, [
                                                 LOWER_BOUND_GRADUATION_TIME_ENTITY_LABEL, UPPER_BOUND_GRADUATION_TIME_ENTITY_LABEL, INITIAL_COHORT_ENTITY_LABEL, FINAL_COHORT_ENTITY_LABEL])
             lowerBoundYear = max(self.extractYearFromGraduationYearEntityValue(
-                lowerBoundGraduationYearEntity)+1, self.minYear)
+                lowerBoundGraduationYearEntities)+1, self.minYear)
       
+
+        
             upperBoundYear = min(self.extractYearFromGraduationYearEntityValue(
-                upperBoundGraduationYearEntity), self.maxYear)
+                upperBoundGraduationYearEntities), self.maxYear)
+
+            print("UPPER BOUND YEAR")
+            print(upperBoundYear)
 
             isUpperFoundBoundNotFound = upperBoundYear == -1
             if isUpperFoundBoundNotFound:
