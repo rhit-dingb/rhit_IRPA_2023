@@ -49,7 +49,6 @@ class ExcelProcessor():
         for name in dataSourceConnector.sheet_names:
             nameReplace = name.replace("_", " ")
 
-        
             topic_key_words = [x.lower() for x in nameReplace.split(" ")]
 
             # for each sheet, the name has to be in the format subsection_topic. For example: race_enrollment

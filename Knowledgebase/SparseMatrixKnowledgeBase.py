@@ -1,4 +1,5 @@
 
+from html import entities
 from tracemalloc import start
 from DataManager.DataManager import DataManager
 from Data_Ingestion.SparseMatrix import SparseMatrix
@@ -11,6 +12,7 @@ import numpy as np
 from Knowledgebase.Knowledgebase import KnowledgeBase
 
 from Knowledgebase.constants import PERCENTAGE_FORMAT
+from OutputController.output import  identityFunc, outputFuncForPercentage
 
 from actions.entititesHelper import copyEntities
 
@@ -34,7 +36,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
     Throws: exception when given year or intent for the data is not found or when exception encountered when parsing year entity values
 
     """
-    def searchForAnswer(self, intent, entitiesExtracted, shouldAddRowStrategy):
+    def searchForAnswer(self, intent, entitiesExtracted, shouldAddRowStrategy, outputFunc = identityFunc):
         count=0
         col_index=0
 
@@ -48,9 +50,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         
         sparseMatrixToSearch : SparseMatrix; startYear : str; endYear : str 
         sparseMatrixToSearch, startYear, endYear = self.determineMatrixToSearch(intent, entitiesExtracted)
-
-    
-
+        
         if sparseMatrixToSearch is None:
             raise Exception("No valid sparse matrix found for given intent and entities", intent, entities)
 
@@ -71,9 +71,15 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
                 if len(printEntities) <= 0:
                     printEntities = usedEntities
                     
+<<<<<<< HEAD
         return str(int(count))
         return str(int(count)) + "\n" + str(printEntities)   
 
+=======
+        printEntities = list(printEntities)
+        printEntities.append(startYear) 
+        return outputFunc(str(int(count)), intent, set(printEntities))
+>>>>>>> origin
 
 
 
@@ -102,32 +108,40 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         return str(count)
 
 
-    def aggregateDiscreteRange(self, intent, filteredEntities, start, end, generator, shouldAddRow):
+    def aggregateDiscreteRange(self, intent, filteredEntities, start, end, generator, shouldAddRow, outputFunc):
         shouldAddRowStrategy = shouldAddRow
         total = 0
         # print(start,end)
+        entitiesUsed = []
+        
         for i in range(start, end+1):
             filteredEntitiesCopy = copyEntities(filteredEntities)
             entityValue = generator(i, start, end)
             # we can make the entity key more descriptive later 
             fakeEntity = {
-                "entity": i,
+                "entity": "graduation_years",
                 "value": entityValue,
                 "aggregation": True
             }
         
             filteredEntitiesCopy.append(fakeEntity)
            
-            answer = self.searchForAnswer(intent, filteredEntitiesCopy, shouldAddRowStrategy )
+            answer, intent, entitiesUsedBySearch = self.searchForAnswer(intent, filteredEntitiesCopy, shouldAddRowStrategy, identityFunc)
+            entitiesUsed = entitiesUsed + list(entitiesUsedBySearch)
+            
             total = total + int(answer)
+         
 
-        return str(total)
+        return outputFunc(total, intent, set(entitiesUsed))
 
-    def aggregatePercentage(self, intent, numerator, entitiesToCalculateDenominator, shouldAddRowStrategy):
-        denominator = self.searchForAnswer(intent, entitiesToCalculateDenominator, shouldAddRowStrategy)
+    def aggregatePercentage(self, intent, numerator, entitiesForNumerator, entitiesToCalculateDenominator, shouldAddRowStrategy):
+        entitiesUsed = None
+        
+        denominator,intent, entitiesUsed = self.searchForAnswer(intent, entitiesToCalculateDenominator, shouldAddRowStrategy, identityFunc)
         percentageCalc = numerator/float(denominator)*100
         percentage = round(percentageCalc, 1)
-        return PERCENTAGE_FORMAT.format(value = percentage)
+        
+        return outputFuncForPercentage(percentage, intent, set(list(entitiesUsed)+ list(entitiesForNumerator)) )
 
 
     def determineMatrixToSearch(self, intent, entities):
