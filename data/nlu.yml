@@ -1494,12 +1494,10 @@ nlu:
     - How many [undergraduate]{"entity": "student_level", "value": "undergraduate"} students are there in [2054]{"entity": "year", "role": "from"} ?
     - In [2015]{"entity": "year", "role": "from"} how many students from there?
     - How many [asian]{"entity": "race"} students are enrolled in [2019]{"entity": "year", "role":"from"} to [2022]{"entity": "year", "role":"to"}
-
     - How many [undergraduates]{"entity": "student_level", "value": "undergraduate"} are there in [2020]{"entity": "year", "role":"from"} - [2021]{"entity": "year", "role":"to"} academic year?
     
     - How many [female]{"entity": "gender", "value": "female"} [undergraduates]{"entity": "student_level", "value": "undergraduate"} are there in academic year [2021]{"entity": "year", "role":"from"} to [2022]{"entity": "year", "role":"to"}?
     - How many [hispanics](race) student are there in academic year [3032]{"entity": "year", "role":"from"} - [3033]{"entity": "year", "role":"to"}?
-
     - How many [two or more race]{"entity": "race"} are there in academic year of [2222-2223]{"entity": "year"}?
     - How many [two or more race]{"entity": "race"} are there in academic year of [2022-2023]{"entity": "year"}?
     - How many students are there from [2020]{"entity": "year", "role":"from"} to [2021]{"entity":"year", "role":"to"}?
@@ -1544,9 +1542,7 @@ nlu:
     - How many students graduated [more than 5 years]{"entity":"lower_bound_graduation_time", "value":"more than 5 years"} and [6 years or less]{"entity":"upper_bound_graduation_time", "value":"6 years or less"} for the [2014 cohort](cohort_by_year)?
     - How many students graduated in [five year or less]{"entity": "upper_bound_graduation_time", "value": "5 years or less"} for [2055 cohort](cohort_by_year) who received [no aid]{"entity":"students_who_did_not_receive_either_a_pell_grant_or_a_subsidized_stafford_loan", "value": "no-aid"}
     
-    - What is the [graduation rate](graduation_rate) for students who graduated [in 5 years]{"entity": "upper_bound_graduation_time", "value": "5 years or less"} and [more than four year]{"entity": "lower_bound_graduation_time", "value": "more than 4 years"} for the [cohort of 2014](cohort_by_year)?
-
-    - What is the [graduation rate](graduation_rate) for students who graduated [within 5 years]{"entity": "upper_bound_graduation_time", "value": "5 years or less"} for [cohort of 2021](cohort_by_year)
+    - What is the [graduation rate](graduation_rate) for students who [graduated in 5 years]{"entity": "upper_bound_graduation_time", "value": "5 years or less"} and [more than four year]{"entity": "lower_bound_graduation_time", "value": "more than 4 years"} for the [cohort of 2014](cohort_by_year)?
 
     #Financial aid training data for cohorts.
     - How many students in the [6590 cohort](cohort_by_year) are [recipients of subsidized loan and did not receive federal pell grant]{"entity": "recipients_of_a_subsidized_stafford_loan_who_did_not_receive_a_pell_grant", "value": "stafford-loan"}?
@@ -1609,6 +1605,51 @@ nlu:
     - retenton rate
     - retention-rate
     - rate of retention
+
+
+- intent: admission
+  examples: |
+    - I want to know about admission.
+    - I want to know about admission data.
+    
+    - How many [male]{"entity": "gender", "value": "male"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}  [applied]{"entity": "action", "value": "applied"} in Rose-Hulman?
+    - How many [female]{"entity": "gender", "value": "female"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} [applied]{"entity": "action", "value": "applied"} in Rose-Hulman?
+
+    - How many [men]{"entity": "gender", "value": "male"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}  [applied]{"entity": "action", "value": "applied"} in Rose-Hulman?
+    - How many [women]{"entity": "gender", "value": "female"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}  [applied]{"entity": "action", "value": "applied"} in Rose-Hulman?
+
+    - How many [male]{"entity": "gender", "value": "male"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} [admitted]{"entity": "action", "value": "admitted"} in Rose-Hulman?
+    - How many [female]{"entity": "gender", "value": "female"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}  [admitted]{"entity": "action", "value": "admitted"} in Rose-Hulman?
+
+    - How many [men]{"entity": "gender", "value": "male"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}  [admitted]{"entity": "action", "value": "admitted"} in Rose-Hulman?
+    - How many [women]{"entity": "gender", "value": "female"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}  [admitted]{"entity": "action", "value": "admitted"} in Rose-Hulman?
+
+    - How many [male]{"entity": "gender", "value": "male"} [first-time]{"entity": "is_first_time", "value": "first-time"} [first-year]{"entity": "is_first_year", "value": "first-year"}   [applied]{"entity": "action", "value": "applied"} in Rose-Hulman?
+    - How many [female]{"entity": "gender", "value": "female"} [first-time]{"entity": "is_first_time", "value": "first-time"} [first-year]{"entity": "is_first_year", "value": "first-year"}  [applied]{"entity": "action", "value": "applied"} in Rose-Hulman?
+
+    - How many [male]{"entity": "gender", "value": "male"} [first-time]{"entity": "is_first_time", "value": "first-time"} [first-year]{"entity": "is_first_year", "value": "first-year"}  [admitted]{"entity": "action", "value": "admitted"} in Rose-Hulman?
+    - How many [female]{"entity": "gender", "value": "female"} [first-time]{"entity": "is_first_time", "value": "first-time"} [first-year]{"entity": "is_first_year", "value": "first-year"}  [admitted]{"entity": "action", "value": "admitted"} in Rose-Hulman?
+
+    - Do you have [policy]{"entity":"policy"} of placting [waiting-list]{"entity":"waiting-list"}?
+    - Is there any [waiting-list]{"entity":"waiting-list"} [policy]{"entity":"policy"}?
+
+    - What's the number of students did you [offered]{"entity": "waiting-list-detail", "value": "offered-list"} a place on [waiting-list]{"entity":"waiting-list"}?
+    - How many students [offered]{"entity": "waiting-list-detail", "value": "offered-list"} a [waiting-list]{"entity":"waiting-list"} position?
+
+    - How many students [accepted]{"entity": "waiting-list-detail", "value": "accepted-list"} [waiting-list]{"entity":"waiting-list"} ?
+    - What's the number of students who [accepted]{"entity": "waiting-list-detail", "value": "accepted-list"} [waiting-list]{"entity":"waiting-list"} ?
+
+    - Does your institution require or recommend a general [college-preparatory] {"entity": "college-preparatory-program"} program for degree-seeking students?
+
+    - Does your institution require [high school completion]{"entity": "completion-requirement"} for degree-seeking entering student? 
+
+- synonym: waiting-list
+  examples: |
+    - waiting list
+    - waiting-list
+    - wait list
+    - wait-list
+    
 
 - synonym: graduation rate
   examples: |

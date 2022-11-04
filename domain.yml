@@ -5,6 +5,10 @@ intents:
   - goodbye
   - affirm
   - deny
+  # Intents for different topics on the IRPA common dataset
+  - enrollment
+  - cohort
+  - admission
 
   - mood_great
   - mood_unhappy
@@ -40,6 +44,18 @@ entities:
   #race/ethnicity
   - race
 
+  #applied addmitted
+  - action
+
+  - waiting-list
+
+  - college-preparatory-program
+
+  - completion-requirement
+
+  - waiting-list-detail
+
+  - policy
 
   #cohort by year - for example: 2015 cohort, 2016 cohort, etc.
   - cohort_by_year
@@ -168,6 +184,7 @@ actions:
   - action_ask_more_question
   - action_query_cohort
   - action_query_enrollment
+  - action_query_admission
   
 
 responses:
