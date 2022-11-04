@@ -64,11 +64,11 @@ class ActionQueryHighSchoolUnits(Action):
     def run(self, dispatcher, tracker, domain):
         entitiesExtracted = tracker.latest_message["entities"]
         intent = tracker.latest_message["intent"]["name"]
-        try:
-            answer = knowledgeBase.searchForAnswer(intent, entitiesExtracted, self.chooseFromOptionsAddRowStrategy )
-            dispatcher.utter_message(answer)    
-        except Exception as e:
-            utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
+        #try:
+        answer = knowledgeBase.searchForAnswer(intent, entitiesExtracted, self.chooseFromOptionsAddRowStrategy,outputFuncForInteger)
+        dispatcher.utter_message(answer)    
+        #except Exception as e:
+            #utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
 
 
 class ActionQueryEnrollment(Action):
