@@ -13,8 +13,8 @@ def outputFuncForHighSchoolUnits(answer, intent, printEntities):
     if answer == 0:
         return constructSentence(response, intent, printEntities)
     else:
-        # print(type(answer))
-        return constructSentence(answer, intent, printEntities)
+        print(type(answer))
+        return  outputFuncForInteger(answer, intent, printEntities)
 
 #For integer values
 def outputFuncForInteger(answer, intent, printEntities):

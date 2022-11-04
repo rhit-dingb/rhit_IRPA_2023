@@ -225,7 +225,6 @@ stories:
   - action: utter_ask_answer_helpful
 
 
-
 - story: ask_about_cohort_financial_aid_should_extract_entity_successfully
   steps:
   - user: |

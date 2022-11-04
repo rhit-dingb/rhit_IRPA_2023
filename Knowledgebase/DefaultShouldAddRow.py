@@ -30,7 +30,8 @@ class DefaultShouldAddRowStrategy(ShouldAddRowStrategy):
             if entity in processedColumn:
                 filteredEntities.append(entity)
 
-        filteredEntities = set(filteredEntities)
+     
+        # filteredEntities = set(filteredEntities)
         for column in processedColumn:
             if column in filteredEntities:
                

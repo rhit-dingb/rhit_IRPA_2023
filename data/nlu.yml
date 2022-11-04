@@ -306,8 +306,10 @@ nlu:
     - I want to know students who graduated [within four year]{"entity": "upper_bound_graduation_time", "value": "4 years or less"} of [2014 cohort](cohort_by_year)
     
     - [graduation rate](graduation_rate) for students who graduated [in 5 years]{"entity": "upper_bound_graduation_time", "value": "5 years or less"} of [2052 cohort](cohort_by_year)
-    - 
+
     - How many students graduated [more than 5 years]{"entity":"lower_bound_graduation_time", "value":"more than 5 years"} and [6 years or less]{"entity":"upper_bound_graduation_time", "value":"6 years or less"} for the [2014 cohort](cohort_by_year)?
+    - How many students graduated [more than five years]{"entity":"lower_bound_graduation_time", "value":"more than 5 years"}?
+    - How many students graduated [within five years]{"entity": "upper_bound_graduation_time", "value": "5 years or less"} but in [more than four years]{"entity": "lower_bound_graduation_time", "value": "more than 4 years"} for [2046 cohort](cohort_by_year)?
     - How many students graduated in [five year or less]{"entity": "upper_bound_graduation_time", "value": "5 years or less"} for [2055 cohort](cohort_by_year) who received [no aid]{"entity":"students_who_did_not_receive_either_a_pell_grant_or_a_subsidized_stafford_loan", "value": "no-aid"}
     
     - What is the [graduation rate](graduation_rate) for students who graduated [in 5 years]{"entity": "upper_bound_graduation_time", "value": "5 years or less"} and [more than four year]{"entity": "lower_bound_graduation_time", "value": "more than 4 years"} for the [cohort of 2014](cohort_by_year)?
@@ -358,7 +360,7 @@ nlu:
     - For admission, how many [science]{"entity": "subject", "value": "science"} [lab]{"entity": "subject", "value": "lab"} [units are required]{"entity": "unit_level", "value": "units-required"} 
     - For admission, how many [science]{"entity": "subject", "value": "science"} [lab]{"entity": "subject", "value": "lab"} [units are recommended]{"entity": "unit_level", "value": "units-recommended"} 
     - What is the [required unit]{"entity": "unit_level", "value": "units-required"} for [laboratory]{"entity": "subject", "value": "lab"} [science]{"entity": "subject", "value": "science"} ? 
-
+    - What is the [required unit]{"entity": "unit_level", "value": "units-required"} for [labatory]{"entity": "subject", "value": "lab"} [science]{"entity": "subject", "value": "science"} ? 
     - What is the [recommended units]{"entity": "unit_level", "value": "units-recommended"} for [foreign language]{"entity": "subject", "value": "foreign-language"}
     - What is the [required units]{"entity": "unit_level", "value": "units-required"} for [foreign-language]{"entity": "subject", "value": "foreign-language"}
 

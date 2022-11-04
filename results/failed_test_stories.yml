@@ -4,7 +4,6 @@ stories:
   steps:
   - intent: cohort
     entities:
-    - upper_bound_graduation_time: 5 years or less  # predicted: lower_bound_graduation_time: 5 years or less
     - lower_bound_graduation_time: more than 4 years
     - cohort_by_year: 2046 cohort
   - action: action_query_cohort
@@ -54,50 +53,14 @@ stories:
     - recipients_of_federal_pell_grant: pell-grant
   - action: action_query_cohort
   - action: utter_ask_answer_helpful
-- story: ask_about_high_school_units_should_extract_subject_correctly (.\tests\test_stories.yml)
-  steps:
-  - intent: high_school_units
-    entities:
-    - subject: visual/performing-arts
-    - unit_level: units-recommended
-  - action: action_query_high_school_units  # predicted: utter_ask_answer_helpful
-  - action: utter_ask_answer_helpful  # predicted: action_listen
-  - intent: deny
-  - action: utter_sorry_question_not_helpful
-  - action: action_get_available_options
 - story: ask_about_high_school_units_should_extract_subject_correctly_visual_performing_art (.\tests\test_stories.yml)
   steps:
   - intent: high_school_units
     entities:
     - subject: visual/performing-arts
     - unit_level: units-recommended
-  - action: action_query_high_school_units  # predicted: utter_ask_answer_helpful
-  - action: utter_ask_answer_helpful  # predicted: action_listen
+  - action: action_query_high_school_units
+  - action: utter_ask_answer_helpful
   - intent: deny
   - action: utter_sorry_question_not_helpful
   - action: action_get_available_options
-- story: ask_about_high_school_units_should_extract_subject_correctly_social_study (.\tests\test_stories.yml)
-  steps:
-  - intent: high_school_units
-    entities:
-    - unit_level: units-required
-    - subject: social-studies
-  - action: action_query_high_school_units  # predicted: utter_ask_answer_helpful
-  - action: utter_ask_answer_helpful  # predicted: action_listen
-  - intent: affirm
-  - action: action_ask_more_question
-  - intent: affirm
-  - action: utter_ask_whats_the_question
-- story: ask_about_high_school_units_should_extract_subject_correctly (.\tests\test_stories.yml)
-  steps:
-  - intent: high_school_units
-    entities:
-    - unit_level: units-required
-    - subject: lab
-    - subject: science
-  - action: action_query_high_school_units  # predicted: utter_ask_answer_helpful
-  - action: utter_ask_answer_helpful  # predicted: action_listen
-  - intent: affirm
-  - action: action_ask_more_question
-  - intent: deny
-  - action: utter_no_more_question
