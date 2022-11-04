@@ -72,13 +72,22 @@ class ChooseFromOptionsAddRowStrategy(ShouldAddRowStrategy):
                 maxMatches.append(choice)
                 
         if len(maxMatches) == 1:
-            return self.defaultShouldAddRow.determineShouldAddRow(row, list(set(maxMatches[0]["columns"]+entities)) )
+            
+            entitiesUsedToMatch =  self.defaultShouldAddRow.determineShouldAddRow(row, list(set(maxMatches[0]["columns"]+entities)) )
+            return self.getEntityUsed(entitiesUsedToMatch, maxMatches[0]["columns"], entities)
         else:
             for match in maxMatches:
                 if "isDefault" in match and match["isDefault"]:
-                    return self.defaultShouldAddRow.determineShouldAddRow(row, list(set(match["columns"]+entities)) )
-
+                    entitiesUsedToMatch  = self.defaultShouldAddRow.determineShouldAddRow(row, list(set(match["columns"]+entities)) )
+                    return self.getEntityUsed(entitiesUsedToMatch, match["columns"],entities)
 
         
-        
+    def getEntityUsed(self,entitiesUsedToMatch, entityForOptions, extractedEntities):
+        entitiesActuallyUsed = []
+        for entity in entitiesUsedToMatch: 
+            if entity in entityForOptions and not entity in extractedEntities:
+                continue
+            else: 
+                entitiesActuallyUsed.append(entity)
+        return entitiesActuallyUsed
                 

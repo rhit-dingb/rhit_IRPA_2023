@@ -71,15 +71,12 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
                 if len(printEntities) <= 0:
                     printEntities = usedEntities
                     
-<<<<<<< HEAD
-        return str(int(count))
-        return str(int(count)) + "\n" + str(printEntities)   
-
-=======
         printEntities = list(printEntities)
         printEntities.append(startYear) 
-        return outputFunc(str(int(count)), intent, set(printEntities))
->>>>>>> origin
+        printEntities.append(endYear)
+        print("FRICK")
+        print(outputFunc(count, intent, entities))
+        return outputFunc(count, intent, printEntities)
 
 
 

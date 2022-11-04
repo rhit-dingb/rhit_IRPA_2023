@@ -35,18 +35,16 @@
     "text": "How many non first time non first year students are enrolled?",
     "entities": [
       {
-        "text": "How many non first time non first year students are enrolled?",
         "start": 9,
         "end": 23,
-        "entity": "is_first_time",
-        "value": "non-first-time"
+        "value": "non-first-time",
+        "entity": "is_first_time"
       },
       {
-        "text": "How many non first time non first year students are enrolled?",
         "start": 24,
         "end": 38,
-        "entity": "is_first_year",
-        "value": "non-first-time"
+        "value": "non-first-year",
+        "entity": "is_first_year"
       }
     ],
     "predicted_entities": []
@@ -55,18 +53,16 @@
     "text": "How many male non freshman students are enrolled?",
     "entities": [
       {
-        "text": "How many male non freshman students are enrolled?",
         "start": 9,
         "end": 13,
-        "entity": "gender",
-        "value": "male"
+        "value": "male",
+        "entity": "gender"
       },
       {
-        "text": "How many male non freshman students are enrolled?",
         "start": 14,
         "end": 26,
-        "entity": "undergraduate_grade_level",
-        "value": "non-freshman"
+        "value": "non-freshman",
+        "entity": "undergraduate_grade_level"
       }
     ],
     "predicted_entities": []
@@ -163,28 +159,32 @@
     "text": "What is the graduation rate for students who graduated in 5 years and more than four year for the cohort of 2014?",
     "entities": [
       {
+        "text": "What is the graduation rate for students who graduated in 5 years and more than four year for the cohort of 2014?",
         "start": 12,
         "end": 27,
-        "value": "graduation rate",
-        "entity": "graduation_rate"
+        "entity": "graduation_rate",
+        "value": "graduation rate"
       },
       {
+        "text": "What is the graduation rate for students who graduated in 5 years and more than four year for the cohort of 2014?",
         "start": 45,
         "end": 65,
-        "value": "5 years or less",
-        "entity": "upper_bound_graduation_time"
+        "entity": "upper_bound_graduation_time",
+        "value": "5 years or less"
       },
       {
+        "text": "What is the graduation rate for students who graduated in 5 years and more than four year for the cohort of 2014?",
         "start": 70,
         "end": 89,
-        "value": "more than 4 years",
-        "entity": "lower_bound_graduation_time"
+        "entity": "lower_bound_graduation_time",
+        "value": "more than 4 years"
       },
       {
+        "text": "What is the graduation rate for students who graduated in 5 years and more than four year for the cohort of 2014?",
         "start": 98,
         "end": 112,
-        "value": "cohort of 2014",
-        "entity": "cohort_by_year"
+        "entity": "cohort_by_year",
+        "value": "cohort of 2014"
       }
     ],
     "predicted_entities": []

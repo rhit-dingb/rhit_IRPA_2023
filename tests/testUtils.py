@@ -5,6 +5,11 @@ def createEntityObjHelper(entityValue, entityLabel="none",  entityRole=None):
 
         return res
 
+def getEntityValues(entities):
+    res = []
+    for entity in entities:
+        res.append(entity["value"])
+    return res
 
 def createFakeTracker(intent, entities):
 

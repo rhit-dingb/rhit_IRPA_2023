@@ -1,59 +1,35 @@
 {
-  "subject": {
+  "is_first_year": {
+    "precision": 1.0,
+    "recall": 0.9558823529411765,
+    "f1-score": 0.9774436090225563,
+    "support": 136,
+    "confused_with": {
+      "is_first_time": 6
+    }
+  },
+  "enrollment_status": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 49,
+    "support": 72,
     "confused_with": {}
   },
-  "gender": {
-    "precision": 1.0,
+  "year.to": {
+    "precision": 0.875,
     "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 5,
+    "f1-score": 0.9333333333333333,
+    "support": 7,
     "confused_with": {}
   },
-  "upper_bound_graduation_time": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 62,
-    "confused_with": {}
-  },
-  "retention-rate": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 8,
-    "confused_with": {}
-  },
-  "recipients_of_federal_pell_grant": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 12,
-    "confused_with": {}
-  },
-  "undergraduate_grade_level": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4,
-    "confused_with": {}
-  },
-  "year": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 2,
-    "confused_with": {}
-  },
-  "exemptions": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 26,
-    "confused_with": {}
+  "is_first_time": {
+    "precision": 0.9594594594594594,
+    "recall": 0.9861111111111112,
+    "f1-score": 0.9726027397260274,
+    "support": 144,
+    "confused_with": {
+      "undergraduate_grade_level": 2
+    }
   },
   "students_who_did_not_receive_either_a_pell_grant_or_a_subsidized_stafford_loan": {
     "precision": 1.0,
@@ -62,95 +38,27 @@
     "support": 48,
     "confused_with": {}
   },
-  "degree-goal": {
+  "subject": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 9,
+    "support": 49,
     "confused_with": {}
   },
-  "graduation_rate": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 9,
-    "confused_with": {}
+  "upper_bound_graduation_time": {
+    "precision": 0.9176470588235294,
+    "recall": 0.9512195121951219,
+    "f1-score": 0.9341317365269461,
+    "support": 82,
+    "confused_with": {
+      "lower_bound_graduation_time": 4
+    }
   },
-  "is_first_year": {
+  "retention-rate": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 16,
-    "confused_with": {}
-  },
-  "unit_level": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 81,
-    "confused_with": {}
-  },
-  "is_first_time": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 21,
-    "confused_with": {}
-  },
-  "cohort_by_year": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 69,
-    "confused_with": {}
-  },
-  "lower_bound_graduation_time": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 20,
-    "confused_with": {}
-  },
-  "year.to": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 7,
-    "confused_with": {}
-  },
-  "student_level": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 14,
-    "confused_with": {}
-  },
-  "race": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 27,
-    "confused_with": {}
-  },
-  "enrollment_status": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 6,
-    "confused_with": {}
-  },
-  "year.from": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 12,
-    "confused_with": {}
-  },
-  "recipients_of_a_subsidized_stafford_loan_who_did_not_receive_a_pell_grant": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 36,
+    "support": 8,
     "confused_with": {}
   },
   "cohort_initial_final": {
@@ -160,23 +68,126 @@
     "support": 7,
     "confused_with": {}
   },
-  "micro avg": {
+  "race": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 550
+    "support": 27,
+    "confused_with": {}
+  },
+  "year.from": {
+    "precision": 1.0,
+    "recall": 0.9166666666666666,
+    "f1-score": 0.9565217391304348,
+    "support": 12,
+    "confused_with": {
+      "year.to": 1
+    }
+  },
+  "unit_level": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 81,
+    "confused_with": {}
+  },
+  "recipients_of_a_subsidized_stafford_loan_who_did_not_receive_a_pell_grant": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 36,
+    "confused_with": {}
+  },
+  "cohort_by_year": {
+    "precision": 1.0,
+    "recall": 0.9024390243902439,
+    "f1-score": 0.9487179487179488,
+    "support": 82,
+    "confused_with": {
+      "upper_bound_graduation_time": 6,
+      "lower_bound_graduation_time": 2
+    }
+  },
+  "degree-goal": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 12,
+    "confused_with": {}
+  },
+  "exemptions": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 29,
+    "confused_with": {}
+  },
+  "lower_bound_graduation_time": {
+    "precision": 0.8,
+    "recall": 1.0,
+    "f1-score": 0.888888888888889,
+    "support": 24,
+    "confused_with": {}
+  },
+  "graduation_rate": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 19,
+    "confused_with": {}
+  },
+  "undergraduate_grade_level": {
+    "precision": 0.971830985915493,
+    "recall": 1.0,
+    "f1-score": 0.9857142857142858,
+    "support": 69,
+    "confused_with": {}
+  },
+  "student_level": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 24,
+    "confused_with": {}
+  },
+  "year": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 3,
+    "confused_with": {}
+  },
+  "gender": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 9,
+    "confused_with": {}
+  },
+  "recipients_of_federal_pell_grant": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 12,
+    "confused_with": {}
+  },
+  "micro avg": {
+    "precision": 0.9778449144008057,
+    "recall": 0.9788306451612904,
+    "f1-score": 0.9783375314861461,
+    "support": 992
   },
   "macro avg": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 550
+    "precision": 0.9793016306173253,
+    "recall": 0.9874921159697531,
+    "f1-score": 0.9824936643939313,
+    "support": 992
   },
   "weighted avg": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 550
+    "precision": 0.9796275796510693,
+    "recall": 0.9788306451612904,
+    "f1-score": 0.9785685612784422,
+    "support": 992
   },
-  "accuracy": 1.0
+  "accuracy": 0.9906183368869936
 }

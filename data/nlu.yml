@@ -391,6 +391,31 @@ nlu:
     - What is the [required units]{"entity": "unit_level", "value": "units-required"} for [all other]{"entity": "subject", "value": "other"} subjects?
     - What is the [recommended units]{"entity": "unit_level", "value": "units-recommended"} for [other]{"entity": "subject", "value": "other"} subjects?
 
+#Look up table for high school units
+- lookup: subject
+  examples: |
+    - science
+    - mathematics
+    - social-studies
+    - history
+    - visual/performing-arts
+    - lab
+    - english
+    - foreign-language
+    - academic-electives
+    - computer-science
+
+- lookup: upper_bound_graduation_time
+  examples: |
+    - 5 years or less
+    - 6 years or less
+    - 4 years or less
+
+- lookup: lower_bound_graduation_time
+  examples: |
+    - more than 5 years
+    - more than 4 years
+
 
 
 - synonym: retention-rate

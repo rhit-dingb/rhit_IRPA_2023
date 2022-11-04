@@ -1,5 +1,161 @@
 [
   {
+    "text": "How many non freshman non first time first year students are enrolled?",
+    "entities": [
+      {
+        "start": 9,
+        "end": 21,
+        "value": "non-freshman",
+        "entity": "undergraduate_grade_level"
+      },
+      {
+        "start": 22,
+        "end": 36,
+        "value": "non-first-time",
+        "entity": "is_first_time"
+      },
+      {
+        "start": 37,
+        "end": 47,
+        "value": "first-year",
+        "entity": "is_first_year"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "undergraduate_grade_level",
+        "start": 9,
+        "end": 21,
+        "confidence_entity": 0.9481493234634399,
+        "value": "non-freshman",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "is_first_time",
+        "start": 22,
+        "end": 47,
+        "confidence_entity": 0.6644829511642456,
+        "value": "non first time first year",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "How many non freshman first time non first year students are enrolled?",
+    "entities": [
+      {
+        "start": 9,
+        "end": 21,
+        "value": "non-freshman",
+        "entity": "undergraduate_grade_level"
+      },
+      {
+        "start": 22,
+        "end": 32,
+        "value": "first-time",
+        "entity": "is_first_time"
+      },
+      {
+        "start": 33,
+        "end": 47,
+        "value": "non-first-year",
+        "entity": "is_first_year"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "undergraduate_grade_level",
+        "start": 9,
+        "end": 32,
+        "confidence_entity": 0.539451003074646,
+        "value": "non freshman first time",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "is_first_year",
+        "start": 33,
+        "end": 47,
+        "confidence_entity": 0.9937729239463806,
+        "value": "non-first-year",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "How many non first time first year students are enrolled?",
+    "entities": [
+      {
+        "start": 9,
+        "end": 23,
+        "value": "non-first-time",
+        "entity": "is_first_time"
+      },
+      {
+        "start": 24,
+        "end": 34,
+        "value": "first-year",
+        "entity": "is_first_year"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "is_first_time",
+        "start": 9,
+        "end": 34,
+        "confidence_entity": 0.7111482620239258,
+        "value": "non first time first year",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "how many non first-time first year hispanic students are there?",
+    "entities": [
+      {
+        "start": 9,
+        "end": 23,
+        "value": "non-first-time",
+        "entity": "is_first_time"
+      },
+      {
+        "start": 24,
+        "end": 34,
+        "value": "first-year",
+        "entity": "is_first_year"
+      },
+      {
+        "start": 35,
+        "end": 43,
+        "value": "hispanic",
+        "entity": "race"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "is_first_time",
+        "start": 9,
+        "end": 34,
+        "confidence_entity": 0.5393990874290466,
+        "value": "non first-time first year",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "race",
+        "start": 35,
+        "end": 43,
+        "confidence_entity": 0.9994614720344543,
+        "value": "hispanic",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
     "text": "for academic year 2123 to 2124 how many non-degree-seeking are there?",
     "entities": [
       {
@@ -28,9 +184,9 @@
         "entity": "year",
         "start": 18,
         "end": 22,
-        "confidence_entity": 0.9995386600494385,
-        "role": "from",
-        "confidence_role": 0.6701135039329529,
+        "confidence_entity": 0.9994410872459412,
+        "role": "to",
+        "confidence_role": 0.5880815982818604,
         "value": "2123",
         "extractor": "DIETClassifier"
       },
@@ -38,9 +194,9 @@
         "entity": "year",
         "start": 26,
         "end": 30,
-        "confidence_entity": 0.9995037317276001,
-        "role": "from",
-        "confidence_role": 0.5675902366638184,
+        "confidence_entity": 0.9995606541633606,
+        "role": "to",
+        "confidence_role": 0.7727185487747192,
         "value": "2124",
         "extractor": "DIETClassifier"
       },
@@ -48,40 +204,174 @@
         "entity": "degree-goal",
         "start": 40,
         "end": 58,
-        "confidence_entity": 0.9942581653594971,
+        "confidence_entity": 0.9967663288116455,
         "value": "non-degree-seeking",
         "extractor": "DIETClassifier"
       }
     ]
   },
   {
-    "text": "How many students are recipients of pell grant? for [2135 cohort]?",
+    "text": "How many students graduated within 5 years for 2055 cohort?",
     "entities": [
       {
-        "start": 22,
-        "end": 46,
-        "value": "pell-grant",
-        "entity": "recipients_of_federal_pell_grant"
+        "start": 28,
+        "end": 42,
+        "value": "5 years or less",
+        "entity": "upper_bound_graduation_time"
+      },
+      {
+        "start": 47,
+        "end": 58,
+        "value": "2055 cohort",
+        "entity": "cohort_by_year"
       }
     ],
     "predicted_entities": [
       {
-        "entity": "recipients_of_federal_pell_grant",
-        "start": 22,
-        "end": 46,
-        "confidence_entity": 0.933867871761322,
-        "value": "pell-grant",
+        "entity": "upper_bound_graduation_time",
+        "start": 28,
+        "end": 42,
+        "confidence_entity": 0.9800710082054138,
+        "value": "5 years or less",
         "extractor": "DIETClassifier",
         "processors": [
           "EntitySynonymMapper"
         ]
       },
       {
-        "entity": "cohort_by_year",
-        "start": 58,
-        "end": 64,
-        "confidence_entity": 0.5487545132637024,
-        "value": "cohort",
+        "entity": "upper_bound_graduation_time",
+        "start": 47,
+        "end": 58,
+        "confidence_entity": 0.6332749724388123,
+        "value": "2055 cohort",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "How many students graduated within 4 years for 2090 cohort?",
+    "entities": [
+      {
+        "start": 28,
+        "end": 42,
+        "value": "4 years or less",
+        "entity": "upper_bound_graduation_time"
+      },
+      {
+        "start": 47,
+        "end": 58,
+        "value": "2090 cohort",
+        "entity": "cohort_by_year"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "upper_bound_graduation_time",
+        "start": 28,
+        "end": 42,
+        "confidence_entity": 0.9800710082054138,
+        "value": "4 years or less",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "upper_bound_graduation_time",
+        "start": 47,
+        "end": 58,
+        "confidence_entity": 0.6332749724388123,
+        "value": "2090 cohort",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "graduation rate for students who graduated in 5 years of 2052 cohort",
+    "entities": [
+      {
+        "start": 0,
+        "end": 15,
+        "value": "graduation rate",
+        "entity": "graduation_rate"
+      },
+      {
+        "start": 43,
+        "end": 53,
+        "value": "5 years or less",
+        "entity": "upper_bound_graduation_time"
+      },
+      {
+        "start": 57,
+        "end": 68,
+        "value": "2052 cohort",
+        "entity": "cohort_by_year"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "graduation_rate",
+        "start": 0,
+        "end": 15,
+        "confidence_entity": 0.9983819723129272,
+        "value": "graduation rate",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "upper_bound_graduation_time",
+        "start": 43,
+        "end": 68,
+        "confidence_entity": 0.5634187459945679,
+        "value": "in 5 years of 2052 cohort",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "How many students graduated more than 5 years and 6 years or less for the 2014 cohort?",
+    "entities": [
+      {
+        "start": 28,
+        "end": 45,
+        "value": "more than 5 years",
+        "entity": "lower_bound_graduation_time"
+      },
+      {
+        "start": 50,
+        "end": 65,
+        "value": "6 years or less",
+        "entity": "upper_bound_graduation_time"
+      },
+      {
+        "start": 74,
+        "end": 85,
+        "value": "2014 cohort",
+        "entity": "cohort_by_year"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "lower_bound_graduation_time",
+        "start": 28,
+        "end": 45,
+        "confidence_entity": 0.9661967158317566,
+        "value": "more than 5 years",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "lower_bound_graduation_time",
+        "start": 50,
+        "end": 65,
+        "confidence_entity": 0.7232450842857361,
+        "value": "6 years or less",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "lower_bound_graduation_time",
+        "start": 74,
+        "end": 85,
+        "confidence_entity": 0.6908199191093445,
+        "value": "2014 cohort",
         "extractor": "DIETClassifier"
       }
     ]
