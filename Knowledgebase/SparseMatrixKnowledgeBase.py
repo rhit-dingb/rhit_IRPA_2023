@@ -73,9 +73,6 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
                     
         printEntities = list(printEntities)
         printEntities.append(startYear) 
-        printEntities.append(endYear)
-        # print("FRICK")
-        # print(outputFunc(count, intent, entities))
         return outputFunc(count, intent, printEntities)
 
 
