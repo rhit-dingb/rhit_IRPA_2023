@@ -13,7 +13,7 @@ from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
 from Knowledgebase.IgnoreRowPiece import IgnoreRowPiece
 from Knowledgebase.SparseMatrixKnowledgeBase import SparseMatrixKnowledgeBase
 from Knowledgebase.constants import PERCENTAGE_FORMAT
-from OutputController.output import identityFunc, outputFuncForInteger, outputFuncForPercentage
+from OutputController.output import identityFunc, outputFuncForHighSchoolUnits, outputFuncForInteger, outputFuncForPercentage
 from actions.constants import ANY_AID_COLUMN_NAME, COHORT_GRADUATION_TIME_ENTITY_FORMAT, COHORT_GRADUATION_TIME_START_FORMAT, NO_AID_COLUMN_NAME, PELL_GRANT_COLUMN_NAME, STAFFORD_LOAN_COLUMN_NAME
 from actions.entititesHelper import changeEntityValue, copyEntities, createEntityObj, filterEntities, findEntityHelper, findMultipleSameEntitiesHelper
 from typing import Text
@@ -64,11 +64,14 @@ class ActionQueryHighSchoolUnits(Action):
     def run(self, dispatcher, tracker, domain):
         entitiesExtracted = tracker.latest_message["entities"]
         intent = tracker.latest_message["intent"]["name"]
-        #try:
-        answer = knowledgeBase.searchForAnswer(intent, entitiesExtracted, self.chooseFromOptionsAddRowStrategy,outputFuncForInteger)
+        print(tracker.latest_message["intent"])
+        print(tracker.latest_message["entities"])
+        
+        # try:
+        answer = knowledgeBase.searchForAnswer(intent, entitiesExtracted, self.chooseFromOptionsAddRowStrategy, outputFuncForHighSchoolUnits)
         dispatcher.utter_message(answer)    
-        #except Exception as e:
-            #utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
+        # except Exception as e:
+        #     utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
 
 
 class ActionQueryEnrollment(Action):
@@ -212,8 +215,8 @@ class ActionQueryCohort(Action):
             upperBoundYear = min(self.extractYearFromGraduationYearEntityValue(
                 upperBoundGraduationYearEntities), self.maxYear)
 
-            print("UPPER BOUND YEAR")
-            print(upperBoundYear)
+            # print("UPPER BOUND YEAR")
+            # print(upperBoundYear)
 
             isUpperFoundBoundNotFound = upperBoundYear == -1
             if isUpperFoundBoundNotFound:

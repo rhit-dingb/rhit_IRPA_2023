@@ -56,8 +56,8 @@ class ExcelProcessor():
         for name in dataSourceConnector.sheet_names:
             topic_key_words = [x.lower() for x in name.split(seperator)]
             
-            print(topic)
-            print(name)
+            # print(topic)
+            # print(name)
             # for each sheet, the name has to be in the format subsection_topic. For example: race_enrollment
             if topic in topic_key_words:
                 subsectionName = topic_key_words[0]

@@ -79,8 +79,7 @@ class ChooseFromOptionsAddRowStrategy(ShouldAddRowStrategy):
             for choice in self.choices:
                 if "isDefault" in choice and choice["isDefault"]:
                     entitiesUsedToMatch  = self.defaultShouldAddRow.determineShouldAddRow(row, list(set(choice["columns"]+entities)) )
-                    print(self.getEntityUsed(entitiesUsedToMatch, choice["columns"],entities)
-)
+                    
                     return self.getEntityUsed(entitiesUsedToMatch, choice["columns"],entities)
 
         

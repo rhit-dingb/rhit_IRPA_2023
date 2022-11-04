@@ -277,7 +277,7 @@ nlu:
 
     - What is the [exemptions]{"entity":"exemptions", "value":"exemptions"} for 2014 cohort?
 
-    - What is the [five year]{"entity": "upper_bound_graduation_time", "value": "4 years or less"} [graduation rate]() for [2014](year)?
+    - What is the [five year]{"entity": "upper_bound_graduation_time", "value": "5 years or less"} [graduation rate](graduation_rate) for [2014](year)?
 
     - What is the [final](cohort_initial_final) [2014 cohort](cohort_by_year), after adjusting for [allowable exclusions]{"entity": "exemptions", "value":"exemptions"}
     - Of the [initial](cohort_initial_final) [2120 cohort](cohort_by_year), how many completed the program in [four years or less]{"entity": "upper_bound_graduation_time", "value": "4 years or less"}?
@@ -341,6 +341,9 @@ nlu:
 
 - intent: high_school_units
   examples: | 
+    - total [units recommended]{"entity": "unit_level", "value": "units-recommended"}?
+    - total [units required]{"entity": "unit_level", "value": "units-required"}?
+    - How many academic [units are required]{"entity": "unit_level", "value": "units-required"}?
     - What is the distribution of high school units required and/or recommended?
     - How many [units should I take]{"entity": "unit_level", "value": "units-required"} if I want to get into this school?
 
@@ -350,7 +353,6 @@ nlu:
     - what is the [unit recommended]{"entity": "unit_level", "value": "units-recommended"} for [science]{"entity": "subject", "value": "science"} I should take during high-school for admission into this school?
     
     - How many [lab]{"entity": "subject", "value": "lab"} [units are required]{"entity": "unit_level", "value": "units-required"} 
-
     - For admission, how many [lab]{"entity": "subject", "value": "lab"} [units are recommended]{"entity": "unit_level", "value": "units-recommended"}?
 
     - For admission, how many [science]{"entity": "subject", "value": "science"} [lab]{"entity": "subject", "value": "lab"} [units are required]{"entity": "unit_level", "value": "units-required"} 
