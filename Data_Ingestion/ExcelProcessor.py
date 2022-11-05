@@ -30,7 +30,6 @@ class ExcelProcessor():
             # get the year key.
             yearKey = fileNameSplit[len(fileNameSplit)-2]+"_"+fileNameSplit[len(fileNameSplit)-1]
             yearToData[yearKey] = data
-        
         return yearToData
 
     """ 
@@ -56,17 +55,12 @@ class ExcelProcessor():
         for name in dataSourceConnector.sheet_names:
             topic_key_words = [x.lower() for x in name.split(seperator)]
             
-            # print(topic)
-            # print(name)
+   
             # for each sheet, the name has to be in the format subsection_topic. For example: race_enrollment
             if topic in topic_key_words:
                 subsectionName = topic_key_words[0]
                 df = dataSourceConnector.parse(name)
                 sparseMatrix = SparseMatrix(subsectionName, df)
                 topicData.addSparseMatrix(subsectionName, sparseMatrix)
-                if topic == "cohort":
-                    print("TOPIC DATA")
-                    print(topicData)
-
         return topicData  
                 

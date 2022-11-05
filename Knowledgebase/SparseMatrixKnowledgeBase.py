@@ -44,6 +44,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         entities = []
         usedEntities = []
         printEntities = []
+        
         for entityObj in entitiesExtracted:
             entities.append(entityObj["value"])
 

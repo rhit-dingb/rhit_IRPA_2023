@@ -11,7 +11,7 @@ from Knowledgebase.ChooseFromOptionsAddRowStrategy import ChooseFromOptionsAddRo
 from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
 from DataManager.ExcelDataManager import ExcelDataManager
 from OutputController import output
-from tests.testUtils import createEntityObjHelper, createFakeTracker
+from tests.testUtils import createEntityObjHelper, createFakeTracker, identityFunc
 from actions.actions import knowledgeBase as knowledgeBaseInAction
 from actions.actions import ActionQueryCohort
 
@@ -51,16 +51,10 @@ class cohort_test(unittest.TestCase):
         self.dispatcher = CollectingDispatcher()
         #Make sure the knowledgebase class instance in Actions is using the data manager with test materials loaded.
         knowledgeBaseInAction.dataManager = self.knowledgeBase.dataManager
-        output.constructSentence = self.identityFunc
+        output.constructSentence = identityFunc
         #self.patcher = mock.patch("OutputController.output.constructSentence", return_value = )
         
-        
 
-    def identityFunc(self,x, intent, entities):
-        print("_______")
-        print(x)
-        return x
-    
     #Cohorts actually uses the label of the entities, so we have to write test cases in terms of actions.
     
     def test_knowledgebase_when_ask_for_initial_cohort_should_return_correct_value(self):

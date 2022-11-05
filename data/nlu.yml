@@ -375,6 +375,7 @@ nlu:
     - What is the [recommended units]{"entity": "unit_level", "value": "units-recommended"} for [academic electives]{"entity": "subject", "value": "academic-electives"}
     - What is the [units required]{"entity": "unit_level", "value": "units-required"} for [academic-elective]{"entity": "subject", "value": "academic-electives"}
     - What is the [required unit]{"entity": "unit_level", "value": "units-required"} for [academic electives]{"entity": "subject", "value": "academic-electives"}
+    - What is the [required unit]{"entity": "unit_level", "value": "units-required"} for [electives]{"entity": "subject", "value": "academic-electives"}
 
     - What is the [required units]{"entity": "unit_level", "value": "units-required"} for [computer science]{"entity": "subject", "value": "computer-science"}
     - What is the [recommended units]{"entity": "unit_level", "value": "units-recommended"} for [computer science]{"entity": "subject", "value": "computer-science"}

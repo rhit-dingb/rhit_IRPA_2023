@@ -13,11 +13,10 @@ from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
 from Knowledgebase.IgnoreRowPiece import IgnoreRowPiece
 from Knowledgebase.SparseMatrixKnowledgeBase import SparseMatrixKnowledgeBase
 from Knowledgebase.constants import PERCENTAGE_FORMAT
-from OutputController.output import identityFunc, outputFuncForHighSchoolUnits, outputFuncForInteger, outputFuncForPercentage
+from OutputController import output
 from actions.constants import ANY_AID_COLUMN_NAME, COHORT_GRADUATION_TIME_ENTITY_FORMAT, COHORT_GRADUATION_TIME_START_FORMAT, NO_AID_COLUMN_NAME, PELL_GRANT_COLUMN_NAME, STAFFORD_LOAN_COLUMN_NAME
 from actions.entititesHelper import changeEntityValue, copyEntities, createEntityObj, filterEntities, findEntityHelper, findMultipleSameEntitiesHelper
 from typing import Text
-from OutputController import *
 
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
@@ -68,7 +67,7 @@ class ActionQueryHighSchoolUnits(Action):
         print(tracker.latest_message["entities"])
         
         # try:
-        answer = knowledgeBase.searchForAnswer(intent, entitiesExtracted, self.chooseFromOptionsAddRowStrategy, outputFuncForHighSchoolUnits)
+        answer = knowledgeBase.searchForAnswer(intent, entitiesExtracted, self.chooseFromOptionsAddRowStrategy, output.outputFuncForHighSchoolUnits)
         dispatcher.utter_message(answer)    
         # except Exception as e:
         #     utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
@@ -105,7 +104,7 @@ class ActionQueryEnrollment(Action):
         answer = None
         try:
             answer = knowledgeBase.searchForAnswer(
-                    tracker.latest_message["intent"]["name"], entitiesExtracted, selectedShouldAddRowStrategy, outputFuncForInteger)
+                    tracker.latest_message["intent"]["name"], entitiesExtracted, selectedShouldAddRowStrategy, output.outputFuncForInteger)
             dispatcher.utter_message(answer)
         except Exception as e:
             utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
@@ -118,7 +117,7 @@ class ActionQueryCohort(Action):
         super().__init__()
         self.maxYear = 6
         self.minYear = 4
-        self.currentOutputFunc =  outputFuncForInteger
+        self.currentOutputFunc =  output.outputFuncForInteger
 
     def name(self) -> Text:
         return "action_query_cohort"
@@ -229,14 +228,14 @@ class ActionQueryCohort(Action):
             try:
                 answer, intent, entitiesUsed = knowledgeBase.aggregateDiscreteRange(
                 intent, entitiesFiltered, lowerBoundYear, upperBoundYear, generator, ignoreAnyAidShouldAddRow,
-                outputFunc = identityFunc
+                outputFunc = output.identityFunc
                 )
 
                 if askForGraduationRate:
                     entitiesUsed.add(askForGraduationRate["value"])
                     answer = self.calculateGraduationRate(intent, entitiesUsed, entitiesFiltered, float(answer), ignoreAnyAidShouldAddRow)
                 else:
-                    answer = outputFuncForInteger(answer, intent, entitiesUsed)
+                    answer = output.outputFuncForInteger(answer, intent, entitiesUsed)
                 
                 dispatcher.utter_message(answer)    
             except Exception as e:
@@ -244,7 +243,7 @@ class ActionQueryCohort(Action):
             
         else:
             if askRetentionRate:
-                self.currentOutputFunc = outputFuncForPercentage
+                self.currentOutputFunc = output.outputFuncForPercentage
             
             try:
                 answer = knowledgeBase.searchForAnswer(intent, entitiesExtracted, ignoreAnyAidShouldAddRow, outputFunc=self.currentOutputFunc)
