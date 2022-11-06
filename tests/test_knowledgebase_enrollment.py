@@ -52,13 +52,16 @@ class enrollment_test(unittest.TestCase):
 
         # #Making sure the data loaded is consistent for testing
         # self.data = self.excelProcessor.processExcelSparse("../Data_Ingestion/CDS_SPARSE_ENR.xlsx", self.topicToParse)
-
+    def extractOutput(self, answer, intent, entities):
+        return str(int(answer))
+    
+    
     def test_when_ask_for_total_graduates_enrollment_should_return_correct_value(self):
         answer = self.knowledgeBase.searchForAnswer("enrollment", [
             createEntityObjHelper("graduate"),
             createEntityObjHelper("2020", "year", "from"),
             createEntityObjHelper("2021", "year", "to")
-        ], self.defaultShouldAddRowStrategy)
+        ], self.defaultShouldAddRowStrategy, self.extractOutput)
         
         self.assertEqual(answer, str(TOTAL_GRADUATES))
 
@@ -68,7 +71,7 @@ class enrollment_test(unittest.TestCase):
             createEntityObjHelper("non-degree-seeking"),
             createEntityObjHelper("2020", "year", "from"),
             createEntityObjHelper("2021", "year", "to")
-        ], self.defaultShouldAddRowStrategy)
+        ], self.defaultShouldAddRowStrategy, self.extractOutput)
 
         self.assertEqual(answer, str(NON_DEGREE_SEEKING_STUDENTS))
 
@@ -80,7 +83,7 @@ class enrollment_test(unittest.TestCase):
             createEntityObjHelper("2020", "year", "from"),
             createEntityObjHelper("2021", "year", "to")
 
-        ], self.defaultShouldAddRowStrategy)
+        ], self.defaultShouldAddRowStrategy, self.extractOutput)
         self.assertEqual(answer, str(TOTAL_UNDERGRADUATES))
 
     def test_ask_for_full_time_undergraduates_enrollment(self):
@@ -88,7 +91,7 @@ class enrollment_test(unittest.TestCase):
             createEntityObjHelper("undergraduate"),
             createEntityObjHelper("2020", "year", "from"),
             createEntityObjHelper("2021", "year", "to"),
-            createEntityObjHelper("full-time")], self.defaultShouldAddRowStrategy)
+            createEntityObjHelper("full-time")], self.defaultShouldAddRowStrategy, self.extractOutput)
         self.assertEqual(answer, str(TOTAL_UNDERGRADUATES -
                          TOTAL_UNDERGRADUATE_PART_TIME))
 
@@ -99,7 +102,7 @@ class enrollment_test(unittest.TestCase):
             createEntityObjHelper("first-time"),
             createEntityObjHelper("2020", "year", "from"),
             createEntityObjHelper("2021", "year", "to"),
-            createEntityObjHelper("freshman")], self.defaultShouldAddRowStrategy)
+            createEntityObjHelper("freshman")], self.defaultShouldAddRowStrategy, self.extractOutput)
         self.assertEqual(answer, str(DEGREE_SEEKING_FIRST_TIME_FRESHMAN))
 
     def test_ask_for_hispanics_students_enrollment(self):
@@ -107,7 +110,7 @@ class enrollment_test(unittest.TestCase):
             createEntityObjHelper("hispanic"),
             createEntityObjHelper("2020", "year", "from"),
             createEntityObjHelper("2021", "year", "to")
-        ], self.defaultShouldAddRowStrategy)
+        ], self.defaultShouldAddRowStrategy, self.extractOutput)
         self.assertEqual(answer, str(HISPANIC_STUDENTS_ENROLLMENT))
 
     def test_ask_for_non_freshmans(self):
@@ -115,7 +118,7 @@ class enrollment_test(unittest.TestCase):
                                                     [
                                                         createEntityObjHelper(
                                                             "non-freshman")
-                                                    ], self.defaultShouldAddRowStrategy)
+                                                    ], self.defaultShouldAddRowStrategy, self.extractOutput)
         self.assertEqual(answer, str(NON_FRESHMAN))
 
     def test_ask_for_full_time_undergraduate_men_non_freshmans(self):
@@ -126,7 +129,7 @@ class enrollment_test(unittest.TestCase):
             createEntityObjHelper("non-freshman"),
             createEntityObjHelper("2020", "year", "from"),
             createEntityObjHelper("2021", "year", "to"),
-            ], self.defaultShouldAddRowStrategy)
+            ], self.defaultShouldAddRowStrategy, self.extractOutput)
         self.assertEqual(answer, str(DEGREE_SEEKING_FIRST_TIME_NON_FRESHMAN))
 
     # for this test, I am assuming if we asked for data that the CDS does not have,
@@ -137,7 +140,7 @@ class enrollment_test(unittest.TestCase):
                                                      createEntityObjHelper("asian", entityLabel="race"), 
                                                     createEntityObjHelper("2020", "year", "from"),
                                                     createEntityObjHelper("2021", "year", "to")],
-                                                    self.chooseFromOptionAddRowStrategy)
+                                                    self.chooseFromOptionAddRowStrategy, self.extractOutput)
         self.assertEqual(answer, str(
             DEGREE_SEEKING_UNDERGRADUATE_ASIAN_STUDENTS_ENROLLED))
 
@@ -152,7 +155,7 @@ class enrollment_test(unittest.TestCase):
                                                      createEntityObjHelper("asian"),
                                                      createEntityObjHelper("2020", "year", "from"),
                                                     createEntityObjHelper("2021", "year", "to")],
-                                                    self.chooseFromOptionAddRowStrategy)
+                                                    self.chooseFromOptionAddRowStrategy, self.extractOutput)
         self.assertEqual(answer, str(
             DEGREE_SEEKING_UNDERGRADUATE_ASIAN_STUDENTS_ENROLLED))
 
@@ -164,7 +167,7 @@ class enrollment_test(unittest.TestCase):
                                                                        "first-time"),
                                                                     createEntityObjHelper("2020", "year", "from"),
                                                                     createEntityObjHelper("2021", "year", "to"),
-                                                                   createEntityObjHelper("degree-seeking")], self.chooseFromOptionAddRowStrategy)
+                                                                   createEntityObjHelper("degree-seeking")], self.chooseFromOptionAddRowStrategy, self.extractOutput)
         self.assertEqual(answer, str(31))
 
     def test_ask_for_asian_student_enrollment_should_not_sum_up_two_row(self):
@@ -172,7 +175,7 @@ class enrollment_test(unittest.TestCase):
             createEntityObjHelper("asian"),
             createEntityObjHelper("2020", "year", "from"),
             createEntityObjHelper("2021", "year", "to")
-        ], self.chooseFromOptionAddRowStrategy)
+        ], self.chooseFromOptionAddRowStrategy, self.extractOutput)
         self.assertEqual(answer, str(
             DEGREE_SEEKING_UNDERGRADUATE_ASIAN_STUDENTS_ENROLLED))
 
@@ -182,7 +185,7 @@ class enrollment_test(unittest.TestCase):
             createEntityObjHelper("pizza"),
             createEntityObjHelper("2020", "year", "from"),
              createEntityObjHelper("2021", "year", "to")
-        ], self.chooseFromOptionAddRowStrategy)
+        ], self.chooseFromOptionAddRowStrategy, self.extractOutput)
         self.assertEqual(answer, str(104))
 
     def test_ask_for_first_time_unknown_race_but_entity_provided_twice(self):
@@ -192,7 +195,7 @@ class enrollment_test(unittest.TestCase):
             createEntityObjHelper("first-time"),
             createEntityObjHelper("2020", "year", "from"),
              createEntityObjHelper("2021", "year", "to")
-        ], self.chooseFromOptionAddRowStrategy)
+        ], self.chooseFromOptionAddRowStrategy, self.extractOutput)
         self.assertEqual(answer, str(
             UNDERGRADUATE_FIRST_TIME_DEGREE_SEEKING_UNKNOWN_RACE_STUDENT_ENROLLED))
 
@@ -201,7 +204,7 @@ class enrollment_test(unittest.TestCase):
             createEntityObjHelper("african-american"),
             createEntityObjHelper("2020", "year", "from"),
              createEntityObjHelper("2021", "year", "to")
-        ], self.chooseFromOptionAddRowStrategy)
+        ], self.chooseFromOptionAddRowStrategy, self.extractOutput)
         self.assertEqual(answer, str(
             UNDERGRADUATE_DEGREE_SEEKING_AFRICAN_AMERICAN_STUDEN_ENROLLED))
 
@@ -211,7 +214,7 @@ class enrollment_test(unittest.TestCase):
             self.knowledgeBase.searchForAnswer("enrollment", [
                 createEntityObjHelper("african-american"),
                 createEntityObjHelper("3000-3001", "year"),
-            ], self.chooseFromOptionAddRowStrategy)
+            ], self.chooseFromOptionAddRowStrategy, self.extractOutput)
             
         exceptionRaised = cm.exception
         self.assertEqual(exceptionRaised.fallBackMessage,
@@ -224,7 +227,7 @@ class enrollment_test(unittest.TestCase):
             createEntityObjHelper("degree-seeking"),
             createEntityObjHelper("non-first-time"),
             createEntityObjHelper("2020", "year", "from"),
-        ], self.defaultShouldAddRowStrategy)
+        ], self.defaultShouldAddRowStrategy, self.extractOutput)
 
         self.assertEqual(answer, str(NON_FIRST_TIME))
 
@@ -247,7 +250,7 @@ class enrollment_test(unittest.TestCase):
                     createEntityObjHelper("degree-seeking"),
                     createEntityObjHelper("non-first-time"),
                     createEntityObjHelper("2020", "year", "to")
-                ], self.defaultShouldAddRowStrategy)
+                ], self.defaultShouldAddRowStrategy, self.extractOutput)
 
             exceptionRaised = cm.exception
             self.assertEqual(exceptionRaised.fallBackMessage,
