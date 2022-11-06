@@ -321,6 +321,8 @@ nlu:
 
     - Does your institution require [high school completion]{"entity": "completion-requirement"} for degree-seeking entering student? 
 
+    - is there any [high school completion]{"entity": "completion-requirement"} requirement for your institute? 
+
 - synonym: waiting-list
   examples: |
     - waiting list
