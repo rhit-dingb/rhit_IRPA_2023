@@ -14,10 +14,6 @@ intents:
   - mood_unhappy
   - bot_challenge
 
-  # Intents for different topics on the IRPA common dataset
-  - enrollment
-  - cohort
-
 
 entities:
   # full-time, part-time
