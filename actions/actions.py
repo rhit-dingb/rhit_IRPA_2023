@@ -101,11 +101,11 @@ class ActionQueryAdmission(Action):
         print(tracker.latest_message["entities"])
         selectedShouldAddRowStrategy = defaultShouldAddRowStrategy
        
-
+        
         answer = None
         # try:
         answer = knowledgeBase.searchForAnswer(
-            tracker.latest_message["intent"]["name"], entitiesExtracted, selectedShouldAddRowStrategy)
+            tracker.latest_message["intent"]["name"], entitiesExtracted, selectedShouldAddRowStrategy,outputFuncForInteger)
         dispatcher.utter_message(answer)
         # except Exception as e:
             # utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
