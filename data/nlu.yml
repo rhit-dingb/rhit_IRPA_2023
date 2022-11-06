@@ -104,45 +104,62 @@ nlu:
     
     - How many [full-time]{"entity": "enrollment_status", "value": "full-time"} [undergraduate]{"entity":"student_level", "value": "undergraduate"} students are there in Rose-Hulman?
     - How many [full time]{"entity": "enrollment_status", "value": "full-time"} [undergraduate]{"entity":"student_level", "value": "undergraduate"} students are there in Rose-Hulman?
+
     - How many [full-time]{"entity": "enrollment_status", "value": "full-time"} [undergraduates]{"entity":"student_level", "value": "undergraduate"} are there in Rose-Hulman?
     - How many [full time]{"entity": "enrollment_status", "value": "full-time"} [undergraduates]{"entity":"student_level", "value": "undergraduate"} are there in Rose-Hulman?
+
     - How many [full-time]{"entity": "enrollment_status" , "value": "full-time"} [graduates]{"entity":"student_level", "value":"graduate"} are there in Rose-Hulman?
     - How many [full time]{"entity": "enrollment_status" , "value": "full-time"} [graduates]{"entity":"student_level", "value":"graduate"} are there in Rose-Hulman?
+
     - How many [part-time]{"entity": "enrollment_status", "value": "part-time"} [undergraduate]{"entity":"student_level", "value": "undergraduate"} students are there in Rose-Hulman?
     - How many [part time]{"entity": "enrollment_status", "value": "part-time"} [undergraduate]{"entity":"student_level", "value": "undergraduate"} students are there in Rose-Hulman?
+
     - How many [part-time]{"entity": "enrollment_status", "value": "part-time"} [undergraduates]{"entity":"student_level", "value": "undergraduate"} are there in Rose-Hulman?
     - How many [part time]{"entity": "enrollment_status", "value": "part-time"} [undergraduates]{"entity":"student_level", "value": "undergraduate"} are there in Rose-Hulman?
+
     - How many [part-time]{"entity": "enrollment_status", "value": "part-time"} [graduate]{"entity":"student_level", "value": "undergraduate"} students are there in Rose-Hulman?
     - How many [part time]{"entity": "enrollment_status", "value": "part-time"} [graduate]{"entity":"student_level", "value": "undergraduate"} students are there in Rose-Hulman?
+
     - How many [full time]{"entity": "enrollment_status", "value": "full-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"}
     
     - I want to know about the number of [graduate students]{"entity":"student_level", "value":"graduate"} here
     - I want to know about the number of [graduates]{"entity":"student_level", "value":"graduate"} here
+    - I want to know about the number of [graduates]{"entity":"student_level", "value":"graduate"} here
     
     - How many [non full time]{"entity": "enrollment_status", "value": "part-time"} [undergraduate]{"entity":"student_level", "value": "undergraduate"} students are there in Rose-Hulman?
     - Tell me the number of [undergraduates]{"entity":"student_level", "value": "undergraduate"} at Rose-Hulman
+
     - How many [men]{"entity": "gender", "value": "male"} students are there in Rose-Hulman?
     - How many [woman]{"entity": "gender", "value": "female"} students are there in Rose-Hulman?
+
     - How many [male]{"entity": "gender", "value": "male"} student are there?
     - How many [female]{"entity": "gender", "value": "female"} student are there?
+
     - How many [male]{"entity": "gender", "value": "male"} [non freshman]{"entity": "undergraduate_grade_level", "value": "non-freshman"} students are enrolled?
     - How many [male]{"entity": "gender", "value": "male"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students are enrolled?
     - How many [male]{"entity": "gender", "value": "male"} [non first time]{"entity": "is_first_time", "value": "non-first-time"} students are enrolled?
     - How many [male]{"entity": "gender", "value": "male"} [first time]{"entity": "is_first_time", "value": "first-time"} students are enrolled?
+
     - How many [non degree seeking]{"entity": "degree-goal", "value": "non-degree-seeking"} [undergrad]{"entity":"student_level", "value": "undergraduate"} student please tell me
+
     - How many [degree-seeking]{"entity":"degree-goal", "value": "degree-seeking"} [first-time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} are there?
+
     - How many students that are [not first-time]{"entity": "is_first_time", "value": "non-first-time"}?
     - How many students that are [non first time]{"entity": "is_first_time", "value": "non-first-time"}?
     - how many [non first time]{"entity": "is_first_time", "value": "non-first-time"}? students are there?
     - How many students that are [non-first-time]{"entity": "is_first_time", "value": "non-first-time"}?
+
     - How many [non-degree-seeking]{"entity":"degree-goal", "value":"non-degree-seeking"} [first-time]{"entity": "is_first_time", "value":"first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} are there?
     
     - I want to know about how many [non degree-seeking]{"entity":"degree-goal", "value":"non-degree-seeking"} [first-time]{"entity": "is_first_time", "value": "first-time"} students.
+
     - Tell me about the number of [degree seeking]{"entity": "degree-goal", "value": "degree-seeking"} students who are [not freshman]{"entity":"undergraduate_grade_level", "value":"non-freshman"}
+
     - How many [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} [first time]{"entity": "is_first_time", "value": "first-time"} students are enrolled?
     - How many [non freshman]{"entity": "undergraduate_grade_level", "value": "non-freshman"} [first time]{"entity": "is_first_time", "value": "first-time"} students are enrolled?
     - How many [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} [non first time]{"entity": "is_first_time", "value": "non-first-time"} students are enrolled?
     - How many [non freshman]{"entity": "undergraduate_grade_level", "value": "non-freshman"} [non first time]{"entity": "is_first_time", "value": "non-first-time"} students are enrolled?
+
     - How many [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} [first time]{"entity": "is_first_time", "value": "first-time"} [first year]{"entity": "is_first_year", "value": "first-year"} students are enrolled?
     - How many [non freshman]{"entity": "undergraduate_grade_level", "value": "non-freshman"} [first time]{"entity": "is_first_time", "value": "first-time"} [first year]{"entity": "is_first_year", "value": "first-year"} students are enrolled?
     - How many [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} [non first time]{"entity": "is_first_time", "value": "non-first-time"} [first year]{"entity": "is_first_year", "value": "first-year"} students are enrolled?
@@ -151,22 +168,27 @@ nlu:
     - How many [non freshman]{"entity": "undergraduate_grade_level", "value": "non-freshman"} [first time]{"entity": "is_first_time", "value": "first-time"} [non first year]{"entity": "is_first_year", "value": "non-first-year"} students are enrolled?
     - How many [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} [non first time]{"entity": "is_first_time", "value": "non-first-time"} [non first year]{"entity": "is_first_year", "value": "non-first-year"} students are enrolled?
     - How many [non freshman]{"entity": "undergraduate_grade_level", "value": "non-freshman"} [non first time]{"entity": "is_first_time", "value": "non-first-time"} [non first year]{"entity": "is_first_year", "value": "non-first-year"} students are enrolled?
+
     - How many [first time]{"entity": "is_first_time", "value": "first-time"} [part time]{"entity": "enrollment_status", "value": "part-time"} students are enrolled?
     - How many [first time]{"entity": "is_first_time", "value": "first-time"} [full time]{"entity": "enrollment_status", "value": "full-time"} students are enrolled?
     - How many [non first time]{"entity": "is_first_time", "value": "non-first-time"} [part time]{"entity": "enrollment_status", "value": "part-time"} students are enrolled?
     - How many [non first time]{"entity": "is_first_time", "value": "non-first-time"} [full time]{"entity": "enrollment_status", "value": "full-time"} students are enrolled?
+
     - How many [full time]{"entity": "enrollment_status", "value": "full-time"} [first year]{"entity": "is_first_year", "value": "first-year"} students are enrolled?
     - How many [full time]{"entity": "enrollment_status", "value": "full-time"} [non first year]{"entity": "is_first_year", "value": "non-first-year"} students are enrolled?
     - How many [part time]{"entity": "enrollment_status", "value": "part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} students are enrolled?
     - How many [part time]{"entity": "enrollment_status", "value": "part-time"} [non first year]{"entity": "is_first_year", "value": "non-first-year"} students are enrolled?
+
     - How many [first time]{"entity": "is_first_time", "value": "first-time"} [first year]{"entity": "is_first_year", "value": "first-year"} students are enrolled?
     - How many [first time]{"entity": "is_first_time", "value": "first-time"} [non first year]{"entity": "is_first_year", "value": "non-first-year"} students are enrolled?
     - How many [non first time]{"entity": "is_first_time", "value": "non-first-time"} [first year]{"entity": "is_first_year", "value": "first-year"} students are enrolled?
     - How many [non first time]{"entity": "is_first_time", "value": "non-first-time"} [non first year]{"entity": "is_first_year", "value": "non-first-year"} students are enrolled?
+
     - How many [first year]{"entity": "is_first_year", "value": "first-year"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} are enrolled?
     - How many [first year]{"entity": "is_first_year", "value": "first-year"} [non freshman]{"entity": "undergraduate_grade_level", "value": "non-freshman"} are enrolled?
     - How many [non first year]{"entity": "is_first_year", "value": "non-first-year"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} are enrolled?
     - How many [non first year]{"entity": "is_first_year", "value": "non-first-year"} [non freshman]{"entity": "undergraduate_grade_level", "value": "non-freshman"} are enrolled?
+
     - How many [first year]{"entity": "is_first_year", "value": "first-year"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} [first time]{"entity": "is_first_time", "value": "first-time"} students are enrolled?
     - How many [first year]{"entity": "is_first_year", "value": "first-year"} [non freshman]{"entity": "undergraduate_grade_level", "value": "non-freshman"} [first time]{"entity": "is_first_time", "value": "first-time"} students are enrolled?
     - How many [non first year]{"entity": "is_first_year", "value": "non-first-year"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} [first time]{"entity": "is_first_time", "value": "first-time"} students are enrolled?
@@ -175,6 +197,7 @@ nlu:
     - How many [first year]{"entity": "is_first_year", "value": "first-year"} [non freshman]{"entity": "undergraduate_grade_level", "value": "non-freshman"} [non first time]{"entity": "is_first_time", "value": "non-first-time"} students are enrolled?
     - How many [non first year]{"entity": "is_first_year", "value": "non-first-year"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} [non first time]{"entity": "is_first_time", "value": "non-first-time"} students are enrolled?
     - How many [non first year]{"entity": "is_first_year", "value": "non-first-year"} [non freshman]{"entity": "undergraduate_grade_level", "value": "non-freshman"} [non first time]{"entity": "is_first_time", "value": "non-first-time"} students are enrolled?
+
     - How many [first year]{"entity": "is_first_year", "value": "first-year"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} [first time]{"entity": "is_first_time", "value": "first-time"} [part time]{"entity": "enrollment_status", "value": "part-time"} students are enrolled?
     - How many [first year]{"entity": "is_first_year", "value": "first-year"} [non freshman]{"entity": "undergraduate_grade_level", "value": "non-freshman"} [first time]{"entity": "is_first_time", "value": "first-time"} [part time]{"entity": "enrollment_status", "value": "part-time"} students are enrolled?
     - How many [non first year]{"entity": "is_first_year", "value": "non-first-year"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} [first time]{"entity": "is_first_time", "value": "first-time"} [part time]{"entity": "enrollment_status", "value": "part-time"} students are enrolled?
@@ -191,6 +214,7 @@ nlu:
     - How many [first year]{"entity": "is_first_year", "value": "first-year"} [non freshman]{"entity": "undergraduate_grade_level", "value": "non-freshman"} [non first time]{"entity": "is_first_time", "value": "non-first-time"} [full time]{"entity": "enrollment_status", "value": "full-time"} students are enrolled?
     - How many [non first year]{"entity": "is_first_year", "value": "non-first-year"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} [non first time]{"entity": "is_first_time", "value": "non-first-time"} [full time]{"entity": "enrollment_status", "value": "full-time"} students are enrolled?
     - How many [non first year]{"entity": "is_first_year", "value": "non-first-year"} [non freshman]{"entity": "undergraduate_grade_level", "value": "non-freshman"} [non first time]{"entity": "is_first_time", "value": "non-first-time"} [full time]{"entity": "enrollment_status", "value": "full-time"} students are enrolled?
+
     - How many [nonresident-alien]{"entity": "race"} students are enrolled? 
     - How many [hispanic]{"entity": "race"} students are enrolled? 
     - How many [african-american]{"entity": "race"} students are enrolled?
@@ -202,6 +226,7 @@ nlu:
     - How many students of [two-or-more]{"entity": "race"} races are enrolled? 
     - How many students of [two or more races]{"entity": "race"} are enrolled? 
     - How many students of [unknown]{"entity": "race"} race are enrolled? 
+
     - how many [first time]{"entity": "is_first_time", "value": "first-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [hispanic]{"entity":"race"} students are there?
     
     - how many [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} students are there?
@@ -213,9 +238,10 @@ nlu:
     - how many [non first-time]{"entity": "is_first_time", "value": "non-first-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [hispanic]{"entity":"race"} students are there?
   
     - how many [first-year]{"entity": "is_first_year", "value": "first-year"} students are there?
-  
+
     - how many [non-first-year]{"entity": "is_first_year", "value": "non-first-year"} students are there?
     - how many [non first-year]{"entity": "is_first_year", "value": "non-first-year"} students are there?
+
     - how many students who are [not first year]{"entity": "is_first_year", "value": "non-first-year"} are enrolled?
     - how many students who are [non first year]{"entity": "is_first_year", "value": "non-first-year"} are enrolled?
     
@@ -224,6 +250,7 @@ nlu:
     - How many [undergraduate]{"entity": "student_level", "value": "undergraduate"} students are there in [2054]{"entity": "year", "role": "from"} ?
     - In [2015]{"entity": "year", "role": "from"} how many students from there?
     - How many [asian]{"entity": "race"} students are enrolled in [2019]{"entity": "year", "role":"from"} to [2022]{"entity": "year", "role":"to"}
+
     - How many [undergraduates]{"entity": "student_level", "value": "undergraduate"} are there in [2020]{"entity": "year", "role":"from"} - [2021]{"entity": "year", "role":"to"} academic year?
     
     - How many [female]{"entity": "gender", "value": "female"} [undergraduates]{"entity": "student_level", "value": "undergraduate"} are there in academic year [2021]{"entity": "year", "role":"from"} to [2022]{"entity": "year", "role":"to"}?
@@ -239,39 +266,53 @@ nlu:
   examples: |
     - I want to know about [2015 cohort](cohort_by_year)
     - What is the [initial](cohort_initial_final) [2014 cohort](cohort_by_year) of [first-time](is_first_time), [fulltime](enrollment_status), [bachelor's](student_level) [degree-seeking](degree-goal) students?
-    - Of the [initial](cohort_initial_final) [2014 cohort](cohort_by_year), how many [did not persist](exemptions) and [did not graduate](exemptions) for the following reasons: [deceased](exemptions), [permanently disabled](exemptions), [armed forces](exemptions), [foreign aid service of the federal government](exemptions), or [official church missions](exemptions)?
-    - What is the total [allowable exclusions](exemptions) of the [3564 cohort](cohort_by_year)
+    - Of the [initial](cohort_initial_final) [2014 cohort](cohort_by_year), how many [did not persist](exemptions) and [did not graduate]{"entity":"exemptions", "value":"exemptions"} for the following reasons: [deceased]{"entity":"exemptions", "value":"exemptions"}, [permanently disabled]{"entity":"exemptions", "value":"exemptions"}, [armed forces](exemptions), [foreign aid service of the federal government]{"entity":"exemptions", "value":"exemptions"}, or [official church missions]{"entity":"exemptions", "value":"exemptions"}?
+    - What is the total [allowable exclusions]{"entity":"exemptions", "value":"exemptions"} of the [3564 cohort](cohort_by_year)
 
-    - How many students [left](exemptions) the school due to some reason for the [2014 cohort](cohort_by_year)?
-    - What is the [Final](cohort_initial_final) [2014 cohort](cohort_by_year), after adjusting for [allowable exclusions]{"entity": "exemptions", "value":"exemptions"}
+    - How many students [left]{"entity":"exemptions", "value":"exemptions"} the school due to some reason for the [2014 cohort](cohort_by_year)?
+     
+    - How many students were [exemption]{"entity":"exemptions", "value":"exemptions"} for [8231 cohort](cohort_by_year)?
+    - How many students [left]{"entity":"exemptions", "value":"exemptions"} the school due to some reason for the [2014 cohort](cohort_by_year)?
+    - How many students were [exempted]{"entity":"exemptions", "value":"exemptions"} for [2314 cohort](cohort_by_year)?
+
+    - What is the [exemptions]{"entity":"exemptions", "value":"exemptions"} for 2014 cohort?
+
+    - What is the [five year]{"entity": "upper_bound_graduation_time", "value": "4 years or less"} [graduation rate]() for [2014](year)?
+
+    - What is the [final](cohort_initial_final) [2014 cohort](cohort_by_year), after adjusting for [allowable exclusions]{"entity": "exemptions", "value":"exemptions"}
     - Of the [initial](cohort_initial_final) [2120 cohort](cohort_by_year), how many completed the program in [four years or less]{"entity": "upper_bound_graduation_time", "value": "4 years or less"}?
     - Of the [initial](cohort_initial_final) [9208 cohort](cohort_by_year), how many completed the program in [more than four years]{"entity": "lower_bound_graduation_time", "value": "more than 4 years"} but in [five years or less]{"entity": "upper_bound_graduation_time", "value": "5 years or less"}? 
     - Of the [initial](cohort_initial_final) [2013 cohort](cohort_by_year), how many completed the program in [more than five years]{"entity": "lower_bound_graduation_time", "value": "more than 5 years"} but in [six years or less]{"entity": "upper_bound_graduation_time", "value": "6 years or less"}?
     - Of the [initial](cohort_initial_final) [4014 cohort](cohort_by_year), how many completed the program in [more than four years]{"entity": "lower_bound_graduation_time", "value": "more than 4 years"} but in [five years or less]{"entity": "upper_bound_graduation_time", "value": "5 years or less"} and are [recipients of subsidized stafford loan and did not receive a pell grant]{"entity": "recipients_of_a_subsidized_stafford_loan_who_did_not_receive_a_pell_grant", "value": "stafford-loan"}
 
-
     - What is the [six year]{"entity": "upper_bound_graduation_time", "value": "6 years or less"} [graduation rate](graduation_rate) for students who are [recipients of a federal pell grant]{"entity": "recipients_of_federal_pell_grant", "value": "pell-grant"} in the [2013 cohort](cohort_by_year)?
     - what is the total number of students [graduating within six years]{"entity": "upper_bound_graduation_time", "value": "6 years or less"} for [2019 cohort](cohort_by_year) who [did not receive either a pell grant or a subsidized stafford loan]{"entity":"students_who_did_not_receive_either_a_pell_grant_or_a_subsidized_stafford_loan", "value": "no-aid"}
 
-    - What is the [six year]{"entity": "upper_bound_graduation_time", "value": "6 years or less"} [graduation_rate](graduation_rate) for the [2013 cohort](cohort_by_year)?
-    - What is the [five year]{"entity": "upper_bound_graduation_time", "value": "5 years or less"} [graduation_rate](graduation_rate) for the [2013 cohort](cohort_by_year)?
-    - What is the [four year]{"entity": "upper_bound_graduation_time", "value": "4 years or less"} [graduation_rate](graduation_rate) for the [2013 cohort](cohort_by_year)?
+    - What is the [six year]{"entity": "upper_bound_graduation_time", "value": "6 years or less"} [graduation rate](graduation_rate) for the [2013 cohort](cohort_by_year)?
+    - What is the [five year]{"entity": "upper_bound_graduation_time", "value": "5 years or less"} [graduation-rate](graduation_rate) for the [2013 cohort](cohort_by_year)?
+    - What is the [four year]{"entity": "upper_bound_graduation_time", "value": "4 years or less"} [graduating rate](graduation_rate) for the [2013 cohort](cohort_by_year)?
     
+
+    # graduation time training
     - How many students graduated [within six years]{"entity": "upper_bound_graduation_time", "value": "6 years or less"} for [cohort of 2013](cohort_by_year) ?
     - How many students graduated [within five years]{"entity": "upper_bound_graduation_time", "value": "5 years or less"} for [2055 cohort](cohort_by_year)?
     - How many students graduated [within four years]{"entity": "upper_bound_graduation_time", "value": "4 years or less"} for [2090 cohort](cohort_by_year)?
+    - What is the [graduation rate](graduation_rate) for students who graduated [within five year]{"entity": "upper_bound_graduation_time", "value": "5 years or less"} in [2014 cohort](cohort_by_year)?
+    - How many students graduated [within five years]{"entity": "upper_bound_graduation_time", "value": "5 years or less"} for [2014 cohort](cohort_by_year?
 
     - How many students graduated [within 6 years]{"entity": "upper_bound_graduation_time", "value": "6 years or less"} for [cohort of 2013](cohort_by_year) ?
     - How many students graduated [within 5 years]{"entity": "upper_bound_graduation_time", "value": "5 years or less"} for [2055 cohort](cohort_by_year)?
     - How many students graduated [within 4 years]{"entity": "upper_bound_graduation_time", "value": "4 years or less"} for [2090 cohort](cohort_by_year)?
-    - [graduation rate](graduation_rate) for students who [graduated in 5 years]{"entity": "upper_bound_graduation_time", "value": "5 years or less"} of [2052 cohort](cohort_by_year)
+    - I want to know students who graduated [within four year]{"entity": "upper_bound_graduation_time", "value": "4 years or less"} of [2014 cohort](cohort_by_year)
+    
+    - [graduation rate](graduation_rate) for students who graduated [in 5 years]{"entity": "upper_bound_graduation_time", "value": "5 years or less"} of [2052 cohort](cohort_by_year)
     - 
     - How many students graduated [more than 5 years]{"entity":"lower_bound_graduation_time", "value":"more than 5 years"} and [6 years or less]{"entity":"upper_bound_graduation_time", "value":"6 years or less"} for the [2014 cohort](cohort_by_year)?
     - How many students graduated in [five year or less]{"entity": "upper_bound_graduation_time", "value": "5 years or less"} for [2055 cohort](cohort_by_year) who received [no aid]{"entity":"students_who_did_not_receive_either_a_pell_grant_or_a_subsidized_stafford_loan", "value": "no-aid"}
     
     - What is the [graduation rate](graduation_rate) for students who [graduated in 5 years]{"entity": "upper_bound_graduation_time", "value": "5 years or less"} and [more than four year]{"entity": "lower_bound_graduation_time", "value": "more than 4 years"} for the [cohort of 2014](cohort_by_year)?
 
-    
+    #Financial aid training data for cohorts.
     - How many students in the [6590 cohort](cohort_by_year) are [recipients of subsidized loan and did not receive federal pell grant]{"entity": "recipients_of_a_subsidized_stafford_loan_who_did_not_receive_a_pell_grant", "value": "stafford-loan"}?
     - How many students in the [2019 cohort](cohort_by_year) are [did not receive subsidized loan and did not receive federal pell grant]{"entity": "students_who_did_not_receive_either_a_pell_grant_or_a_subsidized_stafford_loan", "value":"no-aid")?
     - How many students in the [6590 cohort](cohort_by_year) are [recipients of subsidized loan and did not receive federal pell grant]{"entity": "recipients_of_a_subsidized_stafford_loan_who_did_not_receive_a_pell_grant", "value": "stafford-loan"}?
@@ -331,14 +372,30 @@ nlu:
     - wait-list
     
 
+    #Retention rate training data:
+    - What is the [retention rate]{"entity": "retention-rate", "value": "retention-rate"} for [2019 cohort](cohort_by_year)?
+    - I want to know about the [retention rate]{"entity": "retention-rate", "value": "retention-rate"}
+    - [retention rate][retention-rate]{"entity": "retention-rate", "value": "retention-rate"}
+    - [retention-rate]{"entity": "retention-rate", "value": "retention-rate"} at rose-hulman in [2019]{"entity":"year", "role": "from"}
+    - What is the [rate of retention]{"entity": "retention-rate", "value": "retention-rate"} for [2021]{"entity":"year", "role": "from"} academic year ?
+
+
+- synonym: retention-rate
+  examples: |
+    - retention rate
+    - retenton rate
+    - retention-rate
+    - rate of retention
+
 - synonym: graduation rate
   examples: |
     - rate of graduation
     - percentage of graduating students
 
-- synonym: no aid
+- synonym: no-aid
   examples: |
     - no-aid
+    - no aid
     - did not receive federal pell grant and did not receive subsidized loan
     - did not receive aid
 

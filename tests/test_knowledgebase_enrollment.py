@@ -31,8 +31,8 @@ DEGREE_SEEKING_UNDERGRADUATE_ASIAN_STUDENTS_ENROLLED = 127
 UNDERGRADUATE_DEGREE_SEEKING_HISPANIC_STUDENTS_ENROLLED = 104
 UNDERGRADUATE_FIRST_TIME_DEGREE_SEEKING_UNKNOWN_RACE_STUDENT_ENROLLED = 6
 UNDERGRADUATE_DEGREE_SEEKING_AFRICAN_AMERICAN_STUDEN_ENROLLED = 93
-NON_FIRST_TIME = 1969
-
+NON_FIRST_TIME = 0
+NON_DEGREE_SEEKING_STUDENTS  = 3
 
 class enrollment_test(unittest.TestCase):
     def setUp(self):
@@ -53,15 +53,26 @@ class enrollment_test(unittest.TestCase):
         # #Making sure the data loaded is consistent for testing
         # self.data = self.excelProcessor.processExcelSparse("../Data_Ingestion/CDS_SPARSE_ENR.xlsx", self.topicToParse)
 
-    def test_when_ask_for_total_graduates_enrollment(self):
+    def test_when_ask_for_total_graduates_enrollment_should_return_correct_value(self):
         answer = self.knowledgeBase.searchForAnswer("enrollment", [
             createEntityObjHelper("graduate"),
             createEntityObjHelper("2020", "year", "from"),
             createEntityObjHelper("2021", "year", "to")
         ], self.defaultShouldAddRowStrategy)
-
         
         self.assertEqual(answer, str(TOTAL_GRADUATES))
+
+
+    def test_when_ask_for_non_degree_seeking_should_return_correct_value(self):
+        answer = self.knowledgeBase.searchForAnswer("enrollment", [
+            createEntityObjHelper("non-degree-seeking"),
+            createEntityObjHelper("2020", "year", "from"),
+            createEntityObjHelper("2021", "year", "to")
+        ], self.defaultShouldAddRowStrategy)
+
+        self.assertEqual(answer, str(NON_DEGREE_SEEKING_STUDENTS))
+
+
 
     def test_ask_for_total_undergraduates_enrollment(self):
         answer = self.knowledgeBase.searchForAnswer("enrollment", [
@@ -123,7 +134,7 @@ class enrollment_test(unittest.TestCase):
     def test_ask_for_out_of_scope_data_should_answer_to_best_ability(self):
         answer = self.knowledgeBase.searchForAnswer("enrollment",
                                                     [createEntityObjHelper("men"),
-                                                     createEntityObjHelper("asian"), 
+                                                     createEntityObjHelper("asian", entityLabel="race"), 
                                                     createEntityObjHelper("2020", "year", "from"),
                                                     createEntityObjHelper("2021", "year", "to")],
                                                     self.chooseFromOptionAddRowStrategy)

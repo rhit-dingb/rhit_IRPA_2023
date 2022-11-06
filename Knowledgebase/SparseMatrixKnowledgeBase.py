@@ -1,5 +1,8 @@
 
+from html import entities
+from tracemalloc import start
 from DataManager.DataManager import DataManager
+from Data_Ingestion.SparseMatrix import SparseMatrix
 from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
 from Knowledgebase.Knowledgebase import KnowledgeBase
 from Data_Ingestion.ExcelProcessor import ExcelProcessor
@@ -9,6 +12,7 @@ import numpy as np
 from Knowledgebase.Knowledgebase import KnowledgeBase
 
 from Knowledgebase.constants import PERCENTAGE_FORMAT
+from OutputController.output import  identityFunc, outputFuncForPercentage
 
 from actions.entititesHelper import copyEntities
 
@@ -32,33 +36,44 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
     Throws: exception when given year or intent for the data is not found or when exception encountered when parsing year entity values
 
     """
-    def searchForAnswer(self, intent, entitiesExtracted, shouldAddRowStrategy):
+    def searchForAnswer(self, intent, entitiesExtracted, shouldAddRowStrategy, outputFunc = identityFunc):
         count=0
         col_index=0
 
         #this list contains the value of the entities extracted.
         entities = []
+        usedEntities = []
+        printEntities = []
         for entityObj in entitiesExtracted:
             entities.append(entityObj["value"])
 
         
+        sparseMatrixToSearch : SparseMatrix; startYear : str; endYear : str 
         sparseMatrixToSearch, startYear, endYear = self.determineMatrixToSearch(intent, entitiesExtracted)
-      
+        
         if sparseMatrixToSearch is None:
             raise Exception("No valid sparse matrix found for given intent and entities", intent, entities)
-        
+
+        # get the underlying pandas dataframe from the internal data model
+        sparseMatrixToSearch = sparseMatrixToSearch.getSparseMatrixDf()
+
         for i in range(sparseMatrixToSearch.shape[0]):
-            if sparseMatrixToSearch.loc[i,"total"] == 1:
+            row = sparseMatrixToSearch.loc[i]
+            
+            if "total" in row.index and sparseMatrixToSearch.loc[i,"total"] == 1:
                 continue
            
-            row = sparseMatrixToSearch.loc[i]
-            shouldAdd = shouldAddRowStrategy.determineShouldAddRow(row, entities)
-            if shouldAdd:
+            usedEntities = shouldAddRowStrategy.determineShouldAddRow(row, entities)
+
+            if len(usedEntities) > 0:
                 #print("Im ADDING " + str(self.m_df.loc[i,'Value']))
                 count += sparseMatrixToSearch.loc[i,'Value']
-                
-        return str(int(count))    
-
+                if len(printEntities) <= 0:
+                    printEntities = usedEntities
+                    
+        printEntities = list(printEntities)
+        printEntities.append(startYear) 
+        return outputFunc(str(int(count)), intent, set(printEntities))
 
 
 
@@ -81,38 +96,46 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
                     if sparseMatrixToSearch.loc[i,entity] == 1:
                         temp_count += 1
             if temp_count == len(entities):
-                #print("Im ADDING " + str(self.m_df.loc[i,'Value']))
+                print("Im ADDING " + str(self.m_df.loc[i,'Value']))
                 count += sparseMatrixToSearch.loc[i,'Value']
                 
         return str(count)
 
 
-    def aggregateDiscreteRange(self, intent, filteredEntities, start, end, generator, shouldAddRow):
+    def aggregateDiscreteRange(self, intent, filteredEntities, start, end, generator, shouldAddRow, outputFunc):
         shouldAddRowStrategy = shouldAddRow
         total = 0
         # print(start,end)
+        entitiesUsed = []
+        
         for i in range(start, end+1):
             filteredEntitiesCopy = copyEntities(filteredEntities)
             entityValue = generator(i, start, end)
             # we can make the entity key more descriptive later 
             fakeEntity = {
-                "entity": i,
+                "entity": "graduation_years",
                 "value": entityValue,
                 "aggregation": True
             }
         
             filteredEntitiesCopy.append(fakeEntity)
            
-            answer = self.searchForAnswer(intent, filteredEntitiesCopy, shouldAddRowStrategy )
+            answer, intent, entitiesUsedBySearch = self.searchForAnswer(intent, filteredEntitiesCopy, shouldAddRowStrategy, identityFunc)
+            entitiesUsed = entitiesUsed + list(entitiesUsedBySearch)
+            
             total = total + int(answer)
+         
 
-        return str(total)
+        return outputFunc(total, intent, set(entitiesUsed))
 
-    def aggregatePercentage(self, intent, numerator, entitiesToCalculateDenominator, shouldAddRowStrategy):
-        denominator = self.searchForAnswer(intent, entitiesToCalculateDenominator, shouldAddRowStrategy)
+    def aggregatePercentage(self, intent, numerator, entitiesForNumerator, entitiesToCalculateDenominator, shouldAddRowStrategy):
+        entitiesUsed = None
+        
+        denominator,intent, entitiesUsed = self.searchForAnswer(intent, entitiesToCalculateDenominator, shouldAddRowStrategy, identityFunc)
         percentageCalc = numerator/float(denominator)*100
         percentage = round(percentageCalc, 1)
-        return PERCENTAGE_FORMAT.format(value = percentage)
+        
+        return outputFuncForPercentage(percentage, intent, set(list(entitiesUsed)+ list(entitiesForNumerator)) )
 
 
     def determineMatrixToSearch(self, intent, entities):
