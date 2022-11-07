@@ -1686,7 +1686,7 @@ nlu:
     - How many [units are recommended]{"entity": "unit_level", "value": "units-recommended"} for [math]{"entity": "subject", "value": "mathematics"} for admission?
     - what is the [unit required]{"entity": "unit_level", "value": "units-required"} for [science]{"entity": "subject", "value": "science"} to get into this school?
     - what is the [unit recommended]{"entity": "unit_level", "value": "units-recommended"} for [science]{"entity": "subject", "value": "science"} I should take during high-school for admission into this school?
-    
+    - How many [units are required]{"entity": "unit_level", "value": "units-required"} for [mathematic]{"entity": "subject", "value": "mathematics"}
     - How many [lab]{"entity": "subject", "value": "lab"} [units are required]{"entity": "unit_level", "value": "units-required"} 
     - For admission, how many [lab]{"entity": "subject", "value": "lab"} [units are recommended]{"entity": "unit_level", "value": "units-recommended"}?
 
@@ -1755,6 +1755,11 @@ nlu:
     - more than 4 years
 
 
+- synonym: mathematics
+  examples: |
+    - math
+    - mathmatic
+    - mathematics
 
 - synonym: retention-rate
   examples: |

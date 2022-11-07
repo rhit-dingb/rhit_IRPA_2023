@@ -12,7 +12,7 @@ class DefaultShouldAddRowStrategy(ShouldAddRowStrategy):
     Given a row in the sparse matrix and a list of entities, this function implementation 
     will check each entity to see if the column value for that entity is 1. If all the entity's corresponding
     column value is 1, it will return true, otherwise false.
-    row: current row of sparse matrix in question
+    row: current row of sparse matrix in question -- a row in the pandas dataframe
     entities: list of entity 
     """
 

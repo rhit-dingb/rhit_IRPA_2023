@@ -9,17 +9,15 @@ intents:
   - enrollment
   - cohort
   - admission
+  - high_school_units
 
   - mood_great
   - mood_unhappy
   - bot_challenge
 
 
-  # Intents for different topics on the IRPA common dataset
-  - enrollment
-  - cohort
 
-  - high_school_units
+
 
 
 entities:
