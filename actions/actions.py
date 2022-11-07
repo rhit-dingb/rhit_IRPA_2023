@@ -23,7 +23,9 @@ from rasa_sdk.executor import CollectingDispatcher
 
 # knowledgeBase = SparseMatrixKnowledgeBase("./Data_Ingestion/CDS_SPARSE_ENR.xlsx")
 
-knowledgeBase = SparseMatrixKnowledgeBase(ExcelDataManager("./CDSData", ["enrollment", "cohort", "high_school_units"]))
+
+knowledgeBase = SparseMatrixKnowledgeBase(ExcelDataManager("./CDSData", ["enrollment", "cohort", "admission", "high_school_units" ]))
+
 
 defaultShouldAddRowStrategy = DefaultShouldAddRowStrategy()
 
@@ -111,6 +113,31 @@ class ActionQueryEnrollment(Action):
 
         return []
 
+
+class ActionQueryAdmission(Action):
+    def name(self) -> Text:
+        return "action_query_admission"
+
+    def run(self, dispatcher, tracker, domain):
+
+      
+        entitiesExtracted = tracker.latest_message["entities"]
+       
+
+        print(tracker.latest_message["intent"])
+        print(tracker.latest_message["entities"])
+        selectedShouldAddRowStrategy = defaultShouldAddRowStrategy
+       
+        
+        answer = None
+        # try:
+        answer = knowledgeBase.searchForAnswer(
+            tracker.latest_message["intent"]["name"], entitiesExtracted, selectedShouldAddRowStrategy,outputFuncForInteger)
+        dispatcher.utter_message(answer)
+        # except Exception as e:
+            # utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
+
+        return []
 
 class ActionQueryCohort(Action):
     def __init__(self) -> None:

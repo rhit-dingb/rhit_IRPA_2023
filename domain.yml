@@ -5,18 +5,21 @@ intents:
   - goodbye
   - affirm
   - deny
+  # Intents for different topics on the IRPA common dataset
+  - enrollment
+  - cohort
+  - admission
 
   - mood_great
   - mood_unhappy
   - bot_challenge
+
 
   # Intents for different topics on the IRPA common dataset
   - enrollment
   - cohort
 
   - high_school_units
-
-
 
 
 entities:
@@ -44,6 +47,18 @@ entities:
   #race/ethnicity
   - race
 
+  #applied addmitted
+  - action
+
+  - waiting-list
+
+  - college-preparatory-program
+
+  - completion-requirement
+
+  - waiting-list-detail
+
+  - policy
 
   #cohort by year - for example: 2015 cohort, 2016 cohort, etc.
   - cohort_by_year
@@ -77,6 +92,7 @@ entities:
   # also know as allowable exclusions.
   - exemptions
 
+  
   - recipients_of_federal_pell_grant
   - recipients_of_a_subsidized_stafford_loan_who_did_not_receive_a_pell_grant 
   - students_who_did_not_receive_either_a_pell_grant_or_a_subsidized_stafford_loan
@@ -177,8 +193,12 @@ actions:
   - action_ask_more_question
   - action_query_cohort
   - action_query_enrollment
+
+  - action_query_admission
+
   - action_query_high_school_units
  
+
   
 
 responses:
