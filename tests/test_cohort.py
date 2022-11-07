@@ -1,6 +1,7 @@
 from copy import deepcopy
 import json
 import unittest
+from unittest.mock import patch
 from DataManager.constants import *
 from Exceptions.ExceptionMessages import NO_DATA_FOUND_FOR_COHORT_YEAR_ERROR_MESSAGE_FORMAT
 from Knowledgebase.Knowledgebase import KnowledgeBase
@@ -9,11 +10,8 @@ from Knowledgebase.SparseMatrixKnowledgeBase import SparseMatrixKnowledgeBase
 from Knowledgebase.ChooseFromOptionsAddRowStrategy import ChooseFromOptionsAddRowStrategy
 from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
 from DataManager.ExcelDataManager import ExcelDataManager
-from Exceptions.NoDataFoundException import NoDataFoundException
-from Exceptions.ExceptionTypes import ExceptionTypes
-from unittest.mock import patch
-from unittest import mock
-from tests.testUtils import createEntityObjHelper, createFakeTracker
+from OutputController import output
+from tests.testUtils import createEntityObjHelper, createFakeTracker, identityFunc
 from actions.actions import knowledgeBase as knowledgeBaseInAction
 from actions.actions import ActionQueryCohort
 
@@ -53,18 +51,23 @@ class cohort_test(unittest.TestCase):
         self.dispatcher = CollectingDispatcher()
         #Make sure the knowledgebase class instance in Actions is using the data manager with test materials loaded.
         knowledgeBaseInAction.dataManager = self.knowledgeBase.dataManager
-       
-    #Cohorts actually uses the label of the entities, so we have to write test cases in terms of actions.
-    def test_knowledgebase_when_ask_for_initial_cohort_should_return_correct_value(self):
-        answer = self.knowledgeBase.searchForAnswer(
-            "cohort",
-            [
-            createEntityObjHelper("initial"),
-            createEntityObjHelper("2014 cohort", entityLabel=COHORT_BY_YEAR_ENTITY_LABEL)
-            ], self.defaultShouldAddRowStrategy
-        )
+        output.constructSentence = identityFunc
+        #self.patcher = mock.patch("OutputController.output.constructSentence", return_value = )
+        
 
-        self.assertEqual(answer, str(INITIAL_2014_COHORT_TOTAL))
+    #Cohorts actually uses the label of the entities, so we have to write test cases in terms of actions.
+    
+    def test_knowledgebase_when_ask_for_initial_cohort_should_return_correct_value(self):
+        
+            answer = self.knowledgeBase.searchForAnswer(
+                "cohort",
+                [
+                createEntityObjHelper("initial"),
+                createEntityObjHelper("2014 cohort", entityLabel=COHORT_BY_YEAR_ENTITY_LABEL)
+                ], self.defaultShouldAddRowStrategy, output.outputFuncForInteger
+            )
+
+            self.assertEqual(answer, str(INITIAL_2014_COHORT_TOTAL))
 
   
     def test_when_ask_for_graduation_time_five_to_six_year_should_give_correct_value_for_action(self):

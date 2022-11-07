@@ -1,93 +1,16 @@
 {
-  "degree-goal": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 9,
-    "confused_with": {}
-  },
-  "is_first_time": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 18,
-    "confused_with": {}
-  },
-  "is_first_year": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 16,
-    "confused_with": {}
-  },
-  "cohort_initial_final": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 7,
-    "confused_with": {}
-  },
-  "retention-rate": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 8,
-    "confused_with": {}
-  },
-  "exemptions": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 26,
-    "confused_with": {}
-  },
-  "undergraduate_grade_level": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4,
-    "confused_with": {}
-  },
-  "cohort_by_year": {
-    "precision": 0.9857142857142858,
-    "recall": 1.0,
-    "f1-score": 0.9928057553956835,
-    "support": 69,
-    "confused_with": {}
-  },
   "gender": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 5,
-    "confused_with": {}
-  },
-  "graduation_rate": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
     "support": 9,
     "confused_with": {}
   },
-  "student_level": {
-    "precision": 1.0,
+  "undergraduate_grade_level": {
+    "precision": 0.9452054794520548,
     "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 14,
-    "confused_with": {}
-  },
-  "race": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 27,
-    "confused_with": {}
-  },
-  "enrollment_status": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 6,
+    "f1-score": 0.971830985915493,
+    "support": 69,
     "confused_with": {}
   },
   "recipients_of_a_subsidized_stafford_loan_who_did_not_receive_a_pell_grant": {
@@ -97,14 +20,14 @@
     "support": 36,
     "confused_with": {}
   },
-  "students_who_did_not_receive_either_a_pell_grant_or_a_subsidized_stafford_loan": {
+  "graduation_rate": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 48,
+    "support": 21,
     "confused_with": {}
   },
-  "recipients_of_federal_pell_grant": {
+  "year.from": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
@@ -115,17 +38,82 @@
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 2,
+    "support": 3,
     "confused_with": {}
   },
-  "upper_bound_graduation_time": {
-    "precision": 0.9841269841269841,
+  "degree-goal": {
+    "precision": 1.0,
     "recall": 1.0,
-    "f1-score": 0.9919999999999999,
-    "support": 62,
+    "f1-score": 1.0,
+    "support": 12,
     "confused_with": {}
   },
   "year.to": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 7,
+    "confused_with": {}
+  },
+  "exemptions": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 29,
+    "confused_with": {}
+  },
+  "race": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 27,
+    "confused_with": {}
+  },
+  "subject": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 49,
+    "confused_with": {}
+  },
+  "is_first_time": {
+    "precision": 1.0,
+    "recall": 0.9722222222222222,
+    "f1-score": 0.9859154929577464,
+    "support": 144,
+    "confused_with": {
+      "undergraduate_grade_level": 4
+    }
+  },
+  "student_level": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 24,
+    "confused_with": {}
+  },
+  "students_who_did_not_receive_either_a_pell_grant_or_a_subsidized_stafford_loan": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 48,
+    "confused_with": {}
+  },
+  "is_first_year": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 136,
+    "confused_with": {}
+  },
+  "enrollment_status": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 72,
+    "confused_with": {}
+  },
+  "cohort_initial_final": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
@@ -136,33 +124,61 @@
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 20,
+    "support": 24,
     "confused_with": {}
   },
-  "year.from": {
+  "cohort_by_year": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 82,
+    "confused_with": {}
+  },
+  "retention-rate": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 8,
+    "confused_with": {}
+  },
+  "unit_level": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 88,
+    "confused_with": {}
+  },
+  "recipients_of_federal_pell_grant": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
     "support": 12,
     "confused_with": {}
   },
-  "micro avg": {
-    "precision": 0.9952267303102625,
+  "upper_bound_graduation_time": {
+    "precision": 1.0,
     "recall": 1.0,
-    "f1-score": 0.9976076555023923,
-    "support": 417
+    "f1-score": 1.0,
+    "support": 82,
+    "confused_with": {}
+  },
+  "micro avg": {
+    "precision": 0.996003996003996,
+    "recall": 0.996003996003996,
+    "f1-score": 0.996003996003996,
+    "support": 1001
   },
   "macro avg": {
-    "precision": 0.9985638699924415,
-    "recall": 1.0,
-    "f1-score": 0.9992764645426516,
-    "support": 417
+    "precision": 0.9976176295413938,
+    "recall": 0.998792270531401,
+    "f1-score": 0.9981628903857931,
+    "support": 1001
   },
   "weighted avg": {
-    "precision": 0.9952761600243615,
-    "recall": 1.0,
-    "f1-score": 0.997620136983938,
-    "support": 417
+    "precision": 0.9962229551270647,
+    "recall": 0.996003996003996,
+    "f1-score": 0.9960321368772073,
+    "support": 1001
   },
-  "accuracy": 0.9982876712328768
+  "accuracy": 0.9983029274501485
 }

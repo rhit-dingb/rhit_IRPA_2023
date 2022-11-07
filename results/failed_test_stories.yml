@@ -1,35 +1,5 @@
 version: "3.1"
 stories:
-- story: ask_about_enrollment_and_answer_helpful_non_first_time_non_first_year (.\tests\test_stories.yml)
-  steps:
-  - intent: enrollment
-    entities:
-    - is_first_time: non-first-time
-    - is_first_year: non-first-time
-  - slot_was_set:
-    - is_first_time: non-first-time
-  - action: action_query_enrollment
-  - action: utter_ask_answer_helpful
-  - intent: affirm
-  - action: action_ask_more_question
-  - intent: affirm
-  - action: utter_ask_whats_the_question
-- story: ask_about_enrollment_and_answer_helpful_male_non_freshman (.\tests\test_stories.yml)
-  steps:
-  - intent: enrollment
-    entities:
-    - gender: male
-    - undergraduate_grade_level: non-freshman  # predicted: is_first_time: non
-  - slot_was_set:
-    - undergraduate_grade_level: non-freshman
-  - slot_was_set:
-    - gender: male
-  - action: action_query_enrollment
-  - action: utter_ask_answer_helpful
-  - intent: affirm
-  - action: action_ask_more_question
-  - intent: affirm
-  - action: utter_ask_whats_the_question
 - story: ask_about_cohort_general_should_extract_five_year (.\tests\test_stories.yml)
   steps:
   - intent: cohort
@@ -46,9 +16,27 @@ stories:
   steps:
   - intent: cohort
     entities:
-    - upper_bound_graduation_time: 5 years or less
+    - upper_bound_graduation_time: 5 years or less  # predicted: lower_bound_graduation_time: 5 years or less
     - lower_bound_graduation_time: more than 4 years
     - cohort_by_year: 2046 cohort
+  - action: action_query_cohort
+  - action: utter_ask_answer_helpful
+- story: ask_about_cohort_general_5_year_graduation_time_should_extract_gradution_time_successfully (.\tests\test_stories.yml)
+  steps:
+  - intent: cohort
+    entities:
+    - graduation_rate: graduation rate
+    - lower_bound_graduation_time: more than 4 years
+    - cohort_by_year: cohort of 2014
+  - action: action_query_cohort
+  - action: utter_ask_answer_helpful
+- story: ask_about_cohort_general_should_extract_graduation_time_successfully (.\tests\test_stories.yml)
+  steps:
+  - intent: cohort
+    entities:
+    - graduation_rate: graduation rate
+    - lower_bound_graduation_time: more than 4 years
+    - cohort_by_year: cohort of 2014
   - action: action_query_cohort
   - action: utter_ask_answer_helpful
 - story: ask_about_cohort_financial_aid_should_extract_entity_successfully (.\tests\test_stories.yml)
@@ -65,3 +53,14 @@ stories:
     - recipients_of_federal_pell_grant: pell-grant
   - action: action_query_cohort
   - action: utter_ask_answer_helpful
+- story: ask_about_high_school_units_should_extract_subject_correctly_visual_performing_art (.\tests\test_stories.yml)
+  steps:
+  - intent: high_school_units
+    entities:
+    - subject: visual/performing-arts
+    - unit_level: units-recommended
+  - action: action_query_high_school_units
+  - action: utter_ask_answer_helpful
+  - intent: deny
+  - action: utter_sorry_question_not_helpful
+  - action: action_get_available_options

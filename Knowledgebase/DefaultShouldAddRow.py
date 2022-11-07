@@ -24,16 +24,18 @@ class DefaultShouldAddRowStrategy(ShouldAddRowStrategy):
         processedColumn = [column.replace(" ", "") for column in row.index]
         # print(entities)
         # print(processedColumn)
-
+      
+        
         for entity in entities:
             if entity in processedColumn:
                 filteredEntities.append(entity)
 
-        filteredEntities = set(filteredEntities)
-        
-        for entity in processedColumn:
-            if entity in filteredEntities:
-                if row[entity] == 1:
+     
+        # filteredEntities = set(filteredEntities)
+        for column in processedColumn:
+            if column in filteredEntities:
+               
+                if row[column] == 1:
                     temp_count = temp_count + 1
 
         if temp_count == len(filteredEntities):

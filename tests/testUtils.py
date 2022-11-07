@@ -5,7 +5,15 @@ def createEntityObjHelper(entityValue, entityLabel="none",  entityRole=None):
 
         return res
 
+def getEntityValues(entities):
+    res = []
+    for entity in entities:
+        res.append(entity["value"])
+    return res
 
+def identityFunc(x, intent, entities):
+        return x
+    
 def createFakeTracker(intent, entities):
 
     tracker = {
@@ -76,5 +84,5 @@ def createFakeTracker(intent, entities):
         "latest_action_name": "action_listen"
 
     }
-
+    
     return tracker

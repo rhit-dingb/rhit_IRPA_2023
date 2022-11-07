@@ -44,6 +44,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         entities = []
         usedEntities = []
         printEntities = []
+        
         for entityObj in entitiesExtracted:
             entities.append(entityObj["value"])
 
@@ -73,7 +74,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
                     
         printEntities = list(printEntities)
         printEntities.append(startYear) 
-        return outputFunc(str(int(count)), intent, set(printEntities))
+        return outputFunc(count, intent, printEntities)
 
 
 
