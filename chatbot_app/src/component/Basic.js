@@ -69,6 +69,7 @@ function Basic() {
 
   const stylecard = {
     maxWidth: "35rem",
+    width: "21rem",
     border: "1px solid black",
     paddingLeft: "0px",
     paddingRight: "0px",
@@ -125,9 +126,9 @@ function Basic() {
               </div>
             </div>
             <div className="cardFooter text-white" style={styleFooter}>
-              <div className="row" style={{ width: "21rem" }}>
+              <div className="row">
                 <form style={{ display: "flex" }} onSubmit={handleSubmit}>
-                  <div className="col-10" style={{ paddingRight: "15px" }}>
+                  <div className="col-10" style={{ paddingRight: "0px" }}>
                     <input
                       onChange={(e) => setInputMessage(e.target.value)}
                       value={inputMessage}
