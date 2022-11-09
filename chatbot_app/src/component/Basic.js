@@ -33,17 +33,20 @@ function Basic() {
   const rasaAPI = async function handleClick(name, msg) {
     //chatData.push({sender : "user", sender_id : name, msg : msg});
     console.log(chat);
-    await fetch("http://localhost:5005/webhooks/rest/webhook", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        charset: "UTF-8",
-      },
-      credentials: "same-origin",
-      mode: "cors",
-      body: JSON.stringify({ sender: name, message: msg }),
-    })
+    await fetch(
+      "http://irpa-chatbot.csse.rose-hulman.edu:5005/webhooks/rest/webhook",
+      {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          charset: "UTF-8",
+        },
+        credentials: "same-origin",
+        mode: "cors",
+        body: JSON.stringify({ sender: name, message: msg }),
+      }
+    )
       .then((response) => response.json())
       .then((response) => {
         if (response) {
@@ -64,8 +67,6 @@ function Basic() {
       });
   };
 
-
-
   const stylecard = {
     maxWidth: "35rem",
     border: "1px solid black",
@@ -81,7 +82,7 @@ function Basic() {
     backgroundColor: "#800000",
   };
   const styleFooter = {
-    maxWidth : '35rem',
+    maxWidth: "35rem",
     borderTop: "1px solid black",
     borderRadius: "0px 0px 30px 30px",
     backgroundColor: "#800000",
@@ -124,9 +125,9 @@ function Basic() {
               </div>
             </div>
             <div className="cardFooter text-white" style={styleFooter}>
-              <div className="row">
+              <div className="row" style={{ width: "21rem" }}>
                 <form style={{ display: "flex" }} onSubmit={handleSubmit}>
-                  <div className="col-10" style={{ paddingRight: "0px" }}>
+                  <div className="col-10" style={{ paddingRight: "15px" }}>
                     <input
                       onChange={(e) => setInputMessage(e.target.value)}
                       value={inputMessage}
