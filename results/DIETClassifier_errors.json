@@ -1,82 +1,72 @@
 [
   {
-    "text": "graduation rate for students who graduated in 5 years of 2052 cohort",
+    "text": "How many non freshman first time students are enrolled?",
     "entities": [
       {
-        "start": 0,
-        "end": 15,
-        "value": "graduation rate",
-        "entity": "graduation_rate"
+        "start": 9,
+        "end": 21,
+        "value": "non-freshman",
+        "entity": "undergraduate_grade_level"
       },
       {
-        "start": 33,
-        "end": 53,
-        "value": "5 years or less",
-        "entity": "upper_bound_graduation_time"
-      },
-      {
-        "start": 57,
-        "end": 68,
-        "value": "2052 cohort",
-        "entity": "cohort_by_year"
+        "start": 22,
+        "end": 32,
+        "value": "first-time",
+        "entity": "is_first_time"
       }
     ],
     "predicted_entities": [
       {
-        "entity": "graduation_rate",
-        "start": 0,
-        "end": 15,
-        "confidence_entity": 0.9835970997810364,
-        "value": "graduation rate",
-        "extractor": "DIETClassifier"
-      },
-      {
-        "entity": "upper_bound_graduation_time",
-        "start": 33,
-        "end": 56,
-        "confidence_entity": 0.6317397356033325,
-        "value": "graduated in 5 years of",
-        "extractor": "DIETClassifier"
-      },
-      {
-        "entity": "cohort_by_year",
-        "start": 57,
-        "end": 68,
-        "confidence_entity": 0.5214216113090515,
-        "value": "2052 cohort",
+        "entity": "undergraduate_grade_level",
+        "start": 9,
+        "end": 32,
+        "confidence_entity": 0.5823438167572021,
+        "value": "non freshman first time",
         "extractor": "DIETClassifier"
       }
     ]
   },
   {
-    "text": "How many students are recipients of pell grant? for [2135 cohort]?",
+    "text": "How many non freshman first time non first year students are enrolled?",
     "entities": [
       {
+        "start": 9,
+        "end": 21,
+        "value": "non-freshman",
+        "entity": "undergraduate_grade_level"
+      },
+      {
         "start": 22,
-        "end": 46,
-        "value": "pell-grant",
-        "entity": "recipients_of_federal_pell_grant"
+        "end": 32,
+        "value": "first-time",
+        "entity": "is_first_time"
+      },
+      {
+        "start": 33,
+        "end": 47,
+        "value": "non-first-year",
+        "entity": "is_first_year"
       }
     ],
     "predicted_entities": [
       {
-        "entity": "recipients_of_federal_pell_grant",
-        "start": 22,
-        "end": 46,
-        "confidence_entity": 0.9111031889915466,
-        "value": "pell-grant",
+        "entity": "undergraduate_grade_level",
+        "start": 9,
+        "end": 32,
+        "confidence_entity": 0.7694220542907715,
+        "value": "non freshman first time",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "is_first_year",
+        "start": 33,
+        "end": 47,
+        "confidence_entity": 0.9772385358810425,
+        "value": "non-first-year",
         "extractor": "DIETClassifier",
         "processors": [
           "EntitySynonymMapper"
         ]
-      },
-      {
-        "entity": "cohort_by_year",
-        "start": 58,
-        "end": 64,
-        "confidence_entity": 0.6490474343299866,
-        "value": "cohort",
-        "extractor": "DIETClassifier"
       }
     ]
   }

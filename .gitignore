@@ -2,8 +2,12 @@
 
 .rasa/
 models/
-node_modules/
 **/__pycache__/
+node_modules/
+__pycache__/
+*.pyc
+
+.idea/
 
 # dependencies
 chatbot_app/node_modules

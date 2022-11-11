@@ -5,14 +5,19 @@ intents:
   - goodbye
   - affirm
   - deny
+  # Intents for different topics on the IRPA common dataset
+  - enrollment
+  - cohort
+  - admission
+  - high_school_units
 
   - mood_great
   - mood_unhappy
   - bot_challenge
 
-  # Intents for different topics on the IRPA common dataset
-  - enrollment
-  - cohort
+
+
+
 
 
 entities:
@@ -40,6 +45,18 @@ entities:
   #race/ethnicity
   - race
 
+  #applied addmitted
+  - action
+
+  - waiting-list
+
+  - college-preparatory-program
+
+  - completion-requirement
+
+  - waiting-list-detail
+
+  - policy
 
   #cohort by year - for example: 2015 cohort, 2016 cohort, etc.
   - cohort_by_year
@@ -73,6 +90,7 @@ entities:
   # also know as allowable exclusions.
   - exemptions
 
+  
   - recipients_of_federal_pell_grant
   - recipients_of_a_subsidized_stafford_loan_who_did_not_receive_a_pell_grant 
   - students_who_did_not_receive_either_a_pell_grant_or_a_subsidized_stafford_loan
@@ -80,7 +98,12 @@ entities:
   #year to query the dataset.
   - year
   
- 
+  # School subjects such as english, mathematics, science, etc.
+  - subject
+
+  #Number of unit-required or unit-recommended for particular subjects for rose-hulman admission requirement.
+  #Specific values: unit-required, unit-recommend 
+  - unit_level
 
 
 slots:
@@ -168,6 +191,12 @@ actions:
   - action_ask_more_question
   - action_query_cohort
   - action_query_enrollment
+
+  - action_query_admission
+
+  - action_query_high_school_units
+ 
+
   
 
 responses:
@@ -202,15 +231,6 @@ responses:
 
   utter_iamabot:
   - text: "I am a bot, powered by Rasa."
-
-  # utter_test_options:
-  # - text: "For enrollment, you can ask about: how many undergradute students, total graduate students, etc"
-
-  # utter_test_total_undergraduates:
-  # - text: "Rose-Hulman has 2000 undergraduates"
-
-  # utter_test_total_full_time_undergraduate_men:
-  # - text: "Rose-Hulman has 1000 full-time undergraduate students that are male."
 
   utter_ask_answer_helpful:
   - text: "Was this answer helpful?"

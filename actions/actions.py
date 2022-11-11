@@ -5,39 +5,30 @@
 # https://rasa.com/docs/rasa/custom-actions
 
 
-
 from DataManager.ExcelDataManager import ExcelDataManager
 from DataManager.constants import COHORT_BY_YEAR_ENTITY_LABEL, EXEMPTION_ENTITY_LABEL, FINAL_COHORT_ENTITY_LABEL, GRADUATION_RATE_ENTITY_LABEL, INITIAL_COHORT_ENTITY_LABEL, LOWER_BOUND_GRADUATION_TIME_ENTITY_LABEL, NO_AID_ENTITY_LABEL, RECIPIENT_OF_PELL_GRANT_ENTITY_LABEL, RECIPIENT_OF_STAFFORD_LOAN_NO_PELL_GRANT_ENTITY_LABEL, RETENTION_RATE_LABEL, UPPER_BOUND_GRADUATION_TIME_ENTITY_LABEL
 from Exceptions.ExceptionTypes import ExceptionTypes
 from Knowledgebase.ChooseFromOptionsAddRowStrategy import ChooseFromOptionsAddRowStrategy
 from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
+from Knowledgebase.ExactMatchShouldAddRowStrategy import ExactMatchShouldAddRowStrategy
 from Knowledgebase.IgnoreRowPiece import IgnoreRowPiece
 from Knowledgebase.SparseMatrixKnowledgeBase import SparseMatrixKnowledgeBase
 from Knowledgebase.constants import PERCENTAGE_FORMAT
-from OutputController.output import identityFunc, outputFuncForInteger, outputFuncForPercentage
+from OutputController import output
 from actions.constants import ANY_AID_COLUMN_NAME, COHORT_GRADUATION_TIME_ENTITY_FORMAT, COHORT_GRADUATION_TIME_START_FORMAT, NO_AID_COLUMN_NAME, PELL_GRANT_COLUMN_NAME, STAFFORD_LOAN_COLUMN_NAME
 from actions.entititesHelper import changeEntityValue, copyEntities, createEntityObj, filterEntities, findEntityHelper, findMultipleSameEntitiesHelper
 from typing import Text
-from OutputController import *
 
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 
 # knowledgeBase = SparseMatrixKnowledgeBase("./Data_Ingestion/CDS_SPARSE_ENR.xlsx")
 
-knowledgeBase = SparseMatrixKnowledgeBase(ExcelDataManager("./CDSData", ["enrollment", "cohort"]))
+
+knowledgeBase = SparseMatrixKnowledgeBase(ExcelDataManager("./CDSData", ["enrollment", "cohort", "admission", "high_school_units" ]))
+
 
 defaultShouldAddRowStrategy = DefaultShouldAddRowStrategy()
-chooseFromOptionsAddRowStrategy = ChooseFromOptionsAddRowStrategy(choices=[{
-    "columns": ["degree-seeking", "first-time", "first-year"]
-},
-    {
-    "columns": ["degree-seeking", "non-first-time", "non-first-year"],
-    "isDefault":True
-}])
-
-
-
 
 class ActionGetAvailableOptions(Action):
     def name(self) -> Text:
@@ -58,7 +49,40 @@ class ActionAskMoreQuestion(Action):
         return []
 
 
+class ActionQueryHighSchoolUnits(Action):
+    def __init__(self) -> None:
+        super().__init__()
+        # This strategy is specifically used to handle science and lab subject entity both have science column marked as 1, 
+        # we want to choose between them. Check out the comments in this class to know more in detail what it is doing.
+        self.exactMatchStrategy = ExactMatchShouldAddRowStrategy()
+
+    def name(self) -> Text:
+        return "action_query_high_school_units"
+
+    def run(self, dispatcher, tracker, domain):
+        entitiesExtracted = tracker.latest_message["entities"]
+        intent = tracker.latest_message["intent"]["name"]
+        print(tracker.latest_message["intent"])
+        print(tracker.latest_message["entities"])
+        
+        try:
+            answer = knowledgeBase.searchForAnswer(intent, entitiesExtracted, self.exactMatchStrategy, output.outputFuncForHighSchoolUnits)
+            dispatcher.utter_message(answer)    
+        except Exception as e:
+            utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
+
+
 class ActionQueryEnrollment(Action):
+    def __init__(self) -> None:
+        self.chooseFromOptionsAddRowStrategy = ChooseFromOptionsAddRowStrategy(choices=[{
+            "columns": ["degree-seeking", "first-time", "first-year"]
+        },
+            {
+            "columns": ["degree-seeking", "non-first-time", "non-first-year"],
+            "isDefault":True
+        }])
+
+
     def name(self) -> Text:
         return "action_query_enrollment"
 
@@ -74,25 +98,50 @@ class ActionQueryEnrollment(Action):
         print(tracker.latest_message["entities"])
         selectedShouldAddRowStrategy = defaultShouldAddRowStrategy
         if haveRaceEnrollmentEntity:
-            selectedShouldAddRowStrategy = chooseFromOptionsAddRowStrategy
+            selectedShouldAddRowStrategy = self.chooseFromOptionsAddRowStrategy
 
         answer = None
-        #try:
-        answer = knowledgeBase.searchForAnswer(
-                tracker.latest_message["intent"]["name"], entitiesExtracted, selectedShouldAddRowStrategy, outputFuncForInteger)
-        dispatcher.utter_message(answer)
-        #except Exception as e:
-            #utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
+        try:
+            answer = knowledgeBase.searchForAnswer(
+                    tracker.latest_message["intent"]["name"], entitiesExtracted, selectedShouldAddRowStrategy, output.outputFuncForInteger)
+            dispatcher.utter_message(answer)
+        except Exception as e:
+            utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
 
         return []
 
+
+class ActionQueryAdmission(Action):
+    def name(self) -> Text:
+        return "action_query_admission"
+
+    def run(self, dispatcher, tracker, domain):
+
+      
+        entitiesExtracted = tracker.latest_message["entities"]
+       
+
+        print(tracker.latest_message["intent"])
+        print(tracker.latest_message["entities"])
+        selectedShouldAddRowStrategy = defaultShouldAddRowStrategy
+       
+        
+        answer = None
+        try:
+            answer = knowledgeBase.searchForAnswer(
+                tracker.latest_message["intent"]["name"], entitiesExtracted, selectedShouldAddRowStrategy,output.outputFuncForInteger)
+            dispatcher.utter_message(answer)
+        except Exception as e:
+            utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
+
+        return []
 
 class ActionQueryCohort(Action):
     def __init__(self) -> None:
         super().__init__()
         self.maxYear = 6
         self.minYear = 4
-        self.currentOutputFunc =  outputFuncForInteger
+        self.currentOutputFunc =  output.outputFuncForInteger
 
     def name(self) -> Text:
         return "action_query_cohort"
@@ -184,11 +233,13 @@ class ActionQueryCohort(Action):
             lowerBoundYear = max(self.extractYearFromGraduationYearEntityValue(
                 lowerBoundGraduationYearEntities)+1, self.minYear)
       
+
+        
             upperBoundYear = min(self.extractYearFromGraduationYearEntityValue(
                 upperBoundGraduationYearEntities), self.maxYear)
 
-            print("UPPER BOUND YEAR")
-            print(upperBoundYear)
+            # print("UPPER BOUND YEAR")
+            # print(upperBoundYear)
 
             isUpperFoundBoundNotFound = upperBoundYear == -1
             if isUpperFoundBoundNotFound:
@@ -201,14 +252,14 @@ class ActionQueryCohort(Action):
             try:
                 answer, intent, entitiesUsed = knowledgeBase.aggregateDiscreteRange(
                 intent, entitiesFiltered, lowerBoundYear, upperBoundYear, generator, ignoreAnyAidShouldAddRow,
-                outputFunc = identityFunc
+                outputFunc = output.identityFunc
                 )
 
                 if askForGraduationRate:
                     entitiesUsed.add(askForGraduationRate["value"])
                     answer = self.calculateGraduationRate(intent, entitiesUsed, entitiesFiltered, float(answer), ignoreAnyAidShouldAddRow)
                 else:
-                    answer = outputFuncForInteger(answer, intent, entitiesUsed)
+                    answer = output.outputFuncForInteger(answer, intent, entitiesUsed)
                 
                 dispatcher.utter_message(answer)    
             except Exception as e:
@@ -216,7 +267,7 @@ class ActionQueryCohort(Action):
             
         else:
             if askRetentionRate:
-                self.currentOutputFunc = outputFuncForPercentage
+                self.currentOutputFunc = output.outputFuncForPercentage
             
             try:
                 answer = knowledgeBase.searchForAnswer(intent, entitiesExtracted, ignoreAnyAidShouldAddRow, outputFunc=self.currentOutputFunc)
