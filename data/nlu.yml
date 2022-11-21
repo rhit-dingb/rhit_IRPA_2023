@@ -1450,14 +1450,6 @@ nlu:
     - How many [non degree-seeking]{"entity": "degree-goal", "value": "non-degree-seeking"} [non-freshmen]{"entity": "undergraduate_grade_level", "value": "non-freshman"} are enrolled?
     - How many [non degree-seeking]{"entity": "degree-goal", "value": "non-degree-seeking"} [part-time]{"entity": "enrollment_status", "value": "part-time"} students are enrolled?
 
-
-
-    
-    
-
-    
-    
-
     - How many [nonresident-alien]{"entity": "race"} students are enrolled? 
     - How many [hispanic]{"entity": "race"} students are enrolled? 
     - How many [african-american]{"entity": "race"} students are enrolled?
@@ -1729,6 +1721,217 @@ nlu:
     - What is the [required units]{"entity": "unit_level", "value": "units-required"} for [all other]{"entity": "subject", "value": "other"} subjects?
     - What is the [recommended units]{"entity": "unit_level", "value": "units-recommended"} for [other]{"entity": "subject", "value": "other"} subjects?
 
+
+- intent: basis_for_selection
+  examples: |
+    - What is the relative important of academic factors and nonacademic factors in your [first-time]{"entity": "is_first_time", "value": "first-time"}, [first-year]{"entity": "is_first_year", "value": "first-year"} [first-time]{"entity": "is_first_time", "value": "first-time"}, [degreeseeking]{"entity": "degree-goal", "value": "degree-seeking"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} admission decisions?
+    - What is the importance of the [rigor of secondary school record]{"entity": "academic_factor", "value": "rigor of secondary school record" } in admission decisions?
+    - What is the importance of the [rigor of secondary school record]{"entity": "academic_factor", "value": "rigor of secondary school record" } in admission decisions?
+    - What is the importance of the [rigor of secondary school record]{"entity": "academic_factor", "value": "rigor of secondary school record" } in basis for selection?
+    - What is the importance of the [rigor of high school record]{"entity": "academic_factor", "value": "rigor of secondary school record" } in admission considerations?
+
+    - What is the importance of [class rank]{"entity": "academic_factor", "value": "class rank" } in admission decisions?
+    - What is the importance of [class-rank]{"entity": "academic_factor", "value": "class rank" } in admission decisions?
+    - What is the importance of [class rank]{"entity": "academic_factor", "value": "class rank" } in basis for selection?
+    
+    - What is the importance of [academic gpa]{"entity": "academic_factor", "value": "academic gpa" } in admission decisions?
+    - What is the importance of [gpa]{"entity": "academic_factor", "value": "academic gpa" } in admission decisions?
+    - What is the importance of [academic-gpa]{"entity": "academic_factor", "value": "academic gpa" } in basis for selection?
+
+    - What is the importance of [standardized test scores]{"entity": "academic_factor", "value": "standardized test scores" } in admission decisions?
+    - What is the importance of [test scores]{"entity": "academic_factor", "value": "standardized test scores" } in admission decisions?
+    - What is the importance of [standardized test scores]{"entity": "academic_factor", "value": "standardized test scores" } in basis for selection?
+
+    - What is the importance of [application essay]{"entity": "academic_factor", "value": "application essay" } in admission decisions?
+    - What is the importance of [essay]{"entity": "academic_factor", "value": "application essay" } in admission decisions?
+    - What is the importance of [application-essay]{"entity": "academic_factor", "value": "application essay" } in basis for selection?
+
+    - What is the importance of [recommendation]{"entity": "academic_factor", "value": "recommendation" } in admission decisions?
+    - What is the importance of [recommendation]{"entity": "academic_factor", "value": "recommendation" } in admission decisions?
+    - What is the importance of [recommendation]{"entity": "academic_factor", "value": "recommendation" } letters in admission decisions?
+    - What is the importance of teacher [recommendation] letters {"entity": "academic_factor", "value": "recommendation" } in basis for selection?
+
+    - What is the importance of [interview]{"entity": "non_academic_factor", "value": "interview" } in admission decisions?
+    - What is the importance of [interview]{"entity": "non_academic_factor", "value": "interview" } in admission decisions?
+    - What is the importance of [interview]{"entity": "non_academic_factor", "value": "interview" } in basis of selection?
+
+    - What is the importance of [extracurricular]{"entity": "non_academic_factor", "value": "extracurricular activities" } in admission decisions?
+    - What is the importance of [extracurricular]{"entity": "non_academic_factor", "value": "extracurricular activities" }  activities in admission decisions?
+    - What is the importance of [extracurricular-activities]{"entity": "non_academic_factor", "value": "extracurricular activities" } in basis of selection?
+    - How important is [extracurricular activities]{"entity": "non_academic_factor", "value": "extracurricular activities" } in basis of selection?
+    - How important is [extracurricular activity]{"entity": "non_academic_factor", "value": "extracurricular activities" } in basis of selection?
+
+
+    - What is the importance of [talent/ability]{"entity": "non_academic_factor", "value": "talent/ability" } in admission decisions?
+    - What is the importance of [talent or ability]{"entity": "non_academic_factor", "value": "talent/ability" } in admission decisions?
+    - What is the importance of [talent and ability]{"entity": "non_academic_factor", "value": "talent/ability" } in admission decisions?
+    - What is the importance of [talent]{"entity": "non_academic_factor", "value": "talent/ability" } in admission decisions?
+    - What is the importance of [ability]{"entity": "non_academic_factor", "value": "talent/ability" } for basis of selection?
+
+    - What is the importance of [character/personal qualities]{"entity": "non_academic_factor", "value": "character/personal qualities" } in admission decisions?
+    - What is the importance of [character and personal qualities]{"entity": "non_academic_factor", "value": "character/personal qualities" }  activities in admission decisions?
+    - What is the importance of [character or personal qualities]{"entity": "non_academic_factor", "value": "character/personal qualities" } in basis for selection?
+    - What is the importance of [character]{"entity": "non_academic_factor", "value": "character/personal qualities" }  in admission decisions?
+    - What is the importance of [personal quality]{"entity": "non_academic_factor", "value": "character/personal qualities" }  in admission decisions?
+    - What is the importance of [personal qualities]{"entity": "non_academic_factor", "value": "character/personal qualities" }  in admission decisions?
+
+    - What is the importance of being a [first-generation]{"entity": "non_academic_factor", "value": "first generation" } student for admission decisions?
+    - How important is being a [first-generation]{"entity": "non_academic_factor", "value": "first generation"} student during admission consideration?
+    - What is the importance of being a [first generation]{"entity": "non_academic_factor", "value": "first generation" }  in admission decisions?
+    - What is the importance of [first generation]{"entity": "non_academic_factor", "value": "first generation" } college student for basis of selection?
+
+    - What is the importance of [alumni relationship]{"entity": "non_academic_factor", "value": "alumni/ae relation" } in admission decisions?
+    - How important is [alumni/ae relationship]{"entity": "non_academic_factor", "value": "alumni/ae relation" } in admission decisions?
+    - How important is [alumni or alumnae relationship]{"entity": "non_academic_factor", "value": "alumni/ae relation" } in admission decisions?
+    - How important is [alumni relationship]{"entity": "non_academic_factor", "value": "alumni/ae relation" } in admission decisions?
+    - How important is [alumni relation]{"entity": "non_academic_factor", "value": "alumni/ae relation" } in admission decisions?
+    - How important is [alumnae relation]{"entity": "non_academic_factor", "value": "alumni/ae relation" } in admission decisions?
+    - How important is [alumnae relationship]{"entity": "non_academic_factor", "value": "alumni/ae relation" } in admission decisions?
+    - How important is [alumni and alumnae relationship]{"entity": "non_academic_factor", "value": "alumni/ae relation" } in admission decisions?
+    - What is the importance of [relationship with alumni]{"entity": "non_academic_factor", "value": "alumni/ae relation" } in basis of selection?
+
+    - How important is [geographical residence]{"entity": "non_academic_factor", "value": "geographical residence" } in admission decisions?
+    - What is the importance of [geographical residence]{"entity": "non_academic_factor", "value": "geographical residence" } in admission decisions?
+    - What is the importance of [geographical residence]{"entity": "non_academic_factor", "value": "geographical residence" } in basis of selection?
+    - How important is student's [geographic location]{"entity": "non_academic_factor", "value": "geographical residence" } in admission decisions?
+    - How important is student's [geographic residence]{"entity": "non_academic_factor", "value": "geographical residence" } in admission decisions?
+
+    - How important is [state residency]{"entity": "non_academic_factor", "value": "state residency" } in admission decisions?
+    - What is the importance of [state residence]{"entity": "non_academic_factor", "value": "state residency" } in admission decisions?
+    - What is the importance of [state residence]{"entity": "non_academic_factor", "value": "state residency" } in basis of selection?
+    - How important is the [state]{"entity": "non_academic_factor", "value": "state residency" } where students are from in admission consideration?
+
+    - How important is [religious affiliation/commitment]{"entity": "non_academic_factor", "value": "religious affiliation/commitment" } in admission decisions?
+    - What is the importance of [religious affiliation]{"entity": "non_academic_factor", "value": "religious affiliation/commitment" } in admission decisions?
+    - What is the importance of [religious commitment]{"entity": "non_academic_factor", "value": "religious affiliation/commitment" } in basis of selection?
+    
+    - How important is [racial/ethnic status](non_academic_factor) in basis for selection
+    - How important is [ethnicity]{"entity": "non_academic_factor", "value": "racial/ethnic status"} in admission decisions?
+    - How important is [ethnic]{"entity": "non_academic_factor", "value": "racial/ethnic status"} in basis for selection
+    - How important is [racial status]{"entity": "non_academic_factor", "value": "racial/ethnic status"} in admission decisions?
+    - How important is [racial or ethnic status]{"entity": "non_academic_factor", "value": "racial/ethnic status"} in basis for selection
+    - How important is [racial and ethnic status]{"entity": "non_academic_factor", "value": "racial/ethnic status"} in basis for selection
+    - What is the importance of [race]{"entity": "non_academic_factor", "value": "racial/ethnic status"} in admission decisions
+    - How important is [racial/ethnic status](non_academic_factor) in admission decisions?
+    - How important is [race]{"entity": "non_academic_factor", "value": "racial/ethnic status"} in admission decisions?
+
+   
+    - How important is [volunteer]{"entity": "non_academic_factor", "value": "volunteer work"} in admission decisions?
+    - What is the importance of [volunteer work](non_academic_factor) in admission decisions
+    - How important is [volunteering]{"entity": "non_academic_factor", "value": "volunteer work"} in admission decisions
+   
+
+    - How important is [experience in working]{"entity": "non_academic_factor", "value": "work experience"} in admission decisions?
+    - How important is [experience in working]{"entity": "non_academic_factor", "value": "work experience"} in basis for selection?
+    - How important is [job experience]{"entity": "non_academic_factor"} in admission decisions?
+    - How important is [experience working]{"entity": "non_academic_factor", "value": "work experience"} in admission decisions?
+    - How important is [experience working]{"entity": "non_academic_factor", "value": "work experience"} in basis for selection
+
+  
+    - For basis of selection, how important is [work experience]{"entity": "non_academic_factor", "value": "work experience"}?
+
+    - How important is [work experience](non_academic_factor) in admission decisions?
+    - What is the relative importance of [work experience](non_academic_factor) in admission decisions
+    - What is the importance of [experience in working]{"entity": "non_academic_factor", "value": "work experience"} for basis of selection?
+    - What is the importance of [experience working]{"entity": "non_academic_factor", "value": "work experience"} during admission decisions
+    
+    - How important is the [applicant interest]{"entity": "non_academic_factor", "value": "level of applicant's interest"} in admission decisions?
+    - How important is [applicant level of interest]{"entity": "non_academic_factor", "value": "level of applicant's interest"} in admission decisions?
+    - How important is the [applicant's level of interest]{"entity": "non_academic_factor", "value": "level of applicant's interest"} in admission decisions?
+    - How important is [applicant's interest]{"entity": "non_academic_factor", "value": "level of applicant's interest"} in basis for selection
+        
+    - How important is [interest of the applicant]{"entity": "non_academic_factor", "value": "level of applicant's interest"} in admission decisions?
+    - How important is [level of applicant interest]{"entity": "non_academic_factor", "value": "level of applicant's interest"} in admission decisions?
+    - How important is [level of applicant interest]{"entity": "non_academic_factor", "value": "level of applicant's interest"} in basis for selection
+    - How important is [level of applicant's interest]{"entity": "non_academic_factor", "value": "level of applicant's interest"} in admission decisions?
+    - How important is the [level of applicant's interest]{"entity": "non_academic_factor", "value": "level of applicant's interest"} in admission decisions?
+
+    - What is the importance of [level of applicant interest]{"entity": "non_academic_factor", "value": "level of applicant's interest"} in admission decisions
+    - What is the importance of [level of applicant's interest]{"entity": "non_academic_factor", "value": "level of applicant's interest"} in admission decisions
+    - What is the importance of the [level of applicant's interest]{"entity": "non_academic_factor", "value": "level of applicant's interest"} in admission decisions
+  
+- synonym: extracurricular activities
+  examples: |
+    - extracurricular-activities
+    - extracurricular
+    - extracurriculars
+    - extracurricular activities
+    - extracurricular activity
+
+- synonym: volunteer work
+  examples: |
+    - volunteer
+    - volunteering
+    - volunteer work
+
+- synonym: work experience
+  examples: |
+    - experience in working
+    - work experience
+    - job experience
+    - experience working
+
+- synonym: level of applicant's interest
+  examples: |
+    - applicant level of interest
+    - applicant interest
+    - interest of the applicant
+    - level of applicant interest
+    - level of applicant's interest
+    - applicant's interest
+    - applicant's level of interest
+
+
+- synonym: racial/ethnic status
+  examples: |
+    - racial or ethnic status
+    - racial/ethnic status
+    - ethnicity
+    - race
+    - racial and ethnic status
+    - ethnic
+    - ethnic status
+    - racial status
+    - race status
+
+#Look up table for basis of selection
+- lookup: academic_factor
+  examples: |
+    - rigor of secondary school record
+    - class rank
+    - academic gpa
+    - standardized test scores
+    - application essay
+    - recommendation
+
+- lookup: non_academic_factor
+  examples: |
+    - interview
+    - extracurricular activities
+    - extracurricular
+    - talent/ability
+    - talent
+    - ability
+    - character/personal qualities
+    - character
+    - personal qualities
+    - first generation 
+    - alumni/ae relation
+    - alumni relation 
+    - alumni/ae relation
+    - geographical residence
+    - state residency
+    - religious affiliation/commitment
+    - religious affiliation
+    - religion
+    - racial/ethnic status
+    - volunteer work
+    - work experience
+    - level of applicant’s interest
+    - applicant interest
+    - applicant's interest
+  
+  
 #Look up table for high school units
 - lookup: subject
   examples: |

@@ -1,0 +1,62 @@
+version: "3.1"
+nlu:
+- intent: basis_for_selection
+  examples: |
+    - How important is [applicant interest]{"entity": "non_academic_factor", "value": "level of applicant\u2019s interest"} in admission decisions?
+    - How important is [applicant interest]{"entity": "non_academic_factor", "value": "level of applicant\u2019s interest"} in basis_for_selection
+    - How important is [applicant level of interest]{"entity": "non_academic_factor", "value": "level of applicant\u2019s interest"} in admission decisions?
+    - How important is [applicant level of interest]{"entity": "non_academic_factor", "value": "level of applicant\u2019s interest"} in basis_for_selection
+    - How important is [applicant's level of interest]{"entity": "non_academic_factor", "value": "level of applicant\u2019s interest"} in admission decisions?
+    - How important is [applicant's level of interest]{"entity": "non_academic_factor", "value": "level of applicant\u2019s interest"} in basis_for_selection
+    - How important is [applicant’s interest i]{"entity": "non_academic_factor", "value": "level of applicant\u2019s interest"}n admission decisions?
+    - How important is [applicant’s interest i]{"entity": "non_academic_factor", "value": "level of applicant\u2019s interest"}n basis_for_selection
+    - How important is [experience in working]{"entity": "non_academic_factor", "value": "work experience"} in admission decisions?
+    - How important is [experience in working]{"entity": "non_academic_factor", "value": "work experience"} in basis_for_selection
+    - How important is [experience working]{"entity": "non_academic_factor", "value": "work experience"} in admission decisions?
+    - How important is [experience working]{"entity": "non_academic_factor", "value": "work experience"} in basis_for_selection
+    - How important is [interest of the applicant]{"entity": "non_academic_factor", "value": "level of applicant\u2019s interest"} in admission decisions?
+    - How important is [interest of the applicant]{"entity": "non_academic_factor", "value": "level of applicant\u2019s interest"} in basis_for_selection
+    - How important is [level of applicant interest]{"entity": "non_academic_factor", "value": "level of applicant\u2019s interest"} in admission decisions?
+    - How important is [level of applicant interest]{"entity": "non_academic_factor", "value": "level of applicant\u2019s interest"} in basis_for_selection
+    - How important is [level of applicant’s interest i]{"entity": "non_academic_factor", "value": "level of applicant\u2019s interest"}n admission decisions?
+    - How important is [level of applicant’s interest i]{"entity": "non_academic_factor", "value": "level of applicant\u2019s interest"}n basis_for_selection
+    - How important is [volunteer]{"entity": "non_academic_factor", "value": "volunteer work"} in admission decisions?
+    - How important is [volunteer]{"entity": "non_academic_factor", "value": "volunteer work"} in basis_for_selection
+    - How important is [volunteer work](non_academic_factor) in admission decisions?
+    - How important is [volunteer work](non_academic_factor) in basis_for_selection
+    - How important is [volunteering]{"entity": "non_academic_factor", "value": "volunteer work"} in admission decisions?
+    - How important is [volunteering]{"entity": "non_academic_factor", "value": "volunteer work"} in basis_for_selection
+    - How important is [work experience](non_academic_factor) in admission decisions?
+    - How important is [work experience](non_academic_factor) in basis_for_selection
+    - What is the importance of [applicant interest]{"entity": "non_academic_factor", "value": "level of applicant\u2019s interest"} in admission decisions
+    - What is the importance of [applicant level of interest]{"entity": "non_academic_factor", "value": "level of applicant\u2019s interest"} in admission decisions
+    - What is the importance of [applicant's level of interest]{"entity": "non_academic_factor", "value": "level of applicant\u2019s interest"} in admission decisions
+    - What is the importance of [applicant’s interest i]{"entity": "non_academic_factor", "value": "level of applicant\u2019s interest"}n admission decisions
+    - What is the importance of [experience in working]{"entity": "non_academic_factor", "value": "work experience"} in admission decisions
+    - What is the importance of [experience working]{"entity": "non_academic_factor", "value": "work experience"} in admission decisions
+    - What is the importance of [interest of the applicant]{"entity": "non_academic_factor", "value": "level of applicant\u2019s interest"} in admission decisions
+    - What is the importance of [level of applicant interest]{"entity": "non_academic_factor", "value": "level of applicant\u2019s interest"} in admission decisions
+    - What is the importance of [level of applicant’s interest i]{"entity": "non_academic_factor", "value": "level of applicant\u2019s interest"}n admission decisions
+    - What is the importance of [volunteer]{"entity": "non_academic_factor", "value": "volunteer work"} in admission decisions
+    - What is the importance of [volunteer work](non_academic_factor) in admission decisions
+    - What is the importance of [volunteering]{"entity": "non_academic_factor", "value": "volunteer work"} in admission decisions
+    - What is the importance of [work experience](non_academic_factor) in admission decisions
+- synonym: volunteer work
+  examples: |
+    - volunteer
+    - volunteering
+    - volunteer work
+- synonym: work experience
+  examples: |
+    - experience in working
+    - work experience
+    - experience working
+- synonym: level of applicant’s interest
+  examples: |
+    - applicant level of interest
+    - applicant interest
+    - interest of the applicant
+    - level of applicant interest
+    - level of applicant’s interest
+    - applicant’s interest
+    - applicant's level of interest

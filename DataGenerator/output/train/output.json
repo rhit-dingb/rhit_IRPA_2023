@@ -1,0 +1,506 @@
+{
+  "rasa_nlu_data": {
+    "common_examples": [
+      {
+        "entities": [
+          {
+            "end": 35,
+            "entity": "non_academic_factor",
+            "start": 17,
+            "value": "level of applicant’s interest"
+          }
+        ],
+        "intent": "basis_for_selection",
+        "text": "How important is applicant interest in admission decisions?"
+      },
+      {
+        "entities": [
+          {
+            "end": 35,
+            "entity": "non_academic_factor",
+            "start": 17,
+            "value": "level of applicant’s interest"
+          }
+        ],
+        "intent": "basis_for_selection",
+        "text": "How important is applicant interest in basis_for_selection"
+      },
+      {
+        "entities": [
+          {
+            "end": 44,
+            "entity": "non_academic_factor",
+            "start": 17,
+            "value": "level of applicant’s interest"
+          }
+        ],
+        "intent": "basis_for_selection",
+        "text": "How important is applicant level of interest in admission decisions?"
+      },
+      {
+        "entities": [
+          {
+            "end": 44,
+            "entity": "non_academic_factor",
+            "start": 17,
+            "value": "level of applicant’s interest"
+          }
+        ],
+        "intent": "basis_for_selection",
+        "text": "How important is applicant level of interest in basis_for_selection"
+      },
+      {
+        "entities": [
+          {
+            "end": 46,
+            "entity": "non_academic_factor",
+            "start": 17,
+            "value": "level of applicant’s interest"
+          }
+        ],
+        "intent": "basis_for_selection",
+        "text": "How important is applicant's level of interest in admission decisions?"
+      },
+      {
+        "entities": [
+          {
+            "end": 46,
+            "entity": "non_academic_factor",
+            "start": 17,
+            "value": "level of applicant’s interest"
+          }
+        ],
+        "intent": "basis_for_selection",
+        "text": "How important is applicant's level of interest in basis_for_selection"
+      },
+      {
+        "entities": [
+          {
+            "end": 39,
+            "entity": "non_academic_factor",
+            "start": 17,
+            "value": "level of applicant’s interest"
+          }
+        ],
+        "intent": "basis_for_selection",
+        "text": "How important is applicant’s interest in admission decisions?"
+      },
+      {
+        "entities": [
+          {
+            "end": 39,
+            "entity": "non_academic_factor",
+            "start": 17,
+            "value": "level of applicant’s interest"
+          }
+        ],
+        "intent": "basis_for_selection",
+        "text": "How important is applicant’s interest in basis_for_selection"
+      },
+      {
+        "entities": [
+          {
+            "end": 38,
+            "entity": "non_academic_factor",
+            "start": 17,
+            "value": "work experience"
+          }
+        ],
+        "intent": "basis_for_selection",
+        "text": "How important is experience in working in admission decisions?"
+      },
+      {
+        "entities": [
+          {
+            "end": 38,
+            "entity": "non_academic_factor",
+            "start": 17,
+            "value": "work experience"
+          }
+        ],
+        "intent": "basis_for_selection",
+        "text": "How important is experience in working in basis_for_selection"
+      },
+      {
+        "entities": [
+          {
+            "end": 35,
+            "entity": "non_academic_factor",
+            "start": 17,
+            "value": "work experience"
+          }
+        ],
+        "intent": "basis_for_selection",
+        "text": "How important is experience working in admission decisions?"
+      },
+      {
+        "entities": [
+          {
+            "end": 35,
+            "entity": "non_academic_factor",
+            "start": 17,
+            "value": "work experience"
+          }
+        ],
+        "intent": "basis_for_selection",
+        "text": "How important is experience working in basis_for_selection"
+      },
+      {
+        "entities": [
+          {
+            "end": 42,
+            "entity": "non_academic_factor",
+            "start": 17,
+            "value": "level of applicant’s interest"
+          }
+        ],
+        "intent": "basis_for_selection",
+        "text": "How important is interest of the applicant in admission decisions?"
+      },
+      {
+        "entities": [
+          {
+            "end": 42,
+            "entity": "non_academic_factor",
+            "start": 17,
+            "value": "level of applicant’s interest"
+          }
+        ],
+        "intent": "basis_for_selection",
+        "text": "How important is interest of the applicant in basis_for_selection"
+      },
+      {
+        "entities": [
+          {
+            "end": 44,
+            "entity": "non_academic_factor",
+            "start": 17,
+            "value": "level of applicant’s interest"
+          }
+        ],
+        "intent": "basis_for_selection",
+        "text": "How important is level of applicant interest in admission decisions?"
+      },
+      {
+        "entities": [
+          {
+            "end": 44,
+            "entity": "non_academic_factor",
+            "start": 17,
+            "value": "level of applicant’s interest"
+          }
+        ],
+        "intent": "basis_for_selection",
+        "text": "How important is level of applicant interest in basis_for_selection"
+      },
+      {
+        "entities": [
+          {
+            "end": 48,
+            "entity": "non_academic_factor",
+            "start": 17,
+            "value": "level of applicant’s interest"
+          }
+        ],
+        "intent": "basis_for_selection",
+        "text": "How important is level of applicant’s interest in admission decisions?"
+      },
+      {
+        "entities": [
+          {
+            "end": 48,
+            "entity": "non_academic_factor",
+            "start": 17,
+            "value": "level of applicant’s interest"
+          }
+        ],
+        "intent": "basis_for_selection",
+        "text": "How important is level of applicant’s interest in basis_for_selection"
+      },
+      {
+        "entities": [
+          {
+            "end": 26,
+            "entity": "non_academic_factor",
+            "start": 17,
+            "value": "volunteer work"
+          }
+        ],
+        "intent": "basis_for_selection",
+        "text": "How important is volunteer in admission decisions?"
+      },
+      {
+        "entities": [
+          {
+            "end": 26,
+            "entity": "non_academic_factor",
+            "start": 17,
+            "value": "volunteer work"
+          }
+        ],
+        "intent": "basis_for_selection",
+        "text": "How important is volunteer in basis_for_selection"
+      },
+      {
+        "entities": [
+          {
+            "end": 31,
+            "entity": "non_academic_factor",
+            "start": 17,
+            "value": "volunteer work"
+          }
+        ],
+        "intent": "basis_for_selection",
+        "text": "How important is volunteer work in admission decisions?"
+      },
+      {
+        "entities": [
+          {
+            "end": 31,
+            "entity": "non_academic_factor",
+            "start": 17,
+            "value": "volunteer work"
+          }
+        ],
+        "intent": "basis_for_selection",
+        "text": "How important is volunteer work in basis_for_selection"
+      },
+      {
+        "entities": [
+          {
+            "end": 29,
+            "entity": "non_academic_factor",
+            "start": 17,
+            "value": "volunteer work"
+          }
+        ],
+        "intent": "basis_for_selection",
+        "text": "How important is volunteering in admission decisions?"
+      },
+      {
+        "entities": [
+          {
+            "end": 29,
+            "entity": "non_academic_factor",
+            "start": 17,
+            "value": "volunteer work"
+          }
+        ],
+        "intent": "basis_for_selection",
+        "text": "How important is volunteering in basis_for_selection"
+      },
+      {
+        "entities": [
+          {
+            "end": 32,
+            "entity": "non_academic_factor",
+            "start": 17,
+            "value": "work experience"
+          }
+        ],
+        "intent": "basis_for_selection",
+        "text": "How important is work experience in admission decisions?"
+      },
+      {
+        "entities": [
+          {
+            "end": 32,
+            "entity": "non_academic_factor",
+            "start": 17,
+            "value": "work experience"
+          }
+        ],
+        "intent": "basis_for_selection",
+        "text": "How important is work experience in basis_for_selection"
+      },
+      {
+        "entities": [
+          {
+            "end": 44,
+            "entity": "non_academic_factor",
+            "start": 26,
+            "value": "level of applicant’s interest"
+          }
+        ],
+        "intent": "basis_for_selection",
+        "text": "What is the importance of applicant interest in admission decisions"
+      },
+      {
+        "entities": [
+          {
+            "end": 53,
+            "entity": "non_academic_factor",
+            "start": 26,
+            "value": "level of applicant’s interest"
+          }
+        ],
+        "intent": "basis_for_selection",
+        "text": "What is the importance of applicant level of interest in admission decisions"
+      },
+      {
+        "entities": [
+          {
+            "end": 55,
+            "entity": "non_academic_factor",
+            "start": 26,
+            "value": "level of applicant’s interest"
+          }
+        ],
+        "intent": "basis_for_selection",
+        "text": "What is the importance of applicant's level of interest in admission decisions"
+      },
+      {
+        "entities": [
+          {
+            "end": 48,
+            "entity": "non_academic_factor",
+            "start": 26,
+            "value": "level of applicant’s interest"
+          }
+        ],
+        "intent": "basis_for_selection",
+        "text": "What is the importance of applicant’s interest in admission decisions"
+      },
+      {
+        "entities": [
+          {
+            "end": 47,
+            "entity": "non_academic_factor",
+            "start": 26,
+            "value": "work experience"
+          }
+        ],
+        "intent": "basis_for_selection",
+        "text": "What is the importance of experience in working in admission decisions"
+      },
+      {
+        "entities": [
+          {
+            "end": 44,
+            "entity": "non_academic_factor",
+            "start": 26,
+            "value": "work experience"
+          }
+        ],
+        "intent": "basis_for_selection",
+        "text": "What is the importance of experience working in admission decisions"
+      },
+      {
+        "entities": [
+          {
+            "end": 51,
+            "entity": "non_academic_factor",
+            "start": 26,
+            "value": "level of applicant’s interest"
+          }
+        ],
+        "intent": "basis_for_selection",
+        "text": "What is the importance of interest of the applicant in admission decisions"
+      },
+      {
+        "entities": [
+          {
+            "end": 53,
+            "entity": "non_academic_factor",
+            "start": 26,
+            "value": "level of applicant’s interest"
+          }
+        ],
+        "intent": "basis_for_selection",
+        "text": "What is the importance of level of applicant interest in admission decisions"
+      },
+      {
+        "entities": [
+          {
+            "end": 57,
+            "entity": "non_academic_factor",
+            "start": 26,
+            "value": "level of applicant’s interest"
+          }
+        ],
+        "intent": "basis_for_selection",
+        "text": "What is the importance of level of applicant’s interest in admission decisions"
+      },
+      {
+        "entities": [
+          {
+            "end": 35,
+            "entity": "non_academic_factor",
+            "start": 26,
+            "value": "volunteer work"
+          }
+        ],
+        "intent": "basis_for_selection",
+        "text": "What is the importance of volunteer in admission decisions"
+      },
+      {
+        "entities": [
+          {
+            "end": 40,
+            "entity": "non_academic_factor",
+            "start": 26,
+            "value": "volunteer work"
+          }
+        ],
+        "intent": "basis_for_selection",
+        "text": "What is the importance of volunteer work in admission decisions"
+      },
+      {
+        "entities": [
+          {
+            "end": 38,
+            "entity": "non_academic_factor",
+            "start": 26,
+            "value": "volunteer work"
+          }
+        ],
+        "intent": "basis_for_selection",
+        "text": "What is the importance of volunteering in admission decisions"
+      },
+      {
+        "entities": [
+          {
+            "end": 41,
+            "entity": "non_academic_factor",
+            "start": 26,
+            "value": "work experience"
+          }
+        ],
+        "intent": "basis_for_selection",
+        "text": "What is the importance of work experience in admission decisions"
+      }
+    ],
+    "entity_synonyms": [
+      {
+        "synonyms": [
+          "volunteer",
+          "volunteering",
+          "volunteer work"
+        ],
+        "value": "volunteer work"
+      },
+      {
+        "synonyms": [
+          "experience in working",
+          "work experience",
+          "experience working"
+        ],
+        "value": "work experience"
+      },
+      {
+        "synonyms": [
+          "applicant level of interest",
+          "applicant interest",
+          "interest of the applicant",
+          "level of applicant interest",
+          "level of applicant’s interest",
+          "applicant’s interest",
+          "applicant's level of interest"
+        ],
+        "value": "level of applicant’s interest"
+      }
+    ],
+    "lookup_tables": [],
+    "regex_features": []
+  }
+}

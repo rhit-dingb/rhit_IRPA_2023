@@ -10,12 +10,12 @@ intents:
   - cohort
   - admission
   - high_school_units
+  - basis_for_selection 
+
 
   - mood_great
   - mood_unhappy
   - bot_challenge
-
-
 
 
 
@@ -104,6 +104,13 @@ entities:
   #Number of unit-required or unit-recommended for particular subjects for rose-hulman admission requirement.
   #Specific values: unit-required, unit-recommend 
   - unit_level
+
+  #Academic factor for basis of selection for admissions such as Rigor of secondary school record, Class rank etc, academic GPA etc.
+  - academic_factor
+  
+  #Non-academic factor for basis of selection for admissions such as Interview, Extracurricular activities, Talent/ability, Character/personal qualities, etc
+  - non_academic_factor
+
 
 
 slots:
