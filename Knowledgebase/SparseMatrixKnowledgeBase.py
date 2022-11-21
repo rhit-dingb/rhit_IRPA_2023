@@ -36,8 +36,8 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
     Throws: exception when given year or intent for the data is not found or when exception encountered when parsing year entity values
 
     """
-    def searchForAnswer(self, intent, entitiesExtracted, shouldAddRowStrategy, outputFunc = identityFunc):
-        count=0
+    def searchForAnswer(self, intent, entitiesExtracted, shouldAddRowStrategy, outputFunc = identityFunc, initialValue = 0):
+        count = initialValue
         col_index=0
 
         #this list contains the value of the entities extracted.
@@ -126,7 +126,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
             
             total = total + int(answer)
          
-
+ 
         return outputFunc(total, intent, set(entitiesUsed))
 
     def aggregatePercentage(self, intent, numerator, entitiesForNumerator, entitiesToCalculateDenominator, shouldAddRowStrategy):

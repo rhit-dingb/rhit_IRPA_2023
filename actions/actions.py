@@ -58,7 +58,7 @@ class ActionQueryBasisForSelection(Action):
         entitiesExtracted = tracker.latest_message["entities"]
         intent = tracker.latest_message["intent"]["name"]
         try:
-            answer = knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy, output.outputFuncForHighSchoolUnits)
+            answer = knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy, output.outputFuncForText)
             dispatcher.utter_message(answer)    
         except Exception as e:
             utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)

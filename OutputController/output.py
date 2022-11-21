@@ -24,5 +24,13 @@ def outputFuncForInteger(answer, intent, printEntities):
 def outputFuncForPercentage(answer, intent, printEntities): 
     return constructSentence(PERCENTAGE_FORMAT.format(value = answer), intent, printEntities)
 
+def outputFuncForText(answer, intent, printEntities):
+    if answer == "":
+        answer = "Sorry, I found no answer related to your question"
+    constructSentence(answer, intent, printEntities)
+ 
+        
+
 def identityFunc(answer, intent, printEntities):
     return (answer, intent, printEntities)
+
