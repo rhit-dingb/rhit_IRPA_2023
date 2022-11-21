@@ -26,8 +26,6 @@ from rasa_sdk.executor import CollectingDispatcher
 
 
 knowledgeBase = SparseMatrixKnowledgeBase(ExcelDataManager("./CDSData", ["enrollment", "cohort", "admission", "high_school_units" ]))
-
-
 defaultShouldAddRowStrategy = DefaultShouldAddRowStrategy()
 
 class ActionGetAvailableOptions(Action):
@@ -47,6 +45,24 @@ class ActionAskMoreQuestion(Action):
     def run(self, dispatcher, tracker, domain):
         dispatcher.utter_message("Great! Do you have anymore questions?")
         return []
+
+
+class ActionQueryBasisForSelection(Action):
+    def __init__(self) -> None:
+        super().__init__()
+        
+    def name(self) -> Text:
+        return "action_query_basis_for_selection"
+    
+    def run(self, dispatcher, tracker, domain):
+        entitiesExtracted = tracker.latest_message["entities"]
+        intent = tracker.latest_message["intent"]["name"]
+        try:
+            answer = knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy, output.outputFuncForHighSchoolUnits)
+            dispatcher.utter_message(answer)    
+        except Exception as e:
+            utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
+
 
 
 class ActionQueryHighSchoolUnits(Action):
@@ -93,9 +109,7 @@ class ActionQueryEnrollment(Action):
         for entityObj in tracker.latest_message['entities']:
             if entityObj["entity"] == "race":
                 haveRaceEnrollmentEntity = True
-
-        print(tracker.latest_message["intent"])
-        print(tracker.latest_message["entities"])
+                
         selectedShouldAddRowStrategy = defaultShouldAddRowStrategy
         if haveRaceEnrollmentEntity:
             selectedShouldAddRowStrategy = self.chooseFromOptionsAddRowStrategy
@@ -119,13 +133,8 @@ class ActionQueryAdmission(Action):
 
       
         entitiesExtracted = tracker.latest_message["entities"]
-       
-
-        print(tracker.latest_message["intent"])
-        print(tracker.latest_message["entities"])
         selectedShouldAddRowStrategy = defaultShouldAddRowStrategy
        
-        
         answer = None
         try:
             answer = knowledgeBase.searchForAnswer(

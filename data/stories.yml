@@ -92,6 +92,25 @@ stories:
 #     - action: action_query_cohort
 #     - action: utter_ask_answer_helpful
 
+- story: ask_about_basis_for_selection_helpful
+  steps:
+    - intent: basis_for_selection
+    - action: action_query_basis_for_selection
+    - action: utter_ask_answer_helpful
+    - intent: affirm
+    - checkpoint: ask_feedback
+
+
+- story: ask_about_basis_for_selection_not_helpful
+  steps:
+    - intent: basis_for_selection
+    - action: action_query_basis_for_selection
+    - action: utter_ask_answer_helpful
+    - intent: deny
+    - action: utter_sorry_question_not_helpful
+    - action: action_get_available_options
+
+
 - story: ask_about_high_school_units_helpful
   steps:
     - intent: high_school_units
@@ -128,11 +147,9 @@ stories:
     - action: action_get_available_options
 
 
-#generalize the process for enrollment
 - story: ask_about_enrollment_and_answer_helpful
   steps: 
     - intent: enrollment 
-    #query enrollment will ask if the answer provided helped
     - action: action_query_enrollment
     - action: utter_ask_answer_helpful
     - intent: affirm
@@ -141,7 +158,6 @@ stories:
 - story: ask_about_admission_and_answer_helpful
   steps: 
     - intent: admission 
-    #query enrollment will ask if the answer provided helped
     - action: action_query_admission
     - action: utter_ask_answer_helpful
     - intent: affirm
@@ -152,7 +168,6 @@ stories:
 - story: ask_about_admission_and_answer_not_helpful
   steps: 
     - intent: admission 
-    #query enrollment will ask if the answer provided helped
     - action: action_query_admission
     - action: utter_ask_answer_helpful
     - intent: deny
@@ -177,7 +192,6 @@ stories:
 - story: ask_about_enrollment_and_answer_not_helpful
   steps: 
     - intent: enrollment 
-    #query enrollment will ask if the answer provided helped
     - action: action_query_enrollment
     - action: utter_ask_answer_helpful
     - intent: deny

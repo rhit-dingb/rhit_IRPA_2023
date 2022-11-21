@@ -202,6 +202,8 @@ actions:
   - action_query_admission
 
   - action_query_high_school_units
+
+  - action_query_basis_for_selection
  
 
   
