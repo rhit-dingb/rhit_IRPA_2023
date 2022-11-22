@@ -27,7 +27,7 @@ def outputFuncForPercentage(answer, intent, printEntities):
 def outputFuncForText(answer, intent, printEntities):
     if answer == "":
         answer = "Sorry, I found no answer related to your question"
-    constructSentence(answer, intent, printEntities)
+    return constructSentence(answer, intent, printEntities)
  
         
 

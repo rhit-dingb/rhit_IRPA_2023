@@ -21,9 +21,10 @@ class DefaultShouldAddRowStrategy(ShouldAddRowStrategy):
 
         # Note: we only want to consider entities that are supported by this sparse matrix, so we can answer the user's question as best as possible
         filteredEntities = []
-        processedColumn = [column.replace(" ", "") for column in row.index]
-        # print(entities)
-        # print(processedColumn)
+        #processedColumn = [column.replace(" ", "") for column in row.index]
+        processedColumn = row.index
+        print(entities)
+        print(processedColumn)
       
         
         for entity in entities:

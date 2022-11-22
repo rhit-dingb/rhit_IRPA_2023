@@ -11,6 +11,7 @@ intents:
   - admission
   - high_school_units
   - basis_for_selection 
+  - freshman_profile
 
 
   - mood_great
@@ -111,6 +112,43 @@ entities:
   #Non-academic factor for basis of selection for admissions such as Interview, Extracurricular activities, Talent/ability, Character/personal qualities, etc
   - non_academic_factor
 
+
+  # # Below are entities for freshman profile
+
+  #Aggregation words: percentage, mean
+  - aggregation
+
+  #Types of standardized test, mainly SAT and ACT.
+  - standardized_test
+
+  # Test percentile: 25th, 50th, 75th, mean
+  - test_percentile
+
+  #Components for sat test such as Sat_Composite, such as:
+  # Sat_Reading_Writing
+  # Sat_Math
+  # Sat_Eassy
+  # Sat_composite
+  - sat_test_component
+
+  #Component for act test such as 
+  # Act_Composite
+  # Act_Math
+  # Act_English
+  # Act_Writing
+  - act_test_component
+
+  #The range of sat test scores on cds
+  - sat_test_score_range
+
+  #The range of act test score on csd
+  - act_test_score_range
+
+  #Percentage of students graduating in top tenth, top quarter, top half, etc in the incoming freshman class, also includes percentage of students who submitted class rank
+  - percent_high_school_rate
+
+  #Percentage of students who has 4.0 gpa, 3.75-3.99 gpa, etc, also includes percentage of students who submitted in gpa
+  - percent_gpa_rate
 
 
 slots:

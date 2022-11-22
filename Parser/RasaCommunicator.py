@@ -15,6 +15,7 @@ class RasaCommunicator():
         }
         #post('https://httpbin.org/post', data={'key': 'value'})
         r = requests.post(self.connectionString+"model/"+"parse", json=body)
+        print(r.json())
         return r.json()
         
             

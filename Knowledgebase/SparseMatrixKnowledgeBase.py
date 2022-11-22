@@ -57,7 +57,8 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
 
         # get the underlying pandas dataframe from the internal data model
         sparseMatrixToSearch = sparseMatrixToSearch.getSparseMatrixDf()
-
+        print("SPARSEMATRIX")
+        print(sparseMatrixToSearch)
         for i in range(sparseMatrixToSearch.shape[0]):
             row = sparseMatrixToSearch.loc[i]
             
@@ -65,9 +66,9 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
                 continue
            
             usedEntities = shouldAddRowStrategy.determineShouldAddRow(row, entities)
-
+            # print(usedEntities)
             if len(usedEntities) > 0:
-                #print("Im ADDING " + str(self.m_df.loc[i,'Value']))
+               
                 count += sparseMatrixToSearch.loc[i,'Value']
                 if len(printEntities) <= 0:
                     printEntities = usedEntities

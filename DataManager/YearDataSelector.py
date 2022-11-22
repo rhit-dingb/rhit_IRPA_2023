@@ -39,7 +39,7 @@ class YearlyDataSelector():
                     elif "to" == entity["role"]:
                         end = entity["value"]
                 else:
-                     entityProvidedWithStartAndEndYear = entity["value"] 
+                    entityProvidedWithStartAndEndYear = entity["value"] 
 
        
         # if no year data is provided, use the most recent data.
@@ -48,8 +48,16 @@ class YearlyDataSelector():
 
         if entityProvidedWithStartAndEndYear:
             yearSplitted = entityProvidedWithStartAndEndYear.split("-")
-            start = yearSplitted[0]
-            end = yearSplitted[1]
+            start = None
+            end = None
+            if (len(yearSplitted)>1):
+                start = yearSplitted[0]
+                end = yearSplitted[1]
+            else:
+                start = yearSplitted[0]
+                end = self.calculateYearHelper(start, 1)
+                
+            
         else:
             if start is None and not end is None:
 

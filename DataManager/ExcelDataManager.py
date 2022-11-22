@@ -27,13 +27,14 @@ class ExcelDataManager(DataManager):
 
         data = self.excelProcessor.getData()
         dataForEachTopic = data[yearKey]
+       
         
         if not intent in dataForEachTopic.keys():
             raise NoDataFoundException(NO_DATA_AVAILABLE_FOR_GIVEN_INTENT_FORMAT.format(topic = intent, start= start, end=end), ExceptionTypes.NoSparseMatrixDataAvailableForGivenIntent)
             
         topicData : TopicData = dataForEachTopic[intent]
 
-        print(topicData.sparseMatrices)
+        
         if not topicData.hasData():
             raise NoDataFoundException(NO_DATA_AVAILABLE_FOR_GIVEN_INTENT_FORMAT.format(topic = intent, start= start, end=end), ExceptionTypes.NoSparseMatrixDataAvailableForGivenIntent)
         

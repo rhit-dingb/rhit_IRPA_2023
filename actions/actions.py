@@ -25,7 +25,7 @@ from rasa_sdk.executor import CollectingDispatcher
 # knowledgeBase = SparseMatrixKnowledgeBase("./Data_Ingestion/CDS_SPARSE_ENR.xlsx")
 
 
-knowledgeBase = SparseMatrixKnowledgeBase(ExcelDataManager("./CDSData", ["enrollment", "cohort", "admission", "high_school_units" ]))
+knowledgeBase = SparseMatrixKnowledgeBase(ExcelDataManager("./CDSData", ["enrollment", "cohort", "admission", "high_school_units", "basis_for_selection"]))
 defaultShouldAddRowStrategy = DefaultShouldAddRowStrategy()
 
 class ActionGetAvailableOptions(Action):
@@ -57,8 +57,11 @@ class ActionQueryBasisForSelection(Action):
     def run(self, dispatcher, tracker, domain):
         entitiesExtracted = tracker.latest_message["entities"]
         intent = tracker.latest_message["intent"]["name"]
+        
+        print(entitiesExtracted)
         try:
-            answer = knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy, output.outputFuncForText)
+            answer = knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy, output.outputFuncForText, "")
+            print(answer)
             dispatcher.utter_message(answer)    
         except Exception as e:
             utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
@@ -195,6 +198,7 @@ class ActionQueryCohort(Action):
 
     def run(self, dispatcher, tracker, domain):
         print(tracker.latest_message["intent"])
+        print("ENTITIES")
         print(tracker.latest_message["entities"])
 
         entitiesExtracted = tracker.latest_message["entities"]
@@ -254,7 +258,7 @@ class ActionQueryCohort(Action):
             if isUpperFoundBoundNotFound:
                 upperBoundYear = self.maxYear
             
-            print(lowerBoundYear, upperBoundYear)
+            # print(lowerBoundYear, upperBoundYear)
             
             answer = None
 
@@ -287,9 +291,11 @@ class ActionQueryCohort(Action):
         return []
 
     def calculateGraduationRate(self,intent, entitiesForNumerator,  filteredEntities , graduatingNumbers, shouldAddRowStrategy):
+      
         entitiesToCalculateDenominator = [createEntityObj(FINAL_COHORT_ENTITY_LABEL, entityLabel=FINAL_COHORT_ENTITY_LABEL)]
         entitiesToCalculateDenominator = entitiesToCalculateDenominator + filteredEntities
-       
+        print("ENTITIES TO CALCULATE DENOMINATOR")
+        print(entitiesToCalculateDenominator)
         return knowledgeBase.aggregatePercentage(intent, graduatingNumbers, entitiesForNumerator,  entitiesToCalculateDenominator,  shouldAddRowStrategy)
         
 

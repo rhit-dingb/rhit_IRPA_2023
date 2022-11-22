@@ -52,6 +52,8 @@ class DataManager():
         # print(sparseMatrices)
         if sparseMatrices == None:
             sparseMatrices, startYear, endYear = self.academicYearDataSelector.selectDataToSearchByYear(self, intent, entities)   
+        
+        
         errorMessage = NO_DATA_AVAILABLE_FOR_GIVEN_INTENT_FORMAT.format(topic = intent, start= startYear, end =endYear)
         selectedSparseMatrix = self.determineBestMatchingMatrix(sparseMatrices, entities, errorMessage)      
         return (selectedSparseMatrix, startYear, endYear)

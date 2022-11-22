@@ -13,7 +13,7 @@ A class used to determine which CDS data to use given the cohort by year.
 """
 class YearlyDataSelectorByCohort():
 
-    def selectDataToSearchByYear(self, dataManager , intent : str, entities : dict) -> dict:
+    def selectDataToSearchByYear(self, dataManager, intent : str, entities : dict) -> dict:
         cohortByYearEntity : dict = findEntityHelper(entities, COHORT_BY_YEAR_ENTITY_LABEL)
         yearEntity : dict = findEntityHelper(entities, YEAR_ENTITY_LABEL)
 
