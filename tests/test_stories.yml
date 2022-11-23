@@ -252,7 +252,6 @@ stories:
 
 
 #HIGH SCHOOL UNITS TEST:
-
 - story: ask_about_cohort_general_5_year_graduation_time_should_extract_gradution_time_successfully
   steps:
   - user: |
@@ -260,7 +259,6 @@ stories:
     intent: cohort
   - action: action_query_cohort
   - action: utter_ask_answer_helpful
-
 
 
 - story: ask_about_high_school_units_should_extract_subject_correctly
@@ -322,3 +320,74 @@ stories:
     intent: deny
   - action: utter_no_more_question
 
+
+#Basis for selection tests
+- story: ask_about_talent_importance_in_basis_for_selection
+  steps:
+  - user: |
+      How important is student's [talent]{"entity": "non_academic_factor", "value": "talent"} in admission?
+    intent: basis_for_selection
+  - action: action_query_basis_for_selection
+  - user: |
+      yes
+    intent: affirm
+  - action: action_ask_more_question
+  - user: |
+      nope
+    intent: deny
+  - action: utter_no_more_question
+
+
+- story: ask_about_religion_importance_in_basis_for_selection
+  steps:
+  - user: |
+      How important is student's [religion]{"entity": "non_academic_factor", "value": "talent"} in basis for selection
+    intent: basis_for_selection
+  - action: action_query_basis_for_selection
+  - user: |
+      yes
+    intent: affirm
+  - action: action_ask_more_question
+  - user: |
+      nope
+    intent: deny
+  - action: utter_no_more_question
+
+
+#Freshman profile tests
+#Percent/Number submit sat/act
+- story: ask_about_percentage_submit_sat
+  steps:
+  - user: |
+      [percentage]{"entity":"aggregation", "value": "percent"} of students who submitted [sat]{"entity": "standardized_test", "value": "sat"}
+    intent: basis_for_selection
+  - action: action_query_basis_for_selection
+  - user: |
+      yes
+    intent: affirm
+  - action: action_ask_more_question
+  - user: |
+      nope
+    intent: deny
+  - action: utter_no_more_question
+
+- story: ask_about_percentile_score_act
+  steps:
+  - user: |
+      What is the [75th percentile]{"entity": "test_percentile", "value": "75th percentile"} score for [ACT writing]{"entity": "act_test_component"}
+    intent: basis_for_selection
+  - action: action_query_basis_for_selection
+  - user: |
+      yes
+    intent: affirm
+  - action: action_ask_more_question
+  - user: |
+      nope
+    intent: deny
+  - action: utter_no_more_question
+
+
+
+
+
+  

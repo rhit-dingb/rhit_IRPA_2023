@@ -819,12 +819,12 @@ nlu:
     - How many [graduate]{"entity": "student_level", "value": "graduate"} [non freshman]{"entity": "undergraduate_grade_level", "value": "non-freshman"} students are enrolled?
     - How many [graduate]{"entity": "student_level", "value": "graduate"} [non degree seeking]{"entity": "degree-goal", "value": "non-degree-seeking"} students are enrolled?
 
-    - How many [grad]{"entity": "student_level", "value": "graudate"} [non first time]{"entity": "is_first_time", "value": "non-first-time"} students are enrolled?
-    - How many [grad]{"entity": "student_level", "value": "graudate"} [non first year]{"entity": "is_first_year", "value": "non-first-year"} students are enrolled?
-    - How many [grad]{"entity": "student_level", "value": "graudate"} [part time]{"entity": "enrollment_status", "value": "part-time"} students are enrolled?
-    - How many [grad]{"entity": "student_level", "value": "graudate"} [female]{"entity": "gender", "value": "female"} students are enrolled?
-    - How many [grad]{"entity": "student_level", "value": "graudate"} [non freshman]{"entity": "undergraduate_grade_level", "value": "non-freshman"} students are enrolled?
-    - How many [grad]{"entity": "student_level", "value": "graudate"} [non degree seeking]{"entity": "degree-goal", "value": "non-degree-seeking"} students are enrolled?
+    - How many [grad]{"entity": "student_level", "value": "graduate"} [non first time]{"entity": "is_first_time", "value": "non-first-time"} students are enrolled?
+    - How many [grad]{"entity": "student_level", "value": "graduate"} [non first year]{"entity": "is_first_year", "value": "non-first-year"} students are enrolled?
+    - How many [grad]{"entity": "student_level", "value": "graduate"} [part time]{"entity": "enrollment_status", "value": "part-time"} students are enrolled?
+    - How many [grad]{"entity": "student_level", "value": "graduate"} [female]{"entity": "gender", "value": "female"} students are enrolled?
+    - How many [grad]{"entity": "student_level", "value": "graduate"} [non freshman]{"entity": "undergraduate_grade_level", "value": "non-freshman"} students are enrolled?
+    - How many [grad]{"entity": "student_level", "value": "graduate"} [non degree seeking]{"entity": "degree-goal", "value": "non-degree-seeking"} students are enrolled?
 
     - How many [graduate]{"entity": "student_level", "value": "graduate"} [non-first-time]{"entity": "is_first_time", "value": "non-first-time"} students are enrolled?
     - How many [graduate]{"entity": "student_level", "value": "graduate"} [non first-time]{"entity": "is_first_time", "value": "non-first-time"} students are enrolled?
@@ -1663,9 +1663,9 @@ nlu:
     - What is the importance of [class-rank]{"entity": "academic_factor", "value": "class rank" } in admission decisions?
     - What is the importance of [class rank]{"entity": "academic_factor", "value": "class rank" } in basis for selection?
     
-    - What is the importance of [academic gpa]{"entity": "academic_factor", "value": "academic gpa" } in admission decisions?
-    - What is the importance of [gpa]{"entity": "academic_factor", "value": "academic gpa" } in admission decisions?
-    - What is the importance of [academic-gpa]{"entity": "academic_factor", "value": "academic gpa" } in basis for selection?
+    - What is the importance of academic [gpa]{"entity": "academic_factor", "value": "gpa" } in admission decisions?
+    - What is the importance of [gpa]{"entity": "academic_factor", "value": "gpa" } in admission decisions?
+    - What is the importance of academic [gpa]{"entity": "academic_factor", "value": "gpa" } in basis for selection?
 
     - What is the importance of [standardized test scores]{"entity": "academic_factor", "value": "standardized test scores" } in admission decisions?
     - What is the importance of [test scores]{"entity": "academic_factor", "value": "standardized test scores" } in admission decisions?
@@ -1778,7 +1778,77 @@ nlu:
     - What is the importance of [level of applicant interest]{"entity": "non_academic_factor", "value": "level of applicant's interest"} in admission decisions
     - What is the importance of [level of applicant's interest]{"entity": "non_academic_factor", "value": "level of applicant's interest"} in admission decisions
     - What is the importance of the [level of applicant's interest]{"entity": "non_academic_factor", "value": "level of applicant's interest"} in admission decisions
-  
+
+
+
+#---------------------LOOK UP TABLE AND SYNONYMS FOR BASIS OF SELECTION----------------------------------- 
+- lookup: non_academic_factor
+  examples: |
+    - interview
+
+    - extracurricular activities
+    - extracurricular
+    - extracurricular-activities
+    - extracurriculars
+    - extracurricular activities
+    - extracurricular activity
+
+    - talent/ability
+    - talent
+    - ability
+    - talent and ability
+    - talent or ability
+
+    - character/personal qualities
+    - character
+    - personal qualities
+
+
+    - first generation 
+    - first-generation
+    - first-gen
+    - first gen
+
+    - alumni/ae relation
+    - alumni relation 
+    - alumni/ae relation
+
+    - geographical residence
+    - state residency
+    - religious affiliation/commitment
+    - religious affiliation
+    - religion
+    - racial/ethnic status
+
+    - volunteer work
+    - volunteering
+    - volunteer 
+
+    - work experience
+    - experience in working
+    - work experience
+    - job experience
+    - experience working
+
+    - applicant level of interest
+    - applicant interest
+    - interest of the applicant
+    - level of applicant interest
+    - level of applicant's interest
+    - applicant's interest
+    - applicant's level of interest
+
+    - racial or ethnic status
+    - racial/ethnic status
+    - ethnicity
+    - race
+    - racial and ethnic status
+    - ethnicity
+    - ethnic status
+    - racial status
+    - race status
+    - race and ethnicity
+
 - synonym: extracurricular activities
   examples: |
     - extracurricular-activities
@@ -1787,11 +1857,31 @@ nlu:
     - extracurricular activities
     - extracurricular activity
 
-- synonym: volunteer work
+- synonym: talent/ability
   examples: |
-    - volunteer
-    - volunteering
+    - talent and ability
+    - talent or ability
+    - talent
+    - ability
+
+
+- synonym: character/personal qualities
+  examples: |
+    - character/personal qualities
+    - character
+    - personal qualities
+
+- synonym: first generation
+  examples: |
+    - first-generation
+    - first-gen
+    - first gen
+
+- synonym: volunteer work
+  examplex: |
     - volunteer work
+    - volunteering
+    - volunteer 
 
 - synonym: work experience
   examples: |
@@ -1818,63 +1908,110 @@ nlu:
     - ethnicity
     - race
     - racial and ethnic status
-    - ethnic
+    - ethnicity
     - ethnic status
     - racial status
     - race status
+    - race and ethnicity
 
-#Look up table for basis of selection
 - lookup: academic_factor
   examples: |
     - rigor of secondary school record
+    - secondary school record
+    - rigor of high school
+    - secondary school rigor
+    - high school record 
+    - secondary school record
+
     - class rank
-    - academic gpa
+    - class ranking
+    - rank in high school class
+    - high school ranking
+    - ranking in high school graduating class
+
+    - gpa
+
     - standardized test scores
+    - test scores
+
     - application essay
+
     - recommendation
 
-- lookup: non_academic_factor
+- synonym: rigor of secondary school record
   examples: |
-    - interview
-    - extracurricular activities
-    - extracurricular
-    - talent/ability
-    - talent
-    - ability
-    - character/personal qualities
-    - character
-    - personal qualities
-    - first generation 
-    - alumni/ae relation
-    - alumni relation 
-    - alumni/ae relation
-    - geographical residence
-    - state residency
-    - religious affiliation/commitment
-    - religious affiliation
-    - religion
-    - racial/ethnic status
-    - volunteer work
-    - work experience
-    - level of applicant’s interest
-    - applicant interest
-    - applicant's interest
+    - rigor of secondary school record
+    - secondary school record
+    - rigor of high school
+    - secondary school rigor
+    - high school record 
+    - secondary school record
+
+
+- synonym: class rank
+  examples: |
+    - class ranking
+    - rank in high school class
+    - high school ranking
+    - ranking in high school graduating class
   
+- test_scores: standardized test scores
+  examples: |
+    - test scores
+
+
   
-#Look up table for high school units
+
+#---------------------END----------------------------------- 
+  
+#-----------------------------LOOKUP TABLE AND SYNONYMS FOR HIGH-SCHOOL UNITS----------------------------------- 
 - lookup: subject
   examples: |
     - science
     - mathematics
+    - math
+
     - social-studies
+    - social studies
+
     - history
+
     - visual/performing-arts
+    - performing arts
+    - visual and performing arts
+    - visual performing arts 
+    - visual-performing art
+    - visual-performing-arts
+    - visual arts
+    - performing arts
+
     - lab
+    - laboratory
+    
     - english
+
     - foreign-language
+
     - academic-electives
+    
     - computer-science
 
+- synonym: social-studies 
+  examples: |
+    social study 
+    social-study
+    social studies
+
+
+- synonym: visual/performing-arts
+  examples: |
+    - performing arts
+    - visual and performing arts
+    - visual performing arts 
+    - visual-performing art
+    - visual-performing-arts
+    - visual arts
+    - performing arts
 
 
 - synonym: mathematics
@@ -1883,7 +2020,8 @@ nlu:
     - mathmatic
     - mathematics
 
-
+#---------------------END----------------------------------- 
+  
 
 #synonym example, We can also put it in the entity annotation in the above training data sentences
 - synonym: graduate
@@ -1935,6 +2073,7 @@ nlu:
     - fresh man
     - freshmen
     - fresh men
+    - freshmans
 
 - synonym: undergraduate
   examples: |

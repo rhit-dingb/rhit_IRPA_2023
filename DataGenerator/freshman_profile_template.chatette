@@ -2,17 +2,17 @@
     // What is the @[percent_and_number_submit_sat/act]
     // How many @[percent_and_number_submit_sat_2]
 
-    What is the \[percentage\](aggregation) of students submitting @[standarized_test]
+    What is the \[percent\]\{"entity":"aggregation", "value": "percent"\} of students submitting @[standarized_test]
 
     How many student submitted @[standarized_test]  
 
-    What is the @[test_percentile] score for @[sat_test_component]
+    What is the @[test_percentile] score for SAT @[test_component]
 
-    What is the @[test_percentile] score for @[act_test_component]
+    What is the @[test_percentile] score for ACT @[test_component]
 
-    What is the \[percentage\](aggregation) of freshman students with \[SAT\](standarized_test) score in the @[sat_test_score_range] range for @[sat_test_component]
+    What is the percentage of freshman students with sat score in the @[sat_test_score_range] range for @[test_component]
 
-    What is the \[percentage\](aggregation) of freshman students with \[ACT\](standarized_test) score in the range @[act_test_score_range] for @[act_test_component]
+    What is the percentage of freshman students with act score in the range @[act_test_score_range] for @[test_component]
 
 
 @[aggregation]
@@ -71,10 +71,11 @@
     1199-1000 = 1000-1199
     1199 to 1000 = 1000-1199
 
-    800-900 
-    800 to 900 = 800-900
-    900-800- = 800-900
-    900 to 800 = 800-900
+    800-999
+    800 to 999 = 800-999
+    999-800 = 800-999
+    999 to 800 = 800-999
+
 
     600-799 
     600 to 799 = 600-799
@@ -126,6 +127,15 @@
     50th percentile
     75th percentile
     
+
+
+@[test_component]
+    essay
+    composite
+    reading
+    writing
+    written = writing
+
 
 @[sat_test_component]
     SAT composite = sat_composite

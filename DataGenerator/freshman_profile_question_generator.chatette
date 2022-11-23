@@ -1,0 +1,14 @@
+|freshman_profile_template.chatette  
+
+
+~[question]
+    How many students submitted SAT scores
+    How many students submitted ACT scores
+    Percentage of students submitting SAT scores
+    Percentage of students submitting ACT scores
+
+    What is the @[test_percentile] score for SAT @[test_component]
+
+    What is the @[test_percentile] score for ACT  @[test_component]
+
+    

@@ -92,6 +92,25 @@ stories:
 #     - action: action_query_cohort
 #     - action: utter_ask_answer_helpful
 
+
+- story: ask_about_freshman_profile_helpful
+  steps:
+    - intent: freshman_profile
+    - action: action_query_freshman_profile
+    - action: utter_ask_answer_helpful
+    - intent: affirm
+    - checkpoint: ask_feedback
+
+- story: ask_about_basis_for_selection_not_helpful
+  steps:
+    - intent: freshman_profile
+    - action: action_query_freshman_profile
+    - action: utter_ask_answer_helpful
+    - intent: deny
+    - action: utter_sorry_question_not_helpful
+    - action: action_get_available_options
+
+
 - story: ask_about_basis_for_selection_helpful
   steps:
     - intent: basis_for_selection

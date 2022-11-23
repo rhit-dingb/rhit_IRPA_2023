@@ -47,6 +47,22 @@ class ActionAskMoreQuestion(Action):
         return []
 
 
+class ActionQueryFreshmanProfile(Action):
+    def __init__(self) -> None:
+        super().__init__()
+        
+    def name(self) -> Text:
+        return "action_query_freshman_profile"
+    
+    def run(self, dispatcher, tracker, domain):
+        entitiesExtracted = tracker.latest_message["entities"]
+        intent = tracker.latest_message["intent"]["name"]
+        print(intent)
+        print(entitiesExtracted)
+       
+            
+        return []
+        
 class ActionQueryBasisForSelection(Action):
     def __init__(self) -> None:
         super().__init__()
@@ -62,9 +78,12 @@ class ActionQueryBasisForSelection(Action):
         try:
             answer = knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy, output.outputFuncForText, "")
             print(answer)
-            dispatcher.utter_message(answer)    
+            dispatcher.utter_message(answer)   
+            
         except Exception as e:
             utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
+        
+        return []
 
 
 
