@@ -1,6 +1,7 @@
 from this import d
 from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
 from Knowledgebase.ShouldAddRowStrategy import ShouldAddRowStrategy
+
 """
 Strategy for choosing which appropriate specific column of CDS table we will use, based on entities extracted from user input.
 This is mainly used when a column in a cds table is includes value from previous column. For example,this happens 
@@ -24,7 +25,7 @@ This example is for the enrollment by race table on cds. The first column for th
 If we represent it in sparse matrix, these two rows will have almost no difference and the values under the columns mentioned above will
 will be summed up together. To prevent this:
 
-1. I edited set first-time, first-year to 0 in the excel sheet for numbers that were under the column: 
+1. I edited set first-time, first-year to 0 in the excel sheet for numbers that were under the column of the CDS table for enrollment by race: 
 "Degree-seeking, First-time First year" and the second column says "Degree-seeking, Undergraduates (include first-time first-year)". 
 
 Because, although first-time and first-year are implied to be true for this column since it include that information, but if 
@@ -46,15 +47,17 @@ route questions about non-freshman and non-first-year to this column, I took adv
 choices.
 
 """
+
+
 class ChooseFromOptionsAddRowStrategy(ShouldAddRowStrategy):
-    
-    def __init__(self,  choices):
+
+    def __init__(self, choices):
         super().__init__()
         self.choices = choices
         self.defaultShouldAddRow = DefaultShouldAddRowStrategy()
-    
-    def determineShouldAddRow(self, row, entities):
-        maxMatches = [] 
+
+    def determineShouldAddRow(self, row, entities, sparseMatrix):
+        maxMatches = []
         matchCount = 0
         currMax = 0
         for choice in self.choices:
@@ -67,29 +70,29 @@ class ChooseFromOptionsAddRowStrategy(ShouldAddRowStrategy):
                 maxMatches = []
                 maxMatches.append(choice)
                 currMax = matchCount
-            
+
             elif matchCount == currMax:
                 maxMatches.append(choice)
-                
+
         if len(maxMatches) == 1:
-            
-            entitiesUsedToMatch =  self.defaultShouldAddRow.determineShouldAddRow(row, list(set(maxMatches[0]["columns"]+entities)) )
+
+            entitiesUsedToMatch = self.defaultShouldAddRow.determineShouldAddRow(row, list(
+                set(maxMatches[0]["columns"] + entities)), sparseMatrix)
             return self.getEntityUsed(entitiesUsedToMatch, entities)
         else:
             for choice in self.choices:
                 if "isDefault" in choice and choice["isDefault"]:
-                    entitiesUsedToMatch  = self.defaultShouldAddRow.determineShouldAddRow(row, list(set(choice["columns"]+entities)) )
-                   
-                    return self.getEntityUsed(entitiesUsedToMatch,entities)
+                    entitiesUsedToMatch = self.defaultShouldAddRow.determineShouldAddRow(row, list(
+                        set(choice["columns"] + entities)), sparseMatrix)
 
-        
-    def getEntityUsed(self,entitiesUsedToMatch, extractedEntities):
+                    return self.getEntityUsed(entitiesUsedToMatch, entities)
+
+    def getEntityUsed(self, entitiesUsedToMatch, extractedEntities):
         entitiesActuallyUsed = []
-        for entity in entitiesUsedToMatch: 
+        for entity in entitiesUsedToMatch:
             if not entity in extractedEntities:
                 continue
-            else: 
+            else:
                 entitiesActuallyUsed.append(entity)
 
         return entitiesActuallyUsed
-                

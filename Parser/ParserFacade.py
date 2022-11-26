@@ -6,9 +6,8 @@ from Parser.CDSDataParser import CDSDataParser
 from Parser.SparseMatrixDataWriter import SparseMatrixDataWriter
 from Parser.RasaCommunicator import RasaCommunicator
 from Parser.QuestionAnswer import QuestionAnswer
-from Parser.JsonCDSDataLoader import JsonCDSDataLoader
-from Parser.ExcelSparseMatrixDataWriter import ExcelSparseMatrixDataWriter
 from Parser.CDSDataLoader import CDSDataLoader
+from Parser.ExcelSparseMatrixDataWriter import ExcelSparseMatrixDataWriter
 
 class ParserFacade():
     def __init__(self, dataLoader, dataWriter):
@@ -23,7 +22,7 @@ class ParserFacade():
        
         
 
-    def parse(self):
+    def parse(self, year : int):
        sections : List[str] = self.dataLoader.getAllSections()
        for section in sections:
             questionAnswers : List[QuestionAnswer] = self.dataLoader.getQuestionsAnswerForSection(section)
@@ -37,7 +36,7 @@ class ParserFacade():
                 
             if section in self.parsers: 
                 parser : CDSDataParser = self.parsers[section]
-                parser.parseQuestionAnswerToSparseMatrix(questionAnswers) 
+                parser.parseQuestionAnswerToSparseMatrix(questionAnswers, year) 
             
         
 

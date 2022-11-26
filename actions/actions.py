@@ -92,8 +92,8 @@ class ActionQueryHighSchoolUnits(Action):
         super().__init__()
         # This strategy is specifically used to handle science and lab subject entity both have science column marked as 1, 
         # we want to choose between them. Check out the comments in this class to know more in detail what it is doing.
-        self.exactMatchStrategy = ExactMatchShouldAddRowStrategy()
-
+        self.choosenShouldAddRowStrategy = ExactMatchShouldAddRowStrategy()
+        
     def name(self) -> Text:
         return "action_query_high_school_units"
 
@@ -103,11 +103,11 @@ class ActionQueryHighSchoolUnits(Action):
         print(tracker.latest_message["intent"])
         print(tracker.latest_message["entities"])
         
-        try:
-            answer = knowledgeBase.searchForAnswer(intent, entitiesExtracted, self.exactMatchStrategy, output.outputFuncForHighSchoolUnits)
-            dispatcher.utter_message(answer)    
-        except Exception as e:
-            utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
+        #try:
+        answer = knowledgeBase.searchForAnswer(intent, entitiesExtracted, self.choosenShouldAddRowStrategy, output.outputFuncForHighSchoolUnits)
+        dispatcher.utter_message(answer)    
+       # except Exception as e:
+           # utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
 
 
 class ActionQueryEnrollment(Action):

@@ -1,5 +1,5 @@
 
-%[freshman_profile_gpa_class_rank](200)
+%[freshman_profile_gpa_class_rank]
     What is the \[percentage\]\{"entity":"aggregation", "value": "percent"\} of students in the @[class_rank] of their high school graduating class?
 
     \[percentage\]\{"entity":"aggregation", "value": "percent"\} of total first-time, first-year (freshman) students who ~[submit] high school \[class rank\]\{"entity":"academic_factor", "value": "class rank"\}

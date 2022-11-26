@@ -1,17 +1,18 @@
 import os
 from Parser.ParserFacade import ParserFacade
-from Parser.JsonCDSDataLoader import JsonCDSDataLoader
+from Parser.CDSDataLoader import CDSDataLoader
 from Parser.ExcelSparseMatrixDataWriter import ExcelSparseMatrixDataWriter
 
 def main():
     print(os.listdir("./"))
     
     #Write to 2020-2021 cds data excel file for now.
-    filePath = "./CDSData/CDS_SPARSE_2020_2021.xlsx"
-    dataLoader = JsonCDSDataLoader()
-    dataWriter = ExcelSparseMatrixDataWriter(filePath)
+    writePath = "./CDSData/CDS_SPARSE_2020_2021.xlsx"
+    dataLoader = CDSDataLoader()
+    dataLoader.loadData("./NewCDSDataFromClient/CDSQuestionAnswer_2020_2021.xlsx")
+    dataWriter = ExcelSparseMatrixDataWriter(writePath)
     parserFacade = ParserFacade(dataLoader=dataLoader, dataWriter=dataWriter)
-    parserFacade.parse()
+    parserFacade.parse(2020)
     
 
 if __name__ == "__main__":

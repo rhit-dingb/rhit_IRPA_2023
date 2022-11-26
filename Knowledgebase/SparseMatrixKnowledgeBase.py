@@ -56,20 +56,18 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
             raise Exception("No valid sparse matrix found for given intent and entities", intent, entities)
 
         # get the underlying pandas dataframe from the internal data model
-        sparseMatrixToSearch = sparseMatrixToSearch.getSparseMatrixDf()
-        print("SPARSEMATRIX")
-        print(sparseMatrixToSearch)
-        for i in range(sparseMatrixToSearch.shape[0]):
-            row = sparseMatrixToSearch.loc[i]
+        sparseMatrixToSearchDf = sparseMatrixToSearch.getSparseMatrixDf()
+        for i in range(sparseMatrixToSearchDf.shape[0]):
+            row = sparseMatrixToSearchDf.loc[i]
             
-            if "total" in row.index and sparseMatrixToSearch.loc[i,"total"] == 1:
+            if "total" in row.index and sparseMatrixToSearchDf.loc[i,"total"] == 1:
                 continue
            
-            usedEntities = shouldAddRowStrategy.determineShouldAddRow(row, entities)
+            usedEntities = shouldAddRowStrategy.determineShouldAddRow(row, entities, sparseMatrixToSearch)
             # print(usedEntities)
             if len(usedEntities) > 0:
                
-                count += sparseMatrixToSearch.loc[i,'Value']
+                count += sparseMatrixToSearchDf.loc[i,'Value']
                 if len(printEntities) <= 0:
                     printEntities = usedEntities
                     

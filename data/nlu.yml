@@ -1878,7 +1878,7 @@ nlu:
     - first gen
 
 - synonym: volunteer work
-  examplex: |
+  examples: |
     - volunteer work
     - volunteering
     - volunteer 
@@ -1955,7 +1955,7 @@ nlu:
     - high school ranking
     - ranking in high school graduating class
   
-- test_scores: standardized test scores
+- synonym: standardized test scores
   examples: |
     - test scores
 

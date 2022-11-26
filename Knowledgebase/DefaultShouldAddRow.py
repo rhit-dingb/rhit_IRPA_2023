@@ -16,15 +16,15 @@ class DefaultShouldAddRowStrategy(ShouldAddRowStrategy):
     entities: list of entity 
     """
 
-    def determineShouldAddRow(self, row, entities):
+    def determineShouldAddRow(self, row, entities, sparseMatrix):
         temp_count = 0
 
         # Note: we only want to consider entities that are supported by this sparse matrix, so we can answer the user's question as best as possible
         filteredEntities = []
         #processedColumn = [column.replace(" ", "") for column in row.index]
         processedColumn = row.index
-        print(entities)
-        print(processedColumn)
+        # print(entities)
+        # print(processedColumn)
       
         
         for entity in entities:

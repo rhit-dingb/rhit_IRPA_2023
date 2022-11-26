@@ -485,21 +485,11 @@ nlu:
 
     # CLASS RANK AND GPA TRAINING DATA
     - What is the [average]{"entity":"aggregation", "value": "mean"} high school [gpa]{"entity":"academic_factor", "value": "gpa"} for incoming [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} who submitted [gpa]{"entity":"academic_factor", "value": "gpa"}
-    - [percentage]{"entity":"aggregation", "value": "percent"} of students who are submitting [gpa]{"entity":"academic_factor", "value": "gpa"}
-    - [percentage]{"entity":"aggregation", "value": "percent"} of students who submit [gpa]{"entity":"academic_factor", "value": "gpa"}
-    - [percentage]{"entity":"aggregation", "value": "percent"} of students who submitted [gpa]{"entity":"academic_factor", "value": "gpa"}
-    - [percentage]{"entity":"aggregation", "value": "percent"} of total first-time, first-year (freshman) students who are submitting high school [class rank]{"entity":"academic_factor", "value": "class rank"}
-    - [percentage]{"entity":"aggregation", "value": "percent"} of total first-time, first-year (freshman) students who submit high school [class rank]{"entity":"academic_factor", "value": "class rank"}
-    - [percentage]{"entity":"aggregation", "value": "percent"} of total first-time, first-year (freshman) students who submitted high school [class rank]{"entity":"academic_factor", "value": "class rank"}
-
-
-    
     - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students in the [bottom half](class_rank) of their high school graduating class?
     - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students in the [bottom quarter](class_rank) of their high school graduating class?
     - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students in the [top half](class_rank) of their high school graduating class?
     - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students in the [top quarter](class_rank) of their high school graduating class?
     - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students in the [top tenth](class_rank) of their high school graduating class?
-
     - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [1 - 1.99]{"entity": "gpa_range", "value": "1.00-1.99"}
     - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [1 and 1.99]{"entity": "gpa_range", "value": "1.00-1.99"}
     - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [1 to 1.99]{"entity": "gpa_range", "value": "1.00-1.99"}
@@ -562,9 +552,15 @@ nlu:
     - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [less than 1.0]{"entity": "gpa_range", "value": "below 1.0"}
     - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [under 1]{"entity": "gpa_range", "value": "below 1.0"}
     - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [under 1.0]{"entity": "gpa_range", "value": "below 1.0"}
- 
+    - [percentage]{"entity":"aggregation", "value": "percent"} of students who are submitting [gpa]{"entity":"academic_factor", "value": "gpa"}
+    - [percentage]{"entity":"aggregation", "value": "percent"} of students who submit [gpa]{"entity":"academic_factor", "value": "gpa"}
+    - [percentage]{"entity":"aggregation", "value": "percent"} of students who submitted [gpa]{"entity":"academic_factor", "value": "gpa"}
+    - [percentage]{"entity":"aggregation", "value": "percent"} of total first-time, first-year (freshman) students who are submitting high school [class rank]{"entity":"academic_factor", "value": "class rank"}
+    - [percentage]{"entity":"aggregation", "value": "percent"} of total first-time, first-year (freshman) students who submit high school [class rank]{"entity":"academic_factor", "value": "class rank"}
+    - [percentage]{"entity":"aggregation", "value": "percent"} of total first-time, first-year (freshman) students who submitted high school [class rank]{"entity":"academic_factor", "value": "class rank"}
 
 - lookup: gpa_range
+  examples: |
     - '4.00'
     - '4'
     - '4.0'

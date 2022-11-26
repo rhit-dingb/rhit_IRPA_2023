@@ -11,7 +11,7 @@ class CDSDataParser():
         self.sectionName = sectionName 
         self.sparseMatrixDataWriter = sparseMatrixDataWriter
        
-    def parseQuestionAnswerToSparseMatrix(self, questionAnswers : QuestionAnswer) -> bool:
+    def parseQuestionAnswerToSparseMatrix(self, questionAnswers : QuestionAnswer, year: int) -> bool:
         everyUniqueEntity = []
         matrixData = []
         sparseMatrix = None

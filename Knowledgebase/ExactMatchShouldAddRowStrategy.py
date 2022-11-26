@@ -7,7 +7,7 @@ class ExactMatchShouldAddRowStrategy(ShouldAddRowStrategy):
     def __init__(self):
         super().__init__()
         
-    def determineShouldAddRow(self, row, entities):
+    def determineShouldAddRow(self, row, entities, sparseMatrix):
         for entity in entities:
             if entity in row.index and row[entity]  == 0:
                 return [] 
