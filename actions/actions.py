@@ -8,7 +8,6 @@
 from DataManager.ExcelDataManager import ExcelDataManager
 from DataManager.constants import COHORT_BY_YEAR_ENTITY_LABEL, EXEMPTION_ENTITY_LABEL, FINAL_COHORT_ENTITY_LABEL, GRADUATION_RATE_ENTITY_LABEL, INITIAL_COHORT_ENTITY_LABEL, LOWER_BOUND_GRADUATION_TIME_ENTITY_LABEL, NO_AID_ENTITY_LABEL, RECIPIENT_OF_PELL_GRANT_ENTITY_LABEL, RECIPIENT_OF_STAFFORD_LOAN_NO_PELL_GRANT_ENTITY_LABEL, RETENTION_RATE_LABEL, UPPER_BOUND_GRADUATION_TIME_ENTITY_LABEL
 from Exceptions.ExceptionTypes import ExceptionTypes
-from Knowledgebase.ChooseFromOptionsAddRowStrategy import ChooseFromOptionsAddRowStrategy
 from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
 
 from Knowledgebase.IgnoreRowPiece import IgnoreRowPiece
@@ -117,13 +116,6 @@ class ActionQueryHighSchoolUnits(Action):
 
 class ActionQueryEnrollment(Action):
     def __init__(self) -> None:
-        # self.chooseFromOptionsAddRowStrategy = ChooseFromOptionsAddRowStrategy(choices=[{
-        #     "columns": ["degree-seeking", "first-time", "first-year"]
-        # },
-        #     {
-        #     "columns": ["degree-seeking", "non-first-time", "non-first-year"],
-        #     "isDefault":True
-        # }])
         pass
 
 
