@@ -78,11 +78,6 @@ entities:
   - lower_bound_graduation_time
 
 
-  # - graduate_within_four_years
-  # - graduated_in_five_years
-  # - graduated_in_six_years
-
-
 # for six-year graduation rate for 2015 cohort row 
   - graduation_rate
 
@@ -128,7 +123,6 @@ entities:
   #Component for sat and act test such as 
   # composite
   # essay
-  #Note: Reading and writing go together
   # reading
   # writing
   - test_component
@@ -143,6 +137,9 @@ entities:
 
   #Ranges of gpa, 4.0 gpa, 3.75-3.99 gpa, etc
   - gpa_range
+
+#Whether student submitted something, such as gpa, class rank, sat score
+  - submitted
 
 
 slots:

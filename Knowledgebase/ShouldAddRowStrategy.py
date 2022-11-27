@@ -7,3 +7,4 @@ class ShouldAddRowStrategy(ShouldAddRowInterface):
         
     def determineShouldAddRow(self, row, entities, sparseMatrix):
         raise Exception("This method should be implemented by a concrete class")
+        

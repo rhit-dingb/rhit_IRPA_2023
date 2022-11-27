@@ -8,8 +8,8 @@ def main():
     
     #Write to 2020-2021 cds data excel file for now.
     writePath = "./CDSData/CDS_SPARSE_2020_2021.xlsx"
-    dataLoader = CDSDataLoader()
-    dataLoader.loadData("./NewCDSDataFromClient/CDSQuestionAnswer_2020_2021.xlsx")
+    dataLoader = CDSDataLoader("./NewCDSDataFromClient/CDSQuestionAnswer_2020_2021.xlsx")
+    dataLoader.loadData()
     dataWriter = ExcelSparseMatrixDataWriter(writePath)
     parserFacade = ParserFacade(dataLoader=dataLoader, dataWriter=dataWriter)
     parserFacade.parse(2020)

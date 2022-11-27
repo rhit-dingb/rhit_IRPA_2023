@@ -137,7 +137,6 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         
         return outputFuncForPercentage(percentage, intent, set(list(entitiesUsed)+ list(entitiesForNumerator)) )
 
-
     def determineMatrixToSearch(self, intent, entities):
         return self.dataManager.determineMatrixToSearch(intent, entities)
 

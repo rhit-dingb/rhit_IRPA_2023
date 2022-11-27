@@ -13,6 +13,8 @@ class RasaCommunicator():
         "text": message,
         "message_id": "1"
         }
+
+        print(body)
         #post('https://httpbin.org/post', data={'key': 'value'})
         r = requests.post(self.connectionString+"model/"+"parse", json=body)
         return r.json()

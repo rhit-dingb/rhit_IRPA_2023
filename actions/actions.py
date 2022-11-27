@@ -10,7 +10,7 @@ from DataManager.constants import COHORT_BY_YEAR_ENTITY_LABEL, EXEMPTION_ENTITY_
 from Exceptions.ExceptionTypes import ExceptionTypes
 from Knowledgebase.ChooseFromOptionsAddRowStrategy import ChooseFromOptionsAddRowStrategy
 from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
-from Knowledgebase.ExactMatchShouldAddRowStrategy import ExactMatchShouldAddRowStrategy
+
 from Knowledgebase.IgnoreRowPiece import IgnoreRowPiece
 from Knowledgebase.SparseMatrixKnowledgeBase import SparseMatrixKnowledgeBase
 from Knowledgebase.constants import PERCENTAGE_FORMAT
@@ -25,7 +25,7 @@ from rasa_sdk.executor import CollectingDispatcher
 # knowledgeBase = SparseMatrixKnowledgeBase("./Data_Ingestion/CDS_SPARSE_ENR.xlsx")
 
 
-knowledgeBase = SparseMatrixKnowledgeBase(ExcelDataManager("./CDSData", ["enrollment", "cohort", "admission", "high_school_units", "basis_for_selection"]))
+knowledgeBase = SparseMatrixKnowledgeBase(ExcelDataManager("./CDSData", ["enrollment", "cohort", "admission", "high_school_units", "basis_for_selection", "freshman_profile"]))
 defaultShouldAddRowStrategy = DefaultShouldAddRowStrategy()
 
 class ActionGetAvailableOptions(Action):
@@ -59,7 +59,13 @@ class ActionQueryFreshmanProfile(Action):
         intent = tracker.latest_message["intent"]["name"]
         print(intent)
         print(entitiesExtracted)
-       
+        try:
+            answer = knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy, output.outputFuncForText, "")
+            print(answer)
+            dispatcher.utter_message(answer)   
+            
+        except Exception as e:
+            utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
             
         return []
         
@@ -90,9 +96,8 @@ class ActionQueryBasisForSelection(Action):
 class ActionQueryHighSchoolUnits(Action):
     def __init__(self) -> None:
         super().__init__()
-        # This strategy is specifically used to handle science and lab subject entity both have science column marked as 1, 
-        # we want to choose between them. Check out the comments in this class to know more in detail what it is doing.
-        self.choosenShouldAddRowStrategy = ExactMatchShouldAddRowStrategy()
+ 
+        self.choosenShouldAddRowStrategy = DefaultShouldAddRowStrategy()
         
     def name(self) -> Text:
         return "action_query_high_school_units"
@@ -112,13 +117,14 @@ class ActionQueryHighSchoolUnits(Action):
 
 class ActionQueryEnrollment(Action):
     def __init__(self) -> None:
-        self.chooseFromOptionsAddRowStrategy = ChooseFromOptionsAddRowStrategy(choices=[{
-            "columns": ["degree-seeking", "first-time", "first-year"]
-        },
-            {
-            "columns": ["degree-seeking", "non-first-time", "non-first-year"],
-            "isDefault":True
-        }])
+        # self.chooseFromOptionsAddRowStrategy = ChooseFromOptionsAddRowStrategy(choices=[{
+        #     "columns": ["degree-seeking", "first-time", "first-year"]
+        # },
+        #     {
+        #     "columns": ["degree-seeking", "non-first-time", "non-first-year"],
+        #     "isDefault":True
+        # }])
+        pass
 
 
     def name(self) -> Text:
@@ -134,7 +140,7 @@ class ActionQueryEnrollment(Action):
                 
         selectedShouldAddRowStrategy = defaultShouldAddRowStrategy
         if haveRaceEnrollmentEntity:
-            selectedShouldAddRowStrategy = self.chooseFromOptionsAddRowStrategy
+            selectedShouldAddRowStrategy = defaultShouldAddRowStrategy
 
         answer = None
         try:

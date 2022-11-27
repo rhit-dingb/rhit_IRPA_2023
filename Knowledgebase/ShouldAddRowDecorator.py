@@ -1,8 +1,8 @@
 """
 "Abstract" class for implementing decorator pattern for the determination of if a row should be added 
 """
-from Knowledgebase.ShouldAddRowInterface import ShouldAddRowInterface
 
+from Knowledgebase.ShouldAddRowInterface import ShouldAddRowInterface
 
 class ShouldAddRowDecorator(ShouldAddRowInterface):
     def __init__(self, decorated):
@@ -11,3 +11,4 @@ class ShouldAddRowDecorator(ShouldAddRowInterface):
     def determineShouldAddRow(self, row, entities, sparseMatrix):
         raise Exception("This method should be implemented by a concrete class")
 
+    

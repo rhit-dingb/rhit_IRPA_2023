@@ -1,23 +1,38 @@
 
-# Interface to load and process the new data that the client would upload annually.
-from Parser import QuestionAnswer
-from typing import List
 
+from typing import List, Dict
+from Parser.QuestionAnswer import QuestionAnswer
+import pandas as pd
 
-#The purpose of this class(and any subclass inheriting it) is to preprocess the data provided by the user and provide utility methods for accessing the data.
 class CDSDataLoader():
-    def __init__(self):
-        raise Exception("This is an interface, please implement it ")
-    
+    def __init__(self, path, ):
+        self.data = dict()
+        self.path = path
+        self.excelConnector = pd.ExcelFile(path)
     
     def loadData(self): 
-        raise Exception("This is an interface method, please implement it ")
-     
-    #Get all section that we need to parse into sparse matrix
+       for sheetName in self.excelConnector.sheet_names:
+            #questionAnswersDataFrame = self.excelConnector.parse(sheetName)
+            questionAnswersDataFrame = pd.read_excel(self.path, sheet_name=sheetName, dtype={'Answer': str,} )
+            print(questionAnswersDataFrame)
+            # questionAnswersDataFrame["Answer"] = questionAnswersDataFrame["Answer"].astype("string")
+            questionsAnswers = []
+            for i in range(questionAnswersDataFrame.shape[0]):
+                questionAnswerRow = questionAnswersDataFrame.loc[i]
+                questionAnswerObj = QuestionAnswer(questionAnswerRow["Question"], questionAnswerRow["Answer"], [])
+                questionsAnswers.append(questionAnswerObj)
+
+            lowerSheetName = sheetName.lower()
+            self.data[lowerSheetName] = questionsAnswers
+        
+    
+    #Get all section that "we need to parse into sparse matrix, including sub sections 
     def getAllSections(self) -> List[str] :
-        raise Exception("This is an interface method, please implement it ")
+        return self.data.keys()
+    
     
     def getQuestionsAnswerForSection(self, sectionName) -> QuestionAnswer :
-       raise Exception("This is an interface method, please implement it ")
-    
-    
+       if sectionName in self.data.keys():
+           return self.data[sectionName]
+       else:
+           return []

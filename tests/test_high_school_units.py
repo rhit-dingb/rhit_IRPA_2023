@@ -21,7 +21,7 @@ from rasa_sdk.executor import CollectingDispatcher
 #These values are from the high school unit sheet dataset in 2020-2021 CDS data
 LAB_SCIENCE_UNIT_REQUIRED = 3
 VISUAL_PERFORMING_ART_UNIT_RECOMMENDED = 0
-TOTAL_REQUIRED_UNITS = 16
+TOTAL_REQUIRED_UNITS = 13
 TOTAL_RECOMMENDED_UNITS = 13
 class test_high_school_units_test(unittest.TestCase):
     def setUp(self):

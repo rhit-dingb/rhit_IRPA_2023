@@ -18,13 +18,20 @@ class ParserFacade():
         
         #Im using one parser for now, later we probably want to have a list of parser, one for each section(including subsections)
         tempParser = CDSDataParser("basis for selection",  self.dataWriter)
-        self.parsers = {"basis for selection": tempParser }
+
+        #To support when we want to use a different parser for a particular section
+        self.parsers = {
+                        # "basis for selection": tempParser, 
+                        "freshman profile_percentile": CDSDataParser("freshman profile_percentile",  self.dataWriter)
+                        }
        
         
 
     def parse(self, year : int):
        sections : List[str] = self.dataLoader.getAllSections()
        for section in sections:
+            if not section in self.parsers.keys():
+                continue
             questionAnswers : List[QuestionAnswer] = self.dataLoader.getQuestionsAnswerForSection(section)
             for questionAnswer in questionAnswers:
                 response : Dict = self.rasaCommunicator.parseMessage(questionAnswer.getQuestion())
@@ -34,7 +41,7 @@ class ParserFacade():
         
                 questionAnswer.setEntities(entityValues)
                 
-            if section in self.parsers: 
+            if section in self.parsers.keys(): 
                 parser : CDSDataParser = self.parsers[section]
                 parser.parseQuestionAnswerToSparseMatrix(questionAnswers, year) 
             

@@ -23,27 +23,28 @@ basisForSelectionQuestionAnswers = {
                                             "What is the importance of level of applicant's interest in admission decisions?",
                                           ],
                                           
-                            "answers":["very important",
-                                        "considerd",    
-                                        "very important",  
-                                        "considered",
-                                        "considerd",
-                                        "important",
-                                        "considered",
-                                        "important",
-                                        "considered",
-                                        "considered",
-                                        "considered",
-                                        "considered",
-                                        "considered",
-                                        "not considerd",
-                                        "not considerd",
-                                        "considered",
-                                        "considered",
-                                        "considered",
-                                        "considered"
-                                        
-                                       ]
+"answers":[
+"very important",
+"considerd",    
+"very important",  
+"considered",
+"considerd",
+"important",
+"considered",
+"important",
+"considered",
+"considered",
+"considered",
+"considered",
+"considered",
+"not considerd",
+"not considerd",
+"considered",
+"considered",
+"considered",
+"considered"
+
+]
     }
 }
 

@@ -1996,6 +1996,16 @@ nlu:
     
     - computer-science
 
+    - units required
+    - unit required
+    - units require
+
+    - unit recommended 
+    - unit recommend 
+    - units recommended
+
+
+
 - synonym: social-studies 
   examples: |
     social study 
@@ -2019,6 +2029,30 @@ nlu:
     - math
     - mathmatic
     - mathematics
+
+- synonym: units-required
+  examples: |
+    - units required
+    - units require
+    - units-required
+    - units-require
+
+    - unit require  
+    - unit required
+    - unit-require
+    - unit-required
+                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+
+- synonym: units-recommended
+  examples: |
+    - units recommend
+    - units-recommended
+    - units-recommend
+
+    - unit recommend
+    - unit recommended
+    - unit-recommend
+    - unit-recommended
 
 #---------------------END----------------------------------- 
   
