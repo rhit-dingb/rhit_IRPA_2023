@@ -7,7 +7,6 @@ from Exceptions.ExceptionMessages import NO_DATA_FOUND_FOR_COHORT_YEAR_ERROR_MES
 from Knowledgebase.Knowledgebase import KnowledgeBase
 
 from Knowledgebase.SparseMatrixKnowledgeBase import SparseMatrixKnowledgeBase
-from Knowledgebase.ChooseFromOptionsAddRowStrategy import ChooseFromOptionsAddRowStrategy
 from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
 from DataManager.ExcelDataManager import ExcelDataManager
 from OutputController import output
@@ -39,13 +38,6 @@ class cohort_test(unittest.TestCase):
 
         
         self.defaultShouldAddRowStrategy = DefaultShouldAddRowStrategy()
-        self.chooseFromOptionAddRowStrategy = ChooseFromOptionsAddRowStrategy(choices=[{
-            "columns": ["degree-seeking", "first-time", "first-year"]
-        },
-            {
-            "columns": ["degree-seeking", "non-first-time", "non-first-year"],
-            "isDefault":True
-        }])
 
 
         self.dispatcher = CollectingDispatcher()

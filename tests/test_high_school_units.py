@@ -7,7 +7,6 @@ from Exceptions.ExceptionMessages import NO_DATA_FOUND_FOR_COHORT_YEAR_ERROR_MES
 from Knowledgebase.Knowledgebase import KnowledgeBase
 
 from Knowledgebase.SparseMatrixKnowledgeBase import SparseMatrixKnowledgeBase
-from Knowledgebase.ChooseFromOptionsAddRowStrategy import ChooseFromOptionsAddRowStrategy
 from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
 from DataManager.ExcelDataManager import ExcelDataManager
 from OutputController import output
@@ -19,10 +18,10 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 
 #These values are from the high school unit sheet dataset in 2020-2021 CDS data
-LAB_SCIENCE_UNIT_REQUIRED = 3
-VISUAL_PERFORMING_ART_UNIT_RECOMMENDED = 0
-TOTAL_REQUIRED_UNITS = 16
-TOTAL_RECOMMENDED_UNITS = 13
+LAB_SCIENCE_UNIT_REQUIRED = "3"
+VISUAL_PERFORMING_ART_UNIT_RECOMMENDED = "0"
+TOTAL_REQUIRED_UNITS = "13"
+TOTAL_RECOMMENDED_UNITS = "13"
 class test_high_school_units_test(unittest.TestCase):
     def setUp(self):
         
@@ -67,7 +66,7 @@ class test_high_school_units_test(unittest.TestCase):
         dispatcher = CollectingDispatcher()
         tracker = Tracker.from_dict(createFakeTracker(self.intent, entities))
         actionHighSchool.run(dispatcher=dispatcher, tracker=tracker, domain=None )
-        
+        print(type(dispatcher.messages[0]["text"]))
         self.assertEqual(dispatcher.messages[0]["text"],VISUAL_PERFORMING_ART_UNIT_RECOMMENDED)
     
     

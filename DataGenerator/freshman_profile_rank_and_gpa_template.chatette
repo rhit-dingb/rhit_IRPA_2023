@@ -1,0 +1,151 @@
+
+%[freshman_profile_gpa_class_rank]
+    What is the \[percentage\]\{"entity":"aggregation", "value": "percent"\} of students in the @[class_rank] of their high school graduating class?
+
+    \[percentage\]\{"entity":"aggregation", "value": "percent"\} of total first-time, first-year (freshman) students who ~[submit] high school \[class rank\]\{"entity":"academic_factor", "value": "class rank"\}
+    
+    What is the \[percentage\]\{"entity":"aggregation", "value": "percent"\} of students with \[gpa\]\{"entity":"academic_factor", "value": "gpa"\} between @[gpa_range] 
+
+    What is the \[average\]\{"entity":"aggregation", "value": "mean"\} high school \[gpa\]\{"entity":"academic_factor", "value": "gpa"\} for incoming \[freshman\]\{"entity": "undergraduate_grade_level", "value": "freshman"\} who submitted \[gpa\]\{"entity":"academic_factor", "value": "gpa"\}
+
+    \[percentage\]\{"entity":"aggregation", "value": "percent"\} of students who ~[submit] \[gpa\]\{"entity":"academic_factor", "value": "gpa"\}
+
+@[class_rank]
+    top tenth
+    top quarter
+    top half
+    bottom half
+    bottom quarter
+
+@[gpa_range]
+    ~[4.0] = 4.00
+    ~[3.75_to_3.99] = 3.75-3.99
+    ~[3.50_to_3.74] = 3.50-3.74
+    ~[3.25_to_3.49] = 3.25-3.49
+    ~[3.00_to_3.24] = 3.00-3.24
+    ~[2.50_to_2.99] = 2.50-2.99
+    ~[2.00_to_2.49] = 2.00-2.49
+    ~[1.00_to_1.99] = 1.00-1.99
+    ~[below 1.0] = below 1.0
+
+
+~[submit]
+    are submitting
+    submitted
+    submit
+    
+~[4.0]
+    4.00
+    4
+    4.0
+
+
+
+~[3.75_to_3.99]
+    3.75 to 3.99 
+    3.75 and 3.99
+    3.75-3.99
+    3.75 - 3.99
+
+~[3.50_to_3.74]
+    3.50 to 3.74
+    3.50 and 3.74 
+    3.50 - 3.74
+    3.50-3.74 
+
+    3.5 to 3.74
+    3.5 and 3.74 
+    3.5 - 3.74
+    3.5-3.74 
+
+
+
+
+~[3.25_to_3.49]
+    3.25 to 3.49
+    3.25 and 3.49
+    3.25 - 3.49
+    3.25-3.49
+
+  
+
+~[3.00_to_3.24]
+    3.00 to 3.24
+    3.00 and 3.24
+    3.00 - 3.24
+
+    3 to 3.24
+    3 and 3.24
+    3-3.24
+    3.0 - 3.24
+    3.0 to 3.24
+    3.0 and 3.24
+
+
+~[2.50_to_2.99]
+    2.50 to 2.99
+    2.50 and 2.99
+    2.50-2.99
+    2.50 - 2.99
+
+~[2.00_to_2.49]
+    2.00 to 2.49
+    2.00 and 2.49
+    2.00-2.49
+    2.00 - 2.49
+
+    2.0-2.49
+    2.0 - 2.49
+    2.0 and 2.49
+    2.0 to 2.49
+
+    2-2.49
+    2 and 2.49
+    2 - 2.49
+    2-2.49
+
+
+~[1.00_to_1.99]
+    1.00 to 1.99
+    1.00 and 1.99
+    1.00 - 1.99
+    1.00-1.99
+
+    1 to 1.99
+    1 and 1.99
+    1 - 1.99
+    1-1.99
+
+    1.0 and 1.99
+    1.0 to 1.99
+    1.0-1.99
+    1.0 - 1.99
+    
+    
+
+
+
+~[below 1.0]
+    below 1.00
+
+    below 1.0
+    less than 1.0
+    under 1.0
+    
+    below 1
+    less than 1
+    under 1
+
+
+
+
+
+
+// ~[submit_class_rank]
+//     submitting class rank
+//     submitted class rank
+//     submit class rank
+
+//     submitted class ranking
+//     submitted high school class ranking
+//     submit class rank

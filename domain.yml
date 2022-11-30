@@ -10,12 +10,13 @@ intents:
   - cohort
   - admission
   - high_school_units
+  - basis_for_selection 
+  - freshman_profile
+
 
   - mood_great
   - mood_unhappy
   - bot_challenge
-
-
 
 
 
@@ -77,11 +78,6 @@ entities:
   - lower_bound_graduation_time
 
 
-  # - graduate_within_four_years
-  # - graduated_in_five_years
-  # - graduated_in_six_years
-
-
 # for six-year graduation rate for 2015 cohort row 
   - graduation_rate
 
@@ -104,6 +100,46 @@ entities:
   #Number of unit-required or unit-recommended for particular subjects for rose-hulman admission requirement.
   #Specific values: unit-required, unit-recommend 
   - unit_level
+
+  #Academic factor for basis of selection for admissions such as Rigor of secondary school record, Class rank etc, academic GPA etc.
+  - academic_factor
+  
+  #Non-academic factor for basis of selection for admissions such as Interview, Extracurricular activities, Talent/ability, Character/personal qualities, etc
+  - non_academic_factor
+
+
+  # # Below are entities for freshman profile
+
+  #Aggregation words: percentage, mean
+  - aggregation
+
+  #Types of standarized test. Values: SAT and ACT.
+  - standarized_test
+
+  # Test percentile: 25th, 50th, 75th, mean
+  - test_percentile
+
+
+  #Component for sat and act test such as 
+  # composite
+  # essay
+  # reading
+  # writing
+  - test_component
+  
+
+  #The range of sat and test scores on cds
+  - test_score_range
+
+  #highschool class rank, value: top tenth, top quarter, top half of highschool class, etc in the incoming freshman class,
+  #also include whether student submitted highschool rank or not.
+  - class_rank
+
+  #Ranges of gpa, 4.0 gpa, 3.75-3.99 gpa, etc
+  - gpa_range
+
+#Whether student submitted something, such as gpa, class rank, sat score
+  - submitted
 
 
 slots:
@@ -195,7 +231,11 @@ actions:
   - action_query_admission
 
   - action_query_high_school_units
- 
+
+  - action_query_basis_for_selection
+
+  - action_query_freshman_profile
+  
 
   
 

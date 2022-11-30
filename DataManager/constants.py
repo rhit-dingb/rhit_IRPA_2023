@@ -1,7 +1,19 @@
-COHORT_BY_YEAR_ENTITY_LABEL = "cohort_by_year"
-YEAR_ENTITY_LABEL = "year"
+
 
 COHORT_INTENT = "cohort"
+ENROLLMENT_INTENT = "enrollment"
+ADMISSION_INTENT = "admission"
+FRESHMAN_PROFILE_INTENT = "freshman_profile"
+HIGH_SCHOOL_UNITS_INTENT = "high_school_units"
+BASIS_FOR_SELECTION_INTENT = "basis_for_selection"
+
+
+
+
+
+
+COHORT_BY_YEAR_ENTITY_LABEL = "cohort_by_year"
+YEAR_ENTITY_LABEL = "year"
 UPPER_BOUND_GRADUATION_TIME_ENTITY_LABEL = "upper_bound_graduation_time"
 LOWER_BOUND_GRADUATION_TIME_ENTITY_LABEL = "lower_bound_graduation_time"
 INITIAL_COHORT_ENTITY_LABEL = "initial"

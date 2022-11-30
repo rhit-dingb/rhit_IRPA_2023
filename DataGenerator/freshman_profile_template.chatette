@@ -1,0 +1,230 @@
+%[freshman_profile]
+    // What is the @[percent_and_number_submit_sat/act]
+    // How many @[percent_and_number_submit_sat_2]
+
+    What is the \[percent\]\{"entity":"aggregation", "value": "percent"\} of students submitting @[standarized_test]
+
+    How many student submitted @[standarized_test]  
+
+    What is the @[test_percentile] score for SAT @[test_component]
+
+    What is the @[test_percentile] score for ACT @[test_component]
+
+    What is the percentage of freshman students with sat score in the @[sat_test_score_range] range for @[test_component]
+
+    What is the percentage of freshman students with act score in the range @[act_test_score_range] for @[test_component]
+
+
+@[aggregation]
+    percent
+    percentage = percent
+    ~[average_mean] = mean
+
+@[standarized_test]
+    ACT
+    SAT
+
+
+@[sat_test_score_range]
+    700-800
+    700 to 800 = 700-800
+    800-700 = 700-800
+    800 to 700 = 700-800
+
+    600-699
+    600 to 699 = 600-699
+    699-600 = 600-699
+    699 to 600 = 600-699
+
+    500-599 
+    500 to 599 = 500-599
+    599-500 = 500-599
+    599 to 500 = 500-599
+
+    400-499 
+    400 to 499 = 400-499
+    499-400 = 400-499
+    499 to 400 = 400-499
+
+    300-399 
+    300 to 399 = 300-399
+    399-300 = 300-399
+    399 to 300 = 300-399
+
+    200-299 
+    200 to 299 = 200-299
+    299-200 = 200-299
+    299 to 200 = 200-299
+
+    1400-1600 
+    1400 to 1600  = 1400-1600
+    1600-1400 = 1400-1600
+    1600 to 1400 = 1400-1600
+
+    1200-1399 
+    1200 to 1399 = 1200-1399
+    1399-1200 = 1200-1399
+    1399 to 1200 = 1200-1399
+
+    1000-1199 
+    1000 to 1199 = 1000-1199
+    1199-1000 = 1000-1199
+    1199 to 1000 = 1000-1199
+
+    800-999
+    800 to 999 = 800-999
+    999-800 = 800-999
+    999 to 800 = 800-999
+
+
+    600-799 
+    600 to 799 = 600-799
+    799-600 = 600-799
+    799 to 600 = 600-799
+    
+    400-599 
+    400 to 599 = 400-599
+    599-400 = 400-599
+    599 to 400 = 400-599
+
+
+@[act_test_score_range]
+    30-36 
+    30 to 36 = 30-36
+    36-30 = 30-36
+    36 to 30 = 30-36
+
+    24-29 
+    24 to 29 = 24-29
+    29-24 = 24-29
+    29 to 24 = 24-29
+
+    18-23
+    18 to 23 = 18-23
+    23-18 = 18-23
+    23 to 18 = 18-23
+
+    12-17
+    12 to 17 = 12-17
+    17-12 = 12-17
+    17 to 12 = 12-17
+
+    6-11
+    6 to 11 = 6-11
+    11-6 = 6-11
+    11 to 6 = 6-11
+
+    below 6 
+    under 6 = below 6
+    less than 6 = below 6
+
+
+
+
+
+@[test_percentile]
+    25th percentile
+    50th percentile
+    75th percentile
+    
+
+
+@[test_component]
+    essay
+    composite
+    reading
+    writing
+    written = writing
+
+
+@[sat_test_component]
+    SAT composite = sat_composite
+    SAT-composite = sat_composite
+    ~[sat_reading_writing] = sat_reading_writing
+    SAT math = sat_math
+    SAT mathamatics = sat_math
+
+    ~[sat_essay] = sat_essay
+    
+   
+@[act_test_component]
+    ACT composite = act_composite
+    ACT-composite = act_composite
+
+    ~[act_writing] = act_writing
+
+    ACT math = act_math
+    ACT mathamatics = act_math
+    ACT english = act_english
+
+~[sat_essay]
+    SAT essay
+    SAT writing
+    SAT written part
+
+
+~[act_writing]
+    ACT writing
+    ACT essay
+    ACT written part 
+
+
+~[sat_reading_writing]
+    SAT english 
+    SAT reading and writing
+    SAT writing and reading
+    SAT evidence-based reading and writing
+    SAT reading
+    SAT grammar
+
+
+~[average_mean]
+    average
+    mean
+    
+// @[percent_and_number_submit_sat]
+// 	~[percent_submit_sat] = percent_sat
+// 	~[percent_submit_act] = percent_act
+
+//     ~[number_submit_sat] = number_sat
+//     ~[number_submit_act] = number_act
+
+// @[percent_and_number_submit_sat_2]
+//     students submitted sat score = number_sat
+//     students submitted sat score = number_sat 
+//     students are submitting sat score = number_sat 
+//     people are submitting sat score = number_sat 
+
+//     students submitted sat score = number_act
+//     students submitted sat score = number_act
+//     students are submitting sat score = number_act
+//     people are submitting sat score = number_act 
+
+
+    
+// ~[percent_submit_sat]
+//     percent of students submitting sat score
+//     percent of student who submitted sat score
+//     percent of students submit sat score
+//     percentage of student who are submitting sat score
+
+
+// ~[percent_submit_act]
+//     percent of students submitting act score
+//     percent of student who submitted act score
+//     percent of students submit act score
+//     percentage of student who are submitting act score
+
+
+// ~[number_submit_act]
+//     number of students submitting act score
+//     number of student who submitted act score
+//     number of students submit act score
+//     number of student who are submitting act score
+
+// ~[number_submit_sat]
+//     number of students submitting sat score
+//     number of student who submitted sat score
+//     number of students submit sat score
+//     number of student who are submitting sat score
+

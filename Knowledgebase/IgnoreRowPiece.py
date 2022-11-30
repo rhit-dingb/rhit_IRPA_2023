@@ -6,14 +6,13 @@ from Knowledgebase.ShouldAddRowInterface import ShouldAddRowInterface
 
 
 class IgnoreRowPiece(ShouldAddRowDecorator):
-    def __init__(self, decorated : ShouldAddRowInterface, targetedColumns):
-         super().__init__(decorated)
-         self.targetedColumns = targetedColumns
-        
+    def __init__(self, decorated: ShouldAddRowInterface, targetedColumns):
+        super().__init__(decorated)
+        self.targetedColumns = targetedColumns
 
-    def determineShouldAddRow(self, row, entities):
+    def determineShouldAddRow(self, row, entities, sparseMatrix):
         for column in self.targetedColumns:
             if column in row and row[column] == 1:
                 return []
 
-        return self.decorated.determineShouldAddRow(row, entities)
+        return self.decorated.determineShouldAddRow(row, entities, sparseMatrix)

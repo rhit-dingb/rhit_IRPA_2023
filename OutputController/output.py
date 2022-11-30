@@ -4,25 +4,35 @@
 
 from Knowledgebase.constants import PERCENTAGE_FORMAT
 from actions.entititesHelper import copyEntities
-def constructSentence(answer, intent, printEntities): 
-    return answer + "\n" + intent + "\n" + str(printEntities)   
+NO_ANSWER_FOUND_RESPONSE = "Sorry, I found no answer related to your question"
+
+def constructSentence(answer, intent, entitiesUsed): 
+    if answer == "" or answer == None or answer.lower() == "none":
+       answer = NO_ANSWER_FOUND_RESPONSE
+    return answer + "\n" + intent + "\n" + str(entitiesUsed)   
 
 #For high_school_units
-def outputFuncForHighSchoolUnits(answer, intent, printEntities):
-    response = "No units specified"
+def outputFuncForHighSchoolUnits(answer, intent, entitiesUsed):
+    response = "no units specified"
     if answer == 0:
-        return constructSentence(response, intent, printEntities)
+        return constructSentence(response, intent, entitiesUsed)
     else:
         print(type(answer))
-        return  outputFuncForInteger(answer, intent, printEntities)
+        return  outputFuncForInteger(answer, intent, entitiesUsed)
 
 #For integer values
-def outputFuncForInteger(answer, intent, printEntities):
-    return constructSentence(str(int(answer)), intent,  printEntities)
+def outputFuncForInteger(answer, intent, entitiesUsed):
+    return constructSentence(str(int(answer)), intent,  entitiesUsed)
     
 #For percentage values
-def outputFuncForPercentage(answer, intent, printEntities): 
-    return constructSentence(PERCENTAGE_FORMAT.format(value = answer), intent, printEntities)
+def outputFuncForPercentage(answer, intent, entitiesUsed): 
+    return constructSentence(PERCENTAGE_FORMAT.format(value = answer), intent, entitiesUsed)
 
-def identityFunc(answer, intent, printEntities):
-    return (answer, intent, printEntities)
+def outputFuncForText(answer, intent, entitiesUsed):
+    return constructSentence(answer, intent, entitiesUsed)
+ 
+        
+
+def identityFunc(answer, intent, entitiesUsed):
+    return (answer, intent, entitiesUsed)
+
