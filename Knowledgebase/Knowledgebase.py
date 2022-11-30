@@ -1,7 +1,6 @@
 # This is be a interface that will be implemented by concrete classes.
 from copy import deepcopy
 from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
-from Knowledgebase.ShouldAddRowStrategy import ShouldAddRowStrategy
 
 
 class KnowledgeBase:

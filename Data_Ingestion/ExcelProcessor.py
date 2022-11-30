@@ -25,6 +25,10 @@ class ExcelProcessor():
     def processExcelSparseMatrixByYearToSparseMatrix(self, path, topicToParse):
         yearToData = dict()
         for fileName in os.listdir(path):
+            #Skip these extra files created by excel
+            if '~$' in fileName:
+                continue
+
             data = dict()
             xl = pd.ExcelFile(path+"/"+fileName)
             for topic in topicToParse:

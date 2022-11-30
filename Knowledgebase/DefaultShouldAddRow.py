@@ -1,10 +1,10 @@
-from Knowledgebase.ShouldAddRowStrategy import ShouldAddRowStrategy
+from Knowledgebase.ShouldAddRowInterface import ShouldAddRowInterface
 """
 Default strategy to determine whether a row of a sparse matrix should be used in the total value while searching. More detail below
 """
 
 
-class DefaultShouldAddRowStrategy(ShouldAddRowStrategy):
+class DefaultShouldAddRowStrategy(ShouldAddRowInterface):
     def __init__(self):
         super().__init__()
         

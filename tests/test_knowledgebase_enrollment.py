@@ -45,7 +45,7 @@ class enrollment_test(unittest.TestCase):
         # #Making sure the data loaded is consistent for testing
         # self.data = self.excelProcessor.processExcelSparse("../Data_Ingestion/CDS_SPARSE_ENR.xlsx", self.topicToParse)
     def extractOutput(self, answer, intent, entities):
-        return str(int(answer))
+        return str(answer)
     
     
     def test_when_ask_for_total_graduates_enrollment_should_return_correct_value(self):
@@ -117,7 +117,7 @@ class enrollment_test(unittest.TestCase):
         answer = self.knowledgeBase.searchForAnswer("enrollment", [
             createEntityObjHelper("full-time"),
             createEntityObjHelper("degree-seeking"),
-            createEntityObjHelper("men"),
+            createEntityObjHelper("male"),
             createEntityObjHelper("non-freshman"),
             createEntityObjHelper("2020", "year", "from"),
             createEntityObjHelper("2021", "year", "to"),
@@ -128,7 +128,7 @@ class enrollment_test(unittest.TestCase):
     # the algorithm current will try to answer to its best of its ability.
     def test_ask_for_out_of_scope_data_should_answer_to_best_ability(self):
         answer = self.knowledgeBase.searchForAnswer("enrollment",
-                                                    [createEntityObjHelper("men"),
+                                                    [createEntityObjHelper("male"),
                                                      createEntityObjHelper("asian", entityLabel="race"), 
                                                     createEntityObjHelper("2020", "year", "from"),
                                                     createEntityObjHelper("2021", "year", "to")],
@@ -214,14 +214,14 @@ class enrollment_test(unittest.TestCase):
         self.assertEqual(exceptionRaised.type,
                              ExceptionTypes.NoDataFoundForAcademicYearException)
 
-    def test_ask_for_data_for_give_start_year_should_return_correct_data(self):
-        answer = self.knowledgeBase.searchForAnswer("enrollment", [
-            createEntityObjHelper("degree-seeking"),
-            createEntityObjHelper("non-first-time"),
-            createEntityObjHelper("2020", "year", "from"),
-        ], self.defaultShouldAddRowStrategy, self.extractOutput)
+    # def test_ask_for_data_for_give_start_year_should_return_correct_data(self):
+    #     answer = self.knowledgeBase.searchForAnswer("enrollment", [
+    #         createEntityObjHelper("degree-seeking"),
+    #         createEntityObjHelper("non-first-time"),
+    #         createEntityObjHelper("2020", "year", "from"),
+    #     ], self.defaultShouldAddRowStrategy, self.extractOutput)
 
-        self.assertEqual(answer, str(NON_FIRST_TIME))
+    #     self.assertEqual(answer, str(NON_FIRST_TIME))
 
     def test_ask_for_data_for_give_end_year_with_no_data_should_throw_error_message(self):
 
