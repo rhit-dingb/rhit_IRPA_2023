@@ -35,6 +35,11 @@ def changeEntityValue(entities, targetLabel, newValue):
     for entity in entities: 
         if targetLabel in entity["entity"]:
             entity["value"] = newValue
+
+def changeEntityValueByRole(entities, targetEntity, targetRole, newValue):
+    for entity in entities: 
+        if targetEntity in entity["entity"] and hasattr(entity, "role") and targetRole in entity["role"]:
+            entity["value"] = newValue
     
 
 def createEntityObj(entityValue, entityLabel="none",  entityRole=None):

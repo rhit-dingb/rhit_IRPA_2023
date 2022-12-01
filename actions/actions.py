@@ -6,7 +6,7 @@
 
 
 from DataManager.ExcelDataManager import ExcelDataManager
-from DataManager.constants import ADMISSION_INTENT, BASIS_FOR_SELECTION_INTENT, COHORT_BY_YEAR_ENTITY_LABEL, COHORT_INTENT, ENROLLMENT_INTENT, EXEMPTION_ENTITY_LABEL, FINAL_COHORT_ENTITY_LABEL, FRESHMAN_PROFILE_INTENT, GRADUATION_RATE_ENTITY_LABEL, HIGH_SCHOOL_UNITS_INTENT, INITIAL_COHORT_ENTITY_LABEL, LOWER_BOUND_GRADUATION_TIME_ENTITY_LABEL, NO_AID_ENTITY_LABEL, RECIPIENT_OF_PELL_GRANT_ENTITY_LABEL, RECIPIENT_OF_STAFFORD_LOAN_NO_PELL_GRANT_ENTITY_LABEL, RETENTION_RATE_LABEL, UPPER_BOUND_GRADUATION_TIME_ENTITY_LABEL
+from DataManager.constants import ADMISSION_INTENT, BASIS_FOR_SELECTION_INTENT, COHORT_BY_YEAR_ENTITY_LABEL, COHORT_INTENT, ENROLLMENT_INTENT, EXEMPTION_ENTITY_LABEL, FINAL_COHORT_ENTITY_LABEL, FRESHMAN_PROFILE_INTENT, GRADUATION_RATE_ENTITY_LABEL, HIGH_SCHOOL_UNITS_INTENT, INITIAL_COHORT_ENTITY_LABEL, LOWER_BOUND_GRADUATION_TIME_ENTITY_LABEL, AID_ENTITY_LABEL, NO_AID_ENTITY_LABEL, RECIPIENT_OF_PELL_GRANT_ENTITY_LABEL, RECIPIENT_OF_STAFFORD_LOAN_NO_PELL_GRANT_ENTITY_LABEL, RETENTION_RATE_LABEL, UPPER_BOUND_GRADUATION_TIME_ENTITY_LABEL
 from Exceptions.ExceptionTypes import ExceptionTypes
 from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
 
@@ -15,7 +15,7 @@ from Knowledgebase.SparseMatrixKnowledgeBase import SparseMatrixKnowledgeBase
 from Knowledgebase.constants import PERCENTAGE_FORMAT
 from OutputController import output
 from actions.constants import ANY_AID_COLUMN_NAME, COHORT_GRADUATION_TIME_ENTITY_FORMAT, COHORT_GRADUATION_TIME_START_FORMAT, NO_AID_COLUMN_NAME, PELL_GRANT_COLUMN_NAME, STAFFORD_LOAN_COLUMN_NAME
-from actions.entititesHelper import changeEntityValue, copyEntities, createEntityObj, filterEntities, findEntityHelper, findMultipleSameEntitiesHelper
+from actions.entititesHelper import changeEntityValue, changeEntityValueByRole, copyEntities, createEntityObj, filterEntities, findEntityHelper, findMultipleSameEntitiesHelper
 from typing import Text
 
 from rasa_sdk import Action, Tracker
@@ -226,7 +226,7 @@ class ActionQueryCohort(Action):
         }
 
         for key in entityColumnMap.keys():
-            changeEntityValue(entities, key, entityColumnMap[key])
+            changeEntityValueByRole(entities, AID_ENTITY_LABEL, key, entityColumnMap[key])
 
 
 
