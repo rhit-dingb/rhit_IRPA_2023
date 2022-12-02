@@ -1,0 +1,85 @@
+version: "3.1"
+
+nlu:
+
+- lookup: essay
+  examples: |
+    - essay
+    - personal statement
+
+- synonym: essay
+  examples: |
+    - personal statement
+    - essays
+
+# I purposely left out recommendation because recommendation goes into the academic factor entity, interpreted as recommendation letter
+- lookup: condition 
+  examples: | 
+    - recommended
+    - recommend
+    - should
+   
+    - required
+    - require 
+    - requirement
+    - must 
+
+- synonym: recommend
+  examples: | 
+    - recommended
+    - recommending
+    - should
+
+- synonym: require
+  examples: |
+    - required
+    - requiring
+    - requirement
+    - must
+
+
+- lookup: aggregation
+  examples: |
+    - percent
+    - percentage
+    - average
+    - mean
+    - minimum 
+    - lowest
+    - min
+    - least
+
+- synonym: percent
+  examples: |
+    - percent
+    - percentage
+
+- synonym: mean
+  examples: |
+    - average
+    - mean
+
+- synonym: minimum
+  examples: |
+    - min
+    - least 
+    - lowest
+    
+- synonym: date
+  examples: |
+    - when
+    - time
+    - date
+
+
+- lookup: other
+  examples: |
+    - additional
+    - other
+    - extra
+
+- synonym: other
+  examples: |
+    - additional
+    - other
+    - extra

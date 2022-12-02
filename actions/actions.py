@@ -56,6 +56,17 @@ class ActionAskMoreQuestion(Action):
         dispatcher.utter_message("Great! Do you have anymore questions?")
         return []
 
+class ActionQueryTransferAdmission(Action):
+   
+    def name(self) -> Text:
+        return  "action_query_transfer_admission"
+
+    def run(self, dispatcher, tracker, domain):
+        entitiesExtracted = tracker.latest_message["entities"]
+        intent = tracker.latest_message["intent"]["name"]
+        print(entitiesExtracted)
+        return []
+
 
 class ActionQueryFreshmanProfile(Action):
     def __init__(self) -> None:

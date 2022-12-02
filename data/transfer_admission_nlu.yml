@@ -1,0 +1,287 @@
+version: "3.1"
+nlu:
+- intent: transfer_admission
+  examples: |
+    - At which [term]{"entity": "academic_term", "value": "term" } may transfer students [enroll]{"entity": "action", "value": "enrolled"}
+    
+    - Does Rose-Hulman [accept credit transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"}
+    - Does Rose-Hulman [accept transfer credit](allow_transfer_credit)
+    - Does Rose-Hulman [accept transfer credits]{"entity": "allow_transfer_credit", "value": "accept transfer credit"}
+    - Does Rose-Hulman [accept transfering credit]{"entity": "allow_transfer_credit", "value": "accept transfer credit"}
+    - Does Rose-Hulman [accept transferred credit]{"entity": "allow_transfer_credit", "value": "accept transfer credit"}
+    - Does Rose-Hulman [allow credit transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"}
+    - Does Rose-Hulman [allow transfer credit]{"entity": "allow_transfer_credit", "value": "accept transfer credit"}
+    - Does Rose-Hulman [allow transfer credits]{"entity": "allow_transfer_credit", "value": "accept transfer credit"}
+    - Does rose-hulman allow students to [tranfer their credit]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from previous school?
+    - Can students [transfer their credit]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from their previous institution?
+
+    - Does Rose-Hulman [allow transferred credit]{"entity": "allow_transfer_credit", "value": "accept transfer credit"}
+    - Does Rose-Hulman [allow transferring credit]{"entity": "allow_transfer_credit", "value": "accept transfer credit"}
+
+    - Does Rose-Hulman [enroll transfer student](allow_transfer)
+    - Does Rose-Hulman [allow transfer student]{"entity": "allow_transfer", "value": "enroll transfer student"}
+    - Does Rose-Hulman [accept transfer students]{"entity": "allow_transfer", "value": "enroll transfer student"}
+    - Does Rose-Hulman [enroll transfer students]{"entity": "allow_transfer", "value": "enroll transfer student"}
+    - Does Rose-Hulman [let transfer student in]{"entity": "allow_transfer", "value": "enroll transfer student"}
+
+    - Does Rose-Hulman [require]{"entity":"condition", "value": "require"} [essay](essay) to apply for transfer admission?
+    - Does Rose-Hulman [require]{"entity":"condition", "value": "require"} [good standing statement]{"entity": "academic_factor", "value": "statement of good standing"} to apply for transfer admission?
+    - Does Rose-Hulman [require]{"entity":"condition", "value": "require"} [interview](academic_factor) to apply for transfer admission?
+    - Does Rose-Hulman [require]{"entity":"condition", "value": "require"} [personal statement]{"entity": "essay", "value": "essay"} to apply for transfer admission?
+    - Does Rose-Hulman [require]{"entity":"condition", "value": "require"} [statement of good standing](academic_factor) to apply for transfer admission?
+    - Does Rose-Hulman [require]{"entity":"condition", "value": "require"} [test score]{"entity": "academic_factor", "value": "standardized test scores"} to apply for transfer admission?
+    - Does Rose-Hulman [require]{"entity":"condition", "value": "require"} [test scores]{"entity": "academic_factor", "value": "standardized test scores"} to apply for transfer admission?
+    - Is [college](education_level) [transcript]{"entity": "academic_factor", "value": "transcript" } [required]{"entity":"condition", "value": "require"}  for transfer student to apply for admission at Rose-Hulman
+    - Is personal [essay](essay) [required]{"entity":"condition", "value": "require"} for transfer student to apply for admission at Rose-Hulman
+    - Is [good standing statement]{"entity": "academic_factor", "value": "statement of good standing"} [required]{"entity":"condition", "value": "require"}  for transfer student to apply for admission at Rose-Hulman
+    - Is [high school](education_level) [transcript]{"entity": "academic_factor", "value": "transcript" } [required]{"entity":"condition", "value": "require"}  for transfer student to apply for admission at Rose-Hulman
+    - Is [high-school]{"entity": "education_level", "value": "high school"} [transcript]{"entity": "academic_factor", "value": "transcript" } [required]{"entity":"condition", "value": "require"}  for transfer student to apply for admission at Rose-Hulman
+    - Is [interview](academic_factor) [required]{"entity":"condition", "value": "require"} for transfer student to apply for admission at Rose-Hulman
+    - Is [personal statement]{"entity": "essay", "value": "essay"} [required]{"entity":"condition", "value": "require"} for transfer student to apply for admission at Rose-Hulman
+    - Is [secondary school]{"entity": "education_level", "value": "high school"} [transcript]{"entity": "academic_factor", "value": "transcript" } [required]{"entity":"condition", "value": "require"}  for transfer student to apply for admission at Rose-Hulman
+    - Is [statement of good standing](academic_factor) [required]{"entity":"condition", "value": "require"} for transfer student to apply for admission at Rose-Hulman
+    - Is [test score]{"entity": "academic_factor", "value": "standardized test scores"} [required]{"entity":"condition", "value": "require"}  for transfer student to apply for admission at Rose-Hulman
+    - Is [test scores]{"entity": "academic_factor", "value": "standardized test scores"} [required]{"entity":"condition", "value": "require"}  for transfer student to apply for admission at Rose-Hulman
+   
+    - Is there any [other]{"entity": "other", "value": "other"} [additional]{"entity": "other", "value": "other"} [requirement]{"entity": "condition", "value": "require"}  specific to transfer applicants?
+    - Is there any [other]{"entity": "other", "value": "other"} application [requirement]{"entity": "condition", "value": "require"}  specific to transfer applicants?
+    - Is there any [other]{"entity": "other", "value": "other"} [requirement]{"entity": "condition", "value": "require"}  specific to transfer applicants?
+    - Is there any [additional]{"entity": "other", "value": "other"} [requirements]{"entity": "condition", "value": "require"}  specific to transfer applicants?
+
+    - Is [university]{"entity": "education_level", "value": "college"} [transcript]{"entity": "academic_factor", "value": "transcript" } [required]{"entity":"condition", "value": "require"}  for transfer student to apply for admission at Rose-Hulman
+
+    - Does a transfer applicant need to have [lowest]{"entity": "aggregation", "value": "minimum"} number of [credit](unit_type) completed or else they must apply as an entering [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}?
+    - Does a transfer applicant need to have [lowest]{"entity": "aggregation", "value": "minimum"} number of [credits]{"entity": "unit_type", "value": "credit"} completed or else they must apply as an entering [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}?
+    - Does a transfer applicant need to have [min]{"entity": "aggregation", "value": "minimum"} number of [credit](unit_type) completed or else they must apply as an entering [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}?
+    - Does a transfer applicant need to have [min]{"entity": "aggregation", "value": "minimum"} number of [credits]{"entity": "unit_type", "value": "credit"} completed or else they must apply as an entering [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}?
+    - Does a transfer applicant need to have [minimum](aggregation) number of [credit](unit_type) completed or else they must apply as an entering [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}?
+    - Does a transfer applicant need to have [minimum](aggregation) number of [credits]{"entity": "unit_type", "value": "credit"} completed or else they must apply as an entering [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}?
+
+    - How many [female](gender) transfer student [admit]{"entity": "action", "value": "admitted"} to Rose-Hulman?
+    - How many [female](gender) transfer student [admitted](action) to Rose-Hulman?
+    - How many [female](gender) transfer student [admitting]{"entity": "action", "value": "admitted"} to Rose-Hulman?
+    - How many [female](gender) transfer student [applied](action) to Rose-Hulman?
+    - How many [female](gender) transfer student [apply]{"entity": "action", "value": "applied"} to Rose-Hulman?
+    - How many [female](gender) transfer student [applying]{"entity": "action", "value": "applied"} to Rose-Hulman?
+    - How many [female](gender) transfer student [enroll]{"entity": "action", "value": "enrolled"} to Rose-Hulman?
+    - How many [female](gender) transfer student [enrolled](action) to Rose-Hulman?
+    - How many [female](gender) transfer student are [enrolling]{"entity": "action", "value": "enrolled"} to Rose-Hulman?
+
+    - How many [woman]{"entity": "gender", "value": "female"} transfer student [admit]{"entity": "action", "value": "admitted"} to Rose-Hulman?
+    - How many [woman]{"entity": "gender", "value": "female"} transfer student [admitted](action) to Rose-Hulman?
+    - How many [woman]{"entity": "gender", "value": "female"} transfer student [admitting]{"entity": "action", "value": "admitted"} to Rose-Hulman?
+    - How many [woman]{"entity": "gender", "value": "female"} transfer student [applied](action) to Rose-Hulman?
+    - How many [woman]{"entity": "gender", "value": "female"} transfer student [apply]{"entity": "action", "value": "applied"} to Rose-Hulman?
+    - How many [woman]{"entity": "gender", "value": "female"} transfer student [applying]{"entity": "action", "value": "applied"} to Rose-Hulman?
+    - How many [woman]{"entity": "gender", "value": "female"} transfer student [enroll]{"entity": "action", "value": "enrolled"} to Rose-Hulman?
+    - How many [woman]{"entity": "gender", "value": "female"} transfer student [enrolled](action) to Rose-Hulman?
+    - How many [woman]{"entity": "gender", "value": "female"} transfer student [enrolling]{"entity": "action", "value": "enrolled"} to Rose-Hulman?
+
+    - How many [male](gender) transfer student [admit]{"entity": "action", "value": "admitted"} to Rose-Hulman?
+    - How many [male](gender) transfer student [admitted](action) to Rose-Hulman?
+    - How many [male](gender) transfer student [admitting]{"entity": "action", "value": "admitted"} to Rose-Hulman?
+    - How many [male](gender) transfer student [applied](action) to Rose-Hulman?
+    - How many [male](gender) transfer student [apply]{"entity": "action", "value": "applied"} to Rose-Hulman?
+    - How many [male](gender) transfer student [applying]{"entity": "action", "value": "applied"} to Rose-Hulman?
+    - How many [male](gender) transfer student [enroll]{"entity": "action", "value": "enrolled"} to Rose-Hulman?
+    - How many [male](gender) transfer student [enrolled](action) to Rose-Hulman?
+    - How many [male](gender) transfer student [enrolling]{"entity": "action", "value": "enrolled"} to Rose-Hulman?
+    - How many [men]{"entity": "gender", "value": "male"} transfer student [admit]{"entity": "action", "value": "admitted"} to Rose-Hulman?
+    - How many [men]{"entity": "gender", "value": "male"} transfer student [admitted](action) to Rose-Hulman?
+    - How many [men]{"entity": "gender", "value": "male"} transfer student [admitting]{"entity": "action", "value": "admitted"} to Rose-Hulman?
+    - How many [men]{"entity": "gender", "value": "male"} transfer student [applied](action) to Rose-Hulman?
+    - How many [men]{"entity": "gender", "value": "male"} transfer student [apply]{"entity": "action", "value": "applied"} to Rose-Hulman?
+    - How many [men]{"entity": "gender", "value": "male"} transfer student [applying]{"entity": "action", "value": "applied"} to Rose-Hulman?
+    - How many [men]{"entity": "gender", "value": "male"} transfer student [enroll]{"entity": "action", "value": "enrolled"} to Rose-Hulman?
+    - How many [men]{"entity": "gender", "value": "male"} transfer student [enrolled](action) to Rose-Hulman?
+    - How many [men]{"entity": "gender", "value": "male"} transfer student [enrolling]{"entity": "action", "value": "enrolled"} to Rose-Hulman?
+    - How many transfer student [admit]{"entity": "action", "value": "admitted"} to Rose-Hulman?
+
+    - How many transfer student [admitted](action) to Rose-Hulman?
+    - How many transfer student [admitting]{"entity": "action", "value": "admitted"} to Rose-Hulman?
+    - How many transfer student [applied](action) to Rose-Hulman?
+    - How many transfer student [apply]{"entity": "action", "value": "applied"} to Rose-Hulman?
+    - How many transfer student [applying]{"entity": "action", "value": "applied"} to Rose-Hulman?
+    - How many transfer student [enroll]{"entity": "action", "value": "enrolled"} to Rose-Hulman?
+    - How many transfer student [enrolled](action) to Rose-Hulman?
+    - How many transfer student [enrolling]{"entity": "action", "value": "enrolled"} to Rose-Hulman?
+   
+    - May transfer students earn advanced standing [credit](unit_type) by [transfer the credits]{"entity": "allow_transfer_credit", "value": "accept transfer credit" } they earned from course work completed at other [university]{"entity": "education_level", "value": "college"}
+    - May transfer students earn advanced standing [credit](unit_type) by [transferring credits]{"entity": "allow_transfer_credit", "value": "accept transfer credit" } earned from course work completed at other [college]{"entity": "education_level", "value": "college" }
+
+    - What is the [lowest]{"entity": "aggregation", "value": "minimum"} [college](education_level) [grade point average]{"entity": "academic_factor", "value": "gpa"} [required]{"entity":"condition", "value": "require"}  of transfer applicants?
+    - What is the [lowest]{"entity": "aggregation", "value": "minimum"} [credit](unit_type) and the [unit of measure](unit_of_measure) [required]{"entity":"condition", "value": "require"}  to apply for transfer admission?
+    - What is the [lowest]{"entity": "aggregation", "value": "minimum"} [credits]{"entity": "unit_type", "value": "credit"} and the [unit of measure](unit_of_measure) [required]{"entity":"condition", "value": "require"}  to apply for transfer admission?
+    - What is the [lowest]{"entity": "aggregation", "value": "minimum"} [high school](education_level) [grade point average]{"entity": "academic_factor", "value": "gpa"} [required]{"entity":"condition", "value": "require"}  of transfer applicants?
+    - What is the [lowest]{"entity": "aggregation", "value": "minimum"} [high-school]{"entity": "education_level", "value": "high school"} [grade point average]{"entity": "academic_factor", "value": "gpa"} [required]{"entity":"condition", "value": "require"}  of transfer applicants?
+    - What is the [lowest]{"entity": "aggregation", "value": "minimum"} [secondary school]{"entity": "education_level", "value": "high school"} [grade point average]{"entity": "academic_factor", "value": "gpa"} [required]{"entity":"condition", "value": "require"}  of transfer applicants?
+    - What is the [lowest]{"entity": "aggregation", "value": "minimum"} [university]{"entity": "education_level", "value": "college"} [grade point average]{"entity": "academic_factor", "value": "gpa"} [required]{"entity":"condition", "value": "require"}  of transfer applicants?
+    - What is the [min]{"entity": "aggregation", "value": "minimum"} [college](education_level) [grade point average]{"entity": "academic_factor", "value": "gpa"} [required]{"entity":"condition", "value": "require"}  of transfer applicants?
+    - What is the [min]{"entity": "aggregation", "value": "minimum"} [credit](unit_type) and the [unit of measure](unit_of_measure) [required]{"entity":"condition", "value": "require"}  to apply for transfer admission?
+    - What is the [min]{"entity": "aggregation", "value": "minimum"} [credits]{"entity": "unit_type", "value": "credit"} and the [unit of measure](unit_of_measure) [required]{"entity":"condition", "value": "require"}  to apply for transfer admission?
+    - What is the [min]{"entity": "aggregation", "value": "minimum"} [high school](education_level) [grade point average]{"entity": "academic_factor", "value": "gpa"} [required]{"entity":"condition", "value": "require"}  of transfer applicants?
+    - What is the [min]{"entity": "aggregation", "value": "minimum"} [high-school]{"entity": "education_level", "value": "high school"} [grade point average]{"entity": "academic_factor", "value": "gpa"} [required]{"entity":"condition", "value": "require"}  of transfer applicants?
+    - What is the [min]{"entity": "aggregation", "value": "minimum"} [secondary school]{"entity": "education_level", "value": "high school"} [grade point average]{"entity": "academic_factor", "value": "gpa"} [required]{"entity":"condition", "value": "require"}  of transfer applicants?
+    - What is the [min]{"entity": "aggregation", "value": "minimum"} [university]{"entity": "education_level", "value": "college"} [grade point average]{"entity": "academic_factor", "value": "gpa"} [required]{"entity":"condition", "value": "require"}  of transfer applicants?
+    - What is the [minimum](aggregation) [college](education_level) [grade point average]{"entity": "academic_factor", "value": "gpa"} [required]{"entity":"condition", "value": "require"}  of transfer applicants?
+    - What is the [minimum](aggregation) [credit](unit_type) and the [unit of measure](unit_of_measure) [required]{"entity":"condition", "value": "require"}  to apply for transfer admission?
+    - What is the [minimum](aggregation) [credits]{"entity": "unit_type", "value": "credit"} and the [unit of measure](unit_of_measure) [required]{"entity":"condition", "value": "require"}  to apply for transfer admission?
+    - What is the [minimum](aggregation) [high school](education_level) [grade point average]{"entity": "academic_factor", "value": "gpa"} [required]{"entity":"condition", "value": "require"}  of transfer applicants?
+    - What is the [minimum](aggregation) [high-school]{"entity": "education_level", "value": "high school"} [grade point average]{"entity": "academic_factor", "value": "gpa"} [required]{"entity":"condition", "value": "require"}  of transfer applicants?
+    - What is the [minimum](aggregation) [secondary school]{"entity": "education_level", "value": "high school"} [grade point average]{"entity": "academic_factor", "value": "gpa"} [required]{"entity":"condition", "value": "require"}  of transfer applicants?
+    - What is the [minimum](aggregation) [university]{"entity": "education_level", "value": "college"} [grade point average]{"entity": "academic_factor", "value": "gpa"} [required]{"entity":"condition", "value": "require"}  of transfer applicants?
+    
+    - What is the [date]{"entity": "admission_decision_date", "value": "date"} of admission decision for transfer students?
+    - What is the admission decision [date]{"entity": "date", "value": "date"} for transfer students?
+    - What is the [closing](admission_decision_date) [date](date) for transfer students applications in [autumn]{"entity": "academic_term", "value": "fall"} quarter
+    - What is the [closing](admission_decision_date) [date](date) for transfer students applications in [fall](academic_term) quarter
+    - What is the [closing](admission_decision_date) [date](date) for transfer students applications in [spring](academic_term) quarter
+    - What is the [closing](admission_decision_date) [date](date) for transfer students applications in [summer](academic_term) quarter
+    - What is the [closing](admission_decision_date) [date](date) for transfer students applications in [winter](academic_term) quarter
+    - What is the [closing](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students applications in [autumn]{"entity": "academic_term", "value": "fall"} quarter
+    - What is the [closing](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students applications in [fall](academic_term) quarter
+    - What is the [closing](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students applications in [spring](academic_term) quarter
+    - What is the [closing](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students applications in [summer](academic_term) quarter
+    - What is the [closing](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students applications in [winter](academic_term) quarter
+ 
+    - What is the [notification](admission_decision_date) [date](date) for transfer students applications in [autumn]{"entity": "academic_term", "value": "fall"} quarter
+    - What is the [notification](admission_decision_date) [date](date) for transfer students applications in [fall](academic_term) quarter
+    - What is the [notification](admission_decision_date) [date](date) for transfer students applications in [spring](academic_term) quarter
+    - What is the [notification](admission_decision_date) [date](date) for transfer students applications in [summer](academic_term) quarter
+    - What is the [notification](admission_decision_date) [date](date) for transfer students applications in [winter](academic_term) quarter
+    - What is the [notification](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students applications in [autumn]{"entity": "academic_term", "value": "fall"} quarter
+    - What is the [notification](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students applications in [fall](academic_term) quarter
+    - What is the [notification](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students applications in [spring](academic_term) quarter
+    - What is the [notification](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students applications in [summer](academic_term) quarter
+    - What is the [notification](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students applications in [winter](academic_term) quarter
+  
+    - What is the [notify]{"entity": "admission_decision_date", "value": "notification"} [date](date) for transfer students applications in [autumn]{"entity": "academic_term", "value": "fall"} quarter
+    - What is the [notify]{"entity": "admission_decision_date", "value": "notification"} [date](date) for transfer students applications in [fall](academic_term) quarter
+    - What is the [notify]{"entity": "admission_decision_date", "value": "notification"} [date](date) for transfer students applications in [spring](academic_term) quarter
+    - What is the [notify]{"entity": "admission_decision_date", "value": "notification"} [date](date) for transfer students applications in [summer](academic_term) quarter
+    - What is the [notify]{"entity": "admission_decision_date", "value": "notification"} [date](date) for transfer students applications in [winter](academic_term) quarter
+    - What is the [notify]{"entity": "admission_decision_date", "value": "notification"} [time]{"entity": "date", "value": "date"} for transfer students applications in [autumn]{"entity": "academic_term", "value": "fall"} quarter
+    - What is the [notify]{"entity": "admission_decision_date", "value": "notification"} [time]{"entity": "date", "value": "date"} for transfer students applications in [fall](academic_term) quarter
+    - What is the [notify]{"entity": "admission_decision_date", "value": "notification"} [time]{"entity": "date", "value": "date"} for transfer students applications in [spring](academic_term) quarter
+    - What is the [notify]{"entity": "admission_decision_date", "value": "notification"} [time]{"entity": "date", "value": "date"} for transfer students applications in [summer](academic_term) quarter
+    - What is the [notify]{"entity": "admission_decision_date", "value": "notification"} [time]{"entity": "date", "value": "date"} for transfer students applications in [winter](academic_term) quarter
+
+    - What is the [priority](admission_decision_date) [date](date) for transfer students applications in [autumn]{"entity": "academic_term", "value": "fall"} quarter
+    - What is the [priority](admission_decision_date) [date](date) for transfer students applications in [fall](academic_term) quarter
+    - What is the [priority](admission_decision_date) [date](date) for transfer students applications in [spring](academic_term) quarter
+    - What is the [priority](admission_decision_date) [date](date) for transfer students applications in [summer](academic_term) quarter
+    - What is the [priority](admission_decision_date) [date](date) for transfer students applications in [winter](academic_term) quarter
+    - What is the [priority](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students applications in [autumn]{"entity": "academic_term", "value": "fall"} quarter
+    - What is the [priority](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students applications in [fall](academic_term) quarter
+    - What is the [priority](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students applications in [spring](academic_term) quarter
+    - What is the [priority](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students applications in [summer](academic_term) quarter
+    - What is the [priority](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students applications in [winter](academic_term) quarter
+   
+    - What is the [reply](admission_decision_date) [date](date) for transfer students applications in [autumn]{"entity": "academic_term", "value": "fall"} quarter
+    - What is the [reply](admission_decision_date) [date](date) for transfer students applications in [fall](academic_term) quarter
+    - What is the [reply](admission_decision_date) [date](date) for transfer students applications in [spring](academic_term) quarter
+    - What is the [reply](admission_decision_date) [date](date) for transfer students applications in [summer](academic_term) quarter
+    - What is the [reply](admission_decision_date) [date](date) for transfer students applications in [winter](academic_term) quarter
+    - What is the [reply](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students applications in [autumn]{"entity": "academic_term", "value": "fall"} quarter
+    - What is the [reply](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students applications in [fall](academic_term) quarter
+    - What is the [reply](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students applications in [spring](academic_term) quarter
+    - What is the [reply](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students applications in [summer](academic_term) quarter
+    - What is the [reply](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students applications in [winter](academic_term) quarter
+   
+    - [When]{"entity": "date", "value": "date"} are applications reviewed for transfer students?
+    - [When]{"entity": "date", "value": "date"} does admission decision come out for transfer students?
+
+
+
+- synonym: notification
+  examples: |
+    - notify
+    - notification
+
+- lookup: allow_transfer_credit
+  examples: |
+    - allow transfer credit
+    - accept transferred credit
+    - allow credit transferred
+    - allow transfer credits
+    - accept transfer credit
+    - accept transfer credits
+    - allow transferred credit
+    - accept transfering credit
+    - allow transferring credit
+    - accept credit transferred
+    - transfer their credit
+    - transfer credit
+
+
+- lookup: allow_transfer_student
+  examples: |
+    - allow transfer student
+    - accept transfer students
+    - enroll transfer student
+    - enroll transfer student
+    - let transfer student in
+
+- synonym: accept transfer credit
+  examples: |
+    - allow transfer credit
+    - accept transferred credit
+    - allow credit transferred
+    - allow transfer credits
+    - accept transfer credit
+    - accept transfer credits
+    - allow transferred credit
+    - accept transfering credit
+    - allow transferring credit
+    - accept credit transferred
+    - transfer their credit
+    - transfer credit
+    - transferred credit
+
+- synonym: enroll transfer student
+  examples: |
+    - allow transfer student
+    - accept transfer students
+    - enroll transfer student
+    - let transfer student in
+
+- synonym: credit
+  examples: |
+    - credit
+    - credits
+
+- synonym: high school
+  examples: |
+    - secondary school
+    - high-school
+    - high school
+
+- synonym: college
+  examples: |
+    - college
+    - university
+    - universities
+    - colleges
+
+- synonym: essay
+  examples: |
+    - personal statement
+    - essay
+
+- synonym: standardized test scores
+  examples: |
+    - test scores
+    - test score
+
+- synonym: statement of good standing
+  examples: |
+    - statement of good standing
+    - good standing statement
+
+- synonym: fall
+  examples: |
+    - fall
+    - autumn
+
+
+

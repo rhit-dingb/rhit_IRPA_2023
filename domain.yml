@@ -9,6 +9,7 @@ intents:
   - enrollment
   - cohort
   - admission
+  - transfer_admission
   - high_school_units
   - basis_for_selection 
   - freshman_profile
@@ -86,7 +87,6 @@ entities:
   # also know as allowable exclusions.
   - exemptions
 
-  
   - recipients_of_federal_pell_grant
   - recipients_of_a_subsidized_stafford_loan_who_did_not_receive_a_pell_grant 
   - students_who_did_not_receive_either_a_pell_grant_or_a_subsidized_stafford_loan
@@ -97,9 +97,14 @@ entities:
   # School subjects such as english, mathematics, science, etc.
   - subject
 
+
+  #DEPRECATED, seperated out to unit_type and condition entity
   #Number of unit-required or unit-recommended for particular subjects for rose-hulman admission requirement.
   #Specific values: unit-required, unit-recommend 
-  - unit_level
+  #- unit_level
+
+  # This entity captures whether required or recommended is mentioned. Used in high school units required/recommended and transfer admission required items.
+  - condition
 
   #Academic factor for basis of selection for admissions such as Rigor of secondary school record, Class rank etc, academic GPA etc.
   - academic_factor
@@ -107,10 +112,12 @@ entities:
   #Non-academic factor for basis of selection for admissions such as Interview, Extracurricular activities, Talent/ability, Character/personal qualities, etc
   - non_academic_factor
 
+  #Since this overlaps with test_component, academic_factor, I pull this out as a seperate entity
+  - essay
 
   # # Below are entities for freshman profile
 
-  #Aggregation words: percentage, mean
+  #Aggregation words: percentage, mean, minimum
   - aggregation
 
   #Types of standarized test. Values: SAT and ACT.
@@ -141,6 +148,37 @@ entities:
 #Whether student submitted something, such as gpa, class rank, sat score
   - submitted
 
+#Whether rose-hulman enroll transfer students
+# Value: enroll transfer student
+  - allow_transfer
+
+#Whether rose-hulman accept transfer credit
+#Value: accept transfer credit
+  - allow_transfer_credit
+
+#High school or college
+#Value: High school, college
+  - education_level
+
+# used to capture the word credit and unit as in class credits/unit
+  - unit_type
+
+#Academic term. Used to capture the word "term" referring to academic terms
+  - academic_term
+
+#admission decision date. Values:  priority, closing, notification, and reply.
+# Use in conjunction with date entity to create priority date, closing date, notification date and reply date.
+  - admission_decision_date
+
+
+#Unit of measure, used to capture required units and unit for measure for transfer admission
+  - unit_of_measure
+
+#Use to capture the word "date" or "when" - to see if user mention time anywhere in their sentence. Values: date. This does not extract the numeric value, but rather, the word
+  - date
+
+#Use to capture "other", can be used in terms of other subjects or other application requirements
+  - other
 
 slots:
   enrollment_status:
@@ -235,6 +273,8 @@ actions:
   - action_query_basis_for_selection
 
   - action_query_freshman_profile
+
+  - action_query_transfer_admission
   
 
   
