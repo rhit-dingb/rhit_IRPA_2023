@@ -13,8 +13,9 @@ class CDSDataLoader():
     def loadData(self): 
        for sheetName in self.excelConnector.sheet_names:
             #questionAnswersDataFrame = self.excelConnector.parse(sheetName)
-            questionAnswersDataFrame = pd.read_excel(self.path, sheet_name=sheetName, dtype={'Answer': str,} )
-            print(questionAnswersDataFrame)
+            questionAnswersDataFrame = pd.read_excel(self.path, sheet_name=sheetName, dtype={'Answer': object} )
+            questionAnswersDataFrame  =  questionAnswersDataFrame.astype(str)
+           
             # questionAnswersDataFrame["Answer"] = questionAnswersDataFrame["Answer"].astype("string")
             questionsAnswers = []
             for i in range(questionAnswersDataFrame.shape[0]):

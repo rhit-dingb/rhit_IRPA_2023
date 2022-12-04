@@ -10,7 +10,7 @@ from Knowledgebase.SparseMatrixKnowledgeBase import SparseMatrixKnowledgeBase
 from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
 from DataManager.ExcelDataManager import ExcelDataManager
 from OutputController import output
-from tests.testUtils import createEntityObjHelper, createFakeTracker, identityFunc
+from tests.testUtils import checkAnswersMatch, createEntityObjHelper, createFakeTracker, getAllAnswersFromDispatcher, identityFunc
 from actions.actions import knowledgeBase as knowledgeBaseInAction
 from actions.actions import ActionQueryCohort
 
@@ -44,6 +44,7 @@ class cohort_test(unittest.TestCase):
         #Make sure the knowledgebase class instance in Actions is using the data manager with test materials loaded.
         knowledgeBaseInAction.dataManager = self.knowledgeBase.dataManager
         output.constructSentence = identityFunc
+        knowledgeBaseInAction.constructOutput = identityFunc
         #self.patcher = mock.patch("OutputController.output.constructSentence", return_value = )
         
 
@@ -51,15 +52,15 @@ class cohort_test(unittest.TestCase):
     
     def test_knowledgebase_when_ask_for_initial_cohort_should_return_correct_value(self):
         
-            answer = self.knowledgeBase.searchForAnswer(
+            answers = self.knowledgeBase.searchForAnswer(
                 "cohort",
                 [
                 createEntityObjHelper("initial"),
                 createEntityObjHelper("2014 cohort", entityLabel=COHORT_BY_YEAR_ENTITY_LABEL)
-                ], self.defaultShouldAddRowStrategy, output.outputFuncForInteger
+                ], self.defaultShouldAddRowStrategy, output.constructSentence
             )
 
-            self.assertEqual(answer, str(INITIAL_2014_COHORT_TOTAL))
+            self.assertEqual(answers, [str(INITIAL_2014_COHORT_TOTAL)])
 
   
     def test_when_ask_for_graduation_time_five_to_six_year_should_give_correct_value_for_action(self):
@@ -72,11 +73,13 @@ class cohort_test(unittest.TestCase):
 
         knowledgeBaseInAction.dataManager = self.knowledgeBase.dataManager
         queryCohort = ActionQueryCohort()
-        dispatcher = CollectingDispatcher()
+     
         tracker = Tracker.from_dict(createFakeTracker(COHORT_INTENT, entities))
-        queryCohort.run(dispatcher=dispatcher, tracker=tracker, domain=None )
-        
-        self.assertEqual(dispatcher.messages[0]["text"], str(COHORT_2014_STUDENT_GRADUATING_IN_MORE_THAN_4_YEARS_AND_IN_FIVE_OR_LESS))
+        queryCohort.run(dispatcher=self.dispatcher, tracker=tracker, domain=None )
+
+      
+        expectedAnswers = [str(COHORT_2014_STUDENT_GRADUATING_IN_MORE_THAN_4_YEARS_AND_IN_FIVE_OR_LESS)]
+        checkAnswersMatch(self.assertEqual, self.dispatcher, expectedAnswers)
         #self.assertEqual(answer, str(INITIAL_2014_COHORT_TOTAL))
    
    
@@ -88,10 +91,10 @@ class cohort_test(unittest.TestCase):
             
         knowledgeBaseInAction.dataManager = self.knowledgeBase.dataManager
         queryCohort = ActionQueryCohort()
-        dispatcher = CollectingDispatcher()
         tracker = Tracker.from_dict(createFakeTracker(COHORT_INTENT, entities))
-        queryCohort.run(dispatcher=dispatcher, tracker=tracker, domain=None )
-        self.assertEqual(dispatcher.messages[0]["text"], str(FINAL_2014_COHORT))
+        queryCohort.run(dispatcher=self.dispatcher, tracker=tracker, domain=None )
+        expectedAnswers = [str(FINAL_2014_COHORT)]
+        checkAnswersMatch(self.assertEqual, self.dispatcher, expectedAnswers)
 
     def test_when_ask_for_six_year_graduation_rate_should_give_correct_value_for_action(self):
         entities =  [
@@ -105,7 +108,8 @@ class cohort_test(unittest.TestCase):
         tracker = Tracker.from_dict(createFakeTracker(COHORT_INTENT, entities))
         queryCohort.run(dispatcher=self.dispatcher, tracker=tracker, domain=None )
         # print(dispatcher.messages[0]["text"])
-        self.assertEqual(self.dispatcher.messages[0]["text"], COHORT_2014_SIX_YEAR_STUDENT_GRADUATION_RATE)
+        expectedAnswers = [COHORT_2014_SIX_YEAR_STUDENT_GRADUATION_RATE]
+        checkAnswersMatch(self.assertEqual, self.dispatcher, expectedAnswers) 
 
     def test_when_ask_for_five_year_graduation_rate_should_give_correct_value_for_action(self):
         entities =  [
@@ -119,7 +123,8 @@ class cohort_test(unittest.TestCase):
    
         tracker = Tracker.from_dict(createFakeTracker(COHORT_INTENT, entities))
         queryCohort.run(dispatcher=self.dispatcher, tracker=tracker, domain=None )
-        self.assertEqual(self.dispatcher.messages[0]["text"], COHORT_2014_FIVE_YEAR_STUDENT_GRADUATION_RATE)
+        expectedAnswers = [COHORT_2014_FIVE_YEAR_STUDENT_GRADUATION_RATE]
+        checkAnswersMatch(self.assertEqual, self.dispatcher, expectedAnswers) 
 
     def test_when_ask_for_four_year_graduation_rate_should_give_correct_value_for_action(self):
         entities =  [
@@ -131,7 +136,8 @@ class cohort_test(unittest.TestCase):
         queryCohort = ActionQueryCohort()
         tracker = Tracker.from_dict(createFakeTracker(COHORT_INTENT, entities))
         queryCohort.run(dispatcher=self.dispatcher, tracker=tracker, domain=None )
-        self.assertEqual(self.dispatcher.messages[0]["text"], COHORT_2014_FOUR_YEAR_STUDENT_GRADUATION_RATE)
+        expectedAnswers = [COHORT_2014_FOUR_YEAR_STUDENT_GRADUATION_RATE]
+        checkAnswersMatch(self.assertEqual, self.dispatcher, expectedAnswers) 
 
 
     def test_when_ask_for_invalid_cohort_year_should_return_exception_message(self):
@@ -144,7 +150,8 @@ class cohort_test(unittest.TestCase):
         queryCohort = ActionQueryCohort()
         tracker = Tracker.from_dict(createFakeTracker(COHORT_INTENT, entities))
         queryCohort.run(dispatcher=self.dispatcher, tracker=tracker, domain=None )
-        self.assertEqual(self.dispatcher.messages[0]["text"], NO_DATA_FOUND_FOR_COHORT_YEAR_ERROR_MESSAGE_FORMAT.format(year = 3952))
+        expectedAnswers = [NO_DATA_FOUND_FOR_COHORT_YEAR_ERROR_MESSAGE_FORMAT.format(year = 3952)]
+        checkAnswersMatch(self.assertEqual, self.dispatcher, expectedAnswers) 
 
     def test_when_ask_for_cohort_given_invalid_year_and_upper_bound(self):
         entities =  [
@@ -155,7 +162,8 @@ class cohort_test(unittest.TestCase):
         queryCohort = ActionQueryCohort()
         tracker = Tracker.from_dict(createFakeTracker(COHORT_INTENT, entities))
         queryCohort.run(dispatcher=self.dispatcher, tracker=tracker, domain=None )
-        self.assertEqual(self.dispatcher.messages[0]["text"], NO_DATA_FOUND_FOR_COHORT_YEAR_ERROR_MESSAGE_FORMAT.format(year = 3952))
+        expectedAnswers = [NO_DATA_FOUND_FOR_COHORT_YEAR_ERROR_MESSAGE_FORMAT.format(year = 3952)]
+        checkAnswersMatch(self.assertEqual, self.dispatcher, expectedAnswers) 
 
     def test_when_ask_for_cohort_given_invalid_lower_bound__for_graduation_time_should_return_six_year_graduation_number(self):
         entities =  [
@@ -166,7 +174,8 @@ class cohort_test(unittest.TestCase):
         queryCohort = ActionQueryCohort()
         tracker = Tracker.from_dict(createFakeTracker(COHORT_INTENT, entities))
         queryCohort.run(dispatcher=self.dispatcher, tracker=tracker, domain=None )
-        self.assertEqual(self.dispatcher.messages[0]["text"], str(COHORT_2014_SIX_YEAR_GRADUATED_STUDENTS))
+        expectedAnswers = [str(COHORT_2014_SIX_YEAR_GRADUATED_STUDENTS)]
+        checkAnswersMatch(self.assertEqual, self.dispatcher, expectedAnswers) 
 
     def test_when_ask_for_students_graduating_within_4_years_who_received_pell_grant_should_return_correct_value(self):
         entities =  [
@@ -178,7 +187,8 @@ class cohort_test(unittest.TestCase):
         queryCohort = ActionQueryCohort()
         tracker = Tracker.from_dict(createFakeTracker(COHORT_INTENT, entities))
         queryCohort.run(dispatcher=self.dispatcher, tracker=tracker, domain=None )
-        self.assertEqual(self.dispatcher.messages[0]["text"], str(COHORT_2014_FOUR_YEAR_GRADUATED_STUDENT_RECEIVED_PELL_GRANT))
+        expectedAnswers = [str(COHORT_2014_FOUR_YEAR_GRADUATED_STUDENT_RECEIVED_PELL_GRANT)]
+        checkAnswersMatch(self.assertEqual, self.dispatcher, expectedAnswers) 
 
     def test_when_ask_for_students_graduating_within_4_to_5_years_who_received_subsidized_loan_should_return_correct_value(self):
         entities =  [
@@ -191,7 +201,9 @@ class cohort_test(unittest.TestCase):
         queryCohort = ActionQueryCohort()
         tracker = Tracker.from_dict(createFakeTracker(COHORT_INTENT, entities))
         queryCohort.run(dispatcher=self.dispatcher, tracker=tracker, domain=None )
-        self.assertEqual(self.dispatcher.messages[0]["text"], str(COHORT_2014_STUDENT_GRADUATED_FOUR_TO_FIVE_YEAR_RECEIVED_STAFFORD_LOAN))
+    
+        expectedAnswers = [ str(COHORT_2014_STUDENT_GRADUATED_FOUR_TO_FIVE_YEAR_RECEIVED_STAFFORD_LOAN)]
+        checkAnswersMatch(self.assertEqual, self.dispatcher, expectedAnswers)
 
     def test_when_ask_for_students_graduating_within_4_years_as_lower_bound_who_no_aid_return_correct_value(self):
         entities =  [
@@ -203,7 +215,8 @@ class cohort_test(unittest.TestCase):
         queryCohort = ActionQueryCohort()
         tracker = Tracker.from_dict(createFakeTracker(COHORT_INTENT, entities))
         queryCohort.run(dispatcher=self.dispatcher, tracker=tracker, domain=None )
-        self.assertEqual(self.dispatcher.messages[0]["text"], str(COHORT_2014_STUDENT_GRADUATED_IN_MORE_THAN_FIVE_YEARS_WHO_RECEIVED_NO_AID))
+        expectedAnswers = [str(COHORT_2014_STUDENT_GRADUATED_IN_MORE_THAN_FIVE_YEARS_WHO_RECEIVED_NO_AID)]
+        checkAnswersMatch(self.assertEqual, self.dispatcher, expectedAnswers)
 
     def test_when_ask_for_students_graduating_within_5_to_years_who_received_subsidized_loan_should_return_correct_value(self):
         entities =  [
@@ -216,7 +229,10 @@ class cohort_test(unittest.TestCase):
         queryCohort = ActionQueryCohort()
         tracker = Tracker.from_dict(createFakeTracker(COHORT_INTENT, entities))
         queryCohort.run(dispatcher=self.dispatcher, tracker=tracker, domain=None )
-        self.assertEqual(self.dispatcher.messages[0]["text"], str(COHORT_2014_STUDENT_GRADUATED_FIVE_TO_SIX_YEAR_WHO_RECEIVED_STAFFORD_LOAN))
+        
+        expectedAnswers = [str(COHORT_2014_STUDENT_GRADUATED_FIVE_TO_SIX_YEAR_WHO_RECEIVED_STAFFORD_LOAN)]
+        checkAnswersMatch(self.assertEqual, self.dispatcher, expectedAnswers)
+
 
     def test_when_ask_for_students_who_received_subsidized_loan_should_return_correct_value(self):
         entities =  [
@@ -227,7 +243,10 @@ class cohort_test(unittest.TestCase):
         queryCohort = ActionQueryCohort()
         tracker = Tracker.from_dict(createFakeTracker(COHORT_INTENT, entities))
         queryCohort.run(dispatcher=self.dispatcher, tracker=tracker, domain=None )
-        self.assertEqual(self.dispatcher.messages[0]["text"], str(COHORT_2014_STUDENT_RECEIVED_STAFFORD_LOAN))
+
+        expectedAnswers = [str(COHORT_2014_STUDENT_RECEIVED_STAFFORD_LOAN)]
+       
+        checkAnswersMatch(self.assertEqual, self.dispatcher, expectedAnswers)
 
 
     def test_when_ask_for_students_who_received_no_aid_should_return_correct_value(self):
@@ -240,7 +259,9 @@ class cohort_test(unittest.TestCase):
         queryCohort = ActionQueryCohort()
         tracker = Tracker.from_dict(createFakeTracker(COHORT_INTENT, entities))
         queryCohort.run(dispatcher=self.dispatcher, tracker=tracker, domain=None )
-        self.assertEqual(self.dispatcher.messages[0]["text"], str(299))
+        expectedAnswers = [str(299)]
+        checkAnswersMatch(self.assertEqual, self.dispatcher, expectedAnswers)
+      
 
 if __name__ == '__main__':
     unittest.main()

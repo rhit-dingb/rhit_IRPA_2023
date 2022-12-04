@@ -80,16 +80,16 @@ class ActionQueryFreshmanProfile(Action):
         intent = tracker.latest_message["intent"]["name"]
         print(entitiesExtracted)
 
-        requiredEntityPresent = checkIfRequiredEntityIsPresent(intent, entitiesExtracted)
-        NO_REQUIRED_ENTITY_PRESENT_MESSAGE = "Sorry I do not understand, please rephrase your question by being more specific"
-        if not requiredEntityPresent: 
-            dispatcher.utter_message(NO_REQUIRED_ENTITY_PRESENT_MESSAGE)
-            return []
+        # I will not check for required entity for now.
+        # requiredEntityPresent = checkIfRequiredEntityIsPresent(intent, entitiesExtracted)
+        # NO_REQUIRED_ENTITY_PRESENT_MESSAGE = "Sorry I do not understand, please rephrase your question by being more specific"
+        # if not requiredEntityPresent: 
+        #     dispatcher.utter_message(NO_REQUIRED_ENTITY_PRESENT_MESSAGE)
+        #     return []
 
         try:
-            answer = knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy, knowledgeBase.constructOutput, False)
-            print(answer)
-            dispatcher.utter_message(answer)   
+            answers = knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy, knowledgeBase.constructOutput, True)
+            utterAllAnswers(answers, dispatcher)   
             
         except Exception as e:
             utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
@@ -109,9 +109,8 @@ class ActionQueryBasisForSelection(Action):
         
         print(entitiesExtracted)
         try:
-            answer = knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy, knowledgeBase.constructOutput)
-            print(answer)
-            dispatcher.utter_message(answer)   
+            answers = knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy, knowledgeBase.constructOutput)
+            utterAllAnswers(answers, dispatcher)   
             
         except Exception as e:
             utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
@@ -135,11 +134,11 @@ class ActionQueryHighSchoolUnits(Action):
         print(tracker.latest_message["intent"])
         print(tracker.latest_message["entities"])
         
-        #try:
-        answer = knowledgeBase.searchForAnswer(intent, entitiesExtracted, self.choosenShouldAddRowStrategy, output.outputFuncForHighSchoolUnits)
-        dispatcher.utter_message(answer)    
-       # except Exception as e:
-           # utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
+        try:
+            answers = knowledgeBase.searchForAnswer(intent, entitiesExtracted, self.choosenShouldAddRowStrategy, output.outputFuncForHighSchoolUnits)
+            utterAllAnswers(answers, dispatcher)  
+        except Exception as e:
+           utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
 
 
 class ActionQueryEnrollment(Action):
@@ -162,13 +161,12 @@ class ActionQueryEnrollment(Action):
         if haveRaceEnrollmentEntity:
             selectedShouldAddRowStrategy = defaultShouldAddRowStrategy
 
-        answer = None
-        # try:
-        answer = knowledgeBase.searchForAnswer(
-                    tracker.latest_message["intent"]["name"], entitiesExtracted, selectedShouldAddRowStrategy, knowledgeBase.constructOutput)
-        dispatcher.utter_message(answer)
-        # except Exception as e:
-        #     utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
+        try:
+            answers = knowledgeBase.searchForAnswer(
+                        tracker.latest_message["intent"]["name"], entitiesExtracted, selectedShouldAddRowStrategy, knowledgeBase.constructOutput)
+            utterAllAnswers(answers, dispatcher)
+        except Exception as e:
+            utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
 
         return []
 
@@ -182,12 +180,12 @@ class ActionQueryAdmission(Action):
       
         entitiesExtracted = tracker.latest_message["entities"]
         selectedShouldAddRowStrategy = defaultShouldAddRowStrategy
-       
-        answer = None
+
+        print(entitiesExtracted)
         try:
-            answer = knowledgeBase.searchForAnswer(
+            answers = knowledgeBase.searchForAnswer(
                 tracker.latest_message["intent"]["name"], entitiesExtracted, selectedShouldAddRowStrategy,knowledgeBase.constructOutput)
-            dispatcher.utter_message(answer)
+            utterAllAnswers(answers, dispatcher)
         except Exception as e:
             utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
 
@@ -321,15 +319,13 @@ class ActionQueryCohort(Action):
                 
                 dispatcher.utter_message(answer)    
             except Exception as e:
-                utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)        
+                 utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)        
             
         else:
-            if askRetentionRate:
-                self.currentOutputFunc = output.outputFuncForPercentage
             
             try:
-                answer = knowledgeBase.searchForAnswer(intent, entitiesExtracted, ignoreAnyAidShouldAddRow, outputFunc=self.currentOutputFunc)
-                dispatcher.utter_message(answer)
+                answers = knowledgeBase.searchForAnswer(intent, entitiesExtracted, ignoreAnyAidShouldAddRow, outputFunc=knowledgeBase.constructOutput)
+                utterAllAnswers(answers, dispatcher)
             except Exception as e:
                 utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
 
@@ -342,7 +338,10 @@ class ActionQueryCohort(Action):
         print("ENTITIES TO CALCULATE DENOMINATOR")
         print(entitiesToCalculateDenominator)
         return knowledgeBase.aggregatePercentage(intent, graduatingNumbers, entitiesForNumerator,  entitiesToCalculateDenominator,  shouldAddRowStrategy)
-        
+    
+def utterAllAnswers(answers, dispatcher):
+    for answer in answers:
+        dispatcher.utter_message(answer)
 
 def checkIfRequiredEntityIsPresent(intent, entities):
     if not intent in requiredEntitiesMap:

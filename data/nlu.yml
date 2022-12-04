@@ -1573,11 +1573,13 @@ nlu:
     - How many students [accepted]{"entity": "waiting-list-detail", "value": "accepted-list"} [waiting-list]{"entity":"waiting-list"} ?
     - What's the number of students who [accepted]{"entity": "waiting-list-detail", "value": "accepted-list"} [waiting-list]{"entity":"waiting-list"} ?
 
-    - Does your institution [require]{"entity": "condition", "value": "require"} or recommend a general [college-preparatory] {"entity": "college-preparatory-program"} program for degree-seeking students?
+    - Does your institution [require]{"entity": "condition", "value": "require"} or [recommend]{"entity": "condition", "value": "condition"} a general [college-preparatory] {"entity": "college-preparatory-program"} program for  [degree-seeking]{"entity": "degree-goal", "value": "degree-seeking"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students?
 
-    - Does your institution [require]{"entity": "condition", "value": "require"} [high school completion]{"entity": "completion-requirement"} for degree-seeking entering student? 
+    - Does your institution [require]{"entity": "condition", "value": "require"} [high school completion]{"entity": "completion-requirement", "value":"completion-requirement"} for  [degree-seeking]{"entity": "degree-goal", "value": "degree-seeking"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} entering student? 
 
-    - is there any [high school completion]{"entity": "completion-requirement"} [requirement]{"entity": "condition", "value": "require"} for your institute? 
+    - is there any [high school completion]{"entity": "completion-requirement", "value":"completion-requirement"} [requirement]{"entity": "condition", "value": "require"} for your institute? 
+    
+    - [high school completion]{"entity": "completion-requirement", "value":"completion-requirement"} [requirement]{"entity": "condition", "value": "require"} for  [degree-seeking]{"entity": "degree-goal", "value": "degree-seeking"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} entering students?
 
 - synonym: waiting-list
   examples: |
@@ -1681,10 +1683,8 @@ nlu:
     - What is the importance of academic [gpa]{"entity": "academic_factor", "value": "gpa" } in admission decisions?
     - What is the importance of [gpa]{"entity": "academic_factor", "value": "gpa" } in admission decisions?
     - What is the importance of academic [gpa]{"entity": "academic_factor", "value": "gpa" } in basis for selection?
-
     - What is the importance of academic [grade point average]{"entity": "academic_factor", "value": "gpa" } in basis for selection?
     
-
     - What is the importance of standardized [test scores]{"entity": "academic_factor", "value": "standardized test scores" } in admission decisions?
     - What is the importance of [test scores]{"entity": "academic_factor", "value": "standardized test scores" } in admission decisions?
     - What is the importance of standardized [test scores]{"entity": "academic_factor", "value": "standardized test scores" } in basis for selection?
@@ -1708,7 +1708,6 @@ nlu:
     - What is the importance of [extracurricular-activities]{"entity": "non_academic_factor", "value": "extracurricular activities" } in basis of selection?
     - How important is [extracurricular activities]{"entity": "non_academic_factor", "value": "extracurricular activities" } in basis of selection?
     - How important is [extracurricular activity]{"entity": "non_academic_factor", "value": "extracurricular activities" } in basis of selection?
-
 
     - What is the importance of [talent/ability]{"entity": "non_academic_factor", "value": "talent/ability" } in admission decisions?
     - What is the importance of [talent or ability]{"entity": "non_academic_factor", "value": "talent/ability" } in admission decisions?
@@ -1762,7 +1761,6 @@ nlu:
     - What is the importance of [race]{"entity": "non_academic_factor", "value": "racial/ethnic status"} in admission decisions
     - How important is [racial/ethnic status](non_academic_factor) in admission decisions?
     - How important is [race]{"entity": "non_academic_factor", "value": "racial/ethnic status"} in admission decisions?
-
    
     - How important is [volunteer]{"entity": "non_academic_factor", "value": "volunteer work"} in admission decisions?
     - What is the importance of [volunteer work](non_academic_factor) in admission decisions
@@ -1952,6 +1950,22 @@ nlu:
     - test scores
 
     - recommendation
+
+    - transcript
+    - grades
+
+    - grade
+
+
+#NOTE: I defined Grades and grade as different. Grade is one value of of academic factor while grades map to transcript
+- synonym: grade
+  examples: |
+    - grade
+
+- synonym: transcript
+  examples: |
+    - grades 
+    - transcript
 
 - synonym: rigor of secondary school record
   examples: |

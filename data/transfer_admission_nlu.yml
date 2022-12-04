@@ -191,12 +191,242 @@ nlu:
     - [When]{"entity": "date", "value": "date"} are applications reviewed for transfer students?
     - [When]{"entity": "date", "value": "date"} does admission decision come out for transfer students?
 
+    - Are there any [additional]{"entity": "other", "value": "other" } [transfer credit]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} policies ?
 
+    - What is the [highest]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [2 year]{"entity": "years_for_college", "value": "two-year"} [college](education_level)
+    - What is the [highest]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [2 year]{"entity": "years_for_college", "value": "two-year"} [institution]{"entity": "education_level", "value": "college"}
+    - What is the [highest]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [2 year]{"entity": "years_for_college", "value": "two-year"} [university]{"entity": "education_level", "value": "college"}
+    - What is the [highest]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [2-year]{"entity": "years_for_college", "value": "two-year"} [college](education_level)
+    - What is the [highest]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [2-year]{"entity": "years_for_college", "value": "two-year"} [institution]{"entity": "education_level", "value": "college"}
+    - What is the [highest]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [2-year]{"entity": "years_for_college", "value": "two-year"} [university]{"entity": "education_level", "value": "college"}
+    - What is the [highest]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [4 year]{"entity": "years_for_college", "value": "four-year"} [college](education_level)
+    - What is the [highest]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [4 year]{"entity": "years_for_college", "value": "four-year"} [institution]{"entity": "education_level", "value": "college"}
+    - What is the [highest]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [4 year]{"entity": "years_for_college", "value": "four-year"} [university]{"entity": "education_level", "value": "college"}
+    - What is the [highest]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [community]{"entity": "years_for_college", "value": "two-year"} [college](education_level)
+   
+    - What is the [lowest]{"entity": "aggregation", "value": "minimum"} [grade]{"entity": "academic_factor", "value": "grade"} earn for any course that [maybe transferred for credit]{"entity": "allow_transfer_credit", "value": "accept transfer credit"}
+    - What is the [min]{"entity": "aggregation", "value": "minimum"} [grade]{"entity": "academic_factor", "value": "grade"} earn for any course that [maybe transferred for credit]{"entity": "allow_transfer_credit", "value": "accept transfer credit"}
+    - What is the [minimum]{"entity": "aggregation", "value": "minimum"} [grade]{"entity": "academic_factor", "value": "grade"} earn for any course that [maybe transferred for credit]{"entity": "allow_transfer_credit", "value": "accept transfer credit"}
+    - What is the [least]{"entity": "aggregation", "value": "minimum"} [grade]{"entity": "academic_factor", "value": "grade"} earn for any course that [maybe transferred for credit]{"entity": "allow_transfer_credit", "value": "accept transfer credit"}
+
+    - What is the [highest]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [community]{"entity": "years_for_college", "value": "two-year"} [institution]{"entity": "education_level", "value": "college"}
+    - What is the [highest]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [community]{"entity": "years_for_college", "value": "two-year"} [university]{"entity": "education_level", "value": "college"}
+    - What is the [highest]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [four year]{"entity": "years_for_college", "value": "four-year"} [college](education_level)
+    - What is the [highest]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [four year]{"entity": "years_for_college", "value": "four-year"} [institution]{"entity": "education_level", "value": "college"}
+    - What is the [highest]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [four year]{"entity": "years_for_college", "value": "four-year"} [university]{"entity": "education_level", "value": "college"}
+
+    - What is the [highest]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [four-year](years_for_college) [college](education_level)
+    - What is the [highest]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [four-year](years_for_college) [institution]{"entity": "education_level", "value": "college"}
+    - What is the [highest]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [four-year](years_for_college) [university]{"entity": "education_level", "value": "college"}
+    - What is the [highest]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [technical]{"entity": "years_for_college", "value": "two-year"} [college](education_level)
+
+    - What is the [highest]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [technical]{"entity": "years_for_college", "value": "two-year"} [institution]{"entity": "education_level", "value": "college"}
+    - What is the [highest]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [technical]{"entity": "years_for_college", "value": "two-year"} [university]{"entity": "education_level", "value": "college"}
+    - What is the [highest]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [two year]{"entity": "years_for_college", "value": "two-year"} [college](education_level)
+    - What is the [highest]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [two year]{"entity": "years_for_college", "value": "two-year"} [institution]{"entity": "education_level", "value": "college"}
+    - What is the [highest]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [two year]{"entity": "years_for_college", "value": "two-year"} [university]{"entity": "education_level", "value": "college"}
+    - What is the [highest]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [two-year](years_for_college) [college](education_level)
+    - What is the [highest]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [two-year](years_for_college) [institution]{"entity": "education_level", "value": "college"}
+    - What is the [highest]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [two-year](years_for_college) [university]{"entity": "education_level", "value": "college"}
+
+    - What is the [max]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [2 year]{"entity": "years_for_college", "value": "two-year"} [institution]{"entity": "education_level", "value": "college"}
+    - What is the [max]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [2 year]{"entity": "years_for_college", "value": "two-year"} [university]{"entity": "education_level", "value": "college"}
+    - What is the [max]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [2-year]{"entity": "years_for_college", "value": "two-year"} [college](education_level)
+    - What is the [max]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [2-year]{"entity": "years_for_college", "value": "two-year"} [institution]{"entity": "education_level", "value": "college"}
+    - What is the [max]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [2-year]{"entity": "years_for_college", "value": "two-year"} [university]{"entity": "education_level", "value": "college"}
+    - What is the [max]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [4 year]{"entity": "years_for_college", "value": "four-year"} [college](education_level)
+    - What is the [max]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [4 year]{"entity": "years_for_college", "value": "four-year"} [institution]{"entity": "education_level", "value": "college"}
+    - What is the [max]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [4 year]{"entity": "years_for_college", "value": "four-year"} [university]{"entity": "education_level", "value": "college"}
+    - What is the [max]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [community]{"entity": "years_for_college", "value": "two-year"} [college](education_level)
+    - What is the [max]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [community]{"entity": "years_for_college", "value": "two-year"} [institution]{"entity": "education_level", "value": "college"}
+    - What is the [max]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [community]{"entity": "years_for_college", "value": "two-year"} [university]{"entity": "education_level", "value": "college"}
+    - What is the [max]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [four year]{"entity": "years_for_college", "value": "four-year"} [college](education_level)
+    - What is the [max]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [four year]{"entity": "years_for_college", "value": "four-year"} [institution]{"entity": "education_level", "value": "college"}
+    - What is the [max]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [four year]{"entity": "years_for_college", "value": "four-year"} [university]{"entity": "education_level", "value": "college"}
+    - What is the [max]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [four-year](years_for_college) [college](education_level)
+    - What is the [max]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [four-year](years_for_college) [institution]{"entity": "education_level", "value": "college"}
+
+    - What is the [max]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [four-year](years_for_college) [university]{"entity": "education_level", "value": "college"}
+    - What is the [max]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [technical]{"entity": "years_for_college", "value": "two-year"} [college](education_level)
+    - What is the [max]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [technical]{"entity": "years_for_college", "value": "two-year"} [institution]{"entity": "education_level", "value": "college"}
+    - What is the [max]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [technical]{"entity": "years_for_college", "value": "two-year"} [university]{"entity": "education_level", "value": "college"}
+    - What is the [max]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [two year]{"entity": "years_for_college", "value": "two-year"} [college](education_level)
+    - What is the [max]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [two year]{"entity": "years_for_college", "value": "two-year"} [institution]{"entity": "education_level", "value": "college"}
+    - What is the [max]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [two year]{"entity": "years_for_college", "value": "two-year"} [university]{"entity": "education_level", "value": "college"}
+    - What is the [max]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [two-year](years_for_college) [college](education_level)
+    - What is the [max]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [two-year](years_for_college) [institution]{"entity": "education_level", "value": "college"}
+    - What is the [max]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [two-year](years_for_college) [university]{"entity": "education_level", "value": "college"}
+    - What is the [max]{"entity": "aggregation", "value": "maximum"} number of [credit](unit_type) that transfer students must complete to earn a [associate]{"entity": "degree_level", "value": "associates"} degree
+    - What is the [max]{"entity": "aggregation", "value": "maximum"} number of [credit](unit_type) that transfer students must complete to earn a [associates](degree_level) degree
+    - What is the [max]{"entity": "aggregation", "value": "maximum"} number of [credit](unit_type) that transfer students must complete to earn a [bachelor]{"entity": "degree_level", "value": "bachelors"} degree
+    - What is the [max]{"entity": "aggregation", "value": "maximum"} number of [credit](unit_type) that transfer students must complete to earn a [bachelors](degree_level) degree
+    - What is the [max]{"entity": "aggregation", "value": "maximum"} number of [credits]{"entity": "unit_type", "value": "credit"} that transfer students must complete to earn a [associate]{"entity": "degree_level", "value": "associates"} degree
+    - What is the [max]{"entity": "aggregation", "value": "maximum"} number of [credits]{"entity": "unit_type", "value": "credit"} that transfer students must complete to earn a [associates](degree_level) degree
+    - What is the [max]{"entity": "aggregation", "value": "maximum"} number of [credits]{"entity": "unit_type", "value": "credit"} that transfer students must complete to earn a [bachelor]{"entity": "degree_level", "value": "bachelors"} degree
+    - What is the [max]{"entity": "aggregation", "value": "maximum"} number of [credits]{"entity": "unit_type", "value": "credit"} that transfer students must complete to earn a [bachelors](degree_level) degree
+  
+    - What is the [maximum](aggregation) [grade]{"entity": "academic_factor", "value": "grade"} earn for any course that [maybe transferred for credit]{"entity": "allow_transfer_credit", "value": "accept transfer credit"}
+    - What is the [maximum](aggregation) number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [2 year]{"entity": "years_for_college", "value": "two-year"} [college](education_level)
+    - What is the [maximum](aggregation) number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [2 year]{"entity": "years_for_college", "value": "two-year"} [institution]{"entity": "education_level", "value": "college"}
+    - What is the [maximum](aggregation) number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [2 year]{"entity": "years_for_college", "value": "two-year"} [university]{"entity": "education_level", "value": "college"}
+    - What is the [maximum](aggregation) number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [2-year]{"entity": "years_for_college", "value": "two-year"} [college](education_level)
+    - What is the [maximum](aggregation) number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [2-year]{"entity": "years_for_college", "value": "two-year"} [institution]{"entity": "education_level", "value": "college"}
+    - What is the [maximum](aggregation) number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [2-year]{"entity": "years_for_college", "value": "two-year"} [university]{"entity": "education_level", "value": "college"}
+    - What is the [maximum](aggregation) number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [4 year]{"entity": "years_for_college", "value": "four-year"} [college](education_level)
+    - What is the [maximum](aggregation) number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [4 year]{"entity": "years_for_college", "value": "four-year"} [institution]{"entity": "education_level", "value": "college"}
+    - What is the [maximum](aggregation) number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [4 year]{"entity": "years_for_college", "value": "four-year"} [university]{"entity": "education_level", "value": "college"}
+    - What is the [maximum](aggregation) number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [community]{"entity": "years_for_college", "value": "two-year"} [college](education_level)
+
+
+    - What is the [maximum](aggregation) number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [community]{"entity": "years_for_college", "value": "two-year"} [institution]{"entity": "education_level", "value": "college"}
+    - What is the [maximum](aggregation) number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [community]{"entity": "years_for_college", "value": "two-year"} [university]{"entity": "education_level", "value": "college"}
+    - What is the [maximum](aggregation) number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [four year]{"entity": "years_for_college", "value": "four-year"} [college](education_level)
+    - What is the [maximum](aggregation) number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [four year]{"entity": "years_for_college", "value": "four-year"} [institution]{"entity": "education_level", "value": "college"}
+    - What is the [maximum](aggregation) number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [four year]{"entity": "years_for_college", "value": "four-year"} [university]{"entity": "education_level", "value": "college"}
+    - What is the [maximum](aggregation) number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [four-year](years_for_college) [college](education_level)
+    - What is the [maximum](aggregation) number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [four-year](years_for_college) [institution]{"entity": "education_level", "value": "college"}
+    - What is the [maximum](aggregation) number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [four-year](years_for_college) [university]{"entity": "education_level", "value": "college"}
+    - What is the [maximum](aggregation) number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [technical]{"entity": "years_for_college", "value": "two-year"} [college](education_level)
+    - What is the [maximum](aggregation) number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [technical]{"entity": "years_for_college", "value": "two-year"} [institution]{"entity": "education_level", "value": "college"}
+    - What is the [maximum](aggregation) number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [technical]{"entity": "years_for_college", "value": "two-year"} [university]{"entity": "education_level", "value": "college"}
+    - What is the [maximum](aggregation) number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [two year]{"entity": "years_for_college", "value": "two-year"} [college](education_level)
+    - What is the [maximum](aggregation) number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [two year]{"entity": "years_for_college", "value": "two-year"} [institution]{"entity": "education_level", "value": "college"}
+    - What is the [maximum](aggregation) number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [two year]{"entity": "years_for_college", "value": "two-year"} [university]{"entity": "education_level", "value": "college"}
+    - What is the [maximum](aggregation) number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [two-year](years_for_college) [college](education_level)
+    - What is the [maximum](aggregation) number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [two-year](years_for_college) [institution]{"entity": "education_level", "value": "college"}
+    - What is the [maximum](aggregation) number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [two-year](years_for_college) [university]{"entity": "education_level", "value": "college"}
+
+    - What is the [most]{"entity": "aggregation", "value": "maximum"} [grade]{"entity": "academic_factor", "value": "grade"} earn for any course that [maybe transferred for credit]{"entity": "allow_transfer_credit", "value": "accept transfer credit"}
+    - What is the [most]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [2 year]{"entity": "years_for_college", "value": "two-year"} [college](education_level)
+
+    - What is the [most]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [2 year]{"entity": "years_for_college", "value": "two-year"} [institution]{"entity": "education_level", "value": "college"}
+    - What is the [most]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [2 year]{"entity": "years_for_college", "value": "two-year"} [university]{"entity": "education_level", "value": "college"}
+    - What is the [most]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [2-year]{"entity": "years_for_college", "value": "two-year"} [college](education_level)
+    - What is the [most]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [2-year]{"entity": "years_for_college", "value": "two-year"} [institution]{"entity": "education_level", "value": "college"}
+    - What is the [most]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [2-year]{"entity": "years_for_college", "value": "two-year"} [university]{"entity": "education_level", "value": "college"}
+    - What is the [most]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [4 year]{"entity": "years_for_college", "value": "four-year"} [college](education_level)
+    - What is the [most]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [4 year]{"entity": "years_for_college", "value": "four-year"} [institution]{"entity": "education_level", "value": "college"}
+    - What is the [most]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [4 year]{"entity": "years_for_college", "value": "four-year"} [university]{"entity": "education_level", "value": "college"}
+    - What is the [most]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [community]{"entity": "years_for_college", "value": "two-year"} [college](education_level)
+    - What is the [most]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [community]{"entity": "years_for_college", "value": "two-year"} [institution]{"entity": "education_level", "value": "college"}
+    - What is the [most]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [community]{"entity": "years_for_college", "value": "two-year"} [university]{"entity": "education_level", "value": "college"}
+    - What is the [most]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [four year]{"entity": "years_for_college", "value": "four-year"} [college](education_level)
+
+    - What is the [most]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [four year]{"entity": "years_for_college", "value": "four-year"} [institution]{"entity": "education_level", "value": "college"}
+    - What is the [most]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [four year]{"entity": "years_for_college", "value": "four-year"} [university]{"entity": "education_level", "value": "college"}
+    - What is the [most]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [four-year](years_for_college) [college](education_level)
+    - What is the [most]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [four-year](years_for_college) [institution]{"entity": "education_level", "value": "college"}
+    - What is the [most]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [four-year](years_for_college) [university]{"entity": "education_level", "value": "college"}
+    - What is the [most]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [technical]{"entity": "years_for_college", "value": "two-year"} [college](education_level)
+    - What is the [most]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [technical]{"entity": "years_for_college", "value": "two-year"} [institution]{"entity": "education_level", "value": "college"}
+    - What is the [most]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [technical]{"entity": "years_for_college", "value": "two-year"} [university]{"entity": "education_level", "value": "college"}
+    - What is the [most]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [two year]{"entity": "years_for_college", "value": "two-year"} [college](education_level)
+
+    - What is the [most]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [two year]{"entity": "years_for_college", "value": "two-year"} [institution]{"entity": "education_level", "value": "college"}
+    - What is the [most]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [two year]{"entity": "years_for_college", "value": "two-year"} [university]{"entity": "education_level", "value": "college"}
+    - What is the [most]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [two-year](years_for_college) [college](education_level)
+    - What is the [most]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [two-year](years_for_college) [institution]{"entity": "education_level", "value": "college"}
+    - What is the [most]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [two-year](years_for_college) [university]{"entity": "education_level", "value": "college"}
+    - What is the [max]{"entity": "aggregation", "value": "maximum"} [grade]{"entity": "academic_factor", "value": "grade"} earn for any course that [maybe transferred for credit]{"entity": "allow_transfer_credit", "value": "accept transfer credit"}
+    - What is the [max]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [2 year]{"entity": "years_for_college", "value": "two-year"} [college](education_level)
+
+
+    - What is the [minimum](aggregation) number of [credit](unit_type) that transfer students must complete to earn a [associate]{"entity": "degree_level", "value": "associates"} degree
+    - What is the [minimum](aggregation) number of [credit](unit_type) that transfer students must complete to earn a [associates](degree_level) degree
+    - What is the [minimum](aggregation) number of [credit](unit_type) that transfer students must complete to earn a [bachelor]{"entity": "degree_level", "value": "bachelors"} degree
+    - What is the [minimum](aggregation) number of [credit](unit_type) that transfer students must complete to earn a [bachelors](degree_level) degree
+    - What is the [minimum](aggregation) number of [credits]{"entity": "unit_type", "value": "credit"} that transfer students must complete to earn a [associate]{"entity": "degree_level", "value": "associates"} degree
+    - What is the [minimum](aggregation) number of [credits]{"entity": "unit_type", "value": "credit"} that transfer students must complete to earn a [associates](degree_level) degree
+    - What is the [minimum](aggregation) number of [credits]{"entity": "unit_type", "value": "credit"} that transfer students must complete to earn a [bachelor]{"entity": "degree_level", "value": "bachelors"} degree
+    - What is the [minimum](aggregation) number of [credits]{"entity": "unit_type", "value": "credit"} that transfer students must complete to earn a [bachelors](degree_level) degree
+   
+    - What is the [lowest]{"entity": "aggregation", "value": "minimum"} number of [credit](unit_type) that transfer students must complete to earn a [associate]{"entity": "degree_level", "value": "associates"} degree
+    - What is the [lowest]{"entity": "aggregation", "value": "minimum"} number of [credit](unit_type) that transfer students must complete to earn a [associates](degree_level) degree
+    - What is the [lowest]{"entity": "aggregation", "value": "minimum"} number of [credit](unit_type) that transfer students must complete to earn a [bachelor]{"entity": "degree_level", "value": "bachelors"} degree
+    - What is the [lowest]{"entity": "aggregation", "value": "minimum"} number of [credit](unit_type) that transfer students must complete to earn a [bachelors](degree_level) degree
+    - What is the [lowest]{"entity": "aggregation", "value": "minimum"} number of [credits]{"entity": "unit_type", "value": "credit"} that transfer students must complete to earn a [associate]{"entity": "degree_level", "value": "associates"} degree
+    - What is the [lowest]{"entity": "aggregation", "value": "minimum"} number of [credits]{"entity": "unit_type", "value": "credit"} that transfer students must complete to earn a [associates](degree_level) degree
+    - What is the [lowest]{"entity": "aggregation", "value": "minimum"} number of [credits]{"entity": "unit_type", "value": "credit"} that transfer students must complete to earn a [bachelor]{"entity": "degree_level", "value": "bachelors"} degree
+    - What is the [lowest]{"entity": "aggregation", "value": "minimum"} number of [credits]{"entity": "unit_type", "value": "credit"} that transfer students must complete to earn a [bachelors](degree_level) degree
+
+    - What is the [least]{"entity": "aggregation", "value": "minimum"} number of [credit](unit_type) that transfer students must complete to earn a [associate]{"entity": "degree_level", "value": "associates"} degree
+    - What is the [least]{"entity": "aggregation", "value": "minimum"} number of [credit](unit_type) that transfer students must complete to earn a [associates](degree_level) degree
+    - What is the [least]{"entity": "aggregation", "value": "minimum"} number of [credit](unit_type) that transfer students must complete to earn a [bachelor]{"entity": "degree_level", "value": "bachelors"} degree
+    - What is the [least]{"entity": "aggregation", "value": "minimum"} number of [credit](unit_type) that transfer students must complete to earn a [bachelors](degree_level) degree
+    - What is the [least]{"entity": "aggregation", "value": "minimum"} number of [credits]{"entity": "unit_type", "value": "credit"} that transfer students must complete to earn a [associate]{"entity": "degree_level", "value": "associates"} degree
+    - What is the [least]{"entity": "aggregation", "value": "minimum"} number of [credits]{"entity": "unit_type", "value": "credit"} that transfer students must complete to earn a [associates](degree_level) degree
+    - What is the [least]{"entity": "aggregation", "value": "minimum"} number of [credits]{"entity": "unit_type", "value": "credit"} that transfer students must complete to earn a [bachelor]{"entity": "degree_level", "value": "bachelors"} degree
+    - What is the [least]{"entity": "aggregation", "value": "minimum"} number of [credits]{"entity": "unit_type", "value": "credit"} that transfer students must complete to earn a [bachelors](degree_level) degree
+ 
+    - What is the [min]{"entity": "aggregation", "value": "minimum"} number of [credit](unit_type) that transfer students must complete to earn a [associates](degree_level) degree
+    - What is the [min]{"entity": "aggregation", "value": "minimum"} number of [credit](unit_type) that transfer students must complete to earn a [bachelor]{"entity": "degree_level", "value": "bachelors"} degree
+    - What is the [min]{"entity": "aggregation", "value": "minimum"} number of [credit](unit_type) that transfer students must complete to earn a [bachelors](degree_level) degree
+    - What is the [min]{"entity": "aggregation", "value": "minimum"} number of [credits]{"entity": "unit_type", "value": "credit"} that transfer students must complete to earn a [associate]{"entity": "degree_level", "value": "associates"} degree
+    - What is the [min]{"entity": "aggregation", "value": "minimum"} number of [credits]{"entity": "unit_type", "value": "credit"} that transfer students must complete to earn a [associates](degree_level) degree
+    - What is the [min]{"entity": "aggregation", "value": "minimum"} number of [credits]{"entity": "unit_type", "value": "credit"} that transfer students must complete to earn a [bachelor]{"entity": "degree_level", "value": "bachelors"} degree
+    - What is the [min]{"entity": "aggregation", "value": "minimum"} number of [credits]{"entity": "unit_type", "value": "credit"} that transfer students must complete to earn a [bachelors](degree_level) degree
+
+- synonym: date
+  examples: |
+    - date
+    - when
+    - time
+
+- synonym: notification
+  examples: |
+    - notification
+    - notify
+
+- synonym: credit
+  examples: |
+    - credits
+    - credit
+
+
+- synonym: two-year
+  examples: |
+    - two year
+    - community
+    - technical
+    - 2-year
+    - two-year
+    - 2 year
+
+- synonym: four-year
+  examples: |
+    - 4 year
+    - four-year
+    - four year
+
+- synonym: associates
+  examples: |
+    - associates
+    - associate
+
+- synonym: bachelors
+  examples: |
+    - bachelor
+    - bachelors
 
 - synonym: notification
   examples: |
     - notify
     - notification
+
+- lookup: allow_transfer_student
+  examples: |
+    - allow transfer student
+    - accept transfer students
+    - enroll transfer student
+    - enroll transfer student
+    - let transfer student in
+
+- synonym: enroll transfer student
+  examples: |
+    - allow transfer student
+    - accept transfer students
+    - enroll transfer student
+    - let transfer student in
 
 - lookup: allow_transfer_credit
   examples: |
@@ -211,16 +441,11 @@ nlu:
     - allow transferring credit
     - accept credit transferred
     - transfer their credit
+    - credit that maybe transferred
+    - credits that can be transferred
+    - maybe transferred for credit
+    - can be transferred for credit
     - transfer credit
-
-
-- lookup: allow_transfer_student
-  examples: |
-    - allow transfer student
-    - accept transfer students
-    - enroll transfer student
-    - enroll transfer student
-    - let transfer student in
 
 - synonym: accept transfer credit
   examples: |
@@ -237,41 +462,29 @@ nlu:
     - transfer their credit
     - transfer credit
     - transferred credit
+    - transferred for credit
+    - transfer for credit
+    - credit that maybe transferred
+    - credits that maybe transferred
+    - credit that may be transferred
+    - credits that may be transferred
+    - credit that may be transfer
+    - credits that may be transfer
+    - credit that can be transferred
+    - credits that can be transferred
+    - credit that can be transfer
+    - credits that can be transfer
+    - maybe transferred for credit
+    - maybe transferred for credits
+    - may be transferred for credit
+    - can be transferred for credit
 
-- synonym: enroll transfer student
-  examples: |
-    - allow transfer student
-    - accept transfer students
-    - enroll transfer student
-    - let transfer student in
 
 - synonym: credit
   examples: |
     - credit
     - credits
 
-- synonym: high school
-  examples: |
-    - secondary school
-    - high-school
-    - high school
-
-- synonym: college
-  examples: |
-    - college
-    - university
-    - universities
-    - colleges
-
-- synonym: essay
-  examples: |
-    - personal statement
-    - essay
-
-- synonym: standardized test scores
-  examples: |
-    - test scores
-    - test score
 
 - synonym: statement of good standing
   examples: |

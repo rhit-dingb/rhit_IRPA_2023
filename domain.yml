@@ -106,7 +106,8 @@ entities:
   # This entity captures whether required or recommended is mentioned. Used in high school units required/recommended and transfer admission required items.
   - condition
 
-  #Academic factor for basis of selection for admissions such as Rigor of secondary school record, Class rank etc, academic GPA etc.
+  #Academic factor for basis of selection for admissions such as Rigor of secondary school record, Class rank etc, gpa, trancsript, grade etc.
+  #NOTE: I defined Grades and grade as different. Grade is one value of of academic factor while grades map to transcript
   - academic_factor
   
   #Non-academic factor for basis of selection for admissions such as Interview, Extracurricular activities, Talent/ability, Character/personal qualities, etc
@@ -117,7 +118,7 @@ entities:
 
   # # Below are entities for freshman profile
 
-  #Aggregation words: percentage, mean, minimum
+  #Aggregation words: percentage, mean, minimum, maximum
   - aggregation
 
   #Types of standarized test. Values: SAT and ACT.
@@ -179,6 +180,15 @@ entities:
 
 #Use to capture "other", can be used in terms of other subjects or other application requirements
   - other
+
+#How much year of study is required by college. Is this college a two year or four year. Values: two-year, four-year
+  - years_for_college
+
+# Bachelors or Associates degree
+  - degree_level 
+  
+
+
 
 slots:
   enrollment_status:
