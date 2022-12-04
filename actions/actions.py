@@ -16,7 +16,7 @@ from Knowledgebase.constants import PERCENTAGE_FORMAT
 from OutputController import output
 from actions.constants import ANY_AID_COLUMN_NAME, COHORT_GRADUATION_TIME_ENTITY_FORMAT, COHORT_GRADUATION_TIME_START_FORMAT, NO_AID_COLUMN_NAME, PELL_GRANT_COLUMN_NAME, STAFFORD_LOAN_COLUMN_NAME
 from actions.entititesHelper import changeEntityValue, copyEntities, createEntityObj, filterEntities, findEntityHelper, findMultipleSameEntitiesHelper
-from typing import Text
+from typing import List, Text, Tuple
 
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
@@ -308,12 +308,12 @@ class ActionQueryCohort(Action):
             try:
                 answer, intent, entitiesUsed = knowledgeBase.aggregateDiscreteRange(
                 intent, entitiesFiltered, lowerBoundYear, upperBoundYear, generator, ignoreAnyAidShouldAddRow,
-                outputFunc = output.identityFunc
                 )
 
                 if askForGraduationRate:
                     entitiesUsed.add(askForGraduationRate["value"])
                     answer = self.calculateGraduationRate(intent, entitiesUsed, entitiesFiltered, float(answer), ignoreAnyAidShouldAddRow)
+                
                 else:
                     answer = output.outputFuncForInteger(answer, intent, entitiesUsed)
                 
@@ -332,13 +332,14 @@ class ActionQueryCohort(Action):
         return []
 
     def calculateGraduationRate(self,intent, entitiesForNumerator,  filteredEntities , graduatingNumbers, shouldAddRowStrategy):
-      
         entitiesToCalculateDenominator = [createEntityObj(FINAL_COHORT_ENTITY_LABEL, entityLabel=FINAL_COHORT_ENTITY_LABEL)]
         entitiesToCalculateDenominator = entitiesToCalculateDenominator + filteredEntities
         print("ENTITIES TO CALCULATE DENOMINATOR")
         print(entitiesToCalculateDenominator)
-        return knowledgeBase.aggregatePercentage(intent, graduatingNumbers, entitiesForNumerator,  entitiesToCalculateDenominator,  shouldAddRowStrategy)
-    
+        answer, intent, entities = knowledgeBase.aggregatePercentage(intent, graduatingNumbers, entitiesForNumerator,  entitiesToCalculateDenominator,  shouldAddRowStrategy)
+        return knowledgeBase.constructOutput(answer, intent, entities)
+
+
 def utterAllAnswers(answers, dispatcher):
     for answer in answers:
         dispatcher.utter_message(answer)

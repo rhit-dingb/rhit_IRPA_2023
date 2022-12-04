@@ -129,7 +129,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
                     return (searchResult, SearchResultType.STRING)
 
 
-    def aggregateDiscreteRange(self, intent, filteredEntities, start, end, generator, shouldAddRow, outputFunc):
+    def aggregateDiscreteRange(self, intent, filteredEntities, start, end, generator, shouldAddRow) -> float:
         shouldAddRowStrategy = shouldAddRow
         total = 0
         # print(start,end)
@@ -147,15 +147,15 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         
             filteredEntitiesCopy.append(fakeEntity)
            
-            answers, intent, entitiesUsedBySearch = self.searchForAnswer(intent, filteredEntitiesCopy, shouldAddRowStrategy, identityFunc)
+            answers, intent, entitiesUsedBySearch = self.searchForAnswer(intent, filteredEntitiesCopy, shouldAddRowStrategy,identityFunc)
             entitiesUsed = entitiesUsed + list(entitiesUsedBySearch)
             
             if len(answers) == 0:
                 continue
 
-            total = total + int(answers[0])
+            total = total + float(answers[0])
  
-        return outputFunc(total, intent, set(entitiesUsed))
+        return (total, intent, set(entitiesUsed))
 
     def aggregatePercentage(self, intent, numerator, entitiesForNumerator, entitiesToCalculateDenominator, shouldAddRowStrategy):
         entitiesUsed = None
@@ -167,8 +167,9 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         denominator = answers[0]
         percentageCalc = numerator/float(denominator)*100
         percentage = round(percentageCalc, 1)
-        
-        return outputFuncForPercentage(percentage, intent, set(list(entitiesUsed)+ list(entitiesForNumerator)) )
+        percentage = PERCENTAGE_FORMAT.format(value = percentage)
+        return (percentage, intent, set(list(entitiesUsed)+ list(entitiesForNumerator)) )
+        #return outputFuncForPercentage(percentage, intent, set(list(entitiesUsed)+ list(entitiesForNumerator)) )
 
     def determineMatrixToSearch(self, intent, entities):
         return self.dataManager.determineMatrixToSearch(intent, entities)

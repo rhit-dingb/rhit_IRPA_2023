@@ -23,7 +23,7 @@ def outputFuncForHighSchoolUnits(answers, intent, entitiesUsed):
 
 #For integer values
 def outputFuncForInteger(answer : int, intent, entitiesUsed):
-    return constructSentence(str(answer), intent,  entitiesUsed)
+    return constructSentence(str(int(answer)), intent,  entitiesUsed)
     
 #For percentage values
 def outputFuncForPercentage(answer : float, intent, entitiesUsed): 
