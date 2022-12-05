@@ -1545,6 +1545,7 @@ nlu:
   examples: |
     - I want to know about admission.
     - I want to know about admission data.
+    - What is 
     
     - How many [male]{"entity": "gender", "value": "male"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}  [applied]{"entity": "action", "value": "applied"} in Rose-Hulman?
     - How many [female]{"entity": "gender", "value": "female"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} [applied]{"entity": "action", "value": "applied"} in Rose-Hulman?
