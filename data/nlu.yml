@@ -1545,7 +1545,7 @@ nlu:
   examples: |
     - I want to know about admission.
     - I want to know about admission data.
-    - What is 
+    
     
     - How many [male]{"entity": "gender", "value": "male"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}  [applied]{"entity": "action", "value": "applied"} in Rose-Hulman?
     - How many [female]{"entity": "gender", "value": "female"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} [applied]{"entity": "action", "value": "applied"} in Rose-Hulman?
@@ -1583,7 +1583,7 @@ nlu:
     - [high school completion]{"entity": "completion-requirement", "value":"completion-requirement"} [requirement]{"entity": "condition", "value": "require"} for  [degree-seeking]{"entity": "degree-goal", "value": "degree-seeking"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} entering students?
 
     - Are first-time, first-year students [accepted]{“entity": "action", "value": "admitted"} for [terms]{"entity": "term", "value":"term"} [other]{"entity": "other", "value":"other"} than the [fall]{"entity": "term", "value":"fall"} ?
-
+    - Are  students [accepted]{“entity": "action", "value": "admitted"} for [terms]{"entity": "term", "value":"term"} [other]{"entity": "other", "value":"other"} than the [fall]{"entity": "term", "value":"fall"} ?
     - What is the [closing-date]{"entity": "Admission_Decision_Date" , "value": "closing-date"} for application?
 
     - What date is the [closing-date]{"entity": "Admission_Decision_Date" , "value": "closing-date"} for application?
@@ -1591,22 +1591,67 @@ nlu:
     - What is the [priority-date]{"entity": "Admission_Decision_Date" , "value": "priority-date"}?
     - What is the [priority-date]{"entity": "Admission_Decision_Date" , "value": "priority-date"} for application?
     - What is the [notification-date]{"entity": "Admission_Decision_Date" , "value": "notification-date"} for application?
-    - What is the [notification-date]{"entity": "Admission_Decision_Date" , "value": "notification-date"}?
-    
+    - What is the [notification-date]{"entity": "Admission_Decision_Date" , "value": "notification-date"} to applicants of admission decision sent?
+    - What is the [reply-policy]{"entity": "reply-policy" } for admitted applicants?
+    - What is the [reply-policy]{"entity": "reply-policy" }?
+    - Dose your institude allow students to [defer]{"entity": "defer-policy" } enrollment after admission?
+    - can admitted students [defer]{"entity": "defer-policy" } enrollment?
+    - Do your institute accept [early-admission]{"entity": "early-admission" }?
+    - Do you accept  student with [early-decision]{"entity": "early-decision" }?
+    - Do your institute accept [early-decision]{"entity": "early-decision" }?
+    - Do you accept  student with [early-action]{"entity": "early-action" }?
+    - Do your institute accept [early-action]{"entity": "early-action" }?
+
+- synonym: early-action
+  examples: |
+    - early action
+    - early-action
+    - action early 
+- synonym: early-decision
+  examples: |
+    - early decision
+    - early-decision
+    - decision early 
+- synonym: reply-policy
+  examples: |
+    - reply policy
+    - reply date
+    - reply day
+
+- synonym: early-admission
+  examples: |
+    - early admission
+    - early-admission
+    - admission early
+
+- synonym: defer
+  examples: |
+    - postpone
+    - defer
+    - delay
+    - put off
+
 - synonym: priority-date
   examples: |
     - closing day
     - closing date
     - close day
-    - close dte
+    - close date
 
+- synonym: notification-date
+  examples: |
+    - notification date
+    - notification day
+    - notify day
+    - notify date
+    - notification
 
 - synonym: closing-date
   examples: |
     - closing day
     - closing date
     - close day
-    - close dte
+    - close date
 
 - synonym: application-fee
   examples: |
