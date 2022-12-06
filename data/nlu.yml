@@ -1582,6 +1582,40 @@ nlu:
     
     - [high school completion]{"entity": "completion-requirement", "value":"completion-requirement"} [requirement]{"entity": "condition", "value": "require"} for  [degree-seeking]{"entity": "degree-goal", "value": "degree-seeking"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} entering students?
 
+    - Are first-time, first-year students [accepted]{“entity": "action", "value": "admitted"} for [terms]{"entity": "term", "value":"term"} [other]{"entity": "other", "value":"other"} than the [fall]{"entity": "term", "value":"fall"} ?
+
+    - What is the [closing-date]{"entity": "Admission_Decision_Date" , "value": "closing-date"} for application?
+
+    - What date is the [closing-date]{"entity": "Admission_Decision_Date" , "value": "closing-date"} for application?
+
+    - What is the [priority-date]{"entity": "Admission_Decision_Date" , "value": "priority-date"}?
+    - What is the [priority-date]{"entity": "Admission_Decision_Date" , "value": "priority-date"} for application?
+    - What is the [notification-date]{"entity": "Admission_Decision_Date" , "value": "notification-date"} for application?
+    - What is the [notification-date]{"entity": "Admission_Decision_Date" , "value": "notification-date"}?
+    
+- synonym: priority-date
+  examples: |
+    - closing day
+    - closing date
+    - close day
+    - close dte
+
+
+- synonym: closing-date
+  examples: |
+    - closing day
+    - closing date
+    - close day
+    - close dte
+
+- synonym: application-fee
+  examples: |
+    - Application fee
+    - application-fee
+    - Application-Fee
+    - fee for application 
+   
+
 - synonym: waiting-list
   examples: |
     - waiting list
