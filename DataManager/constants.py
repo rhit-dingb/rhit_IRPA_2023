@@ -6,6 +6,7 @@ ADMISSION_INTENT = "admission"
 FRESHMAN_PROFILE_INTENT = "freshman_profile"
 HIGH_SCHOOL_UNITS_INTENT = "high_school_units"
 BASIS_FOR_SELECTION_INTENT = "basis_for_selection"
+TRANSFER_ADMISSION_INTENT = "transfer_admission"
 
 
 

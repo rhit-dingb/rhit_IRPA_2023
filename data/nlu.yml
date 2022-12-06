@@ -2085,7 +2085,6 @@ nlu:
 - synonym: graduate
   examples: |
     - grad student
-    - non-bachelors
     - grad 
     - graduates
 
@@ -2137,7 +2136,6 @@ nlu:
   examples: |
     - undergrad
     - undergrade
-    - bachelors
     - under grad
     - under-grad
     - undergraduates
