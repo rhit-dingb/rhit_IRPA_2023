@@ -67,6 +67,8 @@ nlu:
     - How many students are [recipients of pell grant]{"entity": "aid_status", "role": "pell", "value":"pell-grant"}? for [2135 cohort]?
     - Number of student who [didn't receive aid]{"entity": "aid_status", "value": "no-aid"}
 
+    - How many students in the [inital](cohort_initial_final) [2019 cohort](cohort_by_year) recipient of federal pell grant
+
     #Retention rate training data:
     - What is the [retention rate]{"entity": "retention-rate", "value": "retention-rate"} for [2019 cohort](cohort_by_year)?
     - I want to know about the [retention rate]{"entity": "retention-rate", "value": "retention-rate"}
@@ -104,6 +106,10 @@ nlu:
     - didn't receive pell grant and stafford loan
     - did not receive a pell grant and a subsidized stafford loan
     - no pell grant and no stafford loan
+    - received neither a pell grant nor a subsidized stafford loan
+    - received neither a pell grant nor a stafford loan
+    - received neither a pell grant or a subsidized stafford loan
+    - received neither a pell grant or a stafford loan
 
     - recipient of federal pell grant
     - recipient of a federal pell grant
@@ -134,11 +140,25 @@ nlu:
 
     - recipient of a subsidized 
     - recipient of subsidized stafford loan
+    - recipient of a subsidized stafford loan
     - received stafford loan
+    - received subsidized stafford loan
+    - received a stafford loan
+    - received a subsidized stafford loan
     - recipient of stafford loan
     - recipient of subsidized stafford loan
+    - awarded stafford loan
     - awarded subsidized stafford loan
+    - got subsidized stafford laon
     - got subsidized stafford
+    - got stafford loan
+    - recipient of a stafford loan
+    - recipient of a subsidized stafford loan
+    - awarded a stafford loan
+    - awarded a subsidized stafford loan
+    - got a subsidized stafford laon
+    - got a subsidized stafford
+    - got a stafford loan
 
 - synonym: retention-rate
   examples: |
@@ -154,16 +174,20 @@ nlu:
 
 - synonym: no-aid
   examples: |
+    - no aid 
     - no-aid
-    - no aid
-    - did not receive federal pell grant and did not receive subsidized loan
-    - did not receive aid
     - didn't receive aid
+    - did not receive aid
+    - did not receive either a pell grant or a subsidized stafford loan
     - didn't receive either pell grant or subsidized stafford loan
     - didn't receive either pell grant or stafford loan
     - didn't receive pell grant and stafford loan
     - did not receive a pell grant and a subsidized stafford loan
     - no pell grant and no stafford loan
+    - received neither a pell grant nor a subsidized stafford loan
+    - received neither a pell grant nor a stafford loan
+    - received neither a pell grant or a subsidized stafford loan
+    - received neither a pell grant or a stafford loan
 
 - synonym: pell-grant
   examples: |
@@ -199,13 +223,27 @@ nlu:
     # - recipients of subsidized stafford loan and did not receive a pell grant
     # - recipients of subsidized stafford loan and did not receive a pell grant
     # - received stafford loan and did not receive pell grant. 
+    - recipient of a subsidized 
     - recipient of subsidized stafford loan
-    - recipient of stafford loan 
-    - stafford loan recipient
-    - stafford loan
+    - recipient of a subsidized stafford loan
     - received stafford loan
+    - received subsidized stafford loan
+    - received a stafford loan
+    - received a subsidized stafford loan
+    - recipient of stafford loan
+    - recipient of subsidized stafford loan
+    - awarded stafford loan
     - awarded subsidized stafford loan
-    - got subsidized stafford loan
+    - got subsidized stafford laon
+    - got subsidized stafford
+    - got stafford loan
+    - recipient of a stafford loan
+    - recipient of a subsidized stafford loan
+    - awarded a stafford loan
+    - awarded a subsidized stafford loan
+    - got a subsidized stafford laon
+    - got a subsidized stafford
+    - got a stafford loan
   
 - synonym: initial
   examples: |
