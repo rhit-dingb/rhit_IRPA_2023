@@ -62,24 +62,31 @@ entities:
   #cohort by year - for example: 2015 cohort, 2016 cohort, etc.
   - cohort_by_year
 
-  #retention rate
-  - retention-rate
-
-
 # used for something like: Initial 2015 cohort of first-time, fulltime, bachelor's (or equivalent) degreeseeking undergraduate students
 # and also something like: Final 2015 cohort, after adjusting for allowable exclusions
   - cohort_initial_final
 
+
+#DEPRECATED ENTITIES
  # This is entity is used for these rows:
  #Example: 5 year or less, 4 year or less
-  - upper_bound_graduation_time
+#   - upper_bound_graduation_time
 
- #Example: more than 4 years.
-  - lower_bound_graduation_time
+#  #Example: more than 4 years.
+#   - lower_bound_graduation_time
 
-
+# DEPRECATED ENTITIES
 # for six-year graduation rate for 2015 cohort row 
-  - graduation_rate
+  # - graduation_rate
+
+  #retention rate
+  # - retention-rate
+
+  # S
+  - student_enrollment_result
+
+
+
 
 
   # exemptions - students for did not persist or graduate due to other circumstances.
@@ -141,6 +148,12 @@ entities:
 
 #Whether student submitted something, such as gpa, class rank, sat score
   - submitted
+
+  #Values: less than(within), more than(greater than)
+  - range
+
+  # two year, four year
+  - years_for_college
 
 
 slots:

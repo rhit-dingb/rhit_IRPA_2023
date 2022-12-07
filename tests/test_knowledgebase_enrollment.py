@@ -17,7 +17,6 @@ from unittest import mock
 from tests.testUtils import createEntityObjHelper
 
 
-
 # These values are data from the 2020-2021 CDS dataset.
 TOTAL_UNDERGRADUATES = 1972
 TOTAL_UNDERGRADUATE_PART_TIME = 20

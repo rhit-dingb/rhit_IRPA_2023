@@ -7,11 +7,10 @@ from Data_Ingestion.SparseMatrix import SparseMatrix
 import pandas as pd
 
 class CDSDataParser():
-    def __init__(self, sectionName : str, sparseMatrixDataWriter : SparseMatrixDataWriter):
-        self.sectionName = sectionName 
+    def __init__(self,  sparseMatrixDataWriter : SparseMatrixDataWriter):
         self.sparseMatrixDataWriter = sparseMatrixDataWriter
        
-    def parseQuestionAnswerToSparseMatrix(self, questionAnswers : QuestionAnswer, year: int) -> bool:
+    def parseQuestionAnswerToSparseMatrix(self,sectionName : str ,questionAnswers : QuestionAnswer, year: int) -> bool:
         everyUniqueEntity = []
         matrixData = []
         sparseMatrix = None
@@ -31,7 +30,7 @@ class CDSDataParser():
         columns = ["Value"]
         columns = columns + everyUniqueEntity
         sparseMatrixDataFrame = pd.DataFrame(columns=columns, data = matrixData)
-        sparseMatrix = SparseMatrix(sparseMatrixDf=sparseMatrixDataFrame, subSectionName= self.sectionName)
+        sparseMatrix = SparseMatrix(sparseMatrixDf=sparseMatrixDataFrame, subSectionName= sectionName)
         self.sparseMatrixDataWriter.writeSparseMatrix(sparseMatrix)
                     
     def convertQuestionAnswerToRow(self, questionAnswer : QuestionAnswer, allEntities : List[str]) -> List[str]:

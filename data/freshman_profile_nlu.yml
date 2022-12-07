@@ -767,6 +767,7 @@ nlu:
   examples: |
     - percent
     - percentage
+    - rate
     - average
     - mean
 
@@ -774,6 +775,7 @@ nlu:
   examples: |
     - percent
     - percentage
+    - rate
 
 - synonym: mean
   examples: |
