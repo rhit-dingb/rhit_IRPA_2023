@@ -92,10 +92,10 @@ nlu:
     - am I talking to a bot?
     - am I talking to a human?
 
-# - intent: inform
-#   examples: |
-#     - total undergraduate enrollment.
-#     - I want to know about total [undergraduate]{"entity":"student_level"} enrollment.
+- intent: inform
+  examples: |
+    - total undergraduate enrollment.
+    - I want to know about total [undergraduate]{"entity":"student_level"} enrollment.
 
 - intent: enrollment
   examples: |
@@ -1582,8 +1582,8 @@ nlu:
     
     - [high school completion]{"entity": "completion-requirement", "value":"completion-requirement"} [requirement]{"entity": "condition", "value": "require"} for  [degree-seeking]{"entity": "degree-goal", "value": "degree-seeking"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} entering students?
 
-    - Are first-time, first-year students [accepted]{“entity": "action", "value": "admitted"} for [terms]{"entity": "term", "value":"term"} [other]{"entity": "other", "value":"other"} than the [fall]{"entity": "term", "value":"fall"} ?
-    - Are  students [accepted]{“entity": "action", "value": "admitted"} for [terms]{"entity": "term", "value":"term"} [other]{"entity": "other", "value":"other"} than the [fall]{"entity": "term", "value":"fall"} ?
+    - Are first-time, first-year students [accepted]{"entity": "action", "value": "admitted"} for [terms]{"entity": "term", "value":"term"} [other]{"entity": "other", "value":"other"} than the [fall]{"entity": "term", "value":"fall"} ?
+    - Are  students [accepted]{"entity": "action", "value": "admitted"} for [terms]{"entity": "term", "value":"term"} [other]{"entity": "other", "value":"other"} than the [fall]{"entity": "term", "value":"fall"} ?
     - What is the [closing-date]{"entity": "Admission_Decision_Date" , "value": "closing-date"} for application?
 
     - What date is the [closing-date]{"entity": "Admission_Decision_Date" , "value": "closing-date"} for application?
@@ -1594,19 +1594,39 @@ nlu:
     - What is the [notification-date]{"entity": "Admission_Decision_Date" , "value": "notification-date"} to applicants of admission decision sent?
     - What is the [reply-policy]{"entity": "reply-policy" } for admitted applicants?
     - What is the [reply-policy]{"entity": "reply-policy" }?
-    - Dose your institude allow students to [defer]{"entity": "defer-policy" } enrollment after admission?
-    - can admitted students [defer]{"entity": "defer-policy" } enrollment?
+    - Dose your institude allow students to [defer-policy]{"entity": "defer-policy" } enrollment after admission?
+    - can admitted students [defer-policy]{"entity": "defer-policy" } enrollment?
     - Do your institute accept [early-admission]{"entity": "early-admission" }?
     - Do you accept  student with [early-decision]{"entity": "early-decision" }?
     - Do your institute accept [early-decision]{"entity": "early-decision" }?
     - Do you accept  student with [early-action]{"entity": "early-action" }?
     - Do your institute accept [early-action]{"entity": "early-action" }?
+    - Do your institute have [application-fee]{"entity": "application-fee" }?
 
+    - Is there any [application-fee]{"entity": "application-fee" } for applicants?
+
+    - Can [application-fee]{"entity": "application-fee" } be [waived]{"entity": "waive" }?
+    - Is there any [application-fee]{"entity": "application-fee" } for [online-application]{"entity": "online-application" }?
+    - Does [online-application]{"entity": "online-application" } has [application-fee]{"entity": "application-fee" }  ?
+    - Can [online-application]{"entity": "online-application" } [waived]{"entity": "waive" } [application-fee]{"entity": "application-fee" }  ?
 - synonym: early-action
   examples: |
     - early action
     - early-action
     - action early 
+
+- synonym: waived
+  examples: |
+    - waived
+    - waive
+    
+
+- synonym: online-application
+  examples: |
+    - online application
+    - application online
+    - apply online
+    - online apply 
 - synonym: early-decision
   examples: |
     - early decision
@@ -1624,7 +1644,7 @@ nlu:
     - early-admission
     - admission early
 
-- synonym: defer
+- synonym: defer-policy
   examples: |
     - postpone
     - defer
@@ -1633,10 +1653,9 @@ nlu:
 
 - synonym: priority-date
   examples: |
-    - closing day
-    - closing date
-    - close day
-    - close date
+    - priority day
+    - priority date
+    
 
 - synonym: notification-date
   examples: |
@@ -1659,6 +1678,7 @@ nlu:
     - application-fee
     - Application-Fee
     - fee for application 
+    - application fee
    
 
 - synonym: waiting-list

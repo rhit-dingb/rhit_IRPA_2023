@@ -186,9 +186,25 @@ entities:
 
 # Bachelors or Associates degree
   - degree_level 
-  
 
+#Admission dates type
+  - Admission_Decision_Date
 
+  - reply-policy
+
+  - early-admission
+
+  - early-decision
+
+  - early-action
+
+  - waive
+
+  - application-fee
+
+  - online-application
+
+  - defer-policy
 
 slots:
   enrollment_status:
