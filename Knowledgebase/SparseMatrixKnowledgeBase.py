@@ -89,7 +89,8 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
 
 
     def constructOutput(self, searchResult, intent, entitiesUsed):
-        return constructSentence(searchResult, intent, entitiesUsed)
+       return searchResult
+       # return constructSentence(searchResult, intent, entitiesUsed)
 
     #This function will try to add up the search results, if the current search result and the new search result's type does not make sense
     # to be added together, it will add it into the list of answers instead of adding up the value.

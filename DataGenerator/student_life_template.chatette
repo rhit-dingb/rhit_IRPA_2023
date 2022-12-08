@@ -1,0 +1,131 @@
+%[student_life]
+    \[Percentage\]\{"entity":"aggregation", "value": "percent"\} of  ~[full time] and ~[part time] ~[student modifier choice] students who ~[verb] @[category]
+    
+    
+    
+    \[Percentage\]\{"entity":"aggregation", "value": "percent"\} of ~[full time] and ~[part time] ~[student modifier choice] students enrolled who live in ~[college housing]
+
+    
+    \[Percentage\]\{"entity":"aggregation", "value": "percent"\} of ~[full time] and ~[part time] ~[student modifier choice] students enrolled who are \[age\]\{"entity":"age", "value": "age"\} \[~[age]\]\{"entity":"age", "value": "25 and older"\}
+
+    \[Average\]\{"entity":"aggregation", "value": "average"\} \[age\]\{"entity":"age", "value": "age"\} of ~[full time] ~[student modifier choice] students
+
+    \[Average\]\{"entity":"aggregation", "value": "average"\} \[age\]\{"entity":"age", "value": "age"\} of ~[full time] and ~[part time] ~[student modifier choice] students
+
+    //The academic_factor here will only have extracirricular
+    What @[academic_factor] does Rose-Hulman offer? 
+
+    Does Rose-Hulman offer @[military_branch] @[rotc] ?
+
+    What @[type] of ~[college housing] is available at Rose-Hulman?
+
+
+
+~[full time]
+    \[full-time\]\{"entity":"enrollment_status" "value":"full-time"\}
+
+~[part time]
+    \[part-time\]\{"entity":"enrollment_status" "value":"part-time"\}
+
+
+~[college housing]
+    \[~[college relation]\]\{"entity":"college_relation", "value": "college-owned -operated, or -affliated"\} \[housing\]\{"entity":"category", "value": "housing"\}
+
+
+@[type]
+    type
+
+@[military_branch]
+    army
+    naval = navy
+    navy
+    air force
+
+@[rotc] 
+    rotc 
+    reserve officers's training Corps = rotc
+    reserve Officers training corps = rotc
+    reserve Officers training corp = rotc
+
+@[academic_factor]
+    activities = extracurricular activities
+    extracirricular = extracurricular activities
+    clubs = extracurricular activities
+
+
+~[student modifier choice]
+    ~[freshman]
+    @[student_level]
+
+
+~[freshman]
+    @[is_first_year] @[is_first_time] @[freshman]
+
+@[freshman]
+    freshman
+
+@[is_first_year]    
+    first year = first-year
+
+@[is_first_time]
+    first time = first-time
+    
+@[student_level]
+    undergraduate
+
+
+
+@[category]
+    ~[out_of_state] = out of state
+    ~[fraternity] = fraternity
+    ~[sorority] = sorority
+    ~[commute] = commute
+  
+
+~[age]
+    25 and older
+    25
+    25 or older
+    25 older
+    25 year old
+    twenty five and older
+    twenty five or older
+    twenty-five or older
+
+~[commute] 
+    off campus
+    commute
+    commuting
+    commuter
+     
+~[college relation]
+    college owned
+    college-owned
+    college-operated
+    college operated
+    college affliated
+    college-affliated
+    
+
+~[fraternity]
+    fraternity
+    fraternities
+    frat
+
+~[sorority]
+    sorority
+    sororities
+    
+
+~[out_of_state]
+    out of state
+    out-of-state
+    not from here
+
+
+~[verb]
+    are
+    joined
+    live
+    live in
+

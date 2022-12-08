@@ -5,8 +5,9 @@ version: "3.1"
 nlu:
 - intent: transfer_admission
   examples: |
+    - I want to know about [SAT]{"entity":"standarized_test", "value":"sat"}
+    - I want to know about [ACT]{"entity":"standarized_test", "value":"act"}
     - At which [term]{"entity": "academic_term", "value": "term" } may transfer students [enroll]{"entity": "action", "value": "enrolled"}
-    
     - Does Rose-Hulman [accept credit transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"}
     - Does Rose-Hulman [accept transfer credit](allow_transfer_credit)
     - Does Rose-Hulman [accept transfer credits]{"entity": "allow_transfer_credit", "value": "accept transfer credit"}
@@ -34,6 +35,7 @@ nlu:
     - Does Rose-Hulman [require]{"entity":"condition", "value": "require"} [statement of good standing](academic_factor) to apply for transfer admission?
     - Does Rose-Hulman [require]{"entity":"condition", "value": "require"} [test score]{"entity": "academic_factor", "value": "standardized test scores"} to apply for transfer admission?
     - Does Rose-Hulman [require]{"entity":"condition", "value": "require"} [test scores]{"entity": "academic_factor", "value": "standardized test scores"} to apply for transfer admission?
+
     - Is [college](education_level) [transcript]{"entity": "academic_factor", "value": "transcript" } [required]{"entity":"condition", "value": "require"}  for transfer student to apply for admission at Rose-Hulman
     - Is personal [essay](essay) [required]{"entity":"condition", "value": "require"} for transfer student to apply for admission at Rose-Hulman
     - Is [good standing statement]{"entity": "academic_factor", "value": "statement of good standing"} [required]{"entity":"condition", "value": "require"}  for transfer student to apply for admission at Rose-Hulman
@@ -369,7 +371,7 @@ nlu:
     - What is the [min]{"entity": "aggregation", "value": "minimum"} number of [credits]{"entity": "unit_type", "value": "credit"} that transfer students must complete to earn a [associates](degree_level) degree
     - What is the [min]{"entity": "aggregation", "value": "minimum"} number of [credits]{"entity": "unit_type", "value": "credit"} that transfer students must complete to earn a [bachelor]{"entity": "degree_level", "value": "bachelors"} degree
     - What is the [min]{"entity": "aggregation", "value": "minimum"} number of [credits]{"entity": "unit_type", "value": "credit"} that transfer students must complete to earn a [bachelors](degree_level) degree
-
+    - What is [required]{"entity":"condition", "value": "require"} for transfer applicants to apply for transfer admission?
 - synonym: date
   examples: |
     - date
