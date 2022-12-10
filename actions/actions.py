@@ -259,10 +259,24 @@ class ActionQueryCohort(Action):
     def run(self, dispatcher, tracker, domain):
         print(tracker.latest_message["intent"])
         print("ENTITIES")
-        print(tracker.latest_message["entities"])
+        # print(tracker.latest_message["entities"])
 
         entitiesExtracted = tracker.latest_message["entities"]
         intent = tracker.latest_message["intent"]["name"]
+        found = list()
+        for e in entitiesExtracted:
+            # print(e["entity"])
+            print(e)
+            if "entity" in (e["entity"]):
+                found.append(e)
+
+        for e in found:
+            entitiesExtracted.remove(e)
+        
+        print("NEW ENTITIES")
+        for e in entitiesExtracted:
+            # print(e["entity"])
+            print(e)
 
         self.preprocessCohortEntities(entitiesExtracted)
         

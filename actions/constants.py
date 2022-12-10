@@ -17,7 +17,7 @@ RANGE_LOWER_BOUND_VALUE = "more than"
 RANGE_BETWEEN_VALUE = "between"
 
 #Constants to capture the percentage value supported by aggregation entity
-AGGREGATION_ENTITY_PERCENTAGE_VALUE = "percentage"
+AGGREGATION_ENTITY_PERCENTAGE_VALUE = "percent"
 
 #Constant to capture graduation value supported by student_enrollment_result entity
 STUDENT_ENROLLMENT_RESULT_ENTITY_GRADUATION_VALUE= "graduation"
