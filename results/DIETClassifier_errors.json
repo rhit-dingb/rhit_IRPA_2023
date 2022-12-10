@@ -1,72 +1,156 @@
 [
   {
-    "text": "How many non freshman first time students are enrolled?",
+    "text": "What is the graduation rate for students who graduated within five year in 2014 cohort?",
     "entities": [
       {
-        "start": 9,
-        "end": 21,
-        "value": "non-freshman",
-        "entity": "undergraduate_grade_level"
+        "start": 12,
+        "end": 22,
+        "value": "graduation",
+        "entity": "student_enrollment_result"
       },
       {
-        "start": 22,
-        "end": 32,
-        "value": "first-time",
-        "entity": "is_first_time"
+        "start": 23,
+        "end": 27,
+        "value": "percent",
+        "entity": "aggregation"
+      },
+      {
+        "start": 45,
+        "end": 54,
+        "value": "graduation",
+        "entity": "student_enrollment_result"
+      },
+      {
+        "start": 55,
+        "end": 61,
+        "value": "within",
+        "entity": "range"
+      },
+      {
+        "start": 62,
+        "end": 71,
+        "value": "5 year",
+        "entity": "years_for_college"
+      },
+      {
+        "start": 75,
+        "end": 86,
+        "value": "2014 cohort",
+        "entity": "cohort_by_year"
       }
     ],
     "predicted_entities": [
       {
-        "entity": "undergraduate_grade_level",
-        "start": 9,
-        "end": 32,
-        "confidence_entity": 0.5823438167572021,
-        "value": "non freshman first time",
+        "entity": "student_enrollment_result",
+        "start": 12,
+        "end": 22,
+        "value": "graduation",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "student_enrollment_result",
+        "start": 45,
+        "end": 54,
+        "value": "graduation",
+        "extractor": "RegexEntityExtractor",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "range",
+        "start": 55,
+        "end": 61,
+        "value": "within",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "range",
+        "start": 72,
+        "end": 74,
+        "value": "within",
+        "extractor": "RegexEntityExtractor",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "aggregation",
+        "start": 23,
+        "end": 27,
+        "value": "percent",
+        "extractor": "RegexEntityExtractor",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "student_enrollment_result",
+        "start": 12,
+        "end": 22,
+        "confidence_entity": 0.9991726279258728,
+        "value": "graduation",
         "extractor": "DIETClassifier"
-      }
-    ]
-  },
-  {
-    "text": "How many non freshman first time non first year students are enrolled?",
-    "entities": [
-      {
-        "start": 9,
-        "end": 21,
-        "value": "non-freshman",
-        "entity": "undergraduate_grade_level"
       },
       {
-        "start": 22,
-        "end": 32,
-        "value": "first-time",
-        "entity": "is_first_time"
-      },
-      {
-        "start": 33,
-        "end": 47,
-        "value": "non-first-year",
-        "entity": "is_first_year"
-      }
-    ],
-    "predicted_entities": [
-      {
-        "entity": "undergraduate_grade_level",
-        "start": 9,
-        "end": 32,
-        "confidence_entity": 0.7694220542907715,
-        "value": "non freshman first time",
-        "extractor": "DIETClassifier"
-      },
-      {
-        "entity": "is_first_year",
-        "start": 33,
-        "end": 47,
-        "confidence_entity": 0.9772385358810425,
-        "value": "non-first-year",
+        "entity": "aggregation",
+        "start": 23,
+        "end": 27,
+        "confidence_entity": 0.9997994303703308,
+        "value": "percent",
         "extractor": "DIETClassifier",
         "processors": [
           "EntitySynonymMapper"
         ]
+      },
+      {
+        "entity": "student_enrollment_result",
+        "start": 45,
+        "end": 54,
+        "confidence_entity": 0.9979496598243713,
+        "value": "graduation",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "range",
+        "start": 55,
+        "end": 61,
+        "confidence_entity": 0.9956657290458679,
+        "value": "within",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "years_for_college",
+        "start": 62,
+        "end": 71,
+        "confidence_entity": 0.9841032028198242,
+        "value": "5 year",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "range",
+        "start": 72,
+        "end": 74,
+        "confidence_entity": 0.6400510668754578,
+        "value": "within",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "cohort_by_year",
+        "start": 75,
+        "end": 86,
+        "confidence_entity": 0.994297444820404,
+        "value": "2014 cohort",
+        "extractor": "DIETClassifier"
       }
     ]
   }

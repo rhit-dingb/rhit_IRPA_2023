@@ -84,6 +84,12 @@ entities:
   #retention rate
   # - retention-rate
 
+  - student_enrollment_result
+
+
+  #retention rate
+  # - retention-rate
+
   # Student enrollment result, captures retention and graduation. 
   - student_enrollment_result
 
@@ -226,9 +232,6 @@ entities:
 
 
 
-
-
-
 slots:
   enrollment_status:
     type: categorical
@@ -322,7 +325,7 @@ actions:
   - action_query_basis_for_selection
 
   - action_query_freshman_profile
-  
+
   - action_query_transfer_admission
   
 

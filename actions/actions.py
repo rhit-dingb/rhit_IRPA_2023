@@ -6,7 +6,7 @@
 
 
 from DataManager.ExcelDataManager import ExcelDataManager
-from DataManager.constants import ADMISSION_INTENT, BASIS_FOR_SELECTION_INTENT, COHORT_BY_YEAR_ENTITY_LABEL, COHORT_INTENT, ENROLLMENT_INTENT, EXEMPTION_ENTITY_LABEL, FINAL_COHORT_ENTITY_LABEL, FRESHMAN_PROFILE_INTENT, GRADUATION_RATE_ENTITY_LABEL, HIGH_SCHOOL_UNITS_INTENT, INITIAL_COHORT_ENTITY_LABEL, LOWER_BOUND_GRADUATION_TIME_ENTITY_LABEL, NO_AID_ENTITY_LABEL, RECIPIENT_OF_PELL_GRANT_ENTITY_LABEL, RECIPIENT_OF_STAFFORD_LOAN_NO_PELL_GRANT_ENTITY_LABEL, RETENTION_RATE_LABEL, TRANSFER_ADMISSION_INTENT, UPPER_BOUND_GRADUATION_TIME_ENTITY_LABEL
+from DataManager.constants import ADMISSION_INTENT, BASIS_FOR_SELECTION_INTENT, COHORT_BY_YEAR_ENTITY_LABEL, COHORT_INTENT, ENROLLMENT_INTENT, EXEMPTION_ENTITY_LABEL, FINAL_COHORT_ENTITY_LABEL, FRESHMAN_PROFILE_INTENT, HIGH_SCHOOL_UNITS_INTENT, INITIAL_COHORT_ENTITY_LABEL,  AID_ENTITY_LABEL, NO_AID_ENTITY_LABEL, RANGE_ENTITY_LABEL, RECIPIENT_OF_PELL_GRANT_ENTITY_LABEL, RECIPIENT_OF_STAFFORD_LOAN_NO_PELL_GRANT_ENTITY_LABEL, YEAR_FOR_COLLEGE_ENTITY_LABEL
 from Exceptions.ExceptionTypes import ExceptionTypes
 from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
 
@@ -14,9 +14,9 @@ from Knowledgebase.IgnoreRowPiece import IgnoreRowPiece
 from Knowledgebase.SparseMatrixKnowledgeBase import SparseMatrixKnowledgeBase
 from Knowledgebase.constants import PERCENTAGE_FORMAT
 from OutputController import output
-from actions.constants import ANY_AID_COLUMN_NAME, COHORT_GRADUATION_TIME_ENTITY_FORMAT, COHORT_GRADUATION_TIME_START_FORMAT, NO_AID_COLUMN_NAME, PELL_GRANT_COLUMN_NAME, STAFFORD_LOAN_COLUMN_NAME
-from actions.entititesHelper import changeEntityValue, copyEntities, createEntityObj, filterEntities, findEntityHelper, findMultipleSameEntitiesHelper
-from typing import List, Text, Tuple
+from actions.constants import AGGREGATION_ENTITY_PERCENTAGE_VALUE, ANY_AID_COLUMN_NAME, NO_AID_COLUMN_NAME, PELL_GRANT_COLUMN_NAME, RANGE_BETWEEN_VALUE, RANGE_LOWER_BOUND_VALUE, RANGE_UPPER_BOUND_VALUE, STAFFORD_LOAN_COLUMN_NAME, STUDENT_ENROLLMENT_RESULT_ENTITY_GRADUATION_VALUE, STUDENT_ENROLLMENT_RESULT_ENTITY_RETENTION_VALUE, YEARS_FOR_COLLEGE_ENTITY_FORMAT
+from actions.entititesHelper import changeEntityValue, changeEntityValueByRole, copyEntities, createEntityObj, filterEntities, findEntityHelper, findMultipleSameEntitiesHelper
+from typing import Text
 
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
@@ -209,29 +209,55 @@ class ActionQueryCohort(Action):
     def name(self) -> Text:
         return "action_query_cohort"
 
-    def extractYearFromGraduationYearEntityValue(self, entitiesFound):
-        
-        if entitiesFound is None or len(entitiesFound) == 0:
-            return -1
 
-        indexes = []
-
+    def findYearRange(self, entitiesFound):
+        minYear = self.minYear
+        maxYear = self.maxYear
+        yearsFound = [] 
         for entityObj in entitiesFound:
             for i in range(self.minYear, self.maxYear+1):
                 index_value = None
                 try:
                     index_value = entityObj["value"].index(str(i))
-                    
+                    year = int(entityObj["value"][index_value])
+                    print("YEAR")
+                    print(year)
+                    print(entityObj["value"])
+                    yearsFound.append(year)
                 except ValueError:
-                    index_value = -1
+                    continue
 
-                indexes.append(index_value)
+        askForUpperBound = findEntityHelper(entitiesFound, RANGE_UPPER_BOUND_VALUE, by = "value")
+        askForLowerBound = findEntityHelper(entitiesFound, RANGE_LOWER_BOUND_VALUE, by = "value")
 
-            for index in indexes:
-                if index > -1:
-                    return int(entityObj["value"][index])
+        if len(yearsFound) > 1:
 
-        return -1
+            maxYear = max(yearsFound)
+            minYear = min(yearsFound)
+
+            # I add one here, because when the user ask "more than"(lower bound) it means they want more than that year instead of including that year
+            if askForLowerBound:
+                minYear = minYear+1
+        
+        elif len(yearsFound) == 1:
+            
+
+            if askForUpperBound:
+                minYear = self.minYear
+                maxYear = max(yearsFound)
+            elif askForLowerBound:
+                maxYear = self.maxYear
+                minYear = min(yearsFound)+1
+            #Handle the case when no upper bound or lower bound is specified, default to upperbound
+            else: 
+                minYear = self.minYear
+                maxYear = max(yearsFound)
+
+        #Making sure the max year and minYear stays in valid range
+        maxYear = min(maxYear, self.maxYear)
+        minYear = max(minYear,self.minYear)
+        return (minYear, maxYear)
+
 
     def preprocessCohortEntities(self,entities):
         #Since for financial aid part, the entity value may not be extracted perfectly, we map it to the column using entity label
@@ -243,7 +269,7 @@ class ActionQueryCohort(Action):
         }
 
         for key in entityColumnMap.keys():
-            changeEntityValue(entities, key, entityColumnMap[key])
+            changeEntityValueByRole(entities, AID_ENTITY_LABEL, key, entityColumnMap[key])
 
 
 
@@ -262,68 +288,58 @@ class ActionQueryCohort(Action):
         askPellGrant = findEntityHelper(entitiesExtracted, RECIPIENT_OF_PELL_GRANT_ENTITY_LABEL )
         askStaffordLoan = findEntityHelper(entitiesExtracted, RECIPIENT_OF_STAFFORD_LOAN_NO_PELL_GRANT_ENTITY_LABEL)
         askNoAid = findEntityHelper(entitiesExtracted, NO_AID_ENTITY_LABEL)
-        
-        askRetentionRate = findEntityHelper(entitiesExtracted, RETENTION_RATE_LABEL )
     
         filteredEntities = filterEntities(entitiesExtracted, [RECIPIENT_OF_PELL_GRANT_ENTITY_LABEL, RECIPIENT_OF_STAFFORD_LOAN_NO_PELL_GRANT_ENTITY_LABEL, NO_AID_ENTITY_LABEL, COHORT_BY_YEAR_ENTITY_LABEL])
         if (askPellGrant or askStaffordLoan or askNoAid) and len(filteredEntities) == 0:
             entitiesExtracted.append(createEntityObj("initial", INITIAL_COHORT_ENTITY_LABEL))
-        
-        
-        # we might want to refactor this later with some classes.
-        def generator(curr, start, end):
-            if curr == self.minYear:
-                return COHORT_GRADUATION_TIME_START_FORMAT.format(upperBound=self.minYear)
-            else:
-                return COHORT_GRADUATION_TIME_ENTITY_FORMAT.format(upperBound=curr, lowerBound=curr-1)
 
+        # Make a copy of the entities we have so we can still have the original one.
         entitiesExtractedCopy = copyEntities(entitiesExtracted)
 
-        askForGraduationRate = findEntityHelper(
-            entitiesExtractedCopy, GRADUATION_RATE_ENTITY_LABEL)
 
-        lowerBoundGraduationYearEntities = findMultipleSameEntitiesHelper(
-            entitiesExtractedCopy, LOWER_BOUND_GRADUATION_TIME_ENTITY_LABEL)
-        upperBoundGraduationYearEntities = findMultipleSameEntitiesHelper(
-            entitiesExtractedCopy, UPPER_BOUND_GRADUATION_TIME_ENTITY_LABEL)
+        askForPercentage = findEntityHelper(entitiesExtractedCopy, AGGREGATION_ENTITY_PERCENTAGE_VALUE, by="value")
+        askForGraduation = findEntityHelper(entitiesExtractedCopy,  STUDENT_ENROLLMENT_RESULT_ENTITY_GRADUATION_VALUE, by = "value")
+        askForRetention = findEntityHelper(entitiesExtractedCopy, STUDENT_ENROLLMENT_RESULT_ENTITY_RETENTION_VALUE, by = "value")
+        askForGraduationRate = askForPercentage and askForGraduation
+        askRetentionRate = askForPercentage and askForRetention
+
+        yearForCollegeEntity = findEntityHelper(entitiesExtractedCopy, YEAR_FOR_COLLEGE_ENTITY_LABEL )
 
         ignoreAnyAidShouldAddRow = IgnoreRowPiece(
             defaultShouldAddRowStrategy, [ANY_AID_COLUMN_NAME])
             
-        if (askForGraduationRate and len(entitiesExtracted) == 2) or lowerBoundGraduationYearEntities or upperBoundGraduationYearEntities:
+
+        if askForGraduationRate  or yearForCollegeEntity:
             # For question about graduation date and year,the initial and final entity is still extracted, but I want to filter that out.
-            entitiesFiltered = filterEntities(entitiesExtractedCopy, [
-                                                LOWER_BOUND_GRADUATION_TIME_ENTITY_LABEL, UPPER_BOUND_GRADUATION_TIME_ENTITY_LABEL, INITIAL_COHORT_ENTITY_LABEL, FINAL_COHORT_ENTITY_LABEL])
-            lowerBoundYear = max(self.extractYearFromGraduationYearEntityValue(
-                lowerBoundGraduationYearEntities)+1, self.minYear)
-      
+            entitiesFiltered = filterEntities(entitiesExtractedCopy, [INITIAL_COHORT_ENTITY_LABEL, FINAL_COHORT_ENTITY_LABEL])
+            yearsOfCollegeEntities = findMultipleSameEntitiesHelper(entitiesExtractedCopy, YEAR_FOR_COLLEGE_ENTITY_LABEL)
+            rangeEntities = findMultipleSameEntitiesHelper(entitiesExtractedCopy, RANGE_ENTITY_LABEL)
 
-        
-            upperBoundYear = min(self.extractYearFromGraduationYearEntityValue(
-                upperBoundGraduationYearEntities), self.maxYear)
-
-            # print("UPPER BOUND YEAR")
-            # print(upperBoundYear)
-
-            isUpperFoundBoundNotFound = upperBoundYear == -1
-            if isUpperFoundBoundNotFound:
-                upperBoundYear = self.maxYear
-            
-            # print(lowerBoundYear, upperBoundYear)
+            yearsOfCollegeAndRangeEntities = yearsOfCollegeEntities + rangeEntities
+            minYear, maxYear = self.findYearRange(yearsOfCollegeAndRangeEntities)
+            print(minYear, maxYear)
+            entitiesFiltered = filterEntities(entitiesFiltered, [YEAR_FOR_COLLEGE_ENTITY_LABEL, RANGE_ENTITY_LABEL])
             
             answer = None
 
-            try:
+            def generator(curr, start, end):
+                if curr == self.minYear:
+                    return [RANGE_UPPER_BOUND_VALUE, YEARS_FOR_COLLEGE_ENTITY_FORMAT.format(year=curr) ]
+                else:
+                    print(RANGE_BETWEEN_VALUE, YEARS_FOR_COLLEGE_ENTITY_FORMAT.format(year = curr))
+                    return [RANGE_BETWEEN_VALUE, YEARS_FOR_COLLEGE_ENTITY_FORMAT.format(year = curr), YEARS_FOR_COLLEGE_ENTITY_FORMAT.format(year = curr-1)]
+
+            try:    
                 answer, intent, entitiesUsed = knowledgeBase.aggregateDiscreteRange(
-                intent, entitiesFiltered, lowerBoundYear, upperBoundYear, generator, ignoreAnyAidShouldAddRow,
-                )
+                    intent, entitiesFiltered, minYear, maxYear, generator, ignoreAnyAidShouldAddRow,
+                    outputFunc = output.identityFunc
+                    )
 
                 if askForGraduationRate:
-                    entitiesUsed.add(askForGraduationRate["value"])
-                    answer = self.calculateGraduationRate(intent, entitiesUsed, entitiesFiltered, float(answer), ignoreAnyAidShouldAddRow)
-                
+                        entitiesUsed.add(askForGraduationRate["value"])
+                        answer = self.calculateGraduationRate(intent, entitiesUsed, entitiesFiltered, float(answer), ignoreAnyAidShouldAddRow)
                 else:
-                    answer = output.outputFuncForInteger(answer, intent, entitiesUsed)
+                        answer = output.outputFuncForInteger(answer, intent, entitiesUsed)
                 
                 dispatcher.utter_message(answer)    
             except Exception as e:

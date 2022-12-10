@@ -20,7 +20,10 @@ pipeline:
     # dimensions: ["DATE"]
   - name: WhitespaceTokenizer
   - name: RegexFeaturizer
-  # - name: RegexEntityExtractor
+  - name: RegexEntityExtractor
+    case_sensitive: false
+    use_lookup_tables: true
+    use_regexes: false
   - name: LexicalSyntacticFeaturizer
   - name: CountVectorsFeaturizer
   - name: CountVectorsFeaturizer

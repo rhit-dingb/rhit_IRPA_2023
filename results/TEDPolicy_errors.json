@@ -53,136 +53,172 @@
     "text": "How many male non freshman students are enrolled?",
     "entities": [
       {
+        "text": "How many male non freshman students are enrolled?",
         "start": 9,
         "end": 13,
-        "value": "male",
-        "entity": "gender"
+        "entity": "gender",
+        "value": "male"
       },
       {
+        "text": "How many male non freshman students are enrolled?",
         "start": 14,
         "end": 26,
-        "value": "non-freshman",
-        "entity": "undergraduate_grade_level"
+        "entity": "undergraduate_grade_level",
+        "value": "non-freshman"
       }
     ],
     "predicted_entities": []
   },
   {
-    "text": "How many students graduated in five year but in more than four years for 2046 cohort?",
+    "text": "How many students graduated\nin  5 years or less\nbut more than [four year]s{\"entity\": \"years_for_college\", \"value\": \"4 year\"} \n for the 3524 cohort?",
     "entities": [
       {
-        "text": "How many students graduated in five year but in more than four years for 2046 cohort?",
-        "start": 31,
-        "end": 40,
-        "entity": "upper_bound_graduation_time",
-        "value": "5 years or less"
-      },
-      {
-        "text": "How many students graduated in five year but in more than four years for 2046 cohort?",
-        "start": 48,
-        "end": 68,
-        "entity": "lower_bound_graduation_time",
-        "value": "more than 4 years"
-      },
-      {
-        "text": "How many students graduated in five year but in more than four years for 2046 cohort?",
-        "start": 73,
-        "end": 84,
-        "entity": "cohort_by_year",
-        "value": "2046 cohort"
-      }
-    ],
-    "predicted_entities": []
-  },
-  {
-    "text": "How many students graduated within five years but in more than four years for 2046 cohort?",
-    "entities": [
-      {
-        "text": "How many students graduated within five years but in more than four years for 2046 cohort?",
-        "start": 28,
-        "end": 45,
-        "entity": "upper_bound_graduation_time",
-        "value": "5 years or less"
-      },
-      {
-        "text": "How many students graduated within five years but in more than four years for 2046 cohort?",
-        "start": 53,
-        "end": 73,
-        "entity": "lower_bound_graduation_time",
-        "value": "more than 4 years"
-      },
-      {
-        "text": "How many students graduated within five years but in more than four years for 2046 cohort?",
-        "start": 78,
-        "end": 89,
-        "entity": "cohort_by_year",
-        "value": "2046 cohort"
-      }
-    ],
-    "predicted_entities": []
-  },
-  {
-    "text": "I want to know the graduation rate of students graduated in 5 years and more than four year for cohort of 2014",
-    "entities": [
-      {
-        "text": "I want to know the graduation rate of students graduated in 5 years and more than four year for cohort of 2014",
-        "start": 19,
-        "end": 34,
-        "entity": "graduation_rate",
-        "value": "graduation rate"
-      },
-      {
-        "text": "I want to know the graduation rate of students graduated in 5 years and more than four year for cohort of 2014",
-        "start": 47,
-        "end": 67,
-        "entity": "upper_bound_graduation_time",
-        "value": "5 years or less"
-      },
-      {
-        "text": "I want to know the graduation rate of students graduated in 5 years and more than four year for cohort of 2014",
-        "start": 72,
-        "end": 91,
-        "entity": "lower_bound_graduation_time",
-        "value": "more than 4 years"
-      },
-      {
-        "text": "I want to know the graduation rate of students graduated in 5 years and more than four year for cohort of 2014",
-        "start": 96,
-        "end": 110,
-        "entity": "cohort_by_year",
-        "value": "cohort of 2014"
-      }
-    ],
-    "predicted_entities": []
-  },
-  {
-    "text": "What is the graduation rate for students who graduated in 5 years and more than four year for the cohort of 2014?",
-    "entities": [
-      {
-        "text": "What is the graduation rate for students who graduated in 5 years and more than four year for the cohort of 2014?",
-        "start": 12,
+        "text": "How many students graduated\nin  5 years or less\nbut more than [four year]s{\"entity\": \"years_for_college\", \"value\": \"4 year\"} \n for the 3524 cohort?",
+        "start": 18,
         "end": 27,
-        "entity": "graduation_rate",
-        "value": "graduation rate"
+        "entity": "student_enrollment_result",
+        "value": "graduation"
       },
       {
-        "text": "What is the graduation rate for students who graduated in 5 years and more than four year for the cohort of 2014?",
-        "start": 45,
-        "end": 65,
-        "entity": "upper_bound_graduation_time",
-        "value": "5 years or less"
+        "text": "How many students graduated\nin  5 years or less\nbut more than [four year]s{\"entity\": \"years_for_college\", \"value\": \"4 year\"} \n for the 3524 cohort?",
+        "start": 28,
+        "end": 30,
+        "entity": "range",
+        "value": "within"
       },
       {
-        "text": "What is the graduation rate for students who graduated in 5 years and more than four year for the cohort of 2014?",
+        "text": "How many students graduated\nin  5 years or less\nbut more than [four year]s{\"entity\": \"years_for_college\", \"value\": \"4 year\"} \n for the 3524 cohort?",
+        "start": 32,
+        "end": 39,
+        "entity": "years_for_college",
+        "value": "5 year"
+      },
+      {
+        "text": "How many students graduated\nin  5 years or less\nbut more than [four year]s{\"entity\": \"years_for_college\", \"value\": \"4 year\"} \n for the 3524 cohort?",
+        "start": 40,
+        "end": 47,
+        "entity": "range",
+        "value": "within"
+      },
+      {
+        "text": "How many students graduated\nin  5 years or less\nbut more than [four year]s{\"entity\": \"years_for_college\", \"value\": \"4 year\"} \n for the 3524 cohort?",
+        "start": 52,
+        "end": 61,
+        "entity": "range",
+        "value": "more than"
+      },
+      {
+        "text": "How many students graduated\nin  5 years or less\nbut more than [four year]s{\"entity\": \"years_for_college\", \"value\": \"4 year\"} \n for the 3524 cohort?",
+        "start": 135,
+        "end": 146,
+        "entity": "cohort_by_year",
+        "value": "3524 cohort"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "What is the graduation\n rate for students who graduated \n less than 5 years and in\n  more than four year \n  for the cohort of 2014?",
+    "entities": [
+      {
+        "start": 12,
+        "end": 22,
+        "value": "graduation",
+        "entity": "student_enrollment_result"
+      },
+      {
+        "start": 24,
+        "end": 28,
+        "value": "percent",
+        "entity": "aggregation"
+      },
+      {
+        "start": 46,
+        "end": 55,
+        "value": "graduation",
+        "entity": "student_enrollment_result"
+      },
+      {
+        "start": 58,
+        "end": 67,
+        "value": "within",
+        "entity": "range"
+      },
+      {
+        "start": 68,
+        "end": 75,
+        "value": "5 year",
+        "entity": "years_for_college"
+      },
+      {
+        "start": 80,
+        "end": 82,
+        "value": "within",
+        "entity": "range"
+      },
+      {
+        "start": 85,
+        "end": 94,
+        "value": "more than",
+        "entity": "range"
+      },
+      {
+        "start": 95,
+        "end": 104,
+        "value": "4 year",
+        "entity": "years_for_college"
+      },
+      {
+        "start": 116,
+        "end": 130,
+        "value": "cohort of 2014",
+        "entity": "cohort_by_year"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "I want to know about the graduation\nrate for students who graduated \n no more than four year \n for the cohort of 2014?",
+    "entities": [
+      {
+        "text": "I want to know about the graduation\nrate for students who graduated \n no more than four year \n for the cohort of 2014?",
+        "start": 25,
+        "end": 35,
+        "entity": "student_enrollment_result",
+        "value": "graduation"
+      },
+      {
+        "text": "I want to know about the graduation\nrate for students who graduated \n no more than four year \n for the cohort of 2014?",
+        "start": 36,
+        "end": 40,
+        "entity": "aggregation",
+        "value": "percent"
+      },
+      {
+        "text": "I want to know about the graduation\nrate for students who graduated \n no more than four year \n for the cohort of 2014?",
+        "start": 58,
+        "end": 67,
+        "entity": "student_enrollment_result",
+        "value": "graduation"
+      },
+      {
+        "text": "I want to know about the graduation\nrate for students who graduated \n no more than four year \n for the cohort of 2014?",
         "start": 70,
-        "end": 89,
-        "entity": "lower_bound_graduation_time",
-        "value": "more than 4 years"
+        "end": 82,
+        "entity": "range",
+        "value": "within"
       },
       {
-        "text": "What is the graduation rate for students who graduated in 5 years and more than four year for the cohort of 2014?",
-        "start": 98,
-        "end": 112,
+        "text": "I want to know about the graduation\nrate for students who graduated \n no more than four year \n for the cohort of 2014?",
+        "start": 83,
+        "end": 92,
+        "entity": "years_for_college",
+        "value": "4 year"
+      },
+      {
+        "text": "I want to know about the graduation\nrate for students who graduated \n no more than four year \n for the cohort of 2014?",
+        "start": 103,
+        "end": 117,
         "entity": "cohort_by_year",
         "value": "cohort of 2014"
       }
@@ -190,27 +226,55 @@
     "predicted_entities": []
   },
   {
-    "text": "I want to know about students who did not receive any aid",
+    "text": "What is the graduation\nrate for students who graduated \nin 5 years and\n more than four year \n for the cohort of 2014?",
     "entities": [
       {
-        "text": "I want to know about students who did not receive any aid",
-        "start": 34,
-        "end": 57,
-        "entity": "students_who_did_not_receive_either_a_pell_grant_or_a_subsidized_stafford_loan",
-        "value": "did not receive any aid"
-      }
-    ],
-    "predicted_entities": []
-  },
-  {
-    "text": "I want to know about students who are recipient of pell grant",
-    "entities": [
+        "start": 12,
+        "end": 22,
+        "value": "graduation",
+        "entity": "student_enrollment_result"
+      },
       {
-        "text": "I want to know about students who are recipient of pell grant",
-        "start": 38,
-        "end": 61,
-        "entity": "recipients_of_federal_pell_grant",
-        "value": "pell-grant"
+        "start": 23,
+        "end": 27,
+        "value": "percent",
+        "entity": "aggregation"
+      },
+      {
+        "start": 45,
+        "end": 54,
+        "value": "graduation",
+        "entity": "student_enrollment_result"
+      },
+      {
+        "start": 56,
+        "end": 58,
+        "value": "within",
+        "entity": "range"
+      },
+      {
+        "start": 59,
+        "end": 66,
+        "value": "5 year",
+        "entity": "years_for_college"
+      },
+      {
+        "start": 72,
+        "end": 81,
+        "value": "more than",
+        "entity": "range"
+      },
+      {
+        "start": 82,
+        "end": 91,
+        "value": "4 year",
+        "entity": "years_for_college"
+      },
+      {
+        "start": 102,
+        "end": 116,
+        "value": "cohort of 2014",
+        "entity": "cohort_by_year"
       }
     ],
     "predicted_entities": []
@@ -220,9 +284,15 @@
     "entities": [
       {
         "start": 12,
+        "end": 21,
+        "value": "retention",
+        "entity": "student_enrollment_result"
+      },
+      {
+        "start": 22,
         "end": 26,
-        "value": "retention-rate",
-        "entity": "retention-rate"
+        "value": "percent",
+        "entity": "aggregation"
       },
       {
         "start": 31,
@@ -252,63 +322,67 @@
     "predicted_entities": []
   },
   {
-    "text": "How many visual performing art units are recommended ?",
+    "text": "How important is student's talent in admission?",
     "entities": [
       {
-        "text": "How many visual performing art units are recommended ?",
-        "start": 9,
-        "end": 30,
-        "entity": "subject",
-        "value": "visual/performing-arts"
-      },
-      {
-        "text": "How many visual performing art units are recommended ?",
-        "start": 31,
-        "end": 52,
-        "entity": "unit_level",
-        "value": "units-recommended"
+        "text": "How important is student's talent in admission?",
+        "start": 27,
+        "end": 33,
+        "entity": "non_academic_factor",
+        "value": "talent"
       }
     ],
     "predicted_entities": []
   },
   {
-    "text": "What is the required unit for social study?",
+    "text": "How important is student's religion in basis for selection",
     "entities": [
       {
-        "start": 12,
-        "end": 25,
-        "value": "units-required",
-        "entity": "unit_level"
-      },
-      {
-        "start": 30,
-        "end": 42,
-        "value": "social-studies",
-        "entity": "subject"
+        "text": "How important is student's religion in basis for selection",
+        "start": 27,
+        "end": 35,
+        "entity": "non_academic_factor",
+        "value": "talent"
       }
     ],
     "predicted_entities": []
   },
   {
-    "text": "What is the required unit for laboratory science ?",
+    "text": "percentage of students who submitted sat",
     "entities": [
       {
-        "start": 12,
-        "end": 25,
-        "value": "units-required",
-        "entity": "unit_level"
+        "text": "percentage of students who submitted sat",
+        "start": 0,
+        "end": 10,
+        "entity": "aggregation",
+        "value": "percent"
       },
       {
-        "start": 30,
+        "text": "percentage of students who submitted sat",
+        "start": 37,
         "end": 40,
-        "value": "lab",
-        "entity": "subject"
+        "entity": "standardized_test",
+        "value": "sat"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "What is the 75th percentile score for ACT writing",
+    "entities": [
+      {
+        "text": "What is the 75th percentile score for ACT writing",
+        "start": 12,
+        "end": 27,
+        "entity": "test_percentile",
+        "value": "75th percentile"
       },
       {
-        "start": 41,
-        "end": 48,
-        "value": "science",
-        "entity": "subject"
+        "text": "What is the 75th percentile score for ACT writing",
+        "start": 38,
+        "end": 49,
+        "entity": "act_test_component",
+        "value": "ACT writing"
       }
     ],
     "predicted_entities": []
@@ -329,30 +403,32 @@
     "text": "How many degree-seeking non-first-time students are there at Rose-Hulman in 2013 to 2014 academic year?",
     "entities": [
       {
+        "text": "How many degree-seeking non-first-time students are there at Rose-Hulman in 2013 to 2014 academic year?",
         "start": 9,
         "end": 23,
-        "value": "degree-seeking",
-        "entity": "degree-goal"
+        "entity": "degree-goal",
+        "value": "degree-seeking"
       },
       {
+        "text": "How many degree-seeking non-first-time students are there at Rose-Hulman in 2013 to 2014 academic year?",
         "start": 24,
         "end": 38,
-        "value": "non-first-time",
-        "entity": "is_first_time"
+        "entity": "is_first_time",
+        "value": "non-first-time"
       },
       {
+        "text": "How many degree-seeking non-first-time students are there at Rose-Hulman in 2013 to 2014 academic year?",
         "start": 76,
         "end": 80,
-        "value": "2013",
         "entity": "year",
-        "role": "from"
+        "value": "2013"
       },
       {
+        "text": "How many degree-seeking non-first-time students are there at Rose-Hulman in 2013 to 2014 academic year?",
         "start": 84,
         "end": 88,
-        "value": "2014",
         "entity": "year",
-        "role": "to"
+        "value": "2014"
       }
     ],
     "predicted_entities": []

@@ -135,20 +135,19 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         total = 0
         # print(start,end)
         entitiesUsed = []
-        
         for i in range(start, end+1):
             filteredEntitiesCopy = copyEntities(filteredEntities)
-            entityValue = generator(i, start, end)
+            entityValues= generator(i, start, end)
             # we can make the entity key more descriptive later 
-            fakeEntity = {
-                "entity": "graduation_years",
-                "value": entityValue,
-                "aggregation": True
-            }
+            for value in entityValues:
+                fakeEntity = {
+                    "entity": "range",
+                    "value": value,
+                    "aggregation": True
+                }
         
-            filteredEntitiesCopy.append(fakeEntity)
-           
-            answers, intent, entitiesUsedBySearch = self.searchForAnswer(intent, filteredEntitiesCopy, shouldAddRowStrategy,identityFunc)
+                filteredEntitiesCopy.append(fakeEntity)
+            answers, intent, entitiesUsedBySearch = self.searchForAnswer(intent, filteredEntitiesCopy, shouldAddRowStrategy, identityFunc)
             entitiesUsed = entitiesUsed + list(entitiesUsedBySearch)
             
             if len(answers) == 0:
