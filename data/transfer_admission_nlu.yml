@@ -133,62 +133,62 @@ nlu:
     
     - What is the [date]{"entity": "date", "value": "date"} of admission decision for transfer students?
     - What is the admission decision [date]{"entity": "date", "value": "date"} for transfer students?
-    - What is the [closing](admission_decision_date) [date](date) for transfer students applications in [autumn]{"entity": "academic_term", "value": "fall"} quarter
-    - What is the [closing](admission_decision_date) [date](date) for transfer students applications in [fall](academic_term) quarter
-    - What is the [closing](admission_decision_date) [date](date) for transfer students applications in [spring](academic_term) quarter
-    - What is the [closing](admission_decision_date) [date](date) for transfer students applications in [summer](academic_term) quarter
-    - What is the [closing](admission_decision_date) [date](date) for transfer students applications in [winter](academic_term) quarter
-    - What is the [closing](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students applications in [autumn]{"entity": "academic_term", "value": "fall"} quarter
-    - What is the [closing](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students applications in [fall](academic_term) quarter
-    - What is the [closing](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students applications in [spring](academic_term) quarter
-    - What is the [closing](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students applications in [summer](academic_term) quarter
-    - What is the [closing](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students applications in [winter](academic_term) quarter
+    - What is the [closing](admission_decision_date) [date](date) for transfer students [applications]{"entity": "application", "value": "application"} in [autumn]{"entity": "academic_term", "value": "fall"} quarter
+    - What is the [closing](admission_decision_date) [date](date) for transfer students [applications]{"entity": "application", "value": "application"} in [fall](academic_term) quarter
+    - What is the [closing](admission_decision_date) [date](date) for transfer students [applications]{"entity": "application", "value": "application"} in [spring](academic_term) quarter
+    - What is the [closing](admission_decision_date) [date](date) for transfer students [applications]{"entity": "application", "value": "application"} in [summer](academic_term) quarter
+    - What is the [closing](admission_decision_date) [date](date) for transfer students [applications]{"entity": "application", "value": "application"} in [winter](academic_term) quarter
+    - What is the [closing](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students [applications]{"entity": "application", "value": "application"} in [autumn]{"entity": "academic_term", "value": "fall"} quarter
+    - What is the [closing](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students [applications]{"entity": "application", "value": "application"} in [fall](academic_term) quarter
+    - What is the [closing](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students [applications]{"entity": "application", "value": "application"} in [spring](academic_term) quarter
+    - What is the [closing](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students [applications]{"entity": "application", "value": "application"} in [summer](academic_term) quarter
+    - What is the [closing](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students [applications]{"entity": "application", "value": "application"} in [winter](academic_term) quarter
  
-    - What is the [notification](admission_decision_date) [date](date) for transfer students applications in [autumn]{"entity": "academic_term", "value": "fall"} quarter
-    - What is the [notification](admission_decision_date) [date](date) for transfer students applications in [fall](academic_term) quarter
-    - What is the [notification](admission_decision_date) [date](date) for transfer students applications in [spring](academic_term) quarter
-    - What is the [notification](admission_decision_date) [date](date) for transfer students applications in [summer](academic_term) quarter
-    - What is the [notification](admission_decision_date) [date](date) for transfer students applications in [winter](academic_term) quarter
-    - What is the [notification](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students applications in [autumn]{"entity": "academic_term", "value": "fall"} quarter
-    - What is the [notification](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students applications in [fall](academic_term) quarter
-    - What is the [notification](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students applications in [spring](academic_term) quarter
-    - What is the [notification](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students applications in [summer](academic_term) quarter
-    - What is the [notification](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students applications in [winter](academic_term) quarter
+    - What is the [notification](admission_decision_date) [date](date) for transfer students [applications]{"entity": "application", "value": "application"} in [autumn]{"entity": "academic_term", "value": "fall"} quarter
+    - What is the [notification](admission_decision_date) [date](date) for transfer students [applications]{"entity": "application", "value": "application"} in [fall](academic_term) quarter
+    - What is the [notification](admission_decision_date) [date](date) for transfer students [applications]{"entity": "application", "value": "application"} in [spring](academic_term) quarter
+    - What is the [notification](admission_decision_date) [date](date) for transfer students [applications]{"entity": "application", "value": "application"} in [summer](academic_term) quarter
+    - What is the [notification](admission_decision_date) [date](date) for transfer students [applications]{"entity": "application", "value": "application"} in [winter](academic_term) quarter
+    - What is the [notification](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students [applications]{"entity": "application", "value": "application"} in [autumn]{"entity": "academic_term", "value": "fall"} quarter
+    - What is the [notification](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students [applications]{"entity": "application", "value": "application"} in [fall](academic_term) quarter
+    - What is the [notification](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students [applications]{"entity": "application", "value": "application"} in [spring](academic_term) quarter
+    - What is the [notification](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students [applications]{"entity": "application", "value": "application"} in [summer](academic_term) quarter
+    - What is the [notification](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students [applications]{"entity": "application", "value": "application"} in [winter](academic_term) quarter
   
-    - What is the [notify]{"entity": "admission_decision_date", "value": "notification"} [date](date) for transfer students applications in [autumn]{"entity": "academic_term", "value": "fall"} quarter
-    - What is the [notify]{"entity": "admission_decision_date", "value": "notification"} [date](date) for transfer students applications in [fall](academic_term) quarter
-    - What is the [notify]{"entity": "admission_decision_date", "value": "notification"} [date](date) for transfer students applications in [spring](academic_term) quarter
-    - What is the [notify]{"entity": "admission_decision_date", "value": "notification"} [date](date) for transfer students applications in [summer](academic_term) quarter
-    - What is the [notify]{"entity": "admission_decision_date", "value": "notification"} [date](date) for transfer students applications in [winter](academic_term) quarter
-    - What is the [notify]{"entity": "admission_decision_date", "value": "notification"} [time]{"entity": "date", "value": "date"} for transfer students applications in [autumn]{"entity": "academic_term", "value": "fall"} quarter
-    - What is the [notify]{"entity": "admission_decision_date", "value": "notification"} [time]{"entity": "date", "value": "date"} for transfer students applications in [fall](academic_term) quarter
-    - What is the [notify]{"entity": "admission_decision_date", "value": "notification"} [time]{"entity": "date", "value": "date"} for transfer students applications in [spring](academic_term) quarter
-    - What is the [notify]{"entity": "admission_decision_date", "value": "notification"} [time]{"entity": "date", "value": "date"} for transfer students applications in [summer](academic_term) quarter
-    - What is the [notify]{"entity": "admission_decision_date", "value": "notification"} [time]{"entity": "date", "value": "date"} for transfer students applications in [winter](academic_term) quarter
+    - What is the [notify]{"entity": "admission_decision_date", "value": "notification"} [date](date) for transfer students [applications]{"entity": "application", "value": "application"} in [autumn]{"entity": "academic_term", "value": "fall"} quarter
+    - What is the [notify]{"entity": "admission_decision_date", "value": "notification"} [date](date) for transfer students [applications]{"entity": "application", "value": "application"} in [fall](academic_term) quarter
+    - What is the [notify]{"entity": "admission_decision_date", "value": "notification"} [date](date) for transfer students [applications]{"entity": "application", "value": "application"} in [spring](academic_term) quarter
+    - What is the [notify]{"entity": "admission_decision_date", "value": "notification"} [date](date) for transfer students [applications]{"entity": "application", "value": "application"} in [summer](academic_term) quarter
+    - What is the [notify]{"entity": "admission_decision_date", "value": "notification"} [date](date) for transfer students [applications]{"entity": "application", "value": "application"} in [winter](academic_term) quarter
+    - What is the [notify]{"entity": "admission_decision_date", "value": "notification"} [time]{"entity": "date", "value": "date"} for transfer students [applications]{"entity": "application", "value": "application"} in [autumn]{"entity": "academic_term", "value": "fall"} quarter
+    - What is the [notify]{"entity": "admission_decision_date", "value": "notification"} [time]{"entity": "date", "value": "date"} for transfer students [applications]{"entity": "application", "value": "application"} in [fall](academic_term) quarter
+    - What is the [notify]{"entity": "admission_decision_date", "value": "notification"} [time]{"entity": "date", "value": "date"} for transfer students [applications]{"entity": "application", "value": "application"} in [spring](academic_term) quarter
+    - What is the [notify]{"entity": "admission_decision_date", "value": "notification"} [time]{"entity": "date", "value": "date"} for transfer students [applications]{"entity": "application", "value": "application"} in [summer](academic_term) quarter
+    - What is the [notify]{"entity": "admission_decision_date", "value": "notification"} [time]{"entity": "date", "value": "date"} for transfer students [applications]{"entity": "application", "value": "application"} in [winter](academic_term) quarter
 
-    - What is the [priority](admission_decision_date) [date](date) for transfer students applications in [autumn]{"entity": "academic_term", "value": "fall"} quarter
-    - What is the [priority](admission_decision_date) [date](date) for transfer students applications in [fall](academic_term) quarter
-    - What is the [priority](admission_decision_date) [date](date) for transfer students applications in [spring](academic_term) quarter
-    - What is the [priority](admission_decision_date) [date](date) for transfer students applications in [summer](academic_term) quarter
-    - What is the [priority](admission_decision_date) [date](date) for transfer students applications in [winter](academic_term) quarter
-    - What is the [priority](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students applications in [autumn]{"entity": "academic_term", "value": "fall"} quarter
-    - What is the [priority](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students applications in [fall](academic_term) quarter
-    - What is the [priority](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students applications in [spring](academic_term) quarter
-    - What is the [priority](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students applications in [summer](academic_term) quarter
-    - What is the [priority](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students applications in [winter](academic_term) quarter
+    - What is the [priority](admission_decision_date) [date](date) for transfer students [applications]{"entity": "application", "value": "application"} in [autumn]{"entity": "academic_term", "value": "fall"} quarter
+    - What is the [priority](admission_decision_date) [date](date) for transfer students [applications]{"entity": "application", "value": "application"} in [fall](academic_term) quarter
+    - What is the [priority](admission_decision_date) [date](date) for transfer students [applications]{"entity": "application", "value": "application"} in [spring](academic_term) quarter
+    - What is the [priority](admission_decision_date) [date](date) for transfer students [applications]{"entity": "application", "value": "application"} in [summer](academic_term) quarter
+    - What is the [priority](admission_decision_date) [date](date) for transfer students [applications]{"entity": "application", "value": "application"} in [winter](academic_term) quarter
+    - What is the [priority](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students [applications]{"entity": "application", "value": "application"} in [autumn]{"entity": "academic_term", "value": "fall"} quarter
+    - What is the [priority](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students [applications]{"entity": "application", "value": "application"} in [fall](academic_term) quarter
+    - What is the [priority](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students [applications]{"entity": "application", "value": "application"} in [spring](academic_term) quarter
+    - What is the [priority](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students [applications]{"entity": "application", "value": "application"} in [summer](academic_term) quarter
+    - What is the [priority](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students [applications]{"entity": "application", "value": "application"} in [winter](academic_term) quarter
    
-    - What is the [reply](admission_decision_date) [date](date) for transfer students applications in [autumn]{"entity": "academic_term", "value": "fall"} quarter
-    - What is the [reply](admission_decision_date) [date](date) for transfer students applications in [fall](academic_term) quarter
-    - What is the [reply](admission_decision_date) [date](date) for transfer students applications in [spring](academic_term) quarter
-    - What is the [reply](admission_decision_date) [date](date) for transfer students applications in [summer](academic_term) quarter
-    - What is the [reply](admission_decision_date) [date](date) for transfer students applications in [winter](academic_term) quarter
-    - What is the [reply](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students applications in [autumn]{"entity": "academic_term", "value": "fall"} quarter
-    - What is the [reply](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students applications in [fall](academic_term) quarter
-    - What is the [reply](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students applications in [spring](academic_term) quarter
-    - What is the [reply](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students applications in [summer](academic_term) quarter
-    - What is the [reply](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students applications in [winter](academic_term) quarter
+    - What is the [reply](admission_decision_date) [date](date) for transfer students [applications]{"entity": "application", "value": "application"} in [autumn]{"entity": "academic_term", "value": "fall"} quarter
+    - What is the [reply](admission_decision_date) [date](date) for transfer students [applications]{"entity": "application", "value": "application"} in [fall](academic_term) quarter
+    - What is the [reply](admission_decision_date) [date](date) for transfer students [applications]{"entity": "application", "value": "application"} in [spring](academic_term) quarter
+    - What is the [reply](admission_decision_date) [date](date) for transfer students [applications]{"entity": "application", "value": "application"} in [summer](academic_term) quarter
+    - What is the [reply](admission_decision_date) [date](date) for transfer students [applications]{"entity": "application", "value": "application"} in [winter](academic_term) quarter
+    - What is the [reply](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students [applications]{"entity": "application", "value": "application"} in [autumn]{"entity": "academic_term", "value": "fall"} quarter
+    - What is the [reply](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students [applications]{"entity": "application", "value": "application"} in [fall](academic_term) quarter
+    - What is the [reply](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students [applications]{"entity": "application", "value": "application"} in [spring](academic_term) quarter
+    - What is the [reply](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students [applications]{"entity": "application", "value": "application"} in [summer](academic_term) quarter
+    - What is the [reply](admission_decision_date) [time]{"entity": "date", "value": "date"} for transfer students [applications]{"entity": "application", "value": "application"} in [winter](academic_term) quarter
    
-    - [When]{"entity": "date", "value": "date"} are applications reviewed for transfer students?
+    - [When]{"entity": "date", "value": "date"} are [applications]{"entity": "application", "value": "application"} reviewed for transfer students?
     - [When]{"entity": "date", "value": "date"} does admission decision come out for transfer students?
 
     - Are there any [additional]{"entity": "other", "value": "other" } [transfer credit]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} policies ?

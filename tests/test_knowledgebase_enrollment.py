@@ -47,6 +47,11 @@ class enrollment_test(unittest.TestCase):
     def extractOutput(self, answers, intent, entities):
         return answers
     
+    def test_give_no_entities_should_sum_up_everything(self):
+        answers = self.knowledgeBase.searchForAnswer("enrollment", [
+        ], self.defaultShouldAddRowStrategy, self.extractOutput)
+        self.assertEqual(answers, [str(TOTAL_UNDERGRADUATES+TOTAL_GRADUATES)])
+
     
     def test_when_ask_for_total_graduates_enrollment_should_return_correct_value(self):
         answers = self.knowledgeBase.searchForAnswer("enrollment", [
