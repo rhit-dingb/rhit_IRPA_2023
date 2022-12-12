@@ -1,6 +1,6 @@
 from typing import Tuple
 from DataManager.DataManager import DataManager
-from Data_Ingestion.ExcelProcessor import ExcelProcessor
+from Data_Ingestion.MongoProcessor import MongoProcessor
 from Data_Ingestion.SparseMatrix import SparseMatrix
 from Data_Ingestion.TopicData import TopicData
 from Exceptions.ExceptionMessages import NO_DATA_AVAILABLE_FOR_GIVEN_INTENT_FORMAT
@@ -18,7 +18,7 @@ class MongoDataManager():
     def __init__(self, topicToParse = ["enrollment"]):
         super().__init__()
         self.topicToParse = topicToParse
-        #self.MongoProcessor = MongoProcessor(filePath, self.topicToParse)
+        self.MongoProcessor = MongoProcessor(self.topicToParse)
         self.client = MongoClient('mongodb://localhost:27017')
 
     print("Started!")
@@ -43,11 +43,13 @@ class MongoDataManager():
 
             if not intent in db.list_collection_names():
                 raise NoDataFoundException(NO_DATA_AVAILABLE_FOR_GIVEN_INTENT_FORMAT.format(topic = intent, start= start, end=end), ExceptionTypes.NoSparseMatrixDataAvailableForGivenIntent)
-                
-            topicData : TopicData = db[intent]
+            localCollection = db[intent]
+            self.MongoProcessor.processCollectiontoSparseMatrix(localCollection)
+            topicData : TopicData = self.MongoProcessor.getData()
             # cursor = topicData.find()
             # for doc in cursor:
             #     print(doc)
+            print(topicData)
             return topicData
 
 
