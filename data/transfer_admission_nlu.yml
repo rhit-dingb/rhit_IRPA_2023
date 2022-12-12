@@ -57,9 +57,9 @@ nlu:
     - Does a transfer applicant need to have [minimum](aggregation) number of [credit](unit_type) completed or else they must apply as an entering [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}?
     - Does a transfer applicant need to have [minimum](aggregation) number of [credits]{"entity": "unit_type", "value": "credit"} completed or else they must apply as an entering [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}?
 
-    - How many [female](gender) transfer student [admit]{"entity": "action", "value": "admitted"} to Rose-Hulman?
-    - How many [female](gender) transfer student [admitted](action) to Rose-Hulman?
-    - How many [female](gender) transfer student [admitting]{"entity": "action", "value": "admitted"} to Rose-Hulman?
+    - How many [female](gender) transfer student [admit]{"entity": "action", "value": "accepted"} to Rose-Hulman?
+    - How many [female](gender) transfer student [admitted]{"entity": "action", "value": "accepted"} to Rose-Hulman?
+    - How many [female](gender) transfer student [admitting]{"entity": "action", "value": "accepted"} to Rose-Hulman?
     - How many [female](gender) transfer student [applied](action) to Rose-Hulman?
     - How many [female](gender) transfer student [apply]{"entity": "action", "value": "applied"} to Rose-Hulman?
     - How many [female](gender) transfer student [applying]{"entity": "action", "value": "applied"} to Rose-Hulman?
@@ -67,9 +67,9 @@ nlu:
     - How many [female](gender) transfer student [enrolled](action) to Rose-Hulman?
     - How many [female](gender) transfer student are [enrolling]{"entity": "action", "value": "enrolled"} to Rose-Hulman?
 
-    - How many [woman]{"entity": "gender", "value": "female"} transfer student [admit]{"entity": "action", "value": "admitted"} to Rose-Hulman?
-    - How many [woman]{"entity": "gender", "value": "female"} transfer student [admitted](action) to Rose-Hulman?
-    - How many [woman]{"entity": "gender", "value": "female"} transfer student [admitting]{"entity": "action", "value": "admitted"} to Rose-Hulman?
+    - How many [woman]{"entity": "gender", "value": "female"} transfer student [admit]{"entity": "action", "value": "accepted"} to Rose-Hulman?
+    - How many [woman]{"entity": "gender", "value": "female"} transfer student [admitted]{"entity": "action", "value": "accepted"} to Rose-Hulman?
+    - How many [woman]{"entity": "gender", "value": "female"} transfer student [admitting]{"entity": "action", "value": "accepted"} to Rose-Hulman?
     - How many [woman]{"entity": "gender", "value": "female"} transfer student [applied](action) to Rose-Hulman?
     - How many [woman]{"entity": "gender", "value": "female"} transfer student [apply]{"entity": "action", "value": "applied"} to Rose-Hulman?
     - How many [woman]{"entity": "gender", "value": "female"} transfer student [applying]{"entity": "action", "value": "applied"} to Rose-Hulman?
@@ -77,28 +77,28 @@ nlu:
     - How many [woman]{"entity": "gender", "value": "female"} transfer student [enrolled](action) to Rose-Hulman?
     - How many [woman]{"entity": "gender", "value": "female"} transfer student [enrolling]{"entity": "action", "value": "enrolled"} to Rose-Hulman?
 
-    - How many [male](gender) transfer student [admit]{"entity": "action", "value": "admitted"} to Rose-Hulman?
-    - How many [male](gender) transfer student [admitted](action) to Rose-Hulman?
-    - How many [male](gender) transfer student [admitting]{"entity": "action", "value": "admitted"} to Rose-Hulman?
+    - How many [male](gender) transfer student [admit]{"entity": "action", "value": "accepted"} to Rose-Hulman?
+    - How many [male](gender) transfer student [admitted]{"entity": "action", "value": "accepted"} to Rose-Hulman?
+    - How many [male](gender) transfer student [admitting]{"entity": "action", "value": "accepted"} to Rose-Hulman?
     - How many [male](gender) transfer student [applied](action) to Rose-Hulman?
     - How many [male](gender) transfer student [apply]{"entity": "action", "value": "applied"} to Rose-Hulman?
     - How many [male](gender) transfer student [applying]{"entity": "action", "value": "applied"} to Rose-Hulman?
     - How many [male](gender) transfer student [enroll]{"entity": "action", "value": "enrolled"} to Rose-Hulman?
     - How many [male](gender) transfer student [enrolled](action) to Rose-Hulman?
     - How many [male](gender) transfer student [enrolling]{"entity": "action", "value": "enrolled"} to Rose-Hulman?
-    - How many [men]{"entity": "gender", "value": "male"} transfer student [admit]{"entity": "action", "value": "admitted"} to Rose-Hulman?
-    - How many [men]{"entity": "gender", "value": "male"} transfer student [admitted](action) to Rose-Hulman?
-    - How many [men]{"entity": "gender", "value": "male"} transfer student [admitting]{"entity": "action", "value": "admitted"} to Rose-Hulman?
+    - How many [men]{"entity": "gender", "value": "male"} transfer student [admit]{"entity": "action", "value": "accepted"} to Rose-Hulman?
+    - How many [men]{"entity": "gender", "value": "male"} transfer student [admitted]{"entity": "action", "value": "accepted"} to Rose-Hulman?
+    - How many [men]{"entity": "gender", "value": "male"} transfer student [admitting]{"entity": "action", "value": "accepted"} to Rose-Hulman?
     - How many [men]{"entity": "gender", "value": "male"} transfer student [applied](action) to Rose-Hulman?
     - How many [men]{"entity": "gender", "value": "male"} transfer student [apply]{"entity": "action", "value": "applied"} to Rose-Hulman?
     - How many [men]{"entity": "gender", "value": "male"} transfer student [applying]{"entity": "action", "value": "applied"} to Rose-Hulman?
     - How many [men]{"entity": "gender", "value": "male"} transfer student [enroll]{"entity": "action", "value": "enrolled"} to Rose-Hulman?
     - How many [men]{"entity": "gender", "value": "male"} transfer student [enrolled](action) to Rose-Hulman?
     - How many [men]{"entity": "gender", "value": "male"} transfer student [enrolling]{"entity": "action", "value": "enrolled"} to Rose-Hulman?
-    - How many transfer student [admit]{"entity": "action", "value": "admitted"} to Rose-Hulman?
+    - How many transfer student [admit]{"entity": "action", "value": "accepted"} to Rose-Hulman?
 
-    - How many transfer student [admitted](action) to Rose-Hulman?
-    - How many transfer student [admitting]{"entity": "action", "value": "admitted"} to Rose-Hulman?
+    - How many transfer student [admitted]{"entity": "action", "value": "accepted"} to Rose-Hulman?
+    - How many transfer student [admitting]{"entity": "action", "value": "accepted"} to Rose-Hulman?
     - How many transfer student [applied](action) to Rose-Hulman?
     - How many transfer student [apply]{"entity": "action", "value": "applied"} to Rose-Hulman?
     - How many transfer student [applying]{"entity": "action", "value": "applied"} to Rose-Hulman?
@@ -131,7 +131,7 @@ nlu:
     - What is the [minimum](aggregation) [secondary school]{"entity": "education_level", "value": "high school"} [grade point average]{"entity": "academic_factor", "value": "gpa"} [required]{"entity":"condition", "value": "require"}  of transfer applicants?
     - What is the [minimum](aggregation) [university]{"entity": "education_level", "value": "college"} [grade point average]{"entity": "academic_factor", "value": "gpa"} [required]{"entity":"condition", "value": "require"}  of transfer applicants?
     
-    - What is the [date]{"entity": "admission_decision_date", "value": "date"} of admission decision for transfer students?
+    - What is the [date]{"entity": "date", "value": "date"} of admission decision for transfer students?
     - What is the admission decision [date]{"entity": "date", "value": "date"} for transfer students?
     - What is the [closing](admission_decision_date) [date](date) for transfer students applications in [autumn]{"entity": "academic_term", "value": "fall"} quarter
     - What is the [closing](admission_decision_date) [date](date) for transfer students applications in [fall](academic_term) quarter
@@ -372,10 +372,6 @@ nlu:
     - when
     - time
 
-- synonym: notification
-  examples: |
-    - notification
-    - notify
 
 - synonym: credit
   examples: |

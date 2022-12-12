@@ -84,12 +84,20 @@ nlu:
     - highest
     - max
 
+  
+- lookup: date
+  examples: |
+    - when
+    - time
+    - date
+    - deadline
     
 - synonym: date
   examples: |
     - when
     - time
     - date
+    - deadline
 
 
 - lookup: other
