@@ -96,7 +96,17 @@ nlu:
     - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [undergraduate](student_level) students who joined [sorority](category)
     - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [undergraduate](student_level) students who [commute](category) to school?
     - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [undergraduate](student_level) students who are [commuter]{"entity": "category", "value": "commute"}
+    
 
+
+    - Is there any [special-study]{"entity":"sepcial-study", "value": "special-study"} [program]{"entity":"program", "value": "program"} in your institute?
+    - What  [special-study]{"entity":"sepcial-study", "value": "special-study"} [program]{"entity":"program", "value": "program"} does rose-hulman have?
+    - Is there any  [program]{"entity":"program", "value": "program"} in your institute?
+    - What [program]{"entity":"program", "value": "program"} of [special-study]{"entity":"sepcial-study", "value": "special-study"}  do you have?
+    
+
+    - Which [areas]{"entity":"area", "value": "area"} are required to complete before they graduate?
+    - Before students graduate, which [areas]{"entity":"area", "value": "area"} are students required to study?
 
 - lookup: college_relation
   examples: |
@@ -125,6 +135,18 @@ nlu:
     - twenty-five or older
     - twenty five and older
     - twenty-five and older
+
+
+- synonym: special-study
+  examples: |
+    - special study
+    - special-study
+    - special studys
+
+- synonym: program
+  examples: |
+    - program
+    - programs
 
 
 - synonym: owned

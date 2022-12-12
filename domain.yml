@@ -225,7 +225,17 @@ entities:
 #Value: type
   - type
 
+#area word
+#value: area
+- area
 
+#sepcial-study words
+#Value sepcial-study
+- sepcial-study
+
+#program word
+#Value : program
+- program
 
 slots:
   enrollment_status:
