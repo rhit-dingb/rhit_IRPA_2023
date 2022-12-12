@@ -75,8 +75,6 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
                     searchResults.append(searchResult)
                 else:
                     searchResult = self.addSearchResult(searchResult, newSearchResult, searchResults)
-                if not shouldAdd:
-                    break
 
                 if len(printEntities) <= 0:
                     printEntities = usedEntities
@@ -89,8 +87,8 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
 
 
     def constructOutput(self, searchResult, intent, entitiesUsed):
-       return searchResult
-       # return constructSentence(searchResult, intent, entitiesUsed)
+       #return searchResult
+       return constructSentence(searchResult, intent, entitiesUsed)
 
     #This function will try to add up the search results, if the current search result and the new search result's type does not make sense
     # to be added together, it will add it into the list of answers instead of adding up the value.
@@ -98,7 +96,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
     def addSearchResult(self, currentSearchResult, newSearchResult, searchResults) -> str:
         castedCurrValue, currentSearchResultType = self.determineResultType(currentSearchResult)
         castedNewValue, newSearchResultType = self.determineResultType(newSearchResult)
-        if currentSearchResultType == SearchResultType.FLOAT or currentSearchResultType == SearchResultType.NUMBER:
+        if (currentSearchResultType == SearchResultType.FLOAT or currentSearchResultType == SearchResultType.NUMBER):
             if newSearchResultType == SearchResultType.FLOAT or newSearchResultType == SearchResultType.NUMBER:
                 newCalculatedValue = str(castedCurrValue + castedNewValue)
                 searchResults[len(searchResults)-1] = newCalculatedValue

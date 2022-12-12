@@ -47,22 +47,21 @@ class Cohort_Test(unittest.TestCase):
         self.dispatcher = CollectingDispatcher()
         #Make sure the knowledgebase class instance in Actions is using the data manager with test materials loaded.
         knowledgeBaseInAction.dataManager = self.knowledgeBase.dataManager
-        output.constructSentence = identityFunc
         knowledgeBaseInAction.constructOutput = identityFunc
         #self.patcher = mock.patch("OutputController.output.constructSentence", return_value = )
         
 
     #Cohorts actually uses the label of the entities, so we have to write test cases in terms of actions.
     def test_knowledgebase_when_ask_for_initial_cohort_should_return_correct_value(self):
-            answer = self.knowledgeBase.searchForAnswer(
+            answers = self.knowledgeBase.searchForAnswer(
                 "cohort",
                 [
                 createEntityObjHelper("initial"),
                 createEntityObjHelper("2014 cohort", entityLabel=COHORT_BY_YEAR_ENTITY_LABEL)
                 ], self.defaultShouldAddRowStrategy, output.constructSentence
             )
-
-            self.assertEqual(answers, [str(INITIAL_2014_COHORT_TOTAL)])
+            expectedAnswers = [str(INITIAL_2014_COHORT_TOTAL)]
+            self.assertEqual(answers, expectedAnswers)
 
     def test_when_ask_only_for_graduation_rate_should_return_six_year_graduation_rate(self):
         entities = [
@@ -87,9 +86,9 @@ class Cohort_Test(unittest.TestCase):
         queryCohort = ActionQueryCohort()
      
         tracker = Tracker.from_dict(createFakeTracker(COHORT_INTENT, entities))
-        queryCohort.run(dispatcher=dispatcher, tracker=tracker, domain=None )
-        
-        self.assertEqual(dispatcher.messages[0]["text"], str(COHORT_2014_STUDENT_GRADUATING_IN_MORE_THAN_5_YEARS_AND_IN_6_OR_LESS))
+        queryCohort.run(dispatcher=self.dispatcher, tracker=tracker, domain=None )
+        expectedAnswers = [str(COHORT_2014_STUDENT_GRADUATING_IN_MORE_THAN_5_YEARS_AND_IN_6_OR_LESS)]
+        checkAnswersMatch(self.assertEqual, self.dispatcher, expectedAnswers)
 
    
    

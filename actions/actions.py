@@ -6,7 +6,7 @@
 
 
 from DataManager.ExcelDataManager import ExcelDataManager
-from DataManager.constants import ADMISSION_INTENT, BASIS_FOR_SELECTION_INTENT, COHORT_BY_YEAR_ENTITY_LABEL, COHORT_INTENT, ENROLLMENT_INTENT, EXEMPTION_ENTITY_LABEL, FINAL_COHORT_ENTITY_LABEL, FRESHMAN_PROFILE_INTENT, HIGH_SCHOOL_UNITS_INTENT, INITIAL_COHORT_ENTITY_LABEL,  AID_ENTITY_LABEL, NO_AID_ENTITY_LABEL, RANGE_ENTITY_LABEL, RECIPIENT_OF_PELL_GRANT_ENTITY_LABEL, RECIPIENT_OF_STAFFORD_LOAN_NO_PELL_GRANT_ENTITY_LABEL, YEAR_FOR_COLLEGE_ENTITY_LABEL
+from DataManager.constants import ADMISSION_INTENT, BASIS_FOR_SELECTION_INTENT, COHORT_BY_YEAR_ENTITY_LABEL, COHORT_INTENT, ENROLLMENT_INTENT, EXEMPTION_ENTITY_LABEL, FINAL_COHORT_ENTITY_LABEL, FRESHMAN_PROFILE_INTENT, HIGH_SCHOOL_UNITS_INTENT, INITIAL_COHORT_ENTITY_LABEL,  AID_ENTITY_LABEL, NO_AID_ENTITY_LABEL, RANGE_ENTITY_LABEL, RECIPIENT_OF_PELL_GRANT_ENTITY_LABEL, RECIPIENT_OF_STAFFORD_LOAN_NO_PELL_GRANT_ENTITY_LABEL, STUDENT_LIFE_INTENT, TRANSFER_ADMISSION_INTENT, YEAR_FOR_COLLEGE_ENTITY_LABEL
 from Exceptions.ExceptionTypes import ExceptionTypes
 from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
 
@@ -24,7 +24,8 @@ from rasa_sdk.executor import CollectingDispatcher
 # knowledgeBase = SparseMatrixKnowledgeBase("./Data_Ingestion/CDS_SPARSE_ENR.xlsx")
 
 
-knowledgeBase = SparseMatrixKnowledgeBase(ExcelDataManager("./CDSData", [ENROLLMENT_INTENT, COHORT_INTENT, ADMISSION_INTENT, HIGH_SCHOOL_UNITS_INTENT, BASIS_FOR_SELECTION_INTENT, FRESHMAN_PROFILE_INTENT, TRANSFER_ADMISSION_INTENT]))
+knowledgeBase = SparseMatrixKnowledgeBase(ExcelDataManager("./CDSData", [ENROLLMENT_INTENT, COHORT_INTENT, ADMISSION_INTENT, HIGH_SCHOOL_UNITS_INTENT, BASIS_FOR_SELECTION_INTENT, FRESHMAN_PROFILE_INTENT, TRANSFER_ADMISSION_INTENT
+, STUDENT_LIFE_INTENT]))
 
 # This is a dictionary storing for an intent, what entities must be detected in the user's question in order for a answer to be returned
 # For example in the freshman profile, percentage is a column in the sparse matrix and an entity. If the user provide some bad input like:
@@ -37,6 +38,7 @@ requiredEntitiesMap = {
 
 
 defaultShouldAddRowStrategy = DefaultShouldAddRowStrategy()
+
 
 class ActionGetAvailableOptions(Action):
     def name(self) -> Text:
@@ -56,6 +58,24 @@ class ActionAskMoreQuestion(Action):
         dispatcher.utter_message("Great! Do you have anymore questions?")
         return []
 
+
+class ActionQueryKnowledgebase(Action):
+    def name(self) -> Text:
+        return "action_query_knowledgebase"
+
+    def run(self, dispatcher, tracker, domain):
+        entitiesExtracted = tracker.latest_message["entities"]
+        intent = tracker.latest_message["intent"]["name"]
+        print(entitiesExtracted)
+        try:
+            answers = knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy, knowledgeBase.constructOutput, True)
+            utterAllAnswers(answers, dispatcher)        
+        except Exception as e:
+            utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
+        return []
+    
+
+
 class ActionQueryTransferAdmission(Action):
    
     def name(self) -> Text:
@@ -67,12 +87,9 @@ class ActionQueryTransferAdmission(Action):
         print(entitiesExtracted)
         try:
             answers = knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy, knowledgeBase.constructOutput, True)
-            utterAllAnswers(answers, dispatcher)   
-            
+            utterAllAnswers(answers, dispatcher)        
         except Exception as e:
             utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
-            
-
         return []
 
 
@@ -143,7 +160,7 @@ class ActionQueryHighSchoolUnits(Action):
         print(tracker.latest_message["entities"])
         
         try:
-            answers = knowledgeBase.searchForAnswer(intent, entitiesExtracted, self.choosenShouldAddRowStrategy, output.outputFuncForHighSchoolUnits)
+            answers = knowledgeBase.searchForAnswer(intent, entitiesExtracted, self.choosenShouldAddRowStrategy, knowledgeBase.constructOutput)
             utterAllAnswers(answers, dispatcher)  
         except Exception as e:
            utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
@@ -331,8 +348,7 @@ class ActionQueryCohort(Action):
 
             try:    
                 answer, intent, entitiesUsed = knowledgeBase.aggregateDiscreteRange(
-                    intent, entitiesFiltered, minYear, maxYear, generator, ignoreAnyAidShouldAddRow,
-                    outputFunc = output.identityFunc
+                    intent, entitiesFiltered, minYear, maxYear, generator, ignoreAnyAidShouldAddRow
                     )
 
                 if askForGraduationRate:
@@ -343,7 +359,7 @@ class ActionQueryCohort(Action):
                 
                 dispatcher.utter_message(answer)    
             except Exception as e:
-                 utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)        
+                  utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)        
             
         else:
             

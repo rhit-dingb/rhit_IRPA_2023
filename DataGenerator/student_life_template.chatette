@@ -8,9 +8,9 @@
     
     \[Percentage\]\{"entity":"aggregation", "value": "percent"\} of ~[full time] and ~[part time] ~[student modifier choice] students enrolled who are \[age\]\{"entity":"age", "value": "age"\} \[~[age]\]\{"entity":"age", "value": "25 and older"\}
 
-    \[Average\]\{"entity":"aggregation", "value": "average"\} \[age\]\{"entity":"age", "value": "age"\} of ~[full time] ~[student modifier choice] students
+    \[Average\]\{"entity":"aggregation", "value": "mean"\} \[age\]\{"entity":"age", "value": "age"\} of ~[full time] ~[student modifier choice] students
 
-    \[Average\]\{"entity":"aggregation", "value": "average"\} \[age\]\{"entity":"age", "value": "age"\} of ~[full time] and ~[part time] ~[student modifier choice] students
+    \[Average\]\{"entity":"aggregation", "value": "mean"\} \[age\]\{"entity":"age", "value": "age"\} of ~[full time] and ~[part time] ~[student modifier choice] students
 
     //The academic_factor here will only have extracirricular
     What @[academic_factor] does Rose-Hulman offer? 

@@ -15,7 +15,6 @@ intents:
   - freshman_profile
   - student_life
 
-
   - mood_great
   - mood_unhappy
   - bot_challenge
@@ -80,12 +79,6 @@ entities:
 # DEPRECATED ENTITIES
 # for six-year graduation rate for 2015 cohort row 
   # - graduation_rate
-
-  #retention rate
-  # - retention-rate
-
-  - student_enrollment_result
-
 
   #retention rate
   # - retention-rate
@@ -176,6 +169,8 @@ entities:
 # used to capture the word credit and unit as in class credits/unit
   - unit_type
 
+#Capture unit of measure. Value: Unit of measure
+  - unit_of_measure
 
 #Academic term. Used to capture the word "term" referring to academic terms
   - academic_term
@@ -215,7 +210,7 @@ entities:
 
 #Describes different military branch
 #Values: army, navy, air force
-  - military branch
+  - military_branch
 
 # Captures rotc which stands for reserve Officers training corps/
 # Value: rotc
@@ -313,6 +308,9 @@ slots:
 
 
 actions:
+
+  - action_query_knowledgebase
+  
   - action_get_available_options
   - action_ask_more_question
   - action_query_cohort

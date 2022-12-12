@@ -570,6 +570,18 @@ nlu:
     - [percentage]{"entity":"aggregation", "value": "percent"} of total first-time, first-year (freshman) students who [turned in]{"entity": "submitted", "value":  "submitted"} high school [class rank]{"entity":"academic_factor", "value": "class rank"}
     - [percentage]{"entity":"aggregation", "value": "percent"} of total first-time, first-year (freshman) students who [turn in]{"entity": "submitted", "value":  "submitted"} high school [class rank]{"entity":"academic_factor", "value": "class rank"}
 
+- synonym: 25th percentile 
+  examples: |
+    - 25 percentile
+
+- synonym: 50th percentile 
+  examples: |
+    - 50 percentile
+
+- synonym: 75th percentile 
+  examples: |
+    - 75 percentile
+
 - lookup: submitted
   examples: |
     - submitted

@@ -20,11 +20,11 @@ nlu:
 
     - What is the [final](cohort_initial_final) [2014 cohort](cohort_by_year), after adjusting for [allowable exclusions]{"entity": "exemptions", "value":"exemptions"}
     
-    - Of the [initial](cohort_initial_final) [2120 cohort](cohort_by_year), how many completed the program in [four years]{"entity": "years_for_college", "value": "4 year"} [or less]{"entity": "range", "value": "within"}?
-    - Of the [initial](cohort_initial_final) [9208 cohort](cohort_by_year), how many completed the program in [more than]{"entity": "range", "value": "more than"} [four years]{"entity": "years_for_college", "value": "4 year"} but in [five years]{"entity": "years_for_college", "value": "5 year"} [or less]{"entity": "range", "value": "within"}? 
-    - Of the [initial](cohort_initial_final) [2013 cohort](cohort_by_year), how many completed the program in [more than]{"entity": "range", "value": "more than"} [five years]{"entity": "years_for_college", "value": "5 year"} but in [six years]{"entity": "years_for_college", "value": "6 year"} [or less]{"entity": "range", "value": "within"}?
+    - Of the [initial](cohort_initial_final) [2120 cohort](cohort_by_year), how many completed the program in [four years]{"entity": "years_for_college", "value": "4 year"} or [less]{"entity": "range", "value": "within"}?
+    - Of the [initial](cohort_initial_final) [9208 cohort](cohort_by_year), how many completed the program in [more than]{"entity": "range", "value": "more than"} [four years]{"entity": "years_for_college", "value": "4 year"} but in [five years]{"entity": "years_for_college", "value": "5 year"} or [less]{"entity": "range", "value": "within"}? 
+    - Of the [initial](cohort_initial_final) [2013 cohort](cohort_by_year), how many completed the program in [more than]{"entity": "range", "value": "more than"} [five years]{"entity": "years_for_college", "value": "5 year"} but in [six years]{"entity": "years_for_college", "value": "6 year"} or [less]{"entity": "range", "value": "within"}?
 
-    - Of the [initial](cohort_initial_final) [4014 cohort](cohort_by_year), how many completed the program in [more than]{"entity": "range", "value": "more than"} [four years]{"entity": "years_for_college", "value": "4 year"} but in [five years]{"entity": "years_for_college", "value": "5 year"} [or less]{"entity": "range", "value": "within"} and are [recipients of subsidized stafford loan and did not receive a pell grant]{"entity": "aid_status", "role": "stafford", "value": "stafford-loan"}
+    - Of the [initial](cohort_initial_final) [4014 cohort](cohort_by_year), how many completed the program in [more than]{"entity": "range", "value": "more than"} [four years]{"entity": "years_for_college", "value": "4 year"} but in [five years]{"entity": "years_for_college", "value": "5 year"} or [less]{"entity": "range", "value": "within"} and are [recipients of subsidized stafford loan and did not receive a pell grant]{"entity": "aid_status", "role": "stafford", "value": "stafford-loan"}
 
     - What is the [six year]{"entity": "years_for_college", "value": "6 year"} [graduation]{"entity":"student_enrollment_result", "value": "graduation"} [rate]{"entity": "aggregation", "value": "percent"} for students who are [recipients of a federal pell grant]{"entity": "aid_status", "role": "pell", "value": "pell-grant"} in the [2013 cohort](cohort_by_year)?
     - what is the total number of students graduating [within]{"entity": "range", "value": "within"} [six years]{"entity": "years_for_college", "value": "6 year"} for [2019 cohort](cohort_by_year) who [did not receive either a pell grant or a subsidized stafford loan]{"entity":"aid_status", "value": "no-aid"}
@@ -46,21 +46,21 @@ nlu:
     - How many students [graduated]{"entity":"student_enrollment_result", "value": "graduation"} [within]{"entity": "range", "value": "within"} [4 years]{"entity": "years_for_college", "value": "4 year"} for [2090 cohort](cohort_by_year)?
     - I want to know students who [graduated]{"entity":"student_enrollment_result", "value": "graduation"} [within]{"entity": "range", "value": "within"} [four year]{"entity": "range", "value": "4 year"} of [2014 cohort](cohort_by_year)
     
-    - [graduation]{"entity":"student_enrollment_result", "value": "graduation"} [rate]{"entity": "aggregation", "value": "percent"} for students who [graduated]{"entity":"student_enrollment_result", "value": "graduation"} [in]{"entity": "range", "value": "within"} [5 years]{"entity": "years_for_college", "value": "5 year"} of [2052 cohort](cohort_by_year)
+    - [graduation]{"entity":"student_enrollment_result", "value": "graduation"} [rate]{"entity": "aggregation", "value": "percent"} for students who [graduated]{"entity":"student_enrollment_result", "value": "graduation"} in [5 years]{"entity": "years_for_college", "value": "5 year"} of [2052 cohort](cohort_by_year)
 
-    - How many students [graduated]{"entity":"student_enrollment_result", "value": "graduation"} [more than]{"entity": "range", "value": "more than"} [5 years]{"entity": "years_for_college", "value": "5 year"} and [6 years]{"entity": "years_for_college", "value": "6 year"} [or less]{"entity":"range", "value":"within"} for the [2014 cohort](cohort_by_year)?
+    - How many students [graduated]{"entity":"student_enrollment_result", "value": "graduation"} [more than]{"entity": "range", "value": "more than"} [5 years]{"entity": "years_for_college", "value": "5 year"} and [6 years]{"entity": "years_for_college", "value": "6 year"} or [less]{"entity":"range", "value":"within"} for the [2014 cohort](cohort_by_year)?
 
-    - How many students [graduated]{"entity":"student_enrollment_result", "value": "graduation"} in [no more than]{"entity": "range", "value": "within"} [5 years]{"entity": "years_for_college", "value": "5 year"} and [6 years]{"entity": "years_for_college", "value": "6 year"} [or less]{"entity":"range", "value":"within"} for the [2014 cohort](cohort_by_year)?
+    - How many students [graduated]{"entity":"student_enrollment_result", "value": "graduation"} in [no more than]{"entity": "range", "value": "within"} [5 years]{"entity": "years_for_college", "value": "5 year"} and [6 years]{"entity": "years_for_college", "value": "6 year"} or [less]{"entity":"range", "value":"within"} for the [2014 cohort](cohort_by_year)?
     - How many students [graduated]{"entity":"student_enrollment_result", "value": "graduation"} in [no more than]{"entity": "range", "value": "within"} [4 years]{"entity": "years_for_college", "value": "4 year"} 
 
     - How many students [graduated]{"entity":"student_enrollment_result", "value": "graduation"} [more than]{"entity": "range", "value": "more than"} [five years]{"entity": "years_for_college", "value": "5 year"}?
     - How many students [graduated]{"entity":"student_enrollment_result", "value": "graduation"} [within]{"entity": "range", "value": "within"} [five years]{"entity": "years_for_college", "value": "5 year"} but in [more than]{"entity": "range", "value": "more than"} [four years]{"entity": "years_for_college", "value": "4 year"} for [2046 cohort](cohort_by_year)?
-    - How many students [graduated]{"entity":"student_enrollment_result", "value": "graduation"} in [five year]{"entity": "years_for_college", "value": "5 year"} [or less]{"entity": "range", "value": "within"} for [2055 cohort](cohort_by_year) who received [no aid]{"entity":"aid_status", "value": "no-aid"}
+    - How many students [graduated]{"entity":"student_enrollment_result", "value": "graduation"} in [five year]{"entity": "years_for_college", "value": "5 year"} or [less]{"entity": "range", "value": "within"} for [2055 cohort](cohort_by_year) who received [no aid]{"entity":"aid_status", "value": "no-aid"}
 
     - How many students [graduated]{"entity":"student_enrollment_result", "value": "graduation"} [between]{"entity": "range", "value": "between"} [5 years]{"entity": "years_for_college", "value": "5 year"} and [6 years]{"entity": "years_for_college", "value": "6 year"} for the [2014 cohort](cohort_by_year)?
 
 
-    - What is the [graduation]{"entity":"student_enrollment_result", "value": "graduation"} [rate]{"entity": "aggregation", "value": "percent"} for students who [graduated]{"entity":"student_enrollment_result", "value": "graduation"} [in]{"entity": "range", "value": "within"} [5 years]{"entity": "years_for_college", "value": "5 year"} and [more than]{"entity": "range", "value": "more than"} [four year]{"entity": "years_for_college", "value": "4 year"} for the [cohort of 2014](cohort_by_year)?
+    - What is the [graduation]{"entity":"student_enrollment_result", "value": "graduation"} [rate]{"entity": "aggregation", "value": "percent"} for students who [graduated]{"entity":"student_enrollment_result", "value": "graduation"} in [5 years]{"entity": "years_for_college", "value": "5 year"} and [more than]{"entity": "range", "value": "more than"} [four year]{"entity": "years_for_college", "value": "4 year"} for the [cohort of 2014](cohort_by_year)?
 
     #Financial aid training data for cohorts.
     - How many students in the [6590 cohort](cohort_by_year) are [recipients of subsidized loan and did not receive federal pell grant]{"entity": "aid_status", "role": "stafford", "value": "stafford-loan"}?
@@ -116,10 +116,9 @@ nlu:
     - higher than
     - less than 
     - within
-    - in
     - no more than
     - no more than
-
+    - less
     - between
 
 - synonym: between
@@ -155,8 +154,8 @@ nlu:
 
 - synonym: more than
   examples: |
-    greater than 
-    higher than 
+    - greater than 
+    - higher than 
 
 - synonym: 6 year
   examples: |
@@ -165,13 +164,23 @@ nlu:
     - 6-year
     - 6 years
 
+
+- synonym: 2 year
+  examples: |
+    - 2 year 
+    - two years
+    - 2-year
+    - 2 years
+
 - synonym: 4 year
+  examples: |
     - 4 year 
     - four years
     - 4-year
     - 4 years
     
 - synonym: 5 year
+  examples: |
     - 5 year 
     - five years
     - 5-year
