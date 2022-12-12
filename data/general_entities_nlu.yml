@@ -127,3 +127,16 @@ nlu:
     - colleges
     - institution
     - institutions
+
+
+- lookup: money
+  examples: |
+     - fee 
+     - money
+     - dollar
+
+- synonym: fee
+  examples: |
+    - fee
+    - money
+    - dollar

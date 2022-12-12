@@ -1618,14 +1618,19 @@ nlu:
 
     - Does your [institute]{"entity":"education_level", "value": "college"} allow [early admission]{"entity": "early-admission", "value": "early admission" } of [high school]{"entity": "education_level", "value": "high school"} students
 
-    - Is there any [application-fee]{"entity": "application-fee", "value":"application fee"} for applicants?
+    - Is there any [application]{"entity": "application", "value": "application"} [fee]{"entity":"money", "value": "fee"} for applicants?
 
-    - Can [application-fee]{"entity": "application-fee", "value":"application fee" } be [waived]{"entity": "waive", "value":"waived" }?
-    - Is there any [application-fee]{"entity": "application-fee", "value":"application fee" } for [online-application]{"entity": "online-application", "value":"online application" }?
+    - Can [application]{"entity": "application", "value":"application" } [fee]{"entity":"money", "value": "fee"} be [waived]{"entity": "waive", "value":"waived" }?
+    
+    - How much [money]{"entity":"money", "value": "fee"} do I have to pay for [application]{"entity": "application", "value":"application" }?
 
-    - Does [online-application]{"entity": "online-application", "value":"online application" } have [application-fee]{"entity": "application-fee", "value": "application fee" } ?
+    - Is there any [application]{"entity": "application", "value":"application" } [fee]{"entity":"money", "value": "fee"} for [online]{"entity": "online", "value":"online" } [application]{"entity": "application", "value":"application" }?
+
+    - Does [online]{"entity": "online", "value":"online" } [application]{"entity": "application", "value":"application" } have [application]{"entity": "application", "value":"application" } [fee]{"entity":"money", "value": "fee"} ?
+    
+    - Can [online]{"entity": "online", "value":"online" } [application]{"entity": "application", "value":"application" } [application]{"entity": "application", "value":"application" } '[fee]{"entity":"money", "value": "fee"}  be [waived]{"entity": "waive", "value": "waived"} ?
    
-    - Can [online applications]{"entity": "online-application", "value":"online application"} be [waived]{"entity": "waive", "value": "waived"} [application-fee]{"entity": "application-fee", "value": "application fee"}  ?
+    - Yo, do have to pay [money]{"entity":"money", "value": "fee"} to apply on the [internet]{"entity": "online", "value":"online" }?
 
     - What is the [deadline]{"entity":"date", "value": "date"} for [housing]{"entity": "housing", "value": "housing"} deposit?
 
@@ -1637,23 +1642,15 @@ nlu:
     - waive
     - waiver
   
-- lookup: online application
+- lookup: online
   examples: |
-     - online application 
-     - apply online
-     - applied online
-     - applying online
+     - online 
+     - internet
 
-- synonym: online application
+- synonym: online
   examples: |
-    - online application
-    - online-application
-    - application online
-    - online application
-    - apply online
-    - online apply 
-    - applied online
-    - applying online
+    - online
+    - internet
     
 
 - lookup: early-admission
@@ -1718,19 +1715,7 @@ nlu:
   examples: |
     - prioritized
 
-
-- lookup: application-fee
-  examples: |
-     - fee for application 
-     - application fee
-     - applicant fee
-
-- synonym: application fee
-  examples: |
-    - application-fee
-    - fee for application 
-    - application fee
-    - applicant fee
+    
    
 - lookup: waiting-list
   examples: |

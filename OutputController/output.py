@@ -19,7 +19,7 @@ def constructSentence(answers, intent, entitiesUsed, noAnswerResponse = NO_ANSWE
 
 #For high_school_units
 def outputFuncForHighSchoolUnits(answers, intent, entitiesUsed):
-        return  outputFuncForInteger(answers, intent, entitiesUsed, "no units specified")
+        return  outputFuncForInteger(answers, intent, entitiesUsed)
 
 #For integer values
 def outputFuncForInteger(answer : int, intent, entitiesUsed):

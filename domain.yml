@@ -193,11 +193,16 @@ entities:
 
   - waive
 
-  - application-fee
+  # Use to capture fee, tuition, etc, things about money.
+  - money
 
-  - online-application
+  # Captures if question is about online application. Value: online. 
+  - online
+  
+  # Captures application. Value: internet
+  - application
 
-  # - defer-policy
+  # Defer admission
   - defer
 
   - housing 
