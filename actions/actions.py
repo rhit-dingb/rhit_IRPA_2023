@@ -6,7 +6,7 @@
 
 
 from DataManager.ExcelDataManager import ExcelDataManager
-from DataManager.constants import ADMISSION_INTENT, BASIS_FOR_SELECTION_INTENT, COHORT_BY_YEAR_ENTITY_LABEL, COHORT_INTENT, ENROLLMENT_INTENT, EXEMPTION_ENTITY_LABEL, FINAL_COHORT_ENTITY_LABEL, FRESHMAN_PROFILE_INTENT, GRADUATION_RATE_ENTITY_LABEL, HIGH_SCHOOL_UNITS_INTENT, INITIAL_COHORT_ENTITY_LABEL, LOWER_BOUND_GRADUATION_TIME_ENTITY_LABEL, NO_AID_ENTITY_LABEL, RECIPIENT_OF_PELL_GRANT_ENTITY_LABEL, RECIPIENT_OF_STAFFORD_LOAN_NO_PELL_GRANT_ENTITY_LABEL, RETENTION_RATE_LABEL, UPPER_BOUND_GRADUATION_TIME_ENTITY_LABEL
+from DataManager.constants import ADMISSION_INTENT, BASIS_FOR_SELECTION_INTENT, COHORT_BY_YEAR_ENTITY_LABEL, COHORT_INTENT, ENROLLMENT_INTENT, EXEMPTION_ENTITY_LABEL, FINAL_COHORT_ENTITY_LABEL, FRESHMAN_PROFILE_INTENT, GRADUATION_RATE_ENTITY_LABEL, HIGH_SCHOOL_UNITS_INTENT, INITIAL_COHORT_ENTITY_LABEL, LOWER_BOUND_GRADUATION_TIME_ENTITY_LABEL, NO_AID_ENTITY_LABEL, RECIPIENT_OF_PELL_GRANT_ENTITY_LABEL, RECIPIENT_OF_STAFFORD_LOAN_NO_PELL_GRANT_ENTITY_LABEL, RETENTION_RATE_LABEL, TRANSFER_ADMISSION_INTENT, UPPER_BOUND_GRADUATION_TIME_ENTITY_LABEL
 from Exceptions.ExceptionTypes import ExceptionTypes
 from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
 
@@ -24,7 +24,7 @@ from rasa_sdk.executor import CollectingDispatcher
 # knowledgeBase = SparseMatrixKnowledgeBase("./Data_Ingestion/CDS_SPARSE_ENR.xlsx")
 
 
-knowledgeBase = SparseMatrixKnowledgeBase(ExcelDataManager("./CDSData", [ENROLLMENT_INTENT, COHORT_INTENT, ADMISSION_INTENT, HIGH_SCHOOL_UNITS_INTENT, BASIS_FOR_SELECTION_INTENT, FRESHMAN_PROFILE_INTENT]))
+knowledgeBase = SparseMatrixKnowledgeBase(ExcelDataManager("./CDSData", [ENROLLMENT_INTENT, COHORT_INTENT, ADMISSION_INTENT, HIGH_SCHOOL_UNITS_INTENT, BASIS_FOR_SELECTION_INTENT, FRESHMAN_PROFILE_INTENT, TRANSFER_ADMISSION_INTENT]))
 
 # This is a dictionary storing for an intent, what entities must be detected in the user's question in order for a answer to be returned
 # For example in the freshman profile, percentage is a column in the sparse matrix and an entity. If the user provide some bad input like:
@@ -65,6 +65,14 @@ class ActionQueryTransferAdmission(Action):
         entitiesExtracted = tracker.latest_message["entities"]
         intent = tracker.latest_message["intent"]["name"]
         print(entitiesExtracted)
+        try:
+            answers = knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy, knowledgeBase.constructOutput, True)
+            utterAllAnswers(answers, dispatcher)   
+            
+        except Exception as e:
+            utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
+            
+
         return []
 
 

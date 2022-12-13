@@ -1,3 +1,6 @@
+#NOTE: Here, four year and two year are suppose to be years_for_college but it is in conflict with upper_bound_graduation time. Later, we will have to seperate upper_bound graduateion time to
+# Have "less than" and "more than" as an entity and four year, five year, etc to be seperate entity. 
+
 version: "3.1"
 nlu:
 - intent: transfer_admission
@@ -50,12 +53,12 @@ nlu:
 
     - Is [university]{"entity": "education_level", "value": "college"} [transcript]{"entity": "academic_factor", "value": "transcript" } [required]{"entity":"condition", "value": "require"}  for transfer student to apply for admission at Rose-Hulman
 
-    - Does a transfer applicant need to have [lowest]{"entity": "aggregation", "value": "minimum"} number of [credit](unit_type) completed or else they must apply as an entering [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}?
-    - Does a transfer applicant need to have [lowest]{"entity": "aggregation", "value": "minimum"} number of [credits]{"entity": "unit_type", "value": "credit"} completed or else they must apply as an entering [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}?
-    - Does a transfer applicant need to have [min]{"entity": "aggregation", "value": "minimum"} number of [credit](unit_type) completed or else they must apply as an entering [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}?
-    - Does a transfer applicant need to have [min]{"entity": "aggregation", "value": "minimum"} number of [credits]{"entity": "unit_type", "value": "credit"} completed or else they must apply as an entering [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}?
-    - Does a transfer applicant need to have [minimum](aggregation) number of [credit](unit_type) completed or else they must apply as an entering [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}?
-    - Does a transfer applicant need to have [minimum](aggregation) number of [credits]{"entity": "unit_type", "value": "credit"} completed or else they must apply as an entering [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}?
+    - Does a transfer applicant [need to have]{"entity":"condition", "value": "require"} [lowest]{"entity": "aggregation", "value": "minimum"} number of [credit](unit_type) completed or else they must apply as an entering [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}?
+    - Does a transfer applicant [need to have]{"entity":"condition", "value": "require"} [lowest]{"entity": "aggregation", "value": "minimum"} number of [credits]{"entity": "unit_type", "value": "credit"} completed or else they must apply as an entering [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}?
+    - Does a transfer applicant [need to have]{"entity":"condition", "value": "require"} [min]{"entity": "aggregation", "value": "minimum"} number of [credit](unit_type) completed or else they must apply as an entering [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}?
+    - Does a transfer applicant [need to have]{"entity":"condition", "value": "require"} [min]{"entity": "aggregation", "value": "minimum"} number of [credits]{"entity": "unit_type", "value": "credit"} completed or else they must apply as an entering [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}?
+    - Does a transfer applicant [need to have]{"entity":"condition", "value": "require"} [minimum](aggregation) number of [credit](unit_type) completed or else they must apply as an entering [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}?
+    - Does a transfer applicant [need to have]{"entity":"condition", "value": "require"} [minimum](aggregation) number of [credits]{"entity": "unit_type", "value": "credit"} completed or else they must apply as an entering [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}?
 
     - How many [female](gender) transfer student [admit]{"entity": "action", "value": "accepted"} to Rose-Hulman?
     - How many [female](gender) transfer student [admitted]{"entity": "action", "value": "accepted"} to Rose-Hulman?
@@ -112,6 +115,7 @@ nlu:
     - What is the [lowest]{"entity": "aggregation", "value": "minimum"} [college](education_level) [grade point average]{"entity": "academic_factor", "value": "gpa"} [required]{"entity":"condition", "value": "require"}  of transfer applicants?
     - What is the [lowest]{"entity": "aggregation", "value": "minimum"} [credit](unit_type) and the [unit of measure](unit_of_measure) [required]{"entity":"condition", "value": "require"}  to apply for transfer admission?
     - What is the [lowest]{"entity": "aggregation", "value": "minimum"} [credits]{"entity": "unit_type", "value": "credit"} and the [unit of measure](unit_of_measure) [required]{"entity":"condition", "value": "require"}  to apply for transfer admission?
+
     - What is the [lowest]{"entity": "aggregation", "value": "minimum"} [high school](education_level) [grade point average]{"entity": "academic_factor", "value": "gpa"} [required]{"entity":"condition", "value": "require"}  of transfer applicants?
     - What is the [lowest]{"entity": "aggregation", "value": "minimum"} [high-school]{"entity": "education_level", "value": "high school"} [grade point average]{"entity": "academic_factor", "value": "gpa"} [required]{"entity":"condition", "value": "require"}  of transfer applicants?
     - What is the [lowest]{"entity": "aggregation", "value": "minimum"} [secondary school]{"entity": "education_level", "value": "high school"} [grade point average]{"entity": "academic_factor", "value": "gpa"} [required]{"entity":"condition", "value": "require"}  of transfer applicants?
@@ -191,7 +195,7 @@ nlu:
     - [When]{"entity": "date", "value": "date"} are [applications]{"entity": "application", "value": "application"} reviewed for transfer students?
     - [When]{"entity": "date", "value": "date"} does admission decision come out for transfer students?
 
-    - Are there any [additional]{"entity": "other", "value": "other" } [transfer credit]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} policies ?
+    - Are there any [additional]{"entity": "other", "value": "other" } [transfer credit]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} policies?
 
     - What is the [highest]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [2 year]{"entity": "years_for_college", "value": "two-year"} [college](education_level)
     - What is the [highest]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [2 year]{"entity": "years_for_college", "value": "two-year"} [institution]{"entity": "education_level", "value": "college"}
@@ -234,7 +238,7 @@ nlu:
     - What is the [max]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [2-year]{"entity": "years_for_college", "value": "two-year"} [college](education_level)
     - What is the [max]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [2-year]{"entity": "years_for_college", "value": "two-year"} [institution]{"entity": "education_level", "value": "college"}
     - What is the [max]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [2-year]{"entity": "years_for_college", "value": "two-year"} [university]{"entity": "education_level", "value": "college"}
-    - What is the [max]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [4 year]{"entity": "years_for_college", "value": "four-year"} [college](education_level)
+    - What is the [max]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [4-year]{"entity": "years_for_college", "value": "four-year"} [college](education_level)
     - What is the [max]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [4 year]{"entity": "years_for_college", "value": "four-year"} [institution]{"entity": "education_level", "value": "college"}
     - What is the [max]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [4 year]{"entity": "years_for_college", "value": "four-year"} [university]{"entity": "education_level", "value": "college"}
     - What is the [max]{"entity": "aggregation", "value": "maximum"} number of [credit that maybe transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"} from a [community]{"entity": "years_for_college", "value": "two-year"} [college](education_level)
@@ -393,6 +397,7 @@ nlu:
     - 4 year
     - four-year
     - four year
+    - 4-year
 
 - synonym: associates
   examples: |
