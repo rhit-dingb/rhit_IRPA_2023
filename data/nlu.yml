@@ -92,16 +92,14 @@ nlu:
     - am I talking to a bot?
     - am I talking to a human?
 
-# - intent: inform
-#   examples: |
-#     - total undergraduate enrollment.
-#     - I want to know about total [undergraduate]{"entity":"student_level"} enrollment.
-
 - intent: enrollment
   examples: |
     - I want to know about enrollment.
     - I want to know about enrollment at Rose-Hulman
-
+    - What is the number of students at Rose?
+    - Yo, tell me about the number of students?
+    - Student number
+    - number of students
     - How many [full time]{"entity": "enrollment_status", "value": "full-time"} [first time]{"entity": "is_first_time", "value": "first-time"} students are [enrolled]{"entity":"action", "value": "enrolled"}?
     - How many [full time]{"entity": "enrollment_status", "value": "full-time"} [first year]{"entity": "is_first_year", "value": "first-year"} students are [enrolled]{"entity":"action", "value": "enrolled"}?
     - How many [full time]{"entity": "enrollment_status", "value": "full-time"} [undergraduate]{"entity": "student_level", "value": "undergraduate"} students are [enrolled]{"entity":"action", "value": "enrolled"}?
@@ -1555,34 +1553,182 @@ nlu:
     - How many [men]{"entity": "gender", "value": "male"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}  [applied]{"entity": "action", "value": "applied"} in Rose-Hulman?
     - How many [women]{"entity": "gender", "value": "female"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}  [applied]{"entity": "action", "value": "applied"} in Rose-Hulman?
 
-    - How many [male]{"entity": "gender", "value": "male"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} [admitted]{"entity": "action", "value": "admitted"} in Rose-Hulman?
-    - How many [female]{"entity": "gender", "value": "female"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}  [admitted]{"entity": "action", "value": "admitted"} in Rose-Hulman?
+    - How many [male]{"entity": "gender", "value": "male"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} [admitted]{"entity": "action", "value": "accepted"} in Rose-Hulman?
+    - How many [female]{"entity": "gender", "value": "female"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}  [admitted]{"entity": "action", "value": "accepted"} in Rose-Hulman?
 
-    - How many [men]{"entity": "gender", "value": "male"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}  [admitted]{"entity": "action", "value": "admitted"} in Rose-Hulman?
-    - How many [women]{"entity": "gender", "value": "female"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}  [admitted]{"entity": "action", "value": "admitted"} in Rose-Hulman?
+    - How many [men]{"entity": "gender", "value": "male"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}  [admitted]{"entity": "action", "value": "accepted"} in Rose-Hulman?
+    - How many [women]{"entity": "gender", "value": "female"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}  [admitted]{"entity": "action", "value": "accepted"} in Rose-Hulman?
 
     - How many [male]{"entity": "gender", "value": "male"} [first-time]{"entity": "is_first_time", "value": "first-time"} [first-year]{"entity": "is_first_year", "value": "first-year"}   [applied]{"entity": "action", "value": "applied"} in Rose-Hulman?
     - How many [female]{"entity": "gender", "value": "female"} [first-time]{"entity": "is_first_time", "value": "first-time"} [first-year]{"entity": "is_first_year", "value": "first-year"}  [applied]{"entity": "action", "value": "applied"} in Rose-Hulman?
 
-    - How many [male]{"entity": "gender", "value": "male"} [first-time]{"entity": "is_first_time", "value": "first-time"} [first-year]{"entity": "is_first_year", "value": "first-year"}  [admitted]{"entity": "action", "value": "admitted"} in Rose-Hulman?
-    - How many [female]{"entity": "gender", "value": "female"} [first-time]{"entity": "is_first_time", "value": "first-time"} [first-year]{"entity": "is_first_year", "value": "first-year"}  [admitted]{"entity": "action", "value": "admitted"} in Rose-Hulman?
+    - How many [male]{"entity": "gender", "value": "male"} [first-time]{"entity": "is_first_time", "value": "first-time"} [first-year]{"entity": "is_first_year", "value": "first-year"}  [admitted]{"entity": "action", "value": "accepted"} in Rose-Hulman?
+    - How many [female]{"entity": "gender", "value": "female"} [first-time]{"entity": "is_first_time", "value": "first-time"} [first-year]{"entity": "is_first_year", "value": "first-year"}  [admitted]{"entity": "action", "value": "accepted"} in Rose-Hulman?
 
-    - Do you have [policy]{"entity":"policy"} of placting [waiting-list]{"entity":"waiting-list"}?
-    - Is there any [waiting-list]{"entity":"waiting-list"} [policy]{"entity":"policy"}?
+    - Do you have policy of placing student on [waiting-list]{"entity":"waiting-list"}?
+    - Is there any [wait list]{"entity":"waiting-list"} policy
 
-    - What's the number of students did you [offered]{"entity": "waiting-list-detail", "value": "offered-list"} a place on [waiting-list]{"entity":"waiting-list"}?
-    - How many students are [offered]{"entity": "waiting-list-detail", "value": "offered-list"} a [waiting-list]{"entity":"waiting-list"} position?
 
-    - How many students [accepted]{"entity": "waiting-list-detail", "value": "accepted-list"} [waiting-list]{"entity":"waiting-list"} ?
-    - What's the number of students who [accepted]{"entity": "waiting-list-detail", "value": "accepted-list"} [waiting-list]{"entity":"waiting-list"} ?
+    - What's the number of students did you [offered]{"entity": "offered", "value": "offered"} a place on [waiting-list]{"entity":"waiting-list"}?
+    - How many students are [offered]{"entity": "offered", "value": "offered"} a [waiting-list]{"entity":"waiting-list"} position?
+
+    - How many students [accepted]{"entity": "action", "value": "accepted"} [waiting-list]{"entity":"waiting-list"} ?
+    - What's the number of students who [accepted]{"entity": "action", "value": "accepted"} [waiting-list]{"entity":"waiting-list"} ?
+
 
     - Does your institution [require]{"entity": "condition", "value": "require"} or [recommend]{"entity": "condition", "value": "condition"} a general [college-preparatory] {"entity": "college-preparatory-program"} program for  [degree-seeking]{"entity": "degree-goal", "value": "degree-seeking"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students?
 
     - Does your institution [require]{"entity": "condition", "value": "require"} [high school completion]{"entity": "completion-requirement", "value":"completion-requirement"} for  [degree-seeking]{"entity": "degree-goal", "value": "degree-seeking"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} entering student? 
 
-    - is there any [high school completion]{"entity": "completion-requirement", "value":"completion-requirement"} [requirement]{"entity": "condition", "value": "require"} for your institute? 
+    - is there any [high school]{"entity": "education_level", "value": "high school"} completion [requirement]{"entity": "condition", "value": "require"} for your institute? 
     
-    - [high school completion]{"entity": "completion-requirement", "value":"completion-requirement"} [requirement]{"entity": "condition", "value": "require"} for  [degree-seeking]{"entity": "degree-goal", "value": "degree-seeking"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} entering students?
+    - [high school]{"entity": "education_level", "value": "high school"} [requirement]{"entity": "condition", "value": "require"} for  [degree-seeking]{"entity": "degree-goal", "value": "degree-seeking"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} entering students?
+
+
+    - Are first-time, first-year students [accepted]{"entity": "action", "value": "accepted"} for [terms]{"entity":"academic_term", "value":"term"} [other]{"entity": "other", "value":"other"} than the [fall]{"entity":"academic_term", "value":"fall"} ?
+    - Are  students [accepted]{"entity": "action", "value": "accepted"} for [terms]{"entity":"academic_term", "value":"term"} [other]{"entity": "other", "value":"other"} than the [fall]{"entity":"academic_term", "value":"fall"} ?
+    - What is the [closing]{"entity": "admission_decision_date", "value": "closing"} [date]{"entity": "date" , "value": "date"} for application?
+
+    - What [date]{"entity": "date" , "value": "date"} is the [closing]{"entity": "admission_decision_date", "value": "closing"} [date]{"entity": "date" , "value": "date"} for application?
+
+    - What is the [priority]{"entity": "admission_decision_date", "value": "closing"} [date]{"entity": "date" , "value": "date"} ?
+
+    - What is the [priority]{"entity": "admission_decision_date" , "value": "priority"} [date]{"entity": "date" , "value": "date"} for application?
+    - What is the [notification]{"entity": "admission_decision_date" , "value": "notification"} [date]{"entity": "date" , "value": "date"} for application?
+    - What is the [notification]{"entity": "admission_decision_date" , "value": "notification"} [date]{"entity": "date" , "value": "date"} to applicants of admission decision sent?
+    
+    - What is the [reply]{"entity": "admission_decision_date" , "value": "reply"} policy for admitted applicants?
+    - What is the [reply]{"entity": "admission_decision_date" , "value": "reply"} policy?
+
+    - Dose your [institute]{"entity":"education_level", "value": "college"} allow students to [defer]{"entity": "defer", "value": "defer"} enrollment after admission?
+  
+    - can [admitted]{"entity":"action", "value": "accepted"} students [defer]{"entity": "defer", "value": "defer"} enrollment?
+
+    - can [admitted]{"entity":"action", "value": "accepted"} students [postpone]{"entity": "defer", "value": "defer"} enrollment?
+
+    - What is the [maximum]{"entity": "aggregation", "value": "maximum"} year of [postponement]{"entity": "defer", "value": "defer"}?
+
+   
+    - Do your [institute]{"entity":"education_level", "value": "college"} have [early action]{"entity": "early-admission", "value": "early action" }?
+
+    - Do Rose-Hulman have [early-decision]{"entity": "early-admission", "value": "early decision" }?
+
+    - Do your [institute]{"entity":"education_level", "value": "college"} have [early decision]{"entity": "early-admission", "value": "early decision"}?
+
+    - Do you allow student with [early action]{"entity": "early-admission", "value": "early action" }?
+
+    - Do your [institute]{"entity":"education_level", "value": "college"} offer [early action]{"entity": "early-admission", "value": "early action" }?
+
+    - Do your [institute]{"entity":"education_level", "value": "college"} have [application fee]{"entity": "application-fee", "value": "application fee"}?
+
+    - Does your [institute]{"entity":"education_level", "value": "college"} allow [early admission]{"entity": "early-admission", "value": "early admission" } of [high school]{"entity": "education_level", "value": "high school"} students
+
+    - Is there any [application]{"entity": "application", "value": "application"} [fee]{"entity":"money", "value": "fee"} for applicants?
+
+    - Can [application]{"entity": "application", "value":"application" } [fee]{"entity":"money", "value": "fee"} be [waived]{"entity": "waive", "value":"waived" }?
+    
+    - How much [money]{"entity":"money", "value": "fee"} do I have to pay for [application]{"entity": "application", "value":"application" }?
+
+    - Is there any [application]{"entity": "application", "value":"application" } [fee]{"entity":"money", "value": "fee"} for [online]{"entity": "online", "value":"online" } [application]{"entity": "application", "value":"application" }?
+
+    - Does [online]{"entity": "online", "value":"online" } [application]{"entity": "application", "value":"application" } have [application]{"entity": "application", "value":"application" } [fee]{"entity":"money", "value": "fee"} ?
+    
+    - Can [online]{"entity": "online", "value":"online" } [application]{"entity": "application", "value":"application" } [application]{"entity": "application", "value":"application" } '[fee]{"entity":"money", "value": "fee"}  be [waived]{"entity": "waive", "value": "waived"} ?
+   
+    - Yo, do have to pay [money]{"entity":"money", "value": "fee"} to apply on the [internet]{"entity": "online", "value":"online" }?
+
+    - What is the [deadline]{"entity":"date", "value": "date"} for [housing]{"entity": "housing", "value": "housing"} deposit?
+
+
+
+- synonym: waived
+  examples: |
+    - waived
+    - waive
+    - waiver
+  
+- lookup: online
+  examples: |
+     - online 
+     - internet
+
+- synonym: online
+  examples: |
+    - online
+    - internet
+    
+
+- lookup: early-admission
+  examples: |
+    - early decision
+    - early action
+    - early admission
+    - ea 
+    - ed
+
+
+- synonym: early decision
+  examples: |
+    - early decision
+    - decision early 
+    - ed
+
+- synonym: early action
+  examples: |
+    - early action
+    - action early 
+    - ea
+    - admitted early
+
+
+- lookup: defer
+  examples: |
+     - defer
+     - postpone
+     - postponement
+     - delay
+     - put off
+     - deferred
+     - defering
+
+- synonym: defer
+  examples: |
+    - postpone
+    - defer
+    - delay
+    - put off
+    - deferred
+    - deferring
+
+- lookup: admission_decision_date
+  examples: |
+    - notification
+    - closing
+    - priority
+
+- synonym: notification
+  examples: |
+    - notification
+    - notify
+
+- synonym: closing
+  examples: |
+    - closed
+    - close
+
+- synonym: priority
+  examples: |
+    - prioritized
+
+    
+   
+- lookup: waiting-list
+  examples: |
+    - waiting list
+    - waitlist
+    - waitlisted
+    - wait listed
+    - wait-listed
 
     - Are first-time, first-year students [accepted]{"entity": "action", "value": "admitted"} for [terms]{"entity": "term", "value":"term"} [other]{"entity": "other", "value":"other"} than the [fall]{"entity": "term", "value":"fall"} ?
     - Are  students [accepted]{"entity": "action", "value": "admitted"} for [terms]{"entity": "term", "value":"term"} [other]{"entity": "other", "value":"other"} than the [fall]{"entity": "term", "value":"fall"} ?
@@ -1683,15 +1829,35 @@ nlu:
     - waiting list
     - waiting-list
     - wait list
+    - wait listed
+    - wait-listed
     - wait-list
     - waitlisted
     - waitlist
 
-- synonym: admitted
+- lookup: action
   examples: |
     - admitting
     - admitted
     - admit
+
+    - enrolled
+    - enroll
+    - enrolling
+
+    - applied
+    - applying
+    - apply
+
+
+- synonym: accepted
+  examples: |
+    - admitting
+    - admitted
+    - admit
+    - accepted
+    - accepting
+    
 
 - synonym: enrolled
   examples: |
@@ -1712,9 +1878,9 @@ nlu:
     - total [units]{"entity": "unit_type", "value": "unit"} [required]{"entity": "condition", "value": "require"}?
     - How many academic [units]{"entity": "unit_type", "value": "unit"} are [required]{"entity": "condition", "value": "require"}?
 
-    - How many [units]{"entity": "unit_type", "value": "unit"} [should]{"entity": "unit_level", "value": "recommend"} I take if I want to get into this school?
+    - How many [units]{"entity": "unit_type", "value": "unit"} [should]{"entity": "condition", "value": "recommend"} I take if I want to get into this school?
 
-    - How many [units]{"entity": "unit_type", "value": "unit"} [must]{"entity": "unit_level", "value": "require"} I take if I want to get into this school?
+    - How many [units]{"entity": "unit_type", "value": "unit"} [must]{"entity": "condition", "value": "require"} I take if I want to get into this school?
 
     - How many [unit]{"entity": "unit_type", "value": "unit"} are [required]{"entity": "condition", "value": "require"} for [english]{"entity": "subject", "value": "english"} for admission at this school?
     - How many [unit]{"entity": "unit_type", "value": "unit"} are [recommended]{"entity": "condition", "value": "recommend"} for [math]{"entity": "subject", "value": "mathematics"} for admission?
