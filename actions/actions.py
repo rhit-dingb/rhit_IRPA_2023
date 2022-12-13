@@ -279,6 +279,11 @@ class ActionQueryCohort(Action):
             print(e)
 
         self.preprocessCohortEntities(entitiesExtracted)
+
+        print("PROCESSED ENTITIES")
+        for e in entitiesExtracted:
+            # print(e["entity"])
+            print(e)
         
         
         #If the user only ask for pell grant or subsized loan of cohort, we should only get the value from the first row, which is the initial cohort
