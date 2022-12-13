@@ -38,6 +38,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
 
     """
     def searchForAnswer(self, intent, entitiesExtracted, shouldAddRowStrategy, outputFunc , shouldAdd = True):
+        print("BEGAN SEARCHING")
         searchResults = []
 
         searchResult = None
@@ -81,8 +82,8 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
                 
         printEntities = list(printEntities)
         printEntities.append(startYear) 
+        print(intent)
         # print(self.determineResultType(searchResult))
-       
         return outputFunc(searchResults, intent, printEntities)
 
 

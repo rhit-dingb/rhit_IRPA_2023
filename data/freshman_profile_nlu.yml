@@ -2,6 +2,8 @@ version: "3.1"
 nlu:
 - intent: freshman_profile
   examples: |
+    - I want to know about [SAT]{"entity":"standarized_test", "value":"sat"}
+    - I want to know about [ACT]{"entity":"standarized_test", "value":"act"}
     - How many student [submitted]{"entity": "submitted", "value":  "submitted"} [ACT]{"entity":"standarized_test", "value": "act"} scores
     - How many student [submitted]{"entity": "submitted", "value":  "submitted"} [SAT]{"entity":"standarized_test", "value": "sat"} scores
     - How many student [turned in]{"entity": "submitted", "value":  "submitted"} [SAT]{"entity":"standarized_test", "value": "sat"} scores

@@ -66,6 +66,7 @@ class ActionQueryKnowledgebase(Action):
     def run(self, dispatcher, tracker, domain):
         entitiesExtracted = tracker.latest_message["entities"]
         intent = tracker.latest_message["intent"]["name"]
+        print(intent)
         print(entitiesExtracted)
         try:
             answers = knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy, knowledgeBase.constructOutput, True)
@@ -84,6 +85,7 @@ class ActionQueryTransferAdmission(Action):
     def run(self, dispatcher, tracker, domain):
         entitiesExtracted = tracker.latest_message["entities"]
         intent = tracker.latest_message["intent"]["name"]
+        print(intent)
         print(entitiesExtracted)
         try:
             answers = knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy, knowledgeBase.constructOutput, True)
@@ -103,6 +105,7 @@ class ActionQueryFreshmanProfile(Action):
     def run(self, dispatcher, tracker, domain):
         entitiesExtracted = tracker.latest_message["entities"]
         intent = tracker.latest_message["intent"]["name"]
+        print(intent)
         print(entitiesExtracted)
 
         # I will not check for required entity for now.
@@ -131,7 +134,7 @@ class ActionQueryBasisForSelection(Action):
     def run(self, dispatcher, tracker, domain):
         entitiesExtracted = tracker.latest_message["entities"]
         intent = tracker.latest_message["intent"]["name"]
-        
+        print(intent)
         print(entitiesExtracted)
         try:
             answers = knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy, knowledgeBase.constructOutput)
@@ -177,7 +180,10 @@ class ActionQueryEnrollment(Action):
     def run(self, dispatcher, tracker, domain):
 
         haveRaceEnrollmentEntity = False
+       
         entitiesExtracted = tracker.latest_message["entities"]
+        print(tracker.latest_message["intent"]["name"])
+        print(entitiesExtracted)
         for entityObj in tracker.latest_message['entities']:
             if entityObj["entity"] == "race":
                 haveRaceEnrollmentEntity = True
@@ -201,11 +207,9 @@ class ActionQueryAdmission(Action):
         return "action_query_admission"
 
     def run(self, dispatcher, tracker, domain):
-
-      
         entitiesExtracted = tracker.latest_message["entities"]
         selectedShouldAddRowStrategy = defaultShouldAddRowStrategy
-
+        print(tracker.latest_message["intent"]["name"])
         print(entitiesExtracted)
         try:
             answers = knowledgeBase.searchForAnswer(
@@ -292,6 +296,7 @@ class ActionQueryCohort(Action):
 
     def run(self, dispatcher, tracker, domain):
         print(tracker.latest_message["intent"])
+        print(intent)
         print("ENTITIES")
         print(tracker.latest_message["entities"])
 
