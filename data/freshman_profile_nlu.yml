@@ -572,6 +572,24 @@ nlu:
     - [percentage]{"entity":"aggregation", "value": "percent"} of total first-time, first-year (freshman) students who [turned in]{"entity": "submitted", "value":  "submitted"} high school [class rank]{"entity":"academic_factor", "value": "class rank"}
     - [percentage]{"entity":"aggregation", "value": "percent"} of total first-time, first-year (freshman) students who [turn in]{"entity": "submitted", "value":  "submitted"} high school [class rank]{"entity":"academic_factor", "value": "class rank"}
 
+- lookup: standarized_test
+  examples: |
+    - sat
+    - act
+
+
+- lookup: test_percentile
+  examples: |
+    - 15th percentile
+    - 25th percentile
+    - 50th percentile
+    - 75th percentile
+
+- synonym: 15th percentile 
+  examples: |
+    - 15 percentile
+
+
 - synonym: 25th percentile 
   examples: |
     - 25 percentile
