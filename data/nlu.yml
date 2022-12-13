@@ -1673,6 +1673,13 @@ nlu:
     - decision early 
     - ed
 
+- synonym: early admission
+  examples: |
+    - early admission
+    - early-admission
+    - admission early
+
+
 - synonym: early action
   examples: |
     - early action
@@ -1730,99 +1737,6 @@ nlu:
     - wait listed
     - wait-listed
 
-    - Are first-time, first-year students [accepted]{"entity": "action", "value": "admitted"} for [terms]{"entity": "term", "value":"term"} [other]{"entity": "other", "value":"other"} than the [fall]{"entity": "term", "value":"fall"} ?
-    - Are  students [accepted]{"entity": "action", "value": "admitted"} for [terms]{"entity": "term", "value":"term"} [other]{"entity": "other", "value":"other"} than the [fall]{"entity": "term", "value":"fall"} ?
-    - What is the [closing-date]{"entity": "Admission_Decision_Date" , "value": "closing-date"} for application?
-
-    - What date is the [closing-date]{"entity": "Admission_Decision_Date" , "value": "closing-date"} for application?
-
-    - What is the [priority-date]{"entity": "Admission_Decision_Date" , "value": "priority-date"}?
-    - What is the [priority-date]{"entity": "Admission_Decision_Date" , "value": "priority-date"} for application?
-    - What is the [notification-date]{"entity": "Admission_Decision_Date" , "value": "notification-date"} for application?
-    - What is the [notification-date]{"entity": "Admission_Decision_Date" , "value": "notification-date"} to applicants of admission decision sent?
-    - What is the [reply-policy]{"entity": "reply-policy" } for admitted applicants?
-    - What is the [reply-policy]{"entity": "reply-policy" }?
-    - Dose your institude allow students to [defer]{"entity": "defer-policy" } enrollment after admission?
-    - can admitted students [defer]{"entity": "defer-policy" } enrollment?
-    - Do your institute accept [early-admission]{"entity": "early-admission" }?
-    - Do you accept  student with [early-decision]{"entity": "early-decision" }?
-    - Do your institute accept [early-decision]{"entity": "early-decision" }?
-    - Do you accept  student with [early-action]{"entity": "early-action" }?
-    - Do your institute accept [early-action]{"entity": "early-action" }?
-    - Do your institute have [application-fee]{"entity": "application-fee" }?
-
-    - Is there any [application-fee]{"entity": "application-fee" } for applicants?
-
-    - Can [application-fee]{"entity": "application-fee" } be [waived]{"entity": "waive" }?
-    - Is there any [application-fee]{"entity": "application-fee" } for [online-application]{"entity": "online-application" }?
-    - Does [online-application]{"entity": "online-application" } has [application-fee]{"entity": "application-fee" }  ?
-    - Can [online-application]{"entity": "online-application" } [waived]{"entity": "waive" } [application-fee]{"entity": "application-fee" }  ?
-- synonym: early-action
-  examples: |
-    - early action
-    - early-action
-    - action early 
-
-
-- synonym: online-application
-  examples: |
-    - online application
-    - application online
-    - apply online
-    - online apply 
-- synonym: early-decision
-  examples: |
-    - early decision
-    - early-decision
-    - decision early 
-- synonym: reply-policy
-  examples: |
-    - reply policy
-    - reply date
-    - reply day
-
-- synonym: early-admission
-  examples: |
-    - early admission
-    - early-admission
-    - admission early
-
-- synonym: defer
-  examples: |
-    - postpone
-    - defer
-    - delay
-    - put off
-
-- synonym: priority-date
-  examples: |
-    - closing day
-    - closing date
-    - close day
-    - close date
-
-- synonym: notification-date
-  examples: |
-    - notification date
-    - notification day
-    - notify day
-    - notify date
-    - notification
-
-- synonym: closing-date
-  examples: |
-    - closing day
-    - closing date
-    - close day
-    - close date
-
-- synonym: application-fee
-  examples: |
-    - Application fee
-    - application-fee
-    - Application-Fee
-    - fee for application 
-   
 
 - synonym: waiting-list
   examples: |
@@ -1835,11 +1749,36 @@ nlu:
     - waitlisted
     - waitlist
 
+- synonym: online-application
+  examples: |
+    - online application
+    - application online
+    - apply online
+    - online apply 
+
+- synonym: reply-policy
+  examples: |
+    - reply policy
+    - reply date
+    - reply day
+
+
+- synonym: defer
+  examples: |
+    - postpone
+    - defer
+    - delay
+    - put off
+
+
 - lookup: action
   examples: |
     - admitting
     - admitted
     - admit
+    - accepted
+    - accepting
+    - accept
 
     - enrolled
     - enroll
@@ -2348,7 +2287,6 @@ nlu:
 - synonym: graduate
   examples: |
     - grad student
-    - non-bachelors
     - grad 
     - graduates
 
@@ -2402,7 +2340,6 @@ nlu:
   examples: |
     - undergrad
     - undergrade
-    - bachelors
     - under grad
     - under-grad
     - undergraduates
