@@ -38,6 +38,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
 
     """
     def searchForAnswer(self, intent, entitiesExtracted, shouldAddRowStrategy, outputFunc , shouldAdd = True):
+        print("BEGAN SEARCHING")
         searchResults = []
 
         searchResult = None
@@ -74,21 +75,20 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
                     searchResults.append(searchResult)
                 else:
                     searchResult = self.addSearchResult(searchResult, newSearchResult, searchResults)
-                if not shouldAdd:
-                    break
 
                 if len(printEntities) <= 0:
                     printEntities = usedEntities
                 
         printEntities = list(printEntities)
         printEntities.append(startYear) 
+        print(intent)
         # print(self.determineResultType(searchResult))
-       
         return outputFunc(searchResults, intent, printEntities)
 
 
     def constructOutput(self, searchResult, intent, entitiesUsed):
-        return constructSentence(searchResult, intent, entitiesUsed)
+       #return searchResult
+       return constructSentence(searchResult, intent, entitiesUsed)
 
     #This function will try to add up the search results, if the current search result and the new search result's type does not make sense
     # to be added together, it will add it into the list of answers instead of adding up the value.
@@ -96,7 +96,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
     def addSearchResult(self, currentSearchResult, newSearchResult, searchResults) -> str:
         castedCurrValue, currentSearchResultType = self.determineResultType(currentSearchResult)
         castedNewValue, newSearchResultType = self.determineResultType(newSearchResult)
-        if currentSearchResultType == SearchResultType.FLOAT or currentSearchResultType == SearchResultType.NUMBER:
+        if (currentSearchResultType == SearchResultType.FLOAT or currentSearchResultType == SearchResultType.NUMBER):
             if newSearchResultType == SearchResultType.FLOAT or newSearchResultType == SearchResultType.NUMBER:
             
                 newCalculatedValue = str(castedCurrValue + castedNewValue)
@@ -134,20 +134,19 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         total = 0
         # print(start,end)
         entitiesUsed = []
-        
         for i in range(start, end+1):
             filteredEntitiesCopy = copyEntities(filteredEntities)
-            entityValue = generator(i, start, end)
+            entityValues= generator(i, start, end)
             # we can make the entity key more descriptive later 
-            fakeEntity = {
-                "entity": "graduation_years",
-                "value": entityValue,
-                "aggregation": True
-            }
+            for value in entityValues:
+                fakeEntity = {
+                    "entity": "range",
+                    "value": value,
+                    "aggregation": True
+                }
         
-            filteredEntitiesCopy.append(fakeEntity)
-           
-            answers, intent, entitiesUsedBySearch = self.searchForAnswer(intent, filteredEntitiesCopy, shouldAddRowStrategy,identityFunc)
+                filteredEntitiesCopy.append(fakeEntity)
+            answers, intent, entitiesUsedBySearch = self.searchForAnswer(intent, filteredEntitiesCopy, shouldAddRowStrategy, identityFunc)
             entitiesUsed = entitiesUsed + list(entitiesUsedBySearch)
             
             if len(answers) == 0:

@@ -35,8 +35,9 @@ class test_high_school_units_test(unittest.TestCase):
         self.dispatcher = CollectingDispatcher()
         #Make sure the knowledgebase class instance in Actions is using the data manager with test materials loaded.
         knowledgeBaseInAction.dataManager = self.knowledgeBase.dataManager
-        output.constructSentence = identityFunc
-        output.outputFuncForHighSchoolUnits = identityFunc
+        # output.constructSentence = identityFunc
+        # output.outputFuncForHighSchoolUnits = identityFunc
+        knowledgeBaseInAction.constructOutput = identityFunc
 
         
     def test_when_ask_lab_science_unit_required_should_return_correct_value(self):
