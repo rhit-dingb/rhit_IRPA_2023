@@ -1587,14 +1587,14 @@ nlu:
 
     - Are first-time, first-year students [accepted]{"entity": "action", "value": "accepted"} for [terms]{"entity":"academic_term", "value":"term"} [other]{"entity": "other", "value":"other"} than the [fall]{"entity":"academic_term", "value":"fall"} ?
     - Are  students [accepted]{"entity": "action", "value": "accepted"} for [terms]{"entity":"academic_term", "value":"term"} [other]{"entity": "other", "value":"other"} than the [fall]{"entity":"academic_term", "value":"fall"} ?
-    - What is the [closing]{"entity": "admission_decision_date", "value": "closing"} [date]{"entity": "date" , "value": "date"} for application?
+    - What is the [closing]{"entity": "admission_decision_date", "value": "closing"} [date]{"entity": "date" , "value": "date"} for [application]{"entity":"application", "value":"application"}?
 
-    - What [date]{"entity": "date" , "value": "date"} is the [closing]{"entity": "admission_decision_date", "value": "closing"} [date]{"entity": "date" , "value": "date"} for application?
+    - What [date]{"entity": "date" , "value": "date"} is the [closing]{"entity": "admission_decision_date", "value": "closing"} [date]{"entity": "date" , "value": "date"} for [application]{"entity":"application", "value":"application"}?
 
     - What is the [priority]{"entity": "admission_decision_date", "value": "closing"} [date]{"entity": "date" , "value": "date"} ?
 
-    - What is the [priority]{"entity": "admission_decision_date" , "value": "priority"} [date]{"entity": "date" , "value": "date"} for application?
-    - What is the [notification]{"entity": "admission_decision_date" , "value": "notification"} [date]{"entity": "date" , "value": "date"} for application?
+    - What is the [priority]{"entity": "admission_decision_date" , "value": "priority"} [date]{"entity": "date" , "value": "date"} for [application]{"entity":"application", "value":"application"}?
+    - What is the [notification]{"entity": "admission_decision_date" , "value": "notification"} [date]{"entity": "date" , "value": "date"} for [application]{"entity":"application", "value":"application"}?
     - What is the [notification]{"entity": "admission_decision_date" , "value": "notification"} [date]{"entity": "date" , "value": "date"} to applicants of admission decision sent?
     
     - What is the [reply]{"entity": "admission_decision_date" , "value": "reply"} policy for admitted applicants?
@@ -1619,7 +1619,7 @@ nlu:
 
     - Do your [institute]{"entity":"education_level", "value": "college"} offer [early action]{"entity": "early-admission", "value": "early action" }?
 
-    - Do your [institute]{"entity":"education_level", "value": "college"} have [application fee]{"entity": "application-fee", "value": "application fee"}?
+    - Do your [institute]{"entity":"education_level", "value": "college"} have [application]{"entity": "application", "value":"application" } [fee]{"entity":"money", "value": "fee"}?
 
     - Does your [institute]{"entity":"education_level", "value": "college"} allow [early admission]{"entity": "early-admission", "value": "early admission" } of [high school]{"entity": "education_level", "value": "high school"} students
 
