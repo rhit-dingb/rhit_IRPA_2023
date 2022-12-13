@@ -1,3 +1,7 @@
+def checkAnswersMatch(assertion, dispatcher, expectedAnswer):
+    answers = getAllAnswersFromDispatcher(dispatcher)
+    assertion(answers, expectedAnswer)
+
 def createEntityObjHelper(entityValue, entityLabel="none",  entityRole=None):
         res = {"entity": entityLabel, "value": entityValue}
         if (entityRole):
@@ -13,6 +17,13 @@ def getEntityValues(entities):
 
 def identityFunc(x, intent, entities):
         return x
+
+def getAllAnswersFromDispatcher(dispatcher):
+    answers = []
+   
+    for message in dispatcher.messages:
+        answers.append(message["text"])
+    return answers
     
 def createFakeTracker(intent, entities):
 

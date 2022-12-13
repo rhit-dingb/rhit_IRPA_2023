@@ -6,7 +6,7 @@
 
 
 from DataManager.ExcelDataManager import ExcelDataManager
-from DataManager.constants import ADMISSION_INTENT, BASIS_FOR_SELECTION_INTENT, COHORT_BY_YEAR_ENTITY_LABEL, COHORT_INTENT, ENROLLMENT_INTENT, EXEMPTION_ENTITY_LABEL, FINAL_COHORT_ENTITY_LABEL, FRESHMAN_PROFILE_INTENT, GRADUATION_RATE_ENTITY_LABEL, HIGH_SCHOOL_UNITS_INTENT, INITIAL_COHORT_ENTITY_LABEL, LOWER_BOUND_GRADUATION_TIME_ENTITY_LABEL, NO_AID_ENTITY_LABEL, RECIPIENT_OF_PELL_GRANT_ENTITY_LABEL, RECIPIENT_OF_STAFFORD_LOAN_NO_PELL_GRANT_ENTITY_LABEL, RETENTION_RATE_LABEL, UPPER_BOUND_GRADUATION_TIME_ENTITY_LABEL
+from DataManager.constants import ADMISSION_INTENT, BASIS_FOR_SELECTION_INTENT, COHORT_BY_YEAR_ENTITY_LABEL, COHORT_INTENT, ENROLLMENT_INTENT, EXEMPTION_ENTITY_LABEL, FINAL_COHORT_ENTITY_LABEL, FRESHMAN_PROFILE_INTENT, GRADUATION_RATE_ENTITY_LABEL, HIGH_SCHOOL_UNITS_INTENT, INITIAL_COHORT_ENTITY_LABEL, LOWER_BOUND_GRADUATION_TIME_ENTITY_LABEL, NO_AID_ENTITY_LABEL, RECIPIENT_OF_PELL_GRANT_ENTITY_LABEL, RECIPIENT_OF_STAFFORD_LOAN_NO_PELL_GRANT_ENTITY_LABEL, RETENTION_RATE_LABEL, TRANSFER_ADMISSION_INTENT, UPPER_BOUND_GRADUATION_TIME_ENTITY_LABEL
 from Exceptions.ExceptionTypes import ExceptionTypes
 from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
 
@@ -16,7 +16,7 @@ from Knowledgebase.constants import PERCENTAGE_FORMAT
 from OutputController import output
 from actions.constants import ANY_AID_COLUMN_NAME, COHORT_GRADUATION_TIME_ENTITY_FORMAT, COHORT_GRADUATION_TIME_START_FORMAT, NO_AID_COLUMN_NAME, PELL_GRANT_COLUMN_NAME, STAFFORD_LOAN_COLUMN_NAME
 from actions.entititesHelper import changeEntityValue, copyEntities, createEntityObj, filterEntities, findEntityHelper, findMultipleSameEntitiesHelper
-from typing import Text
+from typing import List, Text, Tuple
 
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
@@ -24,7 +24,7 @@ from rasa_sdk.executor import CollectingDispatcher
 # knowledgeBase = SparseMatrixKnowledgeBase("./Data_Ingestion/CDS_SPARSE_ENR.xlsx")
 
 
-knowledgeBase = SparseMatrixKnowledgeBase(ExcelDataManager("./CDSData", [ENROLLMENT_INTENT, COHORT_INTENT, ADMISSION_INTENT, HIGH_SCHOOL_UNITS_INTENT, BASIS_FOR_SELECTION_INTENT, FRESHMAN_PROFILE_INTENT]))
+knowledgeBase = SparseMatrixKnowledgeBase(ExcelDataManager("./CDSData", [ENROLLMENT_INTENT, COHORT_INTENT, ADMISSION_INTENT, HIGH_SCHOOL_UNITS_INTENT, BASIS_FOR_SELECTION_INTENT, FRESHMAN_PROFILE_INTENT, TRANSFER_ADMISSION_INTENT]))
 
 # This is a dictionary storing for an intent, what entities must be detected in the user's question in order for a answer to be returned
 # For example in the freshman profile, percentage is a column in the sparse matrix and an entity. If the user provide some bad input like:
@@ -56,6 +56,25 @@ class ActionAskMoreQuestion(Action):
         dispatcher.utter_message("Great! Do you have anymore questions?")
         return []
 
+class ActionQueryTransferAdmission(Action):
+   
+    def name(self) -> Text:
+        return  "action_query_transfer_admission"
+
+    def run(self, dispatcher, tracker, domain):
+        entitiesExtracted = tracker.latest_message["entities"]
+        intent = tracker.latest_message["intent"]["name"]
+        print(entitiesExtracted)
+        try:
+            answers = knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy, knowledgeBase.constructOutput, True)
+            utterAllAnswers(answers, dispatcher)   
+            
+        except Exception as e:
+            utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
+            
+
+        return []
+
 
 class ActionQueryFreshmanProfile(Action):
     def __init__(self) -> None:
@@ -69,16 +88,16 @@ class ActionQueryFreshmanProfile(Action):
         intent = tracker.latest_message["intent"]["name"]
         print(entitiesExtracted)
 
-        requiredEntityPresent = checkIfRequiredEntityIsPresent(intent, entitiesExtracted)
-        NO_REQUIRED_ENTITY_PRESENT_MESSAGE = "Sorry I do not understand, please rephrase your question by being more specific"
-        if not requiredEntityPresent: 
-            dispatcher.utter_message(NO_REQUIRED_ENTITY_PRESENT_MESSAGE)
-            return []
+        # I will not check for required entity for now.
+        # requiredEntityPresent = checkIfRequiredEntityIsPresent(intent, entitiesExtracted)
+        # NO_REQUIRED_ENTITY_PRESENT_MESSAGE = "Sorry I do not understand, please rephrase your question by being more specific"
+        # if not requiredEntityPresent: 
+        #     dispatcher.utter_message(NO_REQUIRED_ENTITY_PRESENT_MESSAGE)
+        #     return []
 
         try:
-            answer = knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy, knowledgeBase.constructOutput, False)
-            print(answer)
-            dispatcher.utter_message(answer)   
+            answers = knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy, knowledgeBase.constructOutput, True)
+            utterAllAnswers(answers, dispatcher)   
             
         except Exception as e:
             utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
@@ -98,9 +117,8 @@ class ActionQueryBasisForSelection(Action):
         
         print(entitiesExtracted)
         try:
-            answer = knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy, knowledgeBase.constructOutput)
-            print(answer)
-            dispatcher.utter_message(answer)   
+            answers = knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy, knowledgeBase.constructOutput)
+            utterAllAnswers(answers, dispatcher)   
             
         except Exception as e:
             utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
@@ -124,11 +142,11 @@ class ActionQueryHighSchoolUnits(Action):
         print(tracker.latest_message["intent"])
         print(tracker.latest_message["entities"])
         
-        #try:
-        answer = knowledgeBase.searchForAnswer(intent, entitiesExtracted, self.choosenShouldAddRowStrategy, output.outputFuncForHighSchoolUnits)
-        dispatcher.utter_message(answer)    
-       # except Exception as e:
-           # utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
+        try:
+            answers = knowledgeBase.searchForAnswer(intent, entitiesExtracted, self.choosenShouldAddRowStrategy, output.outputFuncForHighSchoolUnits)
+            utterAllAnswers(answers, dispatcher)  
+        except Exception as e:
+           utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
 
 
 class ActionQueryEnrollment(Action):
@@ -151,13 +169,12 @@ class ActionQueryEnrollment(Action):
         if haveRaceEnrollmentEntity:
             selectedShouldAddRowStrategy = defaultShouldAddRowStrategy
 
-        answer = None
-        # try:
-        answer = knowledgeBase.searchForAnswer(
-                    tracker.latest_message["intent"]["name"], entitiesExtracted, selectedShouldAddRowStrategy, knowledgeBase.constructOutput)
-        dispatcher.utter_message(answer)
-        # except Exception as e:
-        #     utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
+        try:
+            answers = knowledgeBase.searchForAnswer(
+                        tracker.latest_message["intent"]["name"], entitiesExtracted, selectedShouldAddRowStrategy, knowledgeBase.constructOutput)
+            utterAllAnswers(answers, dispatcher)
+        except Exception as e:
+            utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
 
         return []
 
@@ -171,12 +188,12 @@ class ActionQueryAdmission(Action):
       
         entitiesExtracted = tracker.latest_message["entities"]
         selectedShouldAddRowStrategy = defaultShouldAddRowStrategy
-       
-        answer = None
+
+        print(entitiesExtracted)
         try:
-            answer = knowledgeBase.searchForAnswer(
+            answers = knowledgeBase.searchForAnswer(
                 tracker.latest_message["intent"]["name"], entitiesExtracted, selectedShouldAddRowStrategy,knowledgeBase.constructOutput)
-            dispatcher.utter_message(answer)
+            utterAllAnswers(answers, dispatcher)
         except Exception as e:
             utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
 
@@ -299,39 +316,41 @@ class ActionQueryCohort(Action):
             try:
                 answer, intent, entitiesUsed = knowledgeBase.aggregateDiscreteRange(
                 intent, entitiesFiltered, lowerBoundYear, upperBoundYear, generator, ignoreAnyAidShouldAddRow,
-                outputFunc = output.identityFunc
                 )
 
                 if askForGraduationRate:
                     entitiesUsed.add(askForGraduationRate["value"])
                     answer = self.calculateGraduationRate(intent, entitiesUsed, entitiesFiltered, float(answer), ignoreAnyAidShouldAddRow)
+                
                 else:
                     answer = output.outputFuncForInteger(answer, intent, entitiesUsed)
                 
                 dispatcher.utter_message(answer)    
             except Exception as e:
-                utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)        
+                 utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)        
             
         else:
-            if askRetentionRate:
-                self.currentOutputFunc = output.outputFuncForPercentage
             
             try:
-                answer = knowledgeBase.searchForAnswer(intent, entitiesExtracted, ignoreAnyAidShouldAddRow, outputFunc=self.currentOutputFunc)
-                dispatcher.utter_message(answer)
+                answers = knowledgeBase.searchForAnswer(intent, entitiesExtracted, ignoreAnyAidShouldAddRow, outputFunc=knowledgeBase.constructOutput)
+                utterAllAnswers(answers, dispatcher)
             except Exception as e:
                 utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
 
         return []
 
     def calculateGraduationRate(self,intent, entitiesForNumerator,  filteredEntities , graduatingNumbers, shouldAddRowStrategy):
-      
         entitiesToCalculateDenominator = [createEntityObj(FINAL_COHORT_ENTITY_LABEL, entityLabel=FINAL_COHORT_ENTITY_LABEL)]
         entitiesToCalculateDenominator = entitiesToCalculateDenominator + filteredEntities
         print("ENTITIES TO CALCULATE DENOMINATOR")
         print(entitiesToCalculateDenominator)
-        return knowledgeBase.aggregatePercentage(intent, graduatingNumbers, entitiesForNumerator,  entitiesToCalculateDenominator,  shouldAddRowStrategy)
-        
+        answer, intent, entities = knowledgeBase.aggregatePercentage(intent, graduatingNumbers, entitiesForNumerator,  entitiesToCalculateDenominator,  shouldAddRowStrategy)
+        return knowledgeBase.constructOutput(answer, intent, entities)
+
+
+def utterAllAnswers(answers, dispatcher):
+    for answer in answers:
+        dispatcher.utter_message(answer)
 
 def checkIfRequiredEntityIsPresent(intent, entities):
     if not intent in requiredEntitiesMap:

@@ -33,6 +33,7 @@ nlu:
     
 
     # graduation time training
+
     - How many students graduated [within six years]{"entity": "upper_bound_graduation_time", "value": "6 years or less"} for [cohort of 2013](cohort_by_year) ?
     - How many students graduated [within five years]{"entity": "upper_bound_graduation_time", "value": "5 years or less"} for [2055 cohort](cohort_by_year)?
     - How many students graduated [within four years]{"entity": "upper_bound_graduation_time", "value": "4 years or less"} for [2090 cohort](cohort_by_year)?
@@ -54,8 +55,8 @@ nlu:
     - What is the [graduation rate](graduation_rate) for students who [graduated in 5 years]{"entity": "upper_bound_graduation_time", "value": "5 years or less"} and [more than four year]{"entity": "lower_bound_graduation_time", "value": "more than 4 years"} for the [cohort of 2014](cohort_by_year)?
 
     #Financial aid training data for cohorts.
+
     - How many students in the [6590 cohort](cohort_by_year) are [recipients of subsidized loan and did not receive federal pell grant]{"entity": "recipients_of_a_subsidized_stafford_loan_who_did_not_receive_a_pell_grant", "value": "stafford-loan"}?
-    
     - How many students in the [2019 cohort](cohort_by_year) are [did not receive subsidized loan and did not receive federal pell grant]{"entity": "students_who_did_not_receive_either_a_pell_grant_or_a_subsidized_stafford_loan", "value":"no-aid"}?
     - How many students in the [6590 cohort](cohort_by_year) are [recipients of subsidized loan and did not receive federal pell grant]{"entity": "recipients_of_a_subsidized_stafford_loan_who_did_not_receive_a_pell_grant", "value": "stafford-loan"}?
     - How many students did not received pell grant but [received subsidized stafford loan]{"entity": "recipients_of_a_subsidized_stafford_loan_who_did_not_receive_a_pell_grant", "value": "stafford-loan"} for [2014 cohort](cohort_by_year)?
@@ -68,11 +69,13 @@ nlu:
     - Number of student who [didn't receive aid]{"entity": "students_who_did_not_receive_either_a_pell_grant_or_a_subsidized_stafford_loan", "value": "no-aid"}
 
     #Retention rate training data:
+
     - What is the [retention rate]{"entity": "retention-rate", "value": "retention-rate"} for [2019 cohort](cohort_by_year)?
     - I want to know about the [retention rate]{"entity": "retention-rate", "value": "retention-rate"}
-    - [retention rate][retention-rate]{"entity": "retention-rate", "value": "retention-rate"}
-    - [retention-rate]{"entity": "retention-rate", "value": "retention-rate"} at rose-hulman in [2019]{"entity":"year", "role": "from"}
+    - What is [retention rate][retention-rate]{"entity": "retention-rate", "value": "retention-rate"}
+    - What is [retention-rate]{"entity": "retention-rate", "value": "retention-rate"} at rose-hulman in [2019]{"entity":"year", "role": "from"}
     - What is the [rate of retention]{"entity": "retention-rate", "value": "retention-rate"} for [2021]{"entity":"year", "role": "from"} academic year ?
+
 
 
 - lookup: upper_bound_graduation_time
@@ -199,6 +202,7 @@ nlu:
    - allowable exclusion
    
    # Im not sure if we should include these in the exemptions, but i'll include it for now.
+   
    - deceased
    - permanently disabled
    - armed forces 
