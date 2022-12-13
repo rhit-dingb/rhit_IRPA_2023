@@ -58,7 +58,7 @@ entities:
 
   - waiting-list-detail
 
-  - policy
+  # - policy
 
   #cohort by year - for example: 2015 cohort, 2016 cohort, etc.
   - cohort_by_year
@@ -179,6 +179,7 @@ entities:
 # Use in conjunction with date entity to create priority date, closing date, notification date and reply date.
   - admission_decision_date
 
+
 #Use to capture the word "date" or "when" - to see if user mention time anywhere in their sentence. Values: date. This does not extract the numeric value, but rather, the word
   - date
 
@@ -225,7 +226,24 @@ entities:
 #Value: type
   - type
 
+  # Entities for early decision and early action. Values: early decision, early action and early admission
+  - early-admission
 
+  - waive
+
+  # Use to capture fee, tuition, etc, things about money.
+  - money
+
+  # Captures if question is about online application. Value: online. 
+  - online
+  
+  # Captures application. Value: internet
+  - application
+
+  # Defer admission
+  - defer
+
+  # - offered
 
 slots:
   enrollment_status:

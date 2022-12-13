@@ -182,8 +182,16 @@ class ActionQueryEnrollment(Action):
         haveRaceEnrollmentEntity = False
        
         entitiesExtracted = tracker.latest_message["entities"]
+<<<<<<< HEAD
         print(tracker.latest_message["intent"]["name"])
         print(entitiesExtracted)
+=======
+        print(entitiesExtracted)
+
+        intent = tracker.latest_message["intent"]["name"]
+        print(intent)
+
+>>>>>>> winter_iteration_3
         for entityObj in tracker.latest_message['entities']:
             if entityObj["entity"] == "race":
                 haveRaceEnrollmentEntity = True
