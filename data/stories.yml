@@ -91,6 +91,26 @@ stories:
 #         - lower_bound_graduation_time: "less than five years"
 #     - action: action_query_cohort
 #     - action: utter_ask_answer_helpful
+
+- story: ask_about_student_life_helpful
+  steps:
+    - intent: student_life
+    - action: action_query_knowledgebase
+    - action: utter_ask_answer_helpful
+    - intent: affirm
+    - checkpoint: ask_feedback
+
+- story: ask_about_student_life_not_helpful
+  steps:
+    - intent: student_life
+    - action: action_query_knowledgebase
+    - action: utter_ask_answer_helpful
+    - intent: deny
+    - action: utter_sorry_question_not_helpful
+    - action: action_get_available_options
+
+
+
 - story: ask_about_transfer_admission_helpful
   steps:
     - intent: transfer_admission
@@ -103,21 +123,12 @@ stories:
   steps:
     - intent: transfer_admission
     - action: action_query_transfer_admission
+    
     - action: utter_ask_answer_helpful
     - intent: deny
     - action: utter_sorry_question_not_helpful
     - action: action_get_available_options
 
-
-
-- story: ask_about_freshman_admission_not_helpful
-  steps:
-    - intent: freshman_profile
-    - action: action_query_freshman_profile
-    - action: utter_ask_answer_helpful
-    - intent: deny
-    - action: utter_sorry_question_not_helpful
-    - action: action_get_available_options
 
 
 - story: ask_about_freshman_profile_helpful

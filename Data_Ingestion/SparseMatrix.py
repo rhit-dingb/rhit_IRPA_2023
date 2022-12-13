@@ -3,7 +3,7 @@ Internal data model representing a sparse matrix
 """
 
 from typing import List
-import pandas as pd
+
 
 
 class SparseMatrix():
