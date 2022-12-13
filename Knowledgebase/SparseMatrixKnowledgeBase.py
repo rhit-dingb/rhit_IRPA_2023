@@ -63,11 +63,10 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
             if "total" in row.index and sparseMatrixToSearchDf.loc[i,"total"] == 1:
                 continue
            
-            usedEntities = shouldAddRowStrategy.determineShouldAddRow(row, entities, sparseMatrixToSearch)
+            shouldUseRow, usedEntities = shouldAddRowStrategy.determineShouldAddRow(row, entities, sparseMatrixToSearch)
             # print(usedEntities)
            
-            if len(usedEntities) > 0:
-               
+            if shouldUseRow:
                 newSearchResult = sparseMatrixToSearchDf.loc[i,'Value']
                 if searchResult == None: 
                     searchResult, type = self.determineResultType(newSearchResult)
@@ -99,6 +98,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         castedNewValue, newSearchResultType = self.determineResultType(newSearchResult)
         if currentSearchResultType == SearchResultType.FLOAT or currentSearchResultType == SearchResultType.NUMBER:
             if newSearchResultType == SearchResultType.FLOAT or newSearchResultType == SearchResultType.NUMBER:
+            
                 newCalculatedValue = str(castedCurrValue + castedNewValue)
                 searchResults[len(searchResults)-1] = newCalculatedValue
                 return newCalculatedValue

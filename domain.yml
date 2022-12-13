@@ -58,7 +58,7 @@ entities:
 
   - waiting-list-detail
 
-  - policy
+  # - policy
 
   #cohort by year - for example: 2015 cohort, 2016 cohort, etc.
   - cohort_by_year
@@ -167,11 +167,6 @@ entities:
 #Academic term. Used to capture the word "term" referring to academic terms
   - academic_term
 
-#admission decision date. Values:  priority, closing, notification, and reply.
-# Use in conjunction with date entity to create priority date, closing date, notification date and reply date.
-  - admission_decision_date
-
-
 #Unit of measure, used to capture required units and unit for measure for transfer admission
   - unit_of_measure
 
@@ -186,9 +181,33 @@ entities:
 
 # Bachelors or Associates degree
   - degree_level 
+
+#Admission dates type
   
+  #admission decision date. Values:  priority, closing, notification, and reply.
+  # Use in conjunction with date entity to create priority date, closing date, notification date and reply date.
+  - admission_decision_date
 
+  # Entities for early decision and early action. Values: early decision, early action and early admission
+  - early-admission
 
+  - waive
+
+  # Use to capture fee, tuition, etc, things about money.
+  - money
+
+  # Captures if question is about online application. Value: online. 
+  - online
+  
+  # Captures application. Value: internet
+  - application
+
+  # Defer admission
+  - defer
+
+  - housing 
+
+  - offered
 
 slots:
   enrollment_status:

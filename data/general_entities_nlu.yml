@@ -84,12 +84,20 @@ nlu:
     - highest
     - max
 
+  
+- lookup: date
+  examples: |
+    - when
+    - time
+    - date
+    - deadline
     
 - synonym: date
   examples: |
     - when
     - time
     - date
+    - deadline
 
 
 - lookup: other
@@ -119,3 +127,16 @@ nlu:
     - colleges
     - institution
     - institutions
+
+
+- lookup: money
+  examples: |
+     - fee 
+     - money
+     - dollar
+
+- synonym: fee
+  examples: |
+    - fee
+    - money
+    - dollar
