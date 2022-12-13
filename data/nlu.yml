@@ -1614,7 +1614,7 @@ nlu:
 
     - Do your [institute]{"entity":"education_level", "value": "college"} offer [early action]{"entity": "early-admission", "value": "early action" }?
 
-    - Do your [institute]{"entity":"education_level", "value": "college"} have [application fee]{"entity": "application-fee", "value": "application fee"}?
+    - Do your [institute]{"entity":"education_level", "value": "college"} have [application]{"entity": "application", "value":"application" } [fee]{"entity":"money", "value": "fee"}?
 
     - Does your [institute]{"entity":"education_level", "value": "college"} allow [early admission]{"entity": "early-admission", "value": "early admission" } of [high school]{"entity": "education_level", "value": "high school"} students
 
