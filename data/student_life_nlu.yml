@@ -96,16 +96,18 @@ nlu:
     - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [undergraduate](student_level) students who joined [sorority](category)
     - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [undergraduate](student_level) students who [commute](category) to school?
     - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [undergraduate](student_level) students who are [commuter]{"entity": "category", "value": "commute"}
+    
 
+    - Is there any [special-study]{"entity":"sepcial-study", "value": "special study"} [program]{"entity":"program", "value": "program"} in your institute?
+    - What [special-study]{"entity":"sepcial-study", "value": "special study"} [program]{"entity":"program", "value": "program"} does rose-hulman have?
+    - Is there any [program]{"entity":"program", "value": "program"} in your [institute]{"entity": "education_level", "value": "college"}?
+    - What [program]{"entity":"program", "value": "program"} of [special-study]{"entity":"special-study", "value": "special study"} do you have?
+    
 
-- lookup: college_relation
-  examples: |
-    - affiliated
-    - owned
-    - operated
-
-
-
+    - Which [areas]{"entity":"area", "value": "area"} are [required]{"entity": "condition", "require"} to complete before students [graduate]{"entity": "student_enrollment_result", "value": "graduation"}?
+    - Which [subject]{"entity":"subject", "value": "subject"} are [required]{"entity": "condition", "require"} to complete before students [graduate]{"entity": "student_enrollment_result", "value": "graduation"}?
+    - Before students [graduate]{"entity": "student_enrollment_result", "value": "graduation"}, which [areas]{"entity":"area", "value": "area"} are students [required]{"entity": "condition", "require"} to study?
+    -
     - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who are [age]{"entity":"age", "value": "age"} [25 and older]{"entity":"age", "value": "25 and older"}
     - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who are [age]{"entity":"age", "value": "age"} [25 older]{"entity":"age", "value": "25 and older"}
     - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who are [age]{"entity":"age", "value": "age"} [25 or older]{"entity":"age", "value": "25 and older"}
@@ -114,6 +116,14 @@ nlu:
     - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who are [age]{"entity":"age", "value": "age"} [twenty five and older]{"entity":"age", "value": "25 and older"}
     - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who are [age]{"entity":"age", "value": "age"} [twenty five or older]{"entity":"age", "value": "25 and older"}
     - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who are [age]{"entity":"age", "value": "age"} [twenty-five or older]{"entity":"age", "value": "25 and older"}
+
+
+- lookup: college_relation
+  examples: |
+    - affiliated
+    - owned
+    - operated
+
 
 - lookup: age
   examples: |
@@ -125,6 +135,25 @@ nlu:
     - twenty-five or older
     - twenty five and older
     - twenty-five and older
+
+
+- synonym: special study
+  examples: |
+    - special study
+    - special studys
+
+- synonym: program
+  examples: |
+    - program
+    - programs
+
+
+- synonym: area
+  examples: |
+    - subject
+    - subjects
+    - areas
+    - discipline
 
 
 - synonym: owned

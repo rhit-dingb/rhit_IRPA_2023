@@ -244,6 +244,18 @@ entities:
   - defer
 
   # - offered
+  
+  #area word
+  #value: area of course work
+  - area 
+
+  #special-study words
+  #Value sepcial-study
+  - special-study
+
+  #program word
+  #Value : program
+  - program
 
 slots:
   enrollment_status:
