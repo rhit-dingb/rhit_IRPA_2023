@@ -7,7 +7,6 @@ import sys
 
 
 from Knowledgebase.SparseMatrixKnowledgeBase import SparseMatrixKnowledgeBase
-from Knowledgebase.ChooseFromOptionsAddRowStrategy import ChooseFromOptionsAddRowStrategy
 from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
 from DataManager.ExcelDataManager import ExcelDataManager
 from Exceptions.NoDataFoundException import NoDataFoundException
@@ -18,12 +17,11 @@ from unittest import mock
 from tests.testUtils import createEntityObjHelper
 
 
-
 # These values are data from the 2020-2021 CDS dataset.
 TOTAL_UNDERGRADUATES = 1972
 TOTAL_UNDERGRADUATE_PART_TIME = 20
 DEGREE_SEEKING_FIRST_TIME_FRESHMAN = 531
-HISPANIC_STUDENTS_ENROLLMENT = 138
+HISPANIC_STUDENTS_ENROLLMENT = 104
 NON_FRESHMAN = 1459
 DEGREE_SEEKING_FIRST_TIME_NON_FRESHMAN = 1100
 TOTAL_GRADUATES = 18
@@ -42,107 +40,98 @@ class enrollment_test(unittest.TestCase):
 
         self.topicToParse = ["enrollment"]
         self.defaultShouldAddRowStrategy = DefaultShouldAddRowStrategy()
-        self.chooseFromOptionAddRowStrategy = ChooseFromOptionsAddRowStrategy(choices=[{
-            "columns": ["degree-seeking", "first-time", "first-year"]
-        },
-            {
-            "columns": ["degree-seeking", "non-first-time", "non-first-year"],
-            "isDefault":True
-        }])
-
+    
         # #Making sure the data loaded is consistent for testing
         # self.data = self.excelProcessor.processExcelSparse("../Data_Ingestion/CDS_SPARSE_ENR.xlsx", self.topicToParse)
-    def extractOutput(self, answer, intent, entities):
-        return str(int(answer))
+    def extractOutput(self, answers, intent, entities):
+        return answers
     
     
     def test_when_ask_for_total_graduates_enrollment_should_return_correct_value(self):
-        answer = self.knowledgeBase.searchForAnswer("enrollment", [
+        answers = self.knowledgeBase.searchForAnswer("enrollment", [
             createEntityObjHelper("graduate"),
             createEntityObjHelper("2020", "year", "from"),
             createEntityObjHelper("2021", "year", "to")
         ], self.defaultShouldAddRowStrategy, self.extractOutput)
         
-        self.assertEqual(answer, str(TOTAL_GRADUATES))
+        self.assertEqual(answers, [str(TOTAL_GRADUATES)])
 
 
     def test_when_ask_for_non_degree_seeking_should_return_correct_value(self):
-        answer = self.knowledgeBase.searchForAnswer("enrollment", [
+        answers = self.knowledgeBase.searchForAnswer("enrollment", [
             createEntityObjHelper("non-degree-seeking"),
             createEntityObjHelper("2020", "year", "from"),
             createEntityObjHelper("2021", "year", "to")
         ], self.defaultShouldAddRowStrategy, self.extractOutput)
 
-        self.assertEqual(answer, str(NON_DEGREE_SEEKING_STUDENTS))
+        self.assertEqual(answers, [str(NON_DEGREE_SEEKING_STUDENTS)])
 
 
 
     def test_ask_for_total_undergraduates_enrollment(self):
-        answer = self.knowledgeBase.searchForAnswer("enrollment", [
+        answers = self.knowledgeBase.searchForAnswer("enrollment", [
             createEntityObjHelper("undergraduate"),
             createEntityObjHelper("2020", "year", "from"),
             createEntityObjHelper("2021", "year", "to")
 
         ], self.defaultShouldAddRowStrategy, self.extractOutput)
-        self.assertEqual(answer, str(TOTAL_UNDERGRADUATES))
+        self.assertEqual(answers, [str(TOTAL_UNDERGRADUATES)])
 
     def test_ask_for_full_time_undergraduates_enrollment(self):
-        answer = self.knowledgeBase.searchForAnswer("enrollment", [
+        answers = self.knowledgeBase.searchForAnswer("enrollment", [
             createEntityObjHelper("undergraduate"),
             createEntityObjHelper("2020", "year", "from"),
             createEntityObjHelper("2021", "year", "to"),
             createEntityObjHelper("full-time")], self.defaultShouldAddRowStrategy, self.extractOutput)
-        self.assertEqual(answer, str(TOTAL_UNDERGRADUATES -
-                         TOTAL_UNDERGRADUATE_PART_TIME))
+        self.assertEqual(answers, [str(TOTAL_UNDERGRADUATES - TOTAL_UNDERGRADUATE_PART_TIME)])
 
     # degree-seeking, first_time, freshman/all other, first-year
     def test_ask_for_full_time_undergradutes_enrollment(self):
-        answer = self.knowledgeBase.searchForAnswer("enrollment", [
+        answers = self.knowledgeBase.searchForAnswer("enrollment", [
             createEntityObjHelper("degree-seeking"),
             createEntityObjHelper("first-time"),
             createEntityObjHelper("2020", "year", "from"),
             createEntityObjHelper("2021", "year", "to"),
             createEntityObjHelper("freshman")], self.defaultShouldAddRowStrategy, self.extractOutput)
-        self.assertEqual(answer, str(DEGREE_SEEKING_FIRST_TIME_FRESHMAN))
+        self.assertEqual(answers, [str(DEGREE_SEEKING_FIRST_TIME_FRESHMAN)])
 
     def test_ask_for_hispanics_students_enrollment(self):
-        answer = self.knowledgeBase.searchForAnswer("enrollment", [
+        answers = self.knowledgeBase.searchForAnswer("enrollment", [
             createEntityObjHelper("hispanic"),
             createEntityObjHelper("2020", "year", "from"),
             createEntityObjHelper("2021", "year", "to")
         ], self.defaultShouldAddRowStrategy, self.extractOutput)
-        self.assertEqual(answer, str(HISPANIC_STUDENTS_ENROLLMENT))
+        self.assertEqual(answers, [str(HISPANIC_STUDENTS_ENROLLMENT)])
 
     def test_ask_for_non_freshmans(self):
-        answer = self.knowledgeBase.searchForAnswer("enrollment",
+        answers = self.knowledgeBase.searchForAnswer("enrollment",
                                                     [
                                                         createEntityObjHelper(
                                                             "non-freshman")
                                                     ], self.defaultShouldAddRowStrategy, self.extractOutput)
-        self.assertEqual(answer, str(NON_FRESHMAN))
+        self.assertEqual(answers, [str(NON_FRESHMAN)])
 
     def test_ask_for_full_time_undergraduate_men_non_freshmans(self):
-        answer = self.knowledgeBase.searchForAnswer("enrollment", [
+        answers = self.knowledgeBase.searchForAnswer("enrollment", [
             createEntityObjHelper("full-time"),
             createEntityObjHelper("degree-seeking"),
-            createEntityObjHelper("men"),
+            createEntityObjHelper("male"),
             createEntityObjHelper("non-freshman"),
             createEntityObjHelper("2020", "year", "from"),
             createEntityObjHelper("2021", "year", "to"),
             ], self.defaultShouldAddRowStrategy, self.extractOutput)
-        self.assertEqual(answer, str(DEGREE_SEEKING_FIRST_TIME_NON_FRESHMAN))
+        self.assertEqual(answers, [str(DEGREE_SEEKING_FIRST_TIME_NON_FRESHMAN)])
 
     # for this test, I am assuming if we asked for data that the CDS does not have,
-    # the algorithm current will try to answer to its best of its ability.
-    def test_ask_for_out_of_scope_data_should_answer_to_best_ability(self):
-        answer = self.knowledgeBase.searchForAnswer("enrollment",
-                                                    [createEntityObjHelper("men"),
+    # the algorithm current will try to answers to its best of its ability.
+    def test_ask_for_out_of_scope_data_should_answers_to_best_ability(self):
+        answers = self.knowledgeBase.searchForAnswer("enrollment",
+                                                    [createEntityObjHelper("male"),
                                                      createEntityObjHelper("asian", entityLabel="race"), 
                                                     createEntityObjHelper("2020", "year", "from"),
                                                     createEntityObjHelper("2021", "year", "to")],
-                                                    self.chooseFromOptionAddRowStrategy, self.extractOutput)
-        self.assertEqual(answer, str(
-            DEGREE_SEEKING_UNDERGRADUATE_ASIAN_STUDENTS_ENROLLED))
+                                                    self.defaultShouldAddRowStrategy, self.extractOutput)
+        self.assertEqual(answers, [str(DEGREE_SEEKING_UNDERGRADUATE_ASIAN_STUDENTS_ENROLLED)])
 
     # It might be worth thinking about which matrix will be used for this test case compared to the previous test case.
     # The entities in the above test case are mutually exclusive, meaning one exist in the first matrix(general enrollment) for enrollment while
@@ -150,63 +139,62 @@ class enrollment_test(unittest.TestCase):
     # degree-seeking exist in the first matrix but also the second, and "asian" exist only in the second matrix,
     # since more entities are in the second matrix, the second matrix will be used.
     def test_ask_for_degree_seeking_asian_student_enrolled_should_return_degree_seeking_undergraduate_asian_students(self):
-        answer = self.knowledgeBase.searchForAnswer("enrollment",
+        answers = self.knowledgeBase.searchForAnswer("enrollment",
                                                     [createEntityObjHelper("degree-seeking"),
                                                      createEntityObjHelper("asian"),
                                                      createEntityObjHelper("2020", "year", "from"),
                                                     createEntityObjHelper("2021", "year", "to")],
-                                                    self.chooseFromOptionAddRowStrategy, self.extractOutput)
-        self.assertEqual(answer, str(
-            DEGREE_SEEKING_UNDERGRADUATE_ASIAN_STUDENTS_ENROLLED))
+                                                    self.defaultShouldAddRowStrategy, self.extractOutput)
+        self.assertEqual(answers, [str(DEGREE_SEEKING_UNDERGRADUATE_ASIAN_STUDENTS_ENROLLED)])
 
     def test_ask_for_african_american_first_time_first_year_degree_seeking(self):
-        answer = self.knowledgeBase.searchForAnswer("enrollment", [createEntityObjHelper("african-american"),
+        answers = self.knowledgeBase.searchForAnswer("enrollment", [createEntityObjHelper("african-american"),
                                                                    createEntityObjHelper(
                                                                        "first-year"),
                                                                    createEntityObjHelper(
                                                                        "first-time"),
                                                                     createEntityObjHelper("2020", "year", "from"),
                                                                     createEntityObjHelper("2021", "year", "to"),
-                                                                   createEntityObjHelper("degree-seeking")], self.chooseFromOptionAddRowStrategy, self.extractOutput)
-        self.assertEqual(answer, str(31))
+                                                                   createEntityObjHelper("degree-seeking")], self.defaultShouldAddRowStrategy, self.extractOutput)
+        self.assertEqual(answers, [str(31)])
 
     def test_ask_for_asian_student_enrollment_should_not_sum_up_two_row(self):
-        answer = self.knowledgeBase.searchForAnswer("enrollment", [
+        answers = self.knowledgeBase.searchForAnswer("enrollment", [
             createEntityObjHelper("asian"),
             createEntityObjHelper("2020", "year", "from"),
             createEntityObjHelper("2021", "year", "to")
-        ], self.chooseFromOptionAddRowStrategy, self.extractOutput)
-        self.assertEqual(answer, str(
-            DEGREE_SEEKING_UNDERGRADUATE_ASIAN_STUDENTS_ENROLLED))
+        ], self.defaultShouldAddRowStrategy, self.extractOutput)
+        self.assertEqual(answers, [str(
+            DEGREE_SEEKING_UNDERGRADUATE_ASIAN_STUDENTS_ENROLLED)])
 
     def test_ask_for_hispanic_enrollment_but_given_included_invalid_entity_should_return_only_hispanic_enrollment(self):
-        answer = self.knowledgeBase.searchForAnswer("enrollment", [
+        answers = self.knowledgeBase.searchForAnswer("enrollment", [
             createEntityObjHelper("hispanic"),
             createEntityObjHelper("pizza"),
             createEntityObjHelper("2020", "year", "from"),
              createEntityObjHelper("2021", "year", "to")
-        ], self.chooseFromOptionAddRowStrategy, self.extractOutput)
-        self.assertEqual(answer, str(104))
+        ], self.defaultShouldAddRowStrategy, self.extractOutput)
+        self.assertEqual(answers, [str(HISPANIC_STUDENTS_ENROLLMENT)])
 
     def test_ask_for_first_time_unknown_race_but_entity_provided_twice(self):
-        answer = self.knowledgeBase.searchForAnswer("enrollment", [
+        answers = self.knowledgeBase.searchForAnswer("enrollment", [
             createEntityObjHelper("unknown"),
             createEntityObjHelper("first-time"),
             createEntityObjHelper("first-time"),
             createEntityObjHelper("2020", "year", "from"),
              createEntityObjHelper("2021", "year", "to")
-        ], self.chooseFromOptionAddRowStrategy, self.extractOutput)
-        self.assertEqual(answer, str(
-            UNDERGRADUATE_FIRST_TIME_DEGREE_SEEKING_UNKNOWN_RACE_STUDENT_ENROLLED))
+        ], self.defaultShouldAddRowStrategy, self.extractOutput)
+        self.assertEqual(answers, [str(
+            UNDERGRADUATE_FIRST_TIME_DEGREE_SEEKING_UNKNOWN_RACE_STUDENT_ENROLLED)])
 
     def test_ask_for_african_american_student_enrollment(self):
-        answer = self.knowledgeBase.searchForAnswer("enrollment", [
+        answers = self.knowledgeBase.searchForAnswer("enrollment", [
             createEntityObjHelper("african-american"),
             createEntityObjHelper("2020", "year", "from"),
              createEntityObjHelper("2021", "year", "to")
-        ], self.chooseFromOptionAddRowStrategy, self.extractOutput)
-        self.assertEqual(answer, str(
-            UNDERGRADUATE_DEGREE_SEEKING_AFRICAN_AMERICAN_STUDEN_ENROLLED))
+        ], self.defaultShouldAddRowStrategy, self.extractOutput)
+        self.assertEqual(answers, [str(
+            UNDERGRADUATE_DEGREE_SEEKING_AFRICAN_AMERICAN_STUDEN_ENROLLED)])
 
     def test_ask_for_data_for_invalid_year_should_throw_error(self):
 
@@ -214,7 +202,7 @@ class enrollment_test(unittest.TestCase):
             self.knowledgeBase.searchForAnswer("enrollment", [
                 createEntityObjHelper("african-american"),
                 createEntityObjHelper("3000-3001", "year"),
-            ], self.chooseFromOptionAddRowStrategy, self.extractOutput)
+            ], self.defaultShouldAddRowStrategy, self.extractOutput)
             
         exceptionRaised = cm.exception
         self.assertEqual(exceptionRaised.fallBackMessage,
@@ -222,14 +210,14 @@ class enrollment_test(unittest.TestCase):
         self.assertEqual(exceptionRaised.type,
                              ExceptionTypes.NoDataFoundForAcademicYearException)
 
-    def test_ask_for_data_for_give_start_year_should_return_correct_data(self):
-        answer = self.knowledgeBase.searchForAnswer("enrollment", [
-            createEntityObjHelper("degree-seeking"),
-            createEntityObjHelper("non-first-time"),
-            createEntityObjHelper("2020", "year", "from"),
-        ], self.defaultShouldAddRowStrategy, self.extractOutput)
+    # def test_ask_for_data_for_give_start_year_should_return_correct_data(self):
+    #     answers = self.knowledgeBase.searchForAnswer("enrollment", [
+    #         createEntityObjHelper("degree-seeking"),
+    #         createEntityObjHelper("non-first-time"),
+    #         createEntityObjHelper("2020", "year", "from"),
+    #     ], self.defaultShouldAddRowStrategy, self.extractOutput)
 
-        self.assertEqual(answer, str(NON_FIRST_TIME))
+    #     self.assertEqual(answers, [str(NON_FIRST_TIME)])
 
     def test_ask_for_data_for_give_end_year_with_no_data_should_throw_error_message(self):
 

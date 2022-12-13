@@ -52,8 +52,10 @@ class DataManager():
         # print(sparseMatrices)
         if sparseMatrices == None:
             sparseMatrices, startYear, endYear = self.academicYearDataSelector.selectDataToSearchByYear(self, intent, entities)   
-        errorMessage = NO_DATA_AVAILABLE_FOR_GIVEN_INTENT_FORMAT.format(topic = intent, start= startYear, end =endYear)
-        selectedSparseMatrix = self.determineBestMatchingMatrix(sparseMatrices, entities, errorMessage)      
+        
+        
+        errorMessage = NO_DATA_AVAILABLE_FOR_GIVEN_INTENT_FORMAT.format(topic = intent.replace("_", " "), start= startYear, end =endYear)
+        selectedSparseMatrix = self.determineBestMatchingMatrix(sparseMatrices, entities, errorMessage)     
         return (selectedSparseMatrix, startYear, endYear)
        
 
@@ -81,8 +83,9 @@ class DataManager():
     we can store a field in TopicData to indicate use which matrix as default in case of a tie.
 
     """
-    def determineBestMatchingMatrix(self, topicData : TopicData, entities : dict, errorMessage : str) ->  SparseMatrix:
+    def determineBestMatchingMatrix(self, topicData : TopicData, entities : Dict, errorMessage : str) ->  SparseMatrix:
         doesEntityMapToAnySubsections, sparseMatrixFound = topicData.doesEntityIncludeAnySubsections(entities)
+
         if doesEntityMapToAnySubsections:
             return sparseMatrixFound
 
@@ -93,7 +96,12 @@ class DataManager():
             for key in sparseMatricesDictionary.keys():
 
                 sparseMatrix : SparseMatrix = sparseMatricesDictionary[key]
-                entitiesMatchCount : int  = sparseMatrix.determineEntityMatchToColumnCount(entities)
+                
+                entityValues = []
+                for entity in entities:
+                    entityValues.append(entity["value"])
+                
+                entitiesMatchCount : int  = sparseMatrix.determineEntityMatchToColumnCount(entityValues)
                 if entitiesMatchCount>currMax:
                     maxMatch = []
                     maxMatch.append(sparseMatrix)
@@ -101,6 +109,8 @@ class DataManager():
                 elif entitiesMatchCount == currMax:
                     maxMatch.append(sparseMatrix)
 
+
+        
             #raise an error if no best matching matrix is found
             if len(maxMatch) == 0:
                 raise NoDataFoundException(errorMessage, ExceptionTypes.NoSparseMatrixDataAvailableForGivenIntent)

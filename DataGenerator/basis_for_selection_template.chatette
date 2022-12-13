@@ -1,0 +1,44 @@
+%[basis_for_selection]
+	How important is @[non_academic_factor] in admission decisions?
+	What is the importance of @[non_academic_factor] in admission decisions
+	How important is @[non_academic_factor] in basis_for_selection
+
+
+
+
+@[non_academic_factor]
+	//~[racial\/ethnic status] = racial\/ethnic status
+	~[volunteer work] = volunteer work
+	~[work experience] = work experience
+	~[level of applicant’s interest] = level of applicant’s interest
+
+~[racial\/ethnic status]
+	racial\/ethnic status
+	racial status
+	race status
+	ethnic status
+	race 
+	ethnicity
+	ethnic
+	racial or ethnic status
+	racial and ethnic status
+
+
+~[volunteer work]
+	volunteer work
+	volunteer
+	volunteering
+
+~[work experience]
+	work experience
+	experience working
+	experience in working
+
+~[level of applicant’s interest]
+	level of applicant’s interest
+	level of applicant interest
+	applicant’s interest
+	interest of the applicant
+	applicant interest 
+	applicant's level of interest
+	applicant level of interest

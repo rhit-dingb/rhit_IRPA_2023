@@ -184,7 +184,11 @@ stories:
 - story: ask_about_cohort_general_should_extract_five_year
   steps:
   - user: |
-      How many students graduated in [five year]{"entity": "upper_bound_graduation_time", "value": "5 years or less"} but in [more than four years]{"entity": "lower_bound_graduation_time", "value": "more than 4 years"} for [2046 cohort](cohort_by_year)?
+      How many students [graduated]{"entity":"student_enrollment_result", "value": "graduation"}
+      [in]{"entity": "range", "value": "within"}  [5 years]{"entity": "years_for_college", "value": "5 year"} [or less]{"entity": "range", "value": "within"}
+      but [more than]{"entity": "range", "value": "more than"} [four year]s{"entity": "years_for_college", "value": "4 year"} 
+       for the [3524 cohort](cohort_by_year)?
+    
     intent: cohort
   - action: action_query_cohort
   - action: utter_ask_answer_helpful
@@ -201,7 +205,12 @@ stories:
 - story: ask_about_cohort_general_should_extract_five_year_2
   steps:
   - user: |
-      How many students graduated [within five years]{"entity": "upper_bound_graduation_time", "value": "5 years or less"} but in [more than four years]{"entity": "lower_bound_graduation_time", "value": "more than 4 years"} for [2046 cohort](cohort_by_year)?
+     What is the [graduation]{"entity":"student_enrollment_result", "value": "graduation"}
+      [rate]{"entity": "aggregation", "value": "percent"} for students who [graduated]{"entity":"student_enrollment_result", "value": "graduation"} 
+      [less than]{"entity": "range", "value": "within"} [5 years]{"entity": "years_for_college", "value": "5 year"} and [in]{"entity": "range", "value": "within"}
+       [more than]{"entity": "range", "value": "more than"} [four year]{"entity": "years_for_college", "value": "4 year"} 
+       for the [cohort of 2014](cohort_by_year)?
+
     intent: cohort
   - action: action_query_cohort
   - action: utter_ask_answer_helpful
@@ -210,7 +219,10 @@ stories:
 - story: ask_about_cohort_general_5_year_graduation_time_should_extract_gradution_time_successfully
   steps:
   - user: |
-     I want to know the [graduation rate](graduation_rate) of students [graduated in 5 years]{"entity": "upper_bound_graduation_time", "value": "5 years or less"} and [more than four year]{"entity": "lower_bound_graduation_time", "value": "more than 4 years"} for [cohort of 2014](cohort_by_year)
+      I want to know about the [graduation]{"entity":"student_enrollment_result", "value": "graduation"}
+      [rate]{"entity": "aggregation", "value": "percent"} for students who [graduated]{"entity":"student_enrollment_result", "value": "graduation"} 
+       [no more than]{"entity": "range", "value": "within"} [four year]{"entity": "years_for_college", "value": "4 year"} 
+       for the [cohort of 2014](cohort_by_year)?
     intent: cohort
   - action: action_query_cohort
   - action: utter_ask_answer_helpful
@@ -219,49 +231,44 @@ stories:
 - story: ask_about_cohort_general_should_extract_graduation_time_successfully
   steps:
   - user: |
-      What is the [graduation rate](graduation_rate) for students who [graduated in 5 years]{"entity": "upper_bound_graduation_time", "value": "5 years or less"} and [more than four year]{"entity": "lower_bound_graduation_time", "value": "more than 4 years"} for the [cohort of 2014](cohort_by_year)?
+      What is the [graduation]{"entity":"student_enrollment_result", "value": "graduation"}
+      [rate]{"entity": "aggregation", "value": "percent"} for students who [graduated]{"entity":"student_enrollment_result", "value": "graduation"} 
+      [in]{"entity": "range", "value": "within"} [5 years]{"entity": "years_for_college", "value": "5 year"} and
+       [more than]{"entity": "range", "value": "more than"} [four year]{"entity": "years_for_college", "value": "4 year"} 
+       for the [cohort of 2014](cohort_by_year)?
+    
     intent: cohort
   - action: action_query_cohort
   - action: utter_ask_answer_helpful
 
 
-- story: ask_about_cohort_financial_aid_should_extract_entity_successfully
-  steps:
-  - user: |
-      I want to know about students who [did not receive any aid](students_who_did_not_receive_either_a_pell_grant_or_a_subsidized_stafford_loan)
-    intent: cohort
-  - action: action_query_cohort
-  - action: utter_ask_answer_helpful
+# - story: ask_about_cohort_financial_aid_should_extract_entity_successfully
+#   steps:
+#   - user: |
+#       I want to know about students who [did not receive any aid](students_who_did_not_receive_either_a_pell_grant_or_a_subsidized_stafford_loan)
+#     intent: cohort
+#   - action: action_query_cohort
+#   - action: utter_ask_answer_helpful
 
-- story: ask_about_cohort_recipient_of_pell_grant
-  steps:
-  - user: |
-      I want to know about students who are [recipient of pell grant]{"entity": "recipients_of_federal_pell_grant", "value":"pell-grant"}
-    intent: cohort
-  - action: action_query_cohort
-  - action: utter_ask_answer_helpful
+# - story: ask_about_cohort_recipient_of_pell_grant
+#   steps:
+#   - user: |
+#       I want to know about students who are [recipient of pell grant]{"entity": "recipients_of_federal_pell_grant", "value":"pell-grant"}
+#     intent: cohort
+#   - action: action_query_cohort
+#   - action: utter_ask_answer_helpful
 
 #COHORT RETENTION RATE:
 - story: ask_about_cohort_retention_rate_should_extract_retention_successfully
   steps:
   - user: |
-      What is the [retention rate]{"entity": "retention-rate", "value": "retention-rate"} for [3252 cohort](cohort_by_year)?
+      What is the [retention]{"entity":"student_enrollment_result", "value": "retention"} [rate]{"entity": "aggregation", "value": "percent"} for [3252 cohort](cohort_by_year)?
     intent: cohort
   - action: action_query_cohort
   - action: utter_ask_answer_helpful
 
 
 #HIGH SCHOOL UNITS TEST:
-
-- story: ask_about_cohort_general_5_year_graduation_time_should_extract_gradution_time_successfully
-  steps:
-  - user: |
-      I want to know the [graduation rate](graduation_rate) of students [graduated in 5 years]{"entity": "upper_bound_graduation_time", "value": "5 years or less"} and [more than four year]{"entity": "lower_bound_graduation_time", "value": "more than 4 years"} for [cohort of 2014](cohort_by_year)
-    intent: cohort
-  - action: action_query_cohort
-  - action: utter_ask_answer_helpful
-
-
 
 - story: ask_about_high_school_units_should_extract_subject_correctly
   steps:
@@ -276,45 +283,64 @@ stories:
   - action: utter_sorry_question_not_helpful
   - action: action_get_available_options
 
-- story: ask_about_high_school_units_should_extract_subject_correctly_visual_performing_art
+#TODO, fix the test cases below.
+# - story: ask_about_high_school_units_should_extract_subject_correctly_visual_performing_art
+#   steps:
+#   - user: |
+#       How many [visual performing art]{"entity": "subject", "value": "visual/performing-arts"} [units] are [recommended]{"entity": "unit_level", "value": "units-recommended"} ?
+#     intent: high_school_units
+#   - action: action_query_high_school_units
+#   - action: utter_ask_answer_helpful
+#   - user: |
+#       nope
+#     intent: deny
+#   - action: utter_sorry_question_not_helpful
+#   - action: action_get_available_options
+
+# - story: ask_about_high_school_units_should_extract_subject_correctly_social_study
+#   steps:
+#   - user: |
+#       What is the [required unit]{"entity": "unit_level", "value": "units-required"} for [social study]{"entity": "subject", "value": "social-studies"}?
+#     intent: high_school_units
+#   - action: action_query_high_school_units
+#   - action: utter_ask_answer_helpful
+#   - user: |
+#       ya
+#     intent: affirm
+#   - action: action_ask_more_question
+#   - user: |
+#       sure
+#     intent: affirm
+#   - action: utter_ask_whats_the_question
+
+
+# - story: ask_about_high_school_units_should_extract_subject_correctly
+#   steps:
+#   - user: |
+#       What is the [required unit]{"entity": "unit_level", "value": "units-required"} for [laboratory]{"entity": "subject", "value": "lab"} [science]{"entity": "subject", "value": "science"} ? 
+#     intent: high_school_units
+#   - action: action_query_high_school_units
+#   - action: utter_ask_answer_helpful
+#   - user: |
+#       ya
+#     intent: affirm
+#   - action: action_ask_more_question
+#   - user: |
+#       nope
+#     intent: deny
+#   - action: utter_no_more_question
+
+
+#Basis for selection tests
+- story: ask_about_talent_importance_in_basis_for_selection
   steps:
   - user: |
-      How many [visual performing art]{"entity": "subject", "value": "visual/performing-arts"} [units are recommended]{"entity": "unit_level", "value": "units-recommended"} ?
-    intent: high_school_units
-  - action: action_query_high_school_units
+      How important is student's [talent]{"entity": "non_academic_factor", "value": "talent"} in admission?
+    intent: basis_for_selection
+  - action: action_query_basis_for_selection
   - action: utter_ask_answer_helpful
   - user: |
-      nope
-    intent: deny
-  - action: utter_sorry_question_not_helpful
-  - action: action_get_available_options
-
-- story: ask_about_high_school_units_should_extract_subject_correctly_social_study
-  steps:
-  - user: |
-      What is the [required unit]{"entity": "unit_level", "value": "units-required"} for [social study]{"entity": "subject", "value": "social-studies"}?
-    intent: high_school_units
-  - action: action_query_high_school_units
-  - action: utter_ask_answer_helpful
-  - user: |
-      ya
-    intent: affirm
-  - action: action_ask_more_question
-  - user: |
-      sure
-    intent: affirm
-  - action: utter_ask_whats_the_question
-
-
-- story: ask_about_high_school_units_should_extract_subject_correctly
-  steps:
-  - user: |
-      What is the [required unit]{"entity": "unit_level", "value": "units-required"} for [laboratory]{"entity": "subject", "value": "lab"} [science]{"entity": "subject", "value": "science"} ? 
-    intent: high_school_units
-  - action: action_query_high_school_units
-  - action: utter_ask_answer_helpful
-  - user: |
-      ya
+      yes
     intent: affirm
   - action: action_ask_more_question
   - user: |
@@ -322,3 +348,60 @@ stories:
     intent: deny
   - action: utter_no_more_question
 
+
+- story: ask_about_religion_importance_in_basis_for_selection
+  steps:
+  - user: |
+      How important is student's [religion]{"entity": "non_academic_factor", "value": "religious affiliation/commitment"} in basis for selection
+    intent: basis_for_selection
+  - action: action_query_basis_for_selection
+  - action: utter_ask_answer_helpful
+  - user: |
+      yes
+    intent: affirm
+  - action: action_ask_more_question
+  - user: |
+      nope
+    intent: deny
+  - action: utter_no_more_question
+
+
+#Freshman profile tests
+#Percent/Number submit sat/act
+- story: ask_about_percentage_submit_sat
+  steps:
+  - user: |
+      [percentage]{"entity":"aggregation", "value": "percent"} of students who submitted [sat]{"entity": "standardized_test", "value": "sat"}
+    intent: basis_for_selection
+  - action: action_query_basis_for_selection
+  - action: utter_ask_answer_helpful
+  - user: |
+      yes
+    intent: affirm
+  - action: action_ask_more_question
+  - user: |
+      nope
+    intent: deny
+  - action: utter_no_more_question
+
+- story: ask_about_percentile_score_act
+  steps:
+  - user: |
+      What is the [75th percentile]{"entity": "test_percentile", "value": "75th percentile"} score for [ACT writing]{"entity": "act_test_component"}
+    intent: basis_for_selection
+  - action: action_query_basis_for_selection
+  - action: utter_ask_answer_helpful
+  - user: |
+      yes
+    intent: affirm
+  - action: action_ask_more_question
+  - user: |
+      nope
+    intent: deny
+  - action: utter_no_more_question
+
+
+
+
+
+  

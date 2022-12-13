@@ -1,14 +1,37 @@
-COHORT_BY_YEAR_ENTITY_LABEL = "cohort_by_year"
-YEAR_ENTITY_LABEL = "year"
+
 
 COHORT_INTENT = "cohort"
-UPPER_BOUND_GRADUATION_TIME_ENTITY_LABEL = "upper_bound_graduation_time"
-LOWER_BOUND_GRADUATION_TIME_ENTITY_LABEL = "lower_bound_graduation_time"
+ENROLLMENT_INTENT = "enrollment"
+ADMISSION_INTENT = "admission"
+FRESHMAN_PROFILE_INTENT = "freshman_profile"
+HIGH_SCHOOL_UNITS_INTENT = "high_school_units"
+BASIS_FOR_SELECTION_INTENT = "basis_for_selection"
+TRANSFER_ADMISSION_INTENT = "transfer_admission"
+
+
+STUDENT_LIFE_INTENT = "student_life"
+
+COHORT_BY_YEAR_ENTITY_LABEL = "cohort_by_year"
+STUDENT_ENROLLMENT_RESULT_ENTITY_LABEL = "student_enrollment_result"
+YEAR_ENTITY_LABEL = "year"
+
 INITIAL_COHORT_ENTITY_LABEL = "initial"
 FINAL_COHORT_ENTITY_LABEL = 'final'
 EXEMPTION_ENTITY_LABEL = "exemptions"
-GRADUATION_RATE_ENTITY_LABEL = "graduation_rate"
-RECIPIENT_OF_PELL_GRANT_ENTITY_LABEL = "recipients_of_federal_pell_grant"
-RECIPIENT_OF_STAFFORD_LOAN_NO_PELL_GRANT_ENTITY_LABEL = "recipients_of_a_subsidized_stafford_loan_who_did_not_receive_a_pell_grant"
-NO_AID_ENTITY_LABEL = "students_who_did_not_receive_either_a_pell_grant_or_a_subsidized_stafford_loan"
-RETENTION_RATE_LABEL = "retention-rate"
+AGGREGATION_ENTTIY_LABEL = "aggregation"
+
+
+# DEPRECATED
+# GRADUATION_RATE_ENTITY_LABEL = "graduation_rate"
+# UPPER_BOUND_GRADUATION_TIME_ENTITY_LABEL = "upper_bound_graduation_time"
+# LOWER_BOUND_GRADUATION_TIME_ENTITY_LABEL = "lower_bound_graduation_time"
+# RETENTION_RATE_LABEL = "retention-rate"
+
+AID_ENTITY_LABEL = "aid_status"
+RECIPIENT_OF_PELL_GRANT_ENTITY_LABEL = "pell"
+RECIPIENT_OF_STAFFORD_LOAN_NO_PELL_GRANT_ENTITY_LABEL = "stafford"
+NO_AID_ENTITY_LABEL = "no-aid"
+
+YEAR_FOR_COLLEGE_ENTITY_LABEL = "years_for_college"
+
+RANGE_ENTITY_LABEL  = "range"

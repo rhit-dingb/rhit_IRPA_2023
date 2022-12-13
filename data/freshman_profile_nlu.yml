@@ -1,0 +1,1013 @@
+version: "3.1"
+nlu:
+- intent: freshman_profile
+  examples: |
+    - How many student [submitted]{"entity": "submitted", "value":  "submitted"} [ACT]{"entity":"standarized_test", "value": "act"} scores
+    - How many student [submitted]{"entity": "submitted", "value":  "submitted"} [SAT]{"entity":"standarized_test", "value": "sat"} scores
+    - How many student [turned in]{"entity": "submitted", "value":  "submitted"} [SAT]{"entity":"standarized_test", "value": "sat"} scores
+    
+    - How many student [turning in]{"entity": "submitted", "value":  "submitted"} [ACT]{"entity":"standarized_test", "value": "act"} scores
+    
+    - number of students who are [submitting]{"entity": "submitted", "value":  "submitted"} [SAT]{"entity":"standarized_test", "value": "sat"} scores
+    - number of students who are [submitting]{"entity": "submitted", "value":  "submitted"} [ACT]{"entity":"standarized_test", "value": "act"} scores
+
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of students [submitting]{"entity": "submitted", "value":  "submitted"} [ACT]{"entity":"standarized_test", "value": "act"} scores
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of students [submitting]{"entity": "submitted", "value":  "submitted"} [SAT]{"entity":"standarized_test", "value": "sat"} scores
+
+    - What is the [25th percentile](test_percentile) score for [ACT]{"entity":"standarized_test", "value": "act"} [composite](test_component)
+    - What is the [25th percentile](test_percentile) score for [ACT]{"entity":"standarized_test", "value": "act"} [essay]{"entity": "essay", "value": "essay" }
+    - What is the [25th percentile](test_percentile) score for [ACT]{"entity":"standarized_test", "value": "act"} [reading](test_component) and writing(test_component)
+    - What is the [25th percentile](test_percentile) score for [ACT]{"entity":"standarized_test", "value": "act"} [written]{"entity": "test_component", "value": "writing"} part
+
+    - What is the [25th percentile](test_percentile) score for [SAT]{"entity":"standarized_test", "value": "sat"} [composite](test_component)
+    - What is the [25th percentile](test_percentile) score for [SAT]{"entity":"standarized_test", "value": "sat"} [essay]{"entity": "essay", "value": "essay" } 
+    - What is the [25th percentile](test_percentile) score for [SAT]{"entity":"standarized_test", "value": "sat"} [reading](test_component) and [writing](test_component) part
+
+    - What is the [25th percentile](test_percentile) score for [SAT]{"entity":"standarized_test", "value": "sat"} evidence-based [writing](test_component) and reading(test_component)
+    - What is the [25th percentile](test_percentile) score for [SAT]{"entity":"standarized_test", "value": "sat"} evidence based [reading]{"entity": "test_component", "value": "reading"} and [written]{"entity": "test_component", "value": "writing"} part
+
+
+    - What is the [50th percentile](test_percentile) score for [ACT]{"entity":"standarized_test", "value": "act"} [composite](test_component)
+    - What is the [50th percentile](test_percentile) score for [ACT]{"entity":"standarized_test", "value": "act"} [essay]{"entity": "essay", "value": "essay" } 
+
+    - What is the [50th percentile](test_percentile) score for [ACT]{"entity":"standarized_test", "value": "act"} [english]{"entity": "subject", "value": "english"} section
+    - What is the [50th percentile](test_percentile) score for [ACT]{"entity":"standarized_test", "value": "act"} [math]{"entity": "subject", "value": "mathematics"} section
+    
+    - What is the [50th percentile](test_percentile) score for [SAT]{"entity":"standarized_test", "value": "sat"} [english]{"entity": "subject", "value": "english"} section
+    - What is the [50th percentile](test_percentile) score for [SAT]{"entity":"standarized_test", "value": "sat"} [math]{"entity": "subject", "value": "mathematics"} section
+
+    - What is the [50th percentile](test_percentile) score for [ACT]{"entity":"standarized_test", "value": "act"} [writing](test_component)
+    - What is the [50th percentile](test_percentile) score for [ACT]{"entity":"standarized_test", "value": "act"} [written]{"entity": "test_component", "value": "writing"}
+
+    - What is the [50th percentile](test_percentile) score for [SAT]{"entity":"standarized_test", "value": "sat"} [composite](test_component)
+    - What is the [50th percentile](test_percentile) score for [SAT]{"entity":"standarized_test", "value": "sat"} [essay]{"entity": "essay", "value": "essay" }
+    - What is the [50th percentile](test_percentile) score for [SAT]{"entity":"standarized_test", "value": "sat"} [reading](test_component) and [writing](test_component)
+    - What is the [50th percentile](test_percentile) score for [SAT]{"entity":"standarized_test", "value": "sat"} [reading](test_component) and [writing](test_component) section
+    - What is the [50th percentile](test_percentile) score for [SAT]{"entity":"standarized_test", "value": "sat"} [written]{"entity": "test_component", "value": "writing"} and [read]{"entity": "test_component", "value": "reading"} part
+
+    - What is the [75th percentile](test_percentile) score for [ACT]{"entity":"standarized_test", "value": "act"} [composite](test_component)
+    - What is the [75th percentile](test_percentile) score for [ACT]{"entity":"standarized_test", "value": "act"} [essay]{"entity": "essay", "value": "essay" }
+    - What is the [75th percentile](test_percentile) score for [ACT]{"entity":"standarized_test", "value": "act"} [written]{"entity": "test_component", "value": "writing"} part
+    - What is the [75th percentile](test_percentile) score for [ACT]{"entity":"standarized_test", "value": "act"} [writing](test_component)
+    - What is the [75th percentile](test_percentile) score for [ACT]{"entity":"standarized_test", "value": "act"} [written]{"entity": "test_component", "value": "writing"}
+
+    - What is the [75th percentile](test_percentile) score for [SAT]{"entity":"standarized_test", "value": "sat"} [composite](test_component)
+    - What is the [75th percentile](test_percentile) score for [SAT]{"entity":"standarized_test", "value": "sat"} [essay]{"entity": "essay", "value": "essay" } component
+    - What is the [75th percentile](test_percentile) score for [SAT]{"entity":"standarized_test", "value": "sat"} evidence-based [reading](test_component) and [writing](test_component)
+    - What is the [75th percentile](test_percentile) score for [SAT]{"entity":"standarized_test", "value": "sat"} [writing](test_component) portion and [reading](test_component) component
+    - What is the [75th percentile](test_percentile) score for [SAT]{"entity":"standarized_test", "value": "sat"} evidence-based [written]{"entity": "test_component", "value": "writing"} and evidence-based [reading](test_component)
+
+    - What is the [mean]{"entity": "aggregation", "value": "mean"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [composite](test_component)
+    - What is the [average]{"entity": "aggregation", "value": "mean"} score for [ACT]{"entity":"standarized_test", "value": "act"} [composite](test_component)
+    - What is the [mean]{"entity": "aggregation", "value": "mean"} score for [ACT]{"entity":"standarized_test", "value": "act"} [writing](test_component)
+    - What is the [average]{"entity": "aggregation", "value": "mean"} score for [SAT]{"entity":"standarized_test", "value": "sat"} evidence-based [reading](test_component) and [writing](test_component)
+
+
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [11 to 6]{"entity": "test_score_range", "value": "6-11"} for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [11 to 6]{"entity": "test_score_range", "value": "6-11"} for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [11 to 6]{"entity": "test_score_range", "value": "6-11"} for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [11 to 6]{"entity": "test_score_range", "value": "6-11"} for [writing](test_component) portion
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [11 to 6]{"entity": "test_score_range", "value": "6-11"} for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [11-6]{"entity": "test_score_range", "value": "6-11"} for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [11-6]{"entity": "test_score_range", "value": "6-11"} for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [11-6]{"entity": "test_score_range", "value": "6-11"} for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [11-6]{"entity": "test_score_range", "value": "6-11"} for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [11-6]{"entity": "test_score_range", "value": "6-11"} for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [12 to 17]{"entity": "test_score_range", "value": "12-17"} for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [12 to 17]{"entity": "test_score_range", "value": "12-17"} for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [12 to 17]{"entity": "test_score_range", "value": "12-17"} for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [12 to 17]{"entity": "test_score_range", "value": "12-17"} for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [12 to 17]{"entity": "test_score_range", "value": "12-17"} for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [12-17](test_score_range) for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [12-17](test_score_range) for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [12-17](test_score_range) for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [12-17](test_score_range) for [written]{"entity": "test_component", "value": "writing"} 
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [17 to 12]{"entity": "test_score_range", "value": "12-17"} for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [17 to 12]{"entity": "test_score_range", "value": "12-17"} for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [17 to 12]{"entity": "test_score_range", "value": "12-17"} for [english]{"entity": "subject", "value": "english"} section
+
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [17 to 12]{"entity": "test_score_range", "value": "12-17"} for [mathematic]{"entity": "subject", "value": "mathematics"} section
+
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [17 to 12]{"entity": "test_score_range", "value": "12-17"} for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [17 to 12]{"entity": "test_score_range", "value": "12-17"} for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [17-12]{"entity": "test_score_range", "value": "12-17"} for [composite](test_component) overall
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [17-12]{"entity": "test_score_range", "value": "12-17"} for [essay]{"entity": "essay", "value": "essay" } section
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [17-12]{"entity": "test_score_range", "value": "12-17"} for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [17-12]{"entity": "test_score_range", "value": "12-17"} for [writing](test_component) portion
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [17-12]{"entity": "test_score_range", "value": "12-17"} for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [18 to 23]{"entity": "test_score_range", "value": "18-23"} for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [18 to 23]{"entity": "test_score_range", "value": "18-23"} for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [18 to 23]{"entity": "test_score_range", "value": "18-23"} for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [18 to 23]{"entity": "test_score_range", "value": "18-23"} for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [18 to 23]{"entity": "test_score_range", "value": "18-23"} for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [18-23](test_score_range) for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [18-23](test_score_range) for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [18-23](test_score_range) for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [18-23](test_score_range) for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [18-23](test_score_range) for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [23 to 18]{"entity": "test_score_range", "value": "18-23"} for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [23 to 18]{"entity": "test_score_range", "value": "18-23"} for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [23 to 18]{"entity": "test_score_range", "value": "18-23"} for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [23 to 18]{"entity": "test_score_range", "value": "18-23"} for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [23 to 18]{"entity": "test_score_range", "value": "18-23"} for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [23-18]{"entity": "test_score_range", "value": "18-23"} for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [23-18]{"entity": "test_score_range", "value": "18-23"} for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [23-18]{"entity": "test_score_range", "value": "18-23"} for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [23-18]{"entity": "test_score_range", "value": "18-23"} for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [23-18]{"entity": "test_score_range", "value": "18-23"} for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [24 to 29]{"entity": "test_score_range", "value": "24-29"} for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [24 to 29]{"entity": "test_score_range", "value": "24-29"} for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [24 to 29]{"entity": "test_score_range", "value": "24-29"} for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [24 to 29]{"entity": "test_score_range", "value": "24-29"} for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [24 to 29]{"entity": "test_score_range", "value": "24-29"} for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [24-29](test_score_range) for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [24-29](test_score_range) for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [24-29](test_score_range) for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [24-29](test_score_range) for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [24-29](test_score_range) for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [29 to 24]{"entity": "test_score_range", "value": "24-29"} for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [29 to 24]{"entity": "test_score_range", "value": "24-29"} for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [29 to 24]{"entity": "test_score_range", "value": "24-29"} for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [29 to 24]{"entity": "test_score_range", "value": "24-29"} for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [29 to 24]{"entity": "test_score_range", "value": "24-29"} for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [29-24]{"entity": "test_score_range", "value": "24-29"} for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [29-24]{"entity": "test_score_range", "value": "24-29"} for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [29-24]{"entity": "test_score_range", "value": "24-29"} for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [29-24]{"entity": "test_score_range", "value": "24-29"} for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [29-24]{"entity": "test_score_range", "value": "24-29"} for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [30 to 36]{"entity": "test_score_range", "value": "30-36"} for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [30 to 36]{"entity": "test_score_range", "value": "30-36"} for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [30 to 36]{"entity": "test_score_range", "value": "30-36"} for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [30 to 36]{"entity": "test_score_range", "value": "30-36"} for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [30 to 36]{"entity": "test_score_range", "value": "30-36"} for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [30-36](test_score_range) for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [30-36](test_score_range) for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [30-36](test_score_range) for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [30-36](test_score_range) for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [30-36](test_score_range) for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [36 to 30]{"entity": "test_score_range", "value": "30-36"} for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [36 to 30]{"entity": "test_score_range", "value": "30-36"} for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [36 to 30]{"entity": "test_score_range", "value": "30-36"} for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [36 to 30]{"entity": "test_score_range", "value": "30-36"} for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [36 to 30]{"entity": "test_score_range", "value": "30-36"} for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [36-30]{"entity": "test_score_range", "value": "30-36"} for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [36-30]{"entity": "test_score_range", "value": "30-36"} for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [36-30]{"entity": "test_score_range", "value": "30-36"} for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [36-30]{"entity": "test_score_range", "value": "30-36"} for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [36-30]{"entity": "test_score_range", "value": "30-36"} for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [6 to 11]{"entity": "test_score_range", "value": "6-11"} for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [6 to 11]{"entity": "test_score_range", "value": "6-11"} for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [6 to 11]{"entity": "test_score_range", "value": "6-11"} for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [6 to 11]{"entity": "test_score_range", "value": "6-11"} for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [6 to 11]{"entity": "test_score_range", "value": "6-11"} for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [6-11](test_score_range) for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [6-11](test_score_range) for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [6-11](test_score_range) for [english]{"entity": "subject", "value": "english"} section
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [6-11](test_score_range) for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [6-11](test_score_range) for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [below 6](test_score_range) for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [below 6](test_score_range) for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [below 6](test_score_range) for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [below 6](test_score_range) for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [below 6](test_score_range) for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [less than 6]{"entity": "test_score_range", "value": "below 6"} for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [less than 6]{"entity": "test_score_range", "value": "below 6"} for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [less than 6]{"entity": "test_score_range", "value": "below 6"} for [english]{"entity": "subject", "value": "english"} section
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [less than 6]{"entity": "test_score_range", "value": "below 6"} for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [less than 6]{"entity": "test_score_range", "value": "below 6"} for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [under 6]{"entity": "test_score_range", "value": "below 6"} for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [under 6]{"entity": "test_score_range", "value": "below 6"} for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [under 6]{"entity": "test_score_range", "value": "below 6"} for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [under 6]{"entity": "test_score_range", "value": "below 6"} for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the range [under 6]{"entity": "test_score_range", "value": "below 6"} for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1000 to 1199]{"entity": "test_score_range", "value": "1000-1199"} range for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1000 to 1199]{"entity": "test_score_range", "value": "1000-1199"} range for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1000 to 1199]{"entity": "test_score_range", "value": "1000-1199"} range for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1000 to 1199]{"entity": "test_score_range", "value": "1000-1199"} range for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1000 to 1199]{"entity": "test_score_range", "value": "1000-1199"} range for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1000-1199](test_score_range) range for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1000-1199](test_score_range) range for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1000-1199](test_score_range) range for [reading](test_component) and [writing](test_component) portion
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1000-1199](test_score_range) range for [writing](test_component) and [reading](test_component) component 
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1000-1199](test_score_range) range for [written]{"entity": "test_component", "value": "writing"} and [read](test_component) component
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1199 to 1000]{"entity": "test_score_range", "value": "1000-1199"} range for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1199 to 1000]{"entity": "test_score_range", "value": "1000-1199"} range for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1199 to 1000]{"entity": "test_score_range", "value": "1000-1199"} range for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1199 to 1000]{"entity": "test_score_range", "value": "1000-1199"} range for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1199 to 1000]{"entity": "test_score_range", "value": "1000-1199"} range for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1199-1000]{"entity": "test_score_range", "value": "1000-1199"} range for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1199-1000]{"entity": "test_score_range", "value": "1000-1199"} range for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1199-1000]{"entity": "test_score_range", "value": "1000-1199"} range for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1199-1000]{"entity": "test_score_range", "value": "1000-1199"} range for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1199-1000]{"entity": "test_score_range", "value": "1000-1199"} range for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1200 to 1399]{"entity": "test_score_range", "value": "1200-1399"} range for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1200 to 1399]{"entity": "test_score_range", "value": "1200-1399"} range for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1200 to 1399]{"entity": "test_score_range", "value": "1200-1399"} range for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1200 to 1399]{"entity": "test_score_range", "value": "1200-1399"} range for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1200 to 1399]{"entity": "test_score_range", "value": "1200-1399"} range for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1200-1399](test_score_range) range for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1200-1399](test_score_range) range for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1200-1399](test_score_range) range for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1200-1399](test_score_range) range for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1200-1399](test_score_range) range for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1399 to 1200]{"entity": "test_score_range", "value": "1200-1399"} range for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1399 to 1200]{"entity": "test_score_range", "value": "1200-1399"} range for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1399 to 1200]{"entity": "test_score_range", "value": "1200-1399"} range for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1399 to 1200]{"entity": "test_score_range", "value": "1200-1399"} range for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1399 to 1200]{"entity": "test_score_range", "value": "1200-1399"} range for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1399-1200]{"entity": "test_score_range", "value": "1200-1399"} range for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1399-1200]{"entity": "test_score_range", "value": "1200-1399"} range for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1399-1200]{"entity": "test_score_range", "value": "1200-1399"} range for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1399-1200]{"entity": "test_score_range", "value": "1200-1399"} range for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1399-1200]{"entity": "test_score_range", "value": "1200-1399"} range for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1400 to 1600]{"entity": "test_score_range", "value": "1400-1600"} range for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1400 to 1600]{"entity": "test_score_range", "value": "1400-1600"} range for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1400 to 1600]{"entity": "test_score_range", "value": "1400-1600"} range for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1400 to 1600]{"entity": "test_score_range", "value": "1400-1600"} range for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1400 to 1600]{"entity": "test_score_range", "value": "1400-1600"} range for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1400-1600](test_score_range) range for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1400-1600](test_score_range) range for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1400-1600](test_score_range) range for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1400-1600](test_score_range) range for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1400-1600](test_score_range) range for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1600 to 1400]{"entity": "test_score_range", "value": "1400-1600"} range for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1600 to 1400]{"entity": "test_score_range", "value": "1400-1600"} range for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1600 to 1400]{"entity": "test_score_range", "value": "1400-1600"} range for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1600 to 1400]{"entity": "test_score_range", "value": "1400-1600"} range for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1600 to 1400]{"entity": "test_score_range", "value": "1400-1600"} range for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1600-1400]{"entity": "test_score_range", "value": "1400-1600"} range for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1600-1400]{"entity": "test_score_range", "value": "1400-1600"} range for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1600-1400]{"entity": "test_score_range", "value": "1400-1600"} range for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1600-1400]{"entity": "test_score_range", "value": "1400-1600"} range for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [1600-1400]{"entity": "test_score_range", "value": "1400-1600"} range for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [200 to 299]{"entity": "test_score_range", "value": "200-299"} range for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [200 to 299]{"entity": "test_score_range", "value": "200-299"} range for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [200 to 299]{"entity": "test_score_range", "value": "200-299"} range for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [200 to 299]{"entity": "test_score_range", "value": "200-299"} range for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [200 to 299]{"entity": "test_score_range", "value": "200-299"} range for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [200-299](test_score_range) range for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [200-299](test_score_range) range for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [200-299](test_score_range) range for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [200-299](test_score_range) range for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [200-299](test_score_range) range for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [299 to 200]{"entity": "test_score_range", "value": "200-299"} range for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [299 to 200]{"entity": "test_score_range", "value": "200-299"} range for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [299 to 200]{"entity": "test_score_range", "value": "200-299"} range for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [299 to 200]{"entity": "test_score_range", "value": "200-299"} range for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [299 to 200]{"entity": "test_score_range", "value": "200-299"} range for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [299-200]{"entity": "test_score_range", "value": "200-299"} range for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [299-200]{"entity": "test_score_range", "value": "200-299"} range for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [299-200]{"entity": "test_score_range", "value": "200-299"} range for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [299-200]{"entity": "test_score_range", "value": "200-299"} range for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [299-200]{"entity": "test_score_range", "value": "200-299"} range for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [300 to 399]{"entity": "test_score_range", "value": "300-399"} range for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [300 to 399]{"entity": "test_score_range", "value": "300-399"} range for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [300 to 399]{"entity": "test_score_range", "value": "300-399"} range for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [300 to 399]{"entity": "test_score_range", "value": "300-399"} range for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [300 to 399]{"entity": "test_score_range", "value": "300-399"} range for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [300-399](test_score_range) range for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [300-399](test_score_range) range for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [300-399](test_score_range) range for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [300-399](test_score_range) range for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [300-399](test_score_range) range for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [399 to 300]{"entity": "test_score_range", "value": "300-399"} range for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [399 to 300]{"entity": "test_score_range", "value": "300-399"} range for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [399 to 300]{"entity": "test_score_range", "value": "300-399"} range for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [399 to 300]{"entity": "test_score_range", "value": "300-399"} range for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [399 to 300]{"entity": "test_score_range", "value": "300-399"} range for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [399-300]{"entity": "test_score_range", "value": "300-399"} range for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [399-300]{"entity": "test_score_range", "value": "300-399"} range for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [399-300]{"entity": "test_score_range", "value": "300-399"} range for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [399-300]{"entity": "test_score_range", "value": "300-399"} range for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [399-300]{"entity": "test_score_range", "value": "300-399"} range for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [400 to 499]{"entity": "test_score_range", "value": "400-499"} range for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [400 to 499]{"entity": "test_score_range", "value": "400-499"} range for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [400 to 499]{"entity": "test_score_range", "value": "400-499"} range for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [400 to 499]{"entity": "test_score_range", "value": "400-499"} range for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [400 to 499]{"entity": "test_score_range", "value": "400-499"} range for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [400 to 599]{"entity": "test_score_range", "value": "400-599"} range for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [400 to 599]{"entity": "test_score_range", "value": "400-599"} range for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [400 to 599]{"entity": "test_score_range", "value": "400-599"} range for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [400 to 599]{"entity": "test_score_range", "value": "400-599"} range for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [400 to 599]{"entity": "test_score_range", "value": "400-599"} range for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [400-499](test_score_range) range for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [400-499](test_score_range) range for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [400-499](test_score_range) range for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [400-499](test_score_range) range for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [400-499](test_score_range) range for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [400-599](test_score_range) range for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [400-599](test_score_range) range for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [400-599](test_score_range) range for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [400-599](test_score_range) range for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [400-599](test_score_range) range for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [499 to 400]{"entity": "test_score_range", "value": "400-499"} range for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [499 to 400]{"entity": "test_score_range", "value": "400-499"} range for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [499 to 400]{"entity": "test_score_range", "value": "400-499"} range for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [499 to 400]{"entity": "test_score_range", "value": "400-499"} range for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [499 to 400]{"entity": "test_score_range", "value": "400-499"} range for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [499-400]{"entity": "test_score_range", "value": "400-499"} range for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [499-400]{"entity": "test_score_range", "value": "400-499"} range for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [499-400]{"entity": "test_score_range", "value": "400-499"} range for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [499-400]{"entity": "test_score_range", "value": "400-499"} range for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [499-400]{"entity": "test_score_range", "value": "400-499"} range for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [500 to 599]{"entity": "test_score_range", "value": "500-599"} range for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [500 to 599]{"entity": "test_score_range", "value": "500-599"} range for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [500 to 599]{"entity": "test_score_range", "value": "500-599"} range for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [500 to 599]{"entity": "test_score_range", "value": "500-599"} range for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [500 to 599]{"entity": "test_score_range", "value": "500-599"} range for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [500-599](test_score_range) range for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [500-599](test_score_range) range for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [500-599](test_score_range) range for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [500-599](test_score_range) range for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [500-599](test_score_range) range for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [599 to 400]{"entity": "test_score_range", "value": "400-599"} range for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [599 to 400]{"entity": "test_score_range", "value": "400-599"} range for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [599 to 400]{"entity": "test_score_range", "value": "400-599"} range for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [599 to 400]{"entity": "test_score_range", "value": "400-599"} range for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [599 to 400]{"entity": "test_score_range", "value": "400-599"} range for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [599 to 500]{"entity": "test_score_range", "value": "500-599"} range for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [599 to 500]{"entity": "test_score_range", "value": "500-599"} range for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [599 to 500]{"entity": "test_score_range", "value": "500-599"} range for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [599 to 500]{"entity": "test_score_range", "value": "500-599"} range for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [599 to 500]{"entity": "test_score_range", "value": "500-599"} range for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [599-400]{"entity": "test_score_range", "value": "400-599"} range for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [599-400]{"entity": "test_score_range", "value": "400-599"} range for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [599-400]{"entity": "test_score_range", "value": "400-599"} range for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [599-400]{"entity": "test_score_range", "value": "400-599"} range for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [599-400]{"entity": "test_score_range", "value": "400-599"} range for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [599-500]{"entity": "test_score_range", "value": "500-599"} range for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [599-500]{"entity": "test_score_range", "value": "500-599"} range for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [599-500]{"entity": "test_score_range", "value": "500-599"} range for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [599-500]{"entity": "test_score_range", "value": "500-599"} range for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [599-500]{"entity": "test_score_range", "value": "500-599"} range for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [600 to 699]{"entity": "test_score_range", "value": "600-699"} range for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [600 to 699]{"entity": "test_score_range", "value": "600-699"} range for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [600 to 699]{"entity": "test_score_range", "value": "600-699"} range for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [600 to 699]{"entity": "test_score_range", "value": "600-699"} range for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [600 to 699]{"entity": "test_score_range", "value": "600-699"} range for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [600 to 799]{"entity": "test_score_range", "value": "600-799"} range for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [600 to 799]{"entity": "test_score_range", "value": "600-799"} range for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [600 to 799]{"entity": "test_score_range", "value": "600-799"} range for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [600 to 799]{"entity": "test_score_range", "value": "600-799"} range for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [600 to 799]{"entity": "test_score_range", "value": "600-799"} range for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [600-699](test_score_range) range for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [600-699](test_score_range) range for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [600-699](test_score_range) range for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [600-699](test_score_range) range for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [600-699](test_score_range) range for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [600-799](test_score_range) range for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [600-799](test_score_range) range for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [600-799](test_score_range) range for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [600-799](test_score_range) range for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [600-799](test_score_range) range for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [699 to 600]{"entity": "test_score_range", "value": "600-699"} range for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [699 to 600]{"entity": "test_score_range", "value": "600-699"} range for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [699 to 600]{"entity": "test_score_range", "value": "600-699"} range for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [699 to 600]{"entity": "test_score_range", "value": "600-699"} range for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [699 to 600]{"entity": "test_score_range", "value": "600-699"} range for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [699-600]{"entity": "test_score_range", "value": "600-699"} range for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [699-600]{"entity": "test_score_range", "value": "600-699"} range for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [699-600]{"entity": "test_score_range", "value": "600-699"} range for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [699-600]{"entity": "test_score_range", "value": "600-699"} range for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [699-600]{"entity": "test_score_range", "value": "600-699"} range for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [700 to 800]{"entity": "test_score_range", "value": "700-800"} range for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [700 to 800]{"entity": "test_score_range", "value": "700-800"} range for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [700 to 800]{"entity": "test_score_range", "value": "700-800"} range for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [700 to 800]{"entity": "test_score_range", "value": "700-800"} range for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [700 to 800]{"entity": "test_score_range", "value": "700-800"} range for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [700-800](test_score_range) range for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [700-800](test_score_range) range for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [700-800](test_score_range) range for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [700-800](test_score_range) range for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [700-800](test_score_range) range for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [799 to 600]{"entity": "test_score_range", "value": "600-799"} range for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [799 to 600]{"entity": "test_score_range", "value": "600-799"} range for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [799 to 600]{"entity": "test_score_range", "value": "600-799"} range for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [799 to 600]{"entity": "test_score_range", "value": "600-799"} range for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [799 to 600]{"entity": "test_score_range", "value": "600-799"} range for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [799-600]{"entity": "test_score_range", "value": "600-799"} range for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [799-600]{"entity": "test_score_range", "value": "600-799"} range for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [799-600]{"entity": "test_score_range", "value": "600-799"} range for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [799-600]{"entity": "test_score_range", "value": "600-799"} range for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [799-600]{"entity": "test_score_range", "value": "600-799"} range for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [800 to 700]{"entity": "test_score_range", "value": "700-800"} range for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [800 to 700]{"entity": "test_score_range", "value": "700-800"} range for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [800 to 700]{"entity": "test_score_range", "value": "700-800"} range for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [800 to 700]{"entity": "test_score_range", "value": "700-800"} range for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [800 to 700]{"entity": "test_score_range", "value": "700-800"} range for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [800 to 999]{"entity": "test_score_range", "value": "800-999"} range for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [800 to 999]{"entity": "test_score_range", "value": "800-999"} range for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [800 to 999]{"entity": "test_score_range", "value": "800-999"} range for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [800 to 999]{"entity": "test_score_range", "value": "800-999"} range for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [800 to 999]{"entity": "test_score_range", "value": "800-999"} range for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [800-700]{"entity": "test_score_range", "value": "700-800"} range for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [800-700]{"entity": "test_score_range", "value": "700-800"} range for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [800-700]{"entity": "test_score_range", "value": "700-800"} range for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [800-700]{"entity": "test_score_range", "value": "700-800"} range for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [800-700]{"entity": "test_score_range", "value": "700-800"} range for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [800-999](test_score_range) range for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [800-999](test_score_range) range for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [800-999](test_score_range) range for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [800-999](test_score_range) range for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [800-999](test_score_range) range for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [999 to 800]{"entity": "test_score_range", "value": "800-999"} range for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [999 to 800]{"entity": "test_score_range", "value": "800-999"} range for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [999 to 800]{"entity": "test_score_range", "value": "800-999"} range for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [999 to 800]{"entity": "test_score_range", "value": "800-999"} range for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [999 to 800]{"entity": "test_score_range", "value": "800-999"} range for [written]{"entity": "test_component", "value": "writing"}
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [999-800]{"entity": "test_score_range", "value": "800-999"} range for [composite](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [999-800]{"entity": "test_score_range", "value": "800-999"} range for [essay]{"entity": "essay", "value": "essay" }
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [999-800]{"entity": "test_score_range", "value": "800-999"} range for [reading](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [999-800]{"entity": "test_score_range", "value": "800-999"} range for [writing](test_component)
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [SAT]{"entity":"standarized_test", "value": "sat"} score in the [999-800]{"entity": "test_score_range", "value": "800-999"} range for [written]{"entity": "test_component", "value": "writing"}
+    
+
+
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [3.75 - 3.99]{"entity": "gpa_range", "value": "3.75-3.99"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [4.0]{"entity": "gpa_range", "value": "4.00"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [under 1.0]{"entity": "gpa_range", "value": "below 1.0"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [under 1]{"entity": "gpa_range", "value": "below 1.0"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [1.00-1.99](gpa_range)
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [3.0 - 3.24]{"entity": "gpa_range", "value": "3.00-3.24"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [3.50 and 3.74]{"entity": "gpa_range", "value": "3.50-3.74"}
+    - What is the [average]{"entity":"aggregation", "value": "mean"} high school [gpa]{"entity":"academic_factor", "value": "gpa"} for incoming [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} who [submitted]{"entity": "submitted", "value":  "submitted"} [gpa]{"entity":"academic_factor", "value": "gpa"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [1-1.99]{"entity": "gpa_range", "value": "1.00-1.99"}
+    - [percentage]{"entity":"aggregation", "value": "percent"} of students who are [submitting]{"entity": "submitted", "value":  "submitted"} [gpa]{"entity":"academic_factor", "value": "gpa"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [3.25-3.49](gpa_range)
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [3.75 and 3.99]{"entity": "gpa_range", "value": "3.75-3.99"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [3.5 to 3.74]{"entity": "gpa_range", "value": "3.50-3.74"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students in the [bottom half](class_rank) of their high school graduating class?
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students in the [bottom quarter](class_rank) of their high school graduating class?
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [1.0 and 1.99]{"entity": "gpa_range", "value": "1.00-1.99"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [3.00 - 3.24]{"entity": "gpa_range", "value": "3.00-3.24"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [3.0 to 3.24]{"entity": "gpa_range", "value": "3.00-3.24"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [1.0 to 1.99]{"entity": "gpa_range", "value": "1.00-1.99"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [3.0 and 3.24]{"entity": "gpa_range", "value": "3.00-3.24"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [below 1.00]{"entity": "gpa_range", "value": "below 1.0"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [3.00 and 3.24]{"entity": "gpa_range", "value": "3.00-3.24"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [3.25 to 3.49]{"entity": "gpa_range", "value": "3.25-3.49"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [1.00 - 1.99]{"entity": "gpa_range", "value": "1.00-1.99"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [3-3.24]{"entity": "gpa_range", "value": "3.00-3.24"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [1.00 to 1.99]{"entity": "gpa_range", "value": "1.00-1.99"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [3.50-3.74](gpa_range)
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [4.00](gpa_range)
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [3.00 to 3.24]{"entity": "gpa_range", "value": "3.00-3.24"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [below 1]{"entity": "gpa_range", "value": "below 1.0"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [3.5 and 3.74]{"entity": "gpa_range", "value": "3.50-3.74"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [less than 1.0]{"entity": "gpa_range", "value": "below 1.0"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [3 to 3.24]{"entity": "gpa_range", "value": "3.00-3.24"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [3.75-3.99](gpa_range)
+    - [percentage]{"entity":"aggregation", "value": "percent"} of students who [submitted]{"entity": "submitted", "value":  "submitted"} [gpa]{"entity":"academic_factor", "value": "gpa"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [3 and 3.24]{"entity": "gpa_range", "value": "3.00-3.24"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [3.25 - 3.49]{"entity": "gpa_range", "value": "3.25-3.49"}
+    - [percentage]{"entity":"aggregation", "value": "percent"} of total first-time, first-year (freshman) students who [submitted]{"entity": "submitted", "value":  "submitted"} high school [class rank]{"entity":"academic_factor", "value": "class rank"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [1.0 - 1.99]{"entity": "gpa_range", "value": "1.00-1.99"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [1 and 1.99]{"entity": "gpa_range", "value": "1.00-1.99"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students in the [top quarter](class_rank) of their high school graduating class?
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [1.00 and 1.99]{"entity": "gpa_range", "value": "1.00-1.99"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [1.0-1.99]{"entity": "gpa_range", "value": "1.00-1.99"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [3.25 and 3.49]{"entity": "gpa_range", "value": "3.25-3.49"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [less than 1]{"entity": "gpa_range", "value": "below 1.0"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [3.50 to 3.74]{"entity": "gpa_range", "value": "3.50-3.74"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [3.5-3.74]{"entity": "gpa_range", "value": "3.50-3.74"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students in the [top tenth](class_rank) of their high school graduating class?
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [1 to 1.99]{"entity": "gpa_range", "value": "1.00-1.99"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [3.75 to 3.99]{"entity": "gpa_range", "value": "3.75-3.99"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [1 - 1.99]{"entity": "gpa_range", "value": "1.00-1.99"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [4]{"entity": "gpa_range", "value": "4.00"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [3.5 - 3.74]{"entity": "gpa_range", "value": "3.50-3.74"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [2.50 and 2.99]{"entity": "gpa_range", "value": "2.50-2.99"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [3.50 - 3.74]{"entity": "gpa_range", "value": "3.50-3.74"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [2.50 to 2.99]{"entity": "gpa_range", "value": "2.50-2.99"}
+    - [percentage]{"entity":"aggregation", "value": "percent"} of total first-time, first-year (freshman) students who [submit]{"entity": "submitted", "value":  "submitted"} high school [class rank]{"entity":"academic_factor", "value": "class rank"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [below 1.0](gpa_range)
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [2.50-2.99](gpa_range)
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [2.50 - 2.99]{"entity": "gpa_range", "value": "2.50-2.99"}
+    - [percentage]{"entity":"aggregation", "value": "percent"} of students who [submit]{"entity": "submitted", "value":  "submitted"} [gpa]{"entity":"academic_factor", "value": "gpa"}
+    - [percentage]{"entity":"aggregation", "value": "percent"} of total first-time, first-year (freshman) students who are [submitting]{"entity": "submitted", "value":  "submitted"} high school [class rank]{"entity":"academic_factor", "value": "class rank"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students in the [top half](class_rank) of their high school graduating class?
+
+    # CLASS RANK AND GPA TRAINING DATA
+    - What is the [average]{"entity":"aggregation", "value": "mean"} high school [gpa]{"entity":"academic_factor", "value": "gpa"} for incoming [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} who [submitted]{"entity": "submitted", "value":  "submitted"} [gpa]{"entity":"academic_factor", "value": "gpa"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students in the [bottom half](class_rank) of their high school graduating class?
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students in the [bottom quarter](class_rank) of their high school graduating class?
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students in the [top half](class_rank) of their high school graduating class?
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students in the [top quarter](class_rank) of their high school graduating class?
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students in the [top tenth](class_rank) of their high school graduating class?
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [1 - 1.99]{"entity": "gpa_range", "value": "1.00-1.99"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [1 and 1.99]{"entity": "gpa_range", "value": "1.00-1.99"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [1 to 1.99]{"entity": "gpa_range", "value": "1.00-1.99"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [1-1.99]{"entity": "gpa_range", "value": "1.00-1.99"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [1.0 - 1.99]{"entity": "gpa_range", "value": "1.00-1.99"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [1.0 and 1.99]{"entity": "gpa_range", "value": "1.00-1.99"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [1.0 to 1.99]{"entity": "gpa_range", "value": "1.00-1.99"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [1.0-1.99]{"entity": "gpa_range", "value": "1.00-1.99"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [1.00 - 1.99]{"entity": "gpa_range", "value": "1.00-1.99"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [1.00 and 1.99]{"entity": "gpa_range", "value": "1.00-1.99"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [1.00 to 1.99]{"entity": "gpa_range", "value": "1.00-1.99"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [1.00-1.99](gpa_range)
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [2 - 2.49]{"entity": "gpa_range", "value": "2.00-2.49"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [2 and 2.49]{"entity": "gpa_range", "value": "2.00-2.49"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [2-2.49]{"entity": "gpa_range", "value": "2.00-2.49"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [2.0 - 2.49]{"entity": "gpa_range", "value": "2.00-2.49"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [2.0 and 2.49]{"entity": "gpa_range", "value": "2.00-2.49"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [2.0 to 2.49]{"entity": "gpa_range", "value": "2.00-2.49"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [2.0-2.49]{"entity": "gpa_range", "value": "2.00-2.49"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [2.00 - 2.49]{"entity": "gpa_range", "value": "2.00-2.49"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [2.00 and 2.49]{"entity": "gpa_range", "value": "2.00-2.49"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [2.00 to 2.49]{"entity": "gpa_range", "value": "2.00-2.49"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [2.00-2.49](gpa_range)
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [2.50 - 2.99]{"entity": "gpa_range", "value": "2.50-2.99"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [2.50 and 2.99]{"entity": "gpa_range", "value": "2.50-2.99"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [2.50 to 2.99]{"entity": "gpa_range", "value": "2.50-2.99"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [2.50-2.99](gpa_range)
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [3 and 3.24]{"entity": "gpa_range", "value": "3.00-3.24"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [3 to 3.24]{"entity": "gpa_range", "value": "3.00-3.24"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [3-3.24]{"entity": "gpa_range", "value": "3.00-3.24"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [3.0 - 3.24]{"entity": "gpa_range", "value": "3.00-3.24"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [3.0 and 3.24]{"entity": "gpa_range", "value": "3.00-3.24"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [3.0 to 3.24]{"entity": "gpa_range", "value": "3.00-3.24"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [3.00 - 3.24]{"entity": "gpa_range", "value": "3.00-3.24"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [3.00 and 3.24]{"entity": "gpa_range", "value": "3.00-3.24"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [3.00 to 3.24]{"entity": "gpa_range", "value": "3.00-3.24"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [3.25 - 3.49]{"entity": "gpa_range", "value": "3.25-3.49"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [3.25 and 3.49]{"entity": "gpa_range", "value": "3.25-3.49"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [3.25 to 3.49]{"entity": "gpa_range", "value": "3.25-3.49"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [3.25-3.49](gpa_range)
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [3.5 - 3.74]{"entity": "gpa_range", "value": "3.50-3.74"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [3.5 and 3.74]{"entity": "gpa_range", "value": "3.50-3.74"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [3.5 to 3.74]{"entity": "gpa_range", "value": "3.50-3.74"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [3.5-3.74]{"entity": "gpa_range", "value": "3.50-3.74"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [3.50 - 3.74]{"entity": "gpa_range", "value": "3.50-3.74"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [3.50 and 3.74]{"entity": "gpa_range", "value": "3.50-3.74"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [3.50 to 3.74]{"entity": "gpa_range", "value": "3.50-3.74"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [3.50-3.74](gpa_range)
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [3.75 - 3.99]{"entity": "gpa_range", "value": "3.75-3.99"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [3.75 and 3.99]{"entity": "gpa_range", "value": "3.75-3.99"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [3.75 to 3.99]{"entity": "gpa_range", "value": "3.75-3.99"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [3.75-3.99](gpa_range)
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [4]{"entity": "gpa_range", "value": "4.00"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [4.0]{"entity": "gpa_range", "value": "4.00"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [4.00](gpa_range)
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [below 1]{"entity": "gpa_range", "value": "below 1.0"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [below 1.0](gpa_range)
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [below 1.00]{"entity": "gpa_range", "value": "below 1.0"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [less than 1]{"entity": "gpa_range", "value": "below 1.0"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [less than 1.0]{"entity": "gpa_range", "value": "below 1.0"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [under 1]{"entity": "gpa_range", "value": "below 1.0"}
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [under 1.0]{"entity": "gpa_range", "value": "below 1.0"}
+    
+    - [percentage]{"entity":"aggregation", "value": "percent"} of students who are [submitting]{"entity": "submitted", "value":  "submitted"} [gpa]{"entity":"academic_factor", "value": "gpa"}
+    - [percentage]{"entity":"aggregation", "value": "percent"} of students who [submit]{"entity": "submitted", "value":  "submitted"} [gpa]{"entity":"academic_factor", "value": "gpa"}
+    - [percentage]{"entity":"aggregation", "value": "percent"} of students who [submitted]{"entity": "submitted", "value":  "submitted"} [gpa]{"entity":"academic_factor", "value": "gpa"}
+   
+    - [percentage]{"entity":"aggregation", "value": "percent"} of students who [turn in]{"entity": "submitted", "value":  "submitted"} [gpa]{"entity":"academic_factor", "value": "gpa"}
+
+    - [percentage]{"entity":"aggregation", "value": "percent"} of total first-time, first-year (freshman) students who are [submitting]{"entity": "submitted", "value":  "submitted"} high school [class rank]{"entity":"academic_factor", "value": "class rank"}
+    - [percentage]{"entity":"aggregation", "value": "percent"} of total first-time, first-year (freshman) students who [submit]{"entity": "submitted", "value":  "submitted"} high school [class rank]{"entity":"academic_factor", "value": "class rank"}
+    - [percentage]{"entity":"aggregation", "value": "percent"} of total first-time, first-year (freshman) students who [submitted]{"entity": "submitted", "value":  "submitted"} high school [class rank]{"entity":"academic_factor", "value": "class rank"}
+    
+    - [percentage]{"entity":"aggregation", "value": "percent"} of total first-time, first-year (freshman) students who [turned in]{"entity": "submitted", "value":  "submitted"} high school [class rank]{"entity":"academic_factor", "value": "class rank"}
+    - [percentage]{"entity":"aggregation", "value": "percent"} of total first-time, first-year (freshman) students who [turn in]{"entity": "submitted", "value":  "submitted"} high school [class rank]{"entity":"academic_factor", "value": "class rank"}
+
+- synonym: 25th percentile 
+  examples: |
+    - 25 percentile
+
+- synonym: 50th percentile 
+  examples: |
+    - 50 percentile
+
+- synonym: 75th percentile 
+  examples: |
+    - 75 percentile
+
+- lookup: submitted
+  examples: |
+    - submitted
+    - submit
+    - submitting
+    - turned in
+    - turn in
+    - turning in
+
+- synonym: submitted
+  examples: |
+    - submitted
+    - submit
+    - submitting
+    - turned in
+    - turn in
+    - turning in
+
+- lookup: gpa_range
+  examples: |
+    - '4.00'
+    - '4'
+    - '4.0'
+    - '4.00'
+
+    - 3.75 - 3.99
+    - 3.75 and 3.99
+    - 3.75 to 3.99
+    - 3.75-3.99
+
+    - 3.5 - 3.74
+    - 3.50 and 3.74
+    - 3.50-3.74
+    - 3.5 to 3.74
+    - 3.50 to 3.74
+    - 3.5 and 3.74
+    - 3.5-3.74
+    - 3.50 - 3.74
+
+    - 3.25 to 3.49
+    - 3.25 and 3.49
+    - 3.25 - 3.49
+    - 3.25-3.49
+
+    - 3 to 3.24
+    - 3.0 to 3.24
+    - 3.0 - 3.24
+    - 3.0 and 3.24
+    - 3-3.24
+    - 3.00 to 3.24
+    - 3.00 and 3.24
+    - 3 and 3.24
+    - 3.00 - 3.24
+
+    - 2.50-2.99
+    - 2.50 - 2.99
+    - 2.50 to 2.99
+    - 2.50 and 2.99
+    - 2.5-2.99
+    - 2.5 - 2.99 
+    - 2.5 to 2.99
+    - 2.5 and 2.99
+
+    - 2.00-2.49
+    - 2 - 2.49
+    - 2.00 - 2.49
+    - 2 and 2.49
+    - 2.0 to 2.49
+    - 2.00 and 2.49
+    - 2.0 and 2.49
+    - 2.00 to 2.49
+    - 2.0-2.49
+    - 2.0 - 2.49
+    - 2-2.49
+
+    - 1.0 and 1.99
+    - 1.00 to 1.99
+    - 1.00-1.99
+    - 1 to 1.99
+    - 1.0 - 1.99
+    - 1 and 1.99
+    - 1.00 and 1.99
+    - 1 - 1.99
+    - 1.00 - 1.99
+    - 1.0 to 1.99
+    - 1.0-1.99
+    - 1-1.99
+
+    - below 1.00
+    - under 1.0
+    - under 1
+    - less than 1.0
+    - below 1.0
+    - less than 1
+    - below 1
+    
+- synonym: '4.00'
+  examples: |
+    - 4
+    - 4.0
+    - 4.00
+
+- synonym: 3.75-3.99
+  examples: |
+    - 3.75 - 3.99
+    - 3.75 and 3.99
+    - 3.75 to 3.99
+    - 3.75-3.99
+
+- synonym: 3.50-3.74
+  examples: |
+    - 3.5 - 3.74
+    - 3.50 and 3.74
+    - 3.50-3.74
+    - 3.5 to 3.74
+    - 3.50 to 3.74
+    - 3.5 and 3.74
+    - 3.5-3.74
+    - 3.50 - 3.74
+    
+- synonym: 3.25-3.49
+  examples: |
+    - 3.25 to 3.49
+    - 3.25 and 3.49
+    - 3.25 - 3.49
+    - 3.25-3.49
+
+- synonym: 3.00-3.24
+  examples: |
+    - 3 to 3.24
+    - 3.0 to 3.24
+    - 3.0 - 3.24
+    - 3.0 and 3.24
+    - 3-3.24
+    - 3.00 to 3.24
+    - 3.00 and 3.24
+    - 3 and 3.24
+    - 3.00 - 3.24
+
+
+- synonym: 2.50-2.99
+  examples: |
+    - 2.50-2.99
+    - 2.50 - 2.99
+    - 2.50 to 2.99
+    - 2.50 and 2.99
+
+    - 2.5-2.99
+    - 2.5 - 2.99 
+    - 2.5 to 2.99
+    - 2.5 and 2.99
+
+
+- synonym: 2.00-2.49
+  examples: |
+    - 2.00-2.49
+    - 2 - 2.49
+    - 2.00 - 2.49
+    - 2 and 2.49
+    - 2.0 to 2.49
+    - 2.00 and 2.49
+    - 2.0 and 2.49
+    - 2.00 to 2.49
+    - 2.0-2.49
+    - 2.0 - 2.49
+    - 2-2.49
+- synonym: 1.00-1.99
+  examples: |
+    - 1.0 and 1.99
+    - 1.00 to 1.99
+    - 1.00-1.99
+    - 1 to 1.99
+    - 1.0 - 1.99
+    - 1 and 1.99
+    - 1.00 and 1.99
+    - 1 - 1.99
+    - 1.00 - 1.99
+    - 1.0 to 1.99
+    - 1.0-1.99
+    - 1-1.99
+- synonym: below 1.0
+  examples: |
+    - below 1.00
+    - under 1.0
+    - under 1
+    - less than 1.0
+    - below 1.0
+    - less than 1
+    - below 1
+
+
+- lookup: test_component
+  examples: |
+    - composite
+    - essay
+    - written 
+    - writing 
+    - reading
+    - read
+
+- synonym: reading
+  examples: |
+    - read
+
+- synonym: writing
+  examples: |
+    - written
+    - writing
+
+
+- lookup: test_score_range
+  examples: |
+    - 800 to 700
+    - 700 to 800
+    - 800-700
+    - 700-800
+
+    - 600-699
+    - 699-600
+    - 699 to 600
+    - 600-699
+    - 600 to 699
+
+    - 599 to 500
+    - 500-599
+    - 599-500
+    - 500 to 599
+
+    - 400-499
+    - 499-400
+    - 499 to 400
+    - 400 to 499
+
+    - 300 to 399
+    - 399 to 300
+    - 399-300
+    - 300-399
+
+    - 200 to 299
+    - 299-200
+    - 200-299
+    - 299 to 200
+
+    - 1600 to 1400
+    - 1600-1400
+    - 1400-1600
+    - 1400 to 1600
+
+    - 1200 to 1399
+    - 1399 to 1200
+    - 1200-1399
+    - 1399-1200
+
+    - 1000-1199
+    - 1199 to 1000
+    - 1000 to 1199
+    - 1199-1000
+
+    - 800 to 999
+    - 800-999
+    - 999 to 800
+    - 999-800
+
+    - 600-799
+    - 600 to 799
+    - 799-600
+    - 799 to 600
+
+    - 400 to 599
+    - 400-599
+    - 599-400
+    - 599 to 400
+
+    - 36 to 30
+    - 36-30
+    - 30 to 36
+    - 30-36
+
+    - 24-29
+    - 29 to 24
+    - 24 to 29
+    - 29-24
+
+    - 23-18
+    - 18-23
+    - 23 to 18
+    - 18 to 23
+
+    - 12-17
+    - 17-12
+    - 17 to 12
+    - 12 to 17
+
+    - 6-11
+    - 11-6
+    - 6 to 11
+    - 11 to 6
+
+    - under 6
+    - less than 6
+    - below 6
+
+
+
+
+- synonym: 700-800
+  examples: |
+    - 800 to 700
+    - 700 to 800
+    - 800-700
+    - 700-800
+
+
+
+- synonym: 600-699
+  examples: |
+    - 699-600
+    - 699 to 600
+    - 600-699
+    - 600 to 699
+
+- synonym: 500-599
+  examples: |
+    - 599 to 500
+    - 500-599
+    - 599-500
+    - 500 to 599
+
+- synonym: 400-499
+  examples: |
+    - 400-499
+    - 499-400
+    - 499 to 400
+    - 400 to 499
+
+- synonym: 300-399
+  examples: |
+    - 300 to 399
+    - 399 to 300
+    - 399-300
+    - 300-399
+- synonym: 200-299
+  examples: |
+    - 200 to 299
+    - 299-200
+    - 200-299
+    - 299 to 200
+- synonym: 1400-1600
+  examples: |
+    - 1600 to 1400
+    - 1600-1400
+    - 1400-1600
+    - 1400 to 1600
+
+- synonym: 1200-1399
+  examples: |
+    - 1200 to 1399
+    - 1399 to 1200
+    - 1200-1399
+    - 1399-1200
+
+
+- synonym: 1000-1199
+  examples: |
+    - 1000-1199
+    - 1199 to 1000
+    - 1000 to 1199
+    - 1199-1000
+    
+- synonym: 800-999
+  examples: |
+    - 800 to 999
+    - 800-999
+    - 999 to 800
+    - 999-800
+
+- synonym: 600-799
+  examples: |
+    - 600-799
+    - 600 to 799
+    - 799-600
+    - 799 to 600
+- synonym: 400-599
+  examples: |
+    - 400 to 599
+    - 400-599
+    - 599-400
+    - 599 to 400
+
+- synonym: 30-36
+  examples: |
+    - 36 to 30
+    - 36-30
+    - 30 to 36
+    - 30-36
+
+- synonym: 24-29
+  examples: |
+    - 24-29
+    - 29 to 24
+    - 24 to 29
+    - 29-24
+
+- synonym: 18-23
+  examples: |
+    - 23-18
+    - 18-23
+    - 23 to 18
+    - 18 to 23
+    
+- synonym: 12-17
+  examples: |
+    - 12-17
+    - 17-12
+    - 17 to 12
+    - 12 to 17
+
+- synonym: 6-11
+  examples: |
+    - 6-11
+    - 11-6
+    - 6 to 11
+    - 11 to 6
+
+- synonym: below 6
+  examples: |
+    - under 6
+    - less than 6
+    - below 6

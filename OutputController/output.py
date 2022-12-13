@@ -1,28 +1,35 @@
 #List of ouput functions to control the ouptut of search in knowledgebase
 # We might want to move the into classes later.
 
-
 from Knowledgebase.constants import PERCENTAGE_FORMAT
 from actions.entititesHelper import copyEntities
-def constructSentence(answer, intent, printEntities): 
-    return answer + "\n" + intent + "\n" + str(printEntities)   
+NO_ANSWER_FOUND_RESPONSE = "Sorry, I found no answer related to your question"
 
-#For high_school_units
-def outputFuncForHighSchoolUnits(answer, intent, printEntities):
-    response = "No units specified"
-    if answer == 0:
-        return constructSentence(response, intent, printEntities)
-    else:
-        print(type(answer))
-        return  outputFuncForInteger(answer, intent, printEntities)
+
+def constructSentence(answers, intent, entitiesUsed, noAnswerResponse = NO_ANSWER_FOUND_RESPONSE): 
+    if len(answers) == 0 or answers[0] == "" or answers[0] == None:
+       answer = noAnswerResponse
+       return [answer]
+    
+    sentences = []
+    for answer in answers:
+        sentence = answer + "\n" + intent + "\n" + str(entitiesUsed) 
+        sentences.append(sentence)
+
+    return sentences
 
 #For integer values
-def outputFuncForInteger(answer, intent, printEntities):
-    return constructSentence(str(int(answer)), intent,  printEntities)
+def outputFuncForInteger(answer : int, intent, entitiesUsed):
+    return constructSentence(str(int(answer)), intent,  entitiesUsed)
     
 #For percentage values
-def outputFuncForPercentage(answer, intent, printEntities): 
-    return constructSentence(PERCENTAGE_FORMAT.format(value = answer), intent, printEntities)
+def outputFuncForPercentage(answer : float, intent, entitiesUsed): 
+    return constructSentence(PERCENTAGE_FORMAT.format(value = answer), intent, entitiesUsed)
 
-def identityFunc(answer, intent, printEntities):
-    return (answer, intent, printEntities)
+def outputFuncForText(answer : str, intent, entitiesUsed):
+    return constructSentence(answer, intent, entitiesUsed)
+ 
+
+def identityFunc(answers, intent, entitiesUsed):
+    return (answers, intent, entitiesUsed)
+

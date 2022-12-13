@@ -1,0 +1,3342 @@
+{
+  "rasa_nlu_data": {
+    "common_examples": [
+      {
+        "entities": [
+          {
+            "end": 32,
+            "entity": "military_branch",
+            "start": 23,
+            "value": "air force"
+          },
+          {
+            "end": 63,
+            "entity": "rotc",
+            "start": 33,
+            "value": "rotc"
+          }
+        ],
+        "intent": "student_life",
+        "text": "Does Rose-Hulman offer air force reserve Officers training corp ?"
+      },
+      {
+        "entities": [
+          {
+            "end": 32,
+            "entity": "military_branch",
+            "start": 23,
+            "value": "air force"
+          },
+          {
+            "end": 64,
+            "entity": "rotc",
+            "start": 33,
+            "value": "rotc"
+          }
+        ],
+        "intent": "student_life",
+        "text": "Does Rose-Hulman offer air force reserve Officers training corps ?"
+      },
+      {
+        "entities": [
+          {
+            "end": 32,
+            "entity": "military_branch",
+            "start": 23,
+            "value": "air force"
+          },
+          {
+            "end": 66,
+            "entity": "rotc",
+            "start": 33,
+            "value": "rotc"
+          }
+        ],
+        "intent": "student_life",
+        "text": "Does Rose-Hulman offer air force reserve officers's training Corps ?"
+      },
+      {
+        "entities": [
+          {
+            "end": 32,
+            "entity": "military_branch",
+            "start": 23,
+            "value": "air force"
+          },
+          {
+            "end": 37,
+            "entity": "rotc",
+            "start": 33,
+            "value": "rotc"
+          }
+        ],
+        "intent": "student_life",
+        "text": "Does Rose-Hulman offer air force rotc ?"
+      },
+      {
+        "entities": [
+          {
+            "end": 27,
+            "entity": "military_branch",
+            "start": 23,
+            "value": "army"
+          },
+          {
+            "end": 58,
+            "entity": "rotc",
+            "start": 28,
+            "value": "rotc"
+          }
+        ],
+        "intent": "student_life",
+        "text": "Does Rose-Hulman offer army reserve Officers training corp ?"
+      },
+      {
+        "entities": [
+          {
+            "end": 27,
+            "entity": "military_branch",
+            "start": 23,
+            "value": "army"
+          },
+          {
+            "end": 59,
+            "entity": "rotc",
+            "start": 28,
+            "value": "rotc"
+          }
+        ],
+        "intent": "student_life",
+        "text": "Does Rose-Hulman offer army reserve Officers training corps ?"
+      },
+      {
+        "entities": [
+          {
+            "end": 27,
+            "entity": "military_branch",
+            "start": 23,
+            "value": "army"
+          },
+          {
+            "end": 61,
+            "entity": "rotc",
+            "start": 28,
+            "value": "rotc"
+          }
+        ],
+        "intent": "student_life",
+        "text": "Does Rose-Hulman offer army reserve officers's training Corps ?"
+      },
+      {
+        "entities": [
+          {
+            "end": 27,
+            "entity": "military_branch",
+            "start": 23,
+            "value": "army"
+          },
+          {
+            "end": 32,
+            "entity": "rotc",
+            "start": 28,
+            "value": "rotc"
+          }
+        ],
+        "intent": "student_life",
+        "text": "Does Rose-Hulman offer army rotc ?"
+      },
+      {
+        "entities": [
+          {
+            "end": 28,
+            "entity": "military_branch",
+            "start": 23,
+            "value": "navy"
+          },
+          {
+            "end": 59,
+            "entity": "rotc",
+            "start": 29,
+            "value": "rotc"
+          }
+        ],
+        "intent": "student_life",
+        "text": "Does Rose-Hulman offer naval reserve Officers training corp ?"
+      },
+      {
+        "entities": [
+          {
+            "end": 28,
+            "entity": "military_branch",
+            "start": 23,
+            "value": "navy"
+          },
+          {
+            "end": 60,
+            "entity": "rotc",
+            "start": 29,
+            "value": "rotc"
+          }
+        ],
+        "intent": "student_life",
+        "text": "Does Rose-Hulman offer naval reserve Officers training corps ?"
+      },
+      {
+        "entities": [
+          {
+            "end": 28,
+            "entity": "military_branch",
+            "start": 23,
+            "value": "navy"
+          },
+          {
+            "end": 62,
+            "entity": "rotc",
+            "start": 29,
+            "value": "rotc"
+          }
+        ],
+        "intent": "student_life",
+        "text": "Does Rose-Hulman offer naval reserve officers's training Corps ?"
+      },
+      {
+        "entities": [
+          {
+            "end": 28,
+            "entity": "military_branch",
+            "start": 23,
+            "value": "navy"
+          },
+          {
+            "end": 33,
+            "entity": "rotc",
+            "start": 29,
+            "value": "rotc"
+          }
+        ],
+        "intent": "student_life",
+        "text": "Does Rose-Hulman offer naval rotc ?"
+      },
+      {
+        "entities": [
+          {
+            "end": 27,
+            "entity": "military_branch",
+            "start": 23,
+            "value": "navy"
+          },
+          {
+            "end": 58,
+            "entity": "rotc",
+            "start": 28,
+            "value": "rotc"
+          }
+        ],
+        "intent": "student_life",
+        "text": "Does Rose-Hulman offer navy reserve Officers training corp ?"
+      },
+      {
+        "entities": [
+          {
+            "end": 27,
+            "entity": "military_branch",
+            "start": 23,
+            "value": "navy"
+          },
+          {
+            "end": 59,
+            "entity": "rotc",
+            "start": 28,
+            "value": "rotc"
+          }
+        ],
+        "intent": "student_life",
+        "text": "Does Rose-Hulman offer navy reserve Officers training corps ?"
+      },
+      {
+        "entities": [
+          {
+            "end": 27,
+            "entity": "military_branch",
+            "start": 23,
+            "value": "navy"
+          },
+          {
+            "end": 61,
+            "entity": "rotc",
+            "start": 28,
+            "value": "rotc"
+          }
+        ],
+        "intent": "student_life",
+        "text": "Does Rose-Hulman offer navy reserve officers's training Corps ?"
+      },
+      {
+        "entities": [
+          {
+            "end": 27,
+            "entity": "military_branch",
+            "start": 23,
+            "value": "navy"
+          },
+          {
+            "end": 32,
+            "entity": "rotc",
+            "start": 28,
+            "value": "rotc"
+          }
+        ],
+        "intent": "student_life",
+        "text": "Does Rose-Hulman offer navy rotc ?"
+      },
+      {
+        "entities": [
+          {
+            "end": 15,
+            "entity": "academic_factor",
+            "start": 5,
+            "value": "extracurricular activities"
+          }
+        ],
+        "intent": "student_life",
+        "text": "What activities does Rose-Hulman offer?"
+      },
+      {
+        "entities": [
+          {
+            "end": 10,
+            "entity": "academic_factor",
+            "start": 5,
+            "value": "extracurricular activities"
+          }
+        ],
+        "intent": "student_life",
+        "text": "What clubs does Rose-Hulman offer?"
+      },
+      {
+        "entities": [
+          {
+            "end": 20,
+            "entity": "academic_factor",
+            "start": 5,
+            "value": "extracurricular activities"
+          }
+        ],
+        "intent": "student_life",
+        "text": "What extracirricular does Rose-Hulman offer?"
+      },
+      {
+        "entities": [
+          {
+            "end": 9,
+            "entity": "type",
+            "start": 5,
+            "value": "type"
+          }
+        ],
+        "intent": "student_life",
+        "text": "What type of [college affliated]{\"entity\":\"college_relation\", \"value\": \"college-owned -operated, or -affliated\"} [housing]{\"entity\":\"category\", \"value\": \"housing\"} is available at Rose-Hulman?"
+      },
+      {
+        "entities": [
+          {
+            "end": 9,
+            "entity": "type",
+            "start": 5,
+            "value": "type"
+          }
+        ],
+        "intent": "student_life",
+        "text": "What type of [college operated]{\"entity\":\"college_relation\", \"value\": \"college-owned -operated, or -affliated\"} [housing]{\"entity\":\"category\", \"value\": \"housing\"} is available at Rose-Hulman?"
+      },
+      {
+        "entities": [
+          {
+            "end": 9,
+            "entity": "type",
+            "start": 5,
+            "value": "type"
+          }
+        ],
+        "intent": "student_life",
+        "text": "What type of [college owned]{\"entity\":\"college_relation\", \"value\": \"college-owned -operated, or -affliated\"} [housing]{\"entity\":\"category\", \"value\": \"housing\"} is available at Rose-Hulman?"
+      },
+      {
+        "entities": [
+          {
+            "end": 9,
+            "entity": "type",
+            "start": 5,
+            "value": "type"
+          }
+        ],
+        "intent": "student_life",
+        "text": "What type of [college-affliated]{\"entity\":\"college_relation\", \"value\": \"college-owned -operated, or -affliated\"} [housing]{\"entity\":\"category\", \"value\": \"housing\"} is available at Rose-Hulman?"
+      },
+      {
+        "entities": [
+          {
+            "end": 9,
+            "entity": "type",
+            "start": 5,
+            "value": "type"
+          }
+        ],
+        "intent": "student_life",
+        "text": "What type of [college-operated]{\"entity\":\"college_relation\", \"value\": \"college-owned -operated, or -affliated\"} [housing]{\"entity\":\"category\", \"value\": \"housing\"} is available at Rose-Hulman?"
+      },
+      {
+        "entities": [
+          {
+            "end": 9,
+            "entity": "type",
+            "start": 5,
+            "value": "type"
+          }
+        ],
+        "intent": "student_life",
+        "text": "What type of [college-owned]{\"entity\":\"college_relation\", \"value\": \"college-owned -operated, or -affliated\"} [housing]{\"entity\":\"category\", \"value\": \"housing\"} is available at Rose-Hulman?"
+      },
+      {
+        "entities": [
+          {
+            "end": 233,
+            "entity": "is_first_year",
+            "start": 223,
+            "value": "first-year"
+          },
+          {
+            "end": 244,
+            "entity": "is_first_time",
+            "start": 234,
+            "value": "first-time"
+          },
+          {
+            "end": 253,
+            "entity": "freshman",
+            "start": 245,
+            "value": "freshman"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Average]{\"entity\":\"aggregation\", \"value\": \"average\"} [age]{\"entity\":\"age\", \"value\": \"age\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman students"
+      },
+      {
+        "entities": [
+          {
+            "end": 236,
+            "entity": "student_level",
+            "start": 223,
+            "value": "undergraduate"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Average]{\"entity\":\"aggregation\", \"value\": \"average\"} [age]{\"entity\":\"age\", \"value\": \"age\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate students"
+      },
+      {
+        "entities": [
+          {
+            "end": 167,
+            "entity": "is_first_year",
+            "start": 157,
+            "value": "first-year"
+          },
+          {
+            "end": 178,
+            "entity": "is_first_time",
+            "start": 168,
+            "value": "first-time"
+          },
+          {
+            "end": 187,
+            "entity": "freshman",
+            "start": 179,
+            "value": "freshman"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Average]{\"entity\":\"aggregation\", \"value\": \"average\"} [age]{\"entity\":\"age\", \"value\": \"age\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} first year first time freshman students"
+      },
+      {
+        "entities": [
+          {
+            "end": 170,
+            "entity": "student_level",
+            "start": 157,
+            "value": "undergraduate"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Average]{\"entity\":\"aggregation\", \"value\": \"average\"} [age]{\"entity\":\"age\", \"value\": \"age\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} undergraduate students"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman [undergraduates]{\"entity\":\"student_level\", \"value\": \"undergraduate\"} students enrolled who are [age]{\"entity\":\"age\", \"value\": \"age\"} [25 and older]{\"entity\":\"age\", \"value\": \"25 and older\"}"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman [undergraduates]{\"entity\":\"student_level\", \"value\": \"undergraduate\"} students enrolled who are [age]{\"entity\":\"age\", \"value\": \"age\"} [25 older]{\"entity\":\"age\", \"value\": \"25 and older\"}"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman [undergraduates]{\"entity\":\"student_level\", \"value\": \"undergraduate\"} students enrolled who are [age]{\"entity\":\"age\", \"value\": \"age\"} [25 or older]{\"entity\":\"age\", \"value\": \"25 and older\"}"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman [undergraduates]{\"entity\":\"student_level\", \"value\": \"undergraduate\"} students enrolled who are [age]{\"entity\":\"age\", \"value\": \"age\"} [25 year old]{\"entity\":\"age\", \"value\": \"25 and older\"}"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman [undergraduates]{\"entity\":\"student_level\", \"value\": \"undergraduate\"} students enrolled who are [age]{\"entity\":\"age\", \"value\": \"age\"} [25]{\"entity\":\"age\", \"value\": \"25 and older\"}"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman [undergraduates]{\"entity\":\"student_level\", \"value\": \"undergraduate\"} students enrolled who are [age]{\"entity\":\"age\", \"value\": \"age\"} [twenty five and older]{\"entity\":\"age\", \"value\": \"25 and older\"}"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman [undergraduates]{\"entity\":\"student_level\", \"value\": \"undergraduate\"} students enrolled who are [age]{\"entity\":\"age\", \"value\": \"age\"} [twenty five or older]{\"entity\":\"age\", \"value\": \"25 and older\"}"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman [undergraduates]{\"entity\":\"student_level\", \"value\": \"undergraduate\"} students enrolled who are [age]{\"entity\":\"age\", \"value\": \"age\"} [twenty-five or older]{\"entity\":\"age\", \"value\": \"25 and older\"}"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman [undergraduates]{\"entity\":\"student_level\", \"value\": \"undergraduate\"} students enrolled who live in [college affliated]{\"entity\":\"college_relation\", \"value\": \"college-owned -operated, or -affliated\"} [housing]{\"entity\":\"category\", \"value\": \"housing\"}"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman [undergraduates]{\"entity\":\"student_level\", \"value\": \"undergraduate\"} students enrolled who live in [college operated]{\"entity\":\"college_relation\", \"value\": \"college-owned -operated, or -affliated\"} [housing]{\"entity\":\"category\", \"value\": \"housing\"}"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman [undergraduates]{\"entity\":\"student_level\", \"value\": \"undergraduate\"} students enrolled who live in [college owned]{\"entity\":\"college_relation\", \"value\": \"college-owned -operated, or -affliated\"} [housing]{\"entity\":\"category\", \"value\": \"housing\"}"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman [undergraduates]{\"entity\":\"student_level\", \"value\": \"undergraduate\"} students enrolled who live in [college-affliated]{\"entity\":\"college_relation\", \"value\": \"college-owned -operated, or -affliated\"} [housing]{\"entity\":\"category\", \"value\": \"housing\"}"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman [undergraduates]{\"entity\":\"student_level\", \"value\": \"undergraduate\"} students enrolled who live in [college-operated]{\"entity\":\"college_relation\", \"value\": \"college-owned -operated, or -affliated\"} [housing]{\"entity\":\"category\", \"value\": \"housing\"}"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman [undergraduates]{\"entity\":\"student_level\", \"value\": \"undergraduate\"} students enrolled who live in [college-owned]{\"entity\":\"college_relation\", \"value\": \"college-owned -operated, or -affliated\"} [housing]{\"entity\":\"category\", \"value\": \"housing\"}"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          },
+          {
+            "end": 243,
+            "entity": "category",
+            "start": 236,
+            "value": "commute"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman students who are commute"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          },
+          {
+            "end": 244,
+            "entity": "category",
+            "start": 236,
+            "value": "commute"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman students who are commuter"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          },
+          {
+            "end": 245,
+            "entity": "category",
+            "start": 236,
+            "value": "commute"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman students who are commuting"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          },
+          {
+            "end": 240,
+            "entity": "category",
+            "start": 236,
+            "value": "fraternity"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman students who are frat"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          },
+          {
+            "end": 248,
+            "entity": "category",
+            "start": 236,
+            "value": "fraternity"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman students who are fraternities"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          },
+          {
+            "end": 246,
+            "entity": "category",
+            "start": 236,
+            "value": "fraternity"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman students who are fraternity"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          },
+          {
+            "end": 249,
+            "entity": "category",
+            "start": 236,
+            "value": "out of state"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman students who are not from here"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          },
+          {
+            "end": 246,
+            "entity": "category",
+            "start": 236,
+            "value": "commute"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman students who are off campus"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          },
+          {
+            "end": 248,
+            "entity": "category",
+            "start": 236,
+            "value": "out of state"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman students who are out of state"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          },
+          {
+            "end": 248,
+            "entity": "category",
+            "start": 236,
+            "value": "out of state"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman students who are out-of-state"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          },
+          {
+            "end": 246,
+            "entity": "category",
+            "start": 236,
+            "value": "sorority"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman students who are sororities"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          },
+          {
+            "end": 244,
+            "entity": "category",
+            "start": 236,
+            "value": "sorority"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman students who are sorority"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          },
+          {
+            "end": 246,
+            "entity": "category",
+            "start": 239,
+            "value": "commute"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman students who joined commute"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          },
+          {
+            "end": 247,
+            "entity": "category",
+            "start": 239,
+            "value": "commute"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman students who joined commuter"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          },
+          {
+            "end": 248,
+            "entity": "category",
+            "start": 239,
+            "value": "commute"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman students who joined commuting"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          },
+          {
+            "end": 243,
+            "entity": "category",
+            "start": 239,
+            "value": "fraternity"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman students who joined frat"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          },
+          {
+            "end": 251,
+            "entity": "category",
+            "start": 239,
+            "value": "fraternity"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman students who joined fraternities"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          },
+          {
+            "end": 249,
+            "entity": "category",
+            "start": 239,
+            "value": "fraternity"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman students who joined fraternity"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          },
+          {
+            "end": 252,
+            "entity": "category",
+            "start": 239,
+            "value": "out of state"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman students who joined not from here"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          },
+          {
+            "end": 249,
+            "entity": "category",
+            "start": 239,
+            "value": "commute"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman students who joined off campus"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          },
+          {
+            "end": 251,
+            "entity": "category",
+            "start": 239,
+            "value": "out of state"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman students who joined out of state"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          },
+          {
+            "end": 251,
+            "entity": "category",
+            "start": 239,
+            "value": "out of state"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman students who joined out-of-state"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          },
+          {
+            "end": 249,
+            "entity": "category",
+            "start": 239,
+            "value": "sorority"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman students who joined sororities"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          },
+          {
+            "end": 247,
+            "entity": "category",
+            "start": 239,
+            "value": "sorority"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman students who joined sorority"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          },
+          {
+            "end": 244,
+            "entity": "category",
+            "start": 237,
+            "value": "commute"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman students who live commute"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          },
+          {
+            "end": 245,
+            "entity": "category",
+            "start": 237,
+            "value": "commute"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman students who live commuter"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          },
+          {
+            "end": 246,
+            "entity": "category",
+            "start": 237,
+            "value": "commute"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman students who live commuting"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          },
+          {
+            "end": 241,
+            "entity": "category",
+            "start": 237,
+            "value": "fraternity"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman students who live frat"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          },
+          {
+            "end": 249,
+            "entity": "category",
+            "start": 237,
+            "value": "fraternity"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman students who live fraternities"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          },
+          {
+            "end": 247,
+            "entity": "category",
+            "start": 237,
+            "value": "fraternity"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman students who live fraternity"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          },
+          {
+            "end": 247,
+            "entity": "category",
+            "start": 240,
+            "value": "commute"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman students who live in commute"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          },
+          {
+            "end": 248,
+            "entity": "category",
+            "start": 240,
+            "value": "commute"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman students who live in commuter"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          },
+          {
+            "end": 249,
+            "entity": "category",
+            "start": 240,
+            "value": "commute"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman students who live in commuting"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          },
+          {
+            "end": 244,
+            "entity": "category",
+            "start": 240,
+            "value": "fraternity"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman students who live in frat"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          },
+          {
+            "end": 252,
+            "entity": "category",
+            "start": 240,
+            "value": "fraternity"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman students who live in fraternities"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          },
+          {
+            "end": 250,
+            "entity": "category",
+            "start": 240,
+            "value": "fraternity"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman students who live in fraternity"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          },
+          {
+            "end": 253,
+            "entity": "category",
+            "start": 240,
+            "value": "out of state"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman students who live in not from here"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          },
+          {
+            "end": 250,
+            "entity": "category",
+            "start": 240,
+            "value": "commute"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman students who live in off campus"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          },
+          {
+            "end": 252,
+            "entity": "category",
+            "start": 240,
+            "value": "out of state"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman students who live in out of state"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          },
+          {
+            "end": 252,
+            "entity": "category",
+            "start": 240,
+            "value": "out of state"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman students who live in out-of-state"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          },
+          {
+            "end": 250,
+            "entity": "category",
+            "start": 240,
+            "value": "sorority"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman students who live in sororities"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          },
+          {
+            "end": 248,
+            "entity": "category",
+            "start": 240,
+            "value": "sorority"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman students who live in sorority"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          },
+          {
+            "end": 250,
+            "entity": "category",
+            "start": 237,
+            "value": "out of state"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman students who live not from here"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          },
+          {
+            "end": 247,
+            "entity": "category",
+            "start": 237,
+            "value": "commute"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman students who live off campus"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          },
+          {
+            "end": 249,
+            "entity": "category",
+            "start": 237,
+            "value": "out of state"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman students who live out of state"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          },
+          {
+            "end": 249,
+            "entity": "category",
+            "start": 237,
+            "value": "out of state"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman students who live out-of-state"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          },
+          {
+            "end": 247,
+            "entity": "category",
+            "start": 237,
+            "value": "sorority"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman students who live sororities"
+      },
+      {
+        "entities": [
+          {
+            "end": 198,
+            "entity": "is_first_year",
+            "start": 188,
+            "value": "first-year"
+          },
+          {
+            "end": 209,
+            "entity": "is_first_time",
+            "start": 199,
+            "value": "first-time"
+          },
+          {
+            "end": 218,
+            "entity": "freshman",
+            "start": 210,
+            "value": "freshman"
+          },
+          {
+            "end": 245,
+            "entity": "category",
+            "start": 237,
+            "value": "sorority"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} first year first time freshman students who live sorority"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate [undergraduates]{\"entity\":\"student_level\", \"value\": \"undergraduate\"} students enrolled who are [age]{\"entity\":\"age\", \"value\": \"age\"} [25 and older]{\"entity\":\"age\", \"value\": \"25 and older\"}"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate [undergraduates]{\"entity\":\"student_level\", \"value\": \"undergraduate\"} students enrolled who are [age]{\"entity\":\"age\", \"value\": \"age\"} [25 older]{\"entity\":\"age\", \"value\": \"25 and older\"}"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate [undergraduates]{\"entity\":\"student_level\", \"value\": \"undergraduate\"} students enrolled who are [age]{\"entity\":\"age\", \"value\": \"age\"} [25 or older]{\"entity\":\"age\", \"value\": \"25 and older\"}"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate [undergraduates]{\"entity\":\"student_level\", \"value\": \"undergraduate\"} students enrolled who are [age]{\"entity\":\"age\", \"value\": \"age\"} [25 year old]{\"entity\":\"age\", \"value\": \"25 and older\"}"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate [undergraduates]{\"entity\":\"student_level\", \"value\": \"undergraduate\"} students enrolled who are [age]{\"entity\":\"age\", \"value\": \"age\"} [25]{\"entity\":\"age\", \"value\": \"25 and older\"}"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate [undergraduates]{\"entity\":\"student_level\", \"value\": \"undergraduate\"} students enrolled who are [age]{\"entity\":\"age\", \"value\": \"age\"} [twenty five and older]{\"entity\":\"age\", \"value\": \"25 and older\"}"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate [undergraduates]{\"entity\":\"student_level\", \"value\": \"undergraduate\"} students enrolled who are [age]{\"entity\":\"age\", \"value\": \"age\"} [twenty five or older]{\"entity\":\"age\", \"value\": \"25 and older\"}"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate [undergraduates]{\"entity\":\"student_level\", \"value\": \"undergraduate\"} students enrolled who are [age]{\"entity\":\"age\", \"value\": \"age\"} [twenty-five or older]{\"entity\":\"age\", \"value\": \"25 and older\"}"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate [undergraduates]{\"entity\":\"student_level\", \"value\": \"undergraduate\"} students enrolled who live in [college affliated]{\"entity\":\"college_relation\", \"value\": \"college-owned -operated, or -affliated\"} [housing]{\"entity\":\"category\", \"value\": \"housing\"}"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate [undergraduates]{\"entity\":\"student_level\", \"value\": \"undergraduate\"} students enrolled who live in [college operated]{\"entity\":\"college_relation\", \"value\": \"college-owned -operated, or -affliated\"} [housing]{\"entity\":\"category\", \"value\": \"housing\"}"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate [undergraduates]{\"entity\":\"student_level\", \"value\": \"undergraduate\"} students enrolled who live in [college owned]{\"entity\":\"college_relation\", \"value\": \"college-owned -operated, or -affliated\"} [housing]{\"entity\":\"category\", \"value\": \"housing\"}"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate [undergraduates]{\"entity\":\"student_level\", \"value\": \"undergraduate\"} students enrolled who live in [college-affliated]{\"entity\":\"college_relation\", \"value\": \"college-owned -operated, or -affliated\"} [housing]{\"entity\":\"category\", \"value\": \"housing\"}"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate [undergraduates]{\"entity\":\"student_level\", \"value\": \"undergraduate\"} students enrolled who live in [college-operated]{\"entity\":\"college_relation\", \"value\": \"college-owned -operated, or -affliated\"} [housing]{\"entity\":\"category\", \"value\": \"housing\"}"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate [undergraduates]{\"entity\":\"student_level\", \"value\": \"undergraduate\"} students enrolled who live in [college-owned]{\"entity\":\"college_relation\", \"value\": \"college-owned -operated, or -affliated\"} [housing]{\"entity\":\"category\", \"value\": \"housing\"}"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          },
+          {
+            "end": 226,
+            "entity": "category",
+            "start": 219,
+            "value": "commute"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate students who are commute"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          },
+          {
+            "end": 227,
+            "entity": "category",
+            "start": 219,
+            "value": "commute"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate students who are commuter"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          },
+          {
+            "end": 228,
+            "entity": "category",
+            "start": 219,
+            "value": "commute"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate students who are commuting"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          },
+          {
+            "end": 223,
+            "entity": "category",
+            "start": 219,
+            "value": "fraternity"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate students who are frat"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          },
+          {
+            "end": 231,
+            "entity": "category",
+            "start": 219,
+            "value": "fraternity"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate students who are fraternities"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          },
+          {
+            "end": 229,
+            "entity": "category",
+            "start": 219,
+            "value": "fraternity"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate students who are fraternity"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          },
+          {
+            "end": 232,
+            "entity": "category",
+            "start": 219,
+            "value": "out of state"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate students who are not from here"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          },
+          {
+            "end": 229,
+            "entity": "category",
+            "start": 219,
+            "value": "commute"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate students who are off campus"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          },
+          {
+            "end": 231,
+            "entity": "category",
+            "start": 219,
+            "value": "out of state"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate students who are out of state"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          },
+          {
+            "end": 231,
+            "entity": "category",
+            "start": 219,
+            "value": "out of state"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate students who are out-of-state"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          },
+          {
+            "end": 229,
+            "entity": "category",
+            "start": 219,
+            "value": "sorority"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate students who are sororities"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          },
+          {
+            "end": 227,
+            "entity": "category",
+            "start": 219,
+            "value": "sorority"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate students who are sorority"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          },
+          {
+            "end": 229,
+            "entity": "category",
+            "start": 222,
+            "value": "commute"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate students who joined commute"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          },
+          {
+            "end": 230,
+            "entity": "category",
+            "start": 222,
+            "value": "commute"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate students who joined commuter"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          },
+          {
+            "end": 231,
+            "entity": "category",
+            "start": 222,
+            "value": "commute"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate students who joined commuting"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          },
+          {
+            "end": 226,
+            "entity": "category",
+            "start": 222,
+            "value": "fraternity"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate students who joined frat"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          },
+          {
+            "end": 234,
+            "entity": "category",
+            "start": 222,
+            "value": "fraternity"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate students who joined fraternities"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          },
+          {
+            "end": 232,
+            "entity": "category",
+            "start": 222,
+            "value": "fraternity"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate students who joined fraternity"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          },
+          {
+            "end": 235,
+            "entity": "category",
+            "start": 222,
+            "value": "out of state"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate students who joined not from here"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          },
+          {
+            "end": 232,
+            "entity": "category",
+            "start": 222,
+            "value": "commute"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate students who joined off campus"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          },
+          {
+            "end": 234,
+            "entity": "category",
+            "start": 222,
+            "value": "out of state"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate students who joined out of state"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          },
+          {
+            "end": 234,
+            "entity": "category",
+            "start": 222,
+            "value": "out of state"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate students who joined out-of-state"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          },
+          {
+            "end": 232,
+            "entity": "category",
+            "start": 222,
+            "value": "sorority"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate students who joined sororities"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          },
+          {
+            "end": 230,
+            "entity": "category",
+            "start": 222,
+            "value": "sorority"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate students who joined sorority"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          },
+          {
+            "end": 227,
+            "entity": "category",
+            "start": 220,
+            "value": "commute"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate students who live commute"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          },
+          {
+            "end": 228,
+            "entity": "category",
+            "start": 220,
+            "value": "commute"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate students who live commuter"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          },
+          {
+            "end": 229,
+            "entity": "category",
+            "start": 220,
+            "value": "commute"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate students who live commuting"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          },
+          {
+            "end": 224,
+            "entity": "category",
+            "start": 220,
+            "value": "fraternity"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate students who live frat"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          },
+          {
+            "end": 232,
+            "entity": "category",
+            "start": 220,
+            "value": "fraternity"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate students who live fraternities"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          },
+          {
+            "end": 230,
+            "entity": "category",
+            "start": 220,
+            "value": "fraternity"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate students who live fraternity"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          },
+          {
+            "end": 230,
+            "entity": "category",
+            "start": 223,
+            "value": "commute"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate students who live in commute"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          },
+          {
+            "end": 231,
+            "entity": "category",
+            "start": 223,
+            "value": "commute"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate students who live in commuter"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          },
+          {
+            "end": 232,
+            "entity": "category",
+            "start": 223,
+            "value": "commute"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate students who live in commuting"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          },
+          {
+            "end": 227,
+            "entity": "category",
+            "start": 223,
+            "value": "fraternity"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate students who live in frat"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          },
+          {
+            "end": 235,
+            "entity": "category",
+            "start": 223,
+            "value": "fraternity"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate students who live in fraternities"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          },
+          {
+            "end": 233,
+            "entity": "category",
+            "start": 223,
+            "value": "fraternity"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate students who live in fraternity"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          },
+          {
+            "end": 236,
+            "entity": "category",
+            "start": 223,
+            "value": "out of state"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate students who live in not from here"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          },
+          {
+            "end": 233,
+            "entity": "category",
+            "start": 223,
+            "value": "commute"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate students who live in off campus"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          },
+          {
+            "end": 235,
+            "entity": "category",
+            "start": 223,
+            "value": "out of state"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate students who live in out of state"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          },
+          {
+            "end": 235,
+            "entity": "category",
+            "start": 223,
+            "value": "out of state"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate students who live in out-of-state"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          },
+          {
+            "end": 233,
+            "entity": "category",
+            "start": 223,
+            "value": "sorority"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate students who live in sororities"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          },
+          {
+            "end": 231,
+            "entity": "category",
+            "start": 223,
+            "value": "sorority"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate students who live in sorority"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          },
+          {
+            "end": 233,
+            "entity": "category",
+            "start": 220,
+            "value": "out of state"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate students who live not from here"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          },
+          {
+            "end": 230,
+            "entity": "category",
+            "start": 220,
+            "value": "commute"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate students who live off campus"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          },
+          {
+            "end": 232,
+            "entity": "category",
+            "start": 220,
+            "value": "out of state"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate students who live out of state"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          },
+          {
+            "end": 232,
+            "entity": "category",
+            "start": 220,
+            "value": "out of state"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate students who live out-of-state"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          },
+          {
+            "end": 230,
+            "entity": "category",
+            "start": 220,
+            "value": "sorority"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate students who live sororities"
+      },
+      {
+        "entities": [
+          {
+            "end": 201,
+            "entity": "student_level",
+            "start": 188,
+            "value": "undergraduate"
+          },
+          {
+            "end": 228,
+            "entity": "category",
+            "start": 220,
+            "value": "sorority"
+          }
+        ],
+        "intent": "student_life",
+        "text": "[Percentage]{\"entity\":\"aggregation\", \"value\": \"percent\"} of [full-time]{\"entity\":\"enrollment_status\" \"value\":\"full-time\"} and [part-time]{\"entity\":\"enrollment_status\" \"value\":\"part-time\"} undergraduate students who live sorority"
+      }
+    ],
+    "entity_synonyms": [
+      {
+        "synonyms": [
+          "navy",
+          "naval"
+        ],
+        "value": "navy"
+      },
+      {
+        "synonyms": [
+          "reserve Officers training corp",
+          "rotc",
+          "reserve officers's training Corps",
+          "reserve Officers training corps"
+        ],
+        "value": "rotc"
+      },
+      {
+        "synonyms": [
+          "clubs",
+          "activities",
+          "extracirricular"
+        ],
+        "value": "extracurricular activities"
+      },
+      {
+        "synonyms": [
+          "not from here",
+          "out-of-state",
+          "out of state"
+        ],
+        "value": "out of state"
+      },
+      {
+        "synonyms": [
+          "frat",
+          "fraternity",
+          "fraternities"
+        ],
+        "value": "fraternity"
+      },
+      {
+        "synonyms": [
+          "sororities",
+          "sorority"
+        ],
+        "value": "sorority"
+      },
+      {
+        "synonyms": [
+          "off campus",
+          "commuting",
+          "commuter",
+          "commute"
+        ],
+        "value": "commute"
+      }
+    ],
+    "lookup_tables": [],
+    "regex_features": []
+  }
+}

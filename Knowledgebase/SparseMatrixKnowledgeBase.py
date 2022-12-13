@@ -1,6 +1,6 @@
 
-from html import entities
-from tracemalloc import start
+from ast import List
+from typing import Tuple
 from DataManager.DataManager import DataManager
 from Data_Ingestion.SparseMatrix import SparseMatrix
 from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
@@ -10,9 +10,10 @@ import pandas as pd
 import numpy as np
 
 from Knowledgebase.Knowledgebase import KnowledgeBase
+from Knowledgebase.SearchResultType import SearchResultType
 
 from Knowledgebase.constants import PERCENTAGE_FORMAT
-from OutputController.output import  identityFunc, outputFuncForPercentage
+from OutputController.output import  constructSentence, identityFunc, outputFuncForPercentage
 
 from actions.entititesHelper import copyEntities
 
@@ -36,9 +37,10 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
     Throws: exception when given year or intent for the data is not found or when exception encountered when parsing year entity values
 
     """
-    def searchForAnswer(self, intent, entitiesExtracted, shouldAddRowStrategy, outputFunc = identityFunc):
-        count=0
-        col_index=0
+    def searchForAnswer(self, intent, entitiesExtracted, shouldAddRowStrategy, outputFunc , shouldAdd = True):
+        searchResults = []
+
+        searchResult = None
 
         #this list contains the value of the entities extracted.
         entities = []
@@ -48,96 +50,124 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         for entityObj in entitiesExtracted:
             entities.append(entityObj["value"])
 
-        
         sparseMatrixToSearch : SparseMatrix; startYear : str; endYear : str 
         sparseMatrixToSearch, startYear, endYear = self.determineMatrixToSearch(intent, entitiesExtracted)
         
         if sparseMatrixToSearch is None:
             raise Exception("No valid sparse matrix found for given intent and entities", intent, entities)
-
         # get the underlying pandas dataframe from the internal data model
-        sparseMatrixToSearch = sparseMatrixToSearch.getSparseMatrixDf()
-
-        for i in range(sparseMatrixToSearch.shape[0]):
-            row = sparseMatrixToSearch.loc[i]
+        sparseMatrixToSearchDf = sparseMatrixToSearch.getSparseMatrixDf()
+        for i in range(sparseMatrixToSearchDf.shape[0]):
+            row = sparseMatrixToSearchDf.loc[i]
             
-            if "total" in row.index and sparseMatrixToSearch.loc[i,"total"] == 1:
+            if "total" in row.index and sparseMatrixToSearchDf.loc[i,"total"] == 1:
                 continue
            
-            usedEntities = shouldAddRowStrategy.determineShouldAddRow(row, entities)
-
+            usedEntities = shouldAddRowStrategy.determineShouldAddRow(row, entities, sparseMatrixToSearch)
+            # print(usedEntities)
+           
             if len(usedEntities) > 0:
-                #print("Im ADDING " + str(self.m_df.loc[i,'Value']))
-                count += sparseMatrixToSearch.loc[i,'Value']
+               
+                newSearchResult = sparseMatrixToSearchDf.loc[i,'Value']
+                if searchResult == None: 
+                    searchResult, type = self.determineResultType(newSearchResult)
+                    searchResult = str(searchResult)
+                    searchResults.append(searchResult)
+                else:
+                    searchResult = self.addSearchResult(searchResult, newSearchResult, searchResults)
+
                 if len(printEntities) <= 0:
                     printEntities = usedEntities
-                    
+                
         printEntities = list(printEntities)
         printEntities.append(startYear) 
-        return outputFunc(count, intent, printEntities)
+        # print(self.determineResultType(searchResult))
+       
+        return outputFunc(searchResults, intent, printEntities)
 
 
+    def constructOutput(self, searchResult, intent, entitiesUsed):
+       #return searchResult
+       return constructSentence(searchResult, intent, entitiesUsed)
 
-    def searchForAnswerBasic(self, intent, entities):
-        count=0
-        col_index=0
-        #TODO filter out entities that are not under this intent
-        
-        sparseMatrixToSearch = self.determineMatrixToSearch(intent, entities)
-        if sparseMatrixToSearch is None:
-            raise Exception("No valid sparse matrix found for given intent and entities", intent, entities)
-        
-        for i in range(sparseMatrixToSearch.shape[0]):
-            temp_count = 0
-            if sparseMatrixToSearch.loc[i,"total"] == 1:
-                continue
+    #This function will try to add up the search results, if the current search result and the new search result's type does not make sense
+    # to be added together, it will add it into the list of answers instead of adding up the value.
 
-            for entity in sparseMatrixToSearch.columns:
-                if entity in entities: 
-                    if sparseMatrixToSearch.loc[i,entity] == 1:
-                        temp_count += 1
-            if temp_count == len(entities):
-                print("Im ADDING " + str(self.m_df.loc[i,'Value']))
-                count += sparseMatrixToSearch.loc[i,'Value']
-                
-        return str(count)
+    def addSearchResult(self, currentSearchResult, newSearchResult, searchResults) -> str:
+        castedCurrValue, currentSearchResultType = self.determineResultType(currentSearchResult)
+        castedNewValue, newSearchResultType = self.determineResultType(newSearchResult)
+        if (currentSearchResultType == SearchResultType.FLOAT or currentSearchResultType == SearchResultType.NUMBER):
+            if newSearchResultType == SearchResultType.FLOAT or newSearchResultType == SearchResultType.NUMBER:
+                newCalculatedValue = str(castedCurrValue + castedNewValue)
+                searchResults[len(searchResults)-1] = newCalculatedValue
+                return newCalculatedValue
+            else:
+                searchResults.append(newSearchResult)
+                return newSearchResult
+
+        else:
+            searchResults.append(newSearchResult)
+
+        return newSearchResult
+    
+    #This function will determine the type of value the search result is: integer, float, string, percentage(string with % sign) 
+    # and return the casted value along with enum value associated with that 
+    def determineResultType(self,searchResult) -> Tuple[any, SearchResultType]:
+
+        try:
+            searchResult = int(searchResult)
+            return (searchResult, SearchResultType.NUMBER)
+        except ValueError:
+            if searchResult.replace(".", "", 1).isdigit():
+                return (float(searchResult), SearchResultType.FLOAT)
+            #Otherwise the value is string if it is not integer or float.
+            else:
+                if "%" == searchResult[len(searchResult)-1]:
+                    return (searchResult, SearchResultType.PERCENTAGE)
+                else:
+                    return (searchResult, SearchResultType.STRING)
 
 
-    def aggregateDiscreteRange(self, intent, filteredEntities, start, end, generator, shouldAddRow, outputFunc):
+    def aggregateDiscreteRange(self, intent, filteredEntities, start, end, generator, shouldAddRow) -> float:
         shouldAddRowStrategy = shouldAddRow
         total = 0
         # print(start,end)
         entitiesUsed = []
-        
         for i in range(start, end+1):
             filteredEntitiesCopy = copyEntities(filteredEntities)
-            entityValue = generator(i, start, end)
+            entityValues= generator(i, start, end)
             # we can make the entity key more descriptive later 
-            fakeEntity = {
-                "entity": "graduation_years",
-                "value": entityValue,
-                "aggregation": True
-            }
+            for value in entityValues:
+                fakeEntity = {
+                    "entity": "range",
+                    "value": value,
+                    "aggregation": True
+                }
         
-            filteredEntitiesCopy.append(fakeEntity)
-           
-            answer, intent, entitiesUsedBySearch = self.searchForAnswer(intent, filteredEntitiesCopy, shouldAddRowStrategy, identityFunc)
+                filteredEntitiesCopy.append(fakeEntity)
+            answers, intent, entitiesUsedBySearch = self.searchForAnswer(intent, filteredEntitiesCopy, shouldAddRowStrategy, identityFunc)
             entitiesUsed = entitiesUsed + list(entitiesUsedBySearch)
             
-            total = total + int(answer)
-         
+            if len(answers) == 0:
+                continue
 
-        return outputFunc(total, intent, set(entitiesUsed))
+            total = total + float(answers[0])
+ 
+        return (total, intent, set(entitiesUsed))
 
     def aggregatePercentage(self, intent, numerator, entitiesForNumerator, entitiesToCalculateDenominator, shouldAddRowStrategy):
         entitiesUsed = None
         
-        denominator,intent, entitiesUsed = self.searchForAnswer(intent, entitiesToCalculateDenominator, shouldAddRowStrategy, identityFunc)
+        answers ,intent, entitiesUsed = self.searchForAnswer(intent, entitiesToCalculateDenominator, shouldAddRowStrategy, identityFunc)
+        if len(answers) == 0:
+            raise Exception("Answer not found")
+
+        denominator = answers[0]
         percentageCalc = numerator/float(denominator)*100
         percentage = round(percentageCalc, 1)
-        
-        return outputFuncForPercentage(percentage, intent, set(list(entitiesUsed)+ list(entitiesForNumerator)) )
-
+        percentage = PERCENTAGE_FORMAT.format(value = percentage)
+        return (percentage, intent, set(list(entitiesUsed)+ list(entitiesForNumerator)) )
+        #return outputFuncForPercentage(percentage, intent, set(list(entitiesUsed)+ list(entitiesForNumerator)) )
 
     def determineMatrixToSearch(self, intent, entities):
         return self.dataManager.determineMatrixToSearch(intent, entities)

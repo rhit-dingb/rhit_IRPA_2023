@@ -1,0 +1,302 @@
+{
+  "degree-goal": {
+    "precision": 0.9901477832512315,
+    "recall": 0.33612040133779264,
+    "f1-score": 0.50187265917603,
+    "support": 598,
+    "confused_with": {}
+  },
+  "student_level": {
+    "precision": 1.0,
+    "recall": 0.1746031746031746,
+    "f1-score": 0.29729729729729726,
+    "support": 378,
+    "confused_with": {
+      "student_enrollment_result": 64
+    }
+  },
+  "aid_status.pell": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 13,
+    "confused_with": {
+      "aid_status": 3
+    }
+  },
+  "test_component": {
+    "precision": 0.9875,
+    "recall": 1.0,
+    "f1-score": 0.9937106918238994,
+    "support": 395,
+    "confused_with": {}
+  },
+  "waiting-list-detail": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 4,
+    "confused_with": {}
+  },
+  "undergraduate_grade_level": {
+    "precision": 0.9907235621521335,
+    "recall": 0.7072847682119205,
+    "f1-score": 0.8253477588871716,
+    "support": 755,
+    "confused_with": {}
+  },
+  "aid_status": {
+    "precision": 0.4864864864864865,
+    "recall": 0.375,
+    "f1-score": 0.42352941176470593,
+    "support": 48,
+    "confused_with": {}
+  },
+  "student_enrollment_result": {
+    "precision": 0.27358490566037735,
+    "recall": 1.0,
+    "f1-score": 0.4296296296296296,
+    "support": 29,
+    "confused_with": {}
+  },
+  "is_first_year": {
+    "precision": 0.976303317535545,
+    "recall": 0.3306581059390048,
+    "f1-score": 0.4940047961630695,
+    "support": 623,
+    "confused_with": {}
+  },
+  "year": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 3,
+    "confused_with": {}
+  },
+  "gender": {
+    "precision": 1.0,
+    "recall": 0.2681912681912682,
+    "f1-score": 0.42295081967213116,
+    "support": 481,
+    "confused_with": {}
+  },
+  "subject": {
+    "precision": 0.7777777777777778,
+    "recall": 0.6885245901639344,
+    "f1-score": 0.7304347826086957,
+    "support": 61,
+    "confused_with": {}
+  },
+  "race": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 27,
+    "confused_with": {
+      "non_academic_factor": 2
+    }
+  },
+  "completion-requirement": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 6,
+    "confused_with": {}
+  },
+  "year.from": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 12,
+    "confused_with": {}
+  },
+  "class_rank": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 10,
+    "confused_with": {}
+  },
+  "standarized_test": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 399,
+    "confused_with": {}
+  },
+  "aid_status.stafford": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 31,
+    "confused_with": {
+      "aid_status": 8
+    }
+  },
+  "range": {
+    "precision": 0.05140961857379768,
+    "recall": 0.6595744680851063,
+    "f1-score": 0.09538461538461539,
+    "support": 47,
+    "confused_with": {}
+  },
+  "cohort_by_year": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 85,
+    "confused_with": {}
+  },
+  "exemptions": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 29,
+    "confused_with": {
+      "student_enrollment_result": 1
+    }
+  },
+  "waiting-list": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 6,
+    "confused_with": {}
+  },
+  "non_academic_factor": {
+    "precision": 0.9785714285714285,
+    "recall": 0.7611111111111111,
+    "f1-score": 0.8562499999999998,
+    "support": 180,
+    "confused_with": {
+      "range": 3
+    }
+  },
+  "is_first_time": {
+    "precision": 0.976303317535545,
+    "recall": 0.33495934959349594,
+    "f1-score": 0.49878934624697335,
+    "support": 615,
+    "confused_with": {}
+  },
+  "aggregation": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 450,
+    "confused_with": {}
+  },
+  "years_for_college": {
+    "precision": 1.0,
+    "recall": 0.8235294117647058,
+    "f1-score": 0.9032258064516129,
+    "support": 68,
+    "confused_with": {}
+  },
+  "enrollment_status": {
+    "precision": 1.0,
+    "recall": 0.33251833740831294,
+    "f1-score": 0.4990825688073394,
+    "support": 409,
+    "confused_with": {}
+  },
+  "action": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 12,
+    "confused_with": {}
+  },
+  "cohort_initial_final": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 8,
+    "confused_with": {}
+  },
+  "academic_factor": {
+    "precision": 0.9821428571428571,
+    "recall": 0.9565217391304348,
+    "f1-score": 0.9691629955947136,
+    "support": 115,
+    "confused_with": {
+      "test_component": 3
+    }
+  },
+  "unit_level": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 95,
+    "confused_with": {
+      "subject": 10
+    }
+  },
+  "test_score_range": {
+    "precision": 1.0,
+    "recall": 0.9860529986052998,
+    "f1-score": 0.9929775280898877,
+    "support": 717,
+    "confused_with": {
+      "range": 10
+    }
+  },
+  "gpa_range": {
+    "precision": 1.0,
+    "recall": 0.9492753623188406,
+    "f1-score": 0.9739776951672863,
+    "support": 138,
+    "confused_with": {
+      "range": 4
+    }
+  },
+  "policy": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 2,
+    "confused_with": {}
+  },
+  "test_percentile": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 64,
+    "confused_with": {}
+  },
+  "year.to": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 7,
+    "confused_with": {}
+  },
+  "submitted": {
+    "precision": 1.0,
+    "recall": 0.782608695652174,
+    "f1-score": 0.878048780487805,
+    "support": 23,
+    "confused_with": {
+      "range": 5
+    }
+  },
+  "micro avg": {
+    "precision": 0.8359248085402645,
+    "recall": 0.5187959095491862,
+    "f1-score": 0.6402417348027017,
+    "support": 6943
+  },
+  "macro avg": {
+    "precision": 0.44516083931586975,
+    "recall": 0.33693334546261017,
+    "f1-score": 0.345558842790618,
+    "support": 6943
+  },
+  "weighted avg": {
+    "precision": 0.8603004417060786,
+    "recall": 0.5187959095491862,
+    "f1-score": 0.6014160105422592,
+    "support": 6943
+  },
+  "accuracy": 0.7947527644481536
+}

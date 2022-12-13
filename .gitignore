@@ -8,6 +8,7 @@ __pycache__/
 *.pyc
 
 .idea/
+.vscode/
 
 # dependencies
 chatbot_app/node_modules
