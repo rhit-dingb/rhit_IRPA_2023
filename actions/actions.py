@@ -306,12 +306,31 @@ class ActionQueryCohort(Action):
         print(tracker.latest_message["intent"])
         print(intent)
         print("ENTITIES")
-        print(tracker.latest_message["entities"])
+        # print(tracker.latest_message["entities"])
 
         entitiesExtracted = tracker.latest_message["entities"]
         intent = tracker.latest_message["intent"]["name"]
+        found = list()
+        for e in entitiesExtracted:
+            # print(e["entity"])
+            print(e)
+            if "entity" in (e["entity"]):
+                found.append(e)
+
+        for e in found:
+            entitiesExtracted.remove(e)
+        
+        print("NEW ENTITIES")
+        for e in entitiesExtracted:
+            # print(e["entity"])
+            print(e)
 
         self.preprocessCohortEntities(entitiesExtracted)
+
+        print("PROCESSED ENTITIES")
+        for e in entitiesExtracted:
+            # print(e["entity"])
+            print(e)
         
         
         #If the user only ask for pell grant or subsized loan of cohort, we should only get the value from the first row, which is the initial cohort
