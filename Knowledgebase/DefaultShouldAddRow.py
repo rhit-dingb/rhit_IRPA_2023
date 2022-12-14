@@ -41,6 +41,6 @@ class DefaultShouldAddRowStrategy(ShouldAddRowInterface):
                     temp_count = temp_count + 1
 
         if temp_count == len(filteredEntities):
-            return filteredEntities
+            return (True, filteredEntities)
         else:
-            return []
+            return (False, [])

@@ -9,10 +9,11 @@ intents:
   - enrollment
   - cohort
   - admission
+  - transfer_admission
   - high_school_units
   - basis_for_selection 
   - freshman_profile
-
+  - student_life
 
   - mood_great
   - mood_unhappy
@@ -57,7 +58,7 @@ entities:
 
   - waiting-list-detail
 
-  - policy
+  # - policy
 
   #cohort by year - for example: 2015 cohort, 2016 cohort, etc.
   - cohort_by_year
@@ -82,12 +83,8 @@ entities:
   #retention rate
   # - retention-rate
 
-  # S
+  # Student enrollment result, captures retention and graduation. 
   - student_enrollment_result
-
-
-
-
 
   # exemptions - students for did not persist or graduate due to other circumstances.
   # also know as allowable exclusions.
@@ -109,15 +106,22 @@ entities:
   # School subjects such as english, mathematics, science, etc.
   - subject
 
+# This entity captures whether required or recommended is mentioned. Used in high school units required/recommended and transfer admission required items.
+  - condition
+
   #Number of unit-required or unit-recommended for particular subjects for rose-hulman admission requirement.
   #Specific values: unit-required, unit-recommend 
   - unit_level
 
   #Academic factor for basis of selection for admissions such as Rigor of secondary school record, Class rank etc, academic GPA etc.
+  #NOTE: I defined Grades and grade as different. Grade is one value of of academic factor while grades map to transcript
   - academic_factor
   
   #Non-academic factor for basis of selection for admissions such as Interview, Extracurricular activities, Talent/ability, Character/personal qualities, etc
   - non_academic_factor
+
+  #Since this overlaps with test_component, academic_factor, I pull this out as a seperate entity
+  - essay
 
 
   # # Below are entities for freshman profile
@@ -153,12 +157,109 @@ entities:
 #Whether student submitted something, such as gpa, class rank, sat score
   - submitted
 
-  #Values: less than(within), more than(greater than)
+#Whether rose-hulman enroll transfer students
+# Value: enroll transfer student
+  - allow_transfer
+
+#Whether rose-hulman accept transfer credit
+#Value: accept transfer credit
+  - allow_transfer_credit
+
+
+#High school or college
+#Value: High school, college
+  - education_level
+
+# used to capture the word credit and unit as in class credits/unit
+  - unit_type
+
+#Capture unit of measure. Value: Unit of measure
+  - unit_of_measure
+
+#Academic term. Used to capture the word "term" referring to academic terms
+  - academic_term
+
+#admission decision date. Values:  priority, closing, notification, and reply.
+# Use in conjunction with date entity to create priority date, closing date, notification date and reply date.
+  - admission_decision_date
+
+
+#Use to capture the word "date" or "when" - to see if user mention time anywhere in their sentence. Values: date. This does not extract the numeric value, but rather, the word
+  - date
+
+#Use to capture "other", can be used in terms of other subjects or other application requirements
+  - other
+  
+#Values: less than(within), more than(greater than)
   - range
 
-  # two year, four year
+# Bachelors or Associates degree
+  - degree_level 
+
+
+# two year, four year
   - years_for_college
 
+#Use to capture the word age and 25 and older used in student life section of cds 
+  - age
+
+#Different category/group of student described in student life section, which includes student from out of state, 
+  # those who join fraternity, sorority, etc.
+  # Values: out of state, fraternity, sorority, commute
+  - category
+
+# Describe college relation. 
+# Value: college-owned -operated, or -affliated
+  - college_relation
+
+
+#Describes different military branch
+#Values: army, navy, air force
+  - military_branch
+
+# Captures rotc which stands for reserve Officers training corps/
+# Value: rotc
+  - rotc
+
+
+# Captures housing
+# Value: housing
+  - housing
+
+#Captures type
+#Value: type
+  - type
+
+  # Entities for early decision and early action. Values: early decision, early action and early admission
+  - early-admission
+
+  - waive
+
+  # Use to capture fee, tuition, etc, things about money.
+  - money
+
+  # Captures if question is about online application. Value: online. 
+  - online
+  
+  # Captures application. Value: internet
+  - application
+
+  # Defer admission
+  - defer
+
+  # - offered
+  
+  #area word
+  #value: area of course work
+  - area 
+
+  #special-study words
+  #Value sepcial-study
+  - special-study
+
+  #program word
+  #Value : program
+  - program
 
 slots:
   enrollment_status:
@@ -241,6 +342,9 @@ slots:
 
 
 actions:
+
+  - action_query_knowledgebase
+  
   - action_get_available_options
   - action_ask_more_question
   - action_query_cohort
@@ -253,6 +357,8 @@ actions:
   - action_query_basis_for_selection
 
   - action_query_freshman_profile
+
+  - action_query_transfer_admission
   
 
   
