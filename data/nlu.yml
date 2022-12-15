@@ -1480,19 +1480,19 @@ nlu:
     - how many students who are [non first year]{"entity": "is_first_year", "value": "non-first-year"} are [enrolled]{"entity":"action", "value": "enrolled"}?
     
     # training data for asking about specific year.
-    - I want to know about total [undergraduate]{"entity": "student_level", "value": "undergraduate"} enrollment in [2022]{"entity": "year", "role":"from"}
-    - How many [undergraduate]{"entity": "student_level", "value": "undergraduate"} students are there in [2054]{"entity": "year", "role": "from"} ?
-    - In [2015]{"entity": "year", "role": "from"} how many students from there?
-    - How many [asian]{"entity": "race"} students are [enrolled]{"entity":"action", "value": "enrolled"} in [2019]{"entity": "year", "role":"from"} to [2022]{"entity": "year", "role":"to"}
-    - How many [undergraduates]{"entity": "student_level", "value": "undergraduate"} are there in [2020]{"entity": "year", "role":"from"} - [2021]{"entity": "year", "role":"to"} academic year?
+    - I want to know about total [undergraduate]{"entity": "student_level", "value": "undergraduate"} enrollment in 2022
+    - How many [undergraduate]{"entity": "student_level", "value": "undergraduate"} students are there in 2054 ?
+    - In 2015 how many students from there?
+    - How many [asian]{"entity": "race"} students are [enrolled]{"entity":"action", "value": "enrolled"} in 2019 to 2022
+    - How many [undergraduates]{"entity": "student_level", "value": "undergraduate"} are there in 2020 - 2021 academic year?
     
-    - How many [female]{"entity": "gender", "value": "female"} [undergraduates]{"entity": "student_level", "value": "undergraduate"} are there in academic year [2021]{"entity": "year", "role":"from"} to [2022]{"entity": "year", "role":"to"}?
-    - How many [hispanics](race) student are there in academic year [3032]{"entity": "year", "role":"from"} - [3033]{"entity": "year", "role":"to"}?
+    - How many [female]{"entity": "gender", "value": "female"} [undergraduates]{"entity": "student_level", "value": "undergraduate"} are there in academic year 2021 to 2022?
+    - How many [hispanics](race) student are there in academic year 3032 - 3033?
     - How many [two or more race]{"entity": "race"} are there in academic year of [2222-2223]{"entity": "year"}?
     - How many [two or more race]{"entity": "race"} are there in academic year of [2022-2023]{"entity": "year"}?
-    - How many students are there from [2020]{"entity": "year", "role":"from"} to [2021]{"entity":"year", "role":"to"}?
-    - for academic year [2123]{"entity": "year", "role":"from"} to [2124]{"entity": "year", "role":"to"} how many [non-degree-seeking]{"entity":"degree-goal"} are there?
-    - for the year [2025]{"entity": "year", "role":"from"}  - [2053]{"entity": "year", "role":"to"}, how many many [non-degree-seeking]{"entity":"degree-goal"} are there?
+    - How many students are there from 2020 to 2021?
+    - for academic year 2123 to 2124 how many [non-degree-seeking]{"entity":"degree-goal"} are there?
+    - for the year 2025  - 2053, how many many [non-degree-seeking]{"entity":"degree-goal"} are there?
 
 
 

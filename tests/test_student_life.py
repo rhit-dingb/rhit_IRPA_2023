@@ -11,7 +11,7 @@ from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
 from DataManager.ExcelDataManager import ExcelDataManager
 from OutputController import output
 from tests.testUtils import checkAnswersMatch, createEntityObjHelper, createFakeTracker, identityFunc
-from actions.actions import ActionQueryFreshmanProfile, ActionQueryHighSchoolUnits, ActionQueryKnowledgebase, knowledgeBase as knowledgeBaseInAction
+from actions.actions import  ActionQueryKnowledgebase, knowledgeBase as knowledgeBaseInAction
 from actions.actions import ActionQueryCohort
 
 from rasa_sdk import Action, Tracker
@@ -25,7 +25,7 @@ class test_student_life(unittest.TestCase):
         # These should be intents
         self.topicToParse = [self.intent]
         self.knowledgeBase = SparseMatrixKnowledgeBase(
-            ExcelDataManager("./tests/testMaterials", self.topicToParse))
+            ExcelDataManager("./tests/testMaterials/cdsTestData", self.topicToParse))
      
         self.dispatcher = CollectingDispatcher()
         #Make sure the knowledgebase class instance in Actions is using the data manager with test materials loaded.
@@ -37,7 +37,7 @@ class test_student_life(unittest.TestCase):
         entities =  [
                createEntityObjHelper("fraternity")
         ]
-        actionStudentLife = ActionQueryFreshmanProfile()
+        actionStudentLife = ActionQueryKnowledgebase()
         tracker = Tracker.from_dict(createFakeTracker(self.intent, entities))
         actionStudentLife.run(dispatcher=self.dispatcher, tracker=tracker, domain=None )
 

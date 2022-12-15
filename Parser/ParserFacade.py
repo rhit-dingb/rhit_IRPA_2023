@@ -2,6 +2,7 @@
 
 from typing import List, Dict
 import os
+from CustomEntityExtractor.NumberEntityExtractor import NumberEntityExtractor
 from Parser.CDSDataParser import CDSDataParser
 from Parser.SparseMatrixDataWriter import SparseMatrixDataWriter
 from Parser.RasaCommunicator import RasaCommunicator
@@ -14,7 +15,7 @@ class ParserFacade():
         self.dataLoader : CDSDataLoader = dataLoader
         self.dataWriter : SparseMatrixDataWriter = dataWriter
         self.rasaCommunicator : RasaCommunicator = RasaCommunicator()
-    
+        self.numberEntityExtractor = NumberEntityExtractor()
         self.parser = CDSDataParser(self.dataWriter)
 
         #To support when we want to use a different parser for a particular section
@@ -33,8 +34,10 @@ class ParserFacade():
             questionAnswers : List[QuestionAnswer] = self.dataLoader.getQuestionsAnswerForSection(section)
             for questionAnswer in questionAnswers:
                 response : Dict = self.rasaCommunicator.parseMessage(questionAnswer.getQuestion())
+                numberEntities = self.numberEntityExtractor.extractEntities(questionAnswer.getQuestion())
+                entities = response["entities"] + numberEntities
                 entityValues = []
-                for entity in response["entities"]:
+                for entity in entities:
                     entityValues.append(entity["value"])
         
                 questionAnswer.setEntities(entityValues)

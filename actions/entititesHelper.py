@@ -4,6 +4,23 @@ Consist all the helpers to process entity obj extracted by rasa.
 """
 
 
+def findCharIndexForWord(word, question):
+    for i in range(len(question)):
+        found = True
+        currIndex = i
+        for j in range(len(word)):
+            if currIndex >= len(question): 
+                return (None, None)
+            if question[currIndex] == word[j]:
+                currIndex = currIndex +1
+            else:
+                found = False
+                break
+        if found:
+            return (i, currIndex-1)
+    return (None, None)
+
+
 def findEntityHelper(entities, key, by="entity"):
     entitiesFound = findMultipleSameEntitiesHelper(entities, key, by)
     if len(entitiesFound) == 0:

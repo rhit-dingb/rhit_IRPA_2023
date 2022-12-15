@@ -36,7 +36,7 @@ class enrollment_test(unittest.TestCase):
     def setUp(self):
         # self.knowledgeBase = SparseMatrixKnowledgeBase("../Data_Ingestion/CDS_SPARSE_ENR.xlsx")
         self.knowledgeBase = SparseMatrixKnowledgeBase(
-            ExcelDataManager("./tests/testMaterials"))
+            ExcelDataManager("./tests/testMaterials/cdsTestData"))
 
         self.topicToParse = ["enrollment"]
         self.defaultShouldAddRowStrategy = DefaultShouldAddRowStrategy()

@@ -11,7 +11,7 @@ from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
 from DataManager.ExcelDataManager import ExcelDataManager
 from OutputController import output
 from tests.testUtils import checkAnswersMatch, createEntityObjHelper, createFakeTracker, identityFunc
-from actions.actions import ActionQueryFreshmanProfile, ActionQueryHighSchoolUnits, knowledgeBase as knowledgeBaseInAction
+from actions.actions import ActionQueryKnowledgebase, knowledgeBase as knowledgeBaseInAction
 from actions.actions import ActionQueryCohort
 
 from rasa_sdk import Action, Tracker
@@ -32,7 +32,7 @@ class test_freshman_profile(unittest.TestCase):
         # These should be intents
         self.topicToParse = [self.intent]
         self.knowledgeBase = SparseMatrixKnowledgeBase(
-            ExcelDataManager("./tests/testMaterials", self.topicToParse))
+            ExcelDataManager("./tests/testMaterials/cdsTestData", self.topicToParse))
      
 
         self.dispatcher = CollectingDispatcher()
@@ -47,7 +47,7 @@ class test_freshman_profile(unittest.TestCase):
                createEntityObjHelper("submitted")
             ]
 
-        actionQueryFreshmanProfile = ActionQueryFreshmanProfile()
+        actionQueryFreshmanProfile =ActionQueryKnowledgebase()
         
         tracker = Tracker.from_dict(createFakeTracker(self.intent, entities))
         actionQueryFreshmanProfile.run(dispatcher=self.dispatcher, tracker=tracker, domain=None )
@@ -62,7 +62,7 @@ class test_freshman_profile(unittest.TestCase):
                createEntityObjHelper("50th percentile"),
             ]
 
-        actionQueryFreshmanProfile = ActionQueryFreshmanProfile()
+        actionQueryFreshmanProfile = ActionQueryKnowledgebase()
         
         tracker = Tracker.from_dict(createFakeTracker(self.intent, entities))
         actionQueryFreshmanProfile.run(dispatcher=self.dispatcher, tracker=tracker, domain=None )
@@ -80,7 +80,7 @@ class test_freshman_profile(unittest.TestCase):
             createEntityObjHelper("writing")
         ]
 
-        actionQueryFreshmanProfile = ActionQueryFreshmanProfile()
+        actionQueryFreshmanProfile = ActionQueryKnowledgebase()
         tracker = Tracker.from_dict(createFakeTracker(self.intent, entities))
         actionQueryFreshmanProfile.run(dispatcher=self.dispatcher, tracker=tracker, domain=None )
         expectedAnswers = [PERCENT_STUDENT_WITH_SAT_READING_WRITING_SCORE_IN_RANGE_700_800 ]
@@ -94,7 +94,7 @@ class test_freshman_profile(unittest.TestCase):
             createEntityObjHelper("high school")
         ]
 
-        actionQueryFreshmanProfile = ActionQueryFreshmanProfile()
+        actionQueryFreshmanProfile = ActionQueryKnowledgebase()
         tracker = Tracker.from_dict(createFakeTracker(self.intent, entities))
         actionQueryFreshmanProfile.run(dispatcher=self.dispatcher, tracker=tracker, domain=None )
         expectedAnswers = [PERCENT_GRADUATING_IN_TOP_HALF_OF_HIGH_SCHOOL_CLASS]

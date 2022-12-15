@@ -38,7 +38,7 @@ class Cohort_Test(unittest.TestCase):
     def setUp(self):
         self.topicToParse = ["enrollment", "cohort"]
         self.knowledgeBase = SparseMatrixKnowledgeBase(
-            ExcelDataManager("./tests/testMaterials", self.topicToParse))
+            ExcelDataManager("./tests/testMaterials/cdsTestData", self.topicToParse))
 
         
         self.defaultShouldAddRowStrategy = DefaultShouldAddRowStrategy()

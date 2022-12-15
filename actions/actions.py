@@ -5,6 +5,7 @@
 # https://rasa.com/docs/rasa/custom-actions
 
 
+from CustomEntityExtractor.NumberEntityExtractor import NumberEntityExtractor
 from DataManager.ExcelDataManager import ExcelDataManager
 from DataManager.constants import ADMISSION_INTENT, BASIS_FOR_SELECTION_INTENT, COHORT_BY_YEAR_ENTITY_LABEL, COHORT_INTENT, ENROLLMENT_INTENT, EXEMPTION_ENTITY_LABEL, FINAL_COHORT_ENTITY_LABEL, FRESHMAN_PROFILE_INTENT, HIGH_SCHOOL_UNITS_INTENT, INITIAL_COHORT_ENTITY_LABEL,  AID_ENTITY_LABEL, NO_AID_ENTITY_LABEL, RANGE_ENTITY_LABEL, RECIPIENT_OF_PELL_GRANT_ENTITY_LABEL, RECIPIENT_OF_STAFFORD_LOAN_NO_PELL_GRANT_ENTITY_LABEL, STUDENT_LIFE_INTENT, TRANSFER_ADMISSION_INTENT, YEAR_FOR_COLLEGE_ENTITY_LABEL
 from Exceptions.ExceptionTypes import ExceptionTypes
@@ -14,15 +15,12 @@ from Knowledgebase.IgnoreRowPiece import IgnoreRowPiece
 from Knowledgebase.SparseMatrixKnowledgeBase import SparseMatrixKnowledgeBase
 from Knowledgebase.constants import PERCENTAGE_FORMAT
 from OutputController import output
-from actions.constants import AGGREGATION_ENTITY_PERCENTAGE_VALUE, ANY_AID_COLUMN_NAME, NO_AID_COLUMN_NAME, PELL_GRANT_COLUMN_NAME, RANGE_BETWEEN_VALUE, RANGE_LOWER_BOUND_VALUE, RANGE_UPPER_BOUND_VALUE, STAFFORD_LOAN_COLUMN_NAME, STUDENT_ENROLLMENT_RESULT_ENTITY_GRADUATION_VALUE, STUDENT_ENROLLMENT_RESULT_ENTITY_RETENTION_VALUE, YEARS_FOR_COLLEGE_ENTITY_FORMAT
+from actions.constants import AGGREGATION_ENTITY_PERCENTAGE_VALUE, ANY_AID_COLUMN_NAME, NO_AID_COLUMN_NAME, PELL_GRANT_COLUMN_NAME, RANGE_BETWEEN_VALUE, RANGE_UPPER_BOUND_VALUE, STAFFORD_LOAN_COLUMN_NAME, STUDENT_ENROLLMENT_RESULT_ENTITY_GRADUATION_VALUE, STUDENT_ENROLLMENT_RESULT_ENTITY_RETENTION_VALUE, YEARS_FOR_COLLEGE_ENTITY_FORMAT
 from actions.entititesHelper import changeEntityValue, changeEntityValueByRole, copyEntities, createEntityObj, filterEntities, findEntityHelper, findMultipleSameEntitiesHelper
 from typing import Text
 
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
-
-# knowledgeBase = SparseMatrixKnowledgeBase("./Data_Ingestion/CDS_SPARSE_ENR.xlsx")
-
 
 knowledgeBase = SparseMatrixKnowledgeBase(ExcelDataManager("./CDSData", [ENROLLMENT_INTENT, COHORT_INTENT, ADMISSION_INTENT, HIGH_SCHOOL_UNITS_INTENT, BASIS_FOR_SELECTION_INTENT, FRESHMAN_PROFILE_INTENT, TRANSFER_ADMISSION_INTENT
 , STUDENT_LIFE_INTENT]))
@@ -38,7 +36,7 @@ requiredEntitiesMap = {
 
 
 defaultShouldAddRowStrategy = DefaultShouldAddRowStrategy()
-
+numberEntityExtractor = NumberEntityExtractor()
 
 class ActionGetAvailableOptions(Action):
     def name(self) -> Text:
@@ -69,156 +67,20 @@ class ActionQueryKnowledgebase(Action):
         print(intent)
         print(entitiesExtracted)
         try:
-            answers = knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy, knowledgeBase.constructOutput, True)
+            answers = knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy, knowledgeBase.constructOutput,True)
             utterAllAnswers(answers, dispatcher)        
         except Exception as e:
             utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
         return []
     
-
-
-class ActionQueryTransferAdmission(Action):
-   
+class ActionSetYear(Action):
     def name(self) -> Text:
-        return  "action_query_transfer_admission"
-
-    def run(self, dispatcher, tracker, domain):
-        entitiesExtracted = tracker.latest_message["entities"]
-        intent = tracker.latest_message["intent"]["name"]
-        print(intent)
-        print(entitiesExtracted)
-        try:
-            answers = knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy, knowledgeBase.constructOutput, True)
-            utterAllAnswers(answers, dispatcher)        
-        except Exception as e:
-            utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
-        return []
-
-
-class ActionQueryFreshmanProfile(Action):
-    def __init__(self) -> None:
-        super().__init__()
-        
-    def name(self) -> Text:
-        return "action_query_freshman_profile"
+        return "action_set_year"
     
     def run(self, dispatcher, tracker, domain):
-        entitiesExtracted = tracker.latest_message["entities"]
-        intent = tracker.latest_message["intent"]["name"]
-        print(intent)
-        print(entitiesExtracted)
-
-        # I will not check for required entity for now.
-        # requiredEntityPresent = checkIfRequiredEntityIsPresent(intent, entitiesExtracted)
-        # NO_REQUIRED_ENTITY_PRESENT_MESSAGE = "Sorry I do not understand, please rephrase your question by being more specific"
-        # if not requiredEntityPresent: 
-        #     dispatcher.utter_message(NO_REQUIRED_ENTITY_PRESENT_MESSAGE)
-        #     return []
-
-        try:
-            answers = knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy, knowledgeBase.constructOutput, True)
-            utterAllAnswers(answers, dispatcher)   
-            
-        except Exception as e:
-            utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
-            
-        return []
-        
-class ActionQueryBasisForSelection(Action):
-    def __init__(self) -> None:
-        super().__init__()
-        
-    def name(self) -> Text:
-        return "action_query_basis_for_selection"
-    
-    def run(self, dispatcher, tracker, domain):
-        entitiesExtracted = tracker.latest_message["entities"]
-        intent = tracker.latest_message["intent"]["name"]
-        print(intent)
-        print(entitiesExtracted)
-        try:
-            answers = knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy, knowledgeBase.constructOutput)
-            utterAllAnswers(answers, dispatcher)   
-            
-        except Exception as e:
-            utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
-        
-        return []
-
-
-
-class ActionQueryHighSchoolUnits(Action):
-    def __init__(self) -> None:
-        super().__init__()
- 
-        self.choosenShouldAddRowStrategy = DefaultShouldAddRowStrategy()
-        
-    def name(self) -> Text:
-        return "action_query_high_school_units"
-
-    def run(self, dispatcher, tracker, domain):
-        entitiesExtracted = tracker.latest_message["entities"]
-        intent = tracker.latest_message["intent"]["name"]
-        print(tracker.latest_message["intent"])
-        print(tracker.latest_message["entities"])
-        
-        try:
-            answers = knowledgeBase.searchForAnswer(intent, entitiesExtracted, self.choosenShouldAddRowStrategy, knowledgeBase.constructOutput)
-            utterAllAnswers(answers, dispatcher)  
-        except Exception as e:
-           utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
-
-
-class ActionQueryEnrollment(Action):
-    def __init__(self) -> None:
         pass
-
-
-    def name(self) -> Text:
-        return "action_query_enrollment"
-
-    def run(self, dispatcher, tracker, domain):
-
-        haveRaceEnrollmentEntity = False
-       
-        entitiesExtracted = tracker.latest_message["entities"]
-        print(tracker.latest_message["intent"]["name"])
-        print(entitiesExtracted)
-        for entityObj in tracker.latest_message['entities']:
-            if entityObj["entity"] == "race":
-                haveRaceEnrollmentEntity = True
-                
-        selectedShouldAddRowStrategy = defaultShouldAddRowStrategy
-        if haveRaceEnrollmentEntity:
-            selectedShouldAddRowStrategy = defaultShouldAddRowStrategy
-
-        try:
-            answers = knowledgeBase.searchForAnswer(
-                        tracker.latest_message["intent"]["name"], entitiesExtracted, selectedShouldAddRowStrategy, knowledgeBase.constructOutput)
-            utterAllAnswers(answers, dispatcher)
-        except Exception as e:
-            utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
-
-        return []
-
-
-class ActionQueryAdmission(Action):
-    def name(self) -> Text:
-        return "action_query_admission"
-
-    def run(self, dispatcher, tracker, domain):
-        entitiesExtracted = tracker.latest_message["entities"]
-        selectedShouldAddRowStrategy = defaultShouldAddRowStrategy
-        print(tracker.latest_message["intent"]["name"])
-        print(entitiesExtracted)
-        try:
-            answers = knowledgeBase.searchForAnswer(
-                tracker.latest_message["intent"]["name"], entitiesExtracted, selectedShouldAddRowStrategy,knowledgeBase.constructOutput)
-            utterAllAnswers(answers, dispatcher)
-        except Exception as e:
-            utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
-
-        return []
+        #knowledgeBase.setYear()
+    
 
 class ActionQueryCohort(Action):
     def __init__(self) -> None:
@@ -229,56 +91,6 @@ class ActionQueryCohort(Action):
 
     def name(self) -> Text:
         return "action_query_cohort"
-
-
-    def findYearRange(self, entitiesFound):
-        minYear = self.minYear
-        maxYear = self.maxYear
-        yearsFound = [] 
-        for entityObj in entitiesFound:
-            for i in range(self.minYear, self.maxYear+1):
-                index_value = None
-                try:
-                    index_value = entityObj["value"].index(str(i))
-                    year = int(entityObj["value"][index_value])
-                    print("YEAR")
-                    print(year)
-                    print(entityObj["value"])
-                    yearsFound.append(year)
-                except ValueError:
-                    continue
-
-        askForUpperBound = findEntityHelper(entitiesFound, RANGE_UPPER_BOUND_VALUE, by = "value")
-        askForLowerBound = findEntityHelper(entitiesFound, RANGE_LOWER_BOUND_VALUE, by = "value")
-
-        if len(yearsFound) > 1:
-
-            maxYear = max(yearsFound)
-            minYear = min(yearsFound)
-
-            # I add one here, because when the user ask "more than"(lower bound) it means they want more than that year instead of including that year
-            if askForLowerBound:
-                minYear = minYear+1
-        
-        elif len(yearsFound) == 1:
-            
-
-            if askForUpperBound:
-                minYear = self.minYear
-                maxYear = max(yearsFound)
-            elif askForLowerBound:
-                maxYear = self.maxYear
-                minYear = min(yearsFound)+1
-            #Handle the case when no upper bound or lower bound is specified, default to upperbound
-            else: 
-                minYear = self.minYear
-                maxYear = max(yearsFound)
-
-        #Making sure the max year and minYear stays in valid range
-        maxYear = min(maxYear, self.maxYear)
-        minYear = max(minYear,self.minYear)
-        return (minYear, maxYear)
-
 
     def preprocessCohortEntities(self,entities):
         #Since for financial aid part, the entity value may not be extracted perfectly, we map it to the column using entity label
@@ -293,19 +105,30 @@ class ActionQueryCohort(Action):
             changeEntityValueByRole(entities, AID_ENTITY_LABEL, key, entityColumnMap[key])
 
 
-
     def run(self, dispatcher, tracker, domain):
         print(tracker.latest_message["intent"])
         print(intent)
         print("ENTITIES")
-        print(tracker.latest_message["entities"])
+        # print(tracker.latest_message["entities"])
 
         entitiesExtracted = tracker.latest_message["entities"]
         intent = tracker.latest_message["intent"]["name"]
+        found = list()
+        for e in entitiesExtracted:
+            # print(e["entity"])
+            print(e)
+            if "entity" in (e["entity"]):
+                found.append(e)
+
+        for e in found:
+            entitiesExtracted.remove(e)
+        
+        print("NEW ENTITIES")
+        for e in entitiesExtracted:
+            # print(e["entity"])
+            print(e)
 
         self.preprocessCohortEntities(entitiesExtracted)
-        
-        
         #If the user only ask for pell grant or subsized loan of cohort, we should only get the value from the first row, which is the initial cohort
         askPellGrant = findEntityHelper(entitiesExtracted, RECIPIENT_OF_PELL_GRANT_ENTITY_LABEL )
         askStaffordLoan = findEntityHelper(entitiesExtracted, RECIPIENT_OF_STAFFORD_LOAN_NO_PELL_GRANT_ENTITY_LABEL)
@@ -383,6 +206,9 @@ class ActionQueryCohort(Action):
         print(entitiesToCalculateDenominator)
         answer, intent, entities = knowledgeBase.aggregatePercentage(intent, graduatingNumbers, entitiesForNumerator,  entitiesToCalculateDenominator,  shouldAddRowStrategy)
         return knowledgeBase.constructOutput(answer, intent, entities)
+
+
+
 
 
 def utterAllAnswers(answers, dispatcher):

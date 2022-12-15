@@ -15,6 +15,9 @@ intents:
   - freshman_profile
   - student_life
 
+  - change_year
+
+
   - mood_great
   - mood_unhappy
   - bot_challenge
@@ -60,9 +63,6 @@ entities:
 
   # - policy
 
-  #cohort by year - for example: 2015 cohort, 2016 cohort, etc.
-  - cohort_by_year
-
 # used for something like: Initial 2015 cohort of first-time, fulltime, bachelor's (or equivalent) degreeseeking undergraduate students
 # and also something like: Final 2015 cohort, after adjusting for allowable exclusions
   - cohort_initial_final
@@ -94,10 +94,11 @@ entities:
   #- recipients_of_federal_pell_grant
   #- recipients_of_a_subsidized_stafford_loan_who_did_not_receive_a_pell_grant 
   #- students_who_did_not_receive_either_a_pell_grant_or_a_subsidized_stafford_loan
-  - aid_status
-
-  #year to query the dataset.
-  - year
+  - aid_status_pell
+  - aid_status_stafford
+  - not_modifier_pell
+  - not_modifier_stafford
+  - aid_status_none
   
   # School subjects such as english, mathematics, science, etc.
   - subject
@@ -139,16 +140,10 @@ entities:
   # writing
   - test_component
   
-
-  #The range of sat and test scores on cds
-  - test_score_range
-
   #highschool class rank, value: top tenth, top quarter, top half of highschool class, etc in the incoming freshman class,
   #also include whether student submitted highschool rank or not.
   - class_rank
 
-  #Ranges of gpa, 4.0 gpa, 3.75-3.99 gpa, etc
-  - gpa_range
 
 #Whether student submitted something, such as gpa, class rank, sat score
   - submitted
@@ -192,9 +187,6 @@ entities:
 # Bachelors or Associates degree
   - degree_level 
 
-
-# two year, four year
-  - years_for_college
 
 #Use to capture the word age and 25 and older used in student life section of cds 
   - age
@@ -256,6 +248,30 @@ entities:
   #program word
   #Value : program
   - program
+
+
+  # #cohort by year - for example: 2015 cohort, 2016 cohort, etc.
+  # - cohort_by_year
+
+  # #Captures the word "year"
+  # - year
+
+  # Captures numerical value include decimals. For number that are formatted as words like "four", I wrote code for a custom extractor.
+  #NOTE: currently, this is not labelled in training data, I use a custom entity extractor.
+  - number
+
+#DEPRECATED ENTITITES:
+# two year, four year
+#   - years_for_college
+
+# #The range of sat and test scores on cds
+#   - test_score_range
+
+#  #Ranges of gpa, 4.0 gpa, 3.75-3.99 gpa, etc
+#   - gpa_range
+
+
+
 
 slots:
   enrollment_status:
