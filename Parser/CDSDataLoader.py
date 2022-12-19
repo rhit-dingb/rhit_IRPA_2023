@@ -9,6 +9,7 @@ class CDSDataLoader():
         self.data = dict()
         self.path = path
         self.excelConnector = pd.ExcelFile(path)
+        self.METADATA_KEY = "metadata"
     
     def loadData(self): 
        for sheetName in self.excelConnector.sheet_names:
@@ -18,10 +19,20 @@ class CDSDataLoader():
            
             # questionAnswersDataFrame["Answer"] = questionAnswersDataFrame["Answer"].astype("string")
             questionsAnswers = []
+            isMetaData = False
             for i in range(questionAnswersDataFrame.shape[0]):
                 questionAnswerRow = questionAnswersDataFrame.loc[i]
-                questionAnswerObj = QuestionAnswer(questionAnswerRow["Question"], questionAnswerRow["Answer"], [])
+                
+                if questionAnswerRow["Question"].replace(" ", "").lower() == self.METADATA_KEY:
+                    isMetaData = True
+                    print("SET TO TRUEs")
+                    #If metadata marker found, skip the metadata marker and mark the thing below as metadata.
+                    continue
+               
+                questionAnswerObj = QuestionAnswer(questionAnswerRow["Question"], questionAnswerRow["Answer"], [], isMetaData=isMetaData)
                 questionsAnswers.append(questionAnswerObj)
+               
+                print(questionAnswerObj.question)
 
             lowerSheetName = sheetName.lower()
             self.data[lowerSheetName] = questionsAnswers

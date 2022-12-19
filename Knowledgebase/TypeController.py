@@ -12,7 +12,7 @@ class TypeController():
                     return (float(searchResult), SearchResultType.FLOAT)
                 #Otherwise the value is string if it is not integer or float.
                 else:
-                    if "%" == searchResult[len(searchResult)-1]:
+                    if len(searchResult) > 0 and "%" == searchResult[-1]:
                         return (searchResult, SearchResultType.PERCENTAGE)
                     else:
                         return (searchResult, SearchResultType.STRING)

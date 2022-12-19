@@ -33,15 +33,18 @@ class ParserFacade():
 
             questionAnswers : List[QuestionAnswer] = self.dataLoader.getQuestionsAnswerForSection(section)
             for questionAnswer in questionAnswers:
-                response : Dict = self.rasaCommunicator.parseMessage(questionAnswer.getQuestion())
-                numberEntities = self.numberEntityExtractor.extractEntities(questionAnswer.getQuestion())
-                entities = response["entities"] + numberEntities
-                entityValues = []
-                for entity in entities:
-                    entityValues.append(entity["value"])
-        
-                questionAnswer.setEntities(entityValues)
-                
+                if questionAnswer.isMetaData: 
+                    questionAnswer.setEntities([questionAnswer.question])
+                else:
+                    response : Dict = self.rasaCommunicator.parseMessage(questionAnswer.getQuestion())
+                    numberEntities = self.numberEntityExtractor.extractEntities(questionAnswer.getQuestion())
+                    entities = response["entities"] + numberEntities
+                    entityValues = []
+                    for entity in entities:
+                        entityValues.append(entity["value"])
+
+                    questionAnswer.setEntities(entityValues)
+                    
             # if section in self.parsers.keys(): 
                 #parser : CDSDataParser = self.parsers[section]
 
