@@ -21,14 +21,10 @@ class DefaultShouldAddRowStrategy(ShouldAddRowInterface):
 
         # Note: we only want to consider entities that are supported by this sparse matrix, so we can answer the user's question as best as possible
         filteredEntities = []
-        #processedColumn = [column.replace(" ", "") for column in row.index]
-        processedColumn = row.index
-        # print(entities)
-        # print(processedColumn)
-      
+        processedColumn =  [c.lower() for c in row.index]
         
         for entity in entities:
-            if entity in processedColumn:
+            if entity.lower() in processedColumn:
                 filteredEntities.append(entity)
 
      
@@ -41,6 +37,6 @@ class DefaultShouldAddRowStrategy(ShouldAddRowInterface):
                     temp_count = temp_count + 1
 
         if temp_count == len(filteredEntities):
-            return (True, filteredEntities)
+            return filteredEntities
         else:
-            return (False, [])
+            return []

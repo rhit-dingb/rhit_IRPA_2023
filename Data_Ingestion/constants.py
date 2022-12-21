@@ -1,0 +1,3 @@
+OPERATION_ALLOWED_COLUMN_VALUE = "operation-allowed"
+VALUE_FOR_ALLOW = "yes"
+

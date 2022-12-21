@@ -13,6 +13,6 @@ class IgnoreRowPiece(ShouldAddRowDecorator):
     def determineShouldAddRow(self, row, entities, sparseMatrix):
         for column in self.targetedColumns:
             if column in row and row[column] == 1:
-                return (False, [])
+                return []
 
         return self.decorated.determineShouldAddRow(row, entities, sparseMatrix)

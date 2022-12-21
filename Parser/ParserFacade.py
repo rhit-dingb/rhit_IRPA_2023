@@ -3,12 +3,14 @@
 from typing import List, Dict
 import os
 from CustomEntityExtractor.NumberEntityExtractor import NumberEntityExtractor
+from DataManager.constants import RANGE_ENTITY_LABEL
 from Parser.CDSDataParser import CDSDataParser
 from Parser.SparseMatrixDataWriter import SparseMatrixDataWriter
 from Parser.RasaCommunicator import RasaCommunicator
 from Parser.QuestionAnswer import QuestionAnswer
 from Parser.CDSDataLoader import CDSDataLoader
 from Parser.ExcelSparseMatrixDataWriter import ExcelSparseMatrixDataWriter
+from actions.entititesHelper import filterEntities
 
 class ParserFacade():
     def __init__(self, dataLoader, dataWriter):
@@ -33,12 +35,15 @@ class ParserFacade():
 
             questionAnswers : List[QuestionAnswer] = self.dataLoader.getQuestionsAnswerForSection(section)
             for questionAnswer in questionAnswers:
+                
                 if questionAnswer.isMetaData: 
                     questionAnswer.setEntities([questionAnswer.question])
                 else:
                     response : Dict = self.rasaCommunicator.parseMessage(questionAnswer.getQuestion())
                     numberEntities = self.numberEntityExtractor.extractEntities(questionAnswer.getQuestion())
                     entities = response["entities"] + numberEntities
+                    # Filter out range entities
+                    entities = filterEntities(entities, [RANGE_ENTITY_LABEL])
                     entityValues = []
                     for entity in entities:
                         entityValues.append(entity["value"])

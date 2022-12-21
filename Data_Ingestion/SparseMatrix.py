@@ -2,10 +2,13 @@
 Internal data model representing a sparse matrix
 """
 
-from typing import List
+from typing import List, Tuple
+from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
 from Knowledgebase.SearchResultType import SearchResultType
 
 from Knowledgebase.TypeController import TypeController
+from actions.entititesHelper import createEntityObj
+import Data_Ingestion.constants as constants
 
 
 
@@ -14,6 +17,7 @@ class SparseMatrix():
         self.subSectionName = subSectionName
         self.sparseMatrixDf = sparseMatrixDf
         self.typeController = TypeController()
+
 
     def getSparseMatrixDf(self):
         return self.sparseMatrixDf
@@ -79,10 +83,74 @@ class SparseMatrix():
 
         return discreteRange
 
+    
+    def isOperationSupported(self):
+        booleanSearchStrategy = DefaultShouldAddRowStrategy()
+        operationAllowedEntity = createEntityObj(constants.OPERATION_ALLOWED_COLUMN_VALUE, entityLabel="none",  entityRole=None)
+        searchResult, entitiesUsed = self.searchOnSparseMatrix([operationAllowedEntity], booleanSearchStrategy)
+        if len(searchResult) == 0:
+            return False
+        elif searchResult[0] == constants.VALUE_FOR_ALLOW:
+            return True
+            
+        return False
 
+    def searchOnSparseMatrix(self,entities, shouldAddRowStrategy):
+        searchResults = []
+        searchResult = None
+        entitiesUsed= []
+        # get the underlying pandas dataframe from the internal data model
+        sparseMatrixToSearchDf = self.getSparseMatrixDf()
+        for i in range(sparseMatrixToSearchDf.shape[0]):
+            row = sparseMatrixToSearchDf.loc[i]
+            
+            if "total" in row.index and sparseMatrixToSearchDf.loc[i,"total"] == 1:
+                continue
+           
+            usedEntities = shouldAddRowStrategy.determineShouldAddRow(row, entities, self)
+            shouldUseRow = len(usedEntities)>0
+            # print(usedEntities)
+           
+            if shouldUseRow:
+                newSearchResult = sparseMatrixToSearchDf.loc[i,'Value']
+                if searchResult == None: 
+                    searchResult, type = self.determineResultType(newSearchResult)
+                    searchResult = str(searchResult)
+                    searchResults.append(searchResult)
+                else:
+                    searchResult = self.addSearchResult(searchResult, newSearchResult, searchResults)
+
+                if len(entitiesUsed) <= 0:
+                    entitiesUsed = usedEntities
                 
+        entitiesUsed = list(entitiesUsed)
+        return (searchResults, entitiesUsed)
 
 
+    #This function will determine the type of value the search result is: integer, float, string, percentage(string with % sign) 
+    # and return the casted value along with enum value associated with that 
+    def determineResultType(self,searchResult) -> Tuple[any, SearchResultType]:
+        return self.typeController.determineResultType(searchResult)
+
+    #This function will try to add up the search results, if the current search result and the new search result's type does not make sense
+    # to be added together, it will add it into the list of answers instead of adding up the value.
+    def addSearchResult(self, currentSearchResult, newSearchResult, searchResults) -> str:
+        castedCurrValue, currentSearchResultType = self.determineResultType(currentSearchResult)
+        castedNewValue, newSearchResultType = self.determineResultType(newSearchResult)
+        if (currentSearchResultType == SearchResultType.FLOAT or currentSearchResultType == SearchResultType.NUMBER):
+            if newSearchResultType == SearchResultType.FLOAT or newSearchResultType == SearchResultType.NUMBER:
+            
+                newCalculatedValue = str(castedCurrValue + castedNewValue)
+                searchResults[len(searchResults)-1] = newCalculatedValue
+                return newCalculatedValue
+            else:
+                searchResults.append(newSearchResult)
+                return newSearchResult
+
+        else:
+            searchResults.append(newSearchResult)
+
+        return newSearchResult
 
 
     # def determineBestMatchRow(self, entities):

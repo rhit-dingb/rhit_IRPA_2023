@@ -29,7 +29,7 @@ class test_high_school_units_test(unittest.TestCase):
         # These should be intents
         self.topicToParse = ["enrollment", "cohort", "high_school_units"]
         self.knowledgeBase = SparseMatrixKnowledgeBase(
-            ExcelDataManager("./tests/testMaterials/cdsTestData/cdsTestData", self.topicToParse))
+            ExcelDataManager("./tests/testMaterials/cdsTestData/", self.topicToParse))
      
 
         self.dispatcher = CollectingDispatcher()

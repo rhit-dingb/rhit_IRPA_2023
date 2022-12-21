@@ -28,9 +28,9 @@ class RangeExactMatchRowStrategy(ShouldAddRowInterface):
                 continue
         
         if matchCount == len(rangeFound):
-            return (True, entities)
+            return entities
         
-        return (False, [])
+        return []
 
                     
        

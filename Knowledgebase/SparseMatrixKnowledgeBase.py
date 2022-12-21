@@ -50,85 +50,33 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
     """
     def searchForAnswer(self, intent, entitiesExtracted, shouldAddRowStrategy, outputFunc, shouldAdd = True):
         print("BEGAN SEARCHING")
-        searchResults = []
-
-        searchResult = None
+        
 
         #this list contains the value of the entities extracted.
         entities = []
-        usedEntities = []
-        printEntities = []
+        
         
         for entityObj in entitiesExtracted:
             entities.append(entityObj["value"])
-
         sparseMatrixToSearch : SparseMatrix; startYear : str; endYear : str 
         sparseMatrixToSearch, startYear, endYear = self.determineMatrixToSearch(intent, entitiesExtracted, self.year)
         
         if sparseMatrixToSearch is None:
             raise Exception("No valid sparse matrix found for given intent and entities", intent, entities)
-        # get the underlying pandas dataframe from the internal data model
-        sparseMatrixToSearchDf = sparseMatrixToSearch.getSparseMatrixDf()
-        for i in range(sparseMatrixToSearchDf.shape[0]):
-            row = sparseMatrixToSearchDf.loc[i]
-            
-            if "total" in row.index and sparseMatrixToSearchDf.loc[i,"total"] == 1:
-                continue
-           
-            shouldUseRow, usedEntities = shouldAddRowStrategy.determineShouldAddRow(row, entities, sparseMatrixToSearch)
-            # print(usedEntities)
-           
-            if shouldUseRow:
-                newSearchResult = sparseMatrixToSearchDf.loc[i,'Value']
-                if searchResult == None: 
-                    searchResult, type = self.determineResultType(newSearchResult)
-                    searchResult = str(searchResult)
-                    searchResults.append(searchResult)
-                else:
-                    searchResult = self.addSearchResult(searchResult, newSearchResult, searchResults)
 
-                if len(printEntities) <= 0:
-                    printEntities = usedEntities
-                
-        printEntities = list(printEntities)
-        printEntities.append(startYear) 
-        print(intent)
-        # print(self.determineResultType(searchResult))
-        print("SEARCH RESULT")
-        print(searchResults)
-        return outputFunc(searchResults, intent, printEntities)
+        searchResults, entitiesUsed = sparseMatrixToSearch.searchOnSparseMatrix(entities, shouldAddRowStrategy)
+        entitiesUsed.append(startYear) 
+        return outputFunc(searchResults, intent, entitiesUsed)
+
 
 
     def constructOutput(self, searchResult, intent, entitiesUsed):
        #return searchResult
        return constructSentence(searchResult, intent, entitiesUsed)
 
-    #This function will try to add up the search results, if the current search result and the new search result's type does not make sense
-    # to be added together, it will add it into the list of answers instead of adding up the value.
-
-    def addSearchResult(self, currentSearchResult, newSearchResult, searchResults) -> str:
-        castedCurrValue, currentSearchResultType = self.determineResultType(currentSearchResult)
-        castedNewValue, newSearchResultType = self.determineResultType(newSearchResult)
-        if (currentSearchResultType == SearchResultType.FLOAT or currentSearchResultType == SearchResultType.NUMBER):
-            if newSearchResultType == SearchResultType.FLOAT or newSearchResultType == SearchResultType.NUMBER:
-            
-                newCalculatedValue = str(castedCurrValue + castedNewValue)
-                searchResults[len(searchResults)-1] = newCalculatedValue
-                return newCalculatedValue
-            else:
-                searchResults.append(newSearchResult)
-                return newSearchResult
-
-        else:
-            searchResults.append(newSearchResult)
-
-        return newSearchResult
+   
     
-    #This function will determine the type of value the search result is: integer, float, string, percentage(string with % sign) 
-    # and return the casted value along with enum value associated with that 
-    def determineResultType(self,searchResult) -> Tuple[any, SearchResultType]:
-        return self.typeController.determineResultType(searchResult)
-
+  
     def findRange(self, entitiesFound, maxBound, minBound, sparseMatrix : SparseMatrix):
         maxValue = maxBound
         minValue = minBound

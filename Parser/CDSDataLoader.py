@@ -25,7 +25,6 @@ class CDSDataLoader():
                 
                 if questionAnswerRow["Question"].replace(" ", "").lower() == self.METADATA_KEY:
                     isMetaData = True
-                    print("SET TO TRUEs")
                     #If metadata marker found, skip the metadata marker and mark the thing below as metadata.
                     continue
                

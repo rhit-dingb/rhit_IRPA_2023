@@ -30,6 +30,7 @@ nlu:
     - require 
     - requirement
     - must 
+    - need
 
 - synonym: recommend
   examples: | 
@@ -43,6 +44,7 @@ nlu:
     - requiring
     - requirement
     - must
+    - need
 
 
 - lookup: aggregation
