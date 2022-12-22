@@ -27,33 +27,38 @@ class test_aggregate_discrete_range(unittest.TestCase):
         self.topicToParse =  [ACT_SCORE_INTENT]
         self.knowledgeBase = SparseMatrixKnowledgeBase(
             ExcelDataManager("./tests/testMaterials/testForDiscreteRange/", self.topicToParse))
-     
+        knowledgeBaseInAction.setYear(2020)
         self.defaultShouldAddRowStrategy = DefaultShouldAddRowStrategy()
         self.knowledgeBase.constructOutput = identityFunc
         
               
-    def test_when_ask_for_enroll_by_major_with_upper_bound_should_return_correct_answer(self):
+    def test_when_ask_for_student_with_act_score_with_upper_bound_should_return_correct_answer(self):
         intent = ACT_SCORE_INTENT
         entities =  [
             createEntityObjHelper("act"),
-            createEntityObjHelper("within"),
-            createEntityObjHelper("30", entityLabel = "number")
+            createEntityObjHelper("within", entityLabel=RANGE_ENTITY_LABEL),
+            createEntityObjHelper("30", entityLabel = NUMBER_ENTITY_LABEL)
         ]
 
         # intent, entities, sparseMatrix : SparseMatrix, isSumming
         sparseMatrix, startYear, endYear = self.knowledgeBase.determineMatrixToSearch(intent, entities, self.knowledgeBase.year)
-        answers, intent, entitiesUsed = self.knowledgeBase.aggregateDiscreteRange(ACT_SCORE_INTENT, entities, sparseMatrix ,True )
-        print("________-")
-        print(answers)
-        print(entitiesUsed)
-      
+        answers, entitiesUsed = self.knowledgeBase.aggregateDiscreteRange(ACT_SCORE_INTENT, entities, sparseMatrix ,True )
         self.assertEqual(answers, [str(11.0)])
 
+    def test_when_ask_for_student_with_act_score_with_upper_bound_and_lower_bound_should_return_correct_answer(self):
+        intent = ACT_SCORE_INTENT
+        entities =  [
+            createEntityObjHelper("act"),
+            createEntityObjHelper("within"),
+            createEntityObjHelper("more than", entityLabel= RANGE_ENTITY_LABEL),
+            createEntityObjHelper("22", entityLabel = NUMBER_ENTITY_LABEL),
+            createEntityObjHelper("6", entityLabel = NUMBER_ENTITY_LABEL)
+        ]
 
-
+        sparseMatrix, startYear, endYear = self.knowledgeBase.determineMatrixToSearch(intent, entities, self.knowledgeBase.year)
+        answers, entitiesUsed = self.knowledgeBase.aggregateDiscreteRange(ACT_SCORE_INTENT, entities, sparseMatrix ,True )
+        self.assertEqual(answers, [str(6.0)])
         
-    
-
 
 if __name__ == '__main__':
     unittest.main()

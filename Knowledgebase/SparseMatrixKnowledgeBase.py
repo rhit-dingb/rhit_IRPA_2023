@@ -17,7 +17,7 @@ from Knowledgebase.TypeController import TypeController
 
 from Knowledgebase.constants import PERCENTAGE_FORMAT
 from OutputController.output import  constructSentence, identityFunc, outputFuncForPercentage
-from actions.constants import RANGE_MORE_THAN_VALUE, RANGE_UPPER_BOUND_VALUE
+from actions.constants import RANGE_LOWER_BOUND_VALUE, RANGE_UPPER_BOUND_VALUE
 
 from actions.entititesHelper import copyEntities, filterEntities, findEntityHelper, findMultipleSameEntitiesHelper
 
@@ -49,22 +49,28 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
 
     """
     def searchForAnswer(self, intent, entitiesExtracted, shouldAddRowStrategy, outputFunc, shouldAdd = True):
-        print("BEGAN SEARCHING")
-        
-
-        #this list contains the value of the entities extracted.
-        entities = []
-        
-        
-        for entityObj in entitiesExtracted:
-            entities.append(entityObj["value"])
+        # print("BEGAN SEARCHING")
         sparseMatrixToSearch : SparseMatrix; startYear : str; endYear : str 
         sparseMatrixToSearch, startYear, endYear = self.determineMatrixToSearch(intent, entitiesExtracted, self.year)
         
         if sparseMatrixToSearch is None:
             raise Exception("No valid sparse matrix found for given intent and entities", intent, entities)
 
-        searchResults, entitiesUsed = sparseMatrixToSearch.searchOnSparseMatrix(entities, shouldAddRowStrategy)
+        isRangeAllowed = sparseMatrixToSearch.isRangeOperationAllowed()
+        hasRangeEntity = findEntityHelper(entitiesExtracted, RANGE_ENTITY_LABEL)
+        isSumAllowed = sparseMatrixToSearch.isSumOperationAllowed()
+
+        isPercentageAllowed = sparseMatrixToSearch.isPercentageOperationAllowed()
+        
+        searchResults = []
+        entitiesUsed = []
+        if isRangeAllowed and hasRangeEntity:
+           searchResults, entitiesUsed =  self.aggregateDiscreteRange(intent, entitiesExtracted, sparseMatrixToSearch, isSumAllowed)
+        elif isPercentageAllowed:
+            pass
+        else:
+            searchResults, entitiesUsed = sparseMatrixToSearch.searchOnSparseMatrix(entitiesExtracted, shouldAddRowStrategy, isSumAllowed)
+        
         entitiesUsed.append(startYear) 
         return outputFunc(searchResults, intent, entitiesUsed)
 
@@ -74,8 +80,6 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
        #return searchResult
        return constructSentence(searchResult, intent, entitiesUsed)
 
-   
-    
   
     def findRange(self, entitiesFound, maxBound, minBound, sparseMatrix : SparseMatrix):
         maxValue = maxBound
@@ -89,39 +93,53 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
             numberValues.append(castedValue)
 
         askForUpperBound = findEntityHelper(entitiesFound, RANGE_UPPER_BOUND_VALUE, by = "value")
-        askForMoreThan= findEntityHelper(entitiesFound, RANGE_MORE_THAN_VALUE,  by = "value")
+        askForMoreThan= findEntityHelper(entitiesFound, RANGE_LOWER_BOUND_VALUE,  by = "value")
 
         if len(numberValues) > 1:
             maxValue = max(numberValues)
             minValue = min(numberValues)
 
-            # I add one here, because when the user ask "more than"(lower bound) it means they want more than that year instead of including that year
-            # if askForMoreThan:
-            #     minYear = minYear+1
         elif len(numberValues) == 1:
-            if askForUpperBound:
-                minValue = minBound
+            if askForUpperBound or not (askForUpperBound or askForMoreThan ):
+                minValue = float('-inf')
                 maxValue = max(numberValues)
             elif askForMoreThan:
-                maxValue = maxBound
+                maxValue = float('inf')
                 minValue = min(numberValues)
-        #Handle the case when no upper bound or lower bound is specified, default to upperbound
-
-        #Making sure the max year and minYear stays in valid range
-        maxValue = min(maxValue, maxBound)
-        minValue = max(minValue, minBound)
-        
+            
         discreteRanges = sparseMatrix.findAllDiscreteRange()
         # print(minBound,maxBound)
-        # print(maxValue, minValue)
-        # print(discreteRanges)
+        print(maxValue, minValue)
+        print(discreteRanges)
         rangesToUse = []
+        intervalToCheck = [minValue, maxValue]
         for dRange in discreteRanges:
-            if maxValue >= dRange[1] and minValue < dRange[1] and not dRange[0] == None:
+            if self.doesIntervalOverlap(intervalToCheck, dRange):
                 rangesToUse.append(dRange)
-        
-      
+       
+        print(rangesToUse)
         return rangesToUse
+    
+    def convertNoneToInfinity(self,a):
+        newRes = []
+        if a[0] and a[1]:
+            return a
+
+        if a[0] == None:
+            newRes.append(float('-inf'))
+            newRes.append(a[1])
+        if a[1] == None:
+            newRes.append(a[0])
+            newRes.append(float('inf'))
+        return newRes
+        
+    def doesIntervalOverlap(self,a, b):
+        a = self.convertNoneToInfinity(a)
+        b = self.convertNoneToInfinity(b)
+        if not a[0] >= b[1] and not a[1] <= b[0]:
+            return True
+        else:
+            return False
 
     def aggregateDiscreteRange(self, intent, entities, sparseMatrix : SparseMatrix, isSumming) -> float:
         maxBound, minBound = sparseMatrix.findMaxBoundLowerBoundForDiscreteRange()
@@ -131,7 +149,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         entities = filterEntities(entities, [RANGE_ENTITY_LABEL])
         entitiesUsed = []
         currentResult = []
-       
+        
         for r in rangeToSumOver:
             entitiesToCheck = []
             fakeEntity = None
@@ -142,6 +160,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
                         "aggregation": "range"
                 }
                 entitiesToCheck.append(fakeEntity)
+
             if r[1]:
                 fakeEntity = {
                         "entity": NUMBER_ENTITY_LABEL,
@@ -149,6 +168,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
                         "aggregation": "range"
                 }
                 entitiesToCheck.append(fakeEntity)
+            
             answers, intent, entitiesUsedBySearch = self.searchForAnswer(intent, entitiesToCheck, shouldAddRowStrategy, identityFunc)
           
             entitiesUsed = entitiesUsed + entitiesUsedBySearch
@@ -160,11 +180,11 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
                 else:
                     currentResult[0]=str(float(currentResult[0]) + float(answers[0]))
 
-                print(currentResult)
             else: 
+                # + on list in python combines the two list. 
                 currentResult = currentResult + answers
         
-        return (currentResult, intent, set(entitiesUsed))
+        return (currentResult, set(entitiesUsed))
 
 
 

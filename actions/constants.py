@@ -1,9 +1,6 @@
 # COHORT_GRADUATION_TIME_ENTITY_FORMAT = "{lowerBound}-{upperBound}-years"
 # COHORT_GRADUATION_TIME_START_FORMAT= "within-{upperBound}-years"
 
-YEARS_FOR_COLLEGE_ENTITY_FORMAT = "{year} year"
-
-
 ANY_AID_COLUMN_NAME = "any-aid"
 
 STAFFORD_LOAN_COLUMN_NAME = "stafford-loan"
@@ -13,7 +10,7 @@ NO_AID_COLUMN_NAME = "no-aid"
 
 #Constants to capture entity values for the range entity. 
 RANGE_UPPER_BOUND_VALUE = "within"
-RANGE_MORE_THAN_VALUE= "more than"
+RANGE_LOWER_BOUND_VALUE= "more than"
 RANGE_BETWEEN_VALUE = "between"
 
 #Constants to capture the percentage value supported by aggregation entity

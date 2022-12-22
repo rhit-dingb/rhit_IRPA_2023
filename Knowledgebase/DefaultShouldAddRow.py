@@ -21,8 +21,8 @@ class DefaultShouldAddRowStrategy(ShouldAddRowInterface):
 
         # Note: we only want to consider entities that are supported by this sparse matrix, so we can answer the user's question as best as possible
         filteredEntities = []
-        processedColumn =  [c.lower() for c in row.index]
-        
+        processedColumn =  [str(c).lower() for c in row.index]
+
         for entity in entities:
             if entity.lower() in processedColumn:
                 filteredEntities.append(entity)

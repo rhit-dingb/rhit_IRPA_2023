@@ -17,20 +17,31 @@ class RangeExactMatchRowStrategy(ShouldAddRowInterface):
         
     def determineShouldAddRow(self, row, entities, sparseMatrix):
         rangeFound  = sparseMatrix.findRangeForRow(row)
-        rangeFound = list(filter(lambda x : not x == None, rangeFound ))
+        rangeFound = list(filter(lambda x : not (x == None or x == float('-inf') or x == float('inf')), rangeFound ))
+        rangeEntityProvided = []
+        
         matchCount = 0
+
+      
         for entityValue in entities:
             try:
                 entityValue = float(entityValue)
-                if entityValue in row.index and row[entityValue] == 1 and entityValue in rangeFound:
-                    matchCount = matchCount + 1
+                # if entityValue in row.index and row[entityValue] == 1 and entityValue in rangeFound:
+                #     matchCount = matchCount + 1
+                rangeEntityProvided.append(entityValue)
             except Exception:
                 continue
-        
-        if matchCount == len(rangeFound):
-            return entities
-        
-        return []
 
+        for valueFound in rangeFound:
+            for rangeProvided in rangeEntityProvided:
+                if valueFound == rangeProvided:
+                    matchCount = matchCount + 1
+                    continue
+
+        if matchCount == len(rangeEntityProvided) and len(rangeFound) == len(rangeEntityProvided):
+            return entities
+        else:
+            return []
+        
                     
        

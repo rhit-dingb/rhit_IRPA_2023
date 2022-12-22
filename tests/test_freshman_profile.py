@@ -29,6 +29,7 @@ class test_freshman_profile(unittest.TestCase):
     def setUp(self):
         
         self.intent = "freshman_profile"
+        self.knowledgeBase.setYear(2020)
         # These should be intents
         self.topicToParse = [self.intent]
         self.knowledgeBase = SparseMatrixKnowledgeBase(

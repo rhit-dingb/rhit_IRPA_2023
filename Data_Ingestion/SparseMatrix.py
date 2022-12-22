@@ -17,7 +17,7 @@ class SparseMatrix():
         self.subSectionName = subSectionName
         self.sparseMatrixDf = sparseMatrixDf
         self.typeController = TypeController()
-
+       
 
     def getSparseMatrixDf(self):
         return self.sparseMatrixDf
@@ -47,7 +47,6 @@ class SparseMatrix():
 
     def findMaxBoundLowerBoundForDiscreteRange(self):
         ranges = self.findAllDiscreteRange()
-        print(ranges)
         maxBound = None
         minBound = None
         for r in ranges:
@@ -84,18 +83,43 @@ class SparseMatrix():
         return discreteRange
 
     
-    def isOperationSupported(self):
-        booleanSearchStrategy = DefaultShouldAddRowStrategy()
-        operationAllowedEntity = createEntityObj(constants.OPERATION_ALLOWED_COLUMN_VALUE, entityLabel="none",  entityRole=None)
-        searchResult, entitiesUsed = self.searchOnSparseMatrix([operationAllowedEntity], booleanSearchStrategy)
-        if len(searchResult) == 0:
+    def isAnyOperationAllowed(self):
+        return self.isThisOperationAllowed(constants.OPERATION_ALLOWED_COLUMN_VALUE)
+
+    def isSumOperationAllowed(self):
+        isOperationAllowed = self.isAnyOperationAllowed()
+        if not isOperationAllowed:
             return False
-        elif searchResult[0] == constants.VALUE_FOR_ALLOW:
+        self.isThisOperationAllowed(constants.SUM_ALLOWED_COLUMN_VALUE)
+
+    def isRangeOperationAllowed(self):
+        isOperationAllowed = self.isAnyOperationAllowed()
+        if not isOperationAllowed:
+            return False
+        self.isThisOperationAllowed(constants.RANGE_ALLOWED_COLUMN_VALUE)
+
+    def isPercentageOperationAllowed(self):
+        isOperationAllowed = self.isAnyOperationAllowed()
+        if not isOperationAllowed:
+            return False
+
+        return self.isThisOperationAllowed(constants.PERCENTAGE_ALLOWED_COLUMN_VALUE)
+
+    def checkResultHelper(self, searchResults):
+        if len(searchResults) == 0:
+            return False
+        elif searchResults[0] == constants.VALUE_FOR_ALLOW:
             return True
-            
+
         return False
 
-    def searchOnSparseMatrix(self,entities, shouldAddRowStrategy):
+    def isThisOperationAllowed(self, operationName):
+        booleanSearchStrategy = DefaultShouldAddRowStrategy()
+        operationAllowedEntity = createEntityObj(operationName, entityLabel="none",  entityRole=None)
+        searchResult, entitiesUsed = self.searchOnSparseMatrix([operationAllowedEntity], booleanSearchStrategy, False)
+        return self.checkResultHelper(searchResult)
+
+    def searchOnSparseMatrix(self, entities, shouldAddRowStrategy, isSumAllowed):
         searchResults = []
         searchResult = None
         entitiesUsed= []
@@ -106,8 +130,10 @@ class SparseMatrix():
             
             if "total" in row.index and sparseMatrixToSearchDf.loc[i,"total"] == 1:
                 continue
+
            
-            usedEntities = shouldAddRowStrategy.determineShouldAddRow(row, entities, self)
+            entityValues = [e["value"] for e in entities]
+            usedEntities = shouldAddRowStrategy.determineShouldAddRow(row, entityValues, self)
             shouldUseRow = len(usedEntities)>0
             # print(usedEntities)
            
@@ -118,7 +144,7 @@ class SparseMatrix():
                     searchResult = str(searchResult)
                     searchResults.append(searchResult)
                 else:
-                    searchResult = self.addSearchResult(searchResult, newSearchResult, searchResults)
+                    searchResult = self.addSearchResult(searchResult, newSearchResult, searchResults, isSumAllowed)
 
                 if len(entitiesUsed) <= 0:
                     entitiesUsed = usedEntities
@@ -134,12 +160,11 @@ class SparseMatrix():
 
     #This function will try to add up the search results, if the current search result and the new search result's type does not make sense
     # to be added together, it will add it into the list of answers instead of adding up the value.
-    def addSearchResult(self, currentSearchResult, newSearchResult, searchResults) -> str:
+    def addSearchResult(self, currentSearchResult, newSearchResult, searchResults, isSumAllowed) -> str:
         castedCurrValue, currentSearchResultType = self.determineResultType(currentSearchResult)
         castedNewValue, newSearchResultType = self.determineResultType(newSearchResult)
         if (currentSearchResultType == SearchResultType.FLOAT or currentSearchResultType == SearchResultType.NUMBER):
-            if newSearchResultType == SearchResultType.FLOAT or newSearchResultType == SearchResultType.NUMBER:
-            
+            if isSumAllowed and (newSearchResultType == SearchResultType.FLOAT or newSearchResultType == SearchResultType.NUMBER):
                 newCalculatedValue = str(castedCurrValue + castedNewValue)
                 searchResults[len(searchResults)-1] = newCalculatedValue
                 return newCalculatedValue
@@ -152,60 +177,3 @@ class SparseMatrix():
 
         return newSearchResult
 
-
-    # def determineBestMatchRow(self, entities):
-    #     maxMatchCount = None
-    #     minNonMatchCount = None
-    #     bestMatchedRows = []
-    #     finalBestMatch = None
-
-    #     for i in range(self.sparseMatrixDf.shape[0]):
-    #         row = self.sparseMatrixDf.loc[i]
-    #         matchCount, numberOfColumnsNotMatchedByEntity = self.determineEntityMatchToRowCounts(entities, row)
-
-    #         if maxMatchCount is None or (matchCount >= maxMatchCount):
-
-    #             maxMatchCount = matchCount
-    #             if (matchCount == maxMatchCount):
-    #                 bestMatchedRows.append(row)
-    #             else if (matchCount>maxMatchCount):
-    #                 maxMatchCount = matchCount
-    #                 bestMatchedRows = []
-
-    #     return (maxMatchCount, bestMatchedRow)
-
-    # def determineEntityMatchToRowCounts(self, entities, row): 
-    #     columnLabelsMarkedAsOneForGivenRow = []
-    #     for columnLabel in row.index:
-    #         if row[columnLabel] == 1:
-    #             columnLabelsMarkedAsOneForGivenRow.append(columnLabel)
-
-    #     matchCountForEntityAgainstRow = self.determineMatchCountHelper(entities, columnLabel),
-    #     numberOfColumnsNOTMatchedByEntityExtracted = len(columnLabelsMarkedAsOneForGivenRow) - len(entities)
-    #     return (matchCountForEntityAgainstRow, numberOfColumnsNOTMatchedByEntityExtracted)
-
-
-# def findRowsOverlapWithGivenRow(self, givenRow):
-#         if not "overlap" in givenRow.index:
-#             return []
-#         else:
-#             overlapRows = []
-#             columnMarkedAsOneForGivenRow = []
-#             for column in givenRow.index:
-#                 if row[column] == 1:
-#                     columnMarkedAsOneForGivenRow.append(column)
-
-#             for i in range(self.sparseMatrixDf.shape[0]):
-#                 row = self.sparseMatrixDf.loc[i]
-
-#                 for column in row.index:
-#                     doesOverlap = True
-#                     if row[column] == 1:
-#                         if not column in columnMarkedAsOneForGivenRow:
-#                             doesOverlap = False
-#                             break
-
-#                     if doesOverlap:
-#                         overlapRows.append(row)
-
-#             return overlapRows

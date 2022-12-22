@@ -31,7 +31,7 @@ class test_high_school_units_test(unittest.TestCase):
         self.knowledgeBase = SparseMatrixKnowledgeBase(
             ExcelDataManager("./tests/testMaterials/cdsTestData/", self.topicToParse))
      
-
+        knowledgeBaseInAction.setYear(2020)
         self.dispatcher = CollectingDispatcher()
         #Make sure the knowledgebase class instance in Actions is using the data manager with test materials loaded.
         knowledgeBaseInAction.dataManager = self.knowledgeBase.dataManager

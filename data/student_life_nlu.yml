@@ -23,7 +23,7 @@ nlu:
     - What [clubs]{"entity": "academic_factor", "value": "extracurricular activities"} does Rose-Hulman offer?
     - What [extracirricular]{"entity": "academic_factor", "value": "extracurricular activities"} does Rose-Hulman offer?
 
-    - What [type](type) of [college]{"entity": "education_level", "value": "college"} [affiliated]{"entity":"college_relation", "value": "affiliated"} [housing]{"entity":"category", "value": "housing"} is available at Rose-Hulman?
+    - What [type](type) of [college]{"entity": "education_level", "value": "college"} [affiliated]{"entity":"college_relation", "value": "affiliated"} [housing]{"entity":"housing", "value": "housing"} is available at Rose-Hulman?
     - What [type](type) of [college]{"entity": "education_level", "value": "college"} [operated]{"entity":"college_relation", "value": "operated"} [housing]{"entity":"category", "value": "housing"} is available at Rose-Hulman?
     - What [type](type) of [college]{"entity": "education_level", "value": "college"} [owned]{"entity":"college_relation", "value": "owned"} [housing]{"entity":"category", "value": "housing"} is available at Rose-Hulman?
     - What [type](type) of [college]{"entity": "education_level", "value": "college"} [affliated]{"entity":"college_relation", "value": "affiliated"} [housing]{"entity":"category", "value": "housing"} is available at Rose-Hulman?
