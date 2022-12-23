@@ -143,7 +143,7 @@ class enrollment_test(unittest.TestCase):
     def test_ask_for_degree_seeking_asian_student_enrolled_should_return_degree_seeking_undergraduate_asian_students(self):
         answers = self.knowledgeBase.searchForAnswer("enrollment",
                                                     [createEntityObjHelper("degree-seeking"),
-                                                     createEntityObjHelper("asian")]
+                                                     createEntityObjHelper("asian")],
                                                     self.defaultShouldAddRowStrategy, self.extractOutput)
         self.assertEqual(answers, [str(DEGREE_SEEKING_UNDERGRADUATE_ASIAN_STUDENTS_ENROLLED)])
 
@@ -183,7 +183,7 @@ class enrollment_test(unittest.TestCase):
 
     def test_ask_for_african_american_student_enrollment(self):
         answers = self.knowledgeBase.searchForAnswer("enrollment", [
-            createEntityObjHelper("african-american"),
+            createEntityObjHelper("african american"),
         ], self.defaultShouldAddRowStrategy, self.extractOutput)
         self.assertEqual(answers, [str(
             UNDERGRADUATE_DEGREE_SEEKING_AFRICAN_AMERICAN_STUDEN_ENROLLED)])
@@ -192,7 +192,7 @@ class enrollment_test(unittest.TestCase):
         self.knowledgeBase.setYear(3000)
         with self.assertRaises(NoDataFoundException) as cm:
             self.knowledgeBase.searchForAnswer("enrollment", [
-                createEntityObjHelper("african-american"),
+                createEntityObjHelper("african american"),
             ], self.defaultShouldAddRowStrategy, self.extractOutput)
             
         exceptionRaised = cm.exception

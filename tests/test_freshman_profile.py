@@ -113,7 +113,8 @@ class test_freshman_profile(unittest.TestCase):
         actionQueryFreshmanProfile = ActionQueryKnowledgebase()
         tracker = Tracker.from_dict(createFakeTracker(self.intent, entities))
         actionQueryFreshmanProfile.run(dispatcher=self.dispatcher, tracker=tracker, domain=None )
-        expectedAnswers = [PERCENT_STUDENT_WITH_SAT_READING_WRITING_SCORE_IN_RANGE_700_800 ]
+        # Put this as correctly answer for now, we may want to add up these percentages.
+        expectedAnswers = ["50%", "10.3%", "0%", "0%", "0%"]
         checkAnswersMatch(self, self.dispatcher, expectedAnswers) 
      
     

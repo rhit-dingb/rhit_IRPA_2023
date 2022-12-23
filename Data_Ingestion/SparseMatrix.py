@@ -145,8 +145,6 @@ class SparseMatrix():
 
                 if len(entitiesUsed) <= 0:
                     entitiesUsed = usedEntities
-        print("RESULT")
-        print(searchResults)
         entitiesUsed = list(entitiesUsed)
         return (searchResults, entitiesUsed)
 
@@ -161,9 +159,6 @@ class SparseMatrix():
     def addSearchResult(self, currentSearchResult, newSearchResult, searchResults, isSumAllowed) -> str:
         castedCurrValue, currentSearchResultType = self.determineResultType(currentSearchResult)
         castedNewValue, newSearchResultType = self.determineResultType(newSearchResult)
-        print("ADDING")
-        print(currentSearchResult)
-        print(newSearchResult)
         if (currentSearchResultType == SearchResultType.FLOAT or currentSearchResultType == SearchResultType.NUMBER):
             if isSumAllowed and (newSearchResultType == SearchResultType.FLOAT or newSearchResultType == SearchResultType.NUMBER):
                 newCalculatedValue = str(castedCurrValue + castedNewValue)

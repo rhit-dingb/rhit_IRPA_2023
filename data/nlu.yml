@@ -1612,6 +1612,80 @@ nlu:
     - non-degree-seeking
 
 
+- lookup: student_level
+  examples: |
+    - undergrad
+    - undergraduate
+    - graduate
+    - grad
+
+- lookup: race
+  examples: |
+    - nonresident alien
+    - african american
+    - asian
+    - white
+    - american indian
+    
+- synonym: nonresident alien
+  examples: |
+    - nonresident
+    - nonresident-alien
+    - international
+
+- synonym: african american
+  examples: |
+    - african-american
+    - black
+    - african american
+    - african americans
+    - african
+    - non-hispanic
+
+- synonym: asian 
+  examples: |
+    - asians
+
+- synonym: white
+  examples: |
+    - caucasian
+    - whites
+    - caucasians
+    - european descent
+
+- synonym: american indian
+  examples: |
+    - american-indian
+    - american-indians
+    - american indians
+    - native-american
+    - native american
+
+- synonym: hispanic
+  examples: |
+    - hispanics
+    - latino
+    - mexican
+
+
+- synonym: pacific islander
+  examples: |
+    - pacific-islander
+    - pacific-islanders
+    - pacific island
+
+- synonym: two or more races
+  examples: |
+    - two or more
+    - two-or-more
+    - two or more race
+    - two or more races
+    - multiple
+
+
+  
+
+
 
 - intent: admission
   examples: |
@@ -2354,73 +2428,7 @@ nlu:
 
 #---------------------END----------------------------------- 
 
-- lookup: student_level
-  examples: |
-    - undergrad
-    - undergraduate
-    - graduate
-    - grad
 
-
-
-#synonym example, We can also put it in the entity annotation in the above training data sentences
-
-    
-- synonym: nonresident alien
-  examples: |
-    - nonresident
-    - nonresident-alien
-    - international
-
-- synonym: african american
-  examples: |
-    - african-american
-    - black
-    - african american
-    - african
-    - non-hispanic
-
-- synonym: asian 
-  examples: |
-    - asians
-
-- synonym: white
-  examples: |
-    - caucasian
-    - whites
-    - caucasians
-    - european descent
-
-- synonym: american indian
-  examples: |
-    - american-indian
-    - american-indians
-    - native-american
-    - native american
-
-- synonym: hispanic
-  examples: |
-    - hispanics
-    - latino
-    - mexican
-
-
-- synonym: pacific islander
-  examples: |
-    - pacific-islander
-    - pacific-islanders
-    - pacific island
-
-- synonym: two or more races
-  examples: |
-    - two or more
-    - two-or-more
-    - two or more race
-    - two or more races
-    - multiple
-
-
-  
 
 # - regex: year
 #   examples: |

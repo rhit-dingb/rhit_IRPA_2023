@@ -43,7 +43,7 @@ class test_aggregate_discrete_range(unittest.TestCase):
         # intent, entities, sparseMatrix : SparseMatrix, isSumming
         sparseMatrix, startYear, endYear = self.knowledgeBase.determineMatrixToSearch(intent, entities, self.knowledgeBase.year)
         answers, entitiesUsed = self.knowledgeBase.aggregateDiscreteRange(ACT_SCORE_INTENT, entities, sparseMatrix ,True )
-        self.assertEqual(answers, [str(11.0)])
+        self.assertEqual(answers, [str(11)])
 
     def test_when_ask_for_student_with_act_score_with_upper_bound_and_lower_bound_should_return_correct_answer(self):
         intent = ACT_SCORE_INTENT
@@ -57,8 +57,8 @@ class test_aggregate_discrete_range(unittest.TestCase):
 
         sparseMatrix, startYear, endYear = self.knowledgeBase.determineMatrixToSearch(intent, entities, self.knowledgeBase.year)
         answers, entitiesUsed = self.knowledgeBase.aggregateDiscreteRange(ACT_SCORE_INTENT, entities, sparseMatrix ,True )
-        self.assertEqual(answers, [str(6.0)])
-        
+        self.assertEqual(answers, [str(6)])
+
 
 if __name__ == '__main__':
     unittest.main()
