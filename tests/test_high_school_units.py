@@ -56,7 +56,7 @@ class test_high_school_units_test(unittest.TestCase):
         actionHighSchool.run(dispatcher=self.dispatcher, tracker=tracker, domain=None )
 
         expectedAnswers = [LAB_SCIENCE_UNIT_REQUIRED]
-        checkAnswersMatch(self.assertEqual, self.dispatcher, expectedAnswers) 
+        checkAnswersMatch(self, self.dispatcher, expectedAnswers) 
        
     def test_when_ask_visual_performing_art_recommended_should_return_correct_value(self):
         entities =  [
@@ -73,7 +73,7 @@ class test_high_school_units_test(unittest.TestCase):
         actionHighSchool.run(dispatcher=self.dispatcher, tracker=tracker, domain=None )
 
         expectedAnswers = [VISUAL_PERFORMING_ART_UNIT_RECOMMENDED]
-        checkAnswersMatch(self.assertEqual, self.dispatcher, expectedAnswers) 
+        checkAnswersMatch(self, self.dispatcher, expectedAnswers) 
         
     
     
@@ -91,7 +91,7 @@ class test_high_school_units_test(unittest.TestCase):
         actionHighSchool.run(dispatcher=self.dispatcher, tracker=tracker, domain=None )
        
         expectedAnswers = [TOTAL_REQUIRED_UNITS]
-        checkAnswersMatch(self.assertEqual, self.dispatcher, expectedAnswers) 
+        checkAnswersMatch(self, self.dispatcher, expectedAnswers) 
         
     def test_when_ask_total_units_recommended_should_return_correct_value(self):
         entities =  [
@@ -107,7 +107,7 @@ class test_high_school_units_test(unittest.TestCase):
         actionHighSchool.run(dispatcher=self.dispatcher, tracker=tracker, domain=None )
         
         expectedAnswers = [TOTAL_RECOMMENDED_UNITS]
-        checkAnswersMatch(self.assertEqual, self.dispatcher, expectedAnswers) 
+        checkAnswersMatch(self, self.dispatcher, expectedAnswers) 
     
 
 

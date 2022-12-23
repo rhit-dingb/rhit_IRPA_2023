@@ -16,51 +16,51 @@ nlu:
 
     - What is the [exemptions]{"entity":"exemptions", "value":"exemptions"} for 2014 cohort?
 
-    - What is the [five year]{"entity": "years_for_college", "value": "5 year"} [graduation]{"entity":"student_enrollment_result", "value": "graduation"} [rate]{"entity":"aggregation", "value":"percent"} for [2014](year)?
+    - What is the five year graduation [rate]{"entity":"aggregation", "value":"percent"} for [2014](year)?
 
     - What is the [final](cohort_initial_final) 2014 cohort, after adjusting for [allowable exclusions]{"entity": "exemptions", "value":"exemptions"}
     
-    - Of the [initial](cohort_initial_final) 2120 cohort, how many completed the program in [four years]{"entity": "years_for_college", "value": "4 year"} or [less]{"entity": "range", "value": "within"}?
-    - Of the [initial](cohort_initial_final) 9208 cohort, how many completed the program in [more than]{"entity": "range", "value": "more than"} [four years]{"entity": "years_for_college", "value": "4 year"} but in [five years]{"entity": "years_for_college", "value": "5 year"} or [less]{"entity": "range", "value": "within"}? 
-    - Of the [initial](cohort_initial_final) 2013 cohort, how many completed the program in [more than]{"entity": "range", "value": "more than"} [five years]{"entity": "years_for_college", "value": "5 year"} but in [six years]{"entity": "years_for_college", "value": "6 year"} or [less]{"entity": "range", "value": "within"}?
+    - Of the [initial](cohort_initial_final) 2120 cohort, how many completed the program in four years or [less]{"entity": "range", "value": "within"}?
+    - Of the [initial](cohort_initial_final) 9208 cohort, how many completed the program in [more than]{"entity": "range", "value": "more than"} four years but in five years or [less]{"entity": "range", "value": "within"}? 
+    - Of the [initial](cohort_initial_final) 2013 cohort, how many completed the program in [more than]{"entity": "range", "value": "more than"} five years but in six years or [less]{"entity": "range", "value": "within"}?
 
-    - Of the [initial](cohort_initial_final) 4014 cohort, how many completed the program in [more than]{"entity": "range", "value": "more than"} [four years]{"entity": "years_for_college", "value": "4 year"} but in [five years]{"entity": "years_for_college", "value": "5 year"} [or less]{"entity": "range", "value": "within"} and are [recipients of subsidized stafford loan and did not receive a pell grant]{"entity": "aid_status_stafford", "value": "stafford-loan"}
+    - Of the [initial](cohort_initial_final) 4014 cohort, how many completed the program in [more than]{"entity": "range", "value": "more than"} four years but in five years or [less]{"entity": "range", "value": "within"} and are [recipients of subsidized stafford loan and did not receive a pell grant]{"entity": "aid_status_stafford", "value": "stafford-loan"}
 
-    - What is the [six year]{"entity": "years_for_college", "value": "6 year"} [graduation]{"entity":"student_enrollment_result", "value": "graduation"} [rate]{"entity": "aggregation", "value": "percent"} for students who are [recipients of a federal pell grant]{"entity": "aid_status_pell", "value": "pell-grant"} in the 2013 cohort?
-    - what is the total number of students graduating [within]{"entity": "range", "value": "within"} [six years]{"entity": "years_for_college", "value": "6 year"} for 2019 cohort who [did not receive either a pell grant or a subsidized stafford loan]{"entity":"aid_status", "value": "no-aid"}
+    - What is the six year graduation [rate]{"entity": "aggregation", "value": "percent"} for students who are [recipients of a federal pell grant]{"entity": "aid_status_pell", "value": "pell-grant"} in the 2013 cohort?
+    - what is the total number of students graduating [within]{"entity": "range", "value": "within"} six years for 2019 cohort who [did not receive either a pell grant or a subsidized stafford loan]{"entity":"aid_status_none", "value": "no-aid"}
 
-    - What is the [six year]{"entity": "years_for_college", "value": "6 year"} [graduation]{"entity":"student_enrollment_result", "value": "graduation"} [rate]{"entity": "aggregation", "value": "percent"} for the 2013 cohort?
-    - What is the [five year]{"entity": "years_for_college", "value": "5 year"} [graduation]{"entity":"student_enrollment_result", "value": "graduation"} [rate]{"entity": "aggregation", "value": "percent"} for the 2013 cohort?
-    - What is the [four year]{"entity": "years_for_college", "value": "4 year"} [graduation]{"entity":"student_enrollment_result", "value": "graduation"} [rate]{"entity": "aggregation", "value": "percent"} for the 2013 cohort?
+    - What is the six year graduation [rate]{"entity": "aggregation", "value": "percent"} for the 2013 cohort?
+    - What is the five year graduation [rate]{"entity": "aggregation", "value": "percent"} for the 2013 cohort?
+    - What is the four year graduation [rate]{"entity": "aggregation", "value": "percent"} for the 2013 cohort?
     
 
     # graduation time training
-    - How many students [graduated]{"entity":"student_enrollment_result", "value": "graduation"} [within]{"entity": "range", "value": "within"} [six years]{"entity": "years_for_college", "value": "6 year"} for [cohort of 2013](cohort_by_year) ?
-    - How many students [graduated]{"entity":"student_enrollment_result", "value": "graduation"} [within]{"entity": "range", "value": "within"} [five years]{"entity": "years_for_college", "value": "5 year"} for 2055 cohort?
-    - How many students [graduated]{"entity":"student_enrollment_result", "value": "graduation"} [within]{"entity": "range", "value": "within"} [four years]{"entity": "years_for_college", "value": "4 year"} for 2090 cohort?
-    - What is the [graduation]{"entity":"student_enrollment_result", "value": "graduation"} [rate]{"entity": "aggregation", "value": "percent"} for students who [graduated]{"entity":"student_enrollment_result", "value": "graduation"} [within]{"entity": "range", "value": "within"} [five year]{"entity": "years_for_college", "value": "5 year"} in 2014 cohort?
-    - How many students [graduated]{"entity":"student_enrollment_result", "value": "graduation"} [within]{"entity": "range", "value": "within"} [five years]{"entity": "years_for_college", "value": "5 year"} for [2014 cohort](cohort_by_year?
+    - How many students graduated [within]{"entity": "range", "value": "within"} six years  for cohort of 2013 ?
+    - How many students graduated [within]{"entity": "range", "value": "within"} five years  for 2055 cohort?
+    - How many students graduated [within]{"entity": "range", "value": "within"} four years  for 2090 cohort?
+    - What is the graduation [rate]{"entity": "aggregation", "value": "percent"} for students who graduated [within]{"entity": "range", "value": "within"} five year in 2014 cohort?
+    - How many students graduated [within]{"entity": "range", "value": "within"} five years  for 2014 cohort?
 
-    - How many students [graduated]{"entity":"student_enrollment_result", "value": "graduation"} [within]{"entity": "range", "value": "within"} [6 years]{"entity": "years_for_college", "value": "6 year"} for [cohort of 2013](cohort_by_year) ?
-    - How many students [graduated]{"entity":"student_enrollment_result", "value": "graduation"} [within]{"entity": "range", "value": "within"} [5 years]{"entity": "years_for_college", "value": "5 year"} for 2055 cohort?
-    - How many students [graduated]{"entity":"student_enrollment_result", "value": "graduation"} [within]{"entity": "range", "value": "within"} [4 years]{"entity": "years_for_college", "value": "4 year"} for 2090 cohort?
-    - I want to know students who [graduated]{"entity":"student_enrollment_result", "value": "graduation"} [within]{"entity": "range", "value": "within"} [four year]{"entity": "range", "value": "4 year"} of 2014 cohort
+    - How many students graduated [within]{"entity": "range", "value": "within"} 6 years  for cohort of 2013 ?
+    - How many students graduated [within]{"entity": "range", "value": "within"} 5 years  for 2055 cohort?
+    - How many students graduated [within]{"entity": "range", "value": "within"} 4 years  for 2090 cohort?
+    - I want to know students who graduated [within]{"entity": "range", "value": "within"} four year of 2014 cohort
     
-    - [graduation]{"entity":"student_enrollment_result", "value": "graduation"} [rate]{"entity": "aggregation", "value": "percent"} for students who [graduated]{"entity":"student_enrollment_result", "value": "graduation"} in [5 years]{"entity": "years_for_college", "value": "5 year"} of 2052 cohort
+    - graduation [rate]{"entity": "aggregation", "value": "percent"} for students who graduated in 5 years  of 2052 cohort
 
-    - How many students [graduated]{"entity":"student_enrollment_result", "value": "graduation"} [more than]{"entity": "range", "value": "more than"} [5 years]{"entity": "years_for_college", "value": "5 year"} and [6 years]{"entity": "years_for_college", "value": "6 year"} or [less]{"entity":"range", "value":"within"} for the 2014 cohort?
+    - How many students graduated [more than]{"entity": "range", "value": "more than"} 5 years  and 6 years  or [less]{"entity":"range", "value":"within"} for the 2014 cohort?
 
-    - How many students [graduated]{"entity":"student_enrollment_result", "value": "graduation"} in [no more than]{"entity": "range", "value": "within"} [5 years]{"entity": "years_for_college", "value": "5 year"} and [6 years]{"entity": "years_for_college", "value": "6 year"} or [less]{"entity":"range", "value":"within"} for the 2014 cohort?
-    - How many students [graduated]{"entity":"student_enrollment_result", "value": "graduation"} in [no more than]{"entity": "range", "value": "within"} [4 years]{"entity": "years_for_college", "value": "4 year"} 
+    - How many students graduated in [no more than]{"entity": "range", "value": "within"} 5 years  and 6 years  or [less]{"entity":"range", "value":"within"} for the 2014 cohort?
+    - How many students graduated in [no more than]{"entity": "range", "value": "within"} 4 years  
 
-    - How many students [graduated]{"entity":"student_enrollment_result", "value": "graduation"} [more than]{"entity": "range", "value": "more than"} [five years]{"entity": "years_for_college", "value": "5 year"}?
-    - How many students [graduated]{"entity":"student_enrollment_result", "value": "graduation"} [within]{"entity": "range", "value": "within"} [five years]{"entity": "years_for_college", "value": "5 year"} but in [more than]{"entity": "range", "value": "more than"} [four years]{"entity": "years_for_college", "value": "4 year"} for 2046 cohort?
-    - How many students [graduated]{"entity":"student_enrollment_result", "value": "graduation"} in [five year]{"entity": "years_for_college", "value": "5 year"} or [less]{"entity": "range", "value": "within"} for 2055 cohort who received [no aid]{"entity":"aid_status", "value": "no-aid"}
+    - How many students graduated [more than]{"entity": "range", "value": "more than"} five years ?
+    - How many students graduated [within]{"entity": "range", "value": "within"} five years  but in [more than]{"entity": "range", "value": "more than"} four years  for 2046 cohort?
+    - How many students graduated in five year or [less]{"entity": "range", "value": "within"} for 2055 cohort who received [no aid]{"entity":"aid_status_none", "value": "no-aid"}
 
-    - How many students [graduated]{"entity":"student_enrollment_result", "value": "graduation"} [between]{"entity": "range", "value": "between"} [5 years]{"entity": "years_for_college", "value": "5 year"} and [6 years]{"entity": "years_for_college", "value": "6 year"} for the 2014 cohort?
+    - How many students graduated [between]{"entity": "range", "value": "between"} 5 years  and 6 years  for the 2014 cohort?
 
 
-    - What is the [graduation]{"entity":"student_enrollment_result", "value": "graduation"} [rate]{"entity": "aggregation", "value": "percent"} for students who [graduated]{"entity":"student_enrollment_result", "value": "graduation"} in [5 years]{"entity": "years_for_college", "value": "5 year"} and [more than]{"entity": "range", "value": "more than"} [four year]{"entity": "years_for_college", "value": "4 year"} for the [cohort of 2014](cohort_by_year)?
+    - What is the graduation [rate]{"entity": "aggregation", "value": "percent"} for students who graduated in 5 years  and [more than]{"entity": "range", "value": "more than"} four year for the cohort of 2014?
 
     #Financial aid training data for cohorts.
     - How many students in the 6590 cohort are [recipients of subsidized loan and did not receive federal pell grant]{"entity": "aid_status_stafford", "value": "stafford-loan"}?
@@ -71,12 +71,12 @@ nlu:
     - How many students in the 2019 cohort are [did not receive subsidized loan and did not receive federal pell grant]{"entity": "aid_status_none", "value": "no-aid"}?
     - How many students in the 2019 cohort [did not receive federal pell grant and did not receive subsidized stafford loan]{"entity": "aid_status_none", "value": "no-aid"}?
     - How many students in 3532 cohort year [did not receive any aid]{"entity": "aid_status_none", "value": "no-aid"} at all?
-    - How many students [received pell grant]{"entity": "aid_status", "role": "pell", "value":"pell-grant"}?
+    - How many students [received pell grant]{"entity": "aid_status_pell", "role": "pell", "value":"pell-grant"}?
     - How many students [received subsidized stafford loan]{"entity": "aid_status_stafford", "value": "stafford-loan"} for 2014 cohort?
-    - How many students are [recipients of pell grant]{"entity": "aid_status", "role": "pell", "value":"pell-grant"}? for [2135 cohort]?
+    - How many students are [recipients of pell grant]{"entity": "aid_status_pell", "role": "pell", "value":"pell-grant"}? for [2135 cohort]?
     - Number of student who [didn't receive aid]{"entity": "aid_status_none", "value": "no-aid"}
 
-    - How many students in the [inital](cohort_initial_final) 2019 cohort recipient of federal pell grant
+    - How many students in the [inital](cohort_initial_final) 2019 cohort [recipient of federal pell grant]{"entity": "aid_status_pell", "role": "pell", "value":"pell-grant"}
 
     - How many students in the 2019 cohort are [did not receive subsidized loan and did not receive federal pell grant]{"entity": "aid_status_none", "value": "no-aid"}?
     - How many students in the 6590 cohort are [recipients of subsidized loan and did not receive federal pell grant]{"entity": "aid_status_stafford", "value": "stafford-loan"}?
@@ -84,9 +84,9 @@ nlu:
     - How many students in the 2019 cohort are [did not receive subsidized loan and did not receive federal pell grant]{"entity": "aid_status_none", "value": "no-aid"}?
     - How many students in the 2019 cohort [did not receive federal pell grant and did not receive subsidized stafford loan]{"entity": "aid_status_none", "value": "no-aid"}?
     - How many students in 3532 cohort year [did not receive any aid]{"entity": "aid_status_none", "value": "no-aid"} at all?
-    - How many students [received pell grant]{"entity": "aid_status", "role": "pell", "value":"pell-grant"}?
+    - How many students [received pell grant]{"entity": "aid_status_pell", "role": "pell", "value":"pell-grant"}?
     - How many students [received subsidized stafford loan]{"entity": "aid_status_stafford", "value": "stafford-loan"} for 2014 cohort?
-    - How many students are [recipients of pell grant]{"entity": "aid_status", "role": "pell", "value":"pell-grant"}? for [2135 cohort]?
+    - How many students are [recipients of pell grant]{"entity": "aid_status_pell", "role": "pell", "value":"pell-grant"}? for [2135 cohort]?
     - Number of student who [didn't receive aid]{"entity": "aid_status_none", "value": "no-aid"}
 
     # - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort did not receive a 
@@ -253,7 +253,6 @@ nlu:
 
 - synonym: graduation
   examples: |
-    - graduate
     - graduated
     - graduating
 
@@ -263,11 +262,6 @@ nlu:
     - retain
     - retaining
     - retention
-
-    - graduated
-    - graduate
-    - graduating
-    - graduation
 
 
 - lookup: range
@@ -286,23 +280,6 @@ nlu:
   examples: |
     - to
 
-    
-- lookup: years_for_college
-  examples: |
-    - six year 
-    - six years
-    - 6-year
-    - 6 years
-
-    - 5 year 
-    - five years
-    - 5-year
-    - 5 years
-
-    - 4 year 
-    - four years
-    - 4-year
-    - 4 years
 
 - synonym: within
   examples: |
@@ -318,34 +295,32 @@ nlu:
     - greater than 
     - higher than 
 
-- synonym: 6 year
-  examples: |
-    - six year 
-    - six years
-    - 6-year
-    - 6 years
-
-
-- synonym: 2 year
-  examples: |
-    - 2 year 
-    - two years
-    - 2-year
-    - 2 years
-
-- synonym: 4 year
-  examples: |
-    - 4 year 
-    - four years
-    - 4-year
-    - 4 years
     
-- synonym: 5 year
-  examples: |
-    - 5 year 
-    - five years
-    - 5-year
-    - 5 years
+
+
+
+# - lookup: aid_status_pell
+#   examples : |
+#     - got a federal pell grant
+#     - got federal pell grant
+#     - received federal pell grant
+#     - recipients of a federal pell grant
+
+# - lookup: not_modifier_pell
+#   examples: |
+#     - did receive a federal pell grant
+
+# - lookup: not_modifier_stafford
+#   examples: |
+#     - did not receive subsidized stafford loan
+
+# - lookup: aid_status_none
+#   examples: |
+#     - did not receive federal pell grant and did not receive subsidized stafford loan   
+#     - did not receive either a Pell Grant or a subsidized Stafford Loan
+
+
+  
 
 # - lookup: aid_status
 #   examples: |

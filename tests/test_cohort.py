@@ -53,151 +53,151 @@ class Cohort_Test(unittest.TestCase):
         
 
     #Cohorts actually uses the label of the entities, so we have to write test cases in terms of actions.
-    def test_knowledgebase_when_ask_for_initial_cohort_should_return_correct_value(self):
-            answers = self.knowledgeBase.searchForAnswer(
-                "cohort",
-                [
-                createEntityObjHelper("initial"),
-                createEntityObjHelper("2014 cohort", entityLabel=COHORT_BY_YEAR_ENTITY_LABEL)
-                ], self.defaultShouldAddRowStrategy, output.constructSentence
-            )
-            expectedAnswers = [str(INITIAL_2014_COHORT_TOTAL)]
-            self.assertEqual(answers, expectedAnswers)
+    # def test_knowledgebase_when_ask_for_initial_cohort_should_return_correct_value(self):
+    #         answers = self.knowledgeBase.searchForAnswer(
+    #             "cohort",
+    #             [
+    #             createEntityObjHelper("initial"),
+    #             createEntityObjHelper("2014 cohort", entityLabel=COHORT_BY_YEAR_ENTITY_LABEL)
+    #             ], self.defaultShouldAddRowStrategy, output.constructSentence
+    #         )
+    #         expectedAnswers = [str(INITIAL_2014_COHORT_TOTAL)]
+    #         self.assertEqual(answers, expectedAnswers)
 
-    def test_when_ask_only_for_graduation_rate_should_return_six_year_graduation_rate(self):
-        entities = [
-            createEntityObjHelper("initial"),
-            createEntityObjHelper("2014 cohort", entityLabel=COHORT_BY_YEAR_ENTITY_LABEL),
+    # def test_when_ask_only_for_graduation_rate_should_return_six_year_graduation_rate(self):
+    #     entities = [
+    #         createEntityObjHelper("initial"),
+    #         createEntityObjHelper("2014 cohort", entityLabel=COHORT_BY_YEAR_ENTITY_LABEL),
              
-        ]
+    #     ]
 
-    def test_when_ask_for_graduation_time_five_to_six_year_should_give_correct_value_for_action(self):
+    # def test_when_ask_for_graduation_time_five_to_six_year_should_give_correct_value_for_action(self):
         
-        entities =  [
-            createEntityObjHelper("initial", entityLabel=INITIAL_COHORT_ENTITY_LABEL),
-            createEntityObjHelper(RANGE_LOWER_BOUND_VALUE, entityLabel= RANGE_ENTITY_LABEL),
-            createEntityObjHelper(RANGE_UPPER_BOUND_VALUE, entityLabel= RANGE_ENTITY_LABEL),
-            createEntityObjHelper("5", entityLabel= NUMBER_ENTITY_LABEL ),
-            createEntityObjHelper("6",entityLabel=NUMBER_ENTITY_LABEL)
-            ]
+    #     entities =  [
+    #         createEntityObjHelper("initial", entityLabel=INITIAL_COHORT_ENTITY_LABEL),
+    #         createEntityObjHelper(RANGE_LOWER_BOUND_VALUE, entityLabel= RANGE_ENTITY_LABEL),
+    #         createEntityObjHelper(RANGE_UPPER_BOUND_VALUE, entityLabel= RANGE_ENTITY_LABEL),
+    #         createEntityObjHelper("5", entityLabel= NUMBER_ENTITY_LABEL ),
+    #         createEntityObjHelper("6",entityLabel=NUMBER_ENTITY_LABEL)
+    #         ]
 
-        knowledgeBaseInAction.setYear(2014)
+    #     knowledgeBaseInAction.setYear(2014)
 
-        print(entities)
-        knowledgeBaseInAction.dataManager = self.knowledgeBase.dataManager
-        queryCohort = ActionQueryCohort()
+    #     print(entities)
+    #     knowledgeBaseInAction.dataManager = self.knowledgeBase.dataManager
+    #     queryCohort = ActionQueryCohort()
      
-        tracker = Tracker.from_dict(createFakeTracker(COHORT_INTENT, entities))
-        queryCohort.run(dispatcher=self.dispatcher, tracker=tracker, domain=None )
-        expectedAnswers = [str(COHORT_2014_STUDENT_GRADUATING_IN_MORE_THAN_5_YEARS_AND_IN_6_OR_LESS)]
-        checkAnswersMatch(self.assertEqual, self.dispatcher, expectedAnswers)
+    #     tracker = Tracker.from_dict(createFakeTracker(COHORT_INTENT, entities))
+    #     queryCohort.run(dispatcher=self.dispatcher, tracker=tracker, domain=None )
+    #     expectedAnswers = [str(COHORT_2014_STUDENT_GRADUATING_IN_MORE_THAN_5_YEARS_AND_IN_6_OR_LESS)]
+    #     checkAnswersMatch(self.assertEqual, self.dispatcher, expectedAnswers)
 
    
    
-    def test_when_ask_for_final_cohort_should_give_correct_value_for_action(self):
-        entities =  [
-            createEntityObjHelper(FINAL_COHORT_ENTITY_LABEL, entityLabel=FINAL_COHORT_ENTITY_LABEL),
-            createEntityObjHelper("2014 cohort", entityLabel=COHORT_BY_YEAR_ENTITY_LABEL),
-        ]
+    # def test_when_ask_for_final_cohort_should_give_correct_value_for_action(self):
+    #     entities =  [
+    #         createEntityObjHelper(FINAL_COHORT_ENTITY_LABEL, entityLabel=FINAL_COHORT_ENTITY_LABEL),
+    #         createEntityObjHelper("2014 cohort", entityLabel=COHORT_BY_YEAR_ENTITY_LABEL),
+    #     ]
             
-        knowledgeBaseInAction.dataManager = self.knowledgeBase.dataManager
-        queryCohort = ActionQueryCohort()
-        tracker = Tracker.from_dict(createFakeTracker(COHORT_INTENT, entities))
-        queryCohort.run(dispatcher=self.dispatcher, tracker=tracker, domain=None )
-        expectedAnswers = [str(FINAL_2014_COHORT)]
-        checkAnswersMatch(self.assertEqual, self.dispatcher, expectedAnswers)
+    #     knowledgeBaseInAction.dataManager = self.knowledgeBase.dataManager
+    #     queryCohort = ActionQueryCohort()
+    #     tracker = Tracker.from_dict(createFakeTracker(COHORT_INTENT, entities))
+    #     queryCohort.run(dispatcher=self.dispatcher, tracker=tracker, domain=None )
+    #     expectedAnswers = [str(FINAL_2014_COHORT)]
+    #     checkAnswersMatch(self.assertEqual, self.dispatcher, expectedAnswers)
 
-    def test_when_ask_for_six_year_graduation_rate_should_give_correct_value_for_action(self):
-        entities =  [
-            createEntityObjHelper(RANGE_UPPER_BOUND_VALUE, entityLabel= RANGE_ENTITY_LABEL),
-            createEntityObjHelper(STUDENT_ENROLLMENT_RESULT_ENTITY_GRADUATION_VALUE, entityLabel=STUDENT_ENROLLMENT_RESULT_ENTITY_LABEL),
-            createEntityObjHelper(AGGREGATION_ENTITY_PERCENTAGE_VALUE, entityLabel=AGGREGATION_ENTTIY_LABEL ),
-            createEntityObjHelper("6",entityLabel=NUMBER_ENTITY_LABEL)
-        ]
+    # def test_when_ask_for_six_year_graduation_rate_should_give_correct_value_for_action(self):
+    #     entities =  [
+    #         createEntityObjHelper(RANGE_UPPER_BOUND_VALUE, entityLabel= RANGE_ENTITY_LABEL),
+    #         createEntityObjHelper(STUDENT_ENROLLMENT_RESULT_ENTITY_GRADUATION_VALUE, entityLabel=STUDENT_ENROLLMENT_RESULT_ENTITY_LABEL),
+    #         createEntityObjHelper(AGGREGATION_ENTITY_PERCENTAGE_VALUE, entityLabel=AGGREGATION_ENTTIY_LABEL ),
+    #         createEntityObjHelper("6",entityLabel=NUMBER_ENTITY_LABEL)
+    #     ]
 
-        knowledgeBaseInAction.setYear(2014)
+    #     knowledgeBaseInAction.setYear(2014)
             
 
-        queryCohort = ActionQueryCohort()
-        tracker = Tracker.from_dict(createFakeTracker(COHORT_INTENT, entities))
-        queryCohort.run(dispatcher=self.dispatcher, tracker=tracker, domain=None )
-        # print(dispatcher.messages[0]["text"])
-        expectedAnswers = [COHORT_2014_SIX_YEAR_STUDENT_GRADUATION_RATE]
-        checkAnswersMatch(self.assertEqual, self.dispatcher, expectedAnswers) 
+    #     queryCohort = ActionQueryCohort()
+    #     tracker = Tracker.from_dict(createFakeTracker(COHORT_INTENT, entities))
+    #     queryCohort.run(dispatcher=self.dispatcher, tracker=tracker, domain=None )
+    #     # print(dispatcher.messages[0]["text"])
+    #     expectedAnswers = [COHORT_2014_SIX_YEAR_STUDENT_GRADUATION_RATE]
+    #     checkAnswersMatch(self.assertEqual, self.dispatcher, expectedAnswers) 
 
-    def test_when_ask_for_five_year_graduation_rate_should_give_correct_value_for_action(self):
-        entities =  [
-            createEntityObjHelper("5",entityLabel=NUMBER_ENTITY_LABEL),
-            createEntityObjHelper(RANGE_UPPER_BOUND_VALUE, entityLabel= RANGE_ENTITY_LABEL),
-            createEntityObjHelper(STUDENT_ENROLLMENT_RESULT_ENTITY_GRADUATION_VALUE, entityLabel=STUDENT_ENROLLMENT_RESULT_ENTITY_LABEL),
-            createEntityObjHelper(AGGREGATION_ENTITY_PERCENTAGE_VALUE, entityLabel=AGGREGATION_ENTTIY_LABEL )
-            ]
+    # def test_when_ask_for_five_year_graduation_rate_should_give_correct_value_for_action(self):
+    #     entities =  [
+    #         createEntityObjHelper("5",entityLabel=NUMBER_ENTITY_LABEL),
+    #         createEntityObjHelper(RANGE_UPPER_BOUND_VALUE, entityLabel= RANGE_ENTITY_LABEL),
+    #         createEntityObjHelper(STUDENT_ENROLLMENT_RESULT_ENTITY_GRADUATION_VALUE, entityLabel=STUDENT_ENROLLMENT_RESULT_ENTITY_LABEL),
+    #         createEntityObjHelper(AGGREGATION_ENTITY_PERCENTAGE_VALUE, entityLabel=AGGREGATION_ENTTIY_LABEL )
+    #         ]
         
-        knowledgeBaseInAction.setYear(2014)
+    #     knowledgeBaseInAction.setYear(2014)
 
-        queryCohort = ActionQueryCohort()
-        tracker = Tracker.from_dict(createFakeTracker(COHORT_INTENT, entities))
-        queryCohort.run(dispatcher=self.dispatcher, tracker=tracker, domain=None )
-        expectedAnswers = [COHORT_2014_FIVE_YEAR_STUDENT_GRADUATION_RATE]
-        checkAnswersMatch(self.assertEqual, self.dispatcher, expectedAnswers) 
+    #     queryCohort = ActionQueryCohort()
+    #     tracker = Tracker.from_dict(createFakeTracker(COHORT_INTENT, entities))
+    #     queryCohort.run(dispatcher=self.dispatcher, tracker=tracker, domain=None )
+    #     expectedAnswers = [COHORT_2014_FIVE_YEAR_STUDENT_GRADUATION_RATE]
+    #     checkAnswersMatch(self.assertEqual, self.dispatcher, expectedAnswers) 
 
-    def test_when_ask_for_four_year_graduation_rate_should_give_correct_value_for_action(self):
-        entities =  [
-            createEntityObjHelper("4",entityLabel=NUMBER_ENTITY_LABEL),
-            createEntityObjHelper(RANGE_UPPER_BOUND_VALUE, entityLabel= RANGE_ENTITY_LABEL),
-            createEntityObjHelper(STUDENT_ENROLLMENT_RESULT_ENTITY_GRADUATION_VALUE, entityLabel=STUDENT_ENROLLMENT_RESULT_ENTITY_LABEL),
-            createEntityObjHelper(AGGREGATION_ENTITY_PERCENTAGE_VALUE, entityLabel=AGGREGATION_ENTTIY_LABEL )
-            ]
+    # def test_when_ask_for_four_year_graduation_rate_should_give_correct_value_for_action(self):
+    #     entities =  [
+    #         createEntityObjHelper("4",entityLabel=NUMBER_ENTITY_LABEL),
+    #         createEntityObjHelper(RANGE_UPPER_BOUND_VALUE, entityLabel= RANGE_ENTITY_LABEL),
+    #         createEntityObjHelper(STUDENT_ENROLLMENT_RESULT_ENTITY_GRADUATION_VALUE, entityLabel=STUDENT_ENROLLMENT_RESULT_ENTITY_LABEL),
+    #         createEntityObjHelper(AGGREGATION_ENTITY_PERCENTAGE_VALUE, entityLabel=AGGREGATION_ENTTIY_LABEL )
+    #         ]
 
-        knowledgeBaseInAction.setYear(2014)    
-        queryCohort = ActionQueryCohort()
-        tracker = Tracker.from_dict(createFakeTracker(COHORT_INTENT, entities))
-        queryCohort.run(dispatcher=self.dispatcher, tracker=tracker, domain=None )
-        expectedAnswers = [COHORT_2014_FOUR_YEAR_STUDENT_GRADUATION_RATE]
-        checkAnswersMatch(self.assertEqual, self.dispatcher, expectedAnswers) 
+    #     knowledgeBaseInAction.setYear(2014)    
+    #     queryCohort = ActionQueryCohort()
+    #     tracker = Tracker.from_dict(createFakeTracker(COHORT_INTENT, entities))
+    #     queryCohort.run(dispatcher=self.dispatcher, tracker=tracker, domain=None )
+    #     expectedAnswers = [COHORT_2014_FOUR_YEAR_STUDENT_GRADUATION_RATE]
+    #     checkAnswersMatch(self.assertEqual, self.dispatcher, expectedAnswers) 
 
 
-    def test_when_ask_for_invalid_cohort_year_should_return_exception_message(self):
-        entities =  [
-            createEntityObjHelper("exemptions", entityLabel=EXEMPTION_ENTITY_LABEL),
-        ]
+    # def test_when_ask_for_invalid_cohort_year_should_return_exception_message(self):
+    #     entities =  [
+    #         createEntityObjHelper("exemptions", entityLabel=EXEMPTION_ENTITY_LABEL),
+    #     ]
 
-        knowledgeBaseInAction.setYear(3952)
+    #     knowledgeBaseInAction.setYear(3952)
         
-        knowledgeBaseInAction.dataManager = self.knowledgeBase.dataManager
-        queryCohort = ActionQueryCohort()
-        tracker = Tracker.from_dict(createFakeTracker(COHORT_INTENT, entities))
-        queryCohort.run(dispatcher=self.dispatcher, tracker=tracker, domain=None )
-        expectedAnswers = [NO_DATA_FOUND_FOR_ACADEMIC_YEAR_ERROR_MESSAGE_FORMAT.format(year = 3952)]
-        checkAnswersMatch(self.assertEqual, self.dispatcher, expectedAnswers) 
+    #     knowledgeBaseInAction.dataManager = self.knowledgeBase.dataManager
+    #     queryCohort = ActionQueryCohort()
+    #     tracker = Tracker.from_dict(createFakeTracker(COHORT_INTENT, entities))
+    #     queryCohort.run(dispatcher=self.dispatcher, tracker=tracker, domain=None )
+    #     expectedAnswers = [NO_DATA_FOUND_FOR_ACADEMIC_YEAR_ERROR_MESSAGE_FORMAT.format(year = 3952)]
+    #     checkAnswersMatch(self.assertEqual, self.dispatcher, expectedAnswers) 
 
-    def test_when_ask_for_cohort_given_invalid_year_and_upper_bound(self):
-        entities =  [
-            createEntityObjHelper("3952 cohort", entityLabel=COHORT_BY_YEAR_ENTITY_LABEL),
-            createEntityObjHelper("7",entityLabel=NUMBER_ENTITY_LABEL),
-            createEntityObjHelper(RANGE_UPPER_BOUND_VALUE, entityLabel= RANGE_ENTITY_LABEL)
-        ]
+    # def test_when_ask_for_cohort_given_invalid_year_and_upper_bound(self):
+    #     entities =  [
+    #         createEntityObjHelper("3952 cohort", entityLabel=COHORT_BY_YEAR_ENTITY_LABEL),
+    #         createEntityObjHelper("7",entityLabel=NUMBER_ENTITY_LABEL),
+    #         createEntityObjHelper(RANGE_UPPER_BOUND_VALUE, entityLabel= RANGE_ENTITY_LABEL)
+    #     ]
         
-        knowledgeBaseInAction.setYear(3952)
+    #     knowledgeBaseInAction.setYear(3952)
 
-        queryCohort = ActionQueryCohort()
-        tracker = Tracker.from_dict(createFakeTracker(COHORT_INTENT, entities))
-        queryCohort.run(dispatcher=self.dispatcher, tracker=tracker, domain=None )
-        expectedAnswers = [NO_DATA_FOUND_FOR_ACADEMIC_YEAR_ERROR_MESSAGE_FORMAT.format(year = 3952)]
-        checkAnswersMatch(self.assertEqual, self.dispatcher, expectedAnswers) 
+    #     queryCohort = ActionQueryCohort()
+    #     tracker = Tracker.from_dict(createFakeTracker(COHORT_INTENT, entities))
+    #     queryCohort.run(dispatcher=self.dispatcher, tracker=tracker, domain=None )
+    #     expectedAnswers = [NO_DATA_FOUND_FOR_ACADEMIC_YEAR_ERROR_MESSAGE_FORMAT.format(year = 3952)]
+    #     checkAnswersMatch(self.assertEqual, self.dispatcher, expectedAnswers) 
 
-    def test_when_ask_for_cohort_given_invalid_lower_bound__for_graduation_time_should_return_six_year_graduation_number(self):
-        entities =  [
-            createEntityObjHelper("2014 cohort", entityLabel=COHORT_BY_YEAR_ENTITY_LABEL),
-             createEntityObjHelper("89999",entityLabel=NUMBER_ENTITY_LABEL),
-            createEntityObjHelper(RANGE_LOWER_BOUND_VALUE, entityLabel= RANGE_ENTITY_LABEL),
-        ]
+    # def test_when_ask_for_cohort_given_invalid_lower_bound__for_graduation_time_should_return_six_year_graduation_number(self):
+    #     entities =  [
+    #         createEntityObjHelper("2014 cohort", entityLabel=COHORT_BY_YEAR_ENTITY_LABEL),
+    #          createEntityObjHelper("89999",entityLabel=NUMBER_ENTITY_LABEL),
+    #         createEntityObjHelper(RANGE_LOWER_BOUND_VALUE, entityLabel= RANGE_ENTITY_LABEL),
+    #     ]
             
-        queryCohort = ActionQueryCohort()
-        tracker = Tracker.from_dict(createFakeTracker(COHORT_INTENT, entities))
-        queryCohort.run(dispatcher=self.dispatcher, tracker=tracker, domain=None )
-        expectedAnswers = [str(COHORT_2014_SIX_YEAR_GRADUATED_STUDENTS)]
-        checkAnswersMatch(self.assertEqual, self.dispatcher, expectedAnswers) 
+    #     queryCohort = ActionQueryCohort()
+    #     tracker = Tracker.from_dict(createFakeTracker(COHORT_INTENT, entities))
+    #     queryCohort.run(dispatcher=self.dispatcher, tracker=tracker, domain=None )
+    #     expectedAnswers = [str(COHORT_2014_SIX_YEAR_GRADUATED_STUDENTS)]
+    #     checkAnswersMatch(self.assertEqual, self.dispatcher, expectedAnswers) 
 
     # def test_when_ask_for_students_graduating_within_4_years_who_received_pell_grant_should_return_correct_value(self):
     #     entities =  [

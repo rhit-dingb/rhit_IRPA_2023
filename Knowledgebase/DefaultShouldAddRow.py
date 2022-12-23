@@ -1,4 +1,6 @@
+from typing import List
 from Knowledgebase.ShouldAddRowInterface import ShouldAddRowInterface
+from Data_Ingestion.constants import OPERATION_ALLOWED_COLUMN_VALUE
 """
 Default strategy to determine whether a row of a sparse matrix should be used in the total value while searching. More detail below
 """
@@ -16,27 +18,29 @@ class DefaultShouldAddRowStrategy(ShouldAddRowInterface):
     entities: list of entity 
     """
 
-    def determineShouldAddRow(self, row, entities, sparseMatrix):
+    def determineShouldAddRow(self, row, entities : List[str], sparseMatrix):
         temp_count = 0
 
         # Note: we only want to consider entities that are supported by this sparse matrix, so we can answer the user's question as best as possible
         filteredEntities = []
-        processedColumn =  [str(c).lower() for c in row.index]
+        columns = row.index
+        processedColumn =  [str(c).lower() for c in columns]
 
         for entity in entities:
             if entity.lower() in processedColumn:
                 filteredEntities.append(entity)
 
-     
+      
         filteredEntities = set(filteredEntities)
         
-        for column in processedColumn:
-            if column in filteredEntities:
-               
+        for column in columns:
+            
+            if str(column).lower() in filteredEntities:
                 if row[column] == 1:
                     temp_count = temp_count + 1
 
         if temp_count == len(filteredEntities):
-            return filteredEntities
+            print(filteredEntities)
+            return list(filteredEntities)
         else:
             return []

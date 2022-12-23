@@ -88,36 +88,31 @@ class DataManager():
 
     """
     def determineBestMatchingMatrix(self, topicData : TopicData, entities : Dict, errorMessage : str) ->  SparseMatrix:
-        doesEntityMapToAnySubsections, sparseMatrixFound = topicData.doesEntityIncludeAnySubsections(entities)
-
+        doesEntityMapToAnySubsections, sparseMatricesFound = topicData.doesEntityIncludeAnySubsections(entities)
+        candidates = topicData.getSparseMatrices().values()
         if doesEntityMapToAnySubsections:
-            return sparseMatrixFound
+            candidates = sparseMatricesFound
 
-        else:
-            maxMatch = []
-            currMax = 0
-            sparseMatricesDictionary : Dict[SparseMatrix] = topicData.getSparseMatrices()
-            for key in sparseMatricesDictionary.keys():
-
-                sparseMatrix : SparseMatrix = sparseMatricesDictionary[key]
-                
-                entityValues = []
-                for entity in entities:
-                    entityValues.append(entity["value"])
-                
-                entitiesMatchCount : int  = sparseMatrix.determineEntityMatchToColumnCount(entityValues)
-                if entitiesMatchCount>currMax:
-                    maxMatch = []
-                    maxMatch.append(sparseMatrix)
-                    currMax = entitiesMatchCount
-                elif entitiesMatchCount == currMax:
-                    maxMatch.append(sparseMatrix)
-
-            #raise an error if no best matching matrix is found
-            if len(maxMatch) == 0:
-                raise NoDataFoundException(errorMessage, ExceptionTypes.NoSparseMatrixDataAvailableForGivenIntent)
+        maxMatch = []
+        currMax = 0
+        for sparseMatrix in candidates:                
+            entityValues = []
+            for entity in entities:
+                entityValues.append(entity["value"])
             
-            return maxMatch[0]
+            entitiesMatchCount : int  = sparseMatrix.determineEntityMatchToColumnCount(entityValues)
+            if entitiesMatchCount>currMax:
+                maxMatch = []
+                maxMatch.append(sparseMatrix)
+                currMax = entitiesMatchCount
+            elif entitiesMatchCount == currMax:
+                maxMatch.append(sparseMatrix)
+
+        #raise an error if no best matching matrix is found
+        if len(maxMatch) == 0:
+            raise NoDataFoundException(errorMessage, ExceptionTypes.NoSparseMatrixDataAvailableForGivenIntent)
+        
+        return maxMatch[0]
 
 
 

@@ -67,23 +67,7 @@ entities:
 # and also something like: Final 2015 cohort, after adjusting for allowable exclusions
   - cohort_initial_final
 
-
-#DEPRECATED ENTITIES
- # This is entity is used for these rows:
- #Example: 5 year or less, 4 year or less
-#   - upper_bound_graduation_time
-
-#  #Example: more than 4 years.
-#   - lower_bound_graduation_time
-
-# DEPRECATED ENTITIES
-# for six-year graduation rate for 2015 cohort row 
-  # - graduation_rate
-
-  #retention rate
-  # - retention-rate
-
-  # Student enrollment result, captures retention and graduation. 
+  # Student enrollment result, captures retention. 
   - student_enrollment_result
 
   # exemptions - students for did not persist or graduate due to other circumstances.
@@ -259,16 +243,6 @@ entities:
   # Captures numerical value include decimals. For number that are formatted as words like "four", I wrote code for a custom extractor.
   #NOTE: currently, this is not labelled in training data, I use a custom entity extractor.
   - number
-
-#DEPRECATED ENTITITES:
-# two year, four year
-#   - years_for_college
-
-# #The range of sat and test scores on cds
-#   - test_score_range
-
-#  #Ranges of gpa, 4.0 gpa, 3.75-3.99 gpa, etc
-#   - gpa_range
 
 
 

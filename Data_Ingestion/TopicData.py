@@ -22,9 +22,18 @@ class TopicData():
 
 
     def doesEntityIncludeAnySubsections(self, entities) ->  Tuple[bool, SparseMatrix]:
+        subSectionSparseMatrices = []
         for entity in entities:
+
             label : str = entity["entity"]
-            if label in self.sparseMatrices:
-                return (True, self.sparseMatrices[label])
+            for key in self.sparseMatrices.keys():
+                keywords = key.split(" ")
+                if label in keywords:
+                    subSectionSparseMatrices.append(self.sparseMatrices[key])
+
+        if len(subSectionSparseMatrices) == 0:
+            return (False, None)
+        else:
+            return (True, subSectionSparseMatrices )
                 
-        return (False, None)
+        

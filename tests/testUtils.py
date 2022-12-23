@@ -3,19 +3,24 @@ from typing import List
 
 def checkAnswersMatch(assertion, dispatcher, expectedAnswer):
     answers = getAllAnswersFromDispatcher(dispatcher)
-    assertion(answers, expectedAnswer)
+    assertion.assertEqual(answers, expectedAnswer)
 
 
-def checkIfWordsPresentInSentence(words, sentence):
-    for word in words:
-        if not word in sentence:
-            return False
+def checkIfWordsPresentInSentence(keywords, sentences):
+   pass
 
-def checkAnswerForFullSentenceResponse(assertion, dispatcher, keyWords : List[List[str]]):
+def checkForKeywordInAnswer(assertion, dispatcher, keyWords : List[str]):
     answers = getAllAnswersFromDispatcher(dispatcher)
+    found = None
     for words in keyWords:
-        isPresent = checkIfWordsPresentInSentence(words, answers)
-        assertion(True, isPresent)
+        for answer in answers:
+            if words in answer or found is None:
+                found = answer
+        assertion.assertIn(words, found)
+    
+        # isPresent = checkIfWordsPresentInSentence(words, answers)
+        # assertion(True, isPresent)
+        
 
 
 def createEntityObjHelper(entityValue, entityLabel="none",  entityRole=None):

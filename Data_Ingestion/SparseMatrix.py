@@ -28,11 +28,6 @@ class SparseMatrix():
 
     def determineEntityMatchToColumnCount(self, entities) -> int:
         return self.determineMatchCountHelper(entities, self.sparseMatrixDf.columns)
-        # for entity in entities:
-        #     if entity in self.sparseMatrixDf.columns:
-        #         entitiesMatchCount = entitiesMatchCount+1
-
-        # return entitiesMatchCount
 
     
     # #This function determines how many elements in the first array is in the second array.
@@ -66,7 +61,8 @@ class SparseMatrix():
         for i in range(self.sparseMatrixDf.shape[0]):
             row = self.sparseMatrixDf.loc[i]
             rangeFound = self.findRangeForRow(row)
-            discreteRanges.append(rangeFound)
+            if len(rangeFound) == 2:
+                discreteRanges.append(rangeFound)
 
         return discreteRanges
 
@@ -87,18 +83,20 @@ class SparseMatrix():
         return self.isThisOperationAllowed(constants.OPERATION_ALLOWED_COLUMN_VALUE)
 
     def isSumOperationAllowed(self):
+      
         isOperationAllowed = self.isAnyOperationAllowed()
         if not isOperationAllowed:
             return False
-        self.isThisOperationAllowed(constants.SUM_ALLOWED_COLUMN_VALUE)
+        return self.isThisOperationAllowed(constants.SUM_ALLOWED_COLUMN_VALUE)
 
     def isRangeOperationAllowed(self):
         isOperationAllowed = self.isAnyOperationAllowed()
         if not isOperationAllowed:
             return False
-        self.isThisOperationAllowed(constants.RANGE_ALLOWED_COLUMN_VALUE)
+        return self.isThisOperationAllowed(constants.RANGE_ALLOWED_COLUMN_VALUE)
 
     def isPercentageOperationAllowed(self):
+        
         isOperationAllowed = self.isAnyOperationAllowed()
         if not isOperationAllowed:
             return False
@@ -108,7 +106,7 @@ class SparseMatrix():
     def checkResultHelper(self, searchResults):
         if len(searchResults) == 0:
             return False
-        elif searchResults[0] == constants.VALUE_FOR_ALLOW:
+        elif str(searchResults[0]).lower() == constants.VALUE_FOR_ALLOW:
             return True
 
         return False
@@ -121,7 +119,7 @@ class SparseMatrix():
 
     def searchOnSparseMatrix(self, entities, shouldAddRowStrategy, isSumAllowed):
         searchResults = []
-        searchResult = None
+        currentResultPointer = None
         entitiesUsed= []
         # get the underlying pandas dataframe from the internal data model
         sparseMatrixToSearchDf = self.getSparseMatrixDf()
@@ -131,7 +129,6 @@ class SparseMatrix():
             if "total" in row.index and sparseMatrixToSearchDf.loc[i,"total"] == 1:
                 continue
 
-           
             entityValues = [e["value"] for e in entities]
             usedEntities = shouldAddRowStrategy.determineShouldAddRow(row, entityValues, self)
             shouldUseRow = len(usedEntities)>0
@@ -139,16 +136,17 @@ class SparseMatrix():
            
             if shouldUseRow:
                 newSearchResult = sparseMatrixToSearchDf.loc[i,'Value']
-                if searchResult == None: 
-                    searchResult, type = self.determineResultType(newSearchResult)
-                    searchResult = str(searchResult)
-                    searchResults.append(searchResult)
+                if currentResultPointer == None: 
+                    currentResultPointer, type = self.determineResultType(newSearchResult)
+                    currentResultPointer = str(currentResultPointer)
+                    searchResults.append(currentResultPointer)
                 else:
-                    searchResult = self.addSearchResult(searchResult, newSearchResult, searchResults, isSumAllowed)
+                    currentResultPointer = self.addSearchResult(currentResultPointer, newSearchResult, searchResults, isSumAllowed)
 
                 if len(entitiesUsed) <= 0:
                     entitiesUsed = usedEntities
-                
+        print("RESULT")
+        print(searchResults)
         entitiesUsed = list(entitiesUsed)
         return (searchResults, entitiesUsed)
 
@@ -163,6 +161,9 @@ class SparseMatrix():
     def addSearchResult(self, currentSearchResult, newSearchResult, searchResults, isSumAllowed) -> str:
         castedCurrValue, currentSearchResultType = self.determineResultType(currentSearchResult)
         castedNewValue, newSearchResultType = self.determineResultType(newSearchResult)
+        print("ADDING")
+        print(currentSearchResult)
+        print(newSearchResult)
         if (currentSearchResultType == SearchResultType.FLOAT or currentSearchResultType == SearchResultType.NUMBER):
             if isSumAllowed and (newSearchResultType == SearchResultType.FLOAT or newSearchResultType == SearchResultType.NUMBER):
                 newCalculatedValue = str(castedCurrValue + castedNewValue)

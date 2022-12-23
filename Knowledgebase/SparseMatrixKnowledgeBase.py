@@ -54,7 +54,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         sparseMatrixToSearch, startYear, endYear = self.determineMatrixToSearch(intent, entitiesExtracted, self.year)
         
         if sparseMatrixToSearch is None:
-            raise Exception("No valid sparse matrix found for given intent and entities", intent, entities)
+            raise Exception("No valid sparse matrix found for given intent and entities", intent, entitiesExtracted)
 
         isRangeAllowed = sparseMatrixToSearch.isRangeOperationAllowed()
         hasRangeEntity = findEntityHelper(entitiesExtracted, RANGE_ENTITY_LABEL)
@@ -62,6 +62,8 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
 
         isPercentageAllowed = sparseMatrixToSearch.isPercentageOperationAllowed()
         
+        print(isSumAllowed)
+
         searchResults = []
         entitiesUsed = []
         if isRangeAllowed and hasRangeEntity:
@@ -69,6 +71,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         elif isPercentageAllowed:
             pass
         else:
+            #pass
             searchResults, entitiesUsed = sparseMatrixToSearch.searchOnSparseMatrix(entitiesExtracted, shouldAddRowStrategy, isSumAllowed)
         
         entitiesUsed.append(startYear) 
@@ -109,15 +112,12 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
             
         discreteRanges = sparseMatrix.findAllDiscreteRange()
         # print(minBound,maxBound)
-        print(maxValue, minValue)
-        print(discreteRanges)
         rangesToUse = []
         intervalToCheck = [minValue, maxValue]
         for dRange in discreteRanges:
             if self.doesIntervalOverlap(intervalToCheck, dRange):
                 rangesToUse.append(dRange)
-       
-        print(rangesToUse)
+  
         return rangesToUse
     
     def convertNoneToInfinity(self,a):
@@ -148,6 +148,8 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         shouldAddRowStrategy = RangeExactMatchRowStrategy(rangeToSumOver)
         entities = filterEntities(entities, [RANGE_ENTITY_LABEL])
         entitiesUsed = []
+
+        answerPointer = None
         currentResult = []
         
         for r in rangeToSumOver:
@@ -170,22 +172,14 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
                 entitiesToCheck.append(fakeEntity)
             
             answers, intent, entitiesUsedBySearch = self.searchForAnswer(intent, entitiesToCheck, shouldAddRowStrategy, identityFunc)
-          
+            if len(answers) == 0:
+                continue
+
             entitiesUsed = entitiesUsed + entitiesUsedBySearch
-            if isSumming:
-                if len(answers) == 0:
-                    continue
-                if len(currentResult) == 0:
-                    currentResult.append(answers[0])
-                else:
-                    currentResult[0]=str(float(currentResult[0]) + float(answers[0]))
+            # On each iteration, we expect to only get one answer from search
+            answerPointer = sparseMatrix.addSearchResult(answerPointer, answers[0], currentResult, isSumming)
 
-            else: 
-                # + on list in python combines the two list. 
-                currentResult = currentResult + answers
-        
-        return (currentResult, set(entitiesUsed))
-
+        return (currentResult, list(set(entitiesUsed)))
 
 
     def aggregatePercentage(self, intent, numerator, entitiesForNumerator, entitiesToCalculateDenominator, shouldAddRowStrategy):
@@ -205,28 +199,5 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
     def determineMatrixToSearch(self, intent, entities, year):
         return self.dataManager.determineMatrixToSearch(intent, entities, year)
 
-    def dummyRandomGeneratedDF(self):
-        self.m_df = pd.DataFrame()
-        self.m_df['Value'] = np.floor(np.random.uniform(low= 20, high=2000, size=(20,)))
-        self.m_df['undergraduate'] = np.random.choice([0, 1], size=20, p=[.5, .5])
-        self.m_df['grad'] = np.random.choice([0, 1], size=20, p=[.5, .5])
-        self.m_df['male'] = np.random.choice([0, 1], size=20, p=[.8, .2])
-        self.m_df['female'] = np.random.choice([0, 1], size=20, p=[.6, .4])
-        self.m_df['degree-seeking'] = np.random.choice([0, 1], size=20, p=[.8, .2])
-        self.m_df['non-degree-seeking'] = np.random.choice([0, 1], size=20, p=[.8, .2])
-        self.m_df['full-time'] = np.random.choice([0, 1], size=20, p=[.8, .2])
-        self.m_df['part-time'] = np.random.choice([0, 1], size=20, p=[.8, .2])
-        self.m_df['freshman'] = np.random.choice([0, 1], size=20, p=[.8, .2])
-        self.m_df['non-freshman'] = np.random.choice([0, 1], size=20, p=[.8, .2])
-        self.m_df['first-year'] = np.random.choice([0, 1], size=20, p=[.7, .3])
-        self.m_df['white'] = np.random.choice([0, 1], size=20, p=[.9, .1])
-        self.m_df['african American'] = np.random.choice([0, 1], size=20, p=[.8, .2])
-        self.m_df['asian'] = np.random.choice([0, 1], size=20, p=[.8, .2])
-        self.m_df['hispanic'] = np.random.choice([0, 1], size=20, p=[.8, .2])
-        self.m_df['pacific islander'] = np.random.choice([0, 1], size=20, p=[.8, .2])
-        self.m_df['two or more races'] = np.random.choice([0, 1], size=20, p=[.9, .1])
-        self.m_df['ethinicity unknown'] = np.random.choice([0, 1], size=20, p=[.6, .4])
-        self.m_df['Total?'] = np.random.choice([0, 1], size=20, p=[.9, .1])
 
 
-  

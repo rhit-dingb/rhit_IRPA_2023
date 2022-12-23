@@ -1450,10 +1450,10 @@ nlu:
 
     - How many [nonresident-alien]{"entity": "race"} students are [enrolled]{"entity":"action", "value": "enrolled"}? 
     - How many [hispanic]{"entity": "race"} students are [enrolled]{"entity":"action", "value": "enrolled"}? 
-    - How many [african-american]{"entity": "race"} students are [enrolled]{"entity":"action", "value": "enrolled"}?
+    - How many [african american]{"entity": "race"} students are [enrolled]{"entity":"action", "value": "enrolled"}?
     - how many [black]{"entity": "race"} students are [enrolled]{"entity":"action", "value": "enrolled"}? 
     - How many [white]{"entity": "race"} students are [enrolled]{"entity":"action", "value": "enrolled"}? 
-    - How many [american-indian]{"entity": "race"} students are [enrolled]{"entity":"action", "value": "enrolled"}?
+    - How many [american indian]{"entity": "race"} students are [enrolled]{"entity":"action", "value": "enrolled"}?
     - How many [asian]{"entity": "race"} students are [enrolled]{"entity":"action", "value": "enrolled"}? 
     - How many [pacific islander]{"entity": "race"} students are [enrolled]{"entity":"action", "value": "enrolled"}? 
     - How many students of [two-or-more]{"entity": "race"} races are [enrolled]{"entity":"action", "value": "enrolled"}? 
@@ -1495,6 +1495,83 @@ nlu:
     - for the year 2025  - 2053, how many many [non-degree-seeking]{"entity":"degree-goal"} are there?
 
 
+- lookup: student_level
+  examples: |
+    - grad 
+    - graduate
+    - graduates
+  
+- synonym: graduate
+  examples: |
+    - grad student
+    - grad 
+    - graduates
+    - graduate
+
+
+- synonym: degree-seeking
+  examples: |
+    - degree seeking
+    - degree seeing
+    - want a degree
+
+- synonym: first-time
+  examples: |
+    - first time
+    - first-time
+    - firsttime
+
+- synonym: non-first-time
+  examples: |
+    - non-first-time
+    - not first time
+    - non first time 
+    - non first-time
+    - second time 
+
+
+- synonym: full-time
+  examples: |
+    - full time
+    - fulltime
+
+- synonym: part-time
+  examples: |
+    - part time
+    - parttime
+
+- synonym: non-degree-seeking
+  examples: |
+    - non degree seeking
+    - not looking for a degree
+
+- synonym: freshman
+  examples: |
+    - fresh man
+    - freshmen
+    - fresh men
+    - freshmans
+
+- synonym: undergraduate
+  examples: |
+    - undergrad
+    - undergrade
+    - under grad
+    - under-grad
+    - undergraduates
+
+- synonym: first-year
+  examples: |
+    - 1st year
+    - first year
+    - first-year
+
+- synonym: non-first-year
+  examples: |
+    - not-first-year
+    - not first year
+    - non first year
+
 
 - lookup: enrollment_status
   examples: |
@@ -1523,6 +1600,7 @@ nlu:
     - male
     - female
 
+
 - lookup: undergraduate_grade_level
   examples: |
     - freshman
@@ -1533,12 +1611,6 @@ nlu:
     - degree-seeking
     - non-degree-seeking
 
-- synonym: retention-rate
-  examples: |
-    - retention rate
-    - retenton rate
-    - retention-rate
-    - rate of retention
 
 
 - intent: admission
@@ -2281,80 +2353,18 @@ nlu:
 #     - unit-recommended
 
 #---------------------END----------------------------------- 
-  
 
-#synonym example, We can also put it in the entity annotation in the above training data sentences
-- synonym: graduate
-  examples: |
-    - grad student
-    - grad 
-    - graduates
-
-- synonym: degree-seeking
-  examples: |
-    - degree seeking
-    - degree seeing
-    - want a degree
-
-- synonym: first-time
-  examples: |
-    - first time
-    - first-time
-    - firsttime
-
-- synonym: non-first-time
-  examples: |
-    - non-first-time
-    - not first time
-    - non first time 
-    - non first-time
-    - second time 
-
-
-
-- synonym: full-time
-  examples: |
-    - full time
-    - fulltime
-
-- synonym: part-time
-  examples: |
-    - part time
-    - parttime
-
-
-
-- synonym: non-degree-seeking
-  examples: |
-    - non degree seeking
-    - not looking for a degree
-
-- synonym: freshman
-  examples: |
-    - fresh man
-    - freshmen
-    - fresh men
-    - freshmans
-
-- synonym: undergraduate
+- lookup: student_level
   examples: |
     - undergrad
-    - undergrade
-    - under grad
-    - under-grad
-    - undergraduates
+    - undergraduate
+    - graduate
+    - grad
 
-- synonym: first-year
-  examples: |
-    - 1st year
-    - first year
-    - first-year
 
-- synonym: non-first-year
-  examples: |
-    - not-first-year
-    - not first year
-    - non first year
+
+#synonym example, We can also put it in the entity annotation in the above training data sentences
+
     
 - synonym: nonresident alien
   examples: |
@@ -2369,6 +2379,10 @@ nlu:
     - african american
     - african
     - non-hispanic
+
+- synonym: asian 
+  examples: |
+    - asians
 
 - synonym: white
   examples: |
