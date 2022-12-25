@@ -1,0 +1,150 @@
+%[financial_aid]
+    How much @[need_non_need_base_aid] @[scholarship_grants] ~[scholarship or grants] was \[awarded\]\{"entity": "action", "value": "awarded" \} to \[undergraduate\]\{"entity": "student_level", "value": "undergraduate" \} students
+    How much @[need_non_need_base_aid] ~[college] ~[scholarship or grants] was \[awarded\]\{"entity": "action", "value": "awarded" \} to \[undergraduate\]\{"entity": "student_level", "value": "undergraduate" \} students
+    What is the amount of  @[need_non_need_base_aid] @[self-help_aid] \[awarded\]\{"entity": "action", "value": "awarded" \} to \[undergraduate\]\{"entity": "student_level", "value": "undergraduate" \} students?
+
+    What is the amount of  @[need_non_need_base_aid] ~[federal_state] @[self-help_aid] \[awarded\]\{"entity": "action", "value": "awarded" \} to \[undergraduate\]\{"entity": "student_level", "value": "undergraduate" \}  students?
+
+    What is the amount of  @[need_non_need_base_aid] @[other_aid] ~[awarded] students?
+    
+    What is the amount of @[people] \[loan\]\{"entity": "other_aid", "value": "loan" \} \[awarded\]\{"entity": "action", "value": "awarded" \} to \[undergraduate\]\{"entity": "student_level", "value": "undergraduate" \} students
+    
+    What is the number of ~[student] who ~[applied] for~[need_based] ~[financial_aid]
+    
+    What is the number of ~[student] who were ~[determined] to have ~[financial_need]
+
+    What is the number of ~[student] who were ~[awarded] any ~[financial_aid] 
+
+    What is the number of ~[student] who were ~[awarded] any ~[need_based] ~[scholarship or grants]
+
+    What is the number of ~[student] who were ~[awarded] any ~[need_based] ~[self-help] aid
+
+    What is the number of ~[student] whose ~[financial_need] was @[financial_aid_degree_met] ~[met]
+
+
+@[financial_aid_degree_met]
+    fully = fully
+    in full = fully
+
+~[met]
+    \[met\]\{"entity": "action", "value": "met" \} 
+    \[meet\]\{"entity": "action", "value": "met" \} 
+    \[satifisfied\]\{"entity": "action", "value": "met" \} 
+    \[satisfy\]\{"entity": "action", "value": "met" \} 
+
+~[self-help]
+    \[self-help\]\{"entity": "self-help_aid", "value": "self-help" \} 
+    \[self help\]\{"entity": "self-help_aid", "value": "self-help" \}
+
+~[scholarship or grants]
+    \[scholarship or grants\]\{"entity": "scholarship_grants", "value": "scholarship or grants" \} 
+    \[scholarship/grants\]\{"entity": "scholarship_grants", "value": "scholarship or grants" \} 
+    \[scholarship and grants\]\{"entity": "scholarship_grants", "value": "scholarship or grants" \} 
+
+~[non_need_based]
+    \[non need based\]\{"entity": "need_non_need_base_aid", "value": "non need based" \} 
+    
+
+~[awarded]
+    \[awarded\]\{"entity": "action", "value": "awarded" \}
+    \[award\]\{"entity": "action", "value": "awarded" \}
+    \[given\]\{"entity": "action", "value": "awarded" \}
+
+~[applied]
+    \[applied\]\{"entity": "action", "value": "applied" \} 
+
+~[determined]
+    \[determined\]\{"entity": "action", "value": "determined" \} 
+
+
+
+~[need_based]
+    \[need based\]\{"entity": "need_non_need_base_aid", "value": "need based" \} 
+
+~[financial_aid] 
+    \[financial aid\]\{"entity": "financial_aid_term", "value": "financial aid"\} 
+
+~[financial_need] 
+    \[financial \]\{"entity": "financial_aid_term", "value": "financial need"\} 
+
+~[scholarship_grants]
+    \[scholarship or grants\]\{"entity": "financial_aid_term", "value": "financial need"\} 
+
+@[financial_aid_term]
+    ~[financial_aid_2] = financial aid
+    ~[financial_need_2] = financial need
+
+    
+~[financial_need_2]
+    financial-need
+    financial need
+    need financial aid
+    need financial-aid
+
+~[financial_aid_2]
+    financial aid
+    financial-aid
+
+@[need_non_need_base_aid]
+    ~[need-based] = need based
+    ~[non-need-based] = non need based
+
+
+~[need-based]
+    need based
+    need-based
+    need base
+    need-base
+
+~[non-need-based]
+    non need based
+    non-need-based
+    non need base
+    non-need-base
+
+
+
+~[college]
+    \[college\]\{"entity": "education_level", "value": "college" \}
+    \[institutional\]\{"entity": "education_level", "value": "college" \}
+
+
+~[federal_state]
+    \[federal\]\{"entity": "scholarship_grants", "value": "federal" \}
+    \[state\]\{"entity": "scholarship_grants", "value": "state" \}
+
+@[self-help_aid]
+    ~[work study] = work study
+    self help = self-help
+    self-help = self-help
+
+~[work study]
+    work study
+    work-study
+
+
+@[scholarship_grants]
+    federal
+    state
+    external
+    ~[athletic]
+
+
+~[student]
+    \[student\]\{"entity": "people", "value": "student" \}
+
+@[people]
+    student 
+    parent
+
+@[other_aid]
+    loan
+    waiver
+
+
+~[athletic]
+    athletic 
+    athlete
+    
+
+

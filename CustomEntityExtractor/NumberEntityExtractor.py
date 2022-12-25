@@ -63,10 +63,9 @@ class NumberEntityExtractor():
         entity = createEntityObj(value, entityLabel="number",  entityRole=None)
         entity["extractor"] = "custom"
         entity["processors"] = []
-        entity["confidence"] = 1.0
+        entity["confidence_entity"] = 1.0
         start, end = findCharIndexForWord(originalValue, text)
         entity["start"] = start
         entity["end"] = end
         return entity
-
 

@@ -3,6 +3,7 @@ version: "3.1"
 nlu:
 - intent: transfer_admission
   examples: |
+    # May have to redefine entity here
     - At which [term]{"entity": "academic_term", "value": "term" } may transfer students [enroll]{"entity": "action", "value": "enrolled"}
     - Does Rose-Hulman [accept credit transferred]{"entity": "allow_transfer_credit", "value": "accept transfer credit"}
     - Does Rose-Hulman [accept transfer credit](allow_transfer_credit)

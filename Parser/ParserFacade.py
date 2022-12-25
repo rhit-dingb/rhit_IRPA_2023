@@ -19,6 +19,8 @@ class ParserFacade():
         self.rasaCommunicator : RasaCommunicator = RasaCommunicator()
         self.numberEntityExtractor = NumberEntityExtractor()
         self.parser = CDSDataParser(self.dataWriter)
+        self.entityConfidenceKey = "confidence_entity"
+        self.confidenceThreshold = 0.5
 
         #To support when we want to use a different parser for a particular section
         # self.parsers = {
@@ -44,10 +46,18 @@ class ParserFacade():
                     entities = response["entities"] + numberEntities
                     # Filter out range entities
                     entities = filterEntities(entities, [RANGE_ENTITY_LABEL])
-                    entityValues = []
+                    highConfidenceEntities = []
+                    #Filter out entities with low confidence
                     for entity in entities:
-                        entityValues.append(entity["value"])
+                        if self.entityConfidenceKey in entity.keys():
+                            if entity[self.entityConfidenceKey] >= self.confidenceThreshold:
+                                highConfidenceEntities.append(entity)
+                        else: 
+                            highConfidenceEntities.append(entity)
 
+                    entityValues = []
+                    for entity in highConfidenceEntities:
+                        entityValues.append(entity["value"])
                     questionAnswer.setEntities(entityValues)
                     
             # if section in self.parsers.keys(): 

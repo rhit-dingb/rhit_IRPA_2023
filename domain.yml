@@ -14,9 +14,10 @@ intents:
   - basis_for_selection 
   - freshman_profile
   - student_life
+  - financial_aid
+  - faculty_and_class_size
 
   - change_year
-
 
   - mood_great
   - mood_unhappy
@@ -50,7 +51,7 @@ entities:
   #race/ethnicity
   - race
 
-  #applied addmitted
+  #Capture many different verbs. Values: applied addmitted, determined, awarded, met, borrowed
   - action
 
   - waiting-list
@@ -205,9 +206,8 @@ entities:
   # Entities for early decision and early action. Values: early decision, early action and early admission
   - early-admission
 
-  - waive
 
-  # Use to capture fee, tuition, etc, things about money.
+  # Use to capture fee, money ,etc, things related to money
   - money
 
   # Captures if question is about online application. Value: online. 
@@ -233,16 +233,53 @@ entities:
   #Value : program
   - program
 
-
-  # #cohort by year - for example: 2015 cohort, 2016 cohort, etc.
-  # - cohort_by_year
-
   # #Captures the word "year"
   # - year
 
   # Captures numerical value include decimals. For number that are formatted as words like "four", I wrote code for a custom extractor.
   #NOTE: currently, this is not labelled in training data, I use a custom entity extractor.
   - number
+
+#FINANCIAL AID entities
+
+# Captures methodology for the question: which needs-analysis methodology does your institution use in awarding institutional aid?
+  - methodology
+
+# Captures different types of scholar or grants and loans financial aid such as federal, state, external, athletic 
+# NOTE: Institutional is also a modifier but it will be mapped to value college in education_level entity.
+# Values: federal, state, external, athletic 
+  - financial_aid_type
+
+#Captures scholarship, grants itself.
+#Value: scholarship, grants.
+  - scholarship_grants
+
+#Captures aids that are classified as self help, also include word self-help itself.
+#Value : work-study, self-help
+  - self-help_aid
+
+#Captures aids other than self-help, and scholarship or grants.
+#Value: waiver,  loan
+  - other_aid
+
+#Captures Need or non need base aid
+  - need_non_need_base_aid
+
+# Captures the word: financial aid, and financial need
+  - financial_aid_term
+
+# The degree to which a student's financial need is met.
+# Values: fully
+  - financial_aid_degree_met 
+
+#Captures people. Values: student, parent, faculty, lender, bank
+  - people
+
+#Captures private public
+  - access_level
+
+#Loan provider. Value: bank, lender
+  - loan_lender
 
 
 

@@ -58,7 +58,8 @@ class DataManager():
         endYear = str(year + 1)
         exceptionToThrow = NoDataFoundException(NO_DATA_FOUND_FOR_ACADEMIC_YEAR_ERROR_MESSAGE_FORMAT.format(start=str(year), end=str(year+1)), ExceptionTypes.NoDataFoundForAcademicYearException)
         sparseMatrices = self.getSparseMatricesByStartEndYearAndIntent(intent, startYear, endYear, exceptionToThrow)
-        errorMessage = NO_DATA_AVAILABLE_FOR_GIVEN_INTENT_FORMAT.format(topic = intent.replace("_", " "), start= str(startYear), end = str(endYear))
+        intentWithNoUnderScore = intent.replace("_", " ")
+        errorMessage = NO_DATA_AVAILABLE_FOR_GIVEN_INTENT_FORMAT.format(topic = intentWithNoUnderScore, start= str(startYear), end = str(endYear))
         selectedSparseMatrix = self.determineBestMatchingMatrix(sparseMatrices, entities, errorMessage)     
         return (selectedSparseMatrix, startYear, endYear)
        

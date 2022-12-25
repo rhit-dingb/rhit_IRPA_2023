@@ -30,7 +30,6 @@ nlu:
     - require 
     - requirement
     - must 
-    - need
 
 - synonym: recommend
   examples: | 
@@ -87,12 +86,12 @@ nlu:
     - max
 
   
-- lookup: date
-  examples: |
-    - when
-    - time
-    - date
-    - deadline
+# - lookup: date
+#   examples: |
+#     - when
+#     - time
+#     - date
+#     - deadline
     
 - synonym: date
   examples: |
@@ -142,3 +141,99 @@ nlu:
     - fee
     - money
     - dollar
+
+
+
+- lookup: action
+  examples: |
+    - admitting
+    - admitted
+    - admit
+    - accepted
+    - accepting
+    - accept
+
+    - enrolled
+    - enroll
+    - enrolling
+
+    - applied
+    - applying
+    - apply
+
+    - awarded
+    - award
+    - awarding
+    - given
+    - give
+    - gave
+
+    - meet 
+    - met
+    - meeting
+    - satifisfied
+    - satisfy 
+
+    - borrowed
+    - borrow 
+    - borrowing
+
+- synonym: borrowed
+  examples: |
+    - borrow
+    - borrowing
+    - owed
+    - owe
+
+- synonym: accepted
+  examples: |
+    - admitting
+    - admitted
+    - admit
+    - accepted
+    - accepting
+    
+
+- synonym: enrolled
+  examples: |
+    - enrolled
+    - enroll
+    - enrolling
+
+- synonym: applied
+  examples: |
+    - applied
+    - applying
+    - apply
+  
+- synonym: awarded
+  examples: |
+    - award
+    - awarding
+    - given
+    - give
+    - gave
+
+- synonym: met
+  examples: |
+    - meet
+    - meeting
+    - satifisfied
+    - satisfy
+
+- lookup: people
+  examples: |
+    - parent
+    - student
+
+- synonym: parent
+  examples: | 
+    - parents
+
+
+- synonym: student
+  examples: | 
+    - students
+
+
+

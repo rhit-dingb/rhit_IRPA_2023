@@ -1622,16 +1622,26 @@ nlu:
 - lookup: race
   examples: |
     - nonresident alien
+    - non-resident alien
+    - not citizen
+    - not US citizen
     - african american
     - asian
     - white
     - american indian
+    - multiple races
+    - mixed race
     
 - synonym: nonresident alien
   examples: |
     - nonresident
     - nonresident-alien
+    - non-resident alien
+    - non resident alien
     - international
+    - not citizen
+    - not US citizen
+    - not U.S. citizen
 
 - synonym: african american
   examples: |
@@ -1673,14 +1683,16 @@ nlu:
     - pacific-islander
     - pacific-islanders
     - pacific island
+    - pacific islanders
 
 - synonym: two or more races
   examples: |
-    - two or more
-    - two-or-more
+    - two or more race
+    - two-or-more race
     - two or more race
     - two or more races
-    - multiple
+    - multiple races
+    - mixed race
 
 
   
@@ -1771,7 +1783,7 @@ nlu:
 
     - Is there any [application]{"entity": "application", "value": "application"} [fee]{"entity":"money", "value": "fee"} for applicants?
 
-    - Can [application]{"entity": "application", "value":"application" } [fee]{"entity":"money", "value": "fee"} be [waived]{"entity": "waive", "value":"waived" }?
+    - Can [application]{"entity": "application", "value":"application" } [fee]{"entity":"money", "value": "fee"} be [waived]{"entity": "other_aid", "value":"waiver" }?
     
     - How much [money]{"entity":"money", "value": "fee"} do I have to pay for [application]{"entity": "application", "value":"application" }?
 
@@ -1779,11 +1791,14 @@ nlu:
 
     - Does [online]{"entity": "online", "value":"online" } [application]{"entity": "application", "value":"application" } have [application]{"entity": "application", "value":"application" } [fee]{"entity":"money", "value": "fee"} ?
     
-    - Can [online]{"entity": "online", "value":"online" } [application]{"entity": "application", "value":"application" } [application]{"entity": "application", "value":"application" } '[fee]{"entity":"money", "value": "fee"}  be [waived]{"entity": "waive", "value": "waived"} ?
+    - Can [online]{"entity": "online", "value":"online" } [application]{"entity": "application", "value":"application" } [application]{"entity": "application", "value":"application" } '[fee]{"entity":"money", "value": "fee"}  be [waived]{"entity": "other_aid", "value": "waiver"} ?
    
     - Yo, do have to pay [money]{"entity":"money", "value": "fee"} to apply on the [internet]{"entity": "online", "value":"online" }?
 
+    - Is there [waiver]{"entity": "other_aid", "value": "waiver"} for [online]{"entity": "online", "value":"online" } [application]{"entity": "application", "value":"application"}?
+
     - What is the [deadline]{"entity":"date", "value": "date"} for [housing]{"entity": "housing", "value": "housing"} deposit?
+    
 
 
 
@@ -1916,46 +1931,6 @@ nlu:
     - delay
     - put off
 
-
-- lookup: action
-  examples: |
-    - admitting
-    - admitted
-    - admit
-    - accepted
-    - accepting
-    - accept
-
-    - enrolled
-    - enroll
-    - enrolling
-
-    - applied
-    - applying
-    - apply
-
-
-- synonym: accepted
-  examples: |
-    - admitting
-    - admitted
-    - admit
-    - accepted
-    - accepting
-    
-
-- synonym: enrolled
-  examples: |
-    - enrolled
-    - enroll
-    - enrolling
-
-- synonym: applied
-  examples: |
-    - applied
-    - applying
-    - apply
-    
 
 - intent: high_school_units
   examples: | 

@@ -11,12 +11,13 @@ def constructSentence(answers, intent, entitiesUsed, noAnswerResponse = NO_ANSWE
        answer = noAnswerResponse
        return [answer]
     
-    sentences = []
-    for answer in answers:
-        sentence = answer + "\n" + intent + "\n" + str(entitiesUsed) 
-        sentences.append(sentence)
+    return answers
+    # sentences = []
+    # for answer in answers:
+    #     sentence = answer + "\n" + intent + "\n" + str(entitiesUsed) 
+    #     sentences.append(sentence)
 
-    return sentences
+    # return sentences
 
 #For integer values
 def outputFuncForInteger(answer : int, intent, entitiesUsed):
