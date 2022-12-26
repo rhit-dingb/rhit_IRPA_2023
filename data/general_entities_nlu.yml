@@ -51,7 +51,6 @@ nlu:
     - percent
     - percentage
     - average
-    - mean
     - minimum 
     - lowest
     - min
@@ -67,10 +66,9 @@ nlu:
     - percent
     - percentage
 
-- synonym: mean
+- synonym: average
   examples: |
-    - average
-    - mean
+    - averages
 
 - synonym: minimum
   examples: |

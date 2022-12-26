@@ -1448,7 +1448,7 @@ nlu:
     - How many [non degree-seeking]{"entity": "degree-goal", "value": "non-degree-seeking"} [non-freshmen]{"entity": "undergraduate_grade_level", "value": "non-freshman"} are [enrolled]{"entity":"action", "value": "enrolled"}?
     - How many [non degree-seeking]{"entity": "degree-goal", "value": "non-degree-seeking"} [part-time]{"entity": "enrollment_status", "value": "part-time"} students are [enrolled]{"entity":"action", "value": "enrolled"}?
 
-    - How many [nonresident-alien]{"entity": "race"} students are [enrolled]{"entity":"action", "value": "enrolled"}? 
+    - How many [nonresident]{"entity": "race", "value": "international"} students are [enrolled]{"entity":"action", "value": "enrolled"}? 
     - How many [hispanic]{"entity": "race"} students are [enrolled]{"entity":"action", "value": "enrolled"}? 
     - How many [african american]{"entity": "race"} students are [enrolled]{"entity":"action", "value": "enrolled"}?
     - how many [black]{"entity": "race"} students are [enrolled]{"entity":"action", "value": "enrolled"}? 
@@ -1621,10 +1621,11 @@ nlu:
 
 - lookup: race
   examples: |
-    - nonresident alien
-    - non-resident alien
+    - nonresident
+    - non-resident
     - not citizen
     - not US citizen
+    - international
     - african american
     - asian
     - white
@@ -1632,12 +1633,12 @@ nlu:
     - multiple races
     - mixed race
     
-- synonym: nonresident alien
+- synonym: international
   examples: |
     - nonresident
-    - nonresident-alien
-    - non-resident alien
-    - non resident alien
+    - nonresident
+    - non-resident
+    - non resident
     - international
     - not citizen
     - not US citizen
@@ -1745,15 +1746,15 @@ nlu:
 
     - Are first-time, first-year students [accepted]{"entity": "action", "value": "accepted"} for [terms]{"entity":"academic_term", "value":"term"} [other]{"entity": "other", "value":"other"} than the [fall]{"entity":"academic_term", "value":"fall"} ?
     - Are  students [accepted]{"entity": "action", "value": "accepted"} for [terms]{"entity":"academic_term", "value":"term"} [other]{"entity": "other", "value":"other"} than the [fall]{"entity":"academic_term", "value":"fall"} ?
-    - What is the [closing]{"entity": "admission_decision_date", "value": "closing"} [date]{"entity": "date" , "value": "date"} for [application]{"entity":"application", "value":"application"}?
+    - What is the [closing]{"entity": "admission_decision_date", "value": "closing"} [date]{"entity": "time" , "value": "date"} for [application]{"entity":"application", "value":"application"}?
 
-    - What [date]{"entity": "date" , "value": "date"} is the [closing]{"entity": "admission_decision_date", "value": "closing"} [date]{"entity": "date" , "value": "date"} for [application]{"entity":"application", "value":"application"}?
+    - What [date]{"entity": "time" , "value": "date"} is the [closing]{"entity": "admission_decision_date", "value": "closing"} [date]{"entity": "time" , "value": "date"} for [application]{"entity":"application", "value":"application"}?
 
-    - What is the [priority]{"entity": "admission_decision_date", "value": "closing"} [date]{"entity": "date" , "value": "date"} ?
+    - What is the [priority]{"entity": "admission_decision_date", "value": "closing"} [date]{"entity": "time" , "value": "date"} ?
 
-    - What is the [priority]{"entity": "admission_decision_date" , "value": "priority"} [date]{"entity": "date" , "value": "date"} for [application]{"entity":"application", "value":"application"}?
-    - What is the [notification]{"entity": "admission_decision_date" , "value": "notification"} [date]{"entity": "date" , "value": "date"} for [application]{"entity":"application", "value":"application"}?
-    - What is the [notification]{"entity": "admission_decision_date" , "value": "notification"} [date]{"entity": "date" , "value": "date"} to applicants of admission decision sent?
+    - What is the [priority]{"entity": "admission_decision_date" , "value": "priority"} [date]{"entity": "time" , "value": "date"} for [application]{"entity":"application", "value":"application"}?
+    - What is the [notification]{"entity": "admission_decision_date" , "value": "notification"} [date]{"entity": "time" , "value": "date"} for [application]{"entity":"application", "value":"application"}?
+    - What is the [notification]{"entity": "admission_decision_date" , "value": "notification"} [date]{"entity": "time" , "value": "date"} to applicants of admission decision sent?
     
     - What is the [reply]{"entity": "admission_decision_date" , "value": "reply"} policy for admitted applicants?
     - What is the [reply]{"entity": "admission_decision_date" , "value": "reply"} policy?
@@ -1802,7 +1803,7 @@ nlu:
 
 
 
-- synonym: waived
+- synonym: waiver
   examples: |
     - waived
     - waive

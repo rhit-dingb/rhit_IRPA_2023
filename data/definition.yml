@@ -1,0 +1,62 @@
+version: "3.1"
+
+nlu:
+- intent: definition
+  examples: |
+    - What is the meaning of life?
+    - Yo chatbot, what is the meaning of my life?
+    - 
+
+    - What is the defintion of academic advisement?
+    - What is the definition of accelerated program?
+    - What is the defintiion of admitted student?
+    - What is the definition of adult student services?
+    - What is the definition of american indian or alaska native?
+    - What is the definition of first-time first-year applicant?
+    - What is the definition of application fee?
+    - What is the definition of asian?
+    - What the defintion of associate degree?
+    - What is the definition of bachelor's degree?
+    - What is the definition of black or african
+    - What is the definition for board?
+    - What is the definition for books and supplies costs?
+
+    - What is the definition for calendar system?
+    - What is the definition for campus ministry?
+
+    - What is career and placement services?
+    - What is the definition for career and placement services?
+    - Tell me about career and placement services.
+
+    - What is the definition for carnegie units?
+
+    - What is the definition for certificate?
+
+    - What is the definition for class rank?
+
+    - What is the definition for college-preparatory program?
+
+    - What is the definition of a commuter?
+
+    - What is the definition for contact hour?
+
+    - What is the definition for continous basis for program enrollment?
+
+    - What is the definition for cooperative education program?
+
+    - What is the definition for counseling service?
+
+    - What is the definition for credit?
+
+    - What is the definition for credit course?
+
+    - What is the definition for cross-registration?
+
+    - What is the definition for degree?
+
+    - What is the definition for degree-seeking students?
+
+    - What is the definition for differs by program (calendar system)
+
+
+    

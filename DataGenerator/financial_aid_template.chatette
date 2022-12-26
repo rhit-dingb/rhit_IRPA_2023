@@ -36,6 +36,8 @@
     \[self-help\]\{"entity": "self-help_aid", "value": "self-help" \} 
     \[self help\]\{"entity": "self-help_aid", "value": "self-help" \}
 
+
+// DEPRCATED, see training data.
 ~[scholarship or grants]
     \[scholarship or grants\]\{"entity": "scholarship_grants", "value": "scholarship or grants" \} 
     \[scholarship/grants\]\{"entity": "scholarship_grants", "value": "scholarship or grants" \} 

@@ -1,0 +1,89 @@
+%[faculty_and_class_size]
+    What is the total number of @[enrollment_status] instructional @[people] at Rose-Hulman?
+    
+    What is the total number of @[enrollment_status] @[people] who are @[race]
+
+    What is the total number of @[enrollment_status] @[people] who are @[gender]
+
+    What is the total number of @[enrollment_status] @[people] who have have a @[degree_level] degree
+
+    What is the total number of @[enrollment_status] @[people] whose @[aggregation] degree is \[unknown\]\{"entity": "race", "value":"unknown"\}
+
+    What is the total number of @[enrollment_status] @[people] whose @[aggregation] degree is a @[degree_level]
+
+    What is the total number of @[enrollment_status] @[people] who are in stand-alone \[graduate\]\{"entity": "student_level", "value":"graduate"\} programs in which faculty teach virtually only \[graduate\]\{"entity": "student_level", "value":"graduate"\} level \[students\]\{"entity":"people", "value":"student"\}
+
+    What is the \[students\]\{"entity":"people", "value":"student"\} to @[people] ratio?
+
+    What is the ~[average] class @[size] at Rose-Hulman?
+
+    How @[size] is a class at Rose-Hulman?
+
+    How many class @[section_subsection] have 2 to 9 \[students\]\{"entity":"people", "value":"student"\}?
+
+    How many class @[section_subsection] have 40 to 49 \[students\]\{"entity":"people", "value":"student"\}?
+
+    How many class @[section_subsection] at Rose-Hulman have 20 to 29 \[students\]\{"entity":"people", "value":"student"\}?
+
+    How many class @[section_subsection] at Rose-Hulman have 100+ \[students\]\{"entity":"people", "value":"student"\}?
+
+
+@[section_subsection]
+    section
+    sections = section
+    subsection
+    sub-section = subsection
+    subsections = subsection
+    sub section = subsection
+    sub sections = subsection
+
+@[size]
+    size
+    small = size
+    large = size
+    big = size
+
+~[ratio]
+    \[ratio\]\{"entity":"aggregation", "value":"ratio"\}
+
+~[average]
+    \[average\]\{"entity":"aggregation", "value":"average"\}
+
+@[aggregation]
+    highest
+   
+
+@[degree_level]
+    doctorate 
+    doctors = doctorate
+    masters = master
+    master
+    bachelor's = bachelors
+
+
+
+@[gender]
+    men = male
+    women = female
+
+@[race]
+    minority 
+    minorities = minority
+    nonresident alien
+    nonresident aliens = nonresident alien
+    non resident aliens = nonresident alien
+    non-resident aliens = nonresident alien
+    non resident alien = nonresident alien
+
+@[enrollment_status]
+    full-time
+    part-time
+
+@[people]
+    ~[faculty] = faculty
+
+~[faculty]
+    faculty
+    prof
+    professor
+

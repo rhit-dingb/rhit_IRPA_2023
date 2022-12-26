@@ -26,13 +26,13 @@
     // //THIS SENTENCE IS DEPRECATED
     // //Is there any @[additional_requirement] specific to transfer applicants?
 
-    // \[When\]\{"entity": "date", "value": "date"\} are applications reviewed for transfer students?
+    // \[When\]\{"entity": "time", "value": "date"\} are applications reviewed for transfer students?
 
-    // \[When\]\{"entity": "date", "value": "date"\} does admission decision come out for transfer students?
+    // \[When\]\{"entity": "time", "value": "date"\} does admission decision come out for transfer students?
 
     // What is the \[date\]\{"entity": "admission_decision_date", "value": "notification date"\} of admission decision for transfer students?
 
-    // What is the admission decision \[date\]\{"entity": "date", "value": "date"\} for transfer students?
+    // What is the admission decision \[date\]\{"entity": "time", "value": "date"\} for transfer students?
 
     // What is the @[admission_decision_date] @[date] for transfer students applications in @[academic_term] quarter
 
