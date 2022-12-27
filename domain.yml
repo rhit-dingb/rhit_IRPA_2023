@@ -49,15 +49,14 @@ entities:
   #male, female
   - gender
 
-  #race/ethnicity, value: minority, nonresident alien asian, african american, unknown, american indian, white, hispanic,  pacific-islander, two-or-more
+  #race/ethnicity, value: minority, african american, unknown, american indian, white, hispanic,  pacific-islander, two-or-more
   - race
 
-  #Capture many different verbs. Values: applied addmitted, determined, awarded, met, borrowed
+  #Capture many different verbs. Values: applied addmitted, determined, awarded, met, borrowed, designed
   - action
 
   - waiting-list
 
-  - college-preparatory-program
 
   - completion-requirement
 
@@ -91,10 +90,6 @@ entities:
 
 # This entity captures whether required or recommended is mentioned. Used in high school units required/recommended and transfer admission required items.
   - condition
-
-  #Number of unit-required or unit-recommended for particular subjects for rose-hulman admission requirement.
-  #Specific values: unit-required, unit-recommend 
-  - unit_level
 
   #Academic factor for basis of selection for admissions such as Rigor of secondary school record, Class rank etc, academic GPA etc.
   #NOTE: I defined Grades and grade as different. Grade is one value of of academic factor while grades map to transcript
@@ -149,7 +144,7 @@ entities:
   - education_level
 
 # used to capture the word credit and unit as in class credits/unit
-  - unit_type
+  - academic_credit
 
 #Capture unit of measure. Value: Unit of measure
   - unit_of_measure
@@ -182,7 +177,8 @@ entities:
 
 #Different category/group of student described in student life section, which includes student from out of state, 
   # those who join fraternity, sorority, etc.
-  # Values: out of state, fraternity, sorority, commute
+  # Values: out of state, fraternity, sorority, commute, 
+  # transfer, exchange
   - category
 
 # Describe college relation. 
@@ -252,6 +248,8 @@ entities:
 # Captures different types of scholar or grants and loans financial aid such as federal, state, external, athletic 
 # NOTE: Institutional is also a modifier but it will be mapped to value college in education_level entity.
 # Values: federal, state, external, athletic 
+
+#Might change this
   - financial_aid_type
 
 #Captures scholarship, grants itself.
@@ -276,7 +274,7 @@ entities:
 # Values: fully
   - financial_aid_degree_met 
 
-#Captures people. Values: student, parent, faculty, lender, bank
+#Captures people. Values: student, parent, faculty, applicant, teacher
   - people
 
 #Captures private public
@@ -286,11 +284,103 @@ entities:
   - loan_lender
 
 
-#Definition. Captures the word definition
-  - definition
 
 # Captures room and board
   - living_cost
+
+#School supplies need by students.
+#Value: book, supply
+  - school_supply
+
+##ENTITIES FOR DEFINITIONS
+
+#Definition. Captures the word definition
+  - definition
+
+
+#Program offered at school
+# Value: college-preparatory, accelerated, research, professional practice, cross-registration, double major, dual enrollment
+# external degree
+  - program_offered
+
+#Service offered at school
+# Career, 
+  - service_offered
+
+# activities offer at school.
+# orientation, campus ministry
+  - activity_offered
+
+#Type of unit, value: carnegie
+  - unit_type
+
+#Value: certificate, diploma, degree.
+  - academic_credential
+
+#International, domestic
+  - international_domestic 
+
+#Values: citizen, non_citizen
+  - citizen_non_citizen
+
+
+#Captures entity related to industry experience
+#Value: internship
+  - industry_experience
+
+  # Captures calendar system, but also includes calendar system classification such as continuous basis, trimester, semester, and quarter
+  # Value: calendar system, continuous basis, differ by program, trimester, semester, quarter.
+  - calendar_system
+
+ 
+
+# Im not sure how to group these entities, so they are standalone for now.
+  - contact_hour
+  
+  - distance_learning
+
+  - open_admission
+
+
+# Describes different terms that describe an organization or service
+# Values: service, center, group, program
+  - organization_term
+
+# Captures the word post, for post masters, post bachelor, etc.
+  - post
+
+
+#Value: for-profit, non-profit
+  - for_profit_non_profit
+  
+#Captures the word major.... im not sure if this is the best approach
+  - major
+
+#Captures any sort of transportation, and the word transportation itself
+  - transportation
+
+#Captures any disability.....
+#Value: visually impaired
+  - disability
+
+# #Captures words that classify human age, such as adult, minor, young, etc.
+# # Value: adult
+#   - human_age_classificaion
+
+# #Location: Capture different locations.
+# # Value: campus, 
+#   - location
+
+# # Word to describe advanced program --> Accelerated, honors
+#   - advanced_program
+
+# # Services to help students 
+# # Value: advisement, counseling, learning, health, legal, tutoring
+#   - student_help_and_service
+
+
+
+
 
 
 

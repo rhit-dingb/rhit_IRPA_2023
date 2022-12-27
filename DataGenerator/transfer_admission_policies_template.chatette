@@ -6,7 +6,7 @@
     
     What is the @[aggregation] number of \[credit that maybe transferred\]\{"entity": "allow_transfer_credit", "value": "accept transfer credit"\} from a @[years_for_college] @[education_level]
 
-    What is the @[aggregation] number of @[unit_type] that transfer students must complete to earn a @[degree_level] degree
+    What is the @[aggregation] number of @[academic_credit] that transfer students must complete to earn a @[degree_level] degree
 
     Are there any \[additional\]\{"entity": "other", "value": "other" \} \[transfer credit\]\{"entity": "allow_transfer_credit", "value": "accept transfer credit"\} policies ?
 

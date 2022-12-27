@@ -44,17 +44,17 @@ nlu:
     - What is the total number of [full-time](enrollment_status) [faculty](people) who are [men]{"entity": "gender", "value": "male"}
     - What is the total number of [full-time](enrollment_status) [faculty](people) who are [minorities]{"entity": "race", "value": "minority"}
     - What is the total number of [full-time](enrollment_status) [faculty](people) who are [minority](race)
-    - What is the total number of [full-time](enrollment_status) [faculty](people) who are [non resident]{"entity": "race", "value": "international"} alien
-    - What is the total number of [full-time](enrollment_status) [faculty](people) who are [non resident]{"entity": "race", "value": "international"} aliens
-    - What is the total number of [full-time](enrollment_status) [faculty](people) who are [non-resident]{"entity": "race", "value": "international"} aliens
-    - What is the total number of [full-time](enrollment_status) [faculty](people) who are [international]{"entity": "race", "value": "international"} student
-    - What is the total number of [full-time](enrollment_status) [faculty](people) who are [nonresident]{"entity": "race", "value": "international"} aliens
+    - What is the total number of [full-time](enrollment_status) [faculty](people) who are [non resident]{"entity": "international_domestic", "value": "international"} [alien]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [full-time](enrollment_status) [faculty](people) who are [non resident]{"entity": "international_domestic", "value": "international"} [aliens]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [full-time](enrollment_status) [faculty](people) who are [non-resident]{"entity": "international_domestic", "value": "international"} [aliens]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [full-time](enrollment_status) [faculty](people) who are [international]{"entity": "international_domestic", "value": "international"} student
+    - What is the total number of [full-time](enrollment_status) [faculty](people) who are [nonresident] [aliens]{"entity":"citizen_non_citizen", "value": "non-citizen"}
     - What is the total number of [full-time](enrollment_status) [faculty](people) who are [women]{"entity": "gender", "value": "female"}
     - What is the total number of [full-time](enrollment_status) [faculty](people) who have have a [bachelor's]{"entity": "degree_level", "value": "bachelors"} degree
     - What is the total number of [full-time](enrollment_status) [faculty](people) who have have a [doctorate](degree_level) degree
     - What is the total number of [full-time](enrollment_status) [faculty](people) who have have a [doctors]{"entity": "degree_level", "value": "doctorate"} degree
     - What is the total number of [full-time](enrollment_status) [faculty](people) who have have a [master](degree_level) degree
-    - What is the total number of [full-time](enrollment_status) [faculty](people) who have have a [masters]{"entity": "degree_level", "value": "master"} degree
+    - What is the total number of [full-time](enrollment_status) [faculty](people) who have have a [master]{"entity": "degree_level", "value": "master"} degree
     - What is the total number of [full-time](enrollment_status) [faculty](people) whose [highest]{"entity": "aggregation", "value": "maximum"} degree is [unknown]{"entity": "race", "value":"unknown"}
     - What is the total number of [full-time](enrollment_status) [faculty](people) whose [highest]{"entity": "aggregation", "value": "maximum"} degree is a [bachelor's]{"entity": "degree_level", "value": "bachelors"}
     - What is the total number of [full-time](enrollment_status) [faculty](people) whose [highest]{"entity": "aggregation", "value": "maximum"} degree is a [doctorate](degree_level)
@@ -68,11 +68,11 @@ nlu:
     - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [men]{"entity": "gender", "value": "male"}
     - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [minorities]{"entity": "race", "value": "minority"}
     - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [minority](race)
-    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [non resident]{"entity": "race", "value": "international"} alien
-    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [non resident]{"entity": "race", "value": "international"} aliens
-    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [non-resident]{"entity": "race", "value": "international"} aliens
-    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [nonresident]{"entity": "race", "value": "international"} aliens
-    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [nonresident]{"entity": "race", "value": "international"} aliens
+    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [non resident]{"entity": "international_domestic", "value": "international"} [alien]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [non resident]{"entity": "international_domestic", "value": "international"} [aliens]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [non-resident]{"entity": "international_domestic", "value": "international"} [aliens]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [nonresident] [aliens]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [nonresident] [aliens]{"entity":"citizen_non_citizen", "value": "non-citizen"}
     - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [women]{"entity": "gender", "value": "female"}
     - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who have have a [bachelor's]{"entity": "degree_level", "value": "bachelors"} degree
     - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who have have a [doctorate](degree_level) degree
@@ -89,11 +89,11 @@ nlu:
     - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [men]{"entity": "gender", "value": "male"}
     - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [minorities]{"entity": "race", "value": "minority"}
     - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [minority](race)
-    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [non resident]{"entity": "race", "value": "international"} alien
-    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [non resident]{"entity": "race", "value": "international"} aliens
-    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [non-resident]{"entity": "race", "value": "international"} aliens
-    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [nonresident]{"entity": "race", "value": "international"} aliens
-    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [nonresident]{"entity": "race", "value": "international"} aliens
+    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [non resident]{"entity": "international_domestic", "value": "international"} [alien]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [non resident]{"entity": "international_domestic", "value": "international"} [aliens]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [non-resident]{"entity": "international_domestic", "value": "international"} [aliens]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [nonresident] [aliens]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [nonresident] [aliens]{"entity":"citizen_non_citizen", "value": "non-citizen"}
     - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [women]{"entity": "gender", "value": "female"}
     - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who have have a [bachelor's]{"entity": "degree_level", "value": "bachelors"} degree
     - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who have have a [doctorate](degree_level) degree
@@ -110,11 +110,11 @@ nlu:
     - What is the total number of [part-time](enrollment_status) [faculty](people) who are [men]{"entity": "gender", "value": "male"}
     - What is the total number of [part-time](enrollment_status) [faculty](people) who are [minorities]{"entity": "race", "value": "minority"}
     - What is the total number of [part-time](enrollment_status) [faculty](people) who are [minority](race)
-    - What is the total number of [part-time](enrollment_status) [faculty](people) who are [non resident]{"entity": "race", "value": "international"} alien
-    - What is the total number of [part-time](enrollment_status) [faculty](people) who are [non resident]{"entity": "race", "value": "international"} aliens
-    - What is the total number of [part-time](enrollment_status) [faculty](people) who are [non-resident]{"entity": "race", "value": "international"} aliens
-    - What is the total number of [part-time](enrollment_status) [faculty](people) who are [nonresident]{"entity": "race", "value": "international"} aliens
-    - What is the total number of [part-time](enrollment_status) [faculty](people) who are [nonresident]{"entity": "race", "value": "international"} aliens
+    - What is the total number of [part-time](enrollment_status) [faculty](people) who are [non resident]{"entity": "international_domestic", "value": "international"} [alien]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [part-time](enrollment_status) [faculty](people) who are [non resident]{"entity": "international_domestic", "value": "international"} [aliens]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [part-time](enrollment_status) [faculty](people) who are [non-resident]{"entity": "international_domestic", "value": "international"} [aliens]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [part-time](enrollment_status) [faculty](people) who are [nonresident] [aliens]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [part-time](enrollment_status) [faculty](people) who are [nonresident] [aliens]{"entity":"citizen_non_citizen", "value": "non-citizen"}
     - What is the total number of [part-time](enrollment_status) [faculty](people) who are [women]{"entity": "gender", "value": "female"}
     - What is the total number of [part-time](enrollment_status) [faculty](people) who have have a [bachelor's]{"entity": "degree_level", "value": "bachelors"} degree
     - What is the total number of [part-time](enrollment_status) [faculty](people) who have have a [doctorate](degree_level) degree
@@ -134,11 +134,11 @@ nlu:
     - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [men]{"entity": "gender", "value": "male"}
     - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [minorities]{"entity": "race", "value": "minority"}
     - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [minority](race)
-    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [non resident]{"entity": "race", "value": "international"} alien
-    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [non resident]{"entity": "race", "value": "international"} aliens
-    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [non-resident]{"entity": "race", "value": "international"} aliens
-    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [nonresident]{"entity": "race", "value": "international"} aliens
-    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [nonresident]{"entity": "race", "value": "international"} aliens
+    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [non resident]{"entity": "international_domestic", "value": "international"} [alien]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [non resident]{"entity": "international_domestic", "value": "international"} [aliens]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [non-resident]{"entity": "international_domestic", "value": "international"} [aliens]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [nonresident] [aliens]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [nonresident] [aliens]{"entity":"citizen_non_citizen", "value": "non-citizen"}
     - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [women]{"entity": "gender", "value": "female"}
     - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who have have a [bachelor's]{"entity": "degree_level", "value": "bachelors"} degree
     - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who have have a [doctorate](degree_level) degree
@@ -155,11 +155,11 @@ nlu:
     - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [men]{"entity": "gender", "value": "male"}
     - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [minorities]{"entity": "race", "value": "minority"}
     - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [minority](race)
-    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [non resident]{"entity": "race", "value": "international"} alien
-    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [non resident]{"entity": "race", "value": "international"} aliens
-    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [non-resident]{"entity": "race", "value": "international"} aliens
-    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [nonresident]{"entity": "race", "value": "international"} aliens
-    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [nonresident]{"entity": "race", "value": "international"} aliens
+    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [non resident]{"entity": "international_domestic", "value": "international"} [alien]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [non resident]{"entity": "international_domestic", "value": "international"} [aliens]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [non-resident]{"entity": "international_domestic", "value": "international"} [aliens]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [nonresident] [aliens]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [nonresident] [aliens]{"entity":"citizen_non_citizen", "value": "non-citizen"}
     - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [women]{"entity": "gender", "value": "female"}
     - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who have have a [bachelor's]{"entity": "degree_level", "value": "bachelors"} degree
     - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who have have a [doctorate](degree_level) degree
