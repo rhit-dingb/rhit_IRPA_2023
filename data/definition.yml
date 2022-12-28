@@ -6,74 +6,65 @@ nlu:
     - What is the meaning of life?
     - Yo chatbot, what is the meaning of my life?
 
-    - What is the [definition]{"entity": "definition", "value": "definition"} of [academic advisement]{"entity": "program_offered", "value":"academic advisement"}
+    - What is the definition of [academic advisement]{"entity": "program_offered", "value":"academic advisement"}
     
-    - What is the [definition]{"entity": "definition", "value": "definition"} of [academic advising]{"entity": "program_offered", "value":"academic advisement"}
+    - What is the definition of [academic advising]{"entity": "program_offered", "value":"academic advisement"}
     
 
-    - What is the [definition]{"entity": "definition", "value": "definition"} of [accelerated]{"entity":"program_offered", "value": "accelerated"} program ?
-    - What is the [definition]{"entity": "definition", "value": "definition"} of [admitted]{"entity": "action", "value": "admitted"} [student]{"entity":"people", "value": "student"} ?
+    - What is the definition of [accelerated]{"entity":"program_offered", "value": "accelerated"} [program]{"entity": "organizational_term", "value": "program"} ? ?
+    - What is the definition of [admitted]{"entity": "action", "value": "admitted"} [student]{"entity":"people", "value": "student"} ?
 
-    - What is the [definition]{"entity": "definition", "value": "definition"} of [adult student]{"entity":"service_offered", "value": "adult student service"} service? 
+    - What is the definition of [adult student]{"entity":"service_offered", "value": "adult student service"} [service]{"entity": "organizational_term", "value": "service"} ? 
     
-    # - What is the [definition]{"entity": "definition", "value": "definition"} of american indian or alaska native?
-    
-    - What is the [definition]{"entity": "definition", "value": "definition"} of first-time first-year [applicant]{"entity":"people", "value": "applicant"}?
+    - What is the definition of first-time first-year [applicant]{"entity":"people", "value": "applicant"}?
 
-    - What is the [definition]{"entity": "definition", "value": "definition"} of [application]{"entity": "appplication", "value": "application"} [fee]{"entity":"money", "value":"fee"}?
+    - What is the definition of [application]{"entity":"academic_process", "value": "application"} [fee]{"entity":"money", "value":"fee"}?
 
-    # - What is the [definition]{"entity": "definition", "value": "definition"} of asian?
+    - What is the definition for [board]{"entity": "living_cost", "value": "board"}?
+    - What is the definition for [books]{"entity": "school_supply", "value": "book"} and [supplies]{"entity": "school_supply", "value": "supply"} [costs]{"entity":"money", "value":"cost"}?
 
-    # - What the [definition]{"entity": "definition", "value": "definition"} of associate degree?
-    # - What is the [definition]{"entity": "definition", "value": "definition"} of bachelor's degree?
-    # - What is the [definition]{"entity": "definition", "value": "definition"} of black or african
+    - What is the definition for [calendar system]{"entity": "calendar_system", "value": "calendar system"}?
+    - What is the definition for [campus ministry]{"entity": "activity_offered", "value": "campus ministry"} ?
 
-
-    - What is the [definition]{"entity": "definition", "value": "definition"} for [board]{"entity": "living_cost", "value": "board"}?
-    - What is the [definition]{"entity": "definition", "value": "definition"} for [books]{"entity": "school_supply", "value": "book"} and [supplies]{"entity": "school_supply", "value": "supply"} [costs]{"entity":"money", "value":"cost"}?
-
-    - What is the [definition]{"entity": "definition", "value": "definition"} for [calendar system]{"entity": "calendar_system", "value": "calendar system"}?
-    - What is the [definition]{"entity": "definition", "value": "definition"} for [campus ministry]{"entity": "activity_offered", "value": "campus ministry"} ?
-
-    - What is [career and placement]{"entity": "service_offered", "value": "career"}? services
-    - What is the [meaning]{"entity": "definition", "value": "definition"} of [career and placement]{"entity": "service_offered", "value": "career"}? service
-    - can you [explain]{"entity": "definition", "value": "definition"} [career]{"entity": "service_offered", "value": "career"}? services
-    - What is the [definition]{"entity": "definition", "value": "definition"} for [career and placement]{"entity": "service_offered", "value": "career"}? services
+    - What is [career and placement]{"entity": "service_offered", "value": "career"} [services]{"entity": "organizational_term", "value": "service"} ?
+    - What is the meaning of [career and placement]{"entity": "service_offered", "value": "career"} service
+    - can you explain [career]{"entity": "service_offered", "value": "career"}? [services]{"entity": "organizational_term", "value": "service"} ?
+    - What is the definition for [career and placement]{"entity": "service_offered", "value": "career"} [services]{"entity": "organizational_term", "value": "service"} ?
 
 
-    - What is the [definition]{"entity": "definition", "value": "definition"} for [carnegie]{"entity": "unit_type", "value": "carnegie"} [units]{"entity":"academic_credit", "value": "unit"}?
+    - What is the definition for [carnegie]{"entity": "unit_type", "value": "carnegie"} [units]{"entity":"academic_credit", "value": "unit"}?
 
-    - What is the [definition]{"entity": "definition", "value": "definition"} for [certificate]{"entity": "academic_credential", "value": "certificate"}?
+    - What is the definition for [certificate]{"entity": "academic_credential", "value": "certificate"}?
 
-    - What is the [definition]{"entity": "definition", "value": "definition"} for [class rank]{"entity": "academic_factor", "value": "class rank"}?
+    - What is the definition for [class rank]{"entity": "academic_factor", "value": "class rank"}?
 
-    - What is the [definition]{"entity": "definition", "value": "definition"} for [college-preparatory]{"entity": "program_offered", "value": "college-preparatory"} program?
+    - What is the definition for [college-preparatory]{"entity": "program_offered", "value": "college-preparatory"} [program]{"entity": "organizational_term", "value": "program"} ??
 
-    - What is the [definition]{"entity": "definition", "value": "definition"} of a [commuter]{"entity":"category", "value":"commute"}?
+    - What is the definition of a [commuter]{"entity":"category", "value":"commute"}?
 
-    - What is the [definition]{"entity": "definition", "value": "definition"} for [contact hour]{"entity": "contact hour", "value": "contact hour"}?
+    - What is the definition for [contact hour]{"entity": "contact hour", "value": "contact hour"}?
 
-    - What is the [definition]{"entity": "definition", "value": "definition"} for [clock hour]{"entity": "contact hour", "value": "contact hour"}?
+    - What is the definition for [clock hour]{"entity": "contact hour", "value": "contact hour"}?
 
-    - What is the [definition]{"entity": "definition", "value": "definition"} for [continuous basis]{"entity": "calendar_system", "value": "continuous basis"} for program enrollment?
+    - What is the definition for [continuous basis]{"entity": "calendar_system", "value": "continuous basis"} for [program]{"entity": "organizational_term", "value": "program"} ? enrollment?
 
-    - What is the [definition]{"entity": "definition", "value": "definition"} for [cooperative education]{"entity": "program_offered", "value": "cooperative education"} program?
+    - What is the definition for [cooperative education]{"entity": "program_offered", "value": "cooperative education"} [program]{"entity": "organizational_term", "value": "program"} ??
 
-    - What is the [definition]{"entity": "definition", "value": "definition"} for [cooperative]{"entity": "program_offered", "value": "cooperative"} [housing]{"entity": "housing", "value": "housing"} program?
+    - What is the definition for [cooperative]{"entity": "program_offered", "value": "cooperative"} [housing]{"entity": "housing", "value": "housing"} [program]{"entity": "organizational_term", "value": "program"} ??
 
-    - What is the [definition]{"entity": "definition", "value": "definition"} for [counseling]{"entity": "service_offered", "value": "couseling"} service?
+    - What is the definition for [counseling]{"entity": "service_offered", "value": "couseling"} [service]{"entity": "organizational_term", "value": "service"} ?
 
-    - What is the [definition]{"entity": "definition", "value": "definition"} for [credit]{"entity":"academic_credit", "value": "credit"}?
+    - What is the definition for [credit]{"entity":"academic_credit", "value": "credit"}?
 
-    - What is the [definition]{"entity": "definition", "value": "definition"} for [credit course]{"entity":"credit_course", "value": "credit"}?
+    - What is the definition for [credit course]{"entity":"credit_course", "value": "credit"}?
 
-    - What is the [definition]{"entity": "definition", "value": "definition"} for [cross-registration]{"entity":"program_offered", "value": "cross-registration"}?
+    - What is the definition for [cross-registration]{"entity":"program_offered", "value": "cross-registration"}?
 
-    - What is the [definition]{"entity": "definition", "value": "definition"} for [degree]{"entity": "academic_credential", "value": "degree"}?
+    - What is the definition for [degree]{"entity": "academic_credential", "value": "degree"}?
 
-    - What is the [definition]{"entity": "definition", "value": "definition"} for [degree seeking]{"entity": "degree-goal", "value": "degree-seeking"} [students]{"entity": "people", "value": "student"}?
+    - What is the definition for [degree seeking]{"entity": "degree-goal", "value": "degree-seeking"} [students]{"entity": "people", "value": "student"}?
 
-    - What is the [definition]{"entity": "definition", "value": "definition"} for [differs by program]{"entity": "calendar_system", "value": "differs by program"}
+    - What is the definition for [differs by program]{"entity": "calendar_system", "value": "differs by program"}
 
     - What does [diploma]{"entity": "academic_credential", "value": "diploma"} [mean]{"entity": "definition", "value": "definition"}? 
 
@@ -97,55 +88,43 @@ nlu:
 
     - What is the definition of [early decision]{"entity": "early-admission", "value": "early decision" } plan?
 
-    - What is the definition of english as second language?
+    - What is the definition of [english as second language]{"entity":"program_offered", "value": "english as second language"}?
 
-    - What is the definition of [exchange]{"entity": "category", "value": "exchange"} [student]{"entity": "people", "value": "student"} program - [domestic]{"entity":"international_domestic", "value":"domestic"}?
+    - What is [esl]{"entity":"program_offered", "value": "english as second language"}?
+
+    - What is the definition of [exchange]{"entity": "category", "value": "exchange"} [student]{"entity": "people", "value": "student"} [program]{"entity": "organizational_term", "value": "program"} ? - [domestic]{"entity":"international_domestic", "value":"domestic"}?
 
     # might want to redefine the label for external
-    #- What is the definition of [external]{"entity": "financial_aid_type", "value": "external"} [degree]{"entity": "academic_credential", "value": "degree"} program?
+    #- What is the definition of [external]{"entity": "financial_aid_type", "value": "external"} [degree]{"entity": "academic_credential", "value": "degree"} [program]{"entity": "organizational_term", "value": "program"} ??
     
-    - What is the definition of [external degree]{"entity": "program_offered", "value": "external degree"} program?
+    - What is the definition of [external degree]{"entity": "program_offered", "value": "external degree"} [program]{"entity": "organizational_term", "value": "program"} ??
 
     - What is the definition of [extracurricular activities]{"entity": "academic_factor", "value": "extracurricular activities"}?
 
-    # - What is the definition of first-time student?
-
-    # - What is the definition of first time first-year freshman student?
-
-    # What is the definition of first-year student?
-
-    # What is the definition of freshman?
-
+ 
     - What is the definition of [freshman]{"entity":"undergraduate_grade_level", "value": "freshman"} or [new student]{"entity":"undergraduate_grade_level", "value": "freshman"} [orientation]{"entity": "activity_offered", "value": "orientation"}?
-
-    # What is the definition for an undergraduate full-time student?
 
     - What is the definition for [geographical residence]{"entity": "non_academic_factor", "value": "geographical residence"} ?
 
-    # What is the definition for grade point average?
 
-    # What is the definition for graduate student
+    - What is the definition for [health]{"entity": "service_offered", "value": "health"} [service]{"entity": "organizational_term", "value": "service"} ?
 
-    - What is the definition for [health]{"entity": "service_offered", "value": "health"} service?
-
-    # What is the definition for high school diploma or recognized equivalent?
-
-    # What is the definition of hispanic or latino?
+  
 
     - What is the definition of [independent study]{"entity": "program_offered", "value": "independent study"}?
 
     #Might wanna the entity label here
     - What is the definition of [in-state]{"entity":"financial_aid_type", "value": "state"} [tuition]{"entity": "money", "value": "tuition"}?
 
-    # What is the definition of international student or nonresident alien? 
 
-    - What is the definition of [international]{"entity":"international_domestic", "value": "international"} [student]{"entity":"people", "value": "student"} [group]{"entity": "organization_term", "value": "group"}?
+
+    - What is the definition of [international]{"entity":"international_domestic", "value": "international"} [student]{"entity":"people", "value": "student"} [group]{"entity": "organizational_term", "value": "group"}?
 
     - What is the definition of [internship]{"entity":"industry_experience", "value":"internship"} ?
 
-    - What is the definition of [learning]{"entity": "service_offered", "value": "learning"} center?
+    - What is the definition of [learning]{"entity": "service_offered", "value": "learning"} [center]{"entity": "organizational_term", "value": "center"}?
 
-    - What is the definition of [legal]{"entity": "service_offered", "value": "legal"} services?
+    - What is the definition of [legal]{"entity": "service_offered", "value": "legal"} [services]{"entity": "organizational_term", "value": "service"} ??
 
     - What is the definition of [liberal arts]{"entity": "subject", "value": "liberal arts"} and [career]{"entity": "service_offered", "value": "career"} combination
 
@@ -153,11 +132,11 @@ nlu:
 
     - What is the definition of [minority]{"entity": "race", "value": "minority"} affiliation as admission factor?
 
-    - What is the definition of [minority]{"entity": "race", "value": "minority"} [student]{"entity":"people", "value": "student"} center?
+    - What is the definition of [minority]{"entity": "race", "value": "minority"} [student]{"entity":"people", "value": "student"} [center]{"entity": "organizational_term", "value": "center"}?
 
     - What is the definition of [model united nations]{"entity":"program_offered", "value": "model united nation"}?
 
-    # What is the definition of native hawaiian or other pacific islander?
+
 
     - What is the definition for on-campus [day care]{"entity":"service_offered", "value": "day care"}?
 
@@ -169,8 +148,6 @@ nlu:
 
     #Will have to relabel this probably
     - What is the definition for [out-of-state]{"entity": "financial_aid_type", "value": "out of state"} [tuition]{"entity":"money", "value":"tuition"}?
-
-    # - What is the definition for part-time student?
 
     - What is the definition for personal [counseling]{"entity": "service_offered", "value": "couseling"}?
 
@@ -199,19 +176,16 @@ nlu:
     - What is the definition of [quarter]{"entity": "calendar_system", "value": "quarter"} [calendar system]{"entity": "calendar_system", "value": "calendar system"}?
     - What is the definition of [race/ethnicity]{"entity":"non_academic_factor", "value": "racial/ethnic status]"}?
 
-    # - What is the definition of religious affiliation/commitment as admission factor?
 
     - What is the definition for [religious]{"entity": "non_academic_factor", "value": "religion" } [counseling]{"entity": "service_offered", "value": "couseling"}?
 
-    - What is the definition for [remedial]{"entity": "service_offered", "value": "remedial"} service?
+    - What is the definition for [remedial]{"entity": "service_offered", "value": "remedial"} [service]{"entity": "organizational_term", "value": "service"} ?
 
-    # What is the definition for required fees?
 
     - What is the definition for [resident]{"entity": "international_domestic", "value": "domestic"} [alien]{"entity": "citizen_non_citizen", "value": "non-citizen"} or other eligible non-citizen?
 
     - What is the definition for [room]{"entity": "living_cost", "value": "room"} and [board]{"entity": "living_cost", "value": "board"} [charges]{"entity": "money", "value": "cost"} ?
 
-    # What is the definition for secondary school record?
 
     - What is the definition for [semester]{"entity": "calendar_system", "value": "semester"} [calendar system]{"entity": "calendar_system", "value": "calendar system"}?
 
@@ -221,9 +195,9 @@ nlu:
 
     - What is the definition for [summer session]{"entity": "program_offered", "value":"summer session"}?
 
-    # What is the definition for talent/ability?
+    - What is the definition for [honors]{"entity": "program_offered", "value":"honors"} program?
 
-    - What is the definition for [teacher]{"entity": "people", "value": "teacher", "value": "people"} [certification]{"entity": "academic_credential", "value": "certificate"} program?
+    - What is the definition for [teacher]{"entity": "people", "value": "teacher", "value": "people"} [certification]{"entity": "academic_credential", "value": "certificate"} [program]{"entity": "organizational_term", "value": "program"} ??
 
     - What is the definition for [transfer]{"entity":"category", "value":"transfer"} [applicant]{"entity":"people", "value":"applicant"}?
 
@@ -233,14 +207,7 @@ nlu:
 
     - What is the definition for [trimester]{"entity": "calendar_system", "value": "trimester"} [calendar system]{"entity": "calendar_system", "value": "calendar system"}?
 
-    # What is the definition for tuition?
-
     - What is the definition for [tutoring]{"entity": "service_offered", "value": "tutoring"}?
-
-    # What is the definition for unit?
-
-    # - What is the definition for undergraduate?
-
 
     - What is the definition for [veteran's]{"entity":"people", "value": "student"} [counseling]{"entity": "service_offered", "value": "couseling"}?
 
@@ -253,12 +220,69 @@ nlu:
     #Might relabel this?? Im not sure yet.
     - What is the definition for [weekend college]{"entity": "program_offered", "value": "weekend college"} ?
 
+    - What is the definition of [woman's]{"entity":"gender", "value": "female"} [center]{"entity": "organizational_term", "value": "center"}?
+
+    - What is the definition for [indebetedness]{"entity":"indebtedness", "value": "indebtedness"} ?
+
+
+    # - What is the definition of american indian or alaska native?
+    # - What is the definition of asian?
+
+    # - What the definition of associate degree?
+    # - What is the definition of bachelor's degree?
+    # - What is the definition of black or african
+
+    # - What is the definition of first-time student?
+
+    # - What is the definition of first time first-year freshman student?
+
+    # What is the definition of first-year student?
+
+    # What is the definition of freshman?
+
+    # What is the definition for an undergraduate full-time student?
+
+    # What is the definition for grade point average?
+
+    # What is the definition for graduate student
+    # What is the definition of native hawaiian or other pacific islander?
+
+    # What is the definition of international student or nonresident alien? 
+    # What is the definition for high school diploma or recognized equivalent?
+
+    # What is the definition of hispanic or latino?
+
+    # - What is the definition for part-time student?
+
+    # - What is the definition of religious affiliation/commitment as admission factor?
+
+    
+    # What is the definition for secondary school record?
+    
+    # What is the definition for required fees?
+    # What is the definition for talent/ability?
+
+    # What is the definition for tuition?
+    # What is the definition for unit?
+
+    # - What is the definition for undergraduate?
+
     # - What is the definition of white?
-
-    - What is the definition of [woman's]{"entity":"gender", "value": "female"} center?
-
     # - What is the definition of work experience as admission factor?
 
+
+
+- lookup: program_offered
+  examples: |
+    - cooperative
+    - cooperative education
+    - weekend college
+    - external degree
+    - independent study
+    - model united nations
+    - professional practice
+    
+    
 
 - synonym: academic advisement
   examples: |
@@ -316,3 +340,8 @@ nlu:
 - synonym: remedial
   examples: |
     - remedy
+
+- synonym: program
+  examples: |
+    - programs
+

@@ -29,7 +29,29 @@ stories:
   - action: utter_goodbye
 
 
-- story: ask_about_financial)aid_helpful
+
+
+- story: ask_about_definition_helpful
+  steps:
+    - intent: definition
+    - action: action_query_knowledgebase
+    - action: utter_ask_answer_helpful
+    - intent: affirm
+    - checkpoint: ask_feedback
+
+- story: ask_about_definition_not_helpful
+  steps:
+    - intent: definition
+    - action: action_query_knowledgebase
+    - action: utter_ask_answer_helpful
+    - intent: deny
+    - action: utter_sorry_question_not_helpful
+    - action: action_get_available_options
+
+
+
+
+- story: ask_about_financial_aid_helpful
   steps:
     - intent: financial_aid
     - action: action_query_knowledgebase

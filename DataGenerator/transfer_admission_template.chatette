@@ -11,7 +11,7 @@
 
     // At which \[term\]\{"entity": "academic_term", "value": "term" \} may transfer students \[enroll\]\{"entity": "action", "value": "enrolled"\} 
 
-    // Does a transfer applicant need to have @[aggregation] number of @[unit_type] completed or else they must apply as an entering \[freshman\]\{"entity": "undergraduate_grade_level", "value": "freshman"\}?
+    // Does a transfer applicant need to have @[aggregation] number of @[academic_credit] completed or else they must apply as an entering \[freshman\]\{"entity": "undergraduate_grade_level", "value": "freshman"\}?
 
     // Is @[academic_factor] required for transfer student to apply for admission at Rose-Hulman
 
@@ -19,7 +19,7 @@
 
     // Does Rose-Hulman require @[academic_factor] to apply for transfer admission?
 
-    // What is the @[aggregation] @[unit_type] and the @[unit_of_measure] required to apply for transfer admission?
+    // What is the @[aggregation] @[academic_credit] and the @[unit_of_measure] required to apply for transfer admission?
 
     // What is the @[aggregation] @[education_level] \[grade point average\]\{"entity": "academic_factor", "value": "gpa"\} required of transfer applicants?
 
@@ -63,7 +63,7 @@
     highest = maximum
     most = maximum
 
-@[unit_type]
+@[academic_credit]
     credit = credit
     credits = credit
 

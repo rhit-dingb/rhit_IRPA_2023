@@ -153,8 +153,6 @@ class enrollment_test(unittest.TestCase):
                                                                        "first-year"),
                                                                    createEntityObjHelper(
                                                                        "first-time"),
-                                                                    createEntityObjHelper("2020", "year", "from"),
-                                                                    createEntityObjHelper("2021", "year", "to"),
                                                                    createEntityObjHelper("degree-seeking")], self.defaultShouldAddRowStrategy, self.extractOutput)
         self.assertEqual(answers, [str(31)])
 

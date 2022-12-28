@@ -1,0 +1,28 @@
+
+# I realized a word can be mapped to different entities. So here, I map number to phone.
+
+version: "3.1"
+nlu:
+- intent: general_info
+  examples: |
+    - What is Rose-Hulman's mailing [address]{"entity":"way_of_contact", "value": "address"}?
+    - What is Rose-Hulman [admissions]{"entity":"academic_process", "value": "admission"} [phone]{"entity":"way_of_contact", "value": "phone"} [number]{"entity":"way_of_contact", "value": "phone"} ?
+    - What is Rose-Hulman [admissions]{"entity":"academic_process", "value": "admission"} [phone]{"entity":"way_of_contact", "value": "phone"} ?
+    - What is Rose-Hulman [admissions]{"entity":"academic_process", "value": "admission"} [phone]{"entity":"way_of_contact", "value": "phone"} ?
+    - What is Rose-Hulman [admissions]{"entity":"academic_process", "value": "admission"} [number]{"entity":"way_of_contact", "value": "phone"} ?
+    - What is Rose-Hulman [admissions]{"entity":"academic_process", "value": "admission"} [fax]{"entity":"way_of_contact", "value": "fax"} [number]{"entity":"way_of_contact", "value": "phone"}? 
+
+
+    - What is Rose-Hulman's www home page [address]{"entity":"way_of_contact", "value": "address"} / [website]{"entity":"way_of_contact", "value": "website"}?
+    - What is Rose-Hulman [admissions]{"entity":"academic_process", "value": "admission"} toll free [number]{"entity":"way_of_contact", "value": "number"}?
+    - What is Rose-Hulman [admissions]{"entity":"academic_process", "value": "admission"} office mailing [address]{"entity":"way_of_contact", "value": "address"}?
+
+    - What is Rose-Hulman's [email address]{"entity": "way_of_contact", "value":"email"} ?
+    - What is Rose-Hulman's [email]{"entity": "way_of_contact", "value":"email"} ?
+    - What is the [website]{"entity":"way_of_contact", "value": "website"} for Rose-Hulman's [online]{"entity": "online"} [application]{"entity":"academic_process", "value": "application"}?
+    - What is the source of [institutional control]{"entity": "access_control", "value": "institutional control"} for Rose-Hulman.
+    - Is the Rose-Hulman a [private]{"entity": "access_control", "value": "private"} or [public]{"entity": "access_control", "value": "public"} [college]{"entity": "education_level", "value": "college"}?
+    - Is Rose-Hulman a [coeducational]{"entity": "gender", "value": "coeducational"} [college]{"entity": "education_level", "value": "college"}, [men's]{"entity": "gender", "value": "male"} college or [women's]{"entity": "gender", "value": "female"} [college]{"entity": "education_level", "value": "college"}?
+    - What [academic year calendar]{"entity": "calendar_system", "value": "calendar system"} does Rose-Hulman use? 
+    - Does Rose-hulman use [quarter]{"entity": "calendar_system", "value": "quarter"}, [semester]{"entity": "calendar_system", "value": "semester"}, [trimester]{"entity": "calendar_system", "value": "trimester"}, [continuous]{"entity": "calendar_system", "value": "continuous basis"}, [4-1-4]{"entity": "calendar_system", "value": "4-1-4"}, or does it [differ by program]{"entity": "calendar_system", "value": "differ by program"}?
+    - What [degrees]{"entity": "academic_credential", "value":"degree"} are offered by Rose-Hulman?

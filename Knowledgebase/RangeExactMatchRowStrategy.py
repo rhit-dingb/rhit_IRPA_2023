@@ -19,10 +19,8 @@ class RangeExactMatchRowStrategy(ShouldAddRowInterface):
         rangeFound  = sparseMatrix.findRangeForRow(row)
         rangeFound = list(filter(lambda x : not (x == None or x == float('-inf') or x == float('inf')), rangeFound ))
         rangeEntityProvided = []
-        
-        matchCount = 0
 
-      
+        matchCount = 0
         for entityValue in entities:
             try:
                 entityValue = float(entityValue)
@@ -39,6 +37,7 @@ class RangeExactMatchRowStrategy(ShouldAddRowInterface):
                     continue
 
         if matchCount == len(rangeEntityProvided) and len(rangeFound) == len(rangeEntityProvided):
+
             return entities
         else:
             return []

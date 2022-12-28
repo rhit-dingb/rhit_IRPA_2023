@@ -1708,7 +1708,7 @@ nlu:
 - intent: admission
   examples: |
     - I want to know about admission.
-    - I want to know about admission data.
+    - I want to know about [admission]{"entity":"academic_process", "value":"admission"} data.
     
     
     - How many [male]{"entity": "gender", "value": "male"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}  [applied]{"entity": "action", "value": "applied"} in Rose-Hulman?
@@ -1733,8 +1733,8 @@ nlu:
     - Is there any [wait list]{"entity":"waiting-list", "value": "waiting-list"} policy
 
 
-    - What's the number of students did you [offered]{"entity": "offered", "value": "offered"} a place on [waiting-list]{"entity":"waiting-list"}?
-    - How many students are [offered]{"entity": "offered", "value": "offered"} a [waiting-list]{"entity":"waiting-list"} position?
+    - What's the number of students did you offered a place on [waiting-list]{"entity":"waiting-list"}?
+    - How many students are offered a [waiting-list]{"entity":"waiting-list"} position?
 
     - How many students [accepted]{"entity": "action", "value": "accepted"} [waiting-list]{"entity":"waiting-list"} ?
     - What's the number of students who [accepted]{"entity": "action", "value": "accepted"} [waiting-list]{"entity":"waiting-list"} ?
@@ -1751,15 +1751,15 @@ nlu:
 
     - Are first-time, first-year students [accepted]{"entity": "action", "value": "accepted"} for [terms]{"entity":"academic_term", "value":"term"} [other]{"entity": "other", "value":"other"} than the [fall]{"entity":"academic_term", "value":"fall"} ?
     - Are  students [accepted]{"entity": "action", "value": "accepted"} for [terms]{"entity":"academic_term", "value":"term"} [other]{"entity": "other", "value":"other"} than the [fall]{"entity":"academic_term", "value":"fall"} ?
-    - What is the [closing]{"entity": "admission_decision_date", "value": "closing"} [date]{"entity": "time" , "value": "date"} for [application]{"entity":"application", "value":"application"}?
+    - What is the [closing]{"entity": "admission_decision_date", "value": "closing"} [date]{"entity": "time" , "value": "date"} for [application]{"entity":"academic_process", "value":"application"}?
 
-    - What [date]{"entity": "time" , "value": "date"} is the [closing]{"entity": "admission_decision_date", "value": "closing"} [date]{"entity": "time" , "value": "date"} for [application]{"entity":"application", "value":"application"}?
+    - What [date]{"entity": "time" , "value": "date"} is the [closing]{"entity": "admission_decision_date", "value": "closing"} [date]{"entity": "time" , "value": "date"} for [application]{"entity":"academic_process", "value":"application"}?
 
     - What is the [priority]{"entity": "admission_decision_date", "value": "closing"} [date]{"entity": "time" , "value": "date"} ?
 
-    - What is the [priority]{"entity": "admission_decision_date" , "value": "priority"} [date]{"entity": "time" , "value": "date"} for [application]{"entity":"application", "value":"application"}?
-    - What is the [notification]{"entity": "admission_decision_date" , "value": "notification"} [date]{"entity": "time" , "value": "date"} for [application]{"entity":"application", "value":"application"}?
-    - What is the [notification]{"entity": "admission_decision_date" , "value": "notification"} [date]{"entity": "time" , "value": "date"} to applicants of admission decision sent?
+    - What is the [priority]{"entity": "admission_decision_date" , "value": "priority"} [date]{"entity": "time" , "value": "date"} for [application]{"entity":"academic_process", "value":"application"}?
+    - What is the [notification]{"entity": "admission_decision_date" , "value": "notification"} [date]{"entity": "time" , "value": "date"} for [application]{"entity":"academic_process", "value":"application"}?
+    - What is the [notification]{"entity": "admission_decision_date" , "value": "notification"} [date]{"entity": "time" , "value": "date"} to applicants of [admission]{"entity":"academic_process", "value":"admission"} decision sent?
     
     - What is the [reply]{"entity": "admission_decision_date" , "value": "reply"} policy for admitted applicants?
     - What is the [reply]{"entity": "admission_decision_date" , "value": "reply"} policy?
@@ -1783,25 +1783,25 @@ nlu:
 
     - Do your [institute]{"entity":"education_level", "value": "college"} offer [early action]{"entity": "early-admission", "value": "early action" }?
 
-    - Do your [institute]{"entity":"education_level", "value": "college"} have [application]{"entity": "application", "value":"application" } [fee]{"entity":"money", "value": "fee"}?
+    - Do your [institute]{"entity":"education_level", "value": "college"} have [application]{"entity":"academic_process", "value":"application" } [fee]{"entity":"money", "value": "fee"}?
 
     - Does your [institute]{"entity":"education_level", "value": "college"} allow [early admission]{"entity": "early-admission", "value": "early admission" } of [high school]{"entity": "education_level", "value": "high school"} students
 
-    - Is there any [application]{"entity": "application", "value": "application"} [fee]{"entity":"money", "value": "fee"} for applicants?
+    - Is there any [application]{"entity":"academic_process", "value": "application"} [fee]{"entity":"money", "value": "fee"} for applicants?
 
-    - Can [application]{"entity": "application", "value":"application" } [fee]{"entity":"money", "value": "fee"} be [waived]{"entity": "other_aid", "value":"waiver" }?
+    - Can [application]{"entity":"academic_process", "value":"application" } [fee]{"entity":"money", "value": "fee"} be [waived]{"entity": "other_aid", "value":"waiver" }?
     
-    - How much [money]{"entity":"money", "value": "fee"} do I have to pay for [application]{"entity": "application", "value":"application" }?
+    - How much [money]{"entity":"money", "value": "fee"} do I have to pay for [application]{"entity":"academic_process", "value":"application" }?
 
-    - Is there any [application]{"entity": "application", "value":"application" } [fee]{"entity":"money", "value": "fee"} for [online]{"entity": "online", "value":"online" } [application]{"entity": "application", "value":"application" }?
+    - Is there any [application]{"entity":"academic_process", "value":"application" } [fee]{"entity":"money", "value": "fee"} for [online]{"entity": "online", "value":"online" } [application]{"entity":"academic_process", "value":"application" }?
 
-    - Does [online]{"entity": "online", "value":"online" } [application]{"entity": "application", "value":"application" } have [application]{"entity": "application", "value":"application" } [fee]{"entity":"money", "value": "fee"} ?
+    - Does [online]{"entity": "online", "value":"online" } [application]{"entity":"academic_process", "value":"application" } have [application]{"entity":"academic_process", "value":"application" } [fee]{"entity":"money", "value": "fee"} ?
     
-    - Can [online]{"entity": "online", "value":"online" } [application]{"entity": "application", "value":"application" } [application]{"entity": "application", "value":"application" } '[fee]{"entity":"money", "value": "fee"}  be [waived]{"entity": "other_aid", "value": "waiver"} ?
+    - Can [online]{"entity": "online", "value":"online" } [application]{"entity":"academic_process", "value":"application" } [application]{"entity":"academic_process", "value":"application" } '[fee]{"entity":"money", "value": "fee"}  be [waived]{"entity": "other_aid", "value": "waiver"} ?
    
     - Yo, do have to pay [money]{"entity":"money", "value": "fee"} to apply on the [internet]{"entity": "online", "value":"online" }?
 
-    - Is there [waiver]{"entity": "other_aid", "value": "waiver"} for [online]{"entity": "online", "value":"online" } [application]{"entity": "application", "value":"application"}?
+    - Is there [waiver]{"entity": "other_aid", "value": "waiver"} for [online]{"entity": "online", "value":"online" } [application]{"entity":"academic_process", "value":"application"}?
 
     - What is the [deadline]{"entity":"date", "value": "date"} for [housing]{"entity": "housing", "value": "housing"} deposit?
     
@@ -1919,7 +1919,6 @@ nlu:
 - synonym: online-application
   examples: |
     - online application
-    - application online
     - apply online
     - online apply 
 
@@ -1948,10 +1947,10 @@ nlu:
 
     - How many [units]{"entity": "academic_credit", "value": "unit"} [must]{"entity": "condition", "value": "require"} I take if I want to get into this school?
 
-    - How many [unit]{"entity": "academic_credit", "value": "unit"} are [required]{"entity": "condition", "value": "require"} for [english]{"entity": "subject", "value": "english"} for admission at this school?
+    - How many [unit]{"entity": "academic_credit", "value": "unit"} are [required]{"entity": "condition", "value": "require"} for [english]{"entity": "subject", "value": "english"} for [admission]{"entity":"academic_process", "value":"admission"} at this school?
     - How many [unit]{"entity": "academic_credit", "value": "unit"} are [recommended]{"entity": "condition", "value": "recommend"} for [math]{"entity": "subject", "value": "mathematics"} for admission?
     - what is the [unit]{"entity": "academic_credit", "value": "unit"} [required]{"entity": "condition", "value": "required"} for [science]{"entity": "subject", "value": "science"} to get into this school?
-    - what is the [unit]{"entity": "academic_credit", "value": "unit"} [recommended]{"entity": "condition", "value": "recommend"} for [science]{"entity": "subject", "value": "science"} I should take during high-school for admission into this school?
+    - what is the [unit]{"entity": "academic_credit", "value": "unit"} [recommended]{"entity": "condition", "value": "recommend"} for [science]{"entity": "subject", "value": "science"} I should take during high-school for [admission]{"entity":"academic_process", "value":"admission"} into this school?
     
     - How many [unit]{"entity": "academic_credit", "value": "unit"} are [required]{"entity": "condition", "value": "require"} for [mathematic]{"entity": "subject", "value": "mathematics"}
     - How many [lab]{"entity": "subject", "value": "lab"} [unit]{"entity": "academic_credit", "value": "unit"} are [required]{"entity": "condition", "value": "require"} 
@@ -1999,130 +1998,130 @@ nlu:
 
 - intent: basis_for_selection
   examples: |
-    - What is the relative important of academic factors and nonacademic factors in your [first-time]{"entity": "is_first_time", "value": "first-time"}, [first-year]{"entity": "is_first_year", "value": "first-year"} [first-time]{"entity": "is_first_time", "value": "first-time"}, [degreeseeking]{"entity": "degree-goal", "value": "degree-seeking"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} admission decisions?
-    - What is the importance of the [rigor of secondary school record]{"entity": "academic_factor", "value": "rigor of secondary school record" } in admission decisions?
-    - What is the importance of the [rigor of secondary school record]{"entity": "academic_factor", "value": "rigor of secondary school record" } in admission decisions?
+    - What is the relative important of academic factors and nonacademic factors in your [first-time]{"entity": "is_first_time", "value": "first-time"}, [first-year]{"entity": "is_first_year", "value": "first-year"} [first-time]{"entity": "is_first_time", "value": "first-time"}, [degreeseeking]{"entity": "degree-goal", "value": "degree-seeking"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} [admission]{"entity":"academic_process", "value":"admission"} decisions?
+    - What is the importance of the [rigor of secondary school record]{"entity": "academic_factor", "value": "rigor of secondary school record" } in [admission]{"entity":"academic_process", "value":"admission"} decisions?
+    - What is the importance of the [rigor of secondary school record]{"entity": "academic_factor", "value": "rigor of secondary school record" } in [admission]{"entity":"academic_process", "value":"admission"} decisions?
     - What is the importance of the [rigor of secondary school record]{"entity": "academic_factor", "value": "rigor of secondary school record" } in basis for selection?
-    - What is the importance of the [rigor of high school record]{"entity": "academic_factor", "value": "rigor of secondary school record" } in admission considerations?
+    - What is the importance of the [rigor of high school record]{"entity": "academic_factor", "value": "rigor of secondary school record" } in [admission]{"entity":"academic_process", "value":"admission"} considerations?
 
-    - What is the importance of [class rank]{"entity": "academic_factor", "value": "class rank" } in admission decisions?
-    - What is the importance of [class-rank]{"entity": "academic_factor", "value": "class rank" } in admission decisions?
+    - What is the importance of [class rank]{"entity": "academic_factor", "value": "class rank" } in [admission]{"entity":"academic_process", "value":"admission"} decisions?
+    - What is the importance of [class-rank]{"entity": "academic_factor", "value": "class rank" } in [admission]{"entity":"academic_process", "value":"admission"} decisions?
     - What is the importance of [class rank]{"entity": "academic_factor", "value": "class rank" } in basis for selection?
     
-    - What is the importance of academic [gpa]{"entity": "academic_factor", "value": "gpa" } in admission decisions?
-    - What is the importance of [gpa]{"entity": "academic_factor", "value": "gpa" } in admission decisions?
+    - What is the importance of academic [gpa]{"entity": "academic_factor", "value": "gpa" } in [admission]{"entity":"academic_process", "value":"admission"} decisions?
+    - What is the importance of [gpa]{"entity": "academic_factor", "value": "gpa" } in [admission]{"entity":"academic_process", "value":"admission"} decisions?
     - What is the importance of academic [gpa]{"entity": "academic_factor", "value": "gpa" } in basis for selection?
     - What is the importance of academic [grade point average]{"entity": "academic_factor", "value": "gpa" } in basis for selection?
     
-    - What is the importance of standardized [test scores]{"entity": "academic_factor", "value": "standardized test scores" } in admission decisions?
-    - What is the importance of [test scores]{"entity": "academic_factor", "value": "standardized test scores" } in admission decisions?
+    - What is the importance of standardized [test scores]{"entity": "academic_factor", "value": "standardized test scores" } in [admission]{"entity":"academic_process", "value":"admission"} decisions?
+    - What is the importance of [test scores]{"entity": "academic_factor", "value": "standardized test scores" } in [admission]{"entity":"academic_process", "value":"admission"} decisions?
     - What is the importance of standardized [test scores]{"entity": "academic_factor", "value": "standardized test scores" } in basis for selection?
 
-    - What is the importance of application [essay]{"entity": "essay", "value": "essay"} in admission decisions?
-    - What is the importance of [essay]{"entity": "essay", "value": "essay" } in admission decisions?
-    - What is the importance of application [essay]{"entity": "essay", "value": "essay"} in basis for selection?
-    - What is the importance of [personal statement]{"entity": "essay", "value": "essay" } in admission decisions?
+    - What is the importance of [application]{"entity":"academic_process", "value":"application"} [essay]{"entity": "essay", "value": "essay"} in [admission]{"entity":"academic_process", "value":"admission"} decisions?
+    - What is the importance of [essay]{"entity": "essay", "value": "essay" } in [admission]{"entity":"academic_process", "value":"admission"} decisions?
+    - What is the importance of [application]{"entity":"academic_process", "value":"application"} [essay]{"entity": "essay", "value": "essay"} in basis for selection?
+    - What is the importance of [personal statement]{"entity": "essay", "value": "essay" } in [admission]{"entity":"academic_process", "value":"admission"} decisions?
 
-    - What is the importance of [recommendation]{"entity": "academic_factor", "value": "recommendation" } in admission decisions?
-    - What is the importance of [recommendation]{"entity": "academic_factor", "value": "recommendation" } in admission decisions?
-    - What is the importance of [recommendation]{"entity": "academic_factor", "value": "recommendation" } letters in admission decisions?
+    - What is the importance of [recommendation]{"entity": "academic_factor", "value": "recommendation" } in [admission]{"entity":"academic_process", "value":"admission"} decisions?
+    - What is the importance of [recommendation]{"entity": "academic_factor", "value": "recommendation" } in [admission]{"entity":"academic_process", "value":"admission"} decisions?
+    - What is the importance of [recommendation]{"entity": "academic_factor", "value": "recommendation" } letters in [admission]{"entity":"academic_process", "value":"admission"} decisions?
     - What is the importance of teacher [recommendation] letters {"entity": "academic_factor", "value": "recommendation" } in basis for selection?
 
-    - What is the importance of [interview]{"entity": "non_academic_factor", "value": "interview" } in admission decisions?
-    - What is the importance of [interview]{"entity": "non_academic_factor", "value": "interview" } in admission decisions?
+    - What is the importance of [interview]{"entity": "non_academic_factor", "value": "interview" } in [admission]{"entity":"academic_process", "value":"admission"} decisions?
+    - What is the importance of [interview]{"entity": "non_academic_factor", "value": "interview" } in [admission]{"entity":"academic_process", "value":"admission"} decisions?
     - What is the importance of [interview]{"entity": "non_academic_factor", "value": "interview" } in basis of selection?
 
-    - What is the importance of [extracurricular]{"entity": "non_academic_factor", "value": "extracurricular activities" } in admission decisions?
-    - What is the importance of [extracurricular]{"entity": "non_academic_factor", "value": "extracurricular activities" }  activities in admission decisions?
+    - What is the importance of [extracurricular]{"entity": "non_academic_factor", "value": "extracurricular activities" } in [admission]{"entity":"academic_process", "value":"admission"} decisions?
+    - What is the importance of [extracurricular]{"entity": "non_academic_factor", "value": "extracurricular activities" }  activities in [admission]{"entity":"academic_process", "value":"admission"} decisions?
     - What is the importance of [extracurricular-activities]{"entity": "non_academic_factor", "value": "extracurricular activities" } in basis of selection?
     - How important is [extracurricular activities]{"entity": "non_academic_factor", "value": "extracurricular activities" } in basis of selection?
     - How important is [extracurricular activity]{"entity": "non_academic_factor", "value": "extracurricular activities" } in basis of selection?
 
-    - What is the importance of [talent/ability]{"entity": "non_academic_factor", "value": "talent/ability" } in admission decisions?
-    - What is the importance of [talent or ability]{"entity": "non_academic_factor", "value": "talent/ability" } in admission decisions?
-    - What is the importance of [talent and ability]{"entity": "non_academic_factor", "value": "talent/ability" } in admission decisions?
-    - What is the importance of [talent]{"entity": "non_academic_factor", "value": "talent/ability" } in admission decisions?
+    - What is the importance of [talent/ability]{"entity": "non_academic_factor", "value": "talent/ability" } in [admission]{"entity":"academic_process", "value":"admission"} decisions?
+    - What is the importance of [talent or ability]{"entity": "non_academic_factor", "value": "talent/ability" } in [admission]{"entity":"academic_process", "value":"admission"} decisions?
+    - What is the importance of [talent and ability]{"entity": "non_academic_factor", "value": "talent/ability" } in [admission]{"entity":"academic_process", "value":"admission"} decisions?
+    - What is the importance of [talent]{"entity": "non_academic_factor", "value": "talent/ability" } in [admission]{"entity":"academic_process", "value":"admission"} decisions?
     - What is the importance of [ability]{"entity": "non_academic_factor", "value": "talent/ability" } for basis of selection?
 
-    - What is the importance of [character/personal qualities]{"entity": "non_academic_factor", "value": "character/personal qualities" } in admission decisions?
-    - What is the importance of [character and personal qualities]{"entity": "non_academic_factor", "value": "character/personal qualities" }  activities in admission decisions?
+    - What is the importance of [character/personal qualities]{"entity": "non_academic_factor", "value": "character/personal qualities" } in [admission]{"entity":"academic_process", "value":"admission"} decisions?
+    - What is the importance of [character and personal qualities]{"entity": "non_academic_factor", "value": "character/personal qualities" }  activities in [admission]{"entity":"academic_process", "value":"admission"} decisions?
     - What is the importance of [character or personal qualities]{"entity": "non_academic_factor", "value": "character/personal qualities" } in basis for selection?
-    - What is the importance of [character]{"entity": "non_academic_factor", "value": "character/personal qualities" }  in admission decisions?
-    - What is the importance of [personal quality]{"entity": "non_academic_factor", "value": "character/personal qualities" }  in admission decisions?
-    - What is the importance of [personal qualities]{"entity": "non_academic_factor", "value": "character/personal qualities" }  in admission decisions?
+    - What is the importance of [character]{"entity": "non_academic_factor", "value": "character/personal qualities" }  in [admission]{"entity":"academic_process", "value":"admission"} decisions?
+    - What is the importance of [personal quality]{"entity": "non_academic_factor", "value": "character/personal qualities" }  in [admission]{"entity":"academic_process", "value":"admission"} decisions?
+    - What is the importance of [personal qualities]{"entity": "non_academic_factor", "value": "character/personal qualities" }  in [admission]{"entity":"academic_process", "value":"admission"} decisions?
 
-    - What is the importance of being a [first-generation]{"entity": "non_academic_factor", "value": "first generation" } student for admission decisions?
-    - How important is being a [first-generation]{"entity": "non_academic_factor", "value": "first generation"} student during admission consideration?
-    - What is the importance of being a [first generation]{"entity": "non_academic_factor", "value": "first generation" }  in admission decisions?
+    - What is the importance of being a [first-generation]{"entity": "non_academic_factor", "value": "first generation" } student for [admission]{"entity":"academic_process", "value":"admission"} decisions?
+    - How important is being a [first-generation]{"entity": "non_academic_factor", "value": "first generation"} student during [admission]{"entity":"academic_process", "value":"admission"} consideration?
+    - What is the importance of being a [first generation]{"entity": "non_academic_factor", "value": "first generation" }  in [admission]{"entity":"academic_process", "value":"admission"} decisions?
     - What is the importance of [first generation]{"entity": "non_academic_factor", "value": "first generation" } college student for basis of selection?
 
-    - What is the importance of [alumni relationship]{"entity": "non_academic_factor", "value": "alumni/ae relation" } in admission decisions?
-    - How important is [alumni/ae relationship]{"entity": "non_academic_factor", "value": "alumni/ae relation" } in admission decisions?
-    - How important is [alumni or alumnae relationship]{"entity": "non_academic_factor", "value": "alumni/ae relation" } in admission decisions?
-    - How important is [alumni relationship]{"entity": "non_academic_factor", "value": "alumni/ae relation" } in admission decisions?
-    - How important is [alumni relation]{"entity": "non_academic_factor", "value": "alumni/ae relation" } in admission decisions?
-    - How important is [alumnae relation]{"entity": "non_academic_factor", "value": "alumni/ae relation" } in admission decisions?
-    - How important is [alumnae relationship]{"entity": "non_academic_factor", "value": "alumni/ae relation" } in admission decisions?
-    - How important is [alumni and alumnae relationship]{"entity": "non_academic_factor", "value": "alumni/ae relation" } in admission decisions?
+    - What is the importance of [alumni relationship]{"entity": "non_academic_factor", "value": "alumni/ae relation" } in [admission]{"entity":"academic_process", "value":"admission"} decisions?
+    - How important is [alumni/ae relationship]{"entity": "non_academic_factor", "value": "alumni/ae relation" } in [admission]{"entity":"academic_process", "value":"admission"} decisions?
+    - How important is [alumni or alumnae relationship]{"entity": "non_academic_factor", "value": "alumni/ae relation" } in [admission]{"entity":"academic_process", "value":"admission"} decisions?
+    - How important is [alumni relationship]{"entity": "non_academic_factor", "value": "alumni/ae relation" } in [admission]{"entity":"academic_process", "value":"admission"} decisions?
+    - How important is [alumni relation]{"entity": "non_academic_factor", "value": "alumni/ae relation" } in [admission]{"entity":"academic_process", "value":"admission"} decisions?
+    - How important is [alumnae relation]{"entity": "non_academic_factor", "value": "alumni/ae relation" } in [admission]{"entity":"academic_process", "value":"admission"} decisions?
+    - How important is [alumnae relationship]{"entity": "non_academic_factor", "value": "alumni/ae relation" } in [admission]{"entity":"academic_process", "value":"admission"} decisions?
+    - How important is [alumni and alumnae relationship]{"entity": "non_academic_factor", "value": "alumni/ae relation" } in [admission]{"entity":"academic_process", "value":"admission"} decisions?
     - What is the importance of [relationship with alumni]{"entity": "non_academic_factor", "value": "alumni/ae relation" } in basis of selection?
 
-    - How important is [geographical residence]{"entity": "non_academic_factor", "value": "geographical residence" } in admission decisions?
-    - What is the importance of [geographical residence]{"entity": "non_academic_factor", "value": "geographical residence" } in admission decisions?
+    - How important is [geographical residence]{"entity": "non_academic_factor", "value": "geographical residence" } in [admission]{"entity":"academic_process", "value":"admission"} decisions?
+    - What is the importance of [geographical residence]{"entity": "non_academic_factor", "value": "geographical residence" } in [admission]{"entity":"academic_process", "value":"admission"} decisions?
     - What is the importance of [geographical residence]{"entity": "non_academic_factor", "value": "geographical residence" } in basis of selection?
-    - How important is student's [geographic location]{"entity": "non_academic_factor", "value": "geographical residence" } in admission decisions?
-    - How important is student's [geographic residence]{"entity": "non_academic_factor", "value": "geographical residence" } in admission decisions?
+    - How important is student's [geographic location]{"entity": "non_academic_factor", "value": "geographical residence" } in [admission]{"entity":"academic_process", "value":"admission"} decisions?
+    - How important is student's [geographic residence]{"entity": "non_academic_factor", "value": "geographical residence" } in [admission]{"entity":"academic_process", "value":"admission"} decisions?
 
-    - How important is [state residency]{"entity": "non_academic_factor", "value": "state residency" } in admission decisions?
-    - What is the importance of [state residence]{"entity": "non_academic_factor", "value": "state residency" } in admission decisions?
+    - How important is [state residency]{"entity": "non_academic_factor", "value": "state residency" } in [admission]{"entity":"academic_process", "value":"admission"} decisions?
+    - What is the importance of [state residence]{"entity": "non_academic_factor", "value": "state residency" } in [admission]{"entity":"academic_process", "value":"admission"} decisions?
     - What is the importance of [state residence]{"entity": "non_academic_factor", "value": "state residency" } in basis of selection?
-    - How important is the [state]{"entity": "non_academic_factor", "value": "state residency" } where students are from in admission consideration?
+    - How important is the [state]{"entity": "non_academic_factor", "value": "state residency" } where students are from in [admission]{"entity":"academic_process", "value":"admission"} consideration?
 
-    - How important is [religious affiliation/commitment]{"entity": "non_academic_factor", "value": "religion" } in admission decisions?
-    - What is the importance of [religious affiliation]{"entity": "non_academic_factor", "value": "religion" } in admission decisions?
+    - How important is [religious affiliation/commitment]{"entity": "non_academic_factor", "value": "religion" } in [admission]{"entity":"academic_process", "value":"admission"} decisions?
+    - What is the importance of [religious affiliation]{"entity": "non_academic_factor", "value": "religion" } in [admission]{"entity":"academic_process", "value":"admission"} decisions?
     - What is the importance of [religious commitment]{"entity": "non_academic_factor", "value": "religion" } in basis of selection?
     
     - How important is [racial/ethnic status](non_academic_factor) in basis for selection
-    - How important is [ethnicity]{"entity": "non_academic_factor", "value": "racial/ethnic status"} in admission decisions?
+    - How important is [ethnicity]{"entity": "non_academic_factor", "value": "racial/ethnic status"} in [admission]{"entity":"academic_process", "value":"admission"} decisions?
     - How important is [ethnic]{"entity": "non_academic_factor", "value": "racial/ethnic status"} in basis for selection
-    - How important is [racial status]{"entity": "non_academic_factor", "value": "racial/ethnic status"} in admission decisions?
+    - How important is [racial status]{"entity": "non_academic_factor", "value": "racial/ethnic status"} in [admission]{"entity":"academic_process", "value":"admission"} decisions?
     - How important is [racial or ethnic status]{"entity": "non_academic_factor", "value": "racial/ethnic status"} in basis for selection
     - How important is [racial and ethnic status]{"entity": "non_academic_factor", "value": "racial/ethnic status"} in basis for selection
-    - What is the importance of [race]{"entity": "non_academic_factor", "value": "racial/ethnic status"} in admission decisions
-    - How important is [racial/ethnic status](non_academic_factor) in admission decisions?
-    - How important is [race]{"entity": "non_academic_factor", "value": "racial/ethnic status"} in admission decisions?
+    - What is the importance of [race]{"entity": "non_academic_factor", "value": "racial/ethnic status"} in [admission]{"entity":"academic_process", "value":"admission"} decisions
+    - How important is [racial/ethnic status](non_academic_factor) in [admission]{"entity":"academic_process", "value":"admission"} decisions?
+    - How important is [race]{"entity": "non_academic_factor", "value": "racial/ethnic status"} in [admission]{"entity":"academic_process", "value":"admission"} decisions?
    
-    - How important is [volunteer]{"entity": "non_academic_factor", "value": "volunteer work"} in admission decisions?
-    - What is the importance of [volunteer work](non_academic_factor) in admission decisions
-    - How important is [volunteering]{"entity": "non_academic_factor", "value": "volunteer work"} in admission decisions
+    - How important is [volunteer]{"entity": "non_academic_factor", "value": "volunteer work"} in [admission]{"entity":"academic_process", "value":"admission"} decisions?
+    - What is the importance of [volunteer work](non_academic_factor) in [admission]{"entity":"academic_process", "value":"admission"} decisions
+    - How important is [volunteering]{"entity": "non_academic_factor", "value": "volunteer work"} in [admission]{"entity":"academic_process", "value":"admission"} decisions
 
-    - How important is [experience in working]{"entity": "non_academic_factor", "value": "work experience"} in admission decisions?
+    - How important is [experience in working]{"entity": "non_academic_factor", "value": "work experience"} in [admission]{"entity":"academic_process", "value":"admission"} decisions?
     - How important is [experience in working]{"entity": "non_academic_factor", "value": "work experience"} in basis for selection?
-    - How important is [job experience]{"entity": "non_academic_factor"} in admission decisions?
-    - How important is [experience working]{"entity": "non_academic_factor", "value": "work experience"} in admission decisions?
+    - How important is [job experience]{"entity": "non_academic_factor"} in [admission]{"entity":"academic_process", "value":"admission"} decisions?
+    - How important is [experience working]{"entity": "non_academic_factor", "value": "work experience"} in [admission]{"entity":"academic_process", "value":"admission"} decisions?
     - How important is [experience working]{"entity": "non_academic_factor", "value": "work experience"} in basis for selection
 
   
     - For basis of selection, how important is [work experience]{"entity": "non_academic_factor", "value": "work experience"}?
 
-    - How important is [work experience](non_academic_factor) in admission decisions?
-    - What is the relative importance of [work experience](non_academic_factor) in admission decisions
+    - How important is [work experience](non_academic_factor) in [admission]{"entity":"academic_process", "value":"admission"} decisions?
+    - What is the relative importance of [work experience](non_academic_factor) in [admission]{"entity":"academic_process", "value":"admission"} decisions
     - What is the importance of [experience in working]{"entity": "non_academic_factor", "value": "work experience"} for basis of selection?
-    - What is the importance of [experience working]{"entity": "non_academic_factor", "value": "work experience"} during admission decisions
+    - What is the importance of [experience working]{"entity": "non_academic_factor", "value": "work experience"} during [admission]{"entity":"academic_process", "value":"admission"} decisions
     
-    - How important is the [applicant interest]{"entity": "non_academic_factor", "value": "level of applicant's interest"} in admission decisions?
-    - How important is [applicant level of interest]{"entity": "non_academic_factor", "value": "level of applicant's interest"} in admission decisions?
-    - How important is the [applicant's level of interest]{"entity": "non_academic_factor", "value": "level of applicant's interest"} in admission decisions?
+    - How important is the [applicant interest]{"entity": "non_academic_factor", "value": "level of applicant's interest"} in [admission]{"entity":"academic_process", "value":"admission"} decisions?
+    - How important is [applicant level of interest]{"entity": "non_academic_factor", "value": "level of applicant's interest"} in [admission]{"entity":"academic_process", "value":"admission"} decisions?
+    - How important is the [applicant's level of interest]{"entity": "non_academic_factor", "value": "level of applicant's interest"} in [admission]{"entity":"academic_process", "value":"admission"} decisions?
     - How important is [applicant's interest]{"entity": "non_academic_factor", "value": "level of applicant's interest"} in basis for selection
         
-    - How important is [interest of the applicant]{"entity": "non_academic_factor", "value": "level of applicant's interest"} in admission decisions?
-    - How important is [level of applicant interest]{"entity": "non_academic_factor", "value": "level of applicant's interest"} in admission decisions?
+    - How important is [interest of the applicant]{"entity": "non_academic_factor", "value": "level of applicant's interest"} in [admission]{"entity":"academic_process", "value":"admission"} decisions?
+    - How important is [level of applicant interest]{"entity": "non_academic_factor", "value": "level of applicant's interest"} in [admission]{"entity":"academic_process", "value":"admission"} decisions?
     - How important is [level of applicant interest]{"entity": "non_academic_factor", "value": "level of applicant's interest"} in basis for selection
-    - How important is [level of applicant's interest]{"entity": "non_academic_factor", "value": "level of applicant's interest"} in admission decisions?
-    - How important is the [level of applicant's interest]{"entity": "non_academic_factor", "value": "level of applicant's interest"} in admission decisions?
+    - How important is [level of applicant's interest]{"entity": "non_academic_factor", "value": "level of applicant's interest"} in [admission]{"entity":"academic_process", "value":"admission"} decisions?
+    - How important is the [level of applicant's interest]{"entity": "non_academic_factor", "value": "level of applicant's interest"} in [admission]{"entity":"academic_process", "value":"admission"} decisions?
 
-    - What is the importance of [level of applicant interest]{"entity": "non_academic_factor", "value": "level of applicant's interest"} in admission decisions
-    - What is the importance of [level of applicant's interest]{"entity": "non_academic_factor", "value": "level of applicant's interest"} in admission decisions
-    - What is the importance of the [level of applicant's interest]{"entity": "non_academic_factor", "value": "level of applicant's interest"} in admission decisions
+    - What is the importance of [level of applicant interest]{"entity": "non_academic_factor", "value": "level of applicant's interest"} in [admission]{"entity":"academic_process", "value":"admission"} decisions
+    - What is the importance of [level of applicant's interest]{"entity": "non_academic_factor", "value": "level of applicant's interest"} in [admission]{"entity":"academic_process", "value":"admission"} decisions
+    - What is the importance of the [level of applicant's interest]{"entity": "non_academic_factor", "value": "level of applicant's interest"} in [admission]{"entity":"academic_process", "value":"admission"} decisions
 
 
 
