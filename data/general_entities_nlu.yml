@@ -51,14 +51,7 @@ nlu:
     - percent
     - percentage
     - average
-    - minimum 
-    - lowest
-    - min
-    - least
-    - most
-    - maximum
-    - highest
-    - max
+    
     
 
 - synonym: percent

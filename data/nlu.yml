@@ -1770,7 +1770,7 @@ nlu:
 
     - can [admitted]{"entity":"action", "value": "accepted"} students [postpone]{"entity": "defer", "value": "defer"} enrollment?
 
-    - What is the [maximum]{"entity": "aggregation", "value": "maximum"} year of [postponement]{"entity": "defer", "value": "defer"}?
+    - What is the [maximum]{"entity": "range", "value": "maximum"} year of [postponement]{"entity": "defer", "value": "defer"}?
 
    
     - Do your [institute]{"entity":"education_level", "value": "college"} have [early action]{"entity": "early-admission", "value": "early action" }?

@@ -2,6 +2,7 @@ from OutputController.EntityExpression import EntityExpression
 from OutputController.LiteralExpression import LiteralExpression
 from OutputController.PhraseExpression import PhraseExpression
 from OutputController.ValueExpression import ValueExpression
+from OutputController.XorExpression import XorExpression
 
 
 class TemplateConverter():
@@ -9,10 +10,12 @@ class TemplateConverter():
         self.entityExpBracket = "["
         self.phraseBracket = "{"
         self.valueBracket = "<"
+        self.operationBracket = "("
         self.possibleBracket = [
             self.entityExpBracket,
             self.phraseBracket,
-            self.valueBracket
+            self.valueBracket,
+            self.operationBracket
         ]
 
     def parseTemplate(self,template):
@@ -44,6 +47,21 @@ class TemplateConverter():
                 elif template[currIndex] == self.valueBracket:
                     valueExpression = ValueExpression(newTemplate)
                     expressions.append(valueExpression)
+                elif template[currIndex] == self.operationBracket:
+                    tokens = newTemplate.split(" ")
+                    if len(tokens) == 0:
+                        raise Exception("No operation provided")
+                    else:
+                        tokensToParse = tokens[1:]
+                        tokensToParse = " ".join(tokensToParse)
+                        print("TOKEN TO PARSE")
+                        print(tokensToParse)
+                        opExpression = self.determineOperation(tokens[0])
+                        expressionsParsed = self.parseTemplate(tokensToParse)
+
+                        opExpression.childrenExpression = expressionsParsed
+                        opExpression.value = newTemplate
+                        expressions.append(opExpression)
 
                 currIndex = matchIndex
 
@@ -52,17 +70,22 @@ class TemplateConverter():
                 continue
             else: 
                 for i in range(currIndex, len(template)):
-                    if template[i] == " " or i == len(template)-1:
-                        value = template[currIndex:i]
+                    if i == len(template)-1 or template[i+1] == " " :
+                        value = template[currIndex:i+1]
                         literalExpression = LiteralExpression(value)
                         expressions.append(literalExpression)
                         currIndex = i
                         break
-                
-
             currIndex = currIndex + 1 
-
         return expressions
+
+    def determineOperation(self, token):
+        if token == "or":
+            return XorExpression("", [])
+        else: 
+            raise Exception("Operation not supported")
+            
+
 
     def evaluateExpressions(self, expressions,entities,  answer): 
         evaluatedValues = []  
@@ -82,6 +105,9 @@ class TemplateConverter():
         if openBracket == self.valueBracket and closingBracket == ">":
             return True
 
+        if openBracket == self.operationBracket and closingBracket == ")":
+            return True
+
 
 
     def lookForMatch(self,bracket, start, template):
@@ -95,10 +121,15 @@ class TemplateConverter():
     def constructOutput(self,answers, entitiesUsed, template):
         fullSentenceAnswers = []
         expressions = self.parseTemplate(template)
+        #Because EntityExpression remove an entity from the list when it uses that entity's value, I make a copy to keep the original in case we use it.
+        entitiesCopy = entitiesUsed.copy()
         for answer in answers:
-           sentence =  self.evaluateExpressions(expressions, entitiesUsed, answer)
+           sentence =  self.evaluateExpressions(expressions, entitiesCopy, answer)
+           print(sentence)
            sentence = " ".join(sentence)
            fullSentenceAnswers.append(sentence)
+
+        
 
         return fullSentenceAnswers
             
