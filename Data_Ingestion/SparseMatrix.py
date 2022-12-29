@@ -96,12 +96,20 @@ class SparseMatrix():
         return self.isThisOperationAllowed(constants.RANGE_ALLOWED_COLUMN_VALUE)
 
     def isPercentageOperationAllowed(self):
-        
         isOperationAllowed = self.isAnyOperationAllowed()
         if not isOperationAllowed:
             return False
 
         return self.isThisOperationAllowed(constants.PERCENTAGE_ALLOWED_COLUMN_VALUE)
+
+    
+    def findTemplate(self): 
+        answers = self.findValueForMetadata(constants.TEMPLATE_LABEL)
+        if len(answers) == 0:
+            return ""
+
+        return answers[0]
+
 
     def checkResultHelper(self, searchResults):
         if len(searchResults) == 0:
@@ -111,11 +119,16 @@ class SparseMatrix():
 
         return False
 
-    def isThisOperationAllowed(self, operationName):
+    def isThisOperationAllowed(self, operationLabel):
+        answer = self.findValueForMetadata(operationLabel)
+        return self.checkResultHelper(answer)
+
+
+    def findValueForMetadata(self, metadataLabel):
         booleanSearchStrategy = DefaultShouldAddRowStrategy()
-        operationAllowedEntity = createEntityObj(operationName, entityLabel="none",  entityRole=None)
+        operationAllowedEntity = createEntityObj(metadataLabel, entityLabel="none",  entityRole=None)
         searchResult, entitiesUsed = self.searchOnSparseMatrix([operationAllowedEntity], booleanSearchStrategy, False)
-        return self.checkResultHelper(searchResult)
+        return searchResult
 
     def searchOnSparseMatrix(self, entities, shouldAddRowStrategy, isSumAllowed):
         searchResults = []
@@ -129,8 +142,8 @@ class SparseMatrix():
             if "total" in row.index and sparseMatrixToSearchDf.loc[i,"total"] == 1:
                 continue
 
-            entityValues = [e["value"] for e in entities]
-            usedEntities = shouldAddRowStrategy.determineShouldAddRow(row, entityValues, self)
+            # entityValues = [e["value"] for e in entities]
+            usedEntities = shouldAddRowStrategy.determineShouldAddRow(row, entities, self)
             shouldUseRow = len(usedEntities)>0
             # print(usedEntities)
            
@@ -172,4 +185,6 @@ class SparseMatrix():
             searchResults.append(newSearchResult)
 
         return newSearchResult
+
+
 

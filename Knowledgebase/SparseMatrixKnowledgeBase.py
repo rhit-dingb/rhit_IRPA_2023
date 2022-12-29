@@ -145,7 +145,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         maxBound, minBound = sparseMatrix.findMaxBoundLowerBoundForDiscreteRange()
         rangeToSumOver = self.findRange(entities, maxBound,  minBound, sparseMatrix)
         
-        shouldAddRowStrategy = RangeExactMatchRowStrategy(rangeToSumOver)
+        shouldAddRowStrategy = RangeExactMatchRowStrategy()
         entities = filterEntities(entities, [RANGE_ENTITY_LABEL])
         entitiesUsed = []
 
@@ -179,7 +179,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
             # On each iteration, we expect to only get one answer from search
             answerPointer = sparseMatrix.addSearchResult(answerPointer, answers[0], currentResult, isSumming)
         
-        return (currentResult, list(set(entitiesUsed)))
+        return (currentResult, list(entitiesUsed))
 
 
     def aggregatePercentage(self, intent, numerator, entitiesForNumerator, entitiesToCalculateDenominator, shouldAddRowStrategy):

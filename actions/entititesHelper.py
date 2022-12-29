@@ -46,6 +46,17 @@ def filterEntities(entities, toFilter):
             res.append(entityObj)
     return res
 
+def removeDuplicatedEntities(entities):
+    uniqueEntityValuesFound = []
+    uniqueEntities = []
+    for entity in entities:
+        entityValue = entity["value"]
+        if not entityValue in uniqueEntityValuesFound:
+            uniqueEntityValuesFound.append(entityValue)
+            uniqueEntities.append(entity)
+    return uniqueEntities
+    
+
 
 def changeEntityValue(entities, targetLabel, newValue):
     for entity in entities: 

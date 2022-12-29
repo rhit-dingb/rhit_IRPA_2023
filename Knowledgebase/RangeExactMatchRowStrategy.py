@@ -5,38 +5,40 @@
 # """
 from DataManager.constants import NUMBER_ENTITY_LABEL
 from Knowledgebase.ShouldAddRowInterface import ShouldAddRowInterface
-from actions.entititesHelper import findMultipleSameEntitiesHelper
+from actions.entititesHelper import findMultipleSameEntitiesHelper, removeDuplicatedEntities
 
 
 
 
 class RangeExactMatchRowStrategy(ShouldAddRowInterface):
-    def __init__(self, rangeToMatch):
+    def __init__(self):
         super().__init__()
 
         
     def determineShouldAddRow(self, row, entities, sparseMatrix):
+        entities = removeDuplicatedEntities(entities)
         rangeFound  = sparseMatrix.findRangeForRow(row)
         rangeFound = list(filter(lambda x : not (x == None or x == float('-inf') or x == float('inf')), rangeFound ))
-        rangeEntityProvided = []
+        rangeEntityValueProvided = []
 
         matchCount = 0
-        for entityValue in entities:
+        for entity in entities:
             try:
+                entityValue = entity["value"]
                 entityValue = float(entityValue)
                 # if entityValue in row.index and row[entityValue] == 1 and entityValue in rangeFound:
                 #     matchCount = matchCount + 1
-                rangeEntityProvided.append(entityValue)
+                rangeEntityValueProvided.append(entityValue)
             except Exception:
                 continue
 
         for valueFound in rangeFound:
-            for rangeProvided in rangeEntityProvided:
+            for rangeProvided in rangeEntityValueProvided:
                 if valueFound == rangeProvided:
                     matchCount = matchCount + 1
                     continue
 
-        if matchCount == len(rangeEntityProvided) and len(rangeFound) == len(rangeEntityProvided):
+        if matchCount == len(rangeEntityValueProvided) and len(rangeFound) == len(rangeEntityValueProvided):
 
             return entities
         else:
