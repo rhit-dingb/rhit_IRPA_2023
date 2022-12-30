@@ -29,7 +29,7 @@ class TemplateConverter():
 
             if template[currIndex] in self.possibleBracket:
                
-                matchIndex = self.lookForMatch(template[currIndex], currIndex ,template)
+                matchIndex = self.lookForMatch(template[currIndex], currIndex+1 ,template)
                 if matchIndex == -1:
                     raise Exception("No matching bracket found for"+self.entityExpBracket)
                 # expressionsParsed = self.parseTemplate(newTemplate)
@@ -111,10 +111,17 @@ class TemplateConverter():
 
 
     def lookForMatch(self,bracket, start, template):
+        stack = []
+        stack.append(bracket)
         for i in range(start, len(template)):
-            if self.match(bracket, template[i]):
-                return i
-
+            if template[i] == bracket:
+                stack.append(template[i])
+            elif self.match(bracket, template[i]):
+                stack.pop()
+                if len(stack) == 0:
+                    return i
+                else:
+                    continue
         return -1
 
 

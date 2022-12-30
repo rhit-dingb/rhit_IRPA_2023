@@ -107,8 +107,7 @@ entities:
   #Non-academic factor for basis of selection for admissions such as Interview, Extracurricular activities, Talent/ability, Character/personal qualities, etc
   - non_academic_factor
 
-  #Since this overlaps with test_component, academic_factor, I pull this out as a seperate entity
-  - essay
+
 
 
   #Aggregation words: percentage, average 
