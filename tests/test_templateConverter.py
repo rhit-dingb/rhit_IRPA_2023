@@ -64,9 +64,6 @@ class test_template_converter(unittest.TestCase):
        self.assertRaises(Exception, self.templateConverter.constructOutput, searchAnswers, entitiesUsed, self.badTemplate_3)
     
 
-        
-    
-
 def checkAnswers(sentences, answers, unitTest):
     for i in range(len(sentences)):
         unitTest.assertEqual(answers[i], sentences[i])

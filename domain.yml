@@ -111,8 +111,10 @@ entities:
   - essay
 
 
-  #Aggregation words: percentage, average, maximum, minimum, 
+  #Aggregation words: percentage, average 
   - aggregation
+
+  - 
 
 
   # # Below are entities for freshman profile
@@ -185,7 +187,7 @@ entities:
 #Use to capture "other", can be used in terms of other subjects or other application requirements
   - other
   
-#Values: less than(within), more than(greater than)
+#Values: less than(within), more than(greater than),  maximum, minimum,
   - range
 
 # Doctorate, Masters, Bachelors, Associates degree
