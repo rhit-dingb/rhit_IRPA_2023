@@ -16,8 +16,9 @@ from Knowledgebase.SearchResultType import SearchResultType
 from Knowledgebase.TypeController import TypeController
 
 from Knowledgebase.constants import PERCENTAGE_FORMAT
+from OutputController.TemplateConverter import TemplateConverter
 from OutputController.output import  constructSentence, identityFunc, outputFuncForPercentage
-from actions.constants import RANGE_LOWER_BOUND_VALUE, RANGE_UPPER_BOUND_VALUE
+from actions.constants import AGGREGATION_ENTITY_PERCENTAGE_VALUE, RANGE_LOWER_BOUND_VALUE, RANGE_UPPER_BOUND_VALUE
 
 from actions.entititesHelper import copyEntities, filterEntities, findEntityHelper, findMultipleSameEntitiesHelper
 
@@ -26,6 +27,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
     def __init__(self, dataManager):
         self.dataManager : DataManager = dataManager
         self.typeController = TypeController()
+        self.templateConverter : TemplateConverter = TemplateConverter()
         self.year = dataManager.getMostRecentYearRange()[0]
 
     
@@ -61,27 +63,36 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         isSumAllowed = sparseMatrixToSearch.isSumOperationAllowed()
 
         isPercentageAllowed = sparseMatrixToSearch.isPercentageOperationAllowed()
-        
+        hasPercentageEntity = findEntityHelper(entitiesExtracted, AGGREGATION_ENTITY_PERCENTAGE_VALUE)
         print(isSumAllowed)
 
         searchResults = []
         entitiesUsed = []
         if isRangeAllowed and hasRangeEntity:
            searchResults, entitiesUsed =  self.aggregateDiscreteRange(intent, entitiesExtracted, sparseMatrixToSearch, isSumAllowed)
-        elif isPercentageAllowed:
+        elif isPercentageAllowed and hasPercentageEntity:
             pass
         else:
-            #pass
             searchResults, entitiesUsed = sparseMatrixToSearch.searchOnSparseMatrix(entitiesExtracted, shouldAddRowStrategy, isSumAllowed)
         
-        entitiesUsed.append(startYear) 
-        return outputFunc(searchResults, intent, entitiesUsed)
+        template = sparseMatrixToSearch.findTemplate()
+        return outputFunc(searchResults, intent, entitiesUsed, template)
 
 
 
-    def constructOutput(self, searchResult, intent, entitiesUsed):
+    def constructOutput(self, searchResults, intent, entitiesUsed, template):
        #return searchResult
-       return constructSentence(searchResult, intent, entitiesUsed)
+       if searchResults is None: 
+            print("RESULT IS NONE")
+            return []
+        
+       if template == "":
+            return searchResults
+
+       sentences = self.templateConverter.constructOutput(searchResults,  entitiesUsed, template)
+       print(sentences)
+       return sentences
+       #return constructSentence(searchResult, intent, entitiesUsed)
 
   
     def findRange(self, entitiesFound, maxBound, minBound, sparseMatrix : SparseMatrix):

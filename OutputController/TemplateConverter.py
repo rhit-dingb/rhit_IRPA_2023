@@ -80,7 +80,7 @@ class TemplateConverter():
         return expressions
 
     def determineOperation(self, token):
-        if token == "or":
+        if token.lower() == "xor":
             return XorExpression("", [])
         else: 
             raise Exception("Operation not supported")
@@ -124,9 +124,10 @@ class TemplateConverter():
         #Because EntityExpression remove an entity from the list when it uses that entity's value, I make a copy to keep the original in case we use it.
         entitiesCopy = entitiesUsed.copy()
         for answer in answers:
-           sentence =  self.evaluateExpressions(expressions, entitiesCopy, answer)
-           print(sentence)
-           sentence = " ".join(sentence)
+           sentenceTokens =  self.evaluateExpressions(expressions, entitiesCopy, answer)
+           #Filter out empty string
+           sentenceTokens = list(filter(lambda x: not x=="", sentenceTokens))
+           sentence = " ".join(sentenceTokens)
            fullSentenceAnswers.append(sentence)
 
         

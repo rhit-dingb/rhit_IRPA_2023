@@ -12,9 +12,9 @@ from actions.constants import AGGREGATION_ENTITY_PERCENTAGE_VALUE, RANGE_LOWER_B
 
 class test_template_converter(unittest.TestCase):
     def setUp(self):
-       self.testTemplate_1 = "The (or [aggregation] number) of students {who graduated in [range] [number] years and [range] [number] years} in the [initial_final] [year] cohort is <value>"
-       self.testTemplate_2 = "(or {Hello} [aggregation])"
-       self.badTemplate_3 = "(or{Hello} done "
+       self.testTemplate_1 = "The (xor [aggregation] number) of students {who graduated in [range] [number] years and [range] [number] years} in the [initial_final] [year] cohort is <value>"
+       self.testTemplate_2 = "(xor {Hello} [aggregation])"
+       self.badTemplate_3 = "(xor{Hello} done "
        self.templateConverter = TemplateConverter()
               
     # def test_parse_template_for_entity_expression(self):

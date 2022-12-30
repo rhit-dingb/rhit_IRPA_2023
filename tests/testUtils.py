@@ -36,7 +36,7 @@ def getEntityValues(entities):
         res.append(entity["value"])
     return res
 
-def identityFunc(x, intent, entities):
+def identityFunc(x, intent, entities, template):
         return x
 
 def getAllAnswersFromDispatcher(dispatcher):
