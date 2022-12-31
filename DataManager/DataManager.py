@@ -96,11 +96,16 @@ class DataManager():
 
         maxMatch = []
         currMax = 0
+
+        
+        entityValues = []
+        for entity in entities:
+            entityValues.append(entity["value"])
+
+        entityValues = list(set(entityValues))
+        # print(entityValues)
+        # print(len(candidates))
         for sparseMatrix in candidates:                
-            entityValues = []
-            for entity in entities:
-                entityValues.append(entity["value"])
-            
             entitiesMatchCount : int  = sparseMatrix.determineEntityMatchToColumnCount(entityValues)
             if entitiesMatchCount>currMax:
                 maxMatch = []
@@ -110,6 +115,10 @@ class DataManager():
                 maxMatch.append(sparseMatrix)
 
         #raise an error if no best matching matrix is found
+
+  
+        # for m in maxMatch:
+        #     print(m.sparseMatrixDf)
         if len(maxMatch) == 0:
             raise NoDataFoundException(errorMessage, ExceptionTypes.NoSparseMatrixDataAvailableForGivenIntent)
         

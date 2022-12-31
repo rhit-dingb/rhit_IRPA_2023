@@ -13,6 +13,7 @@ class TopicData():
 
     def addSparseMatrix(self, key: str, sparseMatrix : SparseMatrix):
         self.sparseMatrices[key] = sparseMatrix
+      
 
     def getSparseMatrices(self) -> Dict[str, SparseMatrix]:
         return self.sparseMatrices
@@ -22,18 +23,21 @@ class TopicData():
 
 
     def doesEntityIncludeAnySubsections(self, entities) ->  Tuple[bool, SparseMatrix]:
+        print(self.sparseMatrices.keys())
         subSectionSparseMatrices = []
         for entity in entities:
 
             label : str = entity["entity"]
+            value : str = entity["value"]
             for key in self.sparseMatrices.keys():
                 keywords = key.split(" ")
-                if label in keywords:
+                if label in keywords or value in keywords:
                     subSectionSparseMatrices.append(self.sparseMatrices[key])
 
         if len(subSectionSparseMatrices) == 0:
             return (False, None)
         else:
-            return (True, subSectionSparseMatrices )
+            print(len(subSectionSparseMatrices))
+            return (True, subSectionSparseMatrices)
                 
         

@@ -36,7 +36,9 @@ class SparseMatrix():
         for entity in entities:
             if entity in columns:
                 entitiesMatchCount = entitiesMatchCount + 1
-
+        # print("ENTITY MATCH COUNT FOR")
+        # print(self.subSectionName)
+        # print(entitiesMatchCount)
         return entitiesMatchCount
 
 
@@ -62,7 +64,8 @@ class SparseMatrix():
             row = self.sparseMatrixDf.loc[i]
             rangeFound = self.findRangeForRow(row)
             if len(rangeFound) == 2:
-                discreteRanges.append(rangeFound)
+                if not rangeFound in discreteRanges:
+                    discreteRanges.append(rangeFound)
 
         return discreteRanges
 

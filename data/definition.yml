@@ -42,9 +42,9 @@ nlu:
 
     - What is the definition of a [commuter]{"entity":"category", "value":"commute"}?
 
-    - What is the definition for [contact hour]{"entity": "contact hour", "value": "contact hour"}?
+    - What is the definition for [contact hour]{"entity":"contact_hour", "value": "contact hour"}?
 
-    - What is the definition for [clock hour]{"entity": "contact hour", "value": "contact hour"}?
+    - What is the definition for [clock hour]{"entity":"contact_hour", "value": "contact hour"}?
 
     - What is the definition for [continuous basis]{"entity": "calendar_system", "value": "continuous basis"} for [program]{"entity": "organizational_term", "value": "program"} ? enrollment?
 
@@ -66,10 +66,10 @@ nlu:
 
     - What is the definition for [differs by program]{"entity": "calendar_system", "value": "differs by program"}
 
-    - What does [diploma]{"entity": "academic_credential", "value": "diploma"} [mean]{"entity": "definition", "value": "definition"}? 
+    - What does [diploma]{"entity": "academic_credential", "value": "diploma"} mean?
 
-    - What does [distance learning]{"entity": "distance learning", "value": "distance learning"} [mean]{"entity": "definition", "value": "definition"}
-    - What does [distant learning]{"entity": "distance learning", "value": "distance learning"} [mean]{"entity": "definition", "value": "definition"}
+    - What does [distance learning]{"entity": "distance learning", "value": "distance learning"} mean?
+    - What does [distant learning]{"entity": "distance learning", "value": "distance learning"} mean?
 
 
     - What is the definition of [doctor's]{"entity": "degree_level", "value": "doctorate"} [degree]{"entity": "academic_credential", "value": "degree"} - [research]{"entity": "program_offered", "value":"research"} or [scholarship]{"entity": "scholarship_grants", "value":"scholarship"}?

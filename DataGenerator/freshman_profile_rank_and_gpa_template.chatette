@@ -6,7 +6,7 @@
     
     What is the \[percentage\]\{"entity":"aggregation", "value": "percent"\} of students with \[gpa\]\{"entity":"academic_factor", "value": "gpa"\} between @[gpa_range] 
 
-    What is the \[average\]\{"entity":"aggregation", "value": "mean"\} high school \[gpa\]\{"entity":"academic_factor", "value": "gpa"\} for incoming \[freshman\]\{"entity": "undergraduate_grade_level", "value": "freshman"\} who submitted \[gpa\]\{"entity":"academic_factor", "value": "gpa"\}
+    What is the \[average\]\{"entity":"aggregation", "value": "average"\} high school \[gpa\]\{"entity":"academic_factor", "value": "gpa"\} for incoming \[freshman\]\{"entity": "undergraduate_grade_level", "value": "freshman"\} who submitted \[gpa\]\{"entity":"academic_factor", "value": "gpa"\}
 
     \[percentage\]\{"entity":"aggregation", "value": "percent"\} of students who ~[submit] \[gpa\]\{"entity":"academic_factor", "value": "gpa"\}
 

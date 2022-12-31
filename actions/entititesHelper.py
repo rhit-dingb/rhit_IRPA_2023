@@ -21,6 +21,14 @@ def findCharIndexForWord(word, question):
     return (None, None)
 
 
+def getEntityValueHelper(entities):
+    entityValues = []
+    for entity in entities:
+        entityValues.append(entity["value"])
+    
+    return entityValues
+
+
 def findEntityHelper(entities, key, by="entity"):
     entitiesFound = findMultipleSameEntitiesHelper(entities, key, by)
     if len(entitiesFound) == 0:

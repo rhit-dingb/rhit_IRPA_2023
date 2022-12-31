@@ -1,6 +1,7 @@
 #Data model for aggregate discrete range result
 from typing import Dict, List
 from DataManager.constants import NUMBER_ENTITY_LABEL, RANGE_ENTITY_LABEL
+from actions.entititesHelper import getEntityValueHelper
 
 from tests.testUtils import createEntityObjHelper
 
@@ -21,14 +22,19 @@ class RangeResultData():
         if isSumming:
             numbersUsed = []
             for entities in entitiesUsedInEachSearch:
-                for entity in entities:
-                    numbersUsed.append(entity["value"])
-            
+                entityValues =  getEntityValueHelper(entities)
+                numbersUsed = numbersUsed + entityValues
             finalEntities = self.constructRangeEntityHelper(intention, numbersUsed)
+
             self.addResult(answers[0], finalEntities)
         else:
             for answer, entities in zip(answers, entitiesUsedInEachSearch):
-                self.addResult(answer,entities)
+                intention = "between"
+                if len(entities) == 1: 
+                    intention = "within"
+                entityValues =  getEntityValueHelper(entities)
+                finalEntities = self.constructRangeEntityHelper(intention, entityValues)
+                self.addResult(answer,entities+finalEntities)
 
     def constructRangeEntityHelper(self, intention, numbersUsed):
         entities = []

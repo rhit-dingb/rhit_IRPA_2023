@@ -37,14 +37,16 @@ class DefaultShouldAddRowStrategy(ShouldAddRowInterface):
         
         uniqueEntities = removeDuplicatedEntities(filteredEntities)
         uniqueEntityValuesFound = [e["value"] for e in uniqueEntities]
+        # print("UNIQUE ENTITY FOUND")
+        # print(uniqueEntityValuesFound)
         for column in columns:
             if str(column).lower() in uniqueEntityValuesFound:
                 if row[column] == 1:
                     temp_count = temp_count + 1
 
         if temp_count == len(uniqueEntities):
-            print("ACCEPT ROW")
-            print(row)
+            # print("ACCEPT ROW")
+            # print(row)
             return uniqueEntities
         else:
             return []

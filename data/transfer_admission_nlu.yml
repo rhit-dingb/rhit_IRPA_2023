@@ -4,16 +4,16 @@ nlu:
 - intent: transfer_admission
   examples: |
     - At which [term]{"entity": "academic_term", "value": "term" } may [transfer]{"entity":"category", "value":"transfer"} [students]{"entity":"people", "value": "student"} [enroll]{"entity": "action", "value": "enrolled"}
-    - Does Rose-Hulman [accept]{"entity":"action", "value":"accepted"} [credits]{"entity":"academic_credit", "value":"credit"} [transferred]{"entity":"transfer", "value":"transfer"}
-    - Does Rose-Hulman [accept]{"entity":"action", "value":"accepted"} [transfer]{"entity":"transfer", "value":"transfer"} [credit]{"entity":"academic_credit", "value":"credit"}
-    - Does Rose-Hulman [accept]{"entity":"action", "value":"accepted"} [transfer]{"entity":"transfer", "value":"transfer"} [credits]{"entity":"academic_credit", "value":"credit"}
+    - Does Rose-Hulman [accept]{"entity":"action", "value":"accepted"} [credits]{"entity":"academic_credit", "value":"credit"} [transferred]{"entity":"category", "value":"transfer"}
+    - Does Rose-Hulman [accept]{"entity":"action", "value":"accepted"} [transfer]{"entity":"category", "value":"transfer"} [credit]{"entity":"academic_credit", "value":"credit"}
+    - Does Rose-Hulman [accept]{"entity":"action", "value":"accepted"} [transfer]{"entity":"category", "value":"transfer"} [credits]{"entity":"academic_credit", "value":"credit"}
  
-    - Does Rose-Hulman [allow]{"entity":"action", "value":"accepted"} [transferred]{"entity":"transfer", "value":"transfer"} [credits]{"entity":"academic_credit", "value":"credit"} 
-    - Does Rose-Hulman [allow]{"entity":"action", "value":"accepted"} [transfering]{"entity":"transfer", "value":"transfer"} [credits]{"entity":"academic_credit", "value":"credit"} 
-    - Does Rose-Hulman [allow]{"entity":"action", "value":"accepted"} [transfer]{"entity":"transfer", "value":"transfer"} [credits]{"entity":"academic_credit", "value":"credit"} 
+    - Does Rose-Hulman [allow]{"entity":"action", "value":"accepted"} [transferred]{"entity":"category", "value":"transfer"} [credits]{"entity":"academic_credit", "value":"credit"} 
+    - Does Rose-Hulman [allow]{"entity":"action", "value":"accepted"} [transfering]{"entity":"category", "value":"transfer"} [credits]{"entity":"academic_credit", "value":"credit"} 
+    - Does Rose-Hulman [allow]{"entity":"action", "value":"accepted"} [transfer]{"entity":"category", "value":"transfer"} [credits]{"entity":"academic_credit", "value":"credit"} 
     - Does rose-hulman [allow]{"entity":"action", "value":"accepted"} [students]{"entity":"people", "value": "student"} to [tranfer their credit] from previous school?
  
-    - Does Rose-Hulman [enroll]{"entity":"action", "value":"enrolled"} [transfer]{"entity":"transfer", "value":"transfer"} student
+    - Does Rose-Hulman [enroll]{"entity":"action", "value":"enrolled"} [transfer]{"entity":"category", "value":"transfer"} student
 
     - Does Rose-Hulman let [transfer] [student]{"entity":"people", "value": "student"} in
 

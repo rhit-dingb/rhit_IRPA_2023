@@ -71,6 +71,7 @@ class ExcelProcessor():
             if topic in topic_key_words:
                 #Assume the naming convention is: Section_Subsection
                 subsectionName = topic_key_words[len(topic_key_words)-1]
+                print(subsectionName)
                 df = dataSourceConnector.parse(name)
                 sparseMatrix = SparseMatrix(subsectionName, df)
                 topicData.addSparseMatrix(subsectionName, sparseMatrix)
