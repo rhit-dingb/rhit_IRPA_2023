@@ -2,12 +2,12 @@ version: "3.1"
 
 nlu:
 
-- lookup: essay
-  examples: |
-    - essay
-    - personal statement
-    - essay/personal statement
-    - essay or personal statement
+# - lookup: essay
+#   examples: |
+#     - essay
+#     - personal statement
+#     - essay/personal statement
+#     - essay or personal statement
 
 - synonym: essay
   examples: |
@@ -113,14 +113,14 @@ nlu:
     - high-school
     - high school
 
-- synonym: college
-  examples: |
-    - college
-    - university
-    - universities
-    - colleges
-    - institution
-    - institutions
+# - synonym: college
+#   examples: |
+#     - college
+#     - university
+#     - universities
+#     - colleges
+#     - institution
+#     - institutions
 
 
 - lookup: money

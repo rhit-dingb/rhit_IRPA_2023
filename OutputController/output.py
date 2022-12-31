@@ -31,6 +31,6 @@ def outputFuncForText(answer : str, intent, entitiesUsed):
     return constructSentence(answer, intent, entitiesUsed)
  
 
-def identityFunc(answers, intent, entitiesUsed):
+def identityFunc(answers, intent, entitiesUsed, template):
     return (answers, intent, entitiesUsed)
 

@@ -9,17 +9,27 @@ class EntityExpression(Expression):
     def evaluate(self,entities, answer):
         valueToReturn = ""
         indexToRemove = None
+        if self.value == "":
+            return ""
+        
+        keyToCheck = "entity"
+        if self.value[0] == "*":
+            self.value = self.value[1:]
+            keyToCheck = "value"
+
         for i in range(len(entities)):
             entity = entities[i]
-            if entity["entity"] == self.value:
+            if entity[keyToCheck] == self.value:
                 valueToReturn =  entity["value"]
                 indexToRemove = i
                 break
-        if indexToRemove:
+
+        if not indexToRemove == None:
             entities.pop(i)
-        
-        
+    
         return valueToReturn
+
+    
 
 
         

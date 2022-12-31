@@ -13,6 +13,7 @@ intents:
   - high_school_units
   - basis_for_selection 
   - freshman_profile
+  - academic_offering_policy
   - student_life
   - financial_aid
   - faculty_and_class_size
@@ -69,7 +70,7 @@ entities:
 
   - completion-requirement
 
-  - waiting-list-detail
+  # - waiting-list-detail
 
   # - policy
 
@@ -94,7 +95,8 @@ entities:
   - not_modifier_stafford
   - aid_status_none
   
-  # School subjects such as english, mathematics, science, etc.
+  # School subjects such as english, mathematics, science, etc, also captures the word subject
+  # Value: subject english, mathematics, science, liberal arts.
   - subject
 
 # This entity captures whether required or recommended is mentioned. Used in high school units required/recommended and transfer admission required items.
@@ -108,14 +110,8 @@ entities:
   - non_academic_factor
 
 
-
-
   #Aggregation words: percentage, average 
   - aggregation
-
-
-
-  # # Below are entities for freshman profile
 
 
   #Types of standarized test. Values: SAT and ACT.
@@ -130,6 +126,8 @@ entities:
   # essay
   # reading
   # writing
+  # math
+  # english
   - test_component
   
   #highschool class rank, value: top tenth, top quarter, top half of highschool class, etc in the incoming freshman class,
@@ -188,11 +186,11 @@ entities:
 #Values: less than(within), more than(greater than),  maximum, minimum,
   - range
 
-# Doctorate, Masters, Bachelors, Associates degree
+# Doctorate, Masters, Bachelors, Associates degree, and Unknown
   - degree_level 
 
 
-#Use to capture the word age and 25 and older used in student life section of cds 
+#Use to capture the word age
   - age
 
 #Different category/group of student described in student life section, which includes student from out of state, 
@@ -237,19 +235,6 @@ entities:
   # Defer admission
   - defer
 
-  # - offered
-  
-  #area word
-  #value: area of course work
-  - area 
-
-  #special-study words
-  #Value sepcial-study
-  - special-study
-
-  #program word
-  #Value : program
-  - program
 
   # #Captures the word "year"
   # - year
@@ -264,10 +249,7 @@ entities:
   - methodology
 
 # Captures different types of scholar or grants and loans financial aid such as federal, state, external, athletic 
-# NOTE: Institutional is also a modifier but it will be mapped to value college in education_level entity.
-# Values: federal, state, external, athletic 
-
-#Might change this
+# Values: federal, state, external, athletic, institutional
   - financial_aid_type
 
 #Captures scholarship, grants itself.

@@ -54,8 +54,8 @@ class TemplateConverter():
                     else:
                         tokensToParse = tokens[1:]
                         tokensToParse = " ".join(tokensToParse)
-                        print("TOKEN TO PARSE")
-                        print(tokensToParse)
+                        # print("TOKEN TO PARSE")
+                        # print(tokensToParse)
                         opExpression = self.determineOperation(tokens[0])
                         expressionsParsed = self.parseTemplate(tokensToParse)
 

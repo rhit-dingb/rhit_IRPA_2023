@@ -43,7 +43,7 @@ class enrollment_test(unittest.TestCase):
     
         # #Making sure the data loaded is consistent for testing
         # self.data = self.excelProcessor.processExcelSparse("../Data_Ingestion/CDS_SPARSE_ENR.xlsx", self.topicToParse)
-    def extractOutput(self, answers, intent, entities):
+    def extractOutput(self, answers, intent, entities, template):
         return answers
     
     # def test_give_no_entities_should_sum_up_everything(self):

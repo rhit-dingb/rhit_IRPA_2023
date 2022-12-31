@@ -1948,11 +1948,11 @@ nlu:
     - How many [units]{"entity": "academic_credit", "value": "unit"} [must]{"entity": "condition", "value": "require"} I take if I want to get into this school?
 
     - How many [unit]{"entity": "academic_credit", "value": "unit"} are [required]{"entity": "condition", "value": "require"} for [english]{"entity": "subject", "value": "english"} for [admission]{"entity":"academic_process", "value":"admission"} at this school?
-    - How many [unit]{"entity": "academic_credit", "value": "unit"} are [recommended]{"entity": "condition", "value": "recommend"} for [math]{"entity": "subject", "value": "mathematics"} for admission?
+    - How many [unit]{"entity": "academic_credit", "value": "unit"} are [recommended]{"entity": "condition", "value": "recommend"} for [math]{"entity": "subject", "value": "math"} for admission?
     - what is the [unit]{"entity": "academic_credit", "value": "unit"} [required]{"entity": "condition", "value": "required"} for [science]{"entity": "subject", "value": "science"} to get into this school?
     - what is the [unit]{"entity": "academic_credit", "value": "unit"} [recommended]{"entity": "condition", "value": "recommend"} for [science]{"entity": "subject", "value": "science"} I should take during high-school for [admission]{"entity":"academic_process", "value":"admission"} into this school?
     
-    - How many [unit]{"entity": "academic_credit", "value": "unit"} are [required]{"entity": "condition", "value": "require"} for [mathematic]{"entity": "subject", "value": "mathematics"}
+    - How many [unit]{"entity": "academic_credit", "value": "unit"} are [required]{"entity": "condition", "value": "require"} for [mathematic]{"entity": "subject", "value": "math"}
     - How many [lab]{"entity": "subject", "value": "lab"} [unit]{"entity": "academic_credit", "value": "unit"} are [required]{"entity": "condition", "value": "require"} 
     - For admission, how many [lab]{"entity": "subject", "value": "lab"} [unit]{"entity": "academic_credit", "value": "unit"} are [recommended]{"entity": "condition", "value": "recommend"}?
 
@@ -2017,10 +2017,10 @@ nlu:
     - What is the importance of [test scores]{"entity": "academic_factor", "value": "standardized test scores" } in [admission]{"entity":"academic_process", "value":"admission"} decisions?
     - What is the importance of standardized [test scores]{"entity": "academic_factor", "value": "standardized test scores" } in basis for selection?
 
-    - What is the importance of [application]{"entity":"academic_process", "value":"application"} [essay]{"entity": "essay", "value": "essay"} in [admission]{"entity":"academic_process", "value":"admission"} decisions?
-    - What is the importance of [essay]{"entity": "essay", "value": "essay" } in [admission]{"entity":"academic_process", "value":"admission"} decisions?
-    - What is the importance of [application]{"entity":"academic_process", "value":"application"} [essay]{"entity": "essay", "value": "essay"} in basis for selection?
-    - What is the importance of [personal statement]{"entity": "essay", "value": "essay" } in [admission]{"entity":"academic_process", "value":"admission"} decisions?
+    - What is the importance of [application]{"entity":"academic_process", "value":"application"} [essay]{"entity": "academic_factor", "value": "essay"} in [admission]{"entity":"academic_process", "value":"admission"} decisions?
+    - What is the importance of [essay]{"entity": "academic_factor", "value": "essay" } in [admission]{"entity":"academic_process", "value":"admission"} decisions?
+    - What is the importance of [application]{"entity":"academic_process", "value":"application"} [essay]{"entity": "academic_factor", "value": "essay"} in basis for selection?
+    - What is the importance of [personal statement]{"entity": "academic_factor", "value": "essay" } in [admission]{"entity":"academic_process", "value":"admission"} decisions?
 
     - What is the importance of [recommendation]{"entity": "academic_factor", "value": "recommendation" } in [admission]{"entity":"academic_process", "value":"admission"} decisions?
     - What is the importance of [recommendation]{"entity": "academic_factor", "value": "recommendation" } in [admission]{"entity":"academic_process", "value":"admission"} decisions?
@@ -2338,12 +2338,8 @@ nlu:
 - lookup: subject
   examples: |
     - science
-    - mathematics
-    - math
-
     - social-studies
     - social studies
-
     - history
 
     - visual/performing-arts
@@ -2386,11 +2382,11 @@ nlu:
     - performing arts
 
 
-- synonym: mathematics
-  examples: |
-    - math
-    - mathmatic
-    - mathematics
+# - synonym: mathematics
+#   examples: |
+#     - math
+#     - mathmatic
+#     - mathematics
 
 # - synonym: units-required
 #   examples: |

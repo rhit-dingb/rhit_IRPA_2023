@@ -44,8 +44,7 @@ class ParserFacade():
                     response : Dict = self.rasaCommunicator.parseMessage(questionAnswer.getQuestion())
                     numberEntities = self.numberEntityExtractor.extractEntities(questionAnswer.getQuestion())
                     entities = response["entities"] + numberEntities
-                    # Filter out range entities
-                    entities = filterEntities(entities, [RANGE_ENTITY_LABEL])
+                    
                     highConfidenceEntities = []
                     #Filter out entities with low confidence
                     for entity in entities:
