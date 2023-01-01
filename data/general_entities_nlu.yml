@@ -9,6 +9,45 @@ nlu:
 #     - essay/personal statement
 #     - essay or personal statement
 
+
+
+- lookup: range
+  examples: |
+    - more than
+    - or more
+    - more
+    - greater than 
+    - higher than
+    - at least
+
+    - less than 
+    - within
+    - no more 
+    - less
+    - between
+    
+
+- synonym: between
+  examples: |
+    - to
+
+
+- synonym: within
+  examples: |
+    - less than
+    - less
+    - in
+    - no more than
+    - no more
+    - inside
+
+- synonym: more than
+  examples: |
+    - greater than 
+    - higher than 
+
+
+
 - synonym: essay
   examples: |
     - personal statement

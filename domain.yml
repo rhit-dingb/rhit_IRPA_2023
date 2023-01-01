@@ -130,7 +130,7 @@ entities:
   # english
   - test_component
   
-  #highschool class rank, value: top tenth, top quarter, top half of highschool class, etc in the incoming freshman class,
+  #highschool class rank, value: top tenth, top quarter, top half, bottom half, bottom quarter
   - class_rank
 
 
