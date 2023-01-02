@@ -1,14 +1,13 @@
 
 import pandas as pd
 from Data_Ingestion.SparseMatrix import SparseMatrix
-
 from Data_Ingestion.TopicData import TopicData
-
 
 
 class MongoProcessor():
     def __init__(self, topicToParse):
         self.data : dict[str, dict[str, TopicData]] = []
+        self.topicToParse = topicToParse
         #print(self.data['2020_2021']["high_school_units"].sparseMatrices)
         
     def getData(self) -> TopicData:
@@ -17,13 +16,21 @@ class MongoProcessor():
     """ 
     return from MongoDB collection into dictionary
     """ 
-    def processCollectiontoSparseMatrix(self, topicToParse):
-        #yearToData = dict()
-        cursor = topicToParse.find()
-        list_dic = list(cursor)
-        #print(list_dic)
-        self.data = list_dic
-        return True
+    def processCollectiontoSparseMatrix(self, db, topicToParse):
+        yearToData = dict()
+        for db_name in db.list_database_names():
+            if(db_name != 'admin' and db_name != 'config' and db_name != 'local'):
+                cur_db = db[db_name]
+                data = dict()
+                #xl = pd.DataFrame.from_dict(cur_db) #convert current database to Panda DataFrame                            
+                for topic in topicToParse:
+                    data[topic] = self.getAllSparseMatrixForTopic(topic, cur_db)
+                # get the year key. !!! Assume current standart is CDS_xxxx-xxxx
+                yearKey = db_name[-9:-5]+"_"+db_name[-4:]
+                #print('yearkey is  ' + yearKey)
+                yearToData[yearKey] = data
+        return yearToData         
+       
 
     # """ 
     # Given a topic, this function will find all the sparse matrix for a topic. Currently it is getting it from excel file, but 
@@ -37,24 +44,25 @@ class MongoProcessor():
 
     # Returns: TopicData class.
     # """
-    # def getAllSparseMatrixForTopic(self, topic, dataSourceConnector) -> TopicData:
+    def getAllSparseMatrixForTopic(self, topic, curDB) -> TopicData:
         
-    #     seperator = "_"
+        seperator = "_"
         
-    #     topicData = TopicData(topic)
-    #     #put this here for now
-    #     topic = topic.replace("_", " ")
+        topicData = TopicData(topic)
+        #put this here for now
+        topic = topic.replace("_", " ")
         
-    #     for name in dataSourceConnector.sheet_names:
-    #         topic_key_words = [x.lower() for x in name.split(seperator)]
+        for name in curDB.list_collection_names():
+            
+            topic_key_words = [x.lower() for x in name.split(seperator)]
             
    
-    #         # for each sheet, the name has to be in the format subsection_topic. For example: race_enrollment
-    #         if topic in topic_key_words:
-    #             #Assume the naming convention is: Section_Subsection
-    #             subsectionName = topic_key_words[len(topic_key_words)-1]
-    #             df = dataSourceConnector.parse(name)
-    #             sparseMatrix = SparseMatrix(subsectionName, df)
-    #             topicData.addSparseMatrix(subsectionName, sparseMatrix)
-    #     return topicData  
+            # for each sheet, the name has to be in the format subsection_topic. For example: race_enrollment
+            if topic in topic_key_words:
+                #Assume the naming convention is: Section_Subsection
+                subsectionName = topic_key_words[len(topic_key_words)-1]
+                df = pd.DataFrame.from_dict(curDB[name].find({}))
+                sparseMatrix = SparseMatrix(subsectionName, df)
+                topicData.addSparseMatrix(subsectionName, sparseMatrix)
+        return topicData  
                 

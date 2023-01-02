@@ -24,7 +24,9 @@ class MongoDataManager():
     print("Started!")
     
     client = MongoClient('mongodb://localhost:27017')
-    db = client["CDS_2020-2021"]
+    dbs = MongoClient().list_database_names()
+    CDS_DB_NAMES = ["CDS_2014-2015","CDS_2019-2020","CDS_2020-2021"]
+    #db = client["CDS_2020-2021"]
     # INTENTION_LIST = db.list_collection_names()
     # print(INTENTION_LIST)
     # collection = db.Enrollment_General
@@ -39,17 +41,15 @@ class MongoDataManager():
             yearKey = DATABASE_PRENAME + str(start) + "-" + str(end)
             if not yearKey in self.client.list_database_names():
                 raise exceptionToThrow
-            db= self.client[yearKey]
-
-            if not intent in db.list_collection_names():
-                raise NoDataFoundException(NO_DATA_AVAILABLE_FOR_GIVEN_INTENT_FORMAT.format(topic = intent, start= start, end=end), ExceptionTypes.NoSparseMatrixDataAvailableForGivenIntent)
-            localCollection = db[intent]
-            self.MongoProcessor.processCollectiontoSparseMatrix(localCollection)
+            # TODO: raise exception for this:
+            # if not intent in db.list_collection_names():
+            #     raise NoDataFoundException(NO_DATA_AVAILABLE_FOR_GIVEN_INTENT_FORMAT.format(topic = intent, start= start, end=end), ExceptionTypes.NoSparseMatrixDataAvailableForGivenIntent)
+            #localCollection = db[intent]
+            self.MongoProcessor.processCollectiontoSparseMatrix(self.client, intent)
             topicData : TopicData = self.MongoProcessor.getData()
             # cursor = topicData.find()
             # for doc in cursor:
-            #     print(doc)
-            print(topicData)
+            #     print(doc)           
             return topicData
 
 
@@ -57,4 +57,4 @@ class MongoDataManager():
 NO_DATA_FOUND_FOR_ACADEMIC_YEAR_ERROR_MESSAGE_FORMAT = "Sorry I could not find any data for academic year {start}-{end}"
 exceptionToThrow = NoDataFoundException(NO_DATA_FOUND_FOR_ACADEMIC_YEAR_ERROR_MESSAGE_FORMAT.format(start=2020, end=2021), ExceptionTypes.NoDataFoundForAcademicYearException)
 manager = MongoDataManager()
-manager.getSparseMatricesByStartEndYearAndIntent("Enrollment_General",2020,2021,exceptionToThrow)
+manager.getSparseMatricesByStartEndYearAndIntent(["enrollment"],2020,2021,exceptionToThrow)
