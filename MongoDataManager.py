@@ -52,6 +52,20 @@ class MongoDataManager():
             #     print(doc)           
             return topicData
 
+    """
+    See docuementation in DataManager.py
+    """
+    def getMostRecentYearRange(self) -> Tuple[str, str] :
+        def sortFunc(e):
+            yearRange = e.split("_")
+            startYear= int(yearRange[0])
+            return startYear
+
+        years = list(self.MongoProcessor.getData().keys())
+        years.sort(key = sortFunc, reverse= True)
+        mostRecentYearRange = years[0].split("_")
+
+        return (mostRecentYearRange[0], mostRecentYearRange[1])
 
 # -----------The following are Unit Tests for the MongoDataManager Class
 NO_DATA_FOUND_FOR_ACADEMIC_YEAR_ERROR_MESSAGE_FORMAT = "Sorry I could not find any data for academic year {start}-{end}"
