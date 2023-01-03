@@ -28,10 +28,10 @@ class TopicData():
         for entity in entities:
 
             label : str = entity["entity"]
-            value : str = entity["value"]
+            # value : str = entity["value"]
             for key in self.sparseMatrices.keys():
                 keywords = key.split(" ")
-                if label in keywords or value in keywords:
+                if label in keywords:
                     subSectionSparseMatrices.append(self.sparseMatrices[key])
 
         if len(subSectionSparseMatrices) == 0:
