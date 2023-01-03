@@ -36,6 +36,7 @@ stories:
       - intent: general_info
       - intent: sat_act_policies
       - intent: faculty_and_class_size
+      - intent: degree_conferred
     - action: action_query_knowledgebase
     - action: utter_ask_answer_helpful
     - intent: affirm
@@ -47,6 +48,7 @@ stories:
       - intent: general_info
       - intent: sat_act_policies
       - intent: faculty_and_class_size
+      - intent: degree_conferred
     - action: action_query_knowledgebase
     - action: utter_ask_answer_helpful
     - intent: deny

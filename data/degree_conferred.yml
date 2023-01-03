@@ -1,0 +1,53 @@
+
+version: "3.1"
+
+nlu:
+- intent: degree_conferred
+  examples: |
+    - I want to know about the degree [conferred]{"entity":"conferred", "value": "conferred"} information.
+    - How many [computer-science]{"entity":"subject", "value": "computer-science"} degrees are [conferred]{"entity":"conferred", "value": "conferred"}?
+    - How many [engineering]{"entity":"subject", "value": "engineering"} degrees are [conferred]{"entity":"conferred", "value": "conferred"}?
+    - How many [biological-sciences]{"entity":"subject", "value": "biological-sciences"} degrees are [conferred]{"entity":"conferred", "value": "conferred"}?
+    - How many [mathematics]{"entity":"subject", "value": "mathematics"} degrees are [conferred]{"entity":"conferred", "value": "conferred"}?
+    - How many [interdisciplinary-studies]{"entity":"subject", "value": "interdisciplinary-studies"} degrees are [conferred]{"entity":"conferred", "value": "conferred"}?
+    - How many [physical]{"entity":"subject", "value": "physical"} degrees are [conferred]{"entity":"conferred", "value": "conferred"}?
+    - How many [social]{"entity":"subject", "value": "social"} degrees are [conferred]{"entity":"conferred", "value": "conferred"}?
+
+
+
+- synonym: computer-science
+  examples: |
+    - computer-science
+    - computer science
+    - computer and information science
+
+
+- synonym: biological-sciences
+  examples: |
+    - biological-sciences
+    - biological sciences
+    - Biological/Life Sciences
+    - life science
+
+- synonym: mathematics
+  examples: |
+    - biological-sciences
+    - Mathematics and statistics
+    - statistics
+
+- synonym: interdisciplinary-studies
+  examples: |
+    - interdisciplinary-studies
+    - interdisciplinary studies
+
+- synonym: physical
+  examples: |
+    - physical science 
+    - physical
+    - physical-science
+
+- synonym: social
+  examples: |
+    - social
+    - social-science
+    - social science
