@@ -183,7 +183,11 @@ class SparseMatrix():
             else:
                 searchResults.append(newSearchResult)
                 return newSearchResult
-
+        elif currentSearchResultType == newSearchResult:
+            #Might move this common logic to a seperate function
+            newCalculatedValue = str(castedCurrValue + castedNewValue)
+            searchResults[len(searchResults)-1] = newCalculatedValue
+            return newCalculatedValue
         else:
             searchResults.append(newSearchResult)
 
