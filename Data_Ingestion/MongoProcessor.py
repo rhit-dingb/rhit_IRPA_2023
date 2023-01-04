@@ -25,7 +25,7 @@ class MongoProcessor():
                 #xl = pd.DataFrame.from_dict(cur_db) #convert current database to Panda DataFrame                            
                 for topic in topicToParse:
                     data[topic] = self.getAllSparseMatrixForTopic(topic, cur_db)
-                # get the year key. !!! Assume current standart is CDS_xxxx-xxxx
+                # get the year key. !!! Assume current standart is CDS_xxxx_xxxx
                 yearKey = db_name[-9:-5]+"_"+db_name[-4:]
                 #print('yearkey is  ' + yearKey)
                 yearToData[yearKey] = data
