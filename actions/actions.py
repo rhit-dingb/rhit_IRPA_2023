@@ -63,6 +63,8 @@ class ActionQueryKnowledgebase(Action):
 
     def run(self, dispatcher, tracker, domain):
         entitiesExtracted = tracker.latest_message["entities"]
+        numberEntities = numberEntityExtractor.extractEntities(tracker.latest_message["text"])
+        entitiesExtracted = entitiesExtracted + numberEntities
         intent = tracker.latest_message["intent"]["name"]
         print(intent)
         print(entitiesExtracted)
@@ -152,13 +154,13 @@ class ActionQueryCohort(Action):
 
         return []
 
-    def calculateGraduationRate(self,intent, entitiesForNumerator,  filteredEntities , graduatingNumbers, shouldAddRowStrategy):
-        entitiesToCalculateDenominator = [createEntityObj(FINAL_COHORT_ENTITY_LABEL, entityLabel=FINAL_COHORT_ENTITY_LABEL)]
-        entitiesToCalculateDenominator = entitiesToCalculateDenominator + filteredEntities
-        print("ENTITIES TO CALCULATE DENOMINATOR")
-        print(entitiesToCalculateDenominator)
-        answer, intent, entities = knowledgeBase.aggregatePercentage(intent, graduatingNumbers, entitiesForNumerator,  entitiesToCalculateDenominator,  shouldAddRowStrategy)
-        return knowledgeBase.constructOutput(answer, intent, entities)
+    # def calculateGraduationRate(self,intent, entitiesForNumerator,  filteredEntities , graduatingNumbers, shouldAddRowStrategy):
+    #     entitiesToCalculateDenominator = [createEntityObj(FINAL_COHORT_ENTITY_LABEL, entityLabel=FINAL_COHORT_ENTITY_LABEL)]
+    #     entitiesToCalculateDenominator = entitiesToCalculateDenominator + filteredEntities
+    #     print("ENTITIES TO CALCULATE DENOMINATOR")
+    #     print(entitiesToCalculateDenominator)
+    #     answer, intent, entities = knowledgeBase.aggregatePercentage(intent, graduatingNumbers, entitiesForNumerator,  entitiesToCalculateDenominator,  shouldAddRowStrategy)
+    #     return knowledgeBase.constructOutput(answer, intent, entities)
 
 
 def utterAllAnswers(answers, dispatcher):

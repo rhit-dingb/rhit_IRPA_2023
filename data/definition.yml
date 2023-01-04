@@ -201,7 +201,7 @@ nlu:
 
     - What is the definition for [transfer]{"entity":"category", "value":"transfer"} [applicant]{"entity":"people", "value":"applicant"}?
 
-    - What is the definition for [transfer]{"entity":"category", "value":"commute"} [student]{"entity":"people", "value":"student"}?
+    - What is the definition for [transfer]{"entity":"category", "value":"transfer"} [student]{"entity":"people", "value":"student"}?
 
     - What is the definition for [transportation]{"entity": "transportation", "value": "transportation"} [costs]{"entity":"money", "value":"cost"}
 

@@ -114,6 +114,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         intention = ""
         numberEntities = findMultipleSameEntitiesHelper(entitiesFound, NUMBER_ENTITY_LABEL)
         numberValues = [] 
+        print(numberEntities)
         for entity in numberEntities:
             value = entity["value"]
             castedValue, resultType = self.typeController.determineResultType(value)
@@ -143,15 +144,18 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
             intention = "between"
             
         discreteRanges = sparseMatrix.findAllDiscreteRange()
-        print("DISCRETE RANGES")
-        print(discreteRanges)
+        # print("DISCRETE RANGES")
+        # print(discreteRanges)
         # print(minBound,maxBound)
         rangesToUse = []
         intervalToCheck = [minValue, maxValue]
         for dRange in discreteRanges:
             if self.doesIntervalOverlap(intervalToCheck, dRange):
                 rangesToUse.append(dRange)
-  
+        print("MIN VALUE MAX VALUE")
+        print(minValue, maxValue)
+        print("RANGE TO USE")
+        print(rangesToUse)
         return (rangesToUse, intention)
     
     def convertNoneToInfinity(self,a):
