@@ -10,7 +10,7 @@ class CDSDataParser():
     def __init__(self,  sparseMatrixDataWriter : SparseMatrixDataWriter):
         self.sparseMatrixDataWriter = sparseMatrixDataWriter
        
-    def parseQuestionAnswerToSparseMatrix(self,sectionName : str ,questionAnswers : QuestionAnswer, year: int) -> bool:
+    def parseQuestionAnswerToSparseMatrix(self,sectionName : str , questionAnswers : QuestionAnswer, year: int) -> bool:
         everyUniqueEntity = []
         matrixData = []
         sparseMatrix = None
@@ -30,7 +30,11 @@ class CDSDataParser():
         columns = ["Value"]
         columns = columns + everyUniqueEntity
         sparseMatrixDataFrame = pd.DataFrame(columns=columns, data = matrixData)
-        sparseMatrix = SparseMatrix(sparseMatrixDf=sparseMatrixDataFrame, subSectionName= sectionName)
+        questions = []
+        for qa in questionAnswers:
+            questions.append(qa.question)
+
+        sparseMatrix = SparseMatrix(sparseMatrixDf=sparseMatrixDataFrame, subSectionName= sectionName, questions=questions)
         self.sparseMatrixDataWriter.writeSparseMatrix(sparseMatrix)
                     
     def convertQuestionAnswerToRow(self, questionAnswer : QuestionAnswer, allEntities : List[str]) -> List[str]:

@@ -2,6 +2,7 @@
 Internal data model representing a sparse matrix
 """
 
+import json
 from typing import List, Tuple
 from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
 from Knowledgebase.SearchResultType import SearchResultType
@@ -9,15 +10,31 @@ from Knowledgebase.SearchResultType import SearchResultType
 from Knowledgebase.TypeController import TypeController
 from actions.entititesHelper import createEntityObj
 import Data_Ingestion.constants as constants
-
-
+import pandas as pd
 
 class SparseMatrix():
-    def __init__(self, subSectionName, sparseMatrixDf):
+    def __init__(self, subSectionName, sparseMatrixDf, questions=[]):
         self.subSectionName = subSectionName
-        self.sparseMatrixDf = sparseMatrixDf
+        self.sparseMatrixDf : pd.DataFrame  = sparseMatrixDf
         self.typeController = TypeController()
-       
+        self.questions = []
+        if len(questions) == self.sparseMatrixDf.shape[0]:
+            self.questions = questions
+
+    def __iter__(self):
+        for i in range(self.sparseMatrixDf.shape[0]):
+            row = self.sparseMatrixDf.loc[i]
+            yield row
+
+    def rowsToJson(self):
+        jsonRows = []
+        for row, question in zip(self, self.questions):
+           
+            rowJson = row.to_json()
+            jsonDict = json.loads(rowJson)
+            jsonDict["question"] = question
+            jsonRows.append(jsonDict)
+        return jsonRows
 
     def getSparseMatrixDf(self):
         return self.sparseMatrixDf

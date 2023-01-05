@@ -34,3 +34,7 @@ NO_AID_ENTITY_LABEL = "no-aid"
 YEAR_FOR_COLLEGE_ENTITY_LABEL = "years_for_college"
 
 RANGE_ENTITY_LABEL  = "range"
+
+
+MONGO_DB_CONNECTION_STRING = "mongodb://localhost:27017"
+DATABASE_PRENAME = "CDS_"
