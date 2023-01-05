@@ -8,10 +8,6 @@ HIGH_SCHOOL_UNITS_INTENT = "high_school_units"
 BASIS_FOR_SELECTION_INTENT = "basis_for_selection"
 
 
-
-
-
-
 COHORT_BY_YEAR_ENTITY_LABEL = "cohort_by_year"
 YEAR_ENTITY_LABEL = "year"
 UPPER_BOUND_GRADUATION_TIME_ENTITY_LABEL = "upper_bound_graduation_time"
@@ -24,3 +20,6 @@ RECIPIENT_OF_PELL_GRANT_ENTITY_LABEL = "recipients_of_federal_pell_grant"
 RECIPIENT_OF_STAFFORD_LOAN_NO_PELL_GRANT_ENTITY_LABEL = "recipients_of_a_subsidized_stafford_loan_who_did_not_receive_a_pell_grant"
 NO_AID_ENTITY_LABEL = "students_who_did_not_receive_either_a_pell_grant_or_a_subsidized_stafford_loan"
 RETENTION_RATE_LABEL = "retention-rate"
+
+MONGO_DB_CONNECTION_STRING = "mongodb://localhost:27017"
+DATABASE_PRENAME = "CDS_"

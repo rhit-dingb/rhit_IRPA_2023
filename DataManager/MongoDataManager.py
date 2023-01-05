@@ -9,23 +9,24 @@ from Exceptions.NotEnoughInformationException import NotEnoughInformationExcepti
 from Exceptions.ExceptionTypes import ExceptionTypes
 import json
 from pymongo import MongoClient
+
+from rhit_IRPA_2023.DataManager.constants import DATABASE_PRENAME, MONGO_DB_CONNECTION_STRING
 """
 MongoDataManager subclass that can handle connections with MongoDB data
 """
-DATABASE_PRENAME = "CDS_"
+
 
 class MongoDataManager():
-    def __init__(self, topicToParse = ["enrollment"]):
+    def __init__(self):
         super().__init__()
-        self.topicToParse = topicToParse
-        self.MongoProcessor = MongoProcessor(self.topicToParse)
-        self.client = MongoClient('mongodb://localhost:27017')
+        self.mongoProcessor = MongoProcessor()
+        self.client = MongoClient(MONGO_DB_CONNECTION_STRING)
 
-    print("Started!")
+    # print("Started!")
     
-    client = MongoClient('mongodb://localhost:27017')
-    dbs = MongoClient().list_database_names()
-    CDS_DB_NAMES = ["CDS_2014-2015","CDS_2019-2020","CDS_2020-2021"]
+    # client = MongoClient('mongodb://localhost:27017')
+    # dbs = MongoClient().list_database_names()
+    # CDS_DB_NAMES = ["CDS_2014-2015","CDS_2019-2020","CDS_2020-2021"]
     #db = client["CDS_2020-2021"]
     # INTENTION_LIST = db.list_collection_names()
     # print(INTENTION_LIST)
@@ -45,8 +46,8 @@ class MongoDataManager():
             # if not intent in db.list_collection_names():
             #     raise NoDataFoundException(NO_DATA_AVAILABLE_FOR_GIVEN_INTENT_FORMAT.format(topic = intent, start= start, end=end), ExceptionTypes.NoSparseMatrixDataAvailableForGivenIntent)
             #localCollection = db[intent]
-            self.MongoProcessor.processCollectiontoSparseMatrix(self.client, intent)
-            topicData : TopicData = self.MongoProcessor.getData()
+            self.mongoProcessor.processCollectiontoSparseMatrix(self.client, intent, yearKey)
+            topicData : TopicData = self.mongoProcessor.getData()
             # cursor = topicData.find()
             # for doc in cursor:
             #     print(doc)           
@@ -58,17 +59,18 @@ class MongoDataManager():
     def getMostRecentYearRange(self) -> Tuple[str, str] :
         def sortFunc(e):
             yearRange = e.split("_")
-            startYear= int(yearRange[0])
+            startYear= int(yearRange[1])
             return startYear
 
-        years = list(self.MongoProcessor.getData().keys())
-        years.sort(key = sortFunc, reverse= True)
-        mostRecentYearRange = years[0].split("_")
+        dbNameWithYears = list(self.client.list_database_names())
+        dbNameWithYears.sort(key = sortFunc, reverse= True)
+        mostRecentYearRange = dbNameWithYears[0].split("_")
+        mostRecentYearRange = mostRecentYearRange
 
         return (mostRecentYearRange[0], mostRecentYearRange[1])
 
 # -----------The following are Unit Tests for the MongoDataManager Class
-NO_DATA_FOUND_FOR_ACADEMIC_YEAR_ERROR_MESSAGE_FORMAT = "Sorry I could not find any data for academic year {start}-{end}"
-exceptionToThrow = NoDataFoundException(NO_DATA_FOUND_FOR_ACADEMIC_YEAR_ERROR_MESSAGE_FORMAT.format(start=2020, end=2021), ExceptionTypes.NoDataFoundForAcademicYearException)
-manager = MongoDataManager()
-manager.getSparseMatricesByStartEndYearAndIntent(["enrollment"],2020,2021,exceptionToThrow)
+# NO_DATA_FOUND_FOR_ACADEMIC_YEAR_ERROR_MESSAGE_FORMAT = "Sorry I could not find any data for academic year {start}-{end}"
+# exceptionToThrow = NoDataFoundException(NO_DATA_FOUND_FOR_ACADEMIC_YEAR_ERROR_MESSAGE_FORMAT.format(start=2020, end=2021), ExceptionTypes.NoDataFoundForAcademicYearException)
+# manager = MongoDataManager()
+# manager.getSparseMatricesByStartEndYearAndIntent(["enrollment"],2020,2021,exceptionToThrow)
