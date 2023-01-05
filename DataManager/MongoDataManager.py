@@ -39,7 +39,7 @@ class MongoDataManager():
     See docuementation in DataManager.py
     """
     def getSparseMatricesByStartEndYearAndIntent(self, intent, start, end, exceptionToThrow: Exception) -> TopicData:
-            yearKey = DATABASE_PRENAME + str(start) + "-" + str(end)
+            yearKey = DATABASE_PRENAME + str(start) + "_" + str(end)
             if not yearKey in self.client.list_database_names():
                 raise exceptionToThrow
             # TODO: raise exception for this:
