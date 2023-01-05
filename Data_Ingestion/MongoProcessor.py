@@ -31,7 +31,9 @@ class MongoProcessor():
                 #print('yearkey is  ' + yearKey)
         # yearToData[yearKey] = data
 
-        return topicData        
+        return topicData     
+   
+
        
 
     """ 
