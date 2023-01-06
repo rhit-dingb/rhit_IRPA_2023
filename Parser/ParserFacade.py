@@ -10,6 +10,8 @@ from Parser.RasaCommunicator import RasaCommunicator
 from Parser.QuestionAnswer import QuestionAnswer
 from Parser.CDSDataLoader import CDSDataLoader
 from Parser.ExcelSparseMatrixDataWriter import ExcelSparseMatrixDataWriter
+from Data_Ingestion.SparseMatrix import SparseMatrix
+
 from actions.entititesHelper import filterEntities
 
 class ParserFacade():
@@ -18,7 +20,7 @@ class ParserFacade():
         self.dataWriter : SparseMatrixDataWriter = dataWriter
         self.rasaCommunicator : RasaCommunicator = RasaCommunicator()
         self.numberEntityExtractor = NumberEntityExtractor()
-        self.parser = CDSDataParser(self.dataWriter)
+        self.parser = CDSDataParser()
         self.entityConfidenceKey = "confidence_entity"
         self.confidenceThreshold = 0.5
 
@@ -30,14 +32,17 @@ class ParserFacade():
         #                 }
 
     def parse(self, year : int):
-       sections : List[str] = self.dataLoader.getAllSections()
-       for section in sections:
+        sectionFullNames : List[str] = self.dataLoader.getAllSectionDataFullName()
+        sectionToSparseMatrices : Dict[str, List] = dict()
+        for sectionFullName in sectionFullNames:
             # if not section in self.parsers.keys():
             #     continue
-
-            questionAnswers : List[QuestionAnswer] = self.dataLoader.getQuestionsAnswerForSection(section)
+            sectionAndSubSection = sectionFullName.split("_")
+            section = sectionAndSubSection[0]
+            subSection = sectionAndSubSection[len(sectionAndSubSection)-1]
+            sparseMatrices = []
+            questionAnswers : List[QuestionAnswer] = self.dataLoader.getQuestionsAnswerForSection(sectionFullName)
             for questionAnswer in questionAnswers:
-                
                 if questionAnswer.isMetaData: 
                     questionAnswer.setEntities([questionAnswer.question])
                 else:
@@ -54,7 +59,6 @@ class ParserFacade():
                                 highConfidenceEntities.append(entity)
                         else: 
                             highConfidenceEntities.append(entity)
-
                     entityValues = []
                     for entity in highConfidenceEntities:
                         entityValues.append(entity["value"])
@@ -62,9 +66,22 @@ class ParserFacade():
                     
             # if section in self.parsers.keys(): 
                 #parser : CDSDataParser = self.parsers[section]
+            sparseMatrix : SparseMatrix = self.parser.parseQuestionAnswerToSparseMatrix(subSection, questionAnswers, year) 
+            if section in sectionToSparseMatrices:
+                sectionToSparseMatrices[section].append(sparseMatrix)
+            else: 
+                sectionToSparseMatrices[section] = [sparseMatrix]
+            print(sectionToSparseMatrices)
+            # sparseMatrices.append(sparseMatrix)
+        self.writeSparseMatrix(sectionToSparseMatrices)
+           
+        
+        
+    def writeSparseMatrix(self,sectionToSparseMatrices):
+        for section in sectionToSparseMatrices:
+            sparseMatrices = sectionToSparseMatrices[section]
+            self.dataWriter.writeSparseMatrices(sparseMatrices, section)
 
-            self.parser.parseQuestionAnswerToSparseMatrix(section, questionAnswers, year) 
-            
         
 
 

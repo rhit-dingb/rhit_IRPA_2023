@@ -38,7 +38,7 @@ class CDSDataLoader():
         
     
     #Get all section that "we need to parse into sparse matrix, including sub sections 
-    def getAllSections(self) -> List[str] :
+    def getAllSectionDataFullName(self) -> List[str] :
         return self.data.keys()
     
     

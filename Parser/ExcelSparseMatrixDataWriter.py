@@ -11,16 +11,20 @@ class ExcelSparseMatrixDataWriter(SparseMatrixDataWriter):
         # super().__init__()
         self.excelPath = excelPath
         self.excelWorkbook = load_workbook(self.excelPath)
-        
     
     
-    def writeSparseMatrix(self, sparseMatrix : SparseMatrix) -> None:
+    def writeSparseMatrix(self, sparseMatrix : SparseMatrix, sectionName : str) -> None:
         df = sparseMatrix.getSparseMatrixDf()
-        print(df)
+        # print(df)
         writer = pd.ExcelWriter(self.excelPath, engine = 'openpyxl')
         writer.book = self.excelWorkbook
-        df.to_excel(writer, sheet_name = sparseMatrix.subSectionName, index=False)
+        sheetName = sectionName +"_"+sparseMatrix.subSectionName
+        df.to_excel(writer, sheet_name = sheetName, index=False)
         # writer.save()
         writer.close()
+
+    def writeSparseMatrices(self, sparseMatrices : List[SparseMatrix], sectionName : str) -> None:
+       for sparseMatrix in sparseMatrices:
+            self.writeSparseMatrix(sparseMatrix, sectionName)
 
     

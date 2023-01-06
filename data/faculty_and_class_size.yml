@@ -33,6 +33,7 @@ nlu:
     - How many class [subsections]{"entity": "section_subsection", "value": "subsection"} have 2 to 9 [students]{"entity":"people", "value":"student"}?
     - How many class [subsections]{"entity": "section_subsection", "value": "subsection"} have 40 to 49 [students]{"entity":"people", "value":"student"}?
     - What is the [size](size) of a class at Rose-Hulman?
+    
     - How [small]{"entity": "size", "value": "size"} is a class at Rose-Hulman?
     - What is the [average]{"entity":"aggregation", "value":"average"} class [size]{"entity": "size", "value": "size"} at Rose-Hulman?
     - What is the [average]{"entity":"aggregation", "value":"average"} class [size]{"entity": "size", "value": "size"} at Rose-Hulman?
