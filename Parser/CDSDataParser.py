@@ -10,7 +10,7 @@ class CDSDataParser():
     def __init__(self):
         pass
        
-    def parseQuestionAnswerToSparseMatrix(self, subsectionName : str , questionAnswers : QuestionAnswer, year: int) -> bool:
+    def parseQuestionAnswerToSparseMatrix(self, subsectionName : str , questionAnswers : QuestionAnswer) -> bool:
         everyUniqueEntity = []
         matrixData = []
         sparseMatrix = None

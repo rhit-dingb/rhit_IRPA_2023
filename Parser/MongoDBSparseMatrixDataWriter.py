@@ -9,10 +9,10 @@ from pymongo import MongoClient
 
 class MongoDBSparseMatrixDataWriter(SparseMatrixDataWriter):
     #database name can be existing database or a new one
-    def __init__(self, year):
+    def __init__(self, outputName):
         self.client = MongoClient(MONGO_DB_CONNECTION_STRING)
         print("CONNECTED")
-        self.databaseName =  DATABASE_PRENAME+str(year) + "_" + str(year+1)
+        self.databaseName = outputName
         self.db = self.client[self.databaseName]
         self.subsectionKey = "subsection"
 

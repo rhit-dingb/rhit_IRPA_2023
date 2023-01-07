@@ -13,10 +13,10 @@ def main():
     dataLoader.loadData()
     # writePath = "CDSSparse_test.xlsx"
     # dataWriter = ExcelSparseMatrixDataWriter(writePath)
-    yearToParse = 2020
-    dataWriter = MongoDBSparseMatrixDataWriter(yearToParse)
+    outputName = "CDS_2020_2021"
+    dataWriter = MongoDBSparseMatrixDataWriter(outputName)
     parserFacade = ParserFacade(dataLoader=dataLoader, dataWriter=dataWriter)
-    parserFacade.parse(yearToParse)
+    parserFacade.parse()
     
     
 if __name__ == "__main__":

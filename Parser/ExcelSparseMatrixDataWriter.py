@@ -8,7 +8,6 @@ from openpyxl import load_workbook
 
 class ExcelSparseMatrixDataWriter(SparseMatrixDataWriter):
     def __init__(self, excelPath):
-        # super().__init__()
         self.excelPath = excelPath
         self.excelWorkbook = load_workbook(self.excelPath)
     

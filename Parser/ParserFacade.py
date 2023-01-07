@@ -15,7 +15,8 @@ from Data_Ingestion.SparseMatrix import SparseMatrix
 from actions.entititesHelper import filterEntities
 
 class ParserFacade():
-    def __init__(self, dataLoader, dataWriter):
+    def __init__(self, dataLoader, dataWriter ):
+        
         self.dataLoader : CDSDataLoader = dataLoader
         self.dataWriter : SparseMatrixDataWriter = dataWriter
         self.rasaCommunicator : RasaCommunicator = RasaCommunicator()
@@ -31,7 +32,7 @@ class ParserFacade():
 
         #                 }
 
-    def parse(self, year : int):
+    def parse(self):
         sectionFullNames : List[str] = self.dataLoader.getAllSectionDataFullName()
         sectionToSparseMatrices : Dict[str, List] = dict()
         for sectionFullName in sectionFullNames:
@@ -40,7 +41,6 @@ class ParserFacade():
             sectionAndSubSection = sectionFullName.split("_")
             section = sectionAndSubSection[0]
             subSection = sectionAndSubSection[len(sectionAndSubSection)-1]
-            sparseMatrices = []
             questionAnswers : List[QuestionAnswer] = self.dataLoader.getQuestionsAnswerForSection(sectionFullName)
             for questionAnswer in questionAnswers:
                 if questionAnswer.isMetaData: 
@@ -66,7 +66,7 @@ class ParserFacade():
                     
             # if section in self.parsers.keys(): 
                 #parser : CDSDataParser = self.parsers[section]
-            sparseMatrix : SparseMatrix = self.parser.parseQuestionAnswerToSparseMatrix(subSection, questionAnswers, year) 
+            sparseMatrix : SparseMatrix = self.parser.parseQuestionAnswerToSparseMatrix(subSection, questionAnswers) 
             if section in sectionToSparseMatrices:
                 sectionToSparseMatrices[section].append(sparseMatrix)
             else: 
