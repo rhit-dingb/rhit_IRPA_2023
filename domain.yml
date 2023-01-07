@@ -35,7 +35,9 @@ entities:
   # Value: phone, fax, number, address, email, website
   - way_of_contact
 
-
+  # Deadline '
+  # Value: deadline
+  - deadline
 
   # full-time, part-time
   - enrollment_status
@@ -71,7 +73,7 @@ entities:
 
   - waiting-list-detail
 
-  # - policy
+   - policy
 
 # used for something like: Initial 2015 cohort of first-time, fulltime, bachelor's (or equivalent) degreeseeking undergraduate students
 # and also something like: Final 2015 cohort, after adjusting for allowable exclusions
@@ -310,7 +312,9 @@ entities:
 #Value: book, supply
   - school_supply
 
-
+#Form 
+#Value : form
+ - form
 
 
 ##ENTITIES FOR DEFINITIONS
