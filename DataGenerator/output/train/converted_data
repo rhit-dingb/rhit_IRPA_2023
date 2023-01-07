@@ -1,546 +1,216 @@
 version: "3.1"
 nlu:
-- intent: freshman_profile
+- intent: faculty_and_class_size
   examples: |
-    - How many student submitted [ACT](standarized_test)
-    - How many student submitted [SAT](standarized_test)
-    - What is the [25th percentile](test_percentile) score for ACT [composite](test_component)
-    - What is the [25th percentile](test_percentile) score for ACT [essay](test_component)
-    - What is the [25th percentile](test_percentile) score for ACT [reading](test_component)
-    - What is the [25th percentile](test_percentile) score for ACT [writing](test_component)
-    - What is the [25th percentile](test_percentile) score for ACT [written]{"entity": "test_component", "value": "writing"}
-    - What is the [25th percentile](test_percentile) score for SAT [composite](test_component)
-    - What is the [25th percentile](test_percentile) score for SAT [essay](test_component)
-    - What is the [25th percentile](test_percentile) score for SAT [reading](test_component)
-    - What is the [25th percentile](test_percentile) score for SAT [writing](test_component)
-    - What is the [25th percentile](test_percentile) score for SAT [written]{"entity": "test_component", "value": "writing"}
-    - What is the [50th percentile](test_percentile) score for ACT [composite](test_component)
-    - What is the [50th percentile](test_percentile) score for ACT [essay](test_component)
-    - What is the [50th percentile](test_percentile) score for ACT [reading](test_component)
-    - What is the [50th percentile](test_percentile) score for ACT [writing](test_component)
-    - What is the [50th percentile](test_percentile) score for ACT [written]{"entity": "test_component", "value": "writing"}
-    - What is the [50th percentile](test_percentile) score for SAT [composite](test_component)
-    - What is the [50th percentile](test_percentile) score for SAT [essay](test_component)
-    - What is the [50th percentile](test_percentile) score for SAT [reading](test_component)
-    - What is the [50th percentile](test_percentile) score for SAT [writing](test_component)
-    - What is the [50th percentile](test_percentile) score for SAT [written]{"entity": "test_component", "value": "writing"}
-    - What is the [75th percentile](test_percentile) score for ACT [composite](test_component)
-    - What is the [75th percentile](test_percentile) score for ACT [essay](test_component)
-    - What is the [75th percentile](test_percentile) score for ACT [reading](test_component)
-    - What is the [75th percentile](test_percentile) score for ACT [writing](test_component)
-    - What is the [75th percentile](test_percentile) score for ACT [written]{"entity": "test_component", "value": "writing"}
-    - What is the [75th percentile](test_percentile) score for SAT [composite](test_component)
-    - What is the [75th percentile](test_percentile) score for SAT [essay](test_component)
-    - What is the [75th percentile](test_percentile) score for SAT [reading](test_component)
-    - What is the [75th percentile](test_percentile) score for SAT [writing](test_component)
-    - What is the [75th percentile](test_percentile) score for SAT [written]{"entity": "test_component", "value": "writing"}
-    - What is the [percent]{"entity":"aggregation", "value": "percent"} of students submitting [ACT](standarized_test)
-    - What is the [percent]{"entity":"aggregation", "value": "percent"} of students submitting [SAT](standarized_test)
-    - What is the percentage of freshman students with act score in the range [11 to 6]{"entity": "act_test_score_range", "value": "6-11"} for [composite](test_component)
-    - What is the percentage of freshman students with act score in the range [11 to 6]{"entity": "act_test_score_range", "value": "6-11"} for [essay](test_component)
-    - What is the percentage of freshman students with act score in the range [11 to 6]{"entity": "act_test_score_range", "value": "6-11"} for [reading](test_component)
-    - What is the percentage of freshman students with act score in the range [11 to 6]{"entity": "act_test_score_range", "value": "6-11"} for [writing](test_component)
-    - What is the percentage of freshman students with act score in the range [11 to 6]{"entity": "act_test_score_range", "value": "6-11"} for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with act score in the range [11-6]{"entity": "act_test_score_range", "value": "6-11"} for [composite](test_component)
-    - What is the percentage of freshman students with act score in the range [11-6]{"entity": "act_test_score_range", "value": "6-11"} for [essay](test_component)
-    - What is the percentage of freshman students with act score in the range [11-6]{"entity": "act_test_score_range", "value": "6-11"} for [reading](test_component)
-    - What is the percentage of freshman students with act score in the range [11-6]{"entity": "act_test_score_range", "value": "6-11"} for [writing](test_component)
-    - What is the percentage of freshman students with act score in the range [11-6]{"entity": "act_test_score_range", "value": "6-11"} for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with act score in the range [12 to 17]{"entity": "act_test_score_range", "value": "12-17"} for [composite](test_component)
-    - What is the percentage of freshman students with act score in the range [12 to 17]{"entity": "act_test_score_range", "value": "12-17"} for [essay](test_component)
-    - What is the percentage of freshman students with act score in the range [12 to 17]{"entity": "act_test_score_range", "value": "12-17"} for [reading](test_component)
-    - What is the percentage of freshman students with act score in the range [12 to 17]{"entity": "act_test_score_range", "value": "12-17"} for [writing](test_component)
-    - What is the percentage of freshman students with act score in the range [12 to 17]{"entity": "act_test_score_range", "value": "12-17"} for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with act score in the range [12-17](act_test_score_range) for [composite](test_component)
-    - What is the percentage of freshman students with act score in the range [12-17](act_test_score_range) for [essay](test_component)
-    - What is the percentage of freshman students with act score in the range [12-17](act_test_score_range) for [reading](test_component)
-    - What is the percentage of freshman students with act score in the range [12-17](act_test_score_range) for [writing](test_component)
-    - What is the percentage of freshman students with act score in the range [12-17](act_test_score_range) for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with act score in the range [17 to 12]{"entity": "act_test_score_range", "value": "12-17"} for [composite](test_component)
-    - What is the percentage of freshman students with act score in the range [17 to 12]{"entity": "act_test_score_range", "value": "12-17"} for [essay](test_component)
-    - What is the percentage of freshman students with act score in the range [17 to 12]{"entity": "act_test_score_range", "value": "12-17"} for [reading](test_component)
-    - What is the percentage of freshman students with act score in the range [17 to 12]{"entity": "act_test_score_range", "value": "12-17"} for [writing](test_component)
-    - What is the percentage of freshman students with act score in the range [17 to 12]{"entity": "act_test_score_range", "value": "12-17"} for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with act score in the range [17-12]{"entity": "act_test_score_range", "value": "12-17"} for [composite](test_component)
-    - What is the percentage of freshman students with act score in the range [17-12]{"entity": "act_test_score_range", "value": "12-17"} for [essay](test_component)
-    - What is the percentage of freshman students with act score in the range [17-12]{"entity": "act_test_score_range", "value": "12-17"} for [reading](test_component)
-    - What is the percentage of freshman students with act score in the range [17-12]{"entity": "act_test_score_range", "value": "12-17"} for [writing](test_component)
-    - What is the percentage of freshman students with act score in the range [17-12]{"entity": "act_test_score_range", "value": "12-17"} for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with act score in the range [18 to 23]{"entity": "act_test_score_range", "value": "18-23"} for [composite](test_component)
-    - What is the percentage of freshman students with act score in the range [18 to 23]{"entity": "act_test_score_range", "value": "18-23"} for [essay](test_component)
-    - What is the percentage of freshman students with act score in the range [18 to 23]{"entity": "act_test_score_range", "value": "18-23"} for [reading](test_component)
-    - What is the percentage of freshman students with act score in the range [18 to 23]{"entity": "act_test_score_range", "value": "18-23"} for [writing](test_component)
-    - What is the percentage of freshman students with act score in the range [18 to 23]{"entity": "act_test_score_range", "value": "18-23"} for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with act score in the range [18-23](act_test_score_range) for [composite](test_component)
-    - What is the percentage of freshman students with act score in the range [18-23](act_test_score_range) for [essay](test_component)
-    - What is the percentage of freshman students with act score in the range [18-23](act_test_score_range) for [reading](test_component)
-    - What is the percentage of freshman students with act score in the range [18-23](act_test_score_range) for [writing](test_component)
-    - What is the percentage of freshman students with act score in the range [18-23](act_test_score_range) for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with act score in the range [23 to 18]{"entity": "act_test_score_range", "value": "18-23"} for [composite](test_component)
-    - What is the percentage of freshman students with act score in the range [23 to 18]{"entity": "act_test_score_range", "value": "18-23"} for [essay](test_component)
-    - What is the percentage of freshman students with act score in the range [23 to 18]{"entity": "act_test_score_range", "value": "18-23"} for [reading](test_component)
-    - What is the percentage of freshman students with act score in the range [23 to 18]{"entity": "act_test_score_range", "value": "18-23"} for [writing](test_component)
-    - What is the percentage of freshman students with act score in the range [23 to 18]{"entity": "act_test_score_range", "value": "18-23"} for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with act score in the range [23-18]{"entity": "act_test_score_range", "value": "18-23"} for [composite](test_component)
-    - What is the percentage of freshman students with act score in the range [23-18]{"entity": "act_test_score_range", "value": "18-23"} for [essay](test_component)
-    - What is the percentage of freshman students with act score in the range [23-18]{"entity": "act_test_score_range", "value": "18-23"} for [reading](test_component)
-    - What is the percentage of freshman students with act score in the range [23-18]{"entity": "act_test_score_range", "value": "18-23"} for [writing](test_component)
-    - What is the percentage of freshman students with act score in the range [23-18]{"entity": "act_test_score_range", "value": "18-23"} for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with act score in the range [24 to 29]{"entity": "act_test_score_range", "value": "24-29"} for [composite](test_component)
-    - What is the percentage of freshman students with act score in the range [24 to 29]{"entity": "act_test_score_range", "value": "24-29"} for [essay](test_component)
-    - What is the percentage of freshman students with act score in the range [24 to 29]{"entity": "act_test_score_range", "value": "24-29"} for [reading](test_component)
-    - What is the percentage of freshman students with act score in the range [24 to 29]{"entity": "act_test_score_range", "value": "24-29"} for [writing](test_component)
-    - What is the percentage of freshman students with act score in the range [24 to 29]{"entity": "act_test_score_range", "value": "24-29"} for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with act score in the range [24-29](act_test_score_range) for [composite](test_component)
-    - What is the percentage of freshman students with act score in the range [24-29](act_test_score_range) for [essay](test_component)
-    - What is the percentage of freshman students with act score in the range [24-29](act_test_score_range) for [reading](test_component)
-    - What is the percentage of freshman students with act score in the range [24-29](act_test_score_range) for [writing](test_component)
-    - What is the percentage of freshman students with act score in the range [24-29](act_test_score_range) for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with act score in the range [29 to 24]{"entity": "act_test_score_range", "value": "24-29"} for [composite](test_component)
-    - What is the percentage of freshman students with act score in the range [29 to 24]{"entity": "act_test_score_range", "value": "24-29"} for [essay](test_component)
-    - What is the percentage of freshman students with act score in the range [29 to 24]{"entity": "act_test_score_range", "value": "24-29"} for [reading](test_component)
-    - What is the percentage of freshman students with act score in the range [29 to 24]{"entity": "act_test_score_range", "value": "24-29"} for [writing](test_component)
-    - What is the percentage of freshman students with act score in the range [29 to 24]{"entity": "act_test_score_range", "value": "24-29"} for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with act score in the range [29-24]{"entity": "act_test_score_range", "value": "24-29"} for [composite](test_component)
-    - What is the percentage of freshman students with act score in the range [29-24]{"entity": "act_test_score_range", "value": "24-29"} for [essay](test_component)
-    - What is the percentage of freshman students with act score in the range [29-24]{"entity": "act_test_score_range", "value": "24-29"} for [reading](test_component)
-    - What is the percentage of freshman students with act score in the range [29-24]{"entity": "act_test_score_range", "value": "24-29"} for [writing](test_component)
-    - What is the percentage of freshman students with act score in the range [29-24]{"entity": "act_test_score_range", "value": "24-29"} for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with act score in the range [30 to 36]{"entity": "act_test_score_range", "value": "30-36"} for [composite](test_component)
-    - What is the percentage of freshman students with act score in the range [30 to 36]{"entity": "act_test_score_range", "value": "30-36"} for [essay](test_component)
-    - What is the percentage of freshman students with act score in the range [30 to 36]{"entity": "act_test_score_range", "value": "30-36"} for [reading](test_component)
-    - What is the percentage of freshman students with act score in the range [30 to 36]{"entity": "act_test_score_range", "value": "30-36"} for [writing](test_component)
-    - What is the percentage of freshman students with act score in the range [30 to 36]{"entity": "act_test_score_range", "value": "30-36"} for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with act score in the range [30-36](act_test_score_range) for [composite](test_component)
-    - What is the percentage of freshman students with act score in the range [30-36](act_test_score_range) for [essay](test_component)
-    - What is the percentage of freshman students with act score in the range [30-36](act_test_score_range) for [reading](test_component)
-    - What is the percentage of freshman students with act score in the range [30-36](act_test_score_range) for [writing](test_component)
-    - What is the percentage of freshman students with act score in the range [30-36](act_test_score_range) for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with act score in the range [36 to 30]{"entity": "act_test_score_range", "value": "30-36"} for [composite](test_component)
-    - What is the percentage of freshman students with act score in the range [36 to 30]{"entity": "act_test_score_range", "value": "30-36"} for [essay](test_component)
-    - What is the percentage of freshman students with act score in the range [36 to 30]{"entity": "act_test_score_range", "value": "30-36"} for [reading](test_component)
-    - What is the percentage of freshman students with act score in the range [36 to 30]{"entity": "act_test_score_range", "value": "30-36"} for [writing](test_component)
-    - What is the percentage of freshman students with act score in the range [36 to 30]{"entity": "act_test_score_range", "value": "30-36"} for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with act score in the range [36-30]{"entity": "act_test_score_range", "value": "30-36"} for [composite](test_component)
-    - What is the percentage of freshman students with act score in the range [36-30]{"entity": "act_test_score_range", "value": "30-36"} for [essay](test_component)
-    - What is the percentage of freshman students with act score in the range [36-30]{"entity": "act_test_score_range", "value": "30-36"} for [reading](test_component)
-    - What is the percentage of freshman students with act score in the range [36-30]{"entity": "act_test_score_range", "value": "30-36"} for [writing](test_component)
-    - What is the percentage of freshman students with act score in the range [36-30]{"entity": "act_test_score_range", "value": "30-36"} for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with act score in the range [6 to 11]{"entity": "act_test_score_range", "value": "6-11"} for [composite](test_component)
-    - What is the percentage of freshman students with act score in the range [6 to 11]{"entity": "act_test_score_range", "value": "6-11"} for [essay](test_component)
-    - What is the percentage of freshman students with act score in the range [6 to 11]{"entity": "act_test_score_range", "value": "6-11"} for [reading](test_component)
-    - What is the percentage of freshman students with act score in the range [6 to 11]{"entity": "act_test_score_range", "value": "6-11"} for [writing](test_component)
-    - What is the percentage of freshman students with act score in the range [6 to 11]{"entity": "act_test_score_range", "value": "6-11"} for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with act score in the range [6-11](act_test_score_range) for [composite](test_component)
-    - What is the percentage of freshman students with act score in the range [6-11](act_test_score_range) for [essay](test_component)
-    - What is the percentage of freshman students with act score in the range [6-11](act_test_score_range) for [reading](test_component)
-    - What is the percentage of freshman students with act score in the range [6-11](act_test_score_range) for [writing](test_component)
-    - What is the percentage of freshman students with act score in the range [6-11](act_test_score_range) for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with act score in the range [below 6](act_test_score_range) for [composite](test_component)
-    - What is the percentage of freshman students with act score in the range [below 6](act_test_score_range) for [essay](test_component)
-    - What is the percentage of freshman students with act score in the range [below 6](act_test_score_range) for [reading](test_component)
-    - What is the percentage of freshman students with act score in the range [below 6](act_test_score_range) for [writing](test_component)
-    - What is the percentage of freshman students with act score in the range [below 6](act_test_score_range) for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with act score in the range [less than 6]{"entity": "act_test_score_range", "value": "below 6"} for [composite](test_component)
-    - What is the percentage of freshman students with act score in the range [less than 6]{"entity": "act_test_score_range", "value": "below 6"} for [essay](test_component)
-    - What is the percentage of freshman students with act score in the range [less than 6]{"entity": "act_test_score_range", "value": "below 6"} for [reading](test_component)
-    - What is the percentage of freshman students with act score in the range [less than 6]{"entity": "act_test_score_range", "value": "below 6"} for [writing](test_component)
-    - What is the percentage of freshman students with act score in the range [less than 6]{"entity": "act_test_score_range", "value": "below 6"} for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with act score in the range [under 6]{"entity": "act_test_score_range", "value": "below 6"} for [composite](test_component)
-    - What is the percentage of freshman students with act score in the range [under 6]{"entity": "act_test_score_range", "value": "below 6"} for [essay](test_component)
-    - What is the percentage of freshman students with act score in the range [under 6]{"entity": "act_test_score_range", "value": "below 6"} for [reading](test_component)
-    - What is the percentage of freshman students with act score in the range [under 6]{"entity": "act_test_score_range", "value": "below 6"} for [writing](test_component)
-    - What is the percentage of freshman students with act score in the range [under 6]{"entity": "act_test_score_range", "value": "below 6"} for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with sat score in the [1000 to 1199]{"entity": "sat_test_score_range", "value": "1000-1199"} range for [composite](test_component)
-    - What is the percentage of freshman students with sat score in the [1000 to 1199]{"entity": "sat_test_score_range", "value": "1000-1199"} range for [essay](test_component)
-    - What is the percentage of freshman students with sat score in the [1000 to 1199]{"entity": "sat_test_score_range", "value": "1000-1199"} range for [reading](test_component)
-    - What is the percentage of freshman students with sat score in the [1000 to 1199]{"entity": "sat_test_score_range", "value": "1000-1199"} range for [writing](test_component)
-    - What is the percentage of freshman students with sat score in the [1000 to 1199]{"entity": "sat_test_score_range", "value": "1000-1199"} range for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with sat score in the [1000-1199](sat_test_score_range) range for [composite](test_component)
-    - What is the percentage of freshman students with sat score in the [1000-1199](sat_test_score_range) range for [essay](test_component)
-    - What is the percentage of freshman students with sat score in the [1000-1199](sat_test_score_range) range for [reading](test_component)
-    - What is the percentage of freshman students with sat score in the [1000-1199](sat_test_score_range) range for [writing](test_component)
-    - What is the percentage of freshman students with sat score in the [1000-1199](sat_test_score_range) range for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with sat score in the [1199 to 1000]{"entity": "sat_test_score_range", "value": "1000-1199"} range for [composite](test_component)
-    - What is the percentage of freshman students with sat score in the [1199 to 1000]{"entity": "sat_test_score_range", "value": "1000-1199"} range for [essay](test_component)
-    - What is the percentage of freshman students with sat score in the [1199 to 1000]{"entity": "sat_test_score_range", "value": "1000-1199"} range for [reading](test_component)
-    - What is the percentage of freshman students with sat score in the [1199 to 1000]{"entity": "sat_test_score_range", "value": "1000-1199"} range for [writing](test_component)
-    - What is the percentage of freshman students with sat score in the [1199 to 1000]{"entity": "sat_test_score_range", "value": "1000-1199"} range for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with sat score in the [1199-1000]{"entity": "sat_test_score_range", "value": "1000-1199"} range for [composite](test_component)
-    - What is the percentage of freshman students with sat score in the [1199-1000]{"entity": "sat_test_score_range", "value": "1000-1199"} range for [essay](test_component)
-    - What is the percentage of freshman students with sat score in the [1199-1000]{"entity": "sat_test_score_range", "value": "1000-1199"} range for [reading](test_component)
-    - What is the percentage of freshman students with sat score in the [1199-1000]{"entity": "sat_test_score_range", "value": "1000-1199"} range for [writing](test_component)
-    - What is the percentage of freshman students with sat score in the [1199-1000]{"entity": "sat_test_score_range", "value": "1000-1199"} range for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with sat score in the [1200 to 1399]{"entity": "sat_test_score_range", "value": "1200-1399"} range for [composite](test_component)
-    - What is the percentage of freshman students with sat score in the [1200 to 1399]{"entity": "sat_test_score_range", "value": "1200-1399"} range for [essay](test_component)
-    - What is the percentage of freshman students with sat score in the [1200 to 1399]{"entity": "sat_test_score_range", "value": "1200-1399"} range for [reading](test_component)
-    - What is the percentage of freshman students with sat score in the [1200 to 1399]{"entity": "sat_test_score_range", "value": "1200-1399"} range for [writing](test_component)
-    - What is the percentage of freshman students with sat score in the [1200 to 1399]{"entity": "sat_test_score_range", "value": "1200-1399"} range for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with sat score in the [1200-1399](sat_test_score_range) range for [composite](test_component)
-    - What is the percentage of freshman students with sat score in the [1200-1399](sat_test_score_range) range for [essay](test_component)
-    - What is the percentage of freshman students with sat score in the [1200-1399](sat_test_score_range) range for [reading](test_component)
-    - What is the percentage of freshman students with sat score in the [1200-1399](sat_test_score_range) range for [writing](test_component)
-    - What is the percentage of freshman students with sat score in the [1200-1399](sat_test_score_range) range for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with sat score in the [1399 to 1200]{"entity": "sat_test_score_range", "value": "1200-1399"} range for [composite](test_component)
-    - What is the percentage of freshman students with sat score in the [1399 to 1200]{"entity": "sat_test_score_range", "value": "1200-1399"} range for [essay](test_component)
-    - What is the percentage of freshman students with sat score in the [1399 to 1200]{"entity": "sat_test_score_range", "value": "1200-1399"} range for [reading](test_component)
-    - What is the percentage of freshman students with sat score in the [1399 to 1200]{"entity": "sat_test_score_range", "value": "1200-1399"} range for [writing](test_component)
-    - What is the percentage of freshman students with sat score in the [1399 to 1200]{"entity": "sat_test_score_range", "value": "1200-1399"} range for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with sat score in the [1399-1200]{"entity": "sat_test_score_range", "value": "1200-1399"} range for [composite](test_component)
-    - What is the percentage of freshman students with sat score in the [1399-1200]{"entity": "sat_test_score_range", "value": "1200-1399"} range for [essay](test_component)
-    - What is the percentage of freshman students with sat score in the [1399-1200]{"entity": "sat_test_score_range", "value": "1200-1399"} range for [reading](test_component)
-    - What is the percentage of freshman students with sat score in the [1399-1200]{"entity": "sat_test_score_range", "value": "1200-1399"} range for [writing](test_component)
-    - What is the percentage of freshman students with sat score in the [1399-1200]{"entity": "sat_test_score_range", "value": "1200-1399"} range for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with sat score in the [1400 to 1600]{"entity": "sat_test_score_range", "value": "1400-1600"} range for [composite](test_component)
-    - What is the percentage of freshman students with sat score in the [1400 to 1600]{"entity": "sat_test_score_range", "value": "1400-1600"} range for [essay](test_component)
-    - What is the percentage of freshman students with sat score in the [1400 to 1600]{"entity": "sat_test_score_range", "value": "1400-1600"} range for [reading](test_component)
-    - What is the percentage of freshman students with sat score in the [1400 to 1600]{"entity": "sat_test_score_range", "value": "1400-1600"} range for [writing](test_component)
-    - What is the percentage of freshman students with sat score in the [1400 to 1600]{"entity": "sat_test_score_range", "value": "1400-1600"} range for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with sat score in the [1400-1600](sat_test_score_range) range for [composite](test_component)
-    - What is the percentage of freshman students with sat score in the [1400-1600](sat_test_score_range) range for [essay](test_component)
-    - What is the percentage of freshman students with sat score in the [1400-1600](sat_test_score_range) range for [reading](test_component)
-    - What is the percentage of freshman students with sat score in the [1400-1600](sat_test_score_range) range for [writing](test_component)
-    - What is the percentage of freshman students with sat score in the [1400-1600](sat_test_score_range) range for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with sat score in the [1600 to 1400]{"entity": "sat_test_score_range", "value": "1400-1600"} range for [composite](test_component)
-    - What is the percentage of freshman students with sat score in the [1600 to 1400]{"entity": "sat_test_score_range", "value": "1400-1600"} range for [essay](test_component)
-    - What is the percentage of freshman students with sat score in the [1600 to 1400]{"entity": "sat_test_score_range", "value": "1400-1600"} range for [reading](test_component)
-    - What is the percentage of freshman students with sat score in the [1600 to 1400]{"entity": "sat_test_score_range", "value": "1400-1600"} range for [writing](test_component)
-    - What is the percentage of freshman students with sat score in the [1600 to 1400]{"entity": "sat_test_score_range", "value": "1400-1600"} range for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with sat score in the [1600-1400]{"entity": "sat_test_score_range", "value": "1400-1600"} range for [composite](test_component)
-    - What is the percentage of freshman students with sat score in the [1600-1400]{"entity": "sat_test_score_range", "value": "1400-1600"} range for [essay](test_component)
-    - What is the percentage of freshman students with sat score in the [1600-1400]{"entity": "sat_test_score_range", "value": "1400-1600"} range for [reading](test_component)
-    - What is the percentage of freshman students with sat score in the [1600-1400]{"entity": "sat_test_score_range", "value": "1400-1600"} range for [writing](test_component)
-    - What is the percentage of freshman students with sat score in the [1600-1400]{"entity": "sat_test_score_range", "value": "1400-1600"} range for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with sat score in the [200 to 299]{"entity": "sat_test_score_range", "value": "200-299"} range for [composite](test_component)
-    - What is the percentage of freshman students with sat score in the [200 to 299]{"entity": "sat_test_score_range", "value": "200-299"} range for [essay](test_component)
-    - What is the percentage of freshman students with sat score in the [200 to 299]{"entity": "sat_test_score_range", "value": "200-299"} range for [reading](test_component)
-    - What is the percentage of freshman students with sat score in the [200 to 299]{"entity": "sat_test_score_range", "value": "200-299"} range for [writing](test_component)
-    - What is the percentage of freshman students with sat score in the [200 to 299]{"entity": "sat_test_score_range", "value": "200-299"} range for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with sat score in the [200-299](sat_test_score_range) range for [composite](test_component)
-    - What is the percentage of freshman students with sat score in the [200-299](sat_test_score_range) range for [essay](test_component)
-    - What is the percentage of freshman students with sat score in the [200-299](sat_test_score_range) range for [reading](test_component)
-    - What is the percentage of freshman students with sat score in the [200-299](sat_test_score_range) range for [writing](test_component)
-    - What is the percentage of freshman students with sat score in the [200-299](sat_test_score_range) range for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with sat score in the [299 to 200]{"entity": "sat_test_score_range", "value": "200-299"} range for [composite](test_component)
-    - What is the percentage of freshman students with sat score in the [299 to 200]{"entity": "sat_test_score_range", "value": "200-299"} range for [essay](test_component)
-    - What is the percentage of freshman students with sat score in the [299 to 200]{"entity": "sat_test_score_range", "value": "200-299"} range for [reading](test_component)
-    - What is the percentage of freshman students with sat score in the [299 to 200]{"entity": "sat_test_score_range", "value": "200-299"} range for [writing](test_component)
-    - What is the percentage of freshman students with sat score in the [299 to 200]{"entity": "sat_test_score_range", "value": "200-299"} range for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with sat score in the [299-200]{"entity": "sat_test_score_range", "value": "200-299"} range for [composite](test_component)
-    - What is the percentage of freshman students with sat score in the [299-200]{"entity": "sat_test_score_range", "value": "200-299"} range for [essay](test_component)
-    - What is the percentage of freshman students with sat score in the [299-200]{"entity": "sat_test_score_range", "value": "200-299"} range for [reading](test_component)
-    - What is the percentage of freshman students with sat score in the [299-200]{"entity": "sat_test_score_range", "value": "200-299"} range for [writing](test_component)
-    - What is the percentage of freshman students with sat score in the [299-200]{"entity": "sat_test_score_range", "value": "200-299"} range for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with sat score in the [300 to 399]{"entity": "sat_test_score_range", "value": "300-399"} range for [composite](test_component)
-    - What is the percentage of freshman students with sat score in the [300 to 399]{"entity": "sat_test_score_range", "value": "300-399"} range for [essay](test_component)
-    - What is the percentage of freshman students with sat score in the [300 to 399]{"entity": "sat_test_score_range", "value": "300-399"} range for [reading](test_component)
-    - What is the percentage of freshman students with sat score in the [300 to 399]{"entity": "sat_test_score_range", "value": "300-399"} range for [writing](test_component)
-    - What is the percentage of freshman students with sat score in the [300 to 399]{"entity": "sat_test_score_range", "value": "300-399"} range for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with sat score in the [300-399](sat_test_score_range) range for [composite](test_component)
-    - What is the percentage of freshman students with sat score in the [300-399](sat_test_score_range) range for [essay](test_component)
-    - What is the percentage of freshman students with sat score in the [300-399](sat_test_score_range) range for [reading](test_component)
-    - What is the percentage of freshman students with sat score in the [300-399](sat_test_score_range) range for [writing](test_component)
-    - What is the percentage of freshman students with sat score in the [300-399](sat_test_score_range) range for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with sat score in the [399 to 300]{"entity": "sat_test_score_range", "value": "300-399"} range for [composite](test_component)
-    - What is the percentage of freshman students with sat score in the [399 to 300]{"entity": "sat_test_score_range", "value": "300-399"} range for [essay](test_component)
-    - What is the percentage of freshman students with sat score in the [399 to 300]{"entity": "sat_test_score_range", "value": "300-399"} range for [reading](test_component)
-    - What is the percentage of freshman students with sat score in the [399 to 300]{"entity": "sat_test_score_range", "value": "300-399"} range for [writing](test_component)
-    - What is the percentage of freshman students with sat score in the [399 to 300]{"entity": "sat_test_score_range", "value": "300-399"} range for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with sat score in the [399-300]{"entity": "sat_test_score_range", "value": "300-399"} range for [composite](test_component)
-    - What is the percentage of freshman students with sat score in the [399-300]{"entity": "sat_test_score_range", "value": "300-399"} range for [essay](test_component)
-    - What is the percentage of freshman students with sat score in the [399-300]{"entity": "sat_test_score_range", "value": "300-399"} range for [reading](test_component)
-    - What is the percentage of freshman students with sat score in the [399-300]{"entity": "sat_test_score_range", "value": "300-399"} range for [writing](test_component)
-    - What is the percentage of freshman students with sat score in the [399-300]{"entity": "sat_test_score_range", "value": "300-399"} range for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with sat score in the [400 to 499]{"entity": "sat_test_score_range", "value": "400-499"} range for [composite](test_component)
-    - What is the percentage of freshman students with sat score in the [400 to 499]{"entity": "sat_test_score_range", "value": "400-499"} range for [essay](test_component)
-    - What is the percentage of freshman students with sat score in the [400 to 499]{"entity": "sat_test_score_range", "value": "400-499"} range for [reading](test_component)
-    - What is the percentage of freshman students with sat score in the [400 to 499]{"entity": "sat_test_score_range", "value": "400-499"} range for [writing](test_component)
-    - What is the percentage of freshman students with sat score in the [400 to 499]{"entity": "sat_test_score_range", "value": "400-499"} range for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with sat score in the [400 to 599]{"entity": "sat_test_score_range", "value": "400-599"} range for [composite](test_component)
-    - What is the percentage of freshman students with sat score in the [400 to 599]{"entity": "sat_test_score_range", "value": "400-599"} range for [essay](test_component)
-    - What is the percentage of freshman students with sat score in the [400 to 599]{"entity": "sat_test_score_range", "value": "400-599"} range for [reading](test_component)
-    - What is the percentage of freshman students with sat score in the [400 to 599]{"entity": "sat_test_score_range", "value": "400-599"} range for [writing](test_component)
-    - What is the percentage of freshman students with sat score in the [400 to 599]{"entity": "sat_test_score_range", "value": "400-599"} range for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with sat score in the [400-499](sat_test_score_range) range for [composite](test_component)
-    - What is the percentage of freshman students with sat score in the [400-499](sat_test_score_range) range for [essay](test_component)
-    - What is the percentage of freshman students with sat score in the [400-499](sat_test_score_range) range for [reading](test_component)
-    - What is the percentage of freshman students with sat score in the [400-499](sat_test_score_range) range for [writing](test_component)
-    - What is the percentage of freshman students with sat score in the [400-499](sat_test_score_range) range for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with sat score in the [400-599](sat_test_score_range) range for [composite](test_component)
-    - What is the percentage of freshman students with sat score in the [400-599](sat_test_score_range) range for [essay](test_component)
-    - What is the percentage of freshman students with sat score in the [400-599](sat_test_score_range) range for [reading](test_component)
-    - What is the percentage of freshman students with sat score in the [400-599](sat_test_score_range) range for [writing](test_component)
-    - What is the percentage of freshman students with sat score in the [400-599](sat_test_score_range) range for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with sat score in the [499 to 400]{"entity": "sat_test_score_range", "value": "400-499"} range for [composite](test_component)
-    - What is the percentage of freshman students with sat score in the [499 to 400]{"entity": "sat_test_score_range", "value": "400-499"} range for [essay](test_component)
-    - What is the percentage of freshman students with sat score in the [499 to 400]{"entity": "sat_test_score_range", "value": "400-499"} range for [reading](test_component)
-    - What is the percentage of freshman students with sat score in the [499 to 400]{"entity": "sat_test_score_range", "value": "400-499"} range for [writing](test_component)
-    - What is the percentage of freshman students with sat score in the [499 to 400]{"entity": "sat_test_score_range", "value": "400-499"} range for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with sat score in the [499-400]{"entity": "sat_test_score_range", "value": "400-499"} range for [composite](test_component)
-    - What is the percentage of freshman students with sat score in the [499-400]{"entity": "sat_test_score_range", "value": "400-499"} range for [essay](test_component)
-    - What is the percentage of freshman students with sat score in the [499-400]{"entity": "sat_test_score_range", "value": "400-499"} range for [reading](test_component)
-    - What is the percentage of freshman students with sat score in the [499-400]{"entity": "sat_test_score_range", "value": "400-499"} range for [writing](test_component)
-    - What is the percentage of freshman students with sat score in the [499-400]{"entity": "sat_test_score_range", "value": "400-499"} range for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with sat score in the [500 to 599]{"entity": "sat_test_score_range", "value": "500-599"} range for [composite](test_component)
-    - What is the percentage of freshman students with sat score in the [500 to 599]{"entity": "sat_test_score_range", "value": "500-599"} range for [essay](test_component)
-    - What is the percentage of freshman students with sat score in the [500 to 599]{"entity": "sat_test_score_range", "value": "500-599"} range for [reading](test_component)
-    - What is the percentage of freshman students with sat score in the [500 to 599]{"entity": "sat_test_score_range", "value": "500-599"} range for [writing](test_component)
-    - What is the percentage of freshman students with sat score in the [500 to 599]{"entity": "sat_test_score_range", "value": "500-599"} range for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with sat score in the [500-599](sat_test_score_range) range for [composite](test_component)
-    - What is the percentage of freshman students with sat score in the [500-599](sat_test_score_range) range for [essay](test_component)
-    - What is the percentage of freshman students with sat score in the [500-599](sat_test_score_range) range for [reading](test_component)
-    - What is the percentage of freshman students with sat score in the [500-599](sat_test_score_range) range for [writing](test_component)
-    - What is the percentage of freshman students with sat score in the [500-599](sat_test_score_range) range for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with sat score in the [599 to 400]{"entity": "sat_test_score_range", "value": "400-599"} range for [composite](test_component)
-    - What is the percentage of freshman students with sat score in the [599 to 400]{"entity": "sat_test_score_range", "value": "400-599"} range for [essay](test_component)
-    - What is the percentage of freshman students with sat score in the [599 to 400]{"entity": "sat_test_score_range", "value": "400-599"} range for [reading](test_component)
-    - What is the percentage of freshman students with sat score in the [599 to 400]{"entity": "sat_test_score_range", "value": "400-599"} range for [writing](test_component)
-    - What is the percentage of freshman students with sat score in the [599 to 400]{"entity": "sat_test_score_range", "value": "400-599"} range for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with sat score in the [599 to 500]{"entity": "sat_test_score_range", "value": "500-599"} range for [composite](test_component)
-    - What is the percentage of freshman students with sat score in the [599 to 500]{"entity": "sat_test_score_range", "value": "500-599"} range for [essay](test_component)
-    - What is the percentage of freshman students with sat score in the [599 to 500]{"entity": "sat_test_score_range", "value": "500-599"} range for [reading](test_component)
-    - What is the percentage of freshman students with sat score in the [599 to 500]{"entity": "sat_test_score_range", "value": "500-599"} range for [writing](test_component)
-    - What is the percentage of freshman students with sat score in the [599 to 500]{"entity": "sat_test_score_range", "value": "500-599"} range for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with sat score in the [599-400]{"entity": "sat_test_score_range", "value": "400-599"} range for [composite](test_component)
-    - What is the percentage of freshman students with sat score in the [599-400]{"entity": "sat_test_score_range", "value": "400-599"} range for [essay](test_component)
-    - What is the percentage of freshman students with sat score in the [599-400]{"entity": "sat_test_score_range", "value": "400-599"} range for [reading](test_component)
-    - What is the percentage of freshman students with sat score in the [599-400]{"entity": "sat_test_score_range", "value": "400-599"} range for [writing](test_component)
-    - What is the percentage of freshman students with sat score in the [599-400]{"entity": "sat_test_score_range", "value": "400-599"} range for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with sat score in the [599-500]{"entity": "sat_test_score_range", "value": "500-599"} range for [composite](test_component)
-    - What is the percentage of freshman students with sat score in the [599-500]{"entity": "sat_test_score_range", "value": "500-599"} range for [essay](test_component)
-    - What is the percentage of freshman students with sat score in the [599-500]{"entity": "sat_test_score_range", "value": "500-599"} range for [reading](test_component)
-    - What is the percentage of freshman students with sat score in the [599-500]{"entity": "sat_test_score_range", "value": "500-599"} range for [writing](test_component)
-    - What is the percentage of freshman students with sat score in the [599-500]{"entity": "sat_test_score_range", "value": "500-599"} range for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with sat score in the [600 to 699]{"entity": "sat_test_score_range", "value": "600-699"} range for [composite](test_component)
-    - What is the percentage of freshman students with sat score in the [600 to 699]{"entity": "sat_test_score_range", "value": "600-699"} range for [essay](test_component)
-    - What is the percentage of freshman students with sat score in the [600 to 699]{"entity": "sat_test_score_range", "value": "600-699"} range for [reading](test_component)
-    - What is the percentage of freshman students with sat score in the [600 to 699]{"entity": "sat_test_score_range", "value": "600-699"} range for [writing](test_component)
-    - What is the percentage of freshman students with sat score in the [600 to 699]{"entity": "sat_test_score_range", "value": "600-699"} range for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with sat score in the [600 to 799]{"entity": "sat_test_score_range", "value": "600-799"} range for [composite](test_component)
-    - What is the percentage of freshman students with sat score in the [600 to 799]{"entity": "sat_test_score_range", "value": "600-799"} range for [essay](test_component)
-    - What is the percentage of freshman students with sat score in the [600 to 799]{"entity": "sat_test_score_range", "value": "600-799"} range for [reading](test_component)
-    - What is the percentage of freshman students with sat score in the [600 to 799]{"entity": "sat_test_score_range", "value": "600-799"} range for [writing](test_component)
-    - What is the percentage of freshman students with sat score in the [600 to 799]{"entity": "sat_test_score_range", "value": "600-799"} range for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with sat score in the [600-699](sat_test_score_range) range for [composite](test_component)
-    - What is the percentage of freshman students with sat score in the [600-699](sat_test_score_range) range for [essay](test_component)
-    - What is the percentage of freshman students with sat score in the [600-699](sat_test_score_range) range for [reading](test_component)
-    - What is the percentage of freshman students with sat score in the [600-699](sat_test_score_range) range for [writing](test_component)
-    - What is the percentage of freshman students with sat score in the [600-699](sat_test_score_range) range for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with sat score in the [600-799](sat_test_score_range) range for [composite](test_component)
-    - What is the percentage of freshman students with sat score in the [600-799](sat_test_score_range) range for [essay](test_component)
-    - What is the percentage of freshman students with sat score in the [600-799](sat_test_score_range) range for [reading](test_component)
-    - What is the percentage of freshman students with sat score in the [600-799](sat_test_score_range) range for [writing](test_component)
-    - What is the percentage of freshman students with sat score in the [600-799](sat_test_score_range) range for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with sat score in the [699 to 600]{"entity": "sat_test_score_range", "value": "600-699"} range for [composite](test_component)
-    - What is the percentage of freshman students with sat score in the [699 to 600]{"entity": "sat_test_score_range", "value": "600-699"} range for [essay](test_component)
-    - What is the percentage of freshman students with sat score in the [699 to 600]{"entity": "sat_test_score_range", "value": "600-699"} range for [reading](test_component)
-    - What is the percentage of freshman students with sat score in the [699 to 600]{"entity": "sat_test_score_range", "value": "600-699"} range for [writing](test_component)
-    - What is the percentage of freshman students with sat score in the [699 to 600]{"entity": "sat_test_score_range", "value": "600-699"} range for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with sat score in the [699-600]{"entity": "sat_test_score_range", "value": "600-699"} range for [composite](test_component)
-    - What is the percentage of freshman students with sat score in the [699-600]{"entity": "sat_test_score_range", "value": "600-699"} range for [essay](test_component)
-    - What is the percentage of freshman students with sat score in the [699-600]{"entity": "sat_test_score_range", "value": "600-699"} range for [reading](test_component)
-    - What is the percentage of freshman students with sat score in the [699-600]{"entity": "sat_test_score_range", "value": "600-699"} range for [writing](test_component)
-    - What is the percentage of freshman students with sat score in the [699-600]{"entity": "sat_test_score_range", "value": "600-699"} range for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with sat score in the [700 to 800]{"entity": "sat_test_score_range", "value": "700-800"} range for [composite](test_component)
-    - What is the percentage of freshman students with sat score in the [700 to 800]{"entity": "sat_test_score_range", "value": "700-800"} range for [essay](test_component)
-    - What is the percentage of freshman students with sat score in the [700 to 800]{"entity": "sat_test_score_range", "value": "700-800"} range for [reading](test_component)
-    - What is the percentage of freshman students with sat score in the [700 to 800]{"entity": "sat_test_score_range", "value": "700-800"} range for [writing](test_component)
-    - What is the percentage of freshman students with sat score in the [700 to 800]{"entity": "sat_test_score_range", "value": "700-800"} range for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with sat score in the [700-800](sat_test_score_range) range for [composite](test_component)
-    - What is the percentage of freshman students with sat score in the [700-800](sat_test_score_range) range for [essay](test_component)
-    - What is the percentage of freshman students with sat score in the [700-800](sat_test_score_range) range for [reading](test_component)
-    - What is the percentage of freshman students with sat score in the [700-800](sat_test_score_range) range for [writing](test_component)
-    - What is the percentage of freshman students with sat score in the [700-800](sat_test_score_range) range for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with sat score in the [799 to 600]{"entity": "sat_test_score_range", "value": "600-799"} range for [composite](test_component)
-    - What is the percentage of freshman students with sat score in the [799 to 600]{"entity": "sat_test_score_range", "value": "600-799"} range for [essay](test_component)
-    - What is the percentage of freshman students with sat score in the [799 to 600]{"entity": "sat_test_score_range", "value": "600-799"} range for [reading](test_component)
-    - What is the percentage of freshman students with sat score in the [799 to 600]{"entity": "sat_test_score_range", "value": "600-799"} range for [writing](test_component)
-    - What is the percentage of freshman students with sat score in the [799 to 600]{"entity": "sat_test_score_range", "value": "600-799"} range for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with sat score in the [799-600]{"entity": "sat_test_score_range", "value": "600-799"} range for [composite](test_component)
-    - What is the percentage of freshman students with sat score in the [799-600]{"entity": "sat_test_score_range", "value": "600-799"} range for [essay](test_component)
-    - What is the percentage of freshman students with sat score in the [799-600]{"entity": "sat_test_score_range", "value": "600-799"} range for [reading](test_component)
-    - What is the percentage of freshman students with sat score in the [799-600]{"entity": "sat_test_score_range", "value": "600-799"} range for [writing](test_component)
-    - What is the percentage of freshman students with sat score in the [799-600]{"entity": "sat_test_score_range", "value": "600-799"} range for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with sat score in the [800 to 700]{"entity": "sat_test_score_range", "value": "700-800"} range for [composite](test_component)
-    - What is the percentage of freshman students with sat score in the [800 to 700]{"entity": "sat_test_score_range", "value": "700-800"} range for [essay](test_component)
-    - What is the percentage of freshman students with sat score in the [800 to 700]{"entity": "sat_test_score_range", "value": "700-800"} range for [reading](test_component)
-    - What is the percentage of freshman students with sat score in the [800 to 700]{"entity": "sat_test_score_range", "value": "700-800"} range for [writing](test_component)
-    - What is the percentage of freshman students with sat score in the [800 to 700]{"entity": "sat_test_score_range", "value": "700-800"} range for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with sat score in the [800 to 999]{"entity": "sat_test_score_range", "value": "800-999"} range for [composite](test_component)
-    - What is the percentage of freshman students with sat score in the [800 to 999]{"entity": "sat_test_score_range", "value": "800-999"} range for [essay](test_component)
-    - What is the percentage of freshman students with sat score in the [800 to 999]{"entity": "sat_test_score_range", "value": "800-999"} range for [reading](test_component)
-    - What is the percentage of freshman students with sat score in the [800 to 999]{"entity": "sat_test_score_range", "value": "800-999"} range for [writing](test_component)
-    - What is the percentage of freshman students with sat score in the [800 to 999]{"entity": "sat_test_score_range", "value": "800-999"} range for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with sat score in the [800-700]{"entity": "sat_test_score_range", "value": "700-800"} range for [composite](test_component)
-    - What is the percentage of freshman students with sat score in the [800-700]{"entity": "sat_test_score_range", "value": "700-800"} range for [essay](test_component)
-    - What is the percentage of freshman students with sat score in the [800-700]{"entity": "sat_test_score_range", "value": "700-800"} range for [reading](test_component)
-    - What is the percentage of freshman students with sat score in the [800-700]{"entity": "sat_test_score_range", "value": "700-800"} range for [writing](test_component)
-    - What is the percentage of freshman students with sat score in the [800-700]{"entity": "sat_test_score_range", "value": "700-800"} range for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with sat score in the [800-999](sat_test_score_range) range for [composite](test_component)
-    - What is the percentage of freshman students with sat score in the [800-999](sat_test_score_range) range for [essay](test_component)
-    - What is the percentage of freshman students with sat score in the [800-999](sat_test_score_range) range for [reading](test_component)
-    - What is the percentage of freshman students with sat score in the [800-999](sat_test_score_range) range for [writing](test_component)
-    - What is the percentage of freshman students with sat score in the [800-999](sat_test_score_range) range for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with sat score in the [999 to 800]{"entity": "sat_test_score_range", "value": "800-999"} range for [composite](test_component)
-    - What is the percentage of freshman students with sat score in the [999 to 800]{"entity": "sat_test_score_range", "value": "800-999"} range for [essay](test_component)
-    - What is the percentage of freshman students with sat score in the [999 to 800]{"entity": "sat_test_score_range", "value": "800-999"} range for [reading](test_component)
-    - What is the percentage of freshman students with sat score in the [999 to 800]{"entity": "sat_test_score_range", "value": "800-999"} range for [writing](test_component)
-    - What is the percentage of freshman students with sat score in the [999 to 800]{"entity": "sat_test_score_range", "value": "800-999"} range for [written]{"entity": "test_component", "value": "writing"}
-    - What is the percentage of freshman students with sat score in the [999-800]{"entity": "sat_test_score_range", "value": "800-999"} range for [composite](test_component)
-    - What is the percentage of freshman students with sat score in the [999-800]{"entity": "sat_test_score_range", "value": "800-999"} range for [essay](test_component)
-    - What is the percentage of freshman students with sat score in the [999-800]{"entity": "sat_test_score_range", "value": "800-999"} range for [reading](test_component)
-    - What is the percentage of freshman students with sat score in the [999-800]{"entity": "sat_test_score_range", "value": "800-999"} range for [writing](test_component)
-    - What is the percentage of freshman students with sat score in the [999-800]{"entity": "sat_test_score_range", "value": "800-999"} range for [written]{"entity": "test_component", "value": "writing"}
-- synonym: percent
+    - How [big]{"entity": "size", "value": "size"} is a class at Rose-Hulman?
+    - How [large]{"entity": "size", "value": "size"} is a class at Rose-Hulman?
+    - How many class [section](section_subsection) at Rose-Hulman have 100+ [students]{"entity":"people", "value":"student"}?
+    - How many class [section](section_subsection) at Rose-Hulman have 20 to 29 [students]{"entity":"people", "value":"student"}?
+    - How many class [section](section_subsection) have 2 to 9 [students]{"entity":"people", "value":"student"}?
+    - How many class [section](section_subsection) have 40 to 49 [students]{"entity":"people", "value":"student"}?
+    - How many class [sections]{"entity": "section_subsection", "value": "section"} at Rose-Hulman have 100+ [students]{"entity":"people", "value":"student"}?
+    - How many class [sections]{"entity": "section_subsection", "value": "section"} at Rose-Hulman have 20 to 29 [students]{"entity":"people", "value":"student"}?
+    - How many class [sections]{"entity": "section_subsection", "value": "section"} have 2 to 9 [students]{"entity":"people", "value":"student"}?
+    - How many class [sections]{"entity": "section_subsection", "value": "section"} have 40 to 49 [students]{"entity":"people", "value":"student"}?
+    - How many class [sub section]{"entity": "section_subsection", "value": "subsection"} at Rose-Hulman have 100+ [students]{"entity":"people", "value":"student"}?
+    - How many class [sub section]{"entity": "section_subsection", "value": "subsection"} at Rose-Hulman have 20 to 29 [students]{"entity":"people", "value":"student"}?
+    - How many class [sub section]{"entity": "section_subsection", "value": "subsection"} have 2 to 9 [students]{"entity":"people", "value":"student"}?
+    - How many class [sub section]{"entity": "section_subsection", "value": "subsection"} have 40 to 49 [students]{"entity":"people", "value":"student"}?
+    - How many class [sub sections]{"entity": "section_subsection", "value": "subsection"} at Rose-Hulman have 100+ [students]{"entity":"people", "value":"student"}?
+    - How many class [sub sections]{"entity": "section_subsection", "value": "subsection"} at Rose-Hulman have 20 to 29 [students]{"entity":"people", "value":"student"}?
+    - How many class [sub sections]{"entity": "section_subsection", "value": "subsection"} have 2 to 9 [students]{"entity":"people", "value":"student"}?
+    - How many class [sub sections]{"entity": "section_subsection", "value": "subsection"} have 40 to 49 [students]{"entity":"people", "value":"student"}?
+    - How many class [sub-section]{"entity": "section_subsection", "value": "subsection"} at Rose-Hulman have 100+ [students]{"entity":"people", "value":"student"}?
+    - How many class [sub-section]{"entity": "section_subsection", "value": "subsection"} at Rose-Hulman have 20 to 29 [students]{"entity":"people", "value":"student"}?
+    - How many class [sub-section]{"entity": "section_subsection", "value": "subsection"} have 2 to 9 [students]{"entity":"people", "value":"student"}?
+    - How many class [sub-section]{"entity": "section_subsection", "value": "subsection"} have 40 to 49 [students]{"entity":"people", "value":"student"}?
+    - How many class [subsection](section_subsection) at Rose-Hulman have 100+ [students]{"entity":"people", "value":"student"}?
+    - How many class [subsection](section_subsection) at Rose-Hulman have 20 to 29 [students]{"entity":"people", "value":"student"}?
+    - How many class [subsection](section_subsection) have 2 to 9 [students]{"entity":"people", "value":"student"}?
+    - How many class [subsection](section_subsection) have 40 to 49 [students]{"entity":"people", "value":"student"}?
+    - How many class [subsections]{"entity": "section_subsection", "value": "subsection"} at Rose-Hulman have 100+ [students]{"entity":"people", "value":"student"}?
+    - How many class [subsections]{"entity": "section_subsection", "value": "subsection"} at Rose-Hulman have 20 to 29 [students]{"entity":"people", "value":"student"}?
+    - How many class [subsections]{"entity": "section_subsection", "value": "subsection"} have 2 to 9 [students]{"entity":"people", "value":"student"}?
+    - How many class [subsections]{"entity": "section_subsection", "value": "subsection"} have 40 to 49 [students]{"entity":"people", "value":"student"}?
+    - How [size](size) is a class at Rose-Hulman?
+    - How [small]{"entity": "size", "value": "size"} is a class at Rose-Hulman?
+    - What is the [average]{"entity":"aggregation", "value":"average"} class [big]{"entity": "size", "value": "size"} at Rose-Hulman?
+    - What is the [average]{"entity":"aggregation", "value":"average"} class [large]{"entity": "size", "value": "size"} at Rose-Hulman?
+    - What is the [average]{"entity":"aggregation", "value":"average"} class [size](size) at Rose-Hulman?
+    - What is the [average]{"entity":"aggregation", "value":"average"} class [small]{"entity": "size", "value": "size"} at Rose-Hulman?
+    - What is the [students]{"entity":"people", "value":"student"} to [faculty](people) ratio?
+    - What is the [students]{"entity":"people", "value":"student"} to [prof]{"entity": "people", "value": "faculty"} ratio?
+    - What is the [students]{"entity":"people", "value":"student"} to [professor]{"entity": "people", "value": "faculty"} ratio?
+    - What is the total number of [full-time](enrollment_status) [faculty](people) who are in stand-alone [graduate]{"entity": "student_level", "value":"graduate"} programs in which faculty teach virtually only [graduate]{"entity": "student_level", "value":"graduate"} level [students]{"entity":"people", "value":"student"}
+    - What is the total number of [full-time](enrollment_status) [faculty](people) who are [men]{"entity": "gender", "value": "male"}
+    - What is the total number of [full-time](enrollment_status) [faculty](people) who are [minorities]{"entity": "race", "value": "minority"}
+    - What is the total number of [full-time](enrollment_status) [faculty](people) who are [minority](race)
+    - What is the total number of [full-time](enrollment_status) [faculty](people) who are [non resident alien]{"entity": "race", "value": "nonresident alien"}
+    - What is the total number of [full-time](enrollment_status) [faculty](people) who are [non resident aliens]{"entity": "race", "value": "nonresident alien"}
+    - What is the total number of [full-time](enrollment_status) [faculty](people) who are [non-resident aliens]{"entity": "race", "value": "nonresident alien"}
+    - What is the total number of [full-time](enrollment_status) [faculty](people) who are [nonresident alien](race)
+    - What is the total number of [full-time](enrollment_status) [faculty](people) who are [nonresident aliens]{"entity": "race", "value": "nonresident alien"}
+    - What is the total number of [full-time](enrollment_status) [faculty](people) who are [women]{"entity": "gender", "value": "female"}
+    - What is the total number of [full-time](enrollment_status) [faculty](people) who have have a [bachelor's]{"entity": "degree_level", "value": "bachelors"} degree
+    - What is the total number of [full-time](enrollment_status) [faculty](people) who have have a [doctorate](degree_level) degree
+    - What is the total number of [full-time](enrollment_status) [faculty](people) who have have a [doctors]{"entity": "degree_level", "value": "doctorate"} degree
+    - What is the total number of [full-time](enrollment_status) [faculty](people) who have have a [master](degree_level) degree
+    - What is the total number of [full-time](enrollment_status) [faculty](people) who have have a [masters]{"entity": "degree_level", "value": "master"} degree
+    - What is the total number of [full-time](enrollment_status) [faculty](people) whose [highest](aggregation) degree is [unknown]{"entity": "race", "value":"unknown"}
+    - What is the total number of [full-time](enrollment_status) [faculty](people) whose [highest](aggregation) degree is a [bachelor's]{"entity": "degree_level", "value": "bachelors"}
+    - What is the total number of [full-time](enrollment_status) [faculty](people) whose [highest](aggregation) degree is a [doctorate](degree_level)
+    - What is the total number of [full-time](enrollment_status) [faculty](people) whose [highest](aggregation) degree is a [doctors]{"entity": "degree_level", "value": "doctorate"}
+    - What is the total number of [full-time](enrollment_status) [faculty](people) whose [highest](aggregation) degree is a [master](degree_level)
+    - What is the total number of [full-time](enrollment_status) [faculty](people) whose [highest](aggregation) degree is a [masters]{"entity": "degree_level", "value": "master"}
+    - What is the total number of [full-time](enrollment_status) instructional [faculty](people) at Rose-Hulman?
+    - What is the total number of [full-time](enrollment_status) instructional [prof]{"entity": "people", "value": "faculty"} at Rose-Hulman?
+    - What is the total number of [full-time](enrollment_status) instructional [professor]{"entity": "people", "value": "faculty"} at Rose-Hulman?
+    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are in stand-alone [graduate]{"entity": "student_level", "value":"graduate"} programs in which faculty teach virtually only [graduate]{"entity": "student_level", "value":"graduate"} level [students]{"entity":"people", "value":"student"}
+    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [men]{"entity": "gender", "value": "male"}
+    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [minorities]{"entity": "race", "value": "minority"}
+    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [minority](race)
+    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [non resident alien]{"entity": "race", "value": "nonresident alien"}
+    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [non resident aliens]{"entity": "race", "value": "nonresident alien"}
+    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [non-resident aliens]{"entity": "race", "value": "nonresident alien"}
+    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [nonresident alien](race)
+    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [nonresident aliens]{"entity": "race", "value": "nonresident alien"}
+    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [women]{"entity": "gender", "value": "female"}
+    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who have have a [bachelor's]{"entity": "degree_level", "value": "bachelors"} degree
+    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who have have a [doctorate](degree_level) degree
+    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who have have a [doctors]{"entity": "degree_level", "value": "doctorate"} degree
+    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who have have a [master](degree_level) degree
+    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who have have a [masters]{"entity": "degree_level", "value": "master"} degree
+    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} whose [highest](aggregation) degree is [unknown]{"entity": "race", "value":"unknown"}
+    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} whose [highest](aggregation) degree is a [bachelor's]{"entity": "degree_level", "value": "bachelors"}
+    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} whose [highest](aggregation) degree is a [doctorate](degree_level)
+    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} whose [highest](aggregation) degree is a [doctors]{"entity": "degree_level", "value": "doctorate"}
+    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} whose [highest](aggregation) degree is a [master](degree_level)
+    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} whose [highest](aggregation) degree is a [masters]{"entity": "degree_level", "value": "master"}
+    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are in stand-alone [graduate]{"entity": "student_level", "value":"graduate"} programs in which faculty teach virtually only [graduate]{"entity": "student_level", "value":"graduate"} level [students]{"entity":"people", "value":"student"}
+    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [men]{"entity": "gender", "value": "male"}
+    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [minorities]{"entity": "race", "value": "minority"}
+    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [minority](race)
+    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [non resident alien]{"entity": "race", "value": "nonresident alien"}
+    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [non resident aliens]{"entity": "race", "value": "nonresident alien"}
+    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [non-resident aliens]{"entity": "race", "value": "nonresident alien"}
+    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [nonresident alien](race)
+    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [nonresident aliens]{"entity": "race", "value": "nonresident alien"}
+    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [women]{"entity": "gender", "value": "female"}
+    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who have have a [bachelor's]{"entity": "degree_level", "value": "bachelors"} degree
+    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who have have a [doctorate](degree_level) degree
+    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who have have a [doctors]{"entity": "degree_level", "value": "doctorate"} degree
+    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who have have a [master](degree_level) degree
+    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who have have a [masters]{"entity": "degree_level", "value": "master"} degree
+    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} whose [highest](aggregation) degree is [unknown]{"entity": "race", "value":"unknown"}
+    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} whose [highest](aggregation) degree is a [bachelor's]{"entity": "degree_level", "value": "bachelors"}
+    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} whose [highest](aggregation) degree is a [doctorate](degree_level)
+    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} whose [highest](aggregation) degree is a [doctors]{"entity": "degree_level", "value": "doctorate"}
+    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} whose [highest](aggregation) degree is a [master](degree_level)
+    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} whose [highest](aggregation) degree is a [masters]{"entity": "degree_level", "value": "master"}
+    - What is the total number of [part-time](enrollment_status) [faculty](people) who are in stand-alone [graduate]{"entity": "student_level", "value":"graduate"} programs in which faculty teach virtually only [graduate]{"entity": "student_level", "value":"graduate"} level [students]{"entity":"people", "value":"student"}
+    - What is the total number of [part-time](enrollment_status) [faculty](people) who are [men]{"entity": "gender", "value": "male"}
+    - What is the total number of [part-time](enrollment_status) [faculty](people) who are [minorities]{"entity": "race", "value": "minority"}
+    - What is the total number of [part-time](enrollment_status) [faculty](people) who are [minority](race)
+    - What is the total number of [part-time](enrollment_status) [faculty](people) who are [non resident alien]{"entity": "race", "value": "nonresident alien"}
+    - What is the total number of [part-time](enrollment_status) [faculty](people) who are [non resident aliens]{"entity": "race", "value": "nonresident alien"}
+    - What is the total number of [part-time](enrollment_status) [faculty](people) who are [non-resident aliens]{"entity": "race", "value": "nonresident alien"}
+    - What is the total number of [part-time](enrollment_status) [faculty](people) who are [nonresident alien](race)
+    - What is the total number of [part-time](enrollment_status) [faculty](people) who are [nonresident aliens]{"entity": "race", "value": "nonresident alien"}
+    - What is the total number of [part-time](enrollment_status) [faculty](people) who are [women]{"entity": "gender", "value": "female"}
+    - What is the total number of [part-time](enrollment_status) [faculty](people) who have have a [bachelor's]{"entity": "degree_level", "value": "bachelors"} degree
+    - What is the total number of [part-time](enrollment_status) [faculty](people) who have have a [doctorate](degree_level) degree
+    - What is the total number of [part-time](enrollment_status) [faculty](people) who have have a [doctors]{"entity": "degree_level", "value": "doctorate"} degree
+    - What is the total number of [part-time](enrollment_status) [faculty](people) who have have a [master](degree_level) degree
+    - What is the total number of [part-time](enrollment_status) [faculty](people) who have have a [masters]{"entity": "degree_level", "value": "master"} degree
+    - What is the total number of [part-time](enrollment_status) [faculty](people) whose [highest](aggregation) degree is [unknown]{"entity": "race", "value":"unknown"}
+    - What is the total number of [part-time](enrollment_status) [faculty](people) whose [highest](aggregation) degree is a [bachelor's]{"entity": "degree_level", "value": "bachelors"}
+    - What is the total number of [part-time](enrollment_status) [faculty](people) whose [highest](aggregation) degree is a [doctorate](degree_level)
+    - What is the total number of [part-time](enrollment_status) [faculty](people) whose [highest](aggregation) degree is a [doctors]{"entity": "degree_level", "value": "doctorate"}
+    - What is the total number of [part-time](enrollment_status) [faculty](people) whose [highest](aggregation) degree is a [master](degree_level)
+    - What is the total number of [part-time](enrollment_status) [faculty](people) whose [highest](aggregation) degree is a [masters]{"entity": "degree_level", "value": "master"}
+    - What is the total number of [part-time](enrollment_status) instructional [faculty](people) at Rose-Hulman?
+    - What is the total number of [part-time](enrollment_status) instructional [prof]{"entity": "people", "value": "faculty"} at Rose-Hulman?
+    - What is the total number of [part-time](enrollment_status) instructional [professor]{"entity": "people", "value": "faculty"} at Rose-Hulman?
+    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are in stand-alone [graduate]{"entity": "student_level", "value":"graduate"} programs in which faculty teach virtually only [graduate]{"entity": "student_level", "value":"graduate"} level [students]{"entity":"people", "value":"student"}
+    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [men]{"entity": "gender", "value": "male"}
+    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [minorities]{"entity": "race", "value": "minority"}
+    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [minority](race)
+    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [non resident alien]{"entity": "race", "value": "nonresident alien"}
+    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [non resident aliens]{"entity": "race", "value": "nonresident alien"}
+    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [non-resident aliens]{"entity": "race", "value": "nonresident alien"}
+    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [nonresident alien](race)
+    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [nonresident aliens]{"entity": "race", "value": "nonresident alien"}
+    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [women]{"entity": "gender", "value": "female"}
+    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who have have a [bachelor's]{"entity": "degree_level", "value": "bachelors"} degree
+    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who have have a [doctorate](degree_level) degree
+    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who have have a [doctors]{"entity": "degree_level", "value": "doctorate"} degree
+    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who have have a [master](degree_level) degree
+    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who have have a [masters]{"entity": "degree_level", "value": "master"} degree
+    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} whose [highest](aggregation) degree is [unknown]{"entity": "race", "value":"unknown"}
+    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} whose [highest](aggregation) degree is a [bachelor's]{"entity": "degree_level", "value": "bachelors"}
+    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} whose [highest](aggregation) degree is a [doctorate](degree_level)
+    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} whose [highest](aggregation) degree is a [doctors]{"entity": "degree_level", "value": "doctorate"}
+    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} whose [highest](aggregation) degree is a [master](degree_level)
+    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} whose [highest](aggregation) degree is a [masters]{"entity": "degree_level", "value": "master"}
+    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are in stand-alone [graduate]{"entity": "student_level", "value":"graduate"} programs in which faculty teach virtually only [graduate]{"entity": "student_level", "value":"graduate"} level [students]{"entity":"people", "value":"student"}
+    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [men]{"entity": "gender", "value": "male"}
+    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [minorities]{"entity": "race", "value": "minority"}
+    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [minority](race)
+    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [non resident alien]{"entity": "race", "value": "nonresident alien"}
+    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [non resident aliens]{"entity": "race", "value": "nonresident alien"}
+    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [non-resident aliens]{"entity": "race", "value": "nonresident alien"}
+    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [nonresident alien](race)
+    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [nonresident aliens]{"entity": "race", "value": "nonresident alien"}
+    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [women]{"entity": "gender", "value": "female"}
+    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who have have a [bachelor's]{"entity": "degree_level", "value": "bachelors"} degree
+    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who have have a [doctorate](degree_level) degree
+    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who have have a [doctors]{"entity": "degree_level", "value": "doctorate"} degree
+    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who have have a [master](degree_level) degree
+    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who have have a [masters]{"entity": "degree_level", "value": "master"} degree
+    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} whose [highest](aggregation) degree is [unknown]{"entity": "race", "value":"unknown"}
+    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} whose [highest](aggregation) degree is a [bachelor's]{"entity": "degree_level", "value": "bachelors"}
+    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} whose [highest](aggregation) degree is a [doctorate](degree_level)
+    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} whose [highest](aggregation) degree is a [doctors]{"entity": "degree_level", "value": "doctorate"}
+    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} whose [highest](aggregation) degree is a [master](degree_level)
+    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} whose [highest](aggregation) degree is a [masters]{"entity": "degree_level", "value": "master"}
+- synonym: section
   examples: |
-    - percentage
-    - percent
-- synonym: mean
+    - sections
+    - section
+- synonym: subsection
   examples: |
-    - average
-    - mean
-- synonym: 700-800
+    - sub sections
+    - subsections
+    - sub section
+    - sub-section
+    - subsection
+- synonym: size
   examples: |
-    - 700 to 800
-    - 700-800
-    - 800 to 700
-    - 800-700
-- synonym: 600-699
+    - small
+    - large
+    - big
+    - size
+- synonym: doctorate
   examples: |
-    - 600 to 699
-    - 699 to 600
-    - 699-600
-    - 600-699
-- synonym: 500-599
+    - doctors
+    - doctorate
+- synonym: master
   examples: |
-    - 599 to 500
-    - 599-500
-    - 500 to 599
-    - 500-599
-- synonym: 400-499
+    - masters
+    - master
+- synonym: minority
   examples: |
-    - 400-499
-    - 499 to 400
-    - 499-400
-    - 400 to 499
-- synonym: 300-399
+    - minorities
+    - minority
+- synonym: nonresident alien
   examples: |
-    - 399-300
-    - 300-399
-    - 300 to 399
-    - 399 to 300
-- synonym: 200-299
+    - non resident aliens
+    - non-resident aliens
+    - nonresident aliens
+    - nonresident alien
+    - non resident alien
+- synonym: faculty
   examples: |
-    - 200 to 299
-    - 200-299
-    - 299 to 200
-    - 299-200
-- synonym: 1400-1600
-  examples: |
-    - 1600-1400
-    - 1400-1600
-    - 1600 to 1400
-    - 1400 to 1600
-- synonym: 1200-1399
-  examples: |
-    - 1200-1399
-    - 1399-1200
-    - 1200 to 1399
-    - 1399 to 1200
-- synonym: 1000-1199
-  examples: |
-    - 1199-1000
-    - 1000-1199
-    - 1199 to 1000
-    - 1000 to 1199
-- synonym: 800-999
-  examples: |
-    - 800-999
-    - 800 to 999
-    - 999 to 800
-    - 999-800
-- synonym: 600-799
-  examples: |
-    - 600-799
-    - 600 to 799
-    - 799 to 600
-    - 799-600
-- synonym: 400-599
-  examples: |
-    - 400 to 599
-    - 599-400
-    - 400-599
-    - 599 to 400
-- synonym: 30-36
-  examples: |
-    - 36 to 30
-    - 30 to 36
-    - 30-36
-    - 36-30
-- synonym: 24-29
-  examples: |
-    - 24-29
-    - 29 to 24
-    - 29-24
-    - 24 to 29
-- synonym: 18-23
-  examples: |
-    - 18-23
-    - 18 to 23
-    - 23-18
-    - 23 to 18
-- synonym: 12-17
-  examples: |
-    - 17 to 12
-    - 12-17
-    - 12 to 17
-    - 17-12
-- synonym: 6-11
-  examples: |
-    - 6-11
-    - 11-6
-    - 6 to 11
-    - 11 to 6
-- synonym: below 6
-  examples: |
-    - below 6
-    - under 6
-    - less than 6
-- synonym: writing
-  examples: |
-    - written
-    - writing
-- synonym: sat_composite
-  examples: |
-    - SAT composite
-    - SAT-composite
-- synonym: sat_reading_writing
-  examples: |
-    - SAT reading
-    - SAT evidence-based reading and writing
-    - SAT english
-    - SAT reading and writing
-    - SAT grammar
-    - SAT writing and reading
-- synonym: sat_math
-  examples: |
-    - SAT mathamatics
-    - SAT math
-- synonym: sat_essay
-  examples: |
-    - SAT written part
-    - SAT essay
-    - SAT writing
-- synonym: act_composite
-  examples: |
-    - ACT composite
-    - ACT-composite
-- synonym: act_writing
-  examples: |
-    - ACT writing
-    - ACT essay
-    - ACT written part
-- synonym: act_math
-  examples: |
-    - ACT math
-    - ACT mathamatics
+    - faculty
+    - prof
+    - professor

@@ -30,13 +30,14 @@ class ExcelDataManager(DataManager):
        
         
         if not intent in dataForEachTopic.keys():
-            raise NoDataFoundException(NO_DATA_AVAILABLE_FOR_GIVEN_INTENT_FORMAT.format(topic = intent, start= start, end=end), ExceptionTypes.NoSparseMatrixDataAvailableForGivenIntent)
+            
+            raise NoDataFoundException(NO_DATA_AVAILABLE_FOR_GIVEN_INTENT_FORMAT.format(topic = intent.replace("_", " "), start= start, end=end), ExceptionTypes.NoSparseMatrixDataAvailableForGivenIntent)
             
         topicData : TopicData = dataForEachTopic[intent]
 
         
         if not topicData.hasData():
-            raise NoDataFoundException(NO_DATA_AVAILABLE_FOR_GIVEN_INTENT_FORMAT.format(topic = intent, start= start, end=end), ExceptionTypes.NoSparseMatrixDataAvailableForGivenIntent)
+            raise NoDataFoundException(NO_DATA_AVAILABLE_FOR_GIVEN_INTENT_FORMAT.format(topic = intent.replace("_", " "), start= start, end=end), ExceptionTypes.NoSparseMatrixDataAvailableForGivenIntent)
         
         return topicData
 

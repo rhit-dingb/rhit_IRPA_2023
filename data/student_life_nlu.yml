@@ -1,0 +1,209 @@
+version: "3.1"
+nlu:
+- intent: student_life
+  examples: |
+    - Does Rose-Hulman offer [air force](military_branch) [reserve Officers training corp]{"entity": "rotc", "value": "rotc"} ?
+    - Does Rose-Hulman offer [air force](military_branch) [reserve Officers training corps]{"entity": "rotc", "value": "rotc"} ?
+    - Does Rose-Hulman offer [air force](military_branch) [reserve officers's training Corps]{"entity": "rotc", "value": "rotc"} ?
+    - Does Rose-Hulman offer [air force](military_branch) [rotc](rotc) ?
+    - Does Rose-Hulman offer [army](military_branch) [reserve Officers training corp]{"entity": "rotc", "value": "rotc"} ?
+    - Does Rose-Hulman offer [army](military_branch) [reserve Officers training corps]{"entity": "rotc", "value": "rotc"} ?
+    - Does Rose-Hulman offer [army](military_branch) [reserve officers's training Corps]{"entity": "rotc", "value": "rotc"} ?
+    - Does Rose-Hulman offer [army](military_branch) [rotc](rotc) ?
+    - Does Rose-Hulman offer [naval]{"entity": "military_branch", "value": "navy"} [reserve Officers training corp]{"entity": "rotc", "value": "rotc"} ?
+    - Does Rose-Hulman offer [naval]{"entity": "military_branch", "value": "navy"} [reserve Officers training corps]{"entity": "rotc", "value": "rotc"} ?
+    - Does Rose-Hulman offer [naval]{"entity": "military_branch", "value": "navy"} [reserve officers's training Corps]{"entity": "rotc", "value": "rotc"} ?
+    - Does Rose-Hulman offer [naval]{"entity": "military_branch", "value": "navy"} [rotc](rotc) ?
+    - Does Rose-Hulman offer [navy](military_branch) [reserve Officers training corp]{"entity": "rotc", "value": "rotc"} ?
+    - Does Rose-Hulman offer [navy](military_branch) [reserve Officers training corps]{"entity": "rotc", "value": "rotc"} ?
+    - Does Rose-Hulman offer [navy](military_branch) [reserve officers's training Corps]{"entity": "rotc", "value": "rotc"} ?
+    - Does Rose-Hulman offer [navy](military_branch) [rotc](rotc) ?
+
+    - What [activities]{"entity": "academic_factor", "value": "extracurricular activities"} does Rose-Hulman offer?
+    - What [clubs]{"entity": "academic_factor", "value": "extracurricular activities"} does Rose-Hulman offer?
+    - What [extracirricular]{"entity": "academic_factor", "value": "extracurricular activities"} does Rose-Hulman offer?
+
+    - What [type](type) of [college]{"entity": "education_level", "value": "college"} [affiliated]{"entity":"college_relation", "value": "affiliated"} [housing]{"entity":"housing", "value": "housing"} is available at Rose-Hulman?
+    - What [type](type) of [college]{"entity": "education_level", "value": "college"} [operated]{"entity":"college_relation", "value": "operated"} [housing]{"entity":"housing", "value": "housing"} is available at Rose-Hulman?
+    - What [type](type) of [college]{"entity": "education_level", "value": "college"} [owned]{"entity":"college_relation", "value": "owned"} [housing]{"entity":"housing", "value": "housing"} is available at Rose-Hulman?
+    - What [type](type) of [college]{"entity": "education_level", "value": "college"} [affliated]{"entity":"college_relation", "value": "affiliated"} [housing]{"entity":"housing", "value": "housing"} is available at Rose-Hulman?
+    - What [type](type) of [college]{"entity": "education_level", "value": "college"} [operated]{"entity":"college_relation", "value": "operated"} [housing]{"entity":"housing", "value": "housing"} is available at Rose-Hulman?
+    - What [type](type) of [college]{"entity": "education_level", "value": "college"} [owned]{"entity":"college_relation", "value": "owned"} [housing]{"entity":"housing", "value": "housing"} is available at Rose-Hulman?
+   
+    - [Average]{"entity":"aggregation", "value": "average"} [age]{"entity":"age", "value": "age"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students
+    - [Average]{"entity":"aggregation", "value": "average"} [age]{"entity":"age", "value": "age"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [undergraduate](student_level) students
+    - [Average]{"entity":"aggregation", "value": "average"} [age]{"entity":"age", "value": "age"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students
+    - [Average]{"entity":"aggregation", "value": "average"} [age]{"entity":"age", "value": "age"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} [undergraduate](student_level) students
+    
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who are [age]{"entity":"age", "value": "age"} [25 and older]{"entity":"age", "value": "25 and older"}
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who are [age]{"entity":"age", "value": "age"} [25 older]{"entity":"age", "value": "25 and older"}
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who are [age]{"entity":"age", "value": "age"} [25 older]{"entity":"age", "value": "25 and older"}
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who are [age]{"entity":"age", "value": "age"} 25 [years old]{"entity":"age", "value": "age"}
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who are [age]{"entity":"age", "value": "age"} [25 year old]{"entity":"age", "value": "25 and older"}
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who are [age]{"entity":"age", "value": "age"} [25]{"entity":"age", "value": "25 and older"}
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who are [age]{"entity":"age", "value": "age"} [twenty five and older]{"entity":"age", "value": "25 and older"}
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who are [age]{"entity":"age", "value": "age"} [twenty five or older]{"entity":"age", "value": "25 and older"}
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who are [age]{"entity":"age", "value": "age"} [twenty-five or older]{"entity":"age", "value": "25 and older"}
+
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who live in [college]{"entity": "education_level", "value": "college"} [affiliated]{"entity":"college_relation", "value": "affiliated"} [housing]{"entity":"housing", "value": "housing"}
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who live in [college]{"entity": "education_level", "value": "college"} [operated]{"entity":"college_relation", "value": "operated"} [housing]{"entity":"housing", "value": "housing"}
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who live in [college]{"entity": "education_level", "value": "college"} [owned]{"entity":"college_relation", "value": "owned"} [housing]{"entity":"housing", "value": "housing"}
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who live in [college]{"entity": "education_level", "value": "college"} [affiliated]{"entity":"college_relation", "value": "affiliated"} [housing]{"entity":"housing", "value": "housing"}
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who live in [college]{"entity": "education_level", "value": "college"} [operated]{"entity":"college_relation", "value": "operated"} [housing]{"entity":"housing", "value": "housing"}
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who live in [college]{"entity": "education_level", "value": "college"} [owned]{"entity":"college_relation", "value": "owned"} [housing]{"entity":"housing", "value": "housing"}
+
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who [commute](category)
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who are [commuter]{"entity": "category", "value": "commute"}
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who are [commuting]{"entity": "category", "value": "commute"}
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who are [fraternities]{"entity": "category", "value": "fraternity"}
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who are [not from here]{"entity": "category", "value": "out of state"}
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who are [off campus]{"entity": "category", "value": "commute"}
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who are [out of state](category)
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who are [out-of-state]{"entity": "category", "value": "out of state"}
+
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who joined [frat]{"entity": "category", "value": "fraternity"}
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who joined [fraternities]{"entity": "category", "value": "fraternity"}
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who joined [fraternity](category)
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who joined [sororities]{"entity": "category", "value": "sorority"}
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who joined [sorority](category)
+
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [undergraduate](student_level) [undergraduates]{"entity":"student_level", "value": "undergraduate"} students who are [age]{"entity":"age", "value": "age"} [25 and older]{"entity":"age", "value": "25 and older"}
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [undergraduate](student_level) [undergraduates]{"entity":"student_level", "value": "undergraduate"} students who are [age]{"entity":"age", "value": "age"} [25 older]{"entity":"age", "value": "25 and older"}
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [undergraduate](student_level) [undergraduates]{"entity":"student_level", "value": "undergraduate"} students who are [age]{"entity":"age", "value": "age"} [25 or older]{"entity":"age", "value": "25 and older"}
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [undergraduate](student_level) [undergraduates]{"entity":"student_level", "value": "undergraduate"} students who are [age]{"entity":"age", "value": "age"} [25 year old]{"entity":"age", "value": "25 and older"}
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [undergraduate](student_level) [undergraduates]{"entity":"student_level", "value": "undergraduate"} students who are [age]{"entity":"age", "value": "age"} [25]{"entity":"age", "value": "25 and older"}
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [undergraduate](student_level) [undergraduates]{"entity":"student_level", "value": "undergraduate"} students who are [age]{"entity":"age", "value": "age"} [twenty five and older]{"entity":"age", "value": "25 and older"}
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [undergraduate](student_level) [undergraduates]{"entity":"student_level", "value": "undergraduate"} students who are [age]{"entity":"age", "value": "age"} [twenty five or older]{"entity":"age", "value": "25 and older"}
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [undergraduate](student_level) [undergraduates]{"entity":"student_level", "value": "undergraduate"} students who are [age]{"entity":"age", "value": "age"} [twenty-five or older]{"entity":"age", "value": "25 and older"}
+
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [undergraduate](student_level) [undergraduates]{"entity":"student_level", "value": "undergraduate"} students who live in [college]{"entity": "education_level", "value": "college"} [affiliated]{"entity":"college_relation", "value": "affiliated"} [housing]{"entity":"housing", "value": "housing"}
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [undergraduate](student_level) [undergraduates]{"entity":"student_level", "value": "undergraduate"} students who live in [college]{"entity": "education_level", "value": "college"} [operated]{"entity":"college_relation", "value": "operated"} [housing]{"entity":"housing", "value": "housing"}
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [undergraduate](student_level) [undergraduates]{"entity":"student_level", "value": "undergraduate"} students who live in [college]{"entity": "education_level", "value": "college"} [owned]{"entity":"college_relation", "value": "owned"} [housing]{"entity":"housing", "value": "housing"}
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [undergraduate](student_level) [undergraduates]{"entity":"student_level", "value": "undergraduate"} students who live in [college]{"entity": "education_level", "value": "college"} [affliated]{"entity":"college_relation", "value": "affiliated"} [housing]{"entity":"housing", "value": "housing"}
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [undergraduate](student_level) [undergraduates]{"entity":"student_level", "value": "undergraduate"} students who live in [college]{"entity": "education_level", "value": "college"} [operated]{"entity":"college_relation", "value": "operated"} [housing]{"entity":"housing", "value": "housing"}
+    
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [undergraduate](student_level) [undergraduates]{"entity":"student_level", "value": "undergraduate"} students who live in [college]{"entity": "education_level", "value": "college"} [owned]{"entity":"college_relation", "value": "owned"} [housing]{"entity":"housing", "value": "housing"}
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [undergraduate](student_level) students who [commute](category)
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [undergraduate](student_level) students who is a [commuter]{"entity": "category", "value": "commute"}
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [undergraduate](student_level) students who are [commuting]{"entity": "category", "value": "commute"}
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [undergraduate](student_level) students who are [not from here]{"entity": "category", "value": "out of state"}
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [undergraduate](student_level) students who are [off campus]{"entity": "category", "value": "commute"}
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [undergraduate](student_level) students who are [out of state](category)
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [undergraduate](student_level) students who are [out-of-state]{"entity": "category", "value": "out of state"}
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [undergraduate](student_level) students who joined [frat]{"entity": "category", "value": "fraternity"}
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [undergraduate](student_level) students who joined [fraternities]{"entity": "category", "value": "fraternity"}
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [undergraduate](student_level) students who joined [fraternity](category)
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [undergraduate](student_level) students who joined [sororities]{"entity": "category", "value": "sorority"}
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [undergraduate](student_level) students who joined [sorority](category)
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [undergraduate](student_level) students who [commute](category) to school?
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [undergraduate](student_level) students who are [commuter]{"entity": "category", "value": "commute"}
+  
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who are [age]{"entity":"age", "value": "age"} [25 and older]{"entity":"age", "value": "25 and older"}
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who are [age]{"entity":"age", "value": "age"} [25 older]{"entity":"age", "value": "25 and older"}
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who are [age]{"entity":"age", "value": "age"} [25 or older]{"entity":"age", "value": "25 and older"}
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who are [age]{"entity":"age", "value": "age"} [25 year old]{"entity":"age", "value": "25 and older"}
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who are [age]{"entity":"age", "value": "age"} [25]{"entity":"age", "value": "25 and older"}
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who are [age]{"entity":"age", "value": "age"} [twenty five and older]{"entity":"age", "value": "25 and older"}
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who are [age]{"entity":"age", "value": "age"} [twenty five or older]{"entity":"age", "value": "25 and older"}
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who are [age]{"entity":"age", "value": "age"} [twenty-five or older]{"entity":"age", "value": "25 and older"}
+
+
+- lookup: college_relation
+  examples: |
+    - affiliated
+    - owned
+    - operated
+
+
+- lookup: age
+  examples: |
+    - age
+    - 25 and older
+    - 25 or older
+    - older than 25
+    - twenty five or older
+    - twenty-five or older
+    - twenty five and older
+    - twenty-five and older
+
+
+- synonym: special study
+  examples: |
+    - special study
+    - special studys
+
+- synonym: program
+  examples: |
+    - program
+    - programs
+
+
+- synonym: subject
+  examples: |
+    - subject
+    - subjects
+    - areas
+    - area
+    - discipline
+
+
+- synonym: owned
+  examples: |
+    - own
+    - have
+  
+- synonym: affiliated
+  examples: |
+    - affliated
+    - affiliate
+
+- synonym: operated
+  examples: |
+    - operate
+
+- synonym: navy
+  examples: |
+    - navy
+    - naval
+
+- synonym: air force
+  examples: |
+    - air-force
+
+- synonym: rotc
+  examples: |
+    - reserve officers training corp
+    - reserve officers's training corps
+    - reserve officers' training corps
+    - reserve officers training corps
+    - reserve officer training corp
+    - reserve officer training corps
+    - reserve officers training corp
+    - ROTC
+
+- synonym: extracurricular activities
+  examples: |
+    - clubs
+    - activities
+    - extracirricular
+
+- synonym: out of state
+  examples: |
+    - not from here
+    - out-of-state
+    - out of state
+- synonym: fraternity
+  examples: |
+    - frat
+    - fraternity
+    - fraternities
+- synonym: sorority
+  examples: |
+    - sororities
+    - sorority
+- synonym: commute
+  examples: |
+    - off campus
+    - commuting
+    - commuter
+    - commute

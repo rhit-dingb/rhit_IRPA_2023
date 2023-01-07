@@ -9,10 +9,20 @@ intents:
   - enrollment
   - cohort
   - admission
+  - transfer_admission
   - high_school_units
   - basis_for_selection 
   - freshman_profile
+  - academic_offering_policy
+  - student_life
+  - financial_aid
+  - faculty_and_class_size
+  - sat_act_policies
+  - general_info
+  - definition
+  
 
+  - change_year
 
   - mood_great
   - mood_unhappy
@@ -22,6 +32,12 @@ intents:
 
 
 entities:
+  # Ways to contact
+  # Value: phone, fax, number, address, email, website
+  - way_of_contact
+
+
+
   # full-time, part-time
   - enrollment_status
 
@@ -40,83 +56,68 @@ entities:
   #First-year, non-first-year
   - is_first_year
 
-  #male, female
+  #male, female, also includes coeducational
   - gender
 
-  #race/ethnicity
+  #race/ethnicity, value: minority, african american, unknown, american indian, white, hispanic,  pacific-islander, two-or-more
   - race
 
-  #applied addmitted
+  #Capture many different verbs. Values: applied addmitted, determined, awarded, met, borrowed, designed, offered
   - action
 
   - waiting-list
 
-  - college-preparatory-program
 
   - completion-requirement
 
-  - waiting-list-detail
+  # - waiting-list-detail
 
-  - policy
-
-  #cohort by year - for example: 2015 cohort, 2016 cohort, etc.
-  - cohort_by_year
-
-  #retention rate
-  - retention-rate
-
+  # - policy
 
 # used for something like: Initial 2015 cohort of first-time, fulltime, bachelor's (or equivalent) degreeseeking undergraduate students
 # and also something like: Final 2015 cohort, after adjusting for allowable exclusions
   - cohort_initial_final
 
- # This is entity is used for these rows:
- #Example: 5 year or less, 4 year or less
-  - upper_bound_graduation_time
-
- #Example: more than 4 years.
-  - lower_bound_graduation_time
-
-
-# for six-year graduation rate for 2015 cohort row 
-  - graduation_rate
-
+  # Student enrollment result, captures retention. 
+  - student_enrollment_result
 
   # exemptions - students for did not persist or graduate due to other circumstances.
   # also know as allowable exclusions.
   - exemptions
 
   
-  - recipients_of_federal_pell_grant
-  - recipients_of_a_subsidized_stafford_loan_who_did_not_receive_a_pell_grant 
-  - students_who_did_not_receive_either_a_pell_grant_or_a_subsidized_stafford_loan
-
-  #year to query the dataset.
-  - year
+  #- recipients_of_federal_pell_grant
+  #- recipients_of_a_subsidized_stafford_loan_who_did_not_receive_a_pell_grant 
+  #- students_who_did_not_receive_either_a_pell_grant_or_a_subsidized_stafford_loan
+  - aid_status_pell
+  - aid_status_stafford
+  - not_modifier_pell
+  - not_modifier_stafford
+  - aid_status_none
   
-  # School subjects such as english, mathematics, science, etc.
+  # School subjects such as english, mathematics, science, etc, also captures the word subject
+  # Value: subject english, mathematics, science, liberal arts.
   - subject
 
-  #Number of unit-required or unit-recommended for particular subjects for rose-hulman admission requirement.
-  #Specific values: unit-required, unit-recommend 
-  - unit_level
+# This entity captures whether required or recommended is mentioned. Used in high school units required/recommended and transfer admission required items.
+  - condition
 
   #Academic factor for basis of selection for admissions such as Rigor of secondary school record, Class rank etc, academic GPA etc.
+  #NOTE: I defined Grades and grade as different. Grade is one value of of academic factor while grades map to transcript
   - academic_factor
   
   #Non-academic factor for basis of selection for admissions such as Interview, Extracurricular activities, Talent/ability, Character/personal qualities, etc
   - non_academic_factor
 
 
-  # # Below are entities for freshman profile
-
-  #Aggregation words: percentage, mean
+  #Aggregation words: percentage, average 
   - aggregation
+
 
   #Types of standarized test. Values: SAT and ACT.
   - standarized_test
 
-  # Test percentile: 25th, 50th, 75th, mean
+  # Test percentile: 25th, 50th, 75th
   - test_percentile
 
 
@@ -125,21 +126,272 @@ entities:
   # essay
   # reading
   # writing
+  # math
+  # english
   - test_component
   
-
-  #The range of sat and test scores on cds
-  - test_score_range
-
-  #highschool class rank, value: top tenth, top quarter, top half of highschool class, etc in the incoming freshman class,
-  #also include whether student submitted highschool rank or not.
+  #highschool class rank, value: top tenth, top quarter, top half, bottom half, bottom quarter
   - class_rank
 
-  #Ranges of gpa, 4.0 gpa, 3.75-3.99 gpa, etc
-  - gpa_range
 
 #Whether student submitted something, such as gpa, class rank, sat score
   - submitted
+
+#Whether rose-hulman enroll transfer students
+# Value: enroll transfer student
+  - allow_transfer
+
+#Whether rose-hulman accept transfer credit
+#Value: accept transfer credit
+  - allow_transfer_credit
+
+
+#High school or college
+#Value: High school, college
+  - education_level
+
+# used to capture the word credit and unit as in class credits/unit
+  - academic_credit
+
+#Capture unit of measure. Value: Unit of measure
+  - unit_of_measure
+
+#Academic term. Used to capture the word "term" referring to academic terms, and different season of academic term
+# Values: term, fall, winter, spring, summer.
+  - academic_term
+
+#admission decision date. Values:  priority, closing, notification, and reply.
+# Use in conjunction with date entity to create priority date, closing date, notification date and reply date.
+  - admission_decision_date
+
+# Terms that describe the process of attending university.
+# Value: application, enrollment, admission.
+  - academic_process
+
+#Captures placement tests and the word placement
+#Value: Placement, Advanced Placement, Institutional Exam
+  - placement
+
+
+
+
+#Use to capture anything word related to time such as word "date" or "when" - to see if user mention time anywhere in their sentence. 
+#Values: date.
+#This does not extract the numeric value, but rather, the word works
+  - time
+
+#Use to capture "other", can be used in terms of other subjects or other application requirements
+  - other
+  
+#Values: less than(within), more than(greater than),  maximum, minimum,
+  - range
+
+# Doctorate, Masters, Bachelors, Associates degree, and Unknown
+  - degree_level 
+
+
+#Use to capture the word age
+  - age
+
+#Different category/group of student described in student life section, which includes student from out of state, 
+  # those who join fraternity, sorority, etc.
+  # Values: out of state, fraternity, sorority, commute, 
+  # transfer, exchange
+  - category
+
+# Describe college relation. 
+# Value: college-owned -operated, or -affliated
+  - college_relation
+
+
+#Describes different military branch
+#Values: army, navy, air force
+  - military_branch
+
+# Captures rotc which stands for reserve Officers training corps/
+# Value: rotc
+  - rotc
+
+
+# Captures housing
+# Value: housing
+  - housing
+
+#Captures type
+#Value: type
+  - type
+
+  # Entities for early decision and early action. Values: early decision, early action and early admission
+  - early-admission
+
+
+  # Use to capture fee, money ,etc, things related to money
+  - money
+
+  # Captures if question is about online application. Value: online. 
+  - online
+  
+
+  # Defer admission
+  - defer
+
+
+  # #Captures the word "year"
+  # - year
+
+  # Captures numerical value include decimals. For number that are formatted as words like "four", I wrote code for a custom extractor.
+  #NOTE: currently, this is not labelled in training data, I use a custom entity extractor.
+  - number
+
+#FINANCIAL AID entities
+
+# Captures methodology for the question: which needs-analysis methodology does your institution use in awarding institutional aid?
+  - methodology
+
+# Captures different types of scholar or grants and loans financial aid such as federal, state, external, athletic 
+# Values: federal, state, external, athletic, institutional
+  - financial_aid_type
+
+#Captures scholarship, grants itself.
+#Value: scholarship, grants.
+  - scholarship_grants
+
+#Captures aids that are classified as self help, also include word self-help itself.
+#Value : work-study, self-help
+  - self-help_aid
+
+#Captures aids other than self-help, and scholarship or grants.
+#Value: waiver,  loan
+  - other_aid
+
+#Captures Need or non need base aid
+  - need_non_need_base_aid
+
+# Captures the word: financial aid, and financial need
+  - financial_aid_term
+
+# The degree to which a student's financial need is met.
+# Values: fully
+  - financial_aid_degree_met 
+
+#Captures people. Values: student, parent, faculty, applicant, teacher
+  - people
+
+#Captures private public
+  - access_level
+
+#Loan provider. Value: bank, lender
+  - loan_lender
+
+
+
+# Captures room and board
+  - living_cost
+
+#School supplies need by students.
+#Value: book, supply
+  - school_supply
+
+
+
+
+##ENTITIES FOR DEFINITIONS
+
+# #Definition. Captures the word definition
+#   - definition
+
+
+#Program offered at school
+# Value: college-preparatory, accelerated, research, professional practice, cross-registration, double major, dual enrollment, cooperative, cooperative education, 
+# ,external degree, english as second language. 
+# NOTE: not all programs fall under this entity, some are a combination of multiple entities.
+  - program_offered
+
+#Service offered at school
+# Career, 
+  - service_offered
+
+# activities offer at school.
+# orientation, campus ministry
+  - activity_offered
+
+#Type of unit, value: carnegie
+  - unit_type
+
+#Value: certificate, diploma, degree.
+  - academic_credential
+
+#International, domestic
+  - international_domestic 
+
+#Values: citizen, non_citizen
+  - citizen_non_citizen
+
+
+#Captures entity related to industry experience
+#Value: internship
+  - industry_experience
+
+  # Captures calendar system, but also includes calendar system classification such as continuous basis, trimester, semester, and quarter
+  # Value: calendar system, continuous basis, differ by program, trimester, semester, quarter, 
+  - calendar_system
+
+ 
+# Im not sure how to group these entities, so they are standalone for now.
+  - contact_hour
+  
+  - distance_learning
+
+  - open_admission
+  
+#Captures the word indebetedness
+  - indebtedness
+
+
+# Describes different terms that describe an organization or service
+# Values: service, center, group, program
+  - organizational_term
+
+# Captures the word post, for post masters, post bachelor, etc.
+  - post
+
+
+#Value: for-profit, non-profit
+  - for_profit_non_profit
+  
+#Captures the word major.... im not sure if this is the best approach
+  - major
+
+#Captures any sort of transportation, and the word transportation itself
+  - transportation
+
+#Captures any disability.....
+#Value: visually impaired
+  - disability
+
+
+
+# #Captures words that classify human age, such as adult, minor, young, etc.
+# # Value: adult
+#   - human_age_classificaion
+
+# #Location: Capture different locations.
+# # Value: campus, 
+#   - location
+
+# # Word to describe advanced program --> Accelerated, honors
+#   - advanced_program
+
+# # Services to help students 
+# # Value: advisement, counseling, learning, health, legal, tutoring
+#   - student_help_and_service
+
+
+
+
+
+
+
 
 
 slots:
@@ -223,6 +475,9 @@ slots:
 
 
 actions:
+
+  - action_query_knowledgebase
+  
   - action_get_available_options
   - action_ask_more_question
   - action_query_cohort
@@ -235,6 +490,8 @@ actions:
   - action_query_basis_for_selection
 
   - action_query_freshman_profile
+
+  - action_query_transfer_admission
   
 
   

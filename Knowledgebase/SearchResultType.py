@@ -5,3 +5,4 @@ class SearchResultType(Enum):
     FLOAT = 2
     STRING  = 3
     PERCENTAGE = 4
+    DOLLAR = 5

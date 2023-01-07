@@ -1,0 +1,40 @@
+|transfer_admission_template.chatette 
+
+// This really should be transfer_admission, I am naming it differently here so it doesn't generate training data from the imported file. I put these data under transfer_admission in the actual training data 
+%[transfer_admission_policy]
+    What is the @[aggregation]  \[grade\]\{"entity": "academic_factor", "value": "grade"\} earn for any course that \[maybe transferred for credit\]\{"entity": "allow_transfer_credit", "value": "accept transfer credit"\}
+    
+    What is the @[aggregation] number of \[credit that maybe transferred\]\{"entity": "allow_transfer_credit", "value": "accept transfer credit"\} from a @[years_for_college] @[education_level]
+
+    What is the @[aggregation] number of @[academic_credit] that transfer students must complete to earn a @[degree_level] degree
+
+    Are there any \[additional\]\{"entity": "other", "value": "other" \} \[transfer credit\]\{"entity": "allow_transfer_credit", "value": "accept transfer credit"\} policies ?
+
+
+
+// @[education_level]
+//     college = college
+//     university = college
+    
+
+@[years_for_college] 
+    two-year = two-year
+    community = two-year
+    technical = two-year
+    two year = two-year
+    2 year = two-year
+    2-year = two-year
+
+    four-year = four-year
+    4 year = four-year
+    four year = four-year
+
+@[degree_level]
+    associates = associates
+    associate = associates
+
+    bachelor = bachelors
+    bachelors = bachelors 
+    
+
+

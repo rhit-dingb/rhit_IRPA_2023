@@ -1,3 +1,28 @@
+from typing import List
+
+
+def checkAnswersMatch(assertion, dispatcher, expectedAnswer):
+    answers = getAllAnswersFromDispatcher(dispatcher)
+    assertion.assertEqual(answers, expectedAnswer)
+
+
+def checkIfWordsPresentInSentence(keywords, sentences):
+   pass
+
+def checkForKeywordInAnswer(assertion, dispatcher, keyWords : List[str]):
+    answers = getAllAnswersFromDispatcher(dispatcher)
+    found = None
+    for words in keyWords:
+        for answer in answers:
+            if words in answer or found is None:
+                found = answer
+        assertion.assertIn(words, found)
+    
+        # isPresent = checkIfWordsPresentInSentence(words, answers)
+        # assertion(True, isPresent)
+        
+
+
 def createEntityObjHelper(entityValue, entityLabel="none",  entityRole=None):
         res = {"entity": entityLabel, "value": entityValue}
         if (entityRole):
@@ -11,8 +36,15 @@ def getEntityValues(entities):
         res.append(entity["value"])
     return res
 
-def identityFunc(x, intent, entities):
+def identityFunc(x, intent, entities, template):
         return x
+
+def getAllAnswersFromDispatcher(dispatcher):
+    answers = []
+   
+    for message in dispatcher.messages:
+        answers.append(message["text"])
+    return answers
     
 def createFakeTracker(intent, entities):
 

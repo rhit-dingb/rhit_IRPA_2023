@@ -9,25 +9,36 @@ class CDSDataLoader():
         self.data = dict()
         self.path = path
         self.excelConnector = pd.ExcelFile(path)
+        self.METADATA_KEY = "metadata"
     
     def loadData(self): 
        for sheetName in self.excelConnector.sheet_names:
             #questionAnswersDataFrame = self.excelConnector.parse(sheetName)
-            questionAnswersDataFrame = pd.read_excel(self.path, sheet_name=sheetName, dtype={'Answer': str,} )
-            print(questionAnswersDataFrame)
+            questionAnswersDataFrame = pd.read_excel(self.path, sheet_name=sheetName, dtype={'Answer': object} )
+            questionAnswersDataFrame  =  questionAnswersDataFrame.astype(str)
+           
             # questionAnswersDataFrame["Answer"] = questionAnswersDataFrame["Answer"].astype("string")
             questionsAnswers = []
+            isMetaData = False
             for i in range(questionAnswersDataFrame.shape[0]):
                 questionAnswerRow = questionAnswersDataFrame.loc[i]
-                questionAnswerObj = QuestionAnswer(questionAnswerRow["Question"], questionAnswerRow["Answer"], [])
+                
+                if questionAnswerRow["Question"].replace(" ", "").lower() == self.METADATA_KEY:
+                    isMetaData = True
+                    #If metadata marker found, skip the metadata marker and mark the thing below as metadata.
+                    continue
+               
+                questionAnswerObj = QuestionAnswer(questionAnswerRow["Question"], questionAnswerRow["Answer"], [], isMetaData=isMetaData)
                 questionsAnswers.append(questionAnswerObj)
+               
+                print(questionAnswerObj.question)
 
             lowerSheetName = sheetName.lower()
             self.data[lowerSheetName] = questionsAnswers
         
     
     #Get all section that "we need to parse into sparse matrix, including sub sections 
-    def getAllSections(self) -> List[str] :
+    def getAllSectionDataFullName(self) -> List[str] :
         return self.data.keys()
     
     

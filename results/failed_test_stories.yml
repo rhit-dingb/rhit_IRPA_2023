@@ -1,66 +1,120 @@
 version: "3.1"
 stories:
+- story: ask_about_enrollment_and_answer_helpful_male_non_freshman (.\tests\test_stories.yml)
+  steps:
+  - intent: enrollment
+    entities:
+    - gender: male
+    - gender: male
+    - undergraduate_grade_level: non-freshman
+  - slot_was_set:
+    - undergraduate_grade_level: non-freshman
+  - slot_was_set:
+    - gender: male
+  - action: action_query_enrollment
+  - action: utter_ask_answer_helpful
+  - intent: affirm
+  - action: action_ask_more_question
+  - intent: affirm
+  - action: utter_ask_whats_the_question
 - story: ask_about_cohort_general_should_extract_five_year (.\tests\test_stories.yml)
   steps:
   - intent: cohort
     entities:
-    - lower_bound_graduation_time: more than 4 years
-    - cohort_by_year: 2046 cohort
+    - student_enrollment_result: graduation
+    - student_enrollment_result: graduation
+    - range: within
+    - years_for_college: 5 year
+    - years_for_college: 5 year
+    - range: within
+    - range: more than
+    - range: more than
+    - cohort_by_year: 3524 cohort
   - action: action_query_cohort
   - action: utter_ask_answer_helpful
   - intent: affirm
   - action: action_ask_more_question
   - intent: affirm
   - action: utter_ask_whats_the_question
-- story: ask_about_cohort_general_should_extract_five_year_2 (.\tests\test_stories.yml)
-  steps:
-  - intent: cohort
-    entities:
-    - upper_bound_graduation_time: 5 years or less  # predicted: lower_bound_graduation_time: 5 years or less
-    - lower_bound_graduation_time: more than 4 years
-    - cohort_by_year: 2046 cohort
-  - action: action_query_cohort
-  - action: utter_ask_answer_helpful
 - story: ask_about_cohort_general_5_year_graduation_time_should_extract_gradution_time_successfully (.\tests\test_stories.yml)
   steps:
   - intent: cohort
     entities:
-    - graduation_rate: graduation rate
-    - lower_bound_graduation_time: more than 4 years
+    - student_enrollment_result: graduation
+    - student_enrollment_result: graduation
+    - aggregation: percent
+    - aggregation: percent
+    - student_enrollment_result: graduation
+    - student_enrollment_result: graduation
+    - range: within
+    - range: within
+    - years_for_college: 4 year
     - cohort_by_year: cohort of 2014
   - action: action_query_cohort
   - action: utter_ask_answer_helpful
-- story: ask_about_cohort_general_should_extract_graduation_time_successfully (.\tests\test_stories.yml)
+- story: ask_about_talent_importance_in_basis_for_selection (.\tests\test_stories.yml)
   steps:
-  - intent: cohort
+  - intent: basis_for_selection
     entities:
-    - graduation_rate: graduation rate
-    - lower_bound_graduation_time: more than 4 years
-    - cohort_by_year: cohort of 2014
-  - action: action_query_cohort
-  - action: utter_ask_answer_helpful
-- story: ask_about_cohort_financial_aid_should_extract_entity_successfully (.\tests\test_stories.yml)
-  steps:
-  - intent: cohort
-    entities:
-    - students_who_did_not_receive_either_a_pell_grant_or_a_subsidized_stafford_loan: did not receive any aid
-  - action: action_query_cohort
-  - action: utter_ask_answer_helpful
-- story: ask_about_cohort_recipient_of_pell_grant (.\tests\test_stories.yml)
-  steps:
-  - intent: cohort
-    entities:
-    - recipients_of_federal_pell_grant: pell-grant
-  - action: action_query_cohort
-  - action: utter_ask_answer_helpful
-- story: ask_about_high_school_units_should_extract_subject_correctly_visual_performing_art (.\tests\test_stories.yml)
-  steps:
-  - intent: high_school_units
-    entities:
-    - subject: visual/performing-arts
-    - unit_level: units-recommended
-  - action: action_query_high_school_units
-  - action: utter_ask_answer_helpful
+    - non_academic_factor: talent
+    - non_academic_factor: talent
+  - action: action_query_basis_for_selection
+  - action: action_listen  # predicted: utter_ask_answer_helpful
+  - intent: affirm
+  - action: action_ask_more_question  # predicted: utter_ask_whats_the_question after action_unlikely_intent
   - intent: deny
-  - action: utter_sorry_question_not_helpful
-  - action: action_get_available_options
+  - action: utter_no_more_question
+- story: ask_about_religion_importance_in_basis_for_selection (.\tests\test_stories.yml)
+  steps:
+  - intent: basis_for_selection
+    entities:
+    - non_academic_factor: talent
+  - action: action_query_basis_for_selection
+  - action: action_listen  # predicted: utter_ask_answer_helpful
+  - intent: affirm
+  - action: action_ask_more_question  # predicted: utter_ask_whats_the_question after action_unlikely_intent
+  - intent: deny
+  - action: utter_no_more_question
+- story: ask_about_percentage_submit_sat (.\tests\test_stories.yml)
+  steps:
+  - intent: basis_for_selection  # predicted: freshman_profile: [percentage][{"entity": "aggregation", "value": "percent"}, {"entity": "aggregation", "value": "percent"}] of students who [submitted][{"entity": "submitted"}, {"entity": "submitted"}] [sat](standarized_test)
+    entities:
+    - aggregation: percent
+    - aggregation: percent
+    - standardized_test: sat  # predicted: standarized_test: sat
+  - action: action_query_basis_for_selection
+  - action: action_listen  # predicted: utter_ask_answer_helpful
+  - intent: affirm
+  - action: action_ask_more_question  # predicted: utter_ask_whats_the_question after action_unlikely_intent
+  - intent: deny
+  - action: utter_no_more_question
+- story: ask_about_percentile_score_act (.\tests\test_stories.yml)
+  steps:
+  - intent: basis_for_selection  # predicted: freshman_profile: What is the [75th percentile](test_percentile) score for [ACT]{"entity": "standarized_test", "value": "act"} [writing][{"entity": "test_component"}, {"entity": "test_component"}]
+    entities:
+    - test_percentile: 75th percentile
+    - act_test_component: ACT writing  # predicted: standarized_test: act
+  - action: action_query_basis_for_selection
+  - action: action_listen  # predicted: utter_ask_answer_helpful
+  - intent: affirm
+  - action: action_ask_more_question  # predicted: utter_ask_whats_the_question after action_unlikely_intent
+  - intent: deny
+  - action: utter_no_more_question
+- story: ask_about_enrollment_and_answer_helpful (.\tests\test_stories.yml)
+  steps:
+  - intent: enrollment
+    entities:
+    - degree-goal: degree-seeking
+    - degree-goal: degree-seeking
+    - is_first_time: non-first-time
+    - is_first_time: non-first-time
+    - year: '2013'
+    - year: '2014'
+  - slot_was_set:
+    - degree-goal: degree-seeking
+  - slot_was_set:
+    - is_first_time: non-first-time
+  - action: action_query_enrollment
+  - action: utter_ask_answer_helpful
+  - intent: affirm
+  - action: action_ask_more_question

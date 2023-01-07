@@ -1,0 +1,184 @@
+//%[transfer_admission]
+    // Does Rose-Hulman @[allow_transfer]
+
+    // May transfer students earn advanced standing credit by \[transferring credits\]\{"entity": "allow_transfer_credit", "value": "accept transfer credit" \} earned from course work completed at other \[college\]\{"entity": "education_level", "value": "college" \}
+
+    // May transfer students earn advanced standing credit by \[transfer the credits\]\{"entity": "allow_transfer_credit", "value": "accept transfer credit" \} they earned from course work completed at other \[university\]\{"entity": "education_level", "value": "university" \}
+
+    // Does Rose-Hulman @[allow_transfer_credit]
+
+    // How many [@[gender]?] transfer student @[action] to Rose-Hulman?
+
+    // At which \[term\]\{"entity": "academic_term", "value": "term" \} may transfer students \[enroll\]\{"entity": "action", "value": "enrolled"\} 
+
+    // Does a transfer applicant need to have @[aggregation] number of @[academic_credit] completed or else they must apply as an entering \[freshman\]\{"entity": "undergraduate_grade_level", "value": "freshman"\}?
+
+    // Is @[academic_factor] required for transfer student to apply for admission at Rose-Hulman
+
+    // Is @[education_level] \[transcript\]\{"entity": "academic_factor", "value": "transcript" \} required for transfer student to apply for admission at Rose-Hulman
+
+    // Does Rose-Hulman require @[academic_factor] to apply for transfer admission?
+
+    // What is the @[aggregation] @[academic_credit] and the @[unit_of_measure] required to apply for transfer admission?
+
+    // What is the @[aggregation] @[education_level] \[grade point average\]\{"entity": "academic_factor", "value": "gpa"\} required of transfer applicants?
+
+    // //THIS SENTENCE IS DEPRECATED
+    // //Is there any @[additional_requirement] specific to transfer applicants?
+
+    // \[When\]\{"entity": "time", "value": "date"\} are applications reviewed for transfer students?
+
+    // \[When\]\{"entity": "time", "value": "date"\} does admission decision come out for transfer students?
+
+    // What is the \[date\]\{"entity": "admission_decision_date", "value": "notification date"\} of admission decision for transfer students?
+
+    // What is the admission decision \[date\]\{"entity": "time", "value": "date"\} for transfer students?
+
+    // What is the @[admission_decision_date] @[date] for transfer students applications in @[academic_term] quarter
+
+
+
+@[date]
+    when = date
+    date = date
+    time = date
+
+
+@[admission_decision_date]
+    priority = priority
+    closing = closing
+    notification = notification
+    notify = notification
+    reply = reply
+
+
+@[aggregation]
+    least = minimum
+    minimum = minimum
+    min = minimum
+    lowest = minimum
+
+    maximum = maximum
+    max = maximum
+    highest = maximum
+    most = maximum
+
+@[academic_credit]
+    credit = credit
+    credits = credit
+
+
+@[unit_of_measure]
+    unit of measure
+
+
+@[education_level]
+    high school = high school
+    high-school = high school 
+    secondary school = high school
+
+    college = college
+    university = college
+
+    institution = college
+
+
+
+//Expanding on academic factor entity used in basis of selection
+@[academic_factor]
+	//~[rigor of secondary school record]
+	//~[transcript] = transcript
+//I have essay as an complete seperate entity since it is shared by both freshman profile's test component and academic factor so I took it out as a seperate entity
+	//~[essay] =  essay
+	~[interview] = interview
+	~[standardized test scores] = standardized test scores
+	~[statement of good standing] = statement of good standing
+
+~[transcript]
+    transcript
+    grades
+
+@[essay]
+    essay 
+    personal statement
+
+~[interview]
+    interview
+
+~[standardized test scores]
+    test score 
+    test scores
+
+~[statement of good standing]
+    statement of good standing
+    good standing statement
+
+
+@[academic_term]
+   // term
+    fall 
+    autumn = fall
+    winter
+    spring
+    summer
+
+
+@[gender]
+    male = male
+    men = male
+
+    female = female
+    woman = female
+
+@[action]
+    ~[admitted] = admitted
+    ~[enrolled] = enrolled
+    ~[applied] = applied
+
+    
+
+~[admitted]
+    admitted
+    admit
+    admitting
+
+~[enrolled]
+    enrolled
+    enroll
+    enrolling
+
+~[applied]
+    apply
+    applied
+    applying
+
+
+
+@[allow_transfer]
+    allow transfer student = enroll transfer student
+    enroll transfer student = enroll transfer student
+    accept transfer students = enroll transfer student
+
+@[allow_transfer_credit]
+    accept transfer credits = accept transfer credit
+    accept transfer credits = accept transfer credit
+    allow transfer credits = accept transfer credit
+    allow transfer credit = accept transfer credit
+
+    accept transfer credit = accept transfer credit
+
+    accept credit transferred = accept transfer credit
+
+    allow credit transferred = accept transfer credit
+
+    accept transfering credit = accept transfer credit
+
+    accept transferred credit = accept transfer credit
+
+    allow transferred credit = accept transfer credit
+
+    allow transferring credit = accept transfer credit
+
+
+
+

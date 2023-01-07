@@ -1,0 +1,271 @@
+version: "3.1"
+
+nlu:
+
+# - lookup: essay
+#   examples: |
+#     - essay
+#     - personal statement
+#     - essay/personal statement
+#     - essay or personal statement
+
+
+
+- lookup: range
+  examples: |
+    - more than
+    - or more
+    - more
+    - greater than 
+    - higher than
+    - at least
+
+    - less than 
+    - within
+    - no more 
+    - less
+    - between
+    
+
+- synonym: between
+  examples: |
+    - to
+
+
+- synonym: within
+  examples: |
+    - less than
+    - less
+    - in
+    - no more than
+    - no more
+    - inside
+
+- synonym: more than
+  examples: |
+    - greater than 
+    - higher than 
+
+
+
+- synonym: essay
+  examples: |
+    - personal statement
+    - essays
+    - essay/personal statement
+    - essay or personal statement
+    - essays or personal statements
+    - personal statement or essay
+    - personal statement/essays
+
+# I purposely left out recommendation because recommendation goes into the academic factor entity, interpreted as recommendation letter
+- lookup: condition 
+  examples: | 
+    - recommended
+    - recommend
+    - should
+   
+    - required
+    - require 
+    - requirement
+    - must 
+
+- synonym: recommend
+  examples: | 
+    - recommended
+    - recommending
+    - should
+
+- synonym: require
+  examples: |
+    - required
+    - requiring
+    - requirement
+    - must
+    - need
+
+
+- lookup: aggregation
+  examples: |
+    - percent
+    - percentage
+    - average
+    
+    
+
+- synonym: percent
+  examples: |
+    - percent
+    - percentage
+
+- synonym: average
+  examples: |
+    - averages
+
+
+
+- synonym: minimum
+  examples: |
+    - min
+    - least 
+    - lowest
+
+- synonym: maximum
+  examples: |
+    - most
+    - maximum
+    - highest
+    - max
+
+  
+# - lookup: date
+#   examples: |
+#     - when
+#     - time
+#     - date
+#     - deadline
+    
+- synonym: date
+  examples: |
+    - when
+    - time
+    - date
+    - deadline
+
+
+- lookup: other
+  examples: |
+    - additional
+    - other
+    - extra
+
+- synonym: other
+  examples: |
+    - additional
+    - other
+    - extra
+
+
+- synonym: high school
+  examples: |
+    - secondary school
+    - high-school
+    - high school
+
+# - synonym: college
+#   examples: |
+#     - college
+#     - university
+#     - universities
+#     - colleges
+#     - institution
+#     - institutions
+
+
+- lookup: money
+  examples: |
+     - fee 
+     - money
+     - dollar
+
+- synonym: fee
+  examples: |
+    - fee
+    - money
+    - dollar
+
+
+
+- lookup: action
+  examples: |
+    - admitting
+    - admitted
+    - admit
+    - accepted
+    - accepting
+    - accept
+
+    - enrolled
+    - enroll
+    - enrolling
+
+    - applied
+    - applying
+    - apply
+
+    - awarded
+    - award
+    - awarding
+    - given
+    - give
+    - gave
+
+    - meet 
+    - met
+    - meeting
+    - satifisfied
+    - satisfy 
+
+    - borrowed
+    - borrow 
+    - borrowing
+
+- synonym: borrowed
+  examples: |
+    - borrow
+    - borrowing
+    - owed
+    - owe
+
+- synonym: accepted
+  examples: |
+    - admitting
+    - admitted
+    - admit
+    - accepted
+    - accepting
+    
+
+- synonym: enrolled
+  examples: |
+    - enrolled
+    - enroll
+    - enrolling
+
+- synonym: applied
+  examples: |
+    - applied
+    - applying
+    - apply
+  
+- synonym: awarded
+  examples: |
+    - award
+    - awarding
+    - given
+    - give
+    - gave
+
+- synonym: met
+  examples: |
+    - meet
+    - meeting
+    - satifisfied
+    - satisfy
+
+- lookup: people
+  examples: |
+    - parent
+    - student
+
+- synonym: parent
+  examples: | 
+    - parents
+
+
+- synonym: student
+  examples: | 
+    - students
+
+
+

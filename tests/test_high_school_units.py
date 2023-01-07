@@ -10,8 +10,8 @@ from Knowledgebase.SparseMatrixKnowledgeBase import SparseMatrixKnowledgeBase
 from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
 from DataManager.ExcelDataManager import ExcelDataManager
 from OutputController import output
-from tests.testUtils import createEntityObjHelper, createFakeTracker, identityFunc
-from actions.actions import ActionQueryHighSchoolUnits, knowledgeBase as knowledgeBaseInAction
+from tests.testUtils import checkAnswersMatch, createEntityObjHelper, createFakeTracker, identityFunc
+from actions.actions import ActionQueryKnowledgebase, knowledgeBase as knowledgeBaseInAction
 from actions.actions import ActionQueryCohort
 
 from rasa_sdk import Action, Tracker
@@ -29,74 +29,85 @@ class test_high_school_units_test(unittest.TestCase):
         # These should be intents
         self.topicToParse = ["enrollment", "cohort", "high_school_units"]
         self.knowledgeBase = SparseMatrixKnowledgeBase(
-            ExcelDataManager("./tests/testMaterials", self.topicToParse))
+            ExcelDataManager("./tests/testMaterials/cdsTestData/", self.topicToParse))
      
-
+        knowledgeBaseInAction.setYear(2020)
         self.dispatcher = CollectingDispatcher()
         #Make sure the knowledgebase class instance in Actions is using the data manager with test materials loaded.
         knowledgeBaseInAction.dataManager = self.knowledgeBase.dataManager
-        output.constructSentence = identityFunc
-        output.outputFuncForHighSchoolUnits = identityFunc
+        # output.constructSentence = identityFunc
+        # output.outputFuncForHighSchoolUnits = identityFunc
+        knowledgeBaseInAction.constructOutput = identityFunc
 
         
     def test_when_ask_lab_science_unit_required_should_return_correct_value(self):
         entities =  [
                 createEntityObjHelper("lab"),
                 createEntityObjHelper("science"),
-                createEntityObjHelper("units-required"),
+                createEntityObjHelper("unit"),
+                createEntityObjHelper("require"),
                 createEntityObjHelper("2020", "year", "from"),
                 createEntityObjHelper("2021", "year", "to")
             ]
          
-        actionHighSchool = ActionQueryHighSchoolUnits()
-        dispatcher = CollectingDispatcher()
+        actionHighSchool = ActionQueryKnowledgebase()
+      
         tracker = Tracker.from_dict(createFakeTracker(self.intent, entities))
-        actionHighSchool.run(dispatcher=dispatcher, tracker=tracker, domain=None )
-        self.assertEqual(dispatcher.messages[0]["text"],LAB_SCIENCE_UNIT_REQUIRED)
+        actionHighSchool.run(dispatcher=self.dispatcher, tracker=tracker, domain=None )
 
+        expectedAnswers = [LAB_SCIENCE_UNIT_REQUIRED]
+        checkAnswersMatch(self, self.dispatcher, expectedAnswers) 
+       
     def test_when_ask_visual_performing_art_recommended_should_return_correct_value(self):
         entities =  [
                 createEntityObjHelper("visual/performing-arts"),
-                createEntityObjHelper("units-recommended"),
+                createEntityObjHelper("unit"),
+                createEntityObjHelper("recommend"),
                 createEntityObjHelper("2020", "year", "from"),
                 createEntityObjHelper("2021", "year", "to")
             ]
 
-        actionHighSchool = ActionQueryHighSchoolUnits()
-        dispatcher = CollectingDispatcher()
+        actionHighSchool = ActionQueryKnowledgebase()
+        
         tracker = Tracker.from_dict(createFakeTracker(self.intent, entities))
-        actionHighSchool.run(dispatcher=dispatcher, tracker=tracker, domain=None )
-        print(type(dispatcher.messages[0]["text"]))
-        self.assertEqual(dispatcher.messages[0]["text"],VISUAL_PERFORMING_ART_UNIT_RECOMMENDED)
+        actionHighSchool.run(dispatcher=self.dispatcher, tracker=tracker, domain=None )
+
+        expectedAnswers = [VISUAL_PERFORMING_ART_UNIT_RECOMMENDED]
+        checkAnswersMatch(self, self.dispatcher, expectedAnswers) 
+        
     
     
     def test_when_ask_total_units_required_should_return_correct_value(self):
         entities =  [
-                createEntityObjHelper("units-required"),
+                createEntityObjHelper("unit"),
+                createEntityObjHelper("require"),
                 createEntityObjHelper("2020", "year", "from"),
                 createEntityObjHelper("2021", "year", "to")
             ]
 
-        actionHighSchool = ActionQueryHighSchoolUnits()
-        dispatcher = CollectingDispatcher()
-        tracker = Tracker.from_dict(createFakeTracker(self.intent, entities))
-        actionHighSchool.run(dispatcher=dispatcher, tracker=tracker, domain=None )
+        actionHighSchool = ActionQueryKnowledgebase()
         
-        self.assertEqual(dispatcher.messages[0]["text"], TOTAL_REQUIRED_UNITS)
+        tracker = Tracker.from_dict(createFakeTracker(self.intent, entities))
+        actionHighSchool.run(dispatcher=self.dispatcher, tracker=tracker, domain=None )
+       
+        expectedAnswers = [TOTAL_REQUIRED_UNITS]
+        checkAnswersMatch(self, self.dispatcher, expectedAnswers) 
         
     def test_when_ask_total_units_recommended_should_return_correct_value(self):
         entities =  [
-                createEntityObjHelper("units-recommended"),
+                createEntityObjHelper("unit"),
+                createEntityObjHelper("recommend"),
                 createEntityObjHelper("2020", "year", "from"),
                 createEntityObjHelper("2021", "year", "to")
             ]
 
-        actionHighSchool = ActionQueryHighSchoolUnits()
+        actionHighSchool = ActionQueryKnowledgebase()
         dispatcher = CollectingDispatcher()
         tracker = Tracker.from_dict(createFakeTracker(self.intent, entities))
-        actionHighSchool.run(dispatcher=dispatcher, tracker=tracker, domain=None )
+        actionHighSchool.run(dispatcher=self.dispatcher, tracker=tracker, domain=None )
         
-        self.assertEqual(dispatcher.messages[0]["text"],TOTAL_RECOMMENDED_UNITS)
+        expectedAnswers = [TOTAL_RECOMMENDED_UNITS]
+        checkAnswersMatch(self, self.dispatcher, expectedAnswers) 
     
 
 
