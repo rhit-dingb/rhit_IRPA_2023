@@ -10,13 +10,11 @@ from Exceptions.ExceptionTypes import ExceptionTypes
 import json
 from pymongo import MongoClient
 
-from rhit_IRPA_2023.DataManager.constants import DATABASE_PRENAME, MONGO_DB_CONNECTION_STRING
+from DataManager.constants import CDS_DATABASE_NAME_TEMPLATE, DATABASE_PRENAME, MONGO_DB_CONNECTION_STRING
 """
 MongoDataManager subclass that can handle connections with MongoDB data
 """
-
-
-class MongoDataManager():
+class MongoDataManager(DataManager):
     def __init__(self):
         super().__init__()
         self.mongoProcessor = MongoProcessor()
@@ -39,15 +37,20 @@ class MongoDataManager():
     See docuementation in DataManager.py
     """
     def getSparseMatricesByStartEndYearAndIntent(self, intent, start, end, exceptionToThrow: Exception) -> TopicData:
-            yearKey = DATABASE_PRENAME + str(start) + "_" + str(end)
-            if not yearKey in self.client.list_database_names():
+            cdsDatabase = CDS_DATABASE_NAME_TEMPLATE.format(start_year= start, end_year = end)
+            if not cdsDatabase in self.client.list_database_names():
                 raise exceptionToThrow
             # TODO: raise exception for this:
             # if not intent in db.list_collection_names():
             #     raise NoDataFoundException(NO_DATA_AVAILABLE_FOR_GIVEN_INTENT_FORMAT.format(topic = intent, start= start, end=end), ExceptionTypes.NoSparseMatrixDataAvailableForGivenIntent)
             #localCollection = db[intent]
-            self.mongoProcessor.processCollectiontoSparseMatrix(self.client, intent, yearKey)
-            topicData : TopicData = self.mongoProcessor.getData()
+            intent = intent.replace("_", " ")
+            if intent not in self.client[cdsDatabase].list_collection_names():
+                raise NoDataFoundException(NO_DATA_AVAILABLE_FOR_GIVEN_INTENT_FORMAT.format(topic = intent, start= start, end=end), ExceptionTypes.NoSparseMatrixDataAvailableForGivenIntent)
+            
+            topicData = self.mongoProcessor.getSparseMatricesByDbNameAndIntent(self.client, intent, cdsDatabase)
+            print("TOPIC DATA")
+            print(topicData)
             # cursor = topicData.find()
             # for doc in cursor:
             #     print(doc)           
@@ -62,12 +65,18 @@ class MongoDataManager():
             startYear= int(yearRange[1])
             return startYear
 
-        dbNameWithYears = list(self.client.list_database_names())
+        dbNameWithYears = self.client.list_database_names()
+        dbNameWithYears = list(filter(lambda db: DATABASE_PRENAME in db, dbNameWithYears))
         dbNameWithYears.sort(key = sortFunc, reverse= True)
-        mostRecentYearRange = dbNameWithYears[0].split("_")
-        mostRecentYearRange = mostRecentYearRange
+        if len(dbNameWithYears) == 0:
+            raise Exception("No data found in database")
 
-        return (mostRecentYearRange[0], mostRecentYearRange[1])
+        if len(dbNameWithYears[0].split("_")) < 3:
+            raise Exception("Wrong database name format, it should something like CDS_2020_2021")
+
+        mostRecentYearRange = dbNameWithYears[0].split("_")
+        
+        return (mostRecentYearRange[1], mostRecentYearRange[2])
 
 # -----------The following are Unit Tests for the MongoDataManager Class
 # NO_DATA_FOUND_FOR_ACADEMIC_YEAR_ERROR_MESSAGE_FORMAT = "Sorry I could not find any data for academic year {start}-{end}"

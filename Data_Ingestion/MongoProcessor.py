@@ -2,6 +2,10 @@
 import pandas as pd
 from Data_Ingestion.SparseMatrix import SparseMatrix
 from Data_Ingestion.TopicData import TopicData
+from DataManager.constants import DATABASE_SPARSE_MATRIX_ROWS_KEY, DATABASE_SPARSE_MATRIX_SUBSECTION_KEY
+from Exceptions.ExceptionMessages import NO_DATA_AVAILABLE_FOR_GIVEN_INTENT_FORMAT
+from Exceptions.ExceptionTypes import ExceptionTypes
+from Exceptions.NoDataFoundException import NoDataFoundException
 
 
 class MongoProcessor():
@@ -14,18 +18,18 @@ class MongoProcessor():
     #     return self.data
 
     """ 
-    return from MongoDB collection into dictionary
+    
     """ 
-    def processCollectiontoSparseMatrix(self, db, topicToParse, yearKey):
+    def getSparseMatricesByDbNameAndIntent(self, client, intent, dbName):
         # yearToData = dict()
 
         # for db_name in db.list_database_names():
             # if(db_name != 'admin' and db_name != 'config' and db_name != 'local'):
-        cur_db = db[yearKey]
+        cur_db = client[dbName]
         # data = dict()
             #xl = pd.DataFrame.from_dict(cur_db) #convert current database to Panda DataFrame                            
         # for topic in topicToParse:
-        topicData = self.getAllSparseMatrixForTopic(topicToParse, cur_db)
+        topicData = self.getAllSparseMatrixForTopic(intent, cur_db)
             # get the year key. !!! Assume current standart is CDS_xxxx_xxxx
             # yearKey = db_name[-9:-5]+"_"+db_name[-4:]
                 #print('yearkey is  ' + yearKey)
@@ -48,23 +52,29 @@ class MongoProcessor():
 
     Returns: TopicData class.
     """
-    def getAllSparseMatrixForTopic(self, topic, curDB) -> TopicData:
-        
+    def getAllSparseMatrixForTopic(self, topic, curDB) -> TopicData:    
         seperator = "_"
-        
         topicData = TopicData(topic)
         #put this here for now
         topic = topic.replace("_", " ")
-        
         for name in curDB.list_collection_names():
-            #Might be better if we send a databse query, but it should be okay.
-            topic_key_words = [x.lower() for x in name.split(seperator)]
+            # topic_key_words = [x.lower() for x in name.split(seperator)]
             # for each sheet, the name has to be in the format subsection_topic. For example: race_enrollment
-            if topic in topic_key_words:
-                #Assume the naming convention is: Section_Subsection
-                subsectionName = topic_key_words[len(topic_key_words)-1]
-                df = pd.DataFrame.from_dict(curDB[name].find({}))
-                sparseMatrix = SparseMatrix(subsectionName, df)
-                topicData.addSparseMatrix(subsectionName, sparseMatrix)
-        return topicData  
+            # print("CHECKING")
+            # # print(name)
+            # print(name, topic, topic == name)
+            if topic == name:
+                cursor = curDB[name].find({})
+                for sparseMatrixData in cursor:
+                    subsection = sparseMatrixData.get(DATABASE_SPARSE_MATRIX_SUBSECTION_KEY)
+                    rows = sparseMatrixData.get(DATABASE_SPARSE_MATRIX_ROWS_KEY)
+                    df = pd.DataFrame.from_dict(rows)
+                    # print(df.head())
+                    sparseMatrix = SparseMatrix(subsection, df)
+                    topicData.addSparseMatrix(subsection, sparseMatrix)
+
+                return topicData  
+
+        # If nothing found, return empty topic data        
+        return topicData
                 
