@@ -2,37 +2,39 @@
 
 from gensim import corpora
 from gensim.parsing.preprocessing import remove_stopwords, preprocess_string
+from gensim.utils import simple_preprocess
+from UnasweredQuestionDBConnector import UnansweredQuestionDbConnector
 
 
 class Corpus:
-    def __init__(self):
+    def __init__(self, dataSourceConnector : UnansweredQuestionDbConnector, dictionaryPath):
         self.documents = [
-            "Travis Zheng attends Rose-Hulman institute of technology",
             "He is currently 21 years old, and lives in California",
             "Travis is currently working on a senior project with his teammates, Yiqi, Bowen and Justin",
-            "Travis' favorite food is........"
-            # "Human machine interface for lab abc computer applications",
-            # "A survey of user opinion of computer system response time",
-            # "The EPS user interface management system",
-            # "System and human system engineering testing of EPS",
-            # "Relation of user perceived response time to error measurement",
-            # "The generation of random binary unordered trees",
-            # "The intersection graph of paths in trees",
-            # "Graph minors IV Widths of trees and well quasi ordering",
-            # "Graph minors A survey",
+            "Human machine interface for lab abc computer applications",
+            "A survey of user opinion of computer system response time",
+            "The EPS user interface management system",
+            "System and human system engineering testing of EPS",
+            "Relation of user perceived response time to error measurement",
+            "The generation of random binary unordered trees",
+            "The intersection graph of paths in trees",
+            "Graph minors IV Widths of trees and well quasi ordering",
+            "Graph minors A survey",
         ]
         processedDoc = self.preprocessDocuments(self.documents)
         self.dictionary = corpora.Dictionary(processedDoc)
-        self.dictionaryPath = "dictionary"
+        self.dataSourceConnector = dataSourceConnector
+        self.dictionaryPath = dictionaryPath
 
     def constructDictionary(self):
        self.dictionary = corpora.Dictionary(doc for doc in self)
 
- 
 
     def preprocessDoc(self,doc): 
-        processDocument = remove_stopwords(doc)
-        processDocument = preprocess_string(processDocument)
+        # processDocument = remove_stopwords(doc)
+        processDocument = doc
+        # processDocument = preprocess_string(processDocument)
+        processDocument = simple_preprocess(processDocument)
         return processDocument
 
     def preprocessDocuments(self,documents):
@@ -43,13 +45,14 @@ class Corpus:
         # print(processedDocuments)
         return processedDocuments   
 
-    def addDocument(self,document):
-        preprocessedDocument = self.preprocessDoc(document)
-        # Add document to database---currently add to list, but probably will replace this with call to database.
-        self.documents.append(document)
-        self.updateDictionary([preprocessedDocument])
 
-    #Probably replace this with database call.
+    def addDocuments(self,documents):
+        preprocessedDocuments = self.preprocessDocuments(documents)
+        # Add document to database---currently add to list, but probably will replace this with call to database.
+        self.documents = self.documents + documents
+        self.updateDictionary(preprocessedDocuments)
+
+    # #Probably replace this with database call.
     def getDocumentByIndex(self, doc_position):
         return self.documents[doc_position]
 

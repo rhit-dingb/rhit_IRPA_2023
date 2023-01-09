@@ -57,7 +57,7 @@ class MongoDataManager(DataManager):
             return topicData
 
     """
-    See docuementation in DataManager.py
+    See documentation in DataManager.py
     """
     def getMostRecentYearRange(self) -> Tuple[str, str] :
         def sortFunc(e):

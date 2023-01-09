@@ -63,8 +63,11 @@ class MongoProcessor():
             # print("CHECKING")
             # # print(name)
             # print(name, topic, topic == name)
+            
             if topic == name:
                 cursor = curDB[name].find({})
+                # print("CURSOR")
+                # print(cursor[0])
                 for sparseMatrixData in cursor:
                     subsection = sparseMatrixData.get(DATABASE_SPARSE_MATRIX_SUBSECTION_KEY)
                     rows = sparseMatrixData.get(DATABASE_SPARSE_MATRIX_ROWS_KEY)
