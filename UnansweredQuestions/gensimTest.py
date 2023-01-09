@@ -17,11 +17,11 @@ from Word2Vec import Word2VecModel
 
 
 corpus = Corpus(None, "./dictionaries/dictionary")
-model = TFIDFModel(corpus, "./modeles/tfidf.tfidf")
+model = TFIDFModel(corpus, "./savedModels/tfidf.tfidf")
 model.trainModel(corpus)
 
 
-model2 = Doc2VecModel(corpus, 50, "./models/Doc2Vec")
+model2 = Doc2VecModel(corpus, 50, "./savedModels/Doc2Vec")
 # model2.loadModel()
 model2.initializeModel()
 model2.trainModel(corpus)
