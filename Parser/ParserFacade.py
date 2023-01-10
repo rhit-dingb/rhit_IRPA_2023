@@ -14,6 +14,9 @@ from Data_Ingestion.SparseMatrix import SparseMatrix
 
 from actions.entititesHelper import filterEntities
 
+import aiohttp
+import asyncio
+
 class ParserFacade():
     def __init__(self, dataLoader, dataWriter ):
         
@@ -24,6 +27,7 @@ class ParserFacade():
         self.parser = CDSDataParser()
         self.entityConfidenceKey = "confidence_entity"
         self.confidenceThreshold = 0.5
+        self.state = "idle"
 
         #To support when we want to use a different parser for a particular section
         # self.parsers = {
@@ -32,22 +36,43 @@ class ParserFacade():
 
         #                 }
 
-    def parse(self):
+    async def parse(self):
         sectionFullNames : List[str] = self.dataLoader.getAllSectionDataFullName()
         sectionToSparseMatrices : Dict[str, List] = dict()
-        for sectionFullName in sectionFullNames:
-            # if not section in self.parsers.keys():
-            #     continue
-            sectionAndSubSection = sectionFullName.split("_")
-            section = sectionAndSubSection[0]
-            subSection = sectionAndSubSection[len(sectionAndSubSection)-1]
-            questionAnswers : List[QuestionAnswer] = self.dataLoader.getQuestionsAnswerForSection(sectionFullName)
-            for questionAnswer in questionAnswers:
-                if questionAnswer.isMetaData: 
-                    questionAnswer.setEntities([questionAnswer.question])
-                else:
-                    response : Dict = self.rasaCommunicator.parseMessage(questionAnswer.getQuestion())
-                    numberEntities = self.numberEntityExtractor.extractEntities(questionAnswer.getQuestion())
+       
+
+        async with aiohttp.ClientSession() as session:
+            tasks = []
+            for sectionFullName in sectionFullNames:
+                # if not section in self.parsers.keys():
+                #     continue
+                print("PARSING", sectionFullName)
+                questionAnswers : List[QuestionAnswer] = self.dataLoader.getQuestionsAnswerForSection(sectionFullName)
+                for questionAnswer in questionAnswers:
+                    print(questionAnswer.question)
+                    if questionAnswer.isMetaData: 
+                        questionAnswer.setEntities([questionAnswer.question])
+                    else:
+                        # response : Dict
+                        task = asyncio.create_task(self.rasaCommunicator.parseMessage(questionAnswer.getQuestion(), session=session))
+                        tasks.append(task)
+
+            responses = await asyncio.gather(*tasks)
+            # print(responses)
+            print(len(responses))
+            
+            index = 0
+            for sectionFullName in sectionFullNames:
+                questionAnswers : List[QuestionAnswer] = self.dataLoader.getQuestionsAnswerForSection(sectionFullName)
+                sectionAndSubSection = sectionFullName.split("_")
+                section = sectionAndSubSection[0]
+                subSection = sectionAndSubSection[len(sectionAndSubSection)-1]
+                numberEntities = self.numberEntityExtractor.extractEntities(questionAnswer.getQuestion())
+                for questionAnswer in questionAnswers:
+                    if questionAnswer.isMetaData: 
+                        continue
+                    
+                    response = responses[index]
                     entities = response["entities"] + numberEntities
                     # Filter out range entities
                     entities = filterEntities(entities, [RANGE_ENTITY_LABEL])
@@ -63,15 +88,15 @@ class ParserFacade():
                     for entity in highConfidenceEntities:
                         entityValues.append(entity["value"])
                     questionAnswer.setEntities(entityValues)
+
+                    index = index + 1
                     
-            # if section in self.parsers.keys(): 
-                #parser : CDSDataParser = self.parsers[section]
-            sparseMatrix : SparseMatrix = self.parser.parseQuestionAnswerToSparseMatrix(subSection, questionAnswers) 
-            if section in sectionToSparseMatrices:
-                sectionToSparseMatrices[section].append(sparseMatrix)
-            else: 
-                sectionToSparseMatrices[section] = [sparseMatrix]
-            print(sectionToSparseMatrices)
+                sparseMatrix : SparseMatrix = self.parser.parseQuestionAnswerToSparseMatrix(subSection, questionAnswers) 
+                if section in sectionToSparseMatrices:
+                    sectionToSparseMatrices[section].append(sparseMatrix)
+                else: 
+                    sectionToSparseMatrices[section] = [sparseMatrix]
+
             # sparseMatrices.append(sparseMatrix)
         self.writeSparseMatrix(sectionToSparseMatrices)
            
