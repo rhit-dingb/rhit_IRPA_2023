@@ -122,7 +122,20 @@ class SparseMatrix():
 
         return self.isThisOperationAllowed(constants.PERCENTAGE_ALLOWED_COLUMN_VALUE)
 
+    def findDenominatorQuestion(self) -> str:
+        answers = self.findValueForMetadata(constants.DENOMINATOR_QUESTION_COLUMN_VALUE)
+        if len(answers) == 0:
+            return ""
+        if answers == "" or answers =="nan":
+            return ""
+        else:
+            return answers[0]
+
+    def shouldSearchInSelfForPercentage(self) -> bool:
+        answers = self.findValueForMetadata(constants.PERCENTAGE_SEARCH_IN_SELF_COLUMN_VALUE)
+        return self.checkResultHelper(answers)
     
+
     def findTemplate(self): 
         answers = self.findValueForMetadata(constants.TEMPLATE_LABEL)
         if len(answers) == 0:
