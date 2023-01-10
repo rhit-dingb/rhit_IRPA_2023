@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { Component, useEffect, useState } from "react";
+import * as ReactDOM from 'react-dom'
 import rose_icon from "../rose_icon.png";
 // import firebase from "firebase/app";
 import "bootstrap/dist/css/bootstrap.css";
@@ -14,7 +15,9 @@ class Question extends React.Component {
 
   handleClick() {
     //make api call here
-    console.log("question 1 clicked");
+    console.log(this.props.questionContent);
+    const answerPage = (<QuestionAnswer text = {this.props.questionContent}/>);
+    ReactDOM.render(answerPage, document.getElementById("mainDiv"));
   }
 
   render() {
@@ -31,13 +34,34 @@ class QuestionAnswer extends React.Component {
 
   handleClick() {
     //make api call here
-    console.log("question 1 submitted");
+    var inputtedAnswer = document.getElementById("answerInput").value;
+    // console.log(inputtedAnswer);
+    if(inputtedAnswer.trim().length <= 0) {
+      document.getElementById("warningText").innerHTML = "Please enter an answer";
+    } else {
+      // console.log("question 1 submitted");
+      // fetch(`{base_path}/setanswer`, {
+      //   method: 'POST',
+      //   body: JSON.stringify({
+      //     question: this.props.text,
+      //     answer: document.getElementById("answerInput").value
+      //   })
+      // })
+      // .then(response => response.json)
+      // .then(data => {
+      //   print(data)
+      //   ReactDOM.render(null, document.getElementById("mainDiv"));
+      // });
+      ReactDOM.render(null, document.getElementById("mainDiv"));
+    }
   }
 
   render() {
     return (
       <div>
-        <input type="text" placeholder="Enter answer text"></input>
+        <h5>{this.props.text}</h5>
+        <div id="warningText"></div>
+        <input id="answerInput" type="text" placeholder="Enter answer text"></input>
         <button onClick={this.handleClick}>
           {"Submit"}
         </button>
@@ -50,6 +74,7 @@ function Admin() {
   //todo: make a request to refresh the 
   const [questions, setQuestions] = useState([]);
   useEffect(() => {
+    console.log("AAA");
     // fetch(`{base_path}/unanswered`)
     // .then(response => response.json)
     // .then(data => setQuestions(data));
@@ -98,6 +123,7 @@ function Admin() {
           <Question class="dropdown-menu" questionContent={"Dummy question 1"} />
           <Question class="dropdown-menu" questionContent={"Dummy question 2"} /> */}
           {questions.map((question) => (<Question class="dropdown-menu" questionContent={question} />))}
+          {this.render()}
         </div>
       </div>
       </div>
