@@ -2,6 +2,7 @@
 from typing import Dict, List
 from DataManager.constants import NUMBER_ENTITY_LABEL, RANGE_ENTITY_LABEL
 from actions.entititesHelper import getEntityValueHelper
+from Knowledgebase.DataModels.SearchResult import SearchResult
 
 from tests.testUtils import createEntityObjHelper
 
@@ -18,11 +19,11 @@ class RangeResultData():
         self.entitiesUsedForAnswer.append(entitiesUsed)
 
 
-    def createFinalResultAndEntities(self,rangeToCreateEntityFor, answers, entitiesUsedInEachSearch :  List[List[Dict[str, str]]] ):
+    def createFinalResultAndEntities(self,rangeToCreateEntityFor, searchResults : List[SearchResult] ):
         intention = None
         print("RANGE TO CREATE ENTTIY FOR")
         print(rangeToCreateEntityFor)
-        for range, answer, entities in zip(rangeToCreateEntityFor, answers, entitiesUsedInEachSearch):
+        for range, searchResult in zip(rangeToCreateEntityFor, searchResults):
             if range[0] == float('-inf'):
                 intention = "upperBound"
             elif range[1] == float('inf'):
@@ -30,9 +31,9 @@ class RangeResultData():
             else:
                 intention = "between"
 
-            entityValues =  getEntityValueHelper(entities)
+            entityValues =  getEntityValueHelper(searchResult.entitiesUsed)
             finalEntities = self.constructRangeEntityHelper(intention, entityValues)
-            self.addResult(answer, finalEntities)
+            self.addResult(searchResult.answer, finalEntities)
 
         # if isSumming:
         #     numbersUsed = []

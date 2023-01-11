@@ -12,7 +12,7 @@ import numpy as np
 
 from Knowledgebase.Knowledgebase import KnowledgeBase
 from Knowledgebase.RangeExactMatchRowStrategy import  RangeExactMatchRowStrategy
-from Knowledgebase.RangeResultData import RangeResultData
+from Knowledgebase.DataModels.RangeResultData import RangeResultData
 from Knowledgebase.SearchResultType import SearchResultType
 from Knowledgebase.TypeController import TypeController
 
@@ -23,6 +23,7 @@ from actions.constants import AGGREGATION_ENTITY_PERCENTAGE_VALUE, RANGE_LOWER_B
 
 from actions.entititesHelper import copyEntities, filterEntities, findEntityHelper, findMultipleSameEntitiesHelper
 from Parser.RasaCommunicator import RasaCommunicator
+from Knowledgebase.DataModels.SearchResult import SearchResult
 from tests.testUtils import createEntityObjHelper
 import aiohttp
 import asyncio
@@ -92,22 +93,24 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
             # print(entitiesUsedForEachResult)
 
         else:
-            searchResults, entitiesUsed = sparseMatrixToSearch.searchOnSparseMatrix(entitiesExtracted, shouldAddRowStrategy, isSumAllowed)
-            entitiesUsedForEachResult = [entitiesUsed]*len(searchResults)
 
-        if isPercentageAllowed and hasPercentageEntity:
-            percentages = self.calculatePercentages(searchResults, entitiesUsedForEachResult, sparseMatrixToSearch)
-            if percentages == None or len(percentages) == 0:
-                return outputFunc(searchResults, intent, entitiesUsedForEachResult, template)
-            else:
-                return outputFunc(percentages, intent, entitiesUsedForEachResult, template)
-        else:
-            return outputFunc(searchResults, intent, entitiesUsedForEachResult, template)
+            searchResults : List[SearchResult] = sparseMatrixToSearch.searchOnSparseMatrix(entitiesExtracted, shouldAddRowStrategy, isSumAllowed)
+            # entitiesUsedForEachResult = [entitiesUsed]*len(searchResults)
+
+        # if isPercentageAllowed and hasPercentageEntity:
+        #     percentages = self.calculatePercentages(searchResults, sparseMatrixToSearch)
+        #     if percentages == None or len(percentages) == 0:
+        #         return outputFunc(searchResults, intent, template)
+        #     else:
+                # return outputFunc(percentages, intent, template)
+        
+        print("REGULAR OUTPUT")
+        return outputFunc(searchResults, intent,  template)
 
     
 
-
-
+    
+    # STILL WORK IN PROGRESS
     async def calculatePercentages(self, searchResults, entitiesForEachResult : List[List[Dict[str, str]]], sparseMatrix : SparseMatrix) -> List[str]:
         shouldAddRowStrategy = DefaultShouldAddRowStrategy()
         denominatorQuestion = sparseMatrix.findDenominatorQuestion()
@@ -144,27 +147,26 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
     def determineMatrixToSearch(self, intent, entities, year):
         return self.dataManager.determineMatrixToSearch(intent, entities, year)
 
-
-
-
-    def constructOutput(self, searchResults, intent, entitiesUsedForEachResult : List[List[Dict[str, str]]], template):
+    def constructOutput(self, searchResults : List[SearchResult], intent, template):
        #return searchResult
+       print("CONSTRUCTING OUTPUT")
        if searchResults is None or len(searchResults) == 0: 
             return ["Sorry, I couldn't find any answer to your question"]
         
        if template == "" or template == "nan":
-            return searchResults
+            return map(lambda x: x.answer , searchResults)
 
        constructSentenceFor = []
        stringSentence = []
        for result in searchResults:
-            castedValue, resultType =  self.typeController.determineResultType(result)
-            if resultType == SearchResultType.STRING:
-                stringSentence.append(result)
+            if result.type== SearchResultType.STRING:
+                stringSentence.append(result.answer)
             else:
                 constructSentenceFor.append(result)
 
-       sentences = self.templateConverter.constructOutput(constructSentenceFor, entitiesUsedForEachResult, template)
+      
+       sentences = self.templateConverter.constructOutput(constructSentenceFor, template)
+       
        return sentences + stringSentence
        #return constructSentence(searchResult, intent, entitiesUsed)
 
@@ -252,9 +254,9 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         shouldAddRowStrategy = RangeExactMatchRowStrategy()
         entities = filterEntities(entities, [RANGE_ENTITY_LABEL])
         entitiesUsed = []
-        answerPointer = None
+        answerPointer : SearchResult = None
 
-        foundAnswers = []
+        foundAnswers : List[SearchResult] = []
         rangeResultData = RangeResultData()
         # print("RANGE TO SUM")
         # print(rangesToSumOver)
@@ -281,19 +283,20 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
                 }
                 entitiesToCheck.append(fakeEntity)
 
-            answers, entitiesUsedBySearch = sparseMatrix.searchOnSparseMatrix(entitiesToCheck, shouldAddRowStrategy,isSumming)
-            if len(answers) == 0:
+            searchResults : List[SearchResult] = sparseMatrix.searchOnSparseMatrix(entitiesToCheck, shouldAddRowStrategy,isSumming)
+            if len(searchResults) == 0:
                 continue
 
-            entitiesUsed.append(entitiesUsedBySearch)
-
             # On each iteration, we expect to only get one answer from search
-            answerPointer = sparseMatrix.addSearchResult(answerPointer, answers[0], foundAnswers, isSumming)
+            searchResult = searchResults[0]
+            # entitiesUsed.append(searchResult.entitiesUsed)
+
+            answerPointer = sparseMatrix.addSearchResult(answerPointer, searchResult, foundAnswers, isSumming)
         # Construct the range entity:   
         rangeToCreateEntityFor = rangesToSumOver
         if isSumming:
             rangeToCreateEntityFor = [[minRange, maxRange]]
-        rangeResultData.createFinalResultAndEntities(rangeToCreateEntityFor, foundAnswers, entitiesUsed)
+        rangeResultData.createFinalResultAndEntities(rangeToCreateEntityFor, foundAnswers)
         # entitiesToUse = self.constructRangeEntityHelper(intention, numbersUsed)
         return rangeResultData
 

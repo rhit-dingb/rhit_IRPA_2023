@@ -13,6 +13,7 @@ import Data_Ingestion.constants as constants
 import pandas as pd
 
 from actions.constants import RANGE_LOWER_BOUND_VALUE
+from Knowledgebase.DataModels.SearchResult import SearchResult
 
 class SparseMatrix():
     def __init__(self, subSectionName, sparseMatrixDf, questions=[]):
@@ -136,13 +137,14 @@ class SparseMatrix():
         return self.isThisOperationAllowed(constants.PERCENTAGE_ALLOWED_COLUMN_VALUE)
 
     def findDenominatorQuestion(self) -> str:
-        answers = self.findValueForMetadata(constants.DENOMINATOR_QUESTION_COLUMN_VALUE)
-        if len(answers) == 0:
+        searchResults : List[SearchResult] = self.findValueForMetadata(constants.DENOMINATOR_QUESTION_COLUMN_VALUE)
+        if len(searchResults) == 0:
             return ""
-        if answers == "" or answers =="nan":
+        answer = searchResults[0].answer
+        if answer == "" or answer =="nan":
             return ""
         else:
-            return answers[0]
+            return answer
 
     def searchInSelfForPercentage(self) -> bool:
         answers = self.findValueForMetadata(constants.PERCENTAGE_SEARCH_IN_SELF_COLUMN_VALUE)
@@ -150,17 +152,17 @@ class SparseMatrix():
     
 
     def findTemplate(self): 
-        answers = self.findValueForMetadata(constants.TEMPLATE_LABEL)
-        if len(answers) == 0:
+        searchResults : List[SearchResult] = self.findValueForMetadata(constants.TEMPLATE_LABEL)
+        if len(searchResults) == 0:
             return ""
 
-        return answers[0]
+        return searchResults[0].answer
 
 
-    def checkResultHelper(self, searchResults):
+    def checkResultHelper(self, searchResults : List[SearchResult]):
         if len(searchResults) == 0:
             return False
-        elif str(searchResults[0]).lower() == constants.VALUE_FOR_ALLOW:
+        elif str(searchResults[0].answer).lower() == constants.VALUE_FOR_ALLOW:
             return True
 
         return False
@@ -173,8 +175,8 @@ class SparseMatrix():
     def findValueForMetadata(self, metadataLabel):
         booleanSearchStrategy = DefaultShouldAddRowStrategy()
         operationAllowedEntity = createEntityObj(metadataLabel, entityLabel="none",  entityRole=None)
-        searchResult, entitiesUsed = self.searchOnSparseMatrix([operationAllowedEntity], booleanSearchStrategy, False)
-        return searchResult
+        searchResults = self.searchOnSparseMatrix([operationAllowedEntity], booleanSearchStrategy, False)
+        return searchResults
 
     
 
@@ -192,22 +194,29 @@ class SparseMatrix():
 
             # entityValues = [e["value"] for e in entities]
             usedEntities = shouldAddRowStrategy.determineShouldAddRow(row, entities, self)
+
             shouldUseRow = len(usedEntities)>0
             # print(usedEntities)
             if shouldUseRow:
-               
-                newSearchResult = sparseMatrixToSearchDf.loc[i,'Value']
+                if len(entitiesUsed) <= 0:
+                    entitiesUsed = usedEntities
+
+                newAnswer= sparseMatrixToSearchDf.loc[i,'Value']
+                castedValue, type = self.determineResultType(newAnswer)
+                # Get question for now. May need to check for out of range
+                print(len(self.questions))
+                prints(self.questions)
+                newSearchResult : SearchResult = SearchResult(newAnswer, usedEntities, type, [])
                 if currentResultPointer == None: 
-                    currentResultPointer, type = self.determineResultType(newSearchResult)
-                    currentResultPointer = str(currentResultPointer)
+                    # searchResult : SearchResult = SearchResult(newAnswer, usedEntities, type, self.questions[i])
+                    currentResultPointer = newSearchResult
+                    # currentResultPointer = str(currentResultPointer)
                     searchResults.append(currentResultPointer)
                 else:
                     currentResultPointer = self.addSearchResult(currentResultPointer, newSearchResult, searchResults, isSumAllowed)
 
-                if len(entitiesUsed) <= 0:
-                    entitiesUsed = usedEntities
-        entitiesUsed = list(entitiesUsed)
-        return (searchResults, entitiesUsed)
+                
+        return searchResults
 
 
     #This function will determine the type of value the search result is: integer, float, string, percentage(string with % sign) 
@@ -215,28 +224,69 @@ class SparseMatrix():
     def determineResultType(self,searchResult) -> Tuple[any, SearchResultType]:
         return self.typeController.determineResultType(searchResult)
 
-    #This function will try to add up the search results, if the current search result and the new search result's type does not make sense
-    # to be added together, it will add it into the list of answers instead of adding up the value.
-    def addSearchResult(self, currentSearchResult, newSearchResult, searchResults, isSumAllowed) -> str:
-        castedCurrValue, currentSearchResultType = self.determineResultType(currentSearchResult)
-        castedNewValue, newSearchResultType = self.determineResultType(newSearchResult)
+
+    def addSearchResult(self, currentSearchResult : SearchResult, newSearchResult : SearchResult, searchResults : List[SearchResult], isSumAllowed) -> str:
+        castedCurrValue, currentSearchResultType = self.determineResultType(currentSearchResult.answer)
+        castedNewValue, newSearchResultType = self.determineResultType(newSearchResult.answer)
+
+        if currentSearchResultType == SearchResultType.STRING:
+            searchResults.append(newSearchResult)
+            return newSearchResult
+
         if (currentSearchResultType == SearchResultType.FLOAT or currentSearchResultType == SearchResultType.NUMBER):
             if isSumAllowed and (newSearchResultType == SearchResultType.FLOAT or newSearchResultType == SearchResultType.NUMBER):
                 newCalculatedValue = str(castedCurrValue + castedNewValue)
-                searchResults[len(searchResults)-1] = newCalculatedValue
-                return newCalculatedValue
+                currentSearchResult.changeAnswer(newCalculatedValue)
+                if len(searchResults) == 0:
+                    searchResults.append(currentSearchResult)
+                # searchResults[len(searchResults)-1] = newCalculatedValue
+                return currentSearchResult
             else:
                 searchResults.append(newSearchResult)
                 return newSearchResult
-        elif currentSearchResultType == newSearchResult:
-            #Might move this common logic to a seperate function
+
+        elif currentSearchResultType == newSearchResultType:
             newCalculatedValue = str(castedCurrValue + castedNewValue)
-            searchResults[len(searchResults)-1] = newCalculatedValue
-            return newCalculatedValue
+            currentSearchResult.changeAnswer(newCalculatedValue)
+            if len(searchResults) == 0:
+                searchResults.append(currentSearchResult)
+
+            return currentSearchResult
         else:
             searchResults.append(newSearchResult)
+            return newSearchResult
 
-        return newSearchResult
+
+    #This function will try to add up the search results, if the current search result and the new search result's type does not make sense
+    # to be added together, it will add it into the list of answers instead of adding up the value.
+    # def addSearchResult(self, currentSearchResult, newSearchResult, searchResults, isSumAllowed) -> str:
+    #     castedCurrValue, currentSearchResultType = self.determineResultType(currentSearchResult)
+    #     castedNewValue, newSearchResultType = self.determineResultType(newSearchResult)
+
+    #     if (currentSearchResultType == SearchResultType.FLOAT or currentSearchResultType == SearchResultType.NUMBER):
+    #         if isSumAllowed and (newSearchResultType == SearchResultType.FLOAT or newSearchResultType == SearchResultType.NUMBER):
+    #             newCalculatedValue = str(castedCurrValue + castedNewValue)
+    #             searchResults[len(searchResults)-1] = newCalculatedValue
+    #             return newCalculatedValue
+    #         else:
+    #             searchResults.append(newSearchResult)
+    #             return newSearchResult
+    #     elif currentSearchResultType == SearchResultType.STRING:
+    #         searchResults.append(newSearchResult)
+
+    #     elif currentSearchResultType == newSearchResult:
+    #         #Might move this common logic to a seperate function
+    #         newCalculatedValue = str(castedCurrValue + castedNewValue)
+    #         if len(searchResults) == 0:
+    #             searchResults.append(newCalculatedValue)
+    #         else:
+    #             searchResults[len(searchResults)-1] = newCalculatedValue
+
+    #         return newCalculatedValue
+    #     else:
+    #         searchResults.append(newSearchResult)
+
+    #     return newSearchResult
 
 
 

@@ -1,8 +1,10 @@
+from typing import List
 from OutputController.EntityExpression import EntityExpression
 from OutputController.LiteralExpression import LiteralExpression
 from OutputController.PhraseExpression import PhraseExpression
 from OutputController.ValueExpression import ValueExpression
 from OutputController.XorExpression import XorExpression
+from Knowledgebase.DataModels.SearchResult import SearchResult
 
 
 class TemplateConverter():
@@ -125,19 +127,21 @@ class TemplateConverter():
         return -1
 
 
-    def constructOutput(self,answers, entitiesUsedForEachAnswer, template):
+    def constructOutput(self, searchResults : List[SearchResult], template):
         fullSentenceAnswers = []
         expressions = self.parseTemplate(template)
         
-        for answer, entitiesUsed in zip(answers, entitiesUsedForEachAnswer):
+        for searchResult in searchResults:
            #Because EntityExpression remove an entity from the list when it uses that entity's value, I make a copy to keep the original in case we use it.
-           entitiesCopy = entitiesUsed.copy()
+           entitiesCopy = searchResult.entitiesUsed.copy()
+           answer = searchResult.answer
            sentenceTokens =  self.evaluateExpressions(expressions, entitiesCopy, answer)
            #Filter out empty string
            sentenceTokens = list(filter(lambda x: not x=="", sentenceTokens))
            sentence = " ".join(sentenceTokens)
            fullSentenceAnswers.append(sentence)
-
+           
+        print(fullSentenceAnswers)
         return fullSentenceAnswers
             
         

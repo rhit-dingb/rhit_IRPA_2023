@@ -37,7 +37,7 @@ class DocumentRetrieverByVector(DocumentRetriever):
             sim = cosine_similarity([transformedVector], [vector])
             documentSimilarities.append(sim[0])
 
-        print(documentSimilarities)
+        
         return self.getTopDocs(documentSimilarities, self.topN)
 
         # sims = sorted(sims, key=lambda item: -item[0])
