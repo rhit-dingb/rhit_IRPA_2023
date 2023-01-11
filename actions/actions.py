@@ -5,6 +5,7 @@
 # https://rasa.com/docs/rasa/custom-actions
 
 
+import asyncio
 from CustomEntityExtractor.NumberEntityExtractor import NumberEntityExtractor
 from DataManager.ExcelDataManager import ExcelDataManager
 from DataManager.constants import ADMISSION_INTENT, BASIS_FOR_SELECTION_INTENT, COHORT_BY_YEAR_ENTITY_LABEL, COHORT_INTENT, ENROLLMENT_INTENT, EXEMPTION_ENTITY_LABEL, FRESHMAN_PROFILE_INTENT, HIGH_SCHOOL_UNITS_INTENT, INITIAL_COHORT_ENTITY_LABEL,  AID_ENTITY_LABEL, NO_AID_ENTITY_LABEL, RANGE_ENTITY_LABEL, RECIPIENT_OF_PELL_GRANT_ENTITY_LABEL, RECIPIENT_OF_STAFFORD_LOAN_NO_PELL_GRANT_ENTITY_LABEL, STUDENT_LIFE_INTENT, TRANSFER_ADMISSION_INTENT, YEAR_FOR_COLLEGE_ENTITY_LABEL
@@ -50,12 +51,11 @@ class ActionAskMoreQuestion(Action):
         dispatcher.utter_message("Great! Do you have anymore questions?")
         return []
 
-
 class ActionQueryKnowledgebase(Action):
     def name(self) -> Text:
         return "action_query_knowledgebase"
 
-    def run(self, dispatcher, tracker, domain):
+    async def run(self, dispatcher, tracker, domain):
         entitiesExtracted = tracker.latest_message["entities"]
         numberEntities = numberEntityExtractor.extractEntities(tracker.latest_message["text"])
         entitiesExtracted = entitiesExtracted + numberEntities
@@ -63,7 +63,7 @@ class ActionQueryKnowledgebase(Action):
         print(intent)
         print(entitiesExtracted)
         #try:
-        answers = knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy, knowledgeBase.constructOutput,True)
+        answers = await knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy, knowledgeBase.constructOutput,True)
         utterAllAnswers(answers, dispatcher)        
         #except Exception as e:
             #utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)

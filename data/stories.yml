@@ -37,6 +37,7 @@ stories:
       - intent: sat_act_policies
       - intent: faculty_and_class_size
       - intent: annual_expense
+      - intent: academic_offering_policy
     - action: action_query_knowledgebase
     - action: utter_ask_answer_helpful
     - intent: affirm

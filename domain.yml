@@ -20,7 +20,7 @@ intents:
   - sat_act_policies
   - general_info
   - definition
-  
+  - annual_expense
 
   - change_year
 
@@ -194,8 +194,11 @@ entities:
 # Doctorate, Masters, Bachelors, Associates degree, and Unknown
   - degree_level 
 
-# capture the concept of residents
-  - resident
+# # capture the concept of residents
+#   - resident
+
+
+
 #Use to capture the word age
   - age
 
