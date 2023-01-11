@@ -32,7 +32,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         self.dataManager : DataManager = dataManager
         self.typeController = TypeController()
         self.templateConverter : TemplateConverter = TemplateConverter()
-        self.year = dataManager.getMostRecentYearRange()[0]
+        self.year = self.dataManager.getMostRecentYearRange()[0]
         self.rasaCommunicator = RasaCommunicator()
 
     
@@ -79,7 +79,6 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         # print("TAOAOJFOAJFSOSJFJSAFOJFO_______________")
         # print(entitiesExtracted)
         print(sparseMatrixToSearch.subSectionName)
-        print(isRangeAllowed)
         if isRangeAllowed and hasRangeEntity:
             print("RANGE")
             rangeResultData : RangeResultData =  self.aggregateDiscreteRange(entitiesExtracted, sparseMatrixToSearch, isSumAllowed)
@@ -88,8 +87,9 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
             searchResults = rangeResultData.answers
             for entities in rangeResultData.entitiesUsedForAnswer:
                 entitiesUsedForEachResult.append(entities+filteredEntities)
-            print("GOT IT")
-            print(entitiesUsedForEachResult)
+
+            # print("GOT IT")
+            # print(entitiesUsedForEachResult)
 
         else:
             searchResults, entitiesUsed = sparseMatrixToSearch.searchOnSparseMatrix(entitiesExtracted, shouldAddRowStrategy, isSumAllowed)
@@ -105,6 +105,9 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
             return outputFunc(searchResults, intent, entitiesUsedForEachResult, template)
 
     
+
+
+
     async def calculatePercentages(self, searchResults, entitiesForEachResult : List[List[Dict[str, str]]], sparseMatrix : SparseMatrix) -> List[str]:
         shouldAddRowStrategy = DefaultShouldAddRowStrategy()
         denominatorQuestion = sparseMatrix.findDenominatorQuestion()
@@ -171,7 +174,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         minValue = minBound
         # print("MIN BOUND MAX BOUND")
         # print(minBound, maxBound)
-        intention = ""
+    
         numberEntities = findMultipleSameEntitiesHelper(entitiesFound, NUMBER_ENTITY_LABEL)
         numberValues = [] 
         # print(numberEntities)
@@ -186,23 +189,20 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         if len(numberValues) > 1:
             maxValue = max(numberValues)
             minValue = min(numberValues)
-            intention = "between"
-
+          
         elif len(numberValues) == 1:
             if askForUpperBound or not (askForUpperBound or askForLowerBound ):
                 minValue = float('-inf')
                 maxValue = max(numberValues)
-                intention = "upperBound"
+              
             elif askForLowerBound:
                 maxValue = float('inf')
                 minValue = min(numberValues)
-                intention = "lowerBound"
-            
+               
 
         elif len(numberEntities) == 0:
             minValue = float('-inf')
             maxValue = float('inf')
-            intention = "between"
             
         discreteRanges = sparseMatrix.findAllDiscreteRange()
         # print("DISCRETE RANGES")
@@ -211,8 +211,8 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         rangesToUse = []
         intervalToCheck = [minValue, maxValue]
         
-        print("INTERVAL TO CHECK")
-        print(intervalToCheck)
+        # print("INTERVAL TO CHECK")
+        # print(intervalToCheck)
         for dRange in discreteRanges:
             if self.doesIntervalOverlap(intervalToCheck, dRange):
                 rangesToUse.append(dRange)
@@ -220,7 +220,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         # print(minValue, maxValue)
         # print("RANGE TO USE")
         # print(rangesToUse)
-        return (rangesToUse, intention)
+        return rangesToUse
     
     def convertNoneToInfinity(self,a):
         newRes = []
@@ -245,7 +245,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
 
     def aggregateDiscreteRange(self, entities, sparseMatrix : SparseMatrix, isSumming):
         maxBound, minBound = sparseMatrix.findMaxBoundLowerBoundForDiscreteRange()
-        rangesToSumOver, intention  = self.findRange(entities, maxBound,  minBound, sparseMatrix)
+        rangesToSumOver = self.findRange(entities, maxBound,  minBound, sparseMatrix)
         print("RANGE TO SUM OVER")
         print(rangesToSumOver)
 

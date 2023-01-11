@@ -194,8 +194,8 @@ class SparseMatrix():
             usedEntities = shouldAddRowStrategy.determineShouldAddRow(row, entities, self)
             shouldUseRow = len(usedEntities)>0
             # print(usedEntities)
-           
             if shouldUseRow:
+               
                 newSearchResult = sparseMatrixToSearchDf.loc[i,'Value']
                 if currentResultPointer == None: 
                     currentResultPointer, type = self.determineResultType(newSearchResult)

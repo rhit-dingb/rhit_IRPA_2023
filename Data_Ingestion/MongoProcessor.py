@@ -6,6 +6,7 @@ from DataManager.constants import DATABASE_SPARSE_MATRIX_ROWS_KEY, DATABASE_SPAR
 from Exceptions.ExceptionMessages import NO_DATA_AVAILABLE_FOR_GIVEN_INTENT_FORMAT
 from Exceptions.ExceptionTypes import ExceptionTypes
 from Exceptions.NoDataFoundException import NoDataFoundException
+from DataManager.constants import QUESTION_COLUMN_KEY
 
 
 class MongoProcessor():
@@ -68,12 +69,17 @@ class MongoProcessor():
                 cursor = curDB[name].find({})
                 # print("CURSOR")
                 # print(cursor[0])
+                questions = []
                 for sparseMatrixData in cursor:
                     subsection = sparseMatrixData.get(DATABASE_SPARSE_MATRIX_SUBSECTION_KEY)
                     rows = sparseMatrixData.get(DATABASE_SPARSE_MATRIX_ROWS_KEY)
+                    for row in rows:
+                        if QUESTION_COLUMN_KEY in row:
+                            questions.append(row[QUESTION_COLUMN_KEY])
+                            del row[QUESTION_COLUMN_KEY]
                     df = pd.DataFrame.from_dict(rows)
                     # print(df.head())
-                    sparseMatrix = SparseMatrix(subsection, df)
+                    sparseMatrix = SparseMatrix(subsection, df, questions)
                     topicData.addSparseMatrix(subsection, sparseMatrix)
 
                 return topicData  
