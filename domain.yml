@@ -173,7 +173,9 @@ entities:
   - placement
 
 
-
+#Captures the concept with change
+#value: Change
+  - change
 
 #Use to capture anything word related to time such as word "date" or "when" - to see if user mention time anywhere in their sentence. 
 #Values: date.
@@ -189,7 +191,8 @@ entities:
 # Doctorate, Masters, Bachelors, Associates degree, and Unknown
   - degree_level 
 
-
+# capture the concept of residents
+  - resident
 #Use to capture the word age
   - age
 
