@@ -24,13 +24,15 @@ nlu:
     - Of the [initial](cohort_initial_final) 9208 cohort, how many completed the program in [more than]{"entity": "range", "value": "more than"} four years but in five years or [less]{"entity": "range", "value": "within"}? 
     - Of the [initial](cohort_initial_final) 2013 cohort, how many completed the program in [more than]{"entity": "range", "value": "more than"} five years but in six years or [less]{"entity": "range", "value": "within"}?
 
+
     - Of the [initial](cohort_initial_final) 4014 cohort, how many completed the program in [more than]{"entity": "range", "value": "more than"} four years but in five years or [less]{"entity": "range", "value": "within"} and are [recipients of subsidized stafford loan and did not receive a pell grant]{"entity": "aid_status_stafford", "value": "stafford-loan"}
     - Of the [initial](cohort_initial_final) 4014 cohort, how many completed the program in four years or [more]{"entity": "range", "value": "more than"} but in five years or [less]{"entity": "range", "value": "within"} and are [recipients of subsidized stafford loan and did not receive a pell grant]{"entity": "aid_status_stafford", "value": "stafford-loan"}
     - In 4014 cohort, how many completed the program in [at least]{"entity": "range", "value": "more than"} four years but in five years or [less]{"entity": "range", "value": "within"} and are [recipients of subsidized stafford loan and did not receive a pell grant]{"entity": "aid_status_stafford", "value": "stafford-loan"}
 
     - What is the six year graduation [rate]{"entity": "aggregation", "value": "percent"} for students who are [recipients of a federal pell grant]{"entity": "aid_status_pell", "value": "pell-grant"} in the 2013 cohort?
     - what is the total number of students graduating [within]{"entity": "range", "value": "within"} six years for 2019 cohort who [did not receive either a pell grant or a subsidized stafford loan]{"entity":"aid_status_none", "value": "no-aid"}
-
+    - Of the [initial](cohort_initial_final) [4014 cohort](cohort_by_year), how many completed the program in [more than]{"entity": "range", "value": "more than"} [four years]{"entity": "years_for_college", "value": "4 year"} but in [five years]{"entity": "years_for_college", "value": "5 year"} [or less]{"entity": "range", "value": "within"} and are [recipients of subsidized stafford loan and did not receive a pell grant]{"entity": "aid_status_stafford", "value": "stafford-loan"}
+    
     - What is the six year graduation [rate]{"entity": "aggregation", "value": "percent"} for the 2013 cohort?
     - What is the five year graduation [rate]{"entity": "aggregation", "value": "percent"} for the 2013 cohort?
     - What is the four year graduation [rate]{"entity": "aggregation", "value": "percent"} for the 2013 cohort?
@@ -65,6 +67,7 @@ nlu:
     - What is the graduation [rate]{"entity": "aggregation", "value": "percent"} for students who graduated in 5 years  and [more than]{"entity": "range", "value": "more than"} four year for the cohort of 2014?
 
     #Financial aid training data for cohorts.
+
     - How many students in the 6590 cohort are [recipients of subsidized loan and did not receive federal pell grant]{"entity": "aid_status_stafford", "value": "stafford-loan"}?
     
     - How many students in the 2019 cohort are [did not receive subsidized loan and did not receive federal pell grant]{"entity": "aid_status_none", "value": "no-aid"}?
@@ -291,7 +294,6 @@ nlu:
 #     - did not receive either a Pell Grant or a subsidized Stafford Loan
 
 
-  
 
 # - lookup: aid_status
 #   examples: |

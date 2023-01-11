@@ -94,7 +94,10 @@ entities:
   - not_modifier_pell
   - not_modifier_stafford
   - aid_status_none
-  
+
+  #year to query the dataset.
+  - year
+
   # School subjects such as english, mathematics, science, etc, also captures the word subject
   # Value: subject english, mathematics, science, liberal arts.
   - subject
