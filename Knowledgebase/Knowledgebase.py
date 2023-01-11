@@ -2,21 +2,27 @@
 from copy import deepcopy
 from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
 
+from abc import ABC, abstractmethod
 
-class KnowledgeBase:
+from Data_Ingestion.SparseMatrix import SparseMatrix
+class KnowledgeBase(ABC):
     def __init__(self):
-        raise Exception("This class serves as an interface and cannot be instantiated")
-
+        pass
+    
+    @abstractmethod
     def getAvailableOptions(self, key):
-        raise Exception("This method must be implemented by a class implementing this interface")
-
+        pass
+    
+    @abstractmethod
     def searchForAnswer(self, intent, entities):
-        raise Exception("This method must be implemented by a class implementing this interface")
+        pass 
 
     # this function will aggregate number given a range, using the generator to create column name for those rows and 
     # sum up the value for those rows
-    def aggregateDiscreteRange(self, intent, filteredEntities, start, end, generator):
-        raise Exception("This method must be implemented by a class implementing this interface")
+    @abstractmethod
+    def aggregateDiscreteRange(self, entities, sparseMatrix : SparseMatrix, isSumming):
+        pass
 
-    def aggregatePercentage(self, intent, numerator, entitiesToCalculateDenominator):
-        raise Exception("This method must be implemented by a class implementing this interface")
+    @abstractmethod
+    def calculatePercentages(self, searchResults, entitiesForEachResult, sparseMatrix : SparseMatrix):
+        pass

@@ -1,0 +1,219 @@
+version: "3.1"
+nlu:
+- intent: faculty_and_class_size
+  examples: |
+    - How [big]{"entity": "size", "value": "size"} is a class at Rose-Hulman?
+    - How [large]{"entity": "size", "value": "size"} is a class at Rose-Hulman?
+    - How many class [section](section_subsection) at Rose-Hulman have 100+ [students]{"entity":"people", "value":"student"}?
+    - How many class [section](section_subsection) at Rose-Hulman have 20 to 29 [students]{"entity":"people", "value":"student"}?
+    - How many class [section](section_subsection) have 2 to 9 [students]{"entity":"people", "value":"student"}?
+    - How many class [section](section_subsection) have 40 to 49 [students]{"entity":"people", "value":"student"}?
+    - How many class [sections]{"entity": "section_subsection", "value": "section"} at Rose-Hulman have 100+ [students]{"entity":"people", "value":"student"}?
+    - How many class [sections]{"entity": "section_subsection", "value": "section"} at Rose-Hulman have 20 to 29 [students]{"entity":"people", "value":"student"}?
+    - How many class [sections]{"entity": "section_subsection", "value": "section"} have 2 to 9 [students]{"entity":"people", "value":"student"}?
+    - How many class [sections]{"entity": "section_subsection", "value": "section"} have 40 to 49 [students]{"entity":"people", "value":"student"}?
+    - How many class [sub section]{"entity": "section_subsection", "value": "subsection"} at Rose-Hulman have 100+ [students]{"entity":"people", "value":"student"}?
+    - How many class [sub section]{"entity": "section_subsection", "value": "subsection"} at Rose-Hulman have 20 to 29 [students]{"entity":"people", "value":"student"}?
+    - How many class [sub section]{"entity": "section_subsection", "value": "subsection"} have 2 to 9 [students]{"entity":"people", "value":"student"}?
+    - How many class [sub section]{"entity": "section_subsection", "value": "subsection"} have 40 to 49 [students]{"entity":"people", "value":"student"}?
+    - How many class [sub sections]{"entity": "section_subsection", "value": "subsection"} at Rose-Hulman have 100+ [students]{"entity":"people", "value":"student"}?
+    - How many class [sub sections]{"entity": "section_subsection", "value": "subsection"} at Rose-Hulman have 20 to 29 [students]{"entity":"people", "value":"student"}?
+    - How many class [sub sections]{"entity": "section_subsection", "value": "subsection"} have 2 to 9 [students]{"entity":"people", "value":"student"}?
+    - How many class [sub sections]{"entity": "section_subsection", "value": "subsection"} have 40 to 49 [students]{"entity":"people", "value":"student"}?
+    - How many class [sub-section]{"entity": "section_subsection", "value": "subsection"} at Rose-Hulman have 100+ [students]{"entity":"people", "value":"student"}?
+    - How many class [sub-section]{"entity": "section_subsection", "value": "subsection"} at Rose-Hulman have 20 to 29 [students]{"entity":"people", "value":"student"}?
+    - How many class [sub-section]{"entity": "section_subsection", "value": "subsection"} have 2 to 9 [students]{"entity":"people", "value":"student"}?
+    - How many class [sub-section]{"entity": "section_subsection", "value": "subsection"} have 40 to 49 [students]{"entity":"people", "value":"student"}?
+    - How many class [subsection](section_subsection) at Rose-Hulman have 100+ [students]{"entity":"people", "value":"student"}?
+    - How many class [subsection](section_subsection) at Rose-Hulman have 20 to 29 [students]{"entity":"people", "value":"student"}?
+    - How many class [subsection](section_subsection) have 2 to 9 [students]{"entity":"people", "value":"student"}?
+    - How many class [subsection](section_subsection) have 40 to 49 [students]{"entity":"people", "value":"student"}?
+    - How many class [subsections]{"entity": "section_subsection", "value": "subsection"} at Rose-Hulman have 100+ [students]{"entity":"people", "value":"student"}?
+    - How many class [subsections]{"entity": "section_subsection", "value": "subsection"} at Rose-Hulman have 20 to 29 [students]{"entity":"people", "value":"student"}?
+    - How many class [subsections]{"entity": "section_subsection", "value": "subsection"} have 2 to 9 [students]{"entity":"people", "value":"student"}?
+    - How many class [subsections]{"entity": "section_subsection", "value": "subsection"} have 40 to 49 [students]{"entity":"people", "value":"student"}?
+    - What is the [size](size) of a class at Rose-Hulman?
+    
+    - How [small]{"entity": "size", "value": "size"} is a class at Rose-Hulman?
+    - What is the [average]{"entity":"aggregation", "value":"average"} class [size]{"entity": "size", "value": "size"} at Rose-Hulman?
+    - What is the [average]{"entity":"aggregation", "value":"average"} class [size]{"entity": "size", "value": "size"} at Rose-Hulman?
+    - What is the [average]{"entity":"aggregation", "value":"average"} class [size](size) at Rose-Hulman?
+    - What is the [students]{"entity":"people", "value":"student"} to [faculty](people) [ratio]{"entity":"aggregation", "value": "ratio"}?
+    - What is the [students]{"entity":"people", "value":"student"} to [prof]{"entity": "people", "value": "faculty"} [ratio]{"entity":"aggregation", "value": "ratio"}?
+    - What is the [students]{"entity":"people", "value":"student"} to [professor]{"entity": "people", "value": "faculty"} [ratio]{"entity":"aggregation", "value": "ratio"}?
+    - What is the total number of [full-time](enrollment_status) [faculty](people) who are in stand-alone [graduate]{"entity": "student_level", "value":"graduate"} programs in which faculty teach virtually only [graduate]{"entity": "student_level", "value":"graduate"} level [students]{"entity":"people", "value":"student"}
+    - What is the total number of [full-time](enrollment_status) [faculty](people) who are [men]{"entity": "gender", "value": "male"}
+    - What is the total number of [full-time](enrollment_status) [faculty](people) who are [minorities]{"entity": "race", "value": "minority"}
+    - What is the total number of [full-time](enrollment_status) [faculty](people) who are [minority](race)
+    - What is the total number of [full-time](enrollment_status) [faculty](people) who are [non resident]{"entity": "international_domestic", "value": "international"} [alien]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [full-time](enrollment_status) [faculty](people) who are [non resident]{"entity": "international_domestic", "value": "international"} [aliens]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [full-time](enrollment_status) [faculty](people) who are [non-resident]{"entity": "international_domestic", "value": "international"} [aliens]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [full-time](enrollment_status) [faculty](people) who are [international]{"entity": "international_domestic", "value": "international"} student
+    - What is the total number of [full-time](enrollment_status) [faculty](people) who are [nonresident]{"entity": "international_domestic", "value": "international"} [aliens]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [full-time](enrollment_status) [faculty](people) who are [women]{"entity": "gender", "value": "female"}
+    - What is the total number of [full-time](enrollment_status) [faculty](people) who have have a [bachelor's]{"entity": "degree_level", "value": "bachelors"} degree
+    - What is the total number of [full-time](enrollment_status) [faculty](people) who have have a [doctorate](degree_level) degree
+    - What is the total number of [full-time](enrollment_status) [faculty](people) who have have a [doctors]{"entity": "degree_level", "value": "doctorate"} degree
+    - What is the total number of [full-time](enrollment_status) [faculty](people) who have have a [master](degree_level) degree
+    - What is the total number of [full-time](enrollment_status) [faculty](people) who have have a [master]{"entity": "degree_level", "value": "master"} degree
+    - What is the total number of [full-time](enrollment_status) [faculty](people) whose [highest]{"entity": "range", "value": "maximum"} degree is [unknown]{"entity": "degree_level", "value":"unknown"}
+    - What is the total number of [full-time](enrollment_status) [faculty](people) whose [highest]{"entity": "range", "value": "maximum"} degree is a [bachelor's]{"entity": "degree_level", "value": "bachelors"}
+    - What is the total number of [full-time](enrollment_status) [faculty](people) whose [highest]{"entity": "range", "value": "maximum"} degree is a [doctorate](degree_level)
+    - What is the total number of [full-time](enrollment_status) [faculty](people) whose [highest]{"entity": "range", "value": "maximum"} degree is a [doctors]{"entity": "degree_level", "value": "doctorate"}
+    - What is the total number of [full-time](enrollment_status) [faculty](people) whose [highest]{"entity": "range", "value": "maximum"} degree is a [master](degree_level)
+    - What is the total number of [full-time](enrollment_status) [faculty](people) whose [highest]{"entity": "range", "value": "maximum"} degree is a [masters]{"entity": "degree_level", "value": "master"}
+    - What is the total number of [full-time](enrollment_status) instructional [faculty](people) at Rose-Hulman?
+    - What is the total number of [full-time](enrollment_status) instructional [prof]{"entity": "people", "value": "faculty"} at Rose-Hulman?
+    - What is the total number of [full-time](enrollment_status) instructional [professor]{"entity": "people", "value": "faculty"} at Rose-Hulman?
+    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are in stand-alone [graduate]{"entity": "student_level", "value":"graduate"} programs in which faculty teach virtually only [graduate]{"entity": "student_level", "value":"graduate"} level [students]{"entity":"people", "value":"student"}
+    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [men]{"entity": "gender", "value": "male"}
+    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [minorities]{"entity": "race", "value": "minority"}
+    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [minority](race)
+    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [non resident]{"entity": "international_domestic", "value": "international"} [alien]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [non resident]{"entity": "international_domestic", "value": "international"} [aliens]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [non-resident]{"entity": "international_domestic", "value": "international"} [aliens]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [nonresident]{"entity": "international_domestic", "value": "international"} [aliens]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [nonresident]{"entity": "international_domestic", "value": "international"} [aliens]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [women]{"entity": "gender", "value": "female"}
+    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who have have a [bachelor's]{"entity": "degree_level", "value": "bachelors"} degree
+    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who have have a [doctorate](degree_level) degree
+    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who have have a [doctors]{"entity": "degree_level", "value": "doctorate"} degree
+    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who have have a [master](degree_level) degree
+    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who have have a [masters]{"entity": "degree_level", "value": "master"} degree
+    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} whose [highest]{"entity": "range", "value": "maximum"} degree is [unknown]{"entity": "degree_level", "value":"unknown"}
+    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} whose [highest]{"entity": "range", "value": "maximum"} degree is a [bachelor's]{"entity": "degree_level", "value": "bachelors"}
+    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} whose [highest]{"entity": "range", "value": "maximum"} degree is a [doctorate](degree_level)
+    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} whose [highest]{"entity": "range", "value": "maximum"} degree is a [doctors]{"entity": "degree_level", "value": "doctorate"}
+    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} whose [highest]{"entity": "range", "value": "maximum"} degree is a [master](degree_level)
+    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} whose [highest]{"entity": "range", "value": "maximum"} degree is a [masters]{"entity": "degree_level", "value": "master"}
+    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are in stand-alone [graduate]{"entity": "student_level", "value":"graduate"} programs in which faculty teach virtually only [graduate]{"entity": "student_level", "value":"graduate"} level [students]{"entity":"people", "value":"student"}
+    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [men]{"entity": "gender", "value": "male"}
+    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [minorities]{"entity": "race", "value": "minority"}
+    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [minority](race)
+    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [non resident]{"entity": "international_domestic", "value": "international"} [alien]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [non resident]{"entity": "international_domestic", "value": "international"} [aliens]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [non-resident]{"entity": "international_domestic", "value": "international"} [aliens]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [nonresident]{"entity": "international_domestic", "value": "international"} [aliens]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [nonresident]{"entity": "international_domestic", "value": "international"} [aliens]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [women]{"entity": "gender", "value": "female"}
+    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who have have a [bachelor's]{"entity": "degree_level", "value": "bachelors"} degree
+    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who have have a [doctorate](degree_level) degree
+    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who have have a [doctors]{"entity": "degree_level", "value": "doctorate"} degree
+    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who have have a [master](degree_level) degree
+    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who have have a [masters]{"entity": "degree_level", "value": "master"} degree
+    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} whose [highest]{"entity": "range", "value": "maximum"} degree is [unknown]{"entity": "degree_level", "value":"unknown"}
+    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} whose [highest]{"entity": "range", "value": "maximum"} degree is a [bachelor's]{"entity": "degree_level", "value": "bachelors"}
+    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} whose [highest]{"entity": "range", "value": "maximum"} degree is a [doctorate](degree_level)
+    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} whose [highest]{"entity": "range", "value": "maximum"} degree is a [doctors]{"entity": "degree_level", "value": "doctorate"}
+    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} whose [highest]{"entity": "range", "value": "maximum"} degree is a [master](degree_level)
+    - What is the total number of [full-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} whose [highest]{"entity": "range", "value": "maximum"} degree is a [masters]{"entity": "degree_level", "value": "master"}
+    - What is the total number of [part-time](enrollment_status) [faculty](people) who are in stand-alone [graduate]{"entity": "student_level", "value":"graduate"} programs in which faculty teach virtually only [graduate]{"entity": "student_level", "value":"graduate"} level [students]{"entity":"people", "value":"student"}
+    - What is the total number of [part-time](enrollment_status) [faculty](people) who are [men]{"entity": "gender", "value": "male"}
+    - What is the total number of [part-time](enrollment_status) [faculty](people) who are [minorities]{"entity": "race", "value": "minority"}
+    - What is the total number of [part-time](enrollment_status) [faculty](people) who are [minority](race)
+    - What is the total number of [part-time](enrollment_status) [faculty](people) who are [non resident]{"entity": "international_domestic", "value": "international"} [alien]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [part-time](enrollment_status) [faculty](people) who are [non resident]{"entity": "international_domestic", "value": "international"} [aliens]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [part-time](enrollment_status) [faculty](people) who are [non-resident]{"entity": "international_domestic", "value": "international"} [aliens]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [part-time](enrollment_status) [faculty](people) who are [nonresident]{"entity": "international_domestic", "value": "international"} [aliens]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [part-time](enrollment_status) [faculty](people) who are [nonresident]{"entity": "international_domestic", "value": "international"} [aliens]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [part-time](enrollment_status) [faculty](people) who are [women]{"entity": "gender", "value": "female"}
+    - What is the total number of [part-time](enrollment_status) [faculty](people) who have have a [bachelor's]{"entity": "degree_level", "value": "bachelors"} degree
+    - What is the total number of [part-time](enrollment_status) [faculty](people) who have have a [doctorate](degree_level) degree
+    - What is the total number of [part-time](enrollment_status) [faculty](people) who have have a [doctors]{"entity": "degree_level", "value": "doctorate"} degree
+    - What is the total number of [part-time](enrollment_status) [faculty](people) who have have a [master](degree_level) degree
+    - What is the total number of [part-time](enrollment_status) [faculty](people) who have have a [masters]{"entity": "degree_level", "value": "master"} degree
+    - What is the total number of [part-time](enrollment_status) [faculty](people) whose [highest]{"entity": "range", "value": "maximum"} degree is [unknown]{"entity": "degree_level", "value":"unknown"}
+    - What is the total number of [part-time](enrollment_status) [faculty](people) whose [highest]{"entity": "range", "value": "maximum"} degree is a [bachelor's]{"entity": "degree_level", "value": "bachelors"}
+    - What is the total number of [part-time](enrollment_status) [faculty](people) whose [highest]{"entity": "range", "value": "maximum"} degree is a [doctorate](degree_level)
+    - What is the total number of [part-time](enrollment_status) [faculty](people) whose [highest]{"entity": "range", "value": "maximum"} degree is a [doctors]{"entity": "degree_level", "value": "doctorate"}
+    - What is the total number of [part-time](enrollment_status) [faculty](people) whose [highest]{"entity": "range", "value": "maximum"} degree is a [master](degree_level)
+    - What is the total number of [part-time](enrollment_status) [faculty](people) whose [highest]{"entity": "range", "value": "maximum"} degree is a [masters]{"entity": "degree_level", "value": "master"}
+    - What is the total number of [part-time](enrollment_status) instructional [faculty](people) at Rose-Hulman?
+    - What is the total number of [part-time](enrollment_status) instructional [prof]{"entity": "people", "value": "faculty"} at Rose-Hulman?
+    - What is the total number of [part-time](enrollment_status) instructional [professor]{"entity": "people", "value": "faculty"} at Rose-Hulman?
+    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are in stand-alone [graduate]{"entity": "student_level", "value":"graduate"} programs in which faculty teach virtually only [graduate]{"entity": "student_level", "value":"graduate"} level [students]{"entity":"people", "value":"student"}
+    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [men]{"entity": "gender", "value": "male"}
+    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [minorities]{"entity": "race", "value": "minority"}
+    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [minority](race)
+    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [non resident]{"entity": "international_domestic", "value": "international"} [alien]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [non resident]{"entity": "international_domestic", "value": "international"} [aliens]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [non-resident]{"entity": "international_domestic", "value": "international"} [aliens]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [nonresident]{"entity": "international_domestic", "value": "international"} [aliens]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [nonresident]{"entity": "international_domestic", "value": "international"} [aliens]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who are [women]{"entity": "gender", "value": "female"}
+    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who have have a [bachelor's]{"entity": "degree_level", "value": "bachelors"} degree
+    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who have have a [doctorate](degree_level) degree
+    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who have have a [doctors]{"entity": "degree_level", "value": "doctorate"} degree
+    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who have have a [master](degree_level) degree
+    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who have have a [masters]{"entity": "degree_level", "value": "master"} degree
+    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} whose [highest]{"entity": "range", "value": "maximum"} degree is [unknown]{"entity": "degree_level", "value":"unknown"}
+    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} whose [highest]{"entity": "range", "value": "maximum"} degree is a [bachelor's]{"entity": "degree_level", "value": "bachelors"}
+    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} whose [highest]{"entity": "range", "value": "maximum"} degree is a [doctorate](degree_level)
+    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} whose [highest]{"entity": "range", "value": "maximum"} degree is a [doctors]{"entity": "degree_level", "value": "doctorate"}
+    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} whose [highest]{"entity": "range", "value": "maximum"} degree is a [master](degree_level)
+    - What is the total number of [part-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} whose [highest]{"entity": "range", "value": "maximum"} degree is a [masters]{"entity": "degree_level", "value": "master"}
+    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are in stand-alone [graduate]{"entity": "student_level", "value":"graduate"} programs in which faculty teach virtually only [graduate]{"entity": "student_level", "value":"graduate"} level [students]{"entity":"people", "value":"student"}
+    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [men]{"entity": "gender", "value": "male"}
+    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [minorities]{"entity": "race", "value": "minority"}
+    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [minority](race)
+    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [non resident]{"entity": "international_domestic", "value": "international"} [alien]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [non resident]{"entity": "international_domestic", "value": "international"} [aliens]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [non-resident]{"entity": "international_domestic", "value": "international"} [aliens]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [nonresident]{"entity": "international_domestic", "value": "international"} [aliens]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [nonresident]{"entity": "international_domestic", "value": "international"} [aliens]{"entity":"citizen_non_citizen", "value": "non-citizen"}
+    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who are [women]{"entity": "gender", "value": "female"}
+    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who have have a [bachelor's]{"entity": "degree_level", "value": "bachelors"} degree
+    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who have have a [doctorate](degree_level) degree
+    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who have have a [doctors]{"entity": "degree_level", "value": "doctorate"} degree
+    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who have have a [master](degree_level) degree
+    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} who have have a [masters]{"entity": "degree_level", "value": "master"} degree
+    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} whose [highest]{"entity": "range", "value": "maximum"} degree is [unknown]{"entity": "degree_level", "value":"unknown"}
+    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} whose [highest]{"entity": "range", "value": "maximum"} degree is a [bachelor's]{"entity": "degree_level", "value": "bachelors"}
+    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} whose [highest]{"entity": "range", "value": "maximum"} degree is a [doctorate](degree_level)
+    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} whose [highest]{"entity": "range", "value": "maximum"} degree is a [doctors]{"entity": "degree_level", "value": "doctorate"}
+    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} whose [highest]{"entity": "range", "value": "maximum"} degree is a [master](degree_level)
+    - What is the total number of [part-time](enrollment_status) [professor]{"entity": "people", "value": "faculty"} whose [highest]{"entity": "range", "value": "maximum"} degree is a [masters]{"entity": "degree_level", "value": "master"}
+
+
+- synonym: section
+  examples: |
+    - sections
+    - section
+
+- synonym: subsection
+  examples: |
+    - sub sections
+    - subsections
+    - sub section
+    - sub-section
+    - subsection
+
+- synonym: size
+  examples: |
+    - small
+    - large
+    - big
+    - size
+
+- synonym: doctorate
+  examples: |
+    - doctors
+    - doctor's
+    - doctorate
+
+- synonym: master
+  examples: |
+    - masters
+    - master
+
+- synonym: minority
+  examples: |
+    - minorities
+    - minority
+
+
+- synonym: faculty
+  examples: |
+    - faculty
+    - prof
+    - professor

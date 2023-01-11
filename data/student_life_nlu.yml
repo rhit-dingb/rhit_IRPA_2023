@@ -30,14 +30,15 @@ nlu:
     - What [type](type) of [college]{"entity": "education_level", "value": "college"} [operated]{"entity":"college_relation", "value": "operated"} [housing]{"entity":"housing", "value": "housing"} is available at Rose-Hulman?
     - What [type](type) of [college]{"entity": "education_level", "value": "college"} [owned]{"entity":"college_relation", "value": "owned"} [housing]{"entity":"housing", "value": "housing"} is available at Rose-Hulman?
    
-    - [Average]{"entity":"aggregation", "value": "mean"} [age]{"entity":"age", "value": "age"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students
-    - [Average]{"entity":"aggregation", "value": "mean"} [age]{"entity":"age", "value": "age"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [undergraduate](student_level) students
-    - [Average]{"entity":"aggregation", "value": "mean"} [age]{"entity":"age", "value": "age"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students
-    - [Average]{"entity":"aggregation", "value": "mean"} [age]{"entity":"age", "value": "age"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} [undergraduate](student_level) students
+    - [Average]{"entity":"aggregation", "value": "average"} [age]{"entity":"age", "value": "age"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students
+    - [Average]{"entity":"aggregation", "value": "average"} [age]{"entity":"age", "value": "age"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [undergraduate](student_level) students
+    - [Average]{"entity":"aggregation", "value": "average"} [age]{"entity":"age", "value": "age"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students
+    - [Average]{"entity":"aggregation", "value": "average"} [age]{"entity":"age", "value": "age"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} [undergraduate](student_level) students
     
     - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who are [age]{"entity":"age", "value": "age"} [25 and older]{"entity":"age", "value": "25 and older"}
     - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who are [age]{"entity":"age", "value": "age"} [25 older]{"entity":"age", "value": "25 and older"}
-    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who are [age]{"entity":"age", "value": "age"} [25 or older]{"entity":"age", "value": "25 and older"}
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who are [age]{"entity":"age", "value": "age"} [25 older]{"entity":"age", "value": "25 and older"}
+    - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who are [age]{"entity":"age", "value": "age"} 25 [years old]{"entity":"age", "value": "age"}
     - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who are [age]{"entity":"age", "value": "age"} [25 year old]{"entity":"age", "value": "25 and older"}
     - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who are [age]{"entity":"age", "value": "age"} [25]{"entity":"age", "value": "25 and older"}
     - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who are [age]{"entity":"age", "value": "age"} [twenty five and older]{"entity":"age", "value": "25 and older"}
@@ -96,7 +97,6 @@ nlu:
     - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [undergraduate](student_level) students who joined [sorority](category)
     - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [undergraduate](student_level) students who [commute](category) to school?
     - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [undergraduate](student_level) students who are [commuter]{"entity": "category", "value": "commute"}
-    
 
     - Is there any [special-study]{"entity":"sepcial-study", "value": "special study"} [program]{"entity":"program", "value": "program"} in your institute?
     - What [special-study]{"entity":"sepcial-study", "value": "special study"} [program]{"entity":"program", "value": "program"} does rose-hulman have?
@@ -107,7 +107,7 @@ nlu:
     - Which [areas]{"entity":"area", "value": "area"} are [required]{"entity": "condition","value": "require"} to complete before students [graduate]{"entity": "student_enrollment_result", "value": "graduation"}?
     - Which [subject]{"entity":"subject", "value": "subject"} are [required]{"entity": "condition", "value": "require"} to complete before students [graduate]{"entity": "student_enrollment_result", "value": "graduation"}?
     - Before students [graduate]{"entity": "student_enrollment_result", "value": "graduation"}, which [areas]{"entity":"area", "value": "area"} are students [required]{"entity": "condition", "value": "require"} to study?
-    -
+ 
     - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who are [age]{"entity":"age", "value": "age"} [25 and older]{"entity":"age", "value": "25 and older"}
     - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who are [age]{"entity":"age", "value": "age"} [25 older]{"entity":"age", "value": "25 and older"}
     - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who are [age]{"entity":"age", "value": "age"} [25 or older]{"entity":"age", "value": "25 and older"}
@@ -148,11 +148,12 @@ nlu:
     - programs
 
 
-- synonym: area
+- synonym: subject
   examples: |
     - subject
     - subjects
     - areas
+    - area
     - discipline
 
 
@@ -188,6 +189,7 @@ nlu:
     - reserve officer training corp
     - reserve officer training corps
     - reserve officers training corp
+    - ROTC
 
 - synonym: extracurricular activities
   examples: |

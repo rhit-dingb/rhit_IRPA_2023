@@ -2,12 +2,51 @@ version: "3.1"
 
 nlu:
 
-- lookup: essay
+# - lookup: essay
+#   examples: |
+#     - essay
+#     - personal statement
+#     - essay/personal statement
+#     - essay or personal statement
+
+
+
+- lookup: range
   examples: |
-    - essay
-    - personal statement
-    - essay/personal statement
-    - essay or personal statement
+    - more than
+    - or more
+    - more
+    - greater than 
+    - higher than
+    - at least
+
+    - less than 
+    - within
+    - no more 
+    - less
+    - between
+    
+
+- synonym: between
+  examples: |
+    - to
+
+
+- synonym: within
+  examples: |
+    - less than
+    - less
+    - in
+    - no more than
+    - no more
+    - inside
+
+- synonym: more than
+  examples: |
+    - greater than 
+    - higher than 
+
+
 
 - synonym: essay
   examples: |
@@ -43,6 +82,7 @@ nlu:
     - requiring
     - requirement
     - must
+    - need
 
 
 - lookup: aggregation
@@ -50,15 +90,7 @@ nlu:
     - percent
     - percentage
     - average
-    - mean
-    - minimum 
-    - lowest
-    - min
-    - least
-    - most
-    - maximum
-    - highest
-    - max
+    
     
 
 - synonym: percent
@@ -66,10 +98,11 @@ nlu:
     - percent
     - percentage
 
-- synonym: mean
+- synonym: average
   examples: |
-    - average
-    - mean
+    - averages
+
+
 
 - synonym: minimum
   examples: |
@@ -85,12 +118,12 @@ nlu:
     - max
 
   
-- lookup: date
-  examples: |
-    - when
-    - time
-    - date
-    - deadline
+# - lookup: date
+#   examples: |
+#     - when
+#     - time
+#     - date
+#     - deadline
     
 - synonym: date
   examples: |
@@ -119,14 +152,14 @@ nlu:
     - high-school
     - high school
 
-- synonym: college
-  examples: |
-    - college
-    - university
-    - universities
-    - colleges
-    - institution
-    - institutions
+# - synonym: college
+#   examples: |
+#     - college
+#     - university
+#     - universities
+#     - colleges
+#     - institution
+#     - institutions
 
 
 - lookup: money
@@ -140,3 +173,99 @@ nlu:
     - fee
     - money
     - dollar
+
+
+
+- lookup: action
+  examples: |
+    - admitting
+    - admitted
+    - admit
+    - accepted
+    - accepting
+    - accept
+
+    - enrolled
+    - enroll
+    - enrolling
+
+    - applied
+    - applying
+    - apply
+
+    - awarded
+    - award
+    - awarding
+    - given
+    - give
+    - gave
+
+    - meet 
+    - met
+    - meeting
+    - satifisfied
+    - satisfy 
+
+    - borrowed
+    - borrow 
+    - borrowing
+
+- synonym: borrowed
+  examples: |
+    - borrow
+    - borrowing
+    - owed
+    - owe
+
+- synonym: accepted
+  examples: |
+    - admitting
+    - admitted
+    - admit
+    - accepted
+    - accepting
+    
+
+- synonym: enrolled
+  examples: |
+    - enrolled
+    - enroll
+    - enrolling
+
+- synonym: applied
+  examples: |
+    - applied
+    - applying
+    - apply
+  
+- synonym: awarded
+  examples: |
+    - award
+    - awarding
+    - given
+    - give
+    - gave
+
+- synonym: met
+  examples: |
+    - meet
+    - meeting
+    - satifisfied
+    - satisfy
+
+- lookup: people
+  examples: |
+    - parent
+    - student
+
+- synonym: parent
+  examples: | 
+    - parents
+
+
+- synonym: student
+  examples: | 
+    - students
+
+
+

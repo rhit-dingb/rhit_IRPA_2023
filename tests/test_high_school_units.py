@@ -11,7 +11,7 @@ from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
 from DataManager.ExcelDataManager import ExcelDataManager
 from OutputController import output
 from tests.testUtils import checkAnswersMatch, createEntityObjHelper, createFakeTracker, identityFunc
-from actions.actions import ActionQueryHighSchoolUnits, knowledgeBase as knowledgeBaseInAction
+from actions.actions import ActionQueryKnowledgebase, knowledgeBase as knowledgeBaseInAction
 from actions.actions import ActionQueryCohort
 
 from rasa_sdk import Action, Tracker
@@ -29,9 +29,9 @@ class test_high_school_units_test(unittest.TestCase):
         # These should be intents
         self.topicToParse = ["enrollment", "cohort", "high_school_units"]
         self.knowledgeBase = SparseMatrixKnowledgeBase(
-            ExcelDataManager("./tests/testMaterials", self.topicToParse))
+            ExcelDataManager("./tests/testMaterials/cdsTestData/", self.topicToParse))
      
-
+        knowledgeBaseInAction.setYear(2020)
         self.dispatcher = CollectingDispatcher()
         #Make sure the knowledgebase class instance in Actions is using the data manager with test materials loaded.
         knowledgeBaseInAction.dataManager = self.knowledgeBase.dataManager
@@ -50,13 +50,13 @@ class test_high_school_units_test(unittest.TestCase):
                 createEntityObjHelper("2021", "year", "to")
             ]
          
-        actionHighSchool = ActionQueryHighSchoolUnits()
+        actionHighSchool = ActionQueryKnowledgebase()
       
         tracker = Tracker.from_dict(createFakeTracker(self.intent, entities))
         actionHighSchool.run(dispatcher=self.dispatcher, tracker=tracker, domain=None )
 
         expectedAnswers = [LAB_SCIENCE_UNIT_REQUIRED]
-        checkAnswersMatch(self.assertEqual, self.dispatcher, expectedAnswers) 
+        checkAnswersMatch(self, self.dispatcher, expectedAnswers) 
        
     def test_when_ask_visual_performing_art_recommended_should_return_correct_value(self):
         entities =  [
@@ -67,13 +67,13 @@ class test_high_school_units_test(unittest.TestCase):
                 createEntityObjHelper("2021", "year", "to")
             ]
 
-        actionHighSchool = ActionQueryHighSchoolUnits()
+        actionHighSchool = ActionQueryKnowledgebase()
         
         tracker = Tracker.from_dict(createFakeTracker(self.intent, entities))
         actionHighSchool.run(dispatcher=self.dispatcher, tracker=tracker, domain=None )
 
         expectedAnswers = [VISUAL_PERFORMING_ART_UNIT_RECOMMENDED]
-        checkAnswersMatch(self.assertEqual, self.dispatcher, expectedAnswers) 
+        checkAnswersMatch(self, self.dispatcher, expectedAnswers) 
         
     
     
@@ -85,13 +85,13 @@ class test_high_school_units_test(unittest.TestCase):
                 createEntityObjHelper("2021", "year", "to")
             ]
 
-        actionHighSchool = ActionQueryHighSchoolUnits()
+        actionHighSchool = ActionQueryKnowledgebase()
         
         tracker = Tracker.from_dict(createFakeTracker(self.intent, entities))
         actionHighSchool.run(dispatcher=self.dispatcher, tracker=tracker, domain=None )
        
         expectedAnswers = [TOTAL_REQUIRED_UNITS]
-        checkAnswersMatch(self.assertEqual, self.dispatcher, expectedAnswers) 
+        checkAnswersMatch(self, self.dispatcher, expectedAnswers) 
         
     def test_when_ask_total_units_recommended_should_return_correct_value(self):
         entities =  [
@@ -101,13 +101,13 @@ class test_high_school_units_test(unittest.TestCase):
                 createEntityObjHelper("2021", "year", "to")
             ]
 
-        actionHighSchool = ActionQueryHighSchoolUnits()
+        actionHighSchool = ActionQueryKnowledgebase()
         dispatcher = CollectingDispatcher()
         tracker = Tracker.from_dict(createFakeTracker(self.intent, entities))
         actionHighSchool.run(dispatcher=self.dispatcher, tracker=tracker, domain=None )
         
         expectedAnswers = [TOTAL_RECOMMENDED_UNITS]
-        checkAnswersMatch(self.assertEqual, self.dispatcher, expectedAnswers) 
+        checkAnswersMatch(self, self.dispatcher, expectedAnswers) 
     
 
 

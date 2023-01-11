@@ -1,39 +1,23 @@
 
+from abc import ABC, abstractmethod
+from typing import List
 
-from typing import List, Dict
 from Parser.QuestionAnswer import QuestionAnswer
-import pandas as pd
+class CDSDataLoader(ABC):
+    def __init__(self):
+        self.sectionFullNameToQuestionAnswers = dict()
 
-class CDSDataLoader():
-    def __init__(self, path, ):
-        self.data = dict()
-        self.path = path
-        self.excelConnector = pd.ExcelFile(path)
-    
+    @abstractmethod
     def loadData(self): 
-       for sheetName in self.excelConnector.sheet_names:
-            #questionAnswersDataFrame = self.excelConnector.parse(sheetName)
-            questionAnswersDataFrame = pd.read_excel(self.path, sheet_name=sheetName, dtype={'Answer': object} )
-            questionAnswersDataFrame  =  questionAnswersDataFrame.astype(str)
-           
-            # questionAnswersDataFrame["Answer"] = questionAnswersDataFrame["Answer"].astype("string")
-            questionsAnswers = []
-            for i in range(questionAnswersDataFrame.shape[0]):
-                questionAnswerRow = questionAnswersDataFrame.loc[i]
-                questionAnswerObj = QuestionAnswer(questionAnswerRow["Question"], questionAnswerRow["Answer"], [])
-                questionsAnswers.append(questionAnswerObj)
+        pass
 
-            lowerSheetName = sheetName.lower()
-            self.data[lowerSheetName] = questionsAnswers
-        
-    
     #Get all section that "we need to parse into sparse matrix, including sub sections 
-    def getAllSections(self) -> List[str] :
-        return self.data.keys()
+    def getAllSectionDataFullName(self) -> List[str] :
+        return self.sectionFullNameToQuestionAnswers.keys()
     
     
     def getQuestionsAnswerForSection(self, sectionName) -> QuestionAnswer :
-       if sectionName in self.data.keys():
-           return self.data[sectionName]
+       if sectionName in self.sectionFullNameToQuestionAnswers.keys():
+           return self.sectionFullNameToQuestionAnswers[sectionName]
        else:
            return []

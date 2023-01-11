@@ -4,6 +4,31 @@ Consist all the helpers to process entity obj extracted by rasa.
 """
 
 
+def findCharIndexForWord(word, question):
+    for i in range(len(question)):
+        found = True
+        currIndex = i
+        for j in range(len(word)):
+            if currIndex >= len(question): 
+                return (None, None)
+            if question[currIndex] == word[j]:
+                currIndex = currIndex +1
+            else:
+                found = False
+                break
+        if found:
+            return (i, currIndex-1)
+    return (None, None)
+
+
+def getEntityValueHelper(entities):
+    entityValues = []
+    for entity in entities:
+        entityValues.append(entity["value"])
+    
+    return entityValues
+
+
 def findEntityHelper(entities, key, by="entity"):
     entitiesFound = findMultipleSameEntitiesHelper(entities, key, by)
     if len(entitiesFound) == 0:
@@ -28,6 +53,17 @@ def filterEntities(entities, toFilter):
         if not entityObj["entity"] in toFilter:
             res.append(entityObj)
     return res
+
+def removeDuplicatedEntities(entities):
+    uniqueEntityValuesFound = []
+    uniqueEntities = []
+    for entity in entities:
+        entityValue = entity["value"]
+        if not entityValue in uniqueEntityValuesFound:
+            uniqueEntityValuesFound.append(entityValue)
+            uniqueEntities.append(entity)
+    return uniqueEntities
+    
 
 
 def changeEntityValue(entities, targetLabel, newValue):

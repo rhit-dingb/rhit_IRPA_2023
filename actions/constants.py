@@ -1,9 +1,6 @@
 # COHORT_GRADUATION_TIME_ENTITY_FORMAT = "{lowerBound}-{upperBound}-years"
 # COHORT_GRADUATION_TIME_START_FORMAT= "within-{upperBound}-years"
 
-YEARS_FOR_COLLEGE_ENTITY_FORMAT = "{year} year"
-
-
 ANY_AID_COLUMN_NAME = "any-aid"
 
 STAFFORD_LOAN_COLUMN_NAME = "stafford-loan"
@@ -18,6 +15,8 @@ RANGE_BETWEEN_VALUE = "between"
 
 #Constants to capture the percentage value supported by aggregation entity
 AGGREGATION_ENTITY_PERCENTAGE_VALUE = "percent"
+
+AGGREGATION_ENTITY_AVERAGE_VALUE = "average"
 
 #Constant to capture graduation value supported by student_enrollment_result entity
 STUDENT_ENROLLMENT_RESULT_ENTITY_GRADUATION_VALUE= "graduation"

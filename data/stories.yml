@@ -29,68 +29,74 @@ stories:
   - action: utter_goodbye
 
 
+#A more general story using multiple intent
+- story: ask_about_cds_helpful
+  steps:
+    - or:
+      - intent: general_info
+      - intent: sat_act_policies
+      - intent: faculty_and_class_size
+      - intent: annual_expense
+    - action: action_query_knowledgebase
+    - action: utter_ask_answer_helpful
+    - intent: affirm
+    - checkpoint: ask_feedback
 
-#A test story to lay out my logic of user asking about enrollment info:
-# Note: entities condition will only detect if that entity has been extracted, not its actual value. For slots it will depend on the slot type
-
-#maybe instead of considering every branch, we can define some sort of algorithm in the custom action
-# - story: ask about enrollment in general, and ask about total undergraduate
-#   steps:
-#   - intent: ask_enrollment
-#   # - action: set_entities
-#   # - slot_was_set:
-#   #   - enrollment_status: null
-#   #   - student_level: null
-#   #   - undergraduate_grade_level: null
-#   - slot_was_set: 
-#       - enrollment_status: null
-#       - student_level: null
-#       - undergraduate_grade_level: null
-#       - degree-goal: null 
-#       - is_first_time: null
-#       - gender: null
-#   - action: action_get_available_options
-#   - intent: inform
-#   - slot_was_set: 
-#     - student_level: undergraduate 
-#     - enrollment_status: null
-#     - undergraduate_grade_level: null
-#     - degree-goal: null 
-#     - is_first_time: null
-#     - gender: null
-#   - action: action_query_enrollment
+- story: ask_about_cds_not_helpful
+  steps:
+    - or:
+      - intent: general_info
+      - intent: sat_act_policies
+      - intent: faculty_and_class_size
+      - intent: annual_expense
+    - action: action_query_knowledgebase
+    - action: utter_ask_answer_helpful
+    - intent: deny
+    - action: utter_sorry_question_not_helpful
+    - action: action_get_available_options
 
 
 
-# - story: ask about full-time undergraduate men enrollment
-#   steps:
-#   - intent: ask_enrollment
-#   # - action: set_entities
-#   # - slot_was_set:
-#   #   - enrollment_status: null
-#   #   - student_level: null
-#   #   - undergraduate_grade_level: null
-#   - slot_was_set: 
-#       - enrollment_status: full-time
-#       - student_level: undergraduate
-#       - undergraduate_grade_level: null
-#       - degree-goal: null 
-#       - is_first_time: null
-#       - gender: men
-#   - action: utter_test_total_full_time_undergraduate_men
+
+- story: ask_about_definition_helpful
+  steps:
+    - intent: definition
+    - action: action_query_knowledgebase
+    - action: utter_ask_answer_helpful
+    - intent: affirm
+    - checkpoint: ask_feedback
+
+- story: ask_about_definition_not_helpful
+  steps:
+    - intent: definition
+    - action: action_query_knowledgebase
+    - action: utter_ask_answer_helpful
+    - intent: deny
+    - action: utter_sorry_question_not_helpful
+    - action: action_get_available_options
 
 
-# - story: ask_about_cohort_graduation_rates
-#   steps: 
-#     - intent: cohort
-   
-#       entities:
-#       - or:
-#       #NOTE: the specific values of entities does not matter, this just checks if the entity itself is extracted
-#         - upper_bound_graduation_time: "more than four year"
-#         - lower_bound_graduation_time: "less than five years"
-#     - action: action_query_cohort
-#     - action: utter_ask_answer_helpful
+
+
+- story: ask_about_financial_aid_helpful
+  steps:
+    - intent: financial_aid
+    - action: action_query_knowledgebase
+    - action: utter_ask_answer_helpful
+    - intent: affirm
+    - checkpoint: ask_feedback
+
+- story: ask_about_financial_aid_not_helpful
+  steps:
+    - intent: financial_aid
+    - action: action_query_knowledgebase
+    - action: utter_ask_answer_helpful
+    - intent: deny
+    - action: utter_sorry_question_not_helpful
+    - action: action_get_available_options
+
+
+
 
 - story: ask_about_student_life_helpful
   steps:
@@ -114,7 +120,7 @@ stories:
 - story: ask_about_transfer_admission_helpful
   steps:
     - intent: transfer_admission
-    - action: action_query_transfer_admission
+    - action: action_query_knowledgebase
     - action: utter_ask_answer_helpful
     - intent: affirm
     - checkpoint: ask_feedback
@@ -122,7 +128,7 @@ stories:
 - story: ask_about_transfer_admission_not_helpful
   steps:
     - intent: transfer_admission
-    - action: action_query_transfer_admission
+    - action: action_query_knowledgebase
     
     - action: utter_ask_answer_helpful
     - intent: deny
@@ -134,7 +140,7 @@ stories:
 - story: ask_about_freshman_profile_helpful
   steps:
     - intent: freshman_profile
-    - action: action_query_freshman_profile
+    - action: action_query_knowledgebase
     - action: utter_ask_answer_helpful
     - intent: affirm
     - checkpoint: ask_feedback
@@ -143,7 +149,7 @@ stories:
 - story: ask_about_freshman_profile_not_helpful
   steps:
     - intent: freshman_profile
-    - action: action_query_freshman_profile
+    - action: action_query_knowledgebase
     - action: utter_ask_answer_helpful
     - intent: deny
     - action: utter_sorry_question_not_helpful
@@ -153,7 +159,7 @@ stories:
 - story: ask_about_basis_for_selection_helpful
   steps:
     - intent: basis_for_selection
-    - action: action_query_basis_for_selection
+    - action: action_query_knowledgebase
     - action: utter_ask_answer_helpful
     - intent: affirm
     - checkpoint: ask_feedback
@@ -162,7 +168,7 @@ stories:
 - story: ask_about_basis_for_selection_not_helpful
   steps:
     - intent: basis_for_selection
-    - action: action_query_basis_for_selection
+    - action: action_query_knowledgebase
     - action: utter_ask_answer_helpful
     - intent: deny
     - action: utter_sorry_question_not_helpful
@@ -172,7 +178,7 @@ stories:
 - story: ask_about_high_school_units_helpful
   steps:
     - intent: high_school_units
-    - action: action_query_high_school_units
+    - action: action_query_knowledgebase
     - action: utter_ask_answer_helpful
     - intent: affirm
     - checkpoint: ask_feedback
@@ -180,7 +186,7 @@ stories:
 - story: ask_about_high_school_units_not_helpful
   steps:
     - intent: high_school_units
-    - action: action_query_high_school_units
+    - action: action_query_knowledgebase
     - action: utter_ask_answer_helpful
     - intent: deny
     - action: utter_sorry_question_not_helpful
@@ -208,7 +214,7 @@ stories:
 - story: ask_about_enrollment_and_answer_helpful
   steps: 
     - intent: enrollment 
-    - action: action_query_enrollment
+    - action: action_query_knowledgebase
     - action: utter_ask_answer_helpful
     - intent: affirm
     - checkpoint: ask_feedback
@@ -250,7 +256,7 @@ stories:
 - story: ask_about_enrollment_and_answer_not_helpful
   steps: 
     - intent: enrollment 
-    - action: action_query_enrollment
+    - action: action_query_knowledgebase
     - action: utter_ask_answer_helpful
     - intent: deny
     - action: utter_sorry_question_not_helpful

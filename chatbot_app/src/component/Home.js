@@ -42,9 +42,15 @@ function Home() {
             <a class="dropdown-item">
               <Link to="/admin_portal">Admin Login</Link>
             </a>
+
+            <a class="dropdown-item">
+              <Link to="/upload_data">Upload Data</Link>
+            </a>
+
             <a class="dropdown-item">
               <Link to="/report_issue">Report Issue</Link>
             </a>
+
           </div>
         </div>
         <h1 id="homepageTitle">IRPA ChatBot</h1>
