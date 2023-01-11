@@ -205,7 +205,7 @@ class SparseMatrix():
                 castedValue, type = self.determineResultType(newAnswer)
                 # Get question for now. May need to check for out of range
                 print(len(self.questions))
-                prints(self.questions)
+                print(self.questions)
                 newSearchResult : SearchResult = SearchResult(newAnswer, usedEntities, type, [])
                 if currentResultPointer == None: 
                     # searchResult : SearchResult = SearchResult(newAnswer, usedEntities, type, self.questions[i])

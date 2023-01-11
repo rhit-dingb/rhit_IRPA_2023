@@ -74,9 +74,9 @@ class MongoProcessor():
                     subsection = sparseMatrixData.get(DATABASE_SPARSE_MATRIX_SUBSECTION_KEY)
                     rows = sparseMatrixData.get(DATABASE_SPARSE_MATRIX_ROWS_KEY)
                     for row in rows:
-                        if QUESTION_COLUMN_KEY in row:
-                            questions.append(row[QUESTION_COLUMN_KEY])
-                            del row[QUESTION_COLUMN_KEY]
+                        # if QUESTION_COLUMN_KEY in row:
+                        questions.append(row[QUESTION_COLUMN_KEY])
+                        del row[QUESTION_COLUMN_KEY]
                     df = pd.DataFrame.from_dict(rows)
                     # print(df.head())
                     sparseMatrix = SparseMatrix(subsection, df, questions)

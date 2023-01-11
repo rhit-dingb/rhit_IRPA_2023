@@ -289,9 +289,11 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
 
             # On each iteration, we expect to only get one answer from search
             searchResult = searchResults[0]
-            # entitiesUsed.append(searchResult.entitiesUsed)
-
-            answerPointer = sparseMatrix.addSearchResult(answerPointer, searchResult, foundAnswers, isSumming)
+            if answerPointer == None:
+                answerPointer = searchResult
+            else:
+                answerPointer = sparseMatrix.addSearchResult(answerPointer, searchResult, foundAnswers, isSumming)
+                
         # Construct the range entity:   
         rangeToCreateEntityFor = rangesToSumOver
         if isSumming:

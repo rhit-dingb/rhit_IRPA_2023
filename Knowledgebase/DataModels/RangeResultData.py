@@ -14,15 +14,16 @@ class RangeResultData():
       self.entitiesUsedForAnswer : List[List[Dict[str, str]]] = []
 
 
-    def addResult(self,answer, entitiesUsed):
+    def addResult(self,answer : SearchResult, entitiesUsed):
         self.answers.append(answer)
+        answer.entitiesUsed = entitiesUsed
         self.entitiesUsedForAnswer.append(entitiesUsed)
 
 
     def createFinalResultAndEntities(self,rangeToCreateEntityFor, searchResults : List[SearchResult] ):
         intention = None
-        print("RANGE TO CREATE ENTTIY FOR")
-        print(rangeToCreateEntityFor)
+        # print("RANGE TO CREATE ENTTIY FOR")
+        # print(rangeToCreateEntityFor)
         for range, searchResult in zip(rangeToCreateEntityFor, searchResults):
             if range[0] == float('-inf'):
                 intention = "upperBound"
@@ -33,7 +34,7 @@ class RangeResultData():
 
             entityValues =  getEntityValueHelper(searchResult.entitiesUsed)
             finalEntities = self.constructRangeEntityHelper(intention, entityValues)
-            self.addResult(searchResult.answer, finalEntities)
+            self.addResult(searchResult, finalEntities)
 
         # if isSumming:
         #     numbersUsed = []
