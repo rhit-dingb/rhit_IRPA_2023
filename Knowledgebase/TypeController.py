@@ -16,10 +16,15 @@ class TypeController():
                 if searchResult.replace(".", "", 1).isdigit():
                     return (float(searchResult), SearchResultType.FLOAT)
                 #Otherwise the value is string if it is not integer or float.
-                elif "%" == searchResult[-1]:
+                elif "%" in searchResult:
+                    value = ""
+                    for i in range(len(searchResult)):
+                        if searchResult[i] == "%":
+                            break
+                        value = value + searchResult[i]
                     # print("CASTED SEARCH RESULT")
                     # print(searchResult)
-                    val = self.tryCastToFloat(searchResult[1:])
+                    val = self.tryCastToFloat(value)
                     if val is None:
                         return (searchResult, SearchResultType.STRING)
                     return (val, SearchResultType.PERCENTAGE)

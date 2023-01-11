@@ -59,7 +59,7 @@ class ParserFacade():
 
             responses = await asyncio.gather(*tasks)
             # print(responses)
-            print(len(responses))
+          
             
             index = 0
             for sectionFullName in sectionFullNames:
@@ -67,15 +67,18 @@ class ParserFacade():
                 sectionAndSubSection = sectionFullName.split("_")
                 section = sectionAndSubSection[0]
                 subSection = sectionAndSubSection[len(sectionAndSubSection)-1]
-                numberEntities = self.numberEntityExtractor.extractEntities(questionAnswer.getQuestion())
+                
                 for questionAnswer in questionAnswers:
                     if questionAnswer.isMetaData: 
                         continue
-                    
+                    numberEntities = self.numberEntityExtractor.extractEntities(questionAnswer.getQuestion())
                     response = responses[index]
                     entities = response["entities"] + numberEntities
+                    # if(section == "freshman profile"):
+                    #     print(questionAnswer.question)
+                    #     print(numberEntities)
                     # Filter out range entities
-                    entities = filterEntities(entities, [RANGE_ENTITY_LABEL])
+                    # entities = filterEntities(entities, [RANGE_ENTITY_LABEL])
                     highConfidenceEntities = []
                     #Filter out entities with low confidence
                     for entity in entities:
@@ -103,9 +106,7 @@ class ParserFacade():
         
         
     def writeSparseMatrix(self,sectionToSparseMatrices):
-        for section in sectionToSparseMatrices:
-            sparseMatrices = sectionToSparseMatrices[section]
-            self.dataWriter.writeSparseMatrices(sparseMatrices, section)
+        self.dataWriter.writeSparseMatrices(sectionToSparseMatrices)
 
         
 

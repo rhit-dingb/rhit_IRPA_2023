@@ -1,4 +1,4 @@
-from typing import List
+from typing import Dict, List
 from Data_Ingestion.SparseMatrix import SparseMatrix
 from abc import ABC, abstractmethod
 
@@ -7,5 +7,5 @@ class SparseMatrixDataWriter(ABC):
         pass
 
     @abstractmethod
-    def writeSparseMatrices(self, sparseMatrices : List[SparseMatrix], sectionName : str) -> None:
+    def writeSparseMatrices(self, sectionToSparseMatrices : Dict[str, List[SparseMatrix]]) -> None:
         pass

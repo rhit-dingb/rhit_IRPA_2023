@@ -10,7 +10,7 @@ NO_AID_COLUMN_NAME = "no-aid"
 
 #Constants to capture entity values for the range entity. 
 RANGE_UPPER_BOUND_VALUE = "within"
-RANGE_LOWER_BOUND_VALUE= "more than"
+RANGE_LOWER_BOUND_VALUE = "more than"
 RANGE_BETWEEN_VALUE = "between"
 
 #Constants to capture the percentage value supported by aggregation entity

@@ -1,5 +1,5 @@
 from Parser.SparseMatrixDataWriter import SparseMatrixDataWriter
-from typing import List
+from typing import Dict, List
 from Data_Ingestion.SparseMatrix import SparseMatrix
 
 
@@ -23,8 +23,10 @@ class ExcelSparseMatrixDataWriter(SparseMatrixDataWriter):
         # writer.save()
         writer.close()
 
-    def writeSparseMatrices(self, sparseMatrices : List[SparseMatrix], sectionName : str) -> None:
-       for sparseMatrix in sparseMatrices:
-            self.writeSparseMatrix(sparseMatrix, sectionName)
+    def writeSparseMatrices(self,  sectionToSparseMatrices : Dict[str, List[SparseMatrix]]) -> None:
+        for section in sectionToSparseMatrices:
+            sparseMatrices = sectionToSparseMatrices[section]
+            for sparseMatrix in sparseMatrices:
+                self.writeSparseMatrix(sparseMatrix, section)
 
     

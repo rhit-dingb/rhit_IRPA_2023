@@ -12,6 +12,8 @@ from actions.entititesHelper import createEntityObj
 import Data_Ingestion.constants as constants
 import pandas as pd
 
+from actions.constants import RANGE_LOWER_BOUND_VALUE
+
 class SparseMatrix():
     def __init__(self, subSectionName, sparseMatrixDf, questions=[]):
         self.subSectionName = subSectionName
@@ -94,9 +96,20 @@ class SparseMatrix():
                 discreteRange.append(castedValue)
         discreteRange.sort()
         if len(discreteRange) == 1:
-            discreteRange.insert(0,  None)
+            if self.isColumnMarkedForRow(row, RANGE_LOWER_BOUND_VALUE):
+                discreteRange.append(float('inf'))
+            else:
+                discreteRange.insert(0,  float('-inf'))
 
         return discreteRange
+
+    def isColumnMarkedForRow(self,row, columnLabel):
+        if not columnLabel in row.index:
+            return False
+        elif row[columnLabel] == 0:
+                return False
+        
+        return True
 
     
     def isAnyOperationAllowed(self):
@@ -131,7 +144,7 @@ class SparseMatrix():
         else:
             return answers[0]
 
-    def shouldSearchInSelfForPercentage(self) -> bool:
+    def searchInSelfForPercentage(self) -> bool:
         answers = self.findValueForMetadata(constants.PERCENTAGE_SEARCH_IN_SELF_COLUMN_VALUE)
         return self.checkResultHelper(answers)
     
@@ -162,6 +175,8 @@ class SparseMatrix():
         operationAllowedEntity = createEntityObj(metadataLabel, entityLabel="none",  entityRole=None)
         searchResult, entitiesUsed = self.searchOnSparseMatrix([operationAllowedEntity], booleanSearchStrategy, False)
         return searchResult
+
+    
 
     def searchOnSparseMatrix(self, entities, shouldAddRowStrategy, isSumAllowed):
         searchResults = []
