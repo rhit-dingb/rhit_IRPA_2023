@@ -76,7 +76,7 @@ class ActionSetYear(Action):
     def run(self, dispatcher, tracker, domain):
         pass
         #knowledgeBase.setYear()
-    
+
 
 class ActionQueryCohort(Action):
     def __init__(self) -> None:
@@ -121,6 +121,12 @@ class ActionQueryCohort(Action):
             print(e)
 
         self.preprocessCohortEntities(entitiesExtracted)
+
+        print("PROCESSED ENTITIES")
+        for e in entitiesExtracted:
+            # print(e["entity"])
+            print(e)
+       
         #If the user only ask for pell grant or subsized loan of cohort, we should only get the value from the first row, which is the initial cohort
         askPellGrant = findEntityHelper(entitiesExtracted, RECIPIENT_OF_PELL_GRANT_ENTITY_LABEL )
         askStaffordLoan = findEntityHelper(entitiesExtracted, RECIPIENT_OF_STAFFORD_LOAN_NO_PELL_GRANT_ENTITY_LABEL)
