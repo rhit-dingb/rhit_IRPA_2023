@@ -123,7 +123,6 @@ function Admin() {
           <Question class="dropdown-menu" questionContent={"Dummy question 1"} />
           <Question class="dropdown-menu" questionContent={"Dummy question 2"} /> */}
           {questions.map((question) => (<Question class="dropdown-menu" questionContent={question} />))}
-          {this.render()}
         </div>
       </div>
       </div>
