@@ -51,7 +51,7 @@ class NumberEntityExtractor():
                         entities.append(entity)
                         
             elif wordType == SearchResultType.NUMBER or wordType == SearchResultType.FLOAT:
-                print(castedWord)
+                # print(castedWord)
                 entity = self.createEntity(word,word, text)
                 entities.append(entity)
 

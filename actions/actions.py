@@ -18,21 +18,15 @@ from OutputController import output
 from actions.constants import AGGREGATION_ENTITY_PERCENTAGE_VALUE, ANY_AID_COLUMN_NAME, NO_AID_COLUMN_NAME, PELL_GRANT_COLUMN_NAME, RANGE_BETWEEN_VALUE, RANGE_UPPER_BOUND_VALUE, STAFFORD_LOAN_COLUMN_NAME, STUDENT_ENROLLMENT_RESULT_ENTITY_GRADUATION_VALUE
 from actions.entititesHelper import changeEntityValue, changeEntityValueByRole, copyEntities, createEntityObj, filterEntities, findEntityHelper, findMultipleSameEntitiesHelper
 from typing import Text
-
+from DataManager.MongoDataManager import MongoDataManager
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 
-knowledgeBase = SparseMatrixKnowledgeBase(ExcelDataManager("./CDSData", [ENROLLMENT_INTENT, COHORT_INTENT, ADMISSION_INTENT, HIGH_SCHOOL_UNITS_INTENT, BASIS_FOR_SELECTION_INTENT, FRESHMAN_PROFILE_INTENT, TRANSFER_ADMISSION_INTENT
-, STUDENT_LIFE_INTENT]))
 
-# This is a dictionary storing for an intent, what entities must be detected in the user's question in order for a answer to be returned
-# For example in the freshman profile, percentage is a column in the sparse matrix and an entity. If the user provide some bad input like:
-# "what is the percentage?", it would add up all the percentage row and return an answer that makes no sense.
-requiredEntitiesMap = {
-    FRESHMAN_PROFILE_INTENT: [
-        "act", 'sat'
-    ]
-}
+# ExcelDataManager("./CDSData", [ENROLLMENT_INTENT, COHORT_INTENT, ADMISSION_INTENT, HIGH_SCHOOL_UNITS_INTENT, BASIS_FOR_SELECTION_INTENT, FRESHMAN_PROFILE_INTENT, TRANSFER_ADMISSION_INTENT, STUDENT_LIFE_INTENT])
+mongoDataManager = MongoDataManager()
+knowledgeBase = SparseMatrixKnowledgeBase(mongoDataManager)
+
 
 
 defaultShouldAddRowStrategy = DefaultShouldAddRowStrategy()
@@ -63,6 +57,8 @@ class ActionQueryKnowledgebase(Action):
 
     def run(self, dispatcher, tracker, domain):
         entitiesExtracted = tracker.latest_message["entities"]
+        numberEntities = numberEntityExtractor.extractEntities(tracker.latest_message["text"])
+        entitiesExtracted = entitiesExtracted + numberEntities
         intent = tracker.latest_message["intent"]["name"]
         print(intent)
         print(entitiesExtracted)
@@ -152,28 +148,18 @@ class ActionQueryCohort(Action):
 
         return []
 
-    def calculateGraduationRate(self,intent, entitiesForNumerator,  filteredEntities , graduatingNumbers, shouldAddRowStrategy):
-        entitiesToCalculateDenominator = [createEntityObj(FINAL_COHORT_ENTITY_LABEL, entityLabel=FINAL_COHORT_ENTITY_LABEL)]
-        entitiesToCalculateDenominator = entitiesToCalculateDenominator + filteredEntities
-        print("ENTITIES TO CALCULATE DENOMINATOR")
-        print(entitiesToCalculateDenominator)
-        answer, intent, entities = knowledgeBase.aggregatePercentage(intent, graduatingNumbers, entitiesForNumerator,  entitiesToCalculateDenominator,  shouldAddRowStrategy)
-        return knowledgeBase.constructOutput(answer, intent, entities)
+    # def calculateGraduationRate(self,intent, entitiesForNumerator,  filteredEntities , graduatingNumbers, shouldAddRowStrategy):
+    #     entitiesToCalculateDenominator = [createEntityObj(FINAL_COHORT_ENTITY_LABEL, entityLabel=FINAL_COHORT_ENTITY_LABEL)]
+    #     entitiesToCalculateDenominator = entitiesToCalculateDenominator + filteredEntities
+    #     print("ENTITIES TO CALCULATE DENOMINATOR")
+    #     print(entitiesToCalculateDenominator)
+    #     answer, intent, entities = knowledgeBase.aggregatePercentage(intent, graduatingNumbers, entitiesForNumerator,  entitiesToCalculateDenominator,  shouldAddRowStrategy)
+    #     return knowledgeBase.constructOutput(answer, intent, entities)
 
 
 def utterAllAnswers(answers, dispatcher):
     for answer in answers:
         dispatcher.utter_message(answer)
-
-def checkIfRequiredEntityIsPresent(intent, entities):
-    if not intent in requiredEntitiesMap:
-        return True
-    else:
-        requiredEntities = requiredEntitiesMap[intent]
-        for entity in entities:
-            if entity["value"] in requiredEntities:
-                return True 
-    return False
 
 def utterAppropriateAnswerWhenExceptionHappen(exceptionReceived, dispatcher):
     print(exceptionReceived)

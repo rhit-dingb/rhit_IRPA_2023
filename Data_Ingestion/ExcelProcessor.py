@@ -75,5 +75,6 @@ class ExcelProcessor():
                 df = dataSourceConnector.parse(name)
                 sparseMatrix = SparseMatrix(subsectionName, df)
                 topicData.addSparseMatrix(subsectionName, sparseMatrix)
+                
         return topicData  
                 

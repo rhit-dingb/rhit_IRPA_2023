@@ -125,19 +125,18 @@ class TemplateConverter():
         return -1
 
 
-    def constructOutput(self,answers, entitiesUsed, template):
+    def constructOutput(self,answers, entitiesUsedForEachAnswer, template):
         fullSentenceAnswers = []
         expressions = self.parseTemplate(template)
-        #Because EntityExpression remove an entity from the list when it uses that entity's value, I make a copy to keep the original in case we use it.
-        entitiesCopy = entitiesUsed.copy()
-        for answer in answers:
+        
+        for answer, entitiesUsed in zip(answers, entitiesUsedForEachAnswer):
+           #Because EntityExpression remove an entity from the list when it uses that entity's value, I make a copy to keep the original in case we use it.
+           entitiesCopy = entitiesUsed.copy()
            sentenceTokens =  self.evaluateExpressions(expressions, entitiesCopy, answer)
            #Filter out empty string
            sentenceTokens = list(filter(lambda x: not x=="", sentenceTokens))
            sentence = " ".join(sentenceTokens)
            fullSentenceAnswers.append(sentence)
-
-        
 
         return fullSentenceAnswers
             

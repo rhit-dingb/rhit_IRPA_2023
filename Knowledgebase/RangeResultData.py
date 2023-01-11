@@ -18,32 +18,56 @@ class RangeResultData():
         self.entitiesUsedForAnswer.append(entitiesUsed)
 
 
-    def createFinalResultAndEntities(self,intention, isSumming, answers, entitiesUsedInEachSearch :  List[List[Dict[str, str]]] ):
-        if isSumming:
-            numbersUsed = []
-            for entities in entitiesUsedInEachSearch:
-                entityValues =  getEntityValueHelper(entities)
-                numbersUsed = numbersUsed + entityValues
-            finalEntities = self.constructRangeEntityHelper(intention, numbersUsed)
-
-            self.addResult(answers[0], finalEntities)
-        else:
-            for answer, entities in zip(answers, entitiesUsedInEachSearch):
+    def createFinalResultAndEntities(self,rangeToCreateEntityFor, answers, entitiesUsedInEachSearch :  List[List[Dict[str, str]]] ):
+        intention = None
+        print("RANGE TO CREATE ENTTIY FOR")
+        print(rangeToCreateEntityFor)
+        for range, answer, entities in zip(rangeToCreateEntityFor, answers, entitiesUsedInEachSearch):
+            if range[0] == float('-inf'):
+                intention = "upperBound"
+            elif range[1] == float('inf'):
+                intention = "lowerBound"
+            else:
                 intention = "between"
-                if len(entities) == 1: 
-                    intention = "within"
-                entityValues =  getEntityValueHelper(entities)
-                finalEntities = self.constructRangeEntityHelper(intention, entityValues)
-                self.addResult(answer,entities+finalEntities)
+
+            entityValues =  getEntityValueHelper(entities)
+            finalEntities = self.constructRangeEntityHelper(intention, entityValues)
+            self.addResult(answer, finalEntities)
+
+        # if isSumming:
+        #     numbersUsed = []
+        #     for entities in entitiesUsedInEachSearch:
+        #         entityValues =  getEntityValueHelper(entities)
+        #         numbersUsed = numbersUsed + entityValues
+        #     finalEntities = self.constructRangeEntityHelper(intention, numbersUsed)
+        #     self.addResult(answers[0], finalEntities)
+        # else:
+        #     for answer, entities in zip(answers, entitiesUsedInEachSearch):
+        #         intention = "between"
+        #         if len(entities) == 1: 
+        #             intention = "upperBound"
+        #         entityValues =  getEntityValueHelper(entities)
+        #         finalEntities = self.constructRangeEntityHelper(intention, entityValues)
+        #         self.addResult(answer, finalEntities)
 
     def constructRangeEntityHelper(self, intention, numbersUsed):
         entities = []
         minEntity = createEntityObjHelper(min(numbersUsed), entityLabel=NUMBER_ENTITY_LABEL)
         maxEntity = createEntityObjHelper(max(numbersUsed), entityLabel=NUMBER_ENTITY_LABEL)
+        # print("INTENTION")
+        # print(intention)
+
+        # print(entities)
         if intention == "upperBound":
-            rangeEntityWithWithinValue =  createEntityObjHelper("within", entityLabel=RANGE_ENTITY_LABEL)
+            rangeEntityUpperBound =  createEntityObjHelper("within", entityLabel=RANGE_ENTITY_LABEL)
+            entities.append(rangeEntityUpperBound)
+            entities.append(maxEntity)
+        elif intention == "lowerBound":
+            rangeEntityLowerBound=  createEntityObjHelper("more than", entityLabel=RANGE_ENTITY_LABEL)
+            entities.append(rangeEntityLowerBound)
+            entities.append(minEntity)
         #If the intention is "between"
-        elif intention == "between" or intention == "lowerBound":
+        elif intention == "between":
             rangeEntityWithBetweenValue =  createEntityObjHelper("between", entityLabel=RANGE_ENTITY_LABEL)
             entities.append(rangeEntityWithBetweenValue)
             entities.append(minEntity)

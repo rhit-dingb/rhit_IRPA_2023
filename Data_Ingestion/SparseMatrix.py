@@ -2,6 +2,7 @@
 Internal data model representing a sparse matrix
 """
 
+import json
 from typing import List, Tuple
 from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
 from Knowledgebase.SearchResultType import SearchResultType
@@ -9,15 +10,33 @@ from Knowledgebase.SearchResultType import SearchResultType
 from Knowledgebase.TypeController import TypeController
 from actions.entititesHelper import createEntityObj
 import Data_Ingestion.constants as constants
+import pandas as pd
 
-
+from actions.constants import RANGE_LOWER_BOUND_VALUE
 
 class SparseMatrix():
-    def __init__(self, subSectionName, sparseMatrixDf):
+    def __init__(self, subSectionName, sparseMatrixDf, questions=[]):
         self.subSectionName = subSectionName
-        self.sparseMatrixDf = sparseMatrixDf
+        self.sparseMatrixDf : pd.DataFrame  = sparseMatrixDf
         self.typeController = TypeController()
-       
+        self.questions = []
+        if len(questions) == self.sparseMatrixDf.shape[0]:
+            self.questions = questions
+
+    def __iter__(self):
+        for i in range(self.sparseMatrixDf.shape[0]):
+            row = self.sparseMatrixDf.loc[i]
+            yield row
+
+    def rowsToJson(self):
+        jsonRows = []
+        for row, question in zip(self, self.questions):
+           
+            rowJson = row.to_json()
+            jsonDict = json.loads(rowJson)
+            jsonDict["question"] = question
+            jsonRows.append(jsonDict)
+        return jsonRows
 
     def getSparseMatrixDf(self):
         return self.sparseMatrixDf
@@ -77,9 +96,20 @@ class SparseMatrix():
                 discreteRange.append(castedValue)
         discreteRange.sort()
         if len(discreteRange) == 1:
-            discreteRange.insert(0,  None)
+            if self.isColumnMarkedForRow(row, RANGE_LOWER_BOUND_VALUE):
+                discreteRange.append(float('inf'))
+            else:
+                discreteRange.insert(0,  float('-inf'))
 
         return discreteRange
+
+    def isColumnMarkedForRow(self,row, columnLabel):
+        if not columnLabel in row.index:
+            return False
+        elif row[columnLabel] == 0:
+                return False
+        
+        return True
 
     
     def isAnyOperationAllowed(self):
@@ -105,7 +135,20 @@ class SparseMatrix():
 
         return self.isThisOperationAllowed(constants.PERCENTAGE_ALLOWED_COLUMN_VALUE)
 
+    def findDenominatorQuestion(self) -> str:
+        answers = self.findValueForMetadata(constants.DENOMINATOR_QUESTION_COLUMN_VALUE)
+        if len(answers) == 0:
+            return ""
+        if answers == "" or answers =="nan":
+            return ""
+        else:
+            return answers[0]
+
+    def searchInSelfForPercentage(self) -> bool:
+        answers = self.findValueForMetadata(constants.PERCENTAGE_SEARCH_IN_SELF_COLUMN_VALUE)
+        return self.checkResultHelper(answers)
     
+
     def findTemplate(self): 
         answers = self.findValueForMetadata(constants.TEMPLATE_LABEL)
         if len(answers) == 0:
@@ -133,6 +176,8 @@ class SparseMatrix():
         searchResult, entitiesUsed = self.searchOnSparseMatrix([operationAllowedEntity], booleanSearchStrategy, False)
         return searchResult
 
+    
+
     def searchOnSparseMatrix(self, entities, shouldAddRowStrategy, isSumAllowed):
         searchResults = []
         currentResultPointer = None
@@ -149,8 +194,8 @@ class SparseMatrix():
             usedEntities = shouldAddRowStrategy.determineShouldAddRow(row, entities, self)
             shouldUseRow = len(usedEntities)>0
             # print(usedEntities)
-           
             if shouldUseRow:
+               
                 newSearchResult = sparseMatrixToSearchDf.loc[i,'Value']
                 if currentResultPointer == None: 
                     currentResultPointer, type = self.determineResultType(newSearchResult)
@@ -183,7 +228,11 @@ class SparseMatrix():
             else:
                 searchResults.append(newSearchResult)
                 return newSearchResult
-
+        elif currentSearchResultType == newSearchResult:
+            #Might move this common logic to a seperate function
+            newCalculatedValue = str(castedCurrValue + castedNewValue)
+            searchResults[len(searchResults)-1] = newCalculatedValue
+            return newCalculatedValue
         else:
             searchResults.append(newSearchResult)
 

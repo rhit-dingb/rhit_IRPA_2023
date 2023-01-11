@@ -1,20 +1,27 @@
+import asyncio
 import os
 from CustomEntityExtractor.NumberEntityExtractor import NumberEntityExtractor
+from Parser.MongoDBSparseMatrixDataWriter import MongoDBSparseMatrixDataWriter
 from Parser.ParserFacade import ParserFacade
 from Parser.CDSDataLoader import CDSDataLoader
 from Parser.ExcelSparseMatrixDataWriter import ExcelSparseMatrixDataWriter
+from Parser.ExcelCDSDataLoader import ExcelCDSDataLoader
 
-def main():
+async def main():
    
     #Write to 2020-2021 cds data excel file for now.
-    writePath = "CDSSparse_test.xlsx"
-    dataLoader = CDSDataLoader("./NewCDSDataFromClient/CDSQuestionAnswer_2020_2021.xlsx")
+   
+    dataLoader = ExcelCDSDataLoader("./NewCDSDataFromClient/CDSQuestionAnswer_2020_2021.xlsx")
     dataLoader.loadData()
-    dataWriter = ExcelSparseMatrixDataWriter(writePath)
+    # writePath = "CDSSparse_test.xlsx"
+    # dataWriter = ExcelSparseMatrixDataWriter(writePath)
+    outputName = "CDS_2020_2021"
+    dataWriter = MongoDBSparseMatrixDataWriter(outputName)
     parserFacade = ParserFacade(dataLoader=dataLoader, dataWriter=dataWriter)
-    parserFacade.parse(2020)
+    await parserFacade.parse()
     
     
 if __name__ == "__main__":
-    main()
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(main())
         

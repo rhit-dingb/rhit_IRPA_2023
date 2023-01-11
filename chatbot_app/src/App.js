@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 import Home from "./component/Home";
 import Admin from "./component/Admin";
 import ReportIssue from "./component/ReportIssue";
+import UploadData from "./component/UploadData"
 // firebase.initializeApp({
 //   apiKey: "AIzaSyDWEnr4gUrMXGIGuSSUdkAgrO4CvHC-JO0",
 //   authDomain: "irpa-chabot.firebaseapp.com",
@@ -74,6 +75,9 @@ function App() {
           with exact path "/contactus", in 
           component props we passes the imported component*/}
           <Route path="/report_issue" component={ReportIssue} />
+
+
+          <Route path="/upload_data" component={UploadData} />
 
           {/* If any route mismatches the upper 
           route endpoints then, redirect triggers 

@@ -7,6 +7,7 @@ class XorExpression(Expression):
 
     
     def evaluate(self,entities, answer):
+        print(len(self.childrenExpression))
         for expression in self.childrenExpression:
             value = expression.evaluate(entities, answer)
             if not value == "":

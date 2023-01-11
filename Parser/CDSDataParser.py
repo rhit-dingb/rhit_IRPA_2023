@@ -7,22 +7,22 @@ from Data_Ingestion.SparseMatrix import SparseMatrix
 import pandas as pd
 
 class CDSDataParser():
-    def __init__(self,  sparseMatrixDataWriter : SparseMatrixDataWriter):
-        self.sparseMatrixDataWriter = sparseMatrixDataWriter
+    def __init__(self):
+        pass
        
-    def parseQuestionAnswerToSparseMatrix(self,sectionName : str ,questionAnswers : QuestionAnswer, year: int) -> bool:
+    def parseQuestionAnswerToSparseMatrix(self, subsectionName : str , questionAnswers : QuestionAnswer) -> bool:
         everyUniqueEntity = []
         matrixData = []
         sparseMatrix = None
         
         for questionAnswer in questionAnswers:
-            print(questionAnswer.entities)
+            # print(questionAnswer.entities)
             for entity in questionAnswer.entities:
-            
                 if entity in everyUniqueEntity:
                     continue
                 else:
                     everyUniqueEntity.append(entity)
+
         for questionAnswer in questionAnswers:
             row = self.convertQuestionAnswerToRow(questionAnswer, everyUniqueEntity)
             matrixData.append(row)
@@ -30,8 +30,12 @@ class CDSDataParser():
         columns = ["Value"]
         columns = columns + everyUniqueEntity
         sparseMatrixDataFrame = pd.DataFrame(columns=columns, data = matrixData)
-        sparseMatrix = SparseMatrix(sparseMatrixDf=sparseMatrixDataFrame, subSectionName= sectionName)
-        self.sparseMatrixDataWriter.writeSparseMatrix(sparseMatrix)
+        questions = []
+        for qa in questionAnswers:
+            questions.append(qa.question)
+
+        sparseMatrix = SparseMatrix(sparseMatrixDf=sparseMatrixDataFrame, subSectionName= subsectionName, questions=questions)
+        return sparseMatrix
                     
     def convertQuestionAnswerToRow(self, questionAnswer : QuestionAnswer, allEntities : List[str]) -> List[str]:
         row = []
