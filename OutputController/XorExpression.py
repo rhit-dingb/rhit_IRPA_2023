@@ -6,10 +6,10 @@ class XorExpression(Expression):
         super().__init__(value, expressions)
 
     
-    def evaluate(self,entities, answer):
-        print(len(self.childrenExpression))
+    def evaluate(self,entities,realAnswerEntities, answer):
+        # print(len(self.childrenExpression))
         for expression in self.childrenExpression:
-            value = expression.evaluate(entities, answer)
+            value = expression.evaluate(entities, realAnswerEntities, answer)
             if not value == "":
                 return value
         

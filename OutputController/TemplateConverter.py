@@ -89,10 +89,10 @@ class TemplateConverter():
             
 
 
-    def evaluateExpressions(self, expressions,entities,  answer): 
+    def evaluateExpressions(self, expressions,entities, realQuestionEntities, answer): 
         evaluatedValues = []  
         for expression in expressions:
-           value = expression.evaluate(entities, answer)
+           value = expression.evaluate(entities, realQuestionEntities, answer)
            evaluatedValues.append(value)
         return evaluatedValues
 
@@ -134,13 +134,14 @@ class TemplateConverter():
         for searchResult in searchResults:
            #Because EntityExpression remove an entity from the list when it uses that entity's value, I make a copy to keep the original in case we use it.
            entitiesCopy = searchResult.entitiesUsed.copy()
+           realAnswerEntitiesCopy = searchResult.entitiesForRealQuestion.copy()
            answer = searchResult.answer
-           sentenceTokens =  self.evaluateExpressions(expressions, entitiesCopy, answer)
+           sentenceTokens =  self.evaluateExpressions(expressions, entitiesCopy,realAnswerEntitiesCopy, answer)
            #Filter out empty string
            sentenceTokens = list(filter(lambda x: not x=="", sentenceTokens))
            sentence = " ".join(sentenceTokens)
            fullSentenceAnswers.append(sentence)
-           
+
         print(fullSentenceAnswers)
         return fullSentenceAnswers
             

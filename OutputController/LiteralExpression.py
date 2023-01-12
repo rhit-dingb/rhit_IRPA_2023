@@ -6,7 +6,7 @@ class LiteralExpression(Expression):
        super().__init__(value, [])
 
     
-    def evaluate(self, entities, answer):
+    def evaluate(self, entities,realAnswerEntities, answer):
         return self.value
         
 

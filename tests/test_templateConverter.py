@@ -5,7 +5,9 @@ from unittest.mock import patch
 from DataManager.constants import AGGREGATION_ENTTIY_LABEL, INITIAL_COHORT_ENTITY_LABEL, NUMBER_ENTITY_LABEL, RANGE_ENTITY_LABEL, YEAR_ENTITY_LABEL
 
 from OutputController.TemplateConverter import TemplateConverter
+from Knowledgebase.DataModels.SearchResult import SearchResult
 from tests.testUtils import checkAnswersMatch, createEntityObjHelper
+from Knowledgebase.SearchResultType import SearchResultType
 # These values are from student life in 2020-2021 CDS data
 
 from actions.constants import AGGREGATION_ENTITY_AVERAGE_VALUE, AGGREGATION_ENTITY_PERCENTAGE_VALUE, RANGE_LOWER_BOUND_VALUE, RANGE_UPPER_BOUND_VALUE, STUDENT_ENROLLMENT_RESULT_ENTITY_GRADUATION_VALUE
@@ -33,84 +35,104 @@ class test_template_converter(unittest.TestCase):
     #             print("-------------")
 
    def test_construct_output_for_range_template_should_return_correct_sentence(self):
-       searchAnswers = ["5"]
-       entitiesUsed = [[createEntityObjHelper("initial", entityLabel=INITIAL_COHORT_ENTITY_LABEL),
+        searchAnswers = ["5"]
+        entitiesUsed = [[createEntityObjHelper("initial", entityLabel=INITIAL_COHORT_ENTITY_LABEL),
             createEntityObjHelper(RANGE_UPPER_BOUND_VALUE,
-                                  entityLabel=RANGE_ENTITY_LABEL),
+                                    entityLabel=RANGE_ENTITY_LABEL),
             createEntityObjHelper("6", entityLabel=NUMBER_ENTITY_LABEL),
             ]]
 
+        searchResults = createSearchResult(searchAnswers, entitiesUsed)
+        sentences = self.templateConverter.constructOutput(
+        searchResults, self.rangeTemplate)
+        print(sentences)
+          
+        answers = [
+           "within 6"]
+        checkAnswers(answers, sentences, self)
+
+
+      
+   def test_construct_output_for_template_1_should_return_correct_sentence(self):
+       searchAnswers = ["5"]
+       entitiesUsed = [[createEntityObjHelper("initial", entityLabel=INITIAL_COHORT_ENTITY_LABEL),
+            createEntityObjHelper(RANGE_LOWER_BOUND_VALUE,
+                                  entityLabel=RANGE_ENTITY_LABEL),
+            createEntityObjHelper(RANGE_UPPER_BOUND_VALUE,
+                                  entityLabel=RANGE_ENTITY_LABEL),
+            createEntityObjHelper("5", entityLabel=NUMBER_ENTITY_LABEL),
+            createEntityObjHelper("6", entityLabel=NUMBER_ENTITY_LABEL),
+            createEntityObjHelper("2014", entityLabel=YEAR_ENTITY_LABEL)
+            ]]
+
+       searchResults = createSearchResult(searchAnswers, entitiesUsed)
        sentences = self.templateConverter.constructOutput(
-           searchAnswers, entitiesUsed, self.rangeTemplate)
-       print(sentences)
-    #    answers = [
-    #        "The number of students who graduated in more than 5 years and within 6 years in the initial 2014 cohort is 5"]
-    #    checkAnswers(answers, sentences, self)
+           searchResults, self.testTemplate_1)
+       answers = [
+           "The number of students who graduated in more than 5 years and within 6 years in the initial 2014 cohort is 5"]
+       checkAnswers(answers, sentences, self)
 
-#    def test_construct_output_for_template_1_should_return_correct_sentence(self):
-#        searchAnswers = ["5"]
-#        entitiesUsed = [[createEntityObjHelper("initial", entityLabel=INITIAL_COHORT_ENTITY_LABEL),
-#             createEntityObjHelper(RANGE_LOWER_BOUND_VALUE,
-#                                   entityLabel=RANGE_ENTITY_LABEL),
-#             createEntityObjHelper(RANGE_UPPER_BOUND_VALUE,
-#                                   entityLabel=RANGE_ENTITY_LABEL),
-#             createEntityObjHelper("5", entityLabel=NUMBER_ENTITY_LABEL),
-#             createEntityObjHelper("6", entityLabel=NUMBER_ENTITY_LABEL),
-#             createEntityObjHelper("2014", entityLabel=YEAR_ENTITY_LABEL)
-#             ]]
+   def test_construct_output_for_template_2(self):
+       searchAnswers = ["5"]
 
-#        sentences = self.templateConverter.constructOutput(
-#            searchAnswers, entitiesUsed, self.testTemplate_1)
-#        answers = [
-#            "The number of students who graduated in more than 5 years and within 6 years in the initial 2014 cohort is 5"]
-#        checkAnswers(answers, sentences, self)
+       entitiesUsed = [[
+            createEntityObjHelper(
+                AGGREGATION_ENTITY_PERCENTAGE_VALUE, entityLabel=AGGREGATION_ENTTIY_LABEL),
+        ]]
 
-#    def test_construct_output_for_template_2(self):
-#        searchAnswers = ["5"]
+       searchResults = createSearchResult(searchAnswers, entitiesUsed)
+       sentences = self.templateConverter.constructOutput(
+           searchResults, self.testTemplate_2)
+       answers = ["Hello"]
+       checkAnswers(answers, sentences, self)
 
-#        entitiesUsed = [[
-#             createEntityObjHelper(
-#                 AGGREGATION_ENTITY_PERCENTAGE_VALUE, entityLabel=AGGREGATION_ENTTIY_LABEL),
-#         ]]
+   def test_construct_output_for_bad_template(self):
+      searchAnswers = ["5"]
+      entitiesUsed = [[
+            createEntityObjHelper(
+                AGGREGATION_ENTITY_PERCENTAGE_VALUE, entityLabel=AGGREGATION_ENTTIY_LABEL),
+      ]]
 
-#        sentences = self.templateConverter.constructOutput(
-#            searchAnswers, entitiesUsed, self.testTemplate_2)
-#        answers = ["Hello"]
-#        checkAnswers(answers, sentences, self)
+      searchResults = createSearchResult(searchAnswers, entitiesUsed)
+      self.assertRaises(Exception, self.templateConverter.constructOutput,
+                        searchResults, self.badTemplate_3)
 
-#    def test_construct_output_for_bad_template(self):
-#       searchAnswers = ["5"]
-#       entitiesUsed = [[
-#             createEntityObjHelper(
-#                 AGGREGATION_ENTITY_PERCENTAGE_VALUE, entityLabel=AGGREGATION_ENTTIY_LABEL),
-#       ]]
+   def test_construct_output_for_complicated_template(self):
+      searchAnswers = ["5"]
+      entitiesUsed = [[
+            createEntityObjHelper(
+                AGGREGATION_ENTITY_PERCENTAGE_VALUE, entityLabel=AGGREGATION_ENTTIY_LABEL),
+            createEntityObjHelper(
+                AGGREGATION_ENTITY_AVERAGE_VALUE, entityLabel=AGGREGATION_ENTTIY_LABEL),
 
-#       self.assertRaises(Exception, self.templateConverter.constructOutput,
-#                         searchAnswers, entitiesUsed, self.badTemplate_3)
+            createEntityObjHelper(
+               "need-based", entityLabel= "need_non_need_base_aid"),
+            createEntityObjHelper(
+               "institutional", entityLabel= "financial_aid_type"),
+      ]]
 
-#    def test_construct_output_for_complicated_template(self):
-#       searchAnswers = ["5"]
-#       entitiesUsed = [[
-#             createEntityObjHelper(
-#                 AGGREGATION_ENTITY_PERCENTAGE_VALUE, entityLabel=AGGREGATION_ENTTIY_LABEL),
-#             createEntityObjHelper(
-#                 AGGREGATION_ENTITY_AVERAGE_VALUE, entityLabel=AGGREGATION_ENTTIY_LABEL),
+      searchResults = createSearchResult(searchAnswers, entitiesUsed)
 
-#             createEntityObjHelper(
-#                "need-based", entityLabel= "need_non_need_base_aid"),
-#             createEntityObjHelper(
-#                "institutional", entityLabel= "financial_aid_type"),
-#       ]]
-
-#       expectedAnswer = ["On average , the percent of financial need that was met for degree-seeking, first-time, full-time freshman students who were awarded any need-based institutional scholarship and grant aid is 5"]
-#       sentences= self.templateConverter.constructOutput(searchAnswers, entitiesUsed, self.complicatedTemplate)
-#       checkAnswers(expectedAnswer, sentences, self)
-#       print(sentences)
+      expectedAnswer = ["On average , the percent of financial need that was met for degree-seeking, first-time, full-time freshman students who were awarded any need-based institutional scholarship and grant aid is 5"]
+      sentences= self.templateConverter.constructOutput(searchResults, self.complicatedTemplate)
+      checkAnswers(expectedAnswer, sentences, self)
+      print(sentences)
 
 
 def checkAnswers(sentences, answers, unitTest):
     for i in range(len(sentences)):
         unitTest.assertEqual(answers[i], sentences[i])
+
+
+def createSearchResult(searchAnswers, entitiesUsed):
+    searchResults = []
+    for answer, entities in zip(searchAnswers, entitiesUsed):
+            #  answer, entitiesUsed : List[Dict[str, str]], type : SearchResultType, realQuestion : str
+        searchResult = SearchResult(answer, entities, SearchResultType.STRING, [] )
+        searchResults.append(searchResult)
+
+    return searchResults
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -6,12 +6,13 @@ class PhraseExpression(Expression):
         super().__init__(value, childExpression)
 
     
-    def evaluate(self,entities, answer):
+    def evaluate(self,entities,realAnswerEntities, answer):
         values = []
         anyExpressionFailToEvaluate = False
-        entitiesCopy = entities.copy()
+        entitiesCopy = entities.copy()  
+        realAnswerEntitiesCopy = realAnswerEntities.copy()
         for expression in self.childrenExpression:
-            evaluatedValue = expression.evaluate(entitiesCopy, answer)
+            evaluatedValue = expression.evaluate(entitiesCopy,realAnswerEntitiesCopy, answer)
             if evaluatedValue == "":
                 anyExpressionFailToEvaluate = True
             values.append(evaluatedValue)
@@ -19,6 +20,7 @@ class PhraseExpression(Expression):
             return ""
         else:
             entities[:] = entitiesCopy
+            realAnswerEntities[:] = realAnswerEntitiesCopy
             return " ".join(values)
             
     

@@ -24,6 +24,8 @@ from actions.constants import AGGREGATION_ENTITY_PERCENTAGE_VALUE, RANGE_LOWER_B
 from actions.entititesHelper import copyEntities, filterEntities, findEntityHelper, findMultipleSameEntitiesHelper
 from Parser.RasaCommunicator import RasaCommunicator
 from Knowledgebase.DataModels.SearchResult import SearchResult
+from actions.entititesHelper import removeDuplicatedEntities
+from CustomEntityExtractor.NumberEntityExtractor import NumberEntityExtractor
 from tests.testUtils import createEntityObjHelper
 import aiohttp
 import asyncio
@@ -35,6 +37,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         self.templateConverter : TemplateConverter = TemplateConverter()
         self.year = self.dataManager.getMostRecentYearRange()[0]
         self.rasaCommunicator = RasaCommunicator()
+        self.numberEntityExtractor = NumberEntityExtractor()
 
     
     def setYear(self,year):
@@ -58,6 +61,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
     """
     async def searchForAnswer(self, intent, entitiesExtracted, shouldAddRowStrategy, outputFunc, shouldAdd = True):
         # print("BEGAN SEARCHING")
+
         sparseMatrixToSearch : SparseMatrix; startYear : str; endYear : str 
         sparseMatrixToSearch, startYear, endYear = self.determineMatrixToSearch(intent, entitiesExtracted, self.year)
         
@@ -113,12 +117,13 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
             responses = await asyncio.gather(*tasks)
           
             for searchResult, response in zip(searchResults, responses):
+                #Would probably be better if we put this number entity extractor in the config pipeline, so we don't need to call it everytime we want to get entities.
                 entities = response["entities"]
+                numberEntities = self.numberEntityExtractor.extractEntities(searchResult.realQuestion)
+                entities = entities+numberEntities
+                entities = removeDuplicatedEntities(entities)
                 searchResult.setEntitiesForRealQuestion(entities)
             
-
-
-
 
     
     # STILL WORK IN PROGRESS

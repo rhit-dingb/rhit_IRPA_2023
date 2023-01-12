@@ -5,7 +5,7 @@ from Knowledgebase.constants import PERCENTAGE_FORMAT
 from Knowledgebase.constants import DOLLAR_FORMAT
 
 class SearchResult():
-    def __init__(self, answer,entitiesUsed : List[Dict[str, str]], type : SearchResultType, realQuestion : str):
+    def __init__(self, answer, entitiesUsed : List[Dict[str, str]], type : SearchResultType, realQuestion : str):
         # print("CHANGE ANSWER")
         # print(answer)
         self.answer = answer
