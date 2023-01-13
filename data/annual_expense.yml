@@ -41,21 +41,21 @@ nlu:
     - Does [fee]{"entity":"money", "value": "fee"} [changes]{"entity":"change", "value": "change"} by undergraduate instructional program?
     - Does  [tuition]{"entity":"money", "value": "tuition"} [changes]{"entity":"change", "value": "change"} by undergraduate instructional program?
 
-    - what is the [cost]{"entity":"money", "value": "cost"} of [books]{"entity":"school_supply", "value": "book"} and [supply]{"entity":"school_supply", "value": "supply"} for [resident]{"entity":"resident", "value": "resident"} student?
+    - what is the [cost]{"entity":"money", "value": "cost"} of [books]{"entity":"school_supply", "value": "book"} and [supply]{"entity":"school_supply", "value": "supply"} for [resident]{"entity": "international_domestic", "value": "domestic"} student?
     - what is the [cost]{"entity":"money", "value": "cost"} of [books]{"entity":"school_supply", "value": "book"} and [supply]{"entity":"school_supply", "value": "supply"} for [commuters]{"entity":"category", "value": "commuters"} student?
     - what is the [cost]{"entity":"money", "value": "cost"} of [room]{"entity":"living_cost", "value": "room"} for [commuters]{"entity":"category", "value": "commuters"} student?
     - what is the [cost]{"entity":"money", "value": "cost"} of [board]{"entity":"living_cost", "value": "borad"} for [commuters]{"entity":"category", "value": "commuters"} student?
     - what is [other]{"entity":"other", "value": "other"} [cost]{"entity":"money", "value": "cost"} for [commuters]{"entity":"category", "value": "commuters"} student?
-    - what is [other]{"entity":"other", "value": "other"} [cost]{"entity":"money", "value": "cost"}  for [resident]{"entity":"citizen_non_citizen", "value": "citizen"} student?
+    - what is [other]{"entity":"other", "value": "other"} [cost]{"entity":"money", "value": "cost"}  for [resident]{"entity": "international_domestic", "value": "domestic"} student?
 
     - how much does a [credit]{"entity":"academic_credit", "value": "credit"} [costs]{"entity":"money", "value": "costs"}?
     
 
 
-- synonym: resident
-  examples: |
-    - resident
-    - residents
+# - synonym: resident
+#   examples: |
+#     - resident
+#     - residents
 
 - synonym: change
   examples: |
