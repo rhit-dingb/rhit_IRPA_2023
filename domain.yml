@@ -36,7 +36,9 @@ entities:
   # Value: phone, fax, number, address, email, website
   - way_of_contact
 
-
+  # Deadline '
+  # Value: deadline
+  - deadline
 
   # full-time, part-time
   - enrollment_status
@@ -72,7 +74,7 @@ entities:
 
   # - waiting-list-detail
 
-  # - policy
+  - policy
 
 # used for something like: Initial 2015 cohort of first-time, fulltime, bachelor's (or equivalent) degreeseeking undergraduate students
 # and also something like: Final 2015 cohort, after adjusting for allowable exclusions
@@ -301,27 +303,29 @@ entities:
 #Value: book, supply
   - school_supply
 
+#Form 
+#Value : form
+  - form
 
 
+  ##ENTITIES FOR DEFINITIONS
 
-##ENTITIES FOR DEFINITIONS
-
-# #Definition. Captures the word definition
-#   - definition
+  # #Definition. Captures the word definition
+  #   - definition
 
 
-#Program offered at school
-# Value: college-preparatory, accelerated, research, professional practice, cross-registration, double major, dual enrollment, cooperative, cooperative education, 
-# ,external degree, english as second language. 
-# NOTE: not all programs fall under this entity, some are a combination of multiple entities.
+  #Program offered at school
+  # Value: college-preparatory, accelerated, research, professional practice, cross-registration, double major, dual enrollment, cooperative, cooperative education, 
+  # ,external degree, english as second language. 
+  # NOTE: not all programs fall under this entity, some are a combination of multiple entities.
   - program_offered
 
-#Service offered at school
-# Career, 
+  #Service offered at school
+  # Career, 
   - service_offered
 
-# activities offer at school.
-# orientation, campus ministry
+  # activities offer at school.
+  # orientation, campus ministry
   - activity_offered
 
 #Type of unit, value: carnegie
