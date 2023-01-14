@@ -4,9 +4,20 @@ import sys
 from fastapi import FastAPI, Request
 
 sys.path.append('../')
+
+
+from DataManager.constants import CDS_DATABASE_NAME_TEMPLATE
+from DataManager.MongoDataManager import MongoDataManager
+from Parser.MongoDBSparseMatrixDataWriter import MongoDBSparseMatrixDataWriter
+from Parser.ParserFacade import ParserFacade
+from Parser.JsonCDSDataLoader import JsonCDSDataLoader
+
 from DataManager.constants import DATABASE_PRENAME, MONGO_DB_CONNECTION_STRING
-client = MongoClient(MONGO_DB_CONNECTION_STRING)
 from fastapi.middleware.cors import CORSMiddleware
+
+mongoDbDataManager = MongoDataManager()
+client = MongoClient(MONGO_DB_CONNECTION_STRING)
+
 app = FastAPI()
 
 #A list of allowed origins
@@ -26,9 +37,45 @@ app.add_middleware(
 async def root():
     return {"message": "Hello, this is IRPA Common Dataset API Service"}
 
+
+@app.get("/api/get_all_cds_data")
+async def getAllCdsData(request: Request):
+    cdsData = mongoDbDataManager.getAllAvailableCDSData()
+    return {"data": cdsData}
+
+"""
+Example Expected json body: 
+{
+    "yearFrom": "2020",
+    "yearTo": "2021",
+    "data": {'General Info': 
+    # [
+    # {'Question': "What is Rose-Hulman's mailing address?", 'Answer': "Rose-Hulman's mailing address is 5500 Wabash Ave, Terre 
+    # Haute, IN 47803", 'Complete Sentence?': 'Yes'}, 
+    # {'Question': 'What is Rose-Hulman main phone number?', 'Answer': "Rose-Hulman's main phone number is (812) 877-1511", 'Complete Sentence?': 'Yes'}, 
+    # {'Question': 'What is Rose-Hulman’s www home page address / website?', 'Answer': "Rose-Hulman's website is www.rose-hulman.edu", 'Complete Sentence?': 'Yes'}, 
+    # .....],
+   #'Enrollment_General': [.....], 
+#  }
+}
+"""
 @app.post("/api/upload_cds_data")
 async def parse_cds_data(request : Request):
-    print(await request.json())
+    print("UPLOAD DATA")
+    jsonData = await request.json()
+    excelData = jsonData["data"]
+    # print(jsonData)
+    yearFrom = jsonData["yearFrom"]
+    yearTo = jsonData["yearTo"]
+    outputName = CDS_DATABASE_NAME_TEMPLATE.format(start_year = yearFrom, end_year = yearTo)
+    jsonCdsLoader = JsonCDSDataLoader()
+    jsonCdsLoader.loadData(excelData)
+    dataWriter = MongoDBSparseMatrixDataWriter(outputName)
+    parserFacade = ParserFacade(dataLoader=jsonCdsLoader, dataWriter=dataWriter)
+    await parserFacade.parse()
+
+    return {"message": "Done"}
+
 
 
 

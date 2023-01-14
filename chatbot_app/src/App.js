@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 import Home from "./component/Home";
 import Admin from "./component/Admin";
 import ReportIssue from "./component/ReportIssue";
-import UploadData from "./component/UploadData"
+import UploadData from "./component/UploadData/UploadData"
 // firebase.initializeApp({
 //   apiKey: "AIzaSyDWEnr4gUrMXGIGuSSUdkAgrO4CvHC-JO0",
 //   authDomain: "irpa-chabot.firebaseapp.com",

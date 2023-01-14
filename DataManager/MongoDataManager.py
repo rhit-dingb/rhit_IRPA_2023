@@ -33,6 +33,16 @@ class MongoDataManager(DataManager):
     # for doc in cursor:
     #     print(doc)
 
+    def getAllAvailableCDSData(self):
+        databases = self.client.list_database_names()
+        cdsDatabase = []
+        for database in databases: 
+            if DATABASE_PRENAME in database:
+                cdsDatabase.append(database)
+        
+        return cdsDatabase
+
+
     """
     See docuementation in DataManager.py
     """

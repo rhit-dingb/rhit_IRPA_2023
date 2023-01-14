@@ -49,7 +49,7 @@ class ParserFacade():
                 print("PARSING", sectionFullName)
                 questionAnswers : List[QuestionAnswer] = self.dataLoader.getQuestionsAnswerForSection(sectionFullName)
                 for questionAnswer in questionAnswers:
-                    print(questionAnswer.question)
+                    # print(questionAnswer.question)
                     if questionAnswer.isMetaData: 
                         questionAnswer.setEntities([questionAnswer.question])
                     else:
