@@ -5,6 +5,8 @@ from Parser.SparseMatrixDataWriter import SparseMatrixDataWriter
 from Data_Ingestion.SparseMatrix import SparseMatrix
 from pymongo import MongoClient
 
+from DataManager.constants import DATABASE_SUBSECTION_FIELD_KEY
+
 
 
 class MongoDBSparseMatrixDataWriter(SparseMatrixDataWriter):
@@ -14,7 +16,7 @@ class MongoDBSparseMatrixDataWriter(SparseMatrixDataWriter):
         print("CONNECTED")
         self.databaseName = outputName
         self.db = self.client[self.databaseName]
-        self.subsectionKey = "subsection"
+        self.subsectionKey = DATABASE_SUBSECTION_FIELD_KEY 
 
     def writeSparseMatrix(self, sparseMatrix : SparseMatrix, sectionName : str) -> None:
         #In the parse, the subsection name of the sparse matrix is the full sheet name on the input excel file.

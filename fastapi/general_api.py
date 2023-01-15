@@ -1,10 +1,14 @@
+
+from typing import Dict, List
 from fastapi import FastAPI
 from pymongo import MongoClient
 import sys
-from fastapi import FastAPI, Request
-
 sys.path.append('../')
+from fastapi import FastAPI, Request, HTTPException
 
+
+
+from DataManager.constants import CDS_DEFINITION_DATABASE_NAME
 
 from DataManager.constants import CDS_DATABASE_NAME_TEMPLATE
 from DataManager.MongoDataManager import MongoDataManager
@@ -39,13 +43,14 @@ async def root():
 
 
 @app.get("/api/get_all_cds_data")
-async def getAllCdsData(request: Request):
+async def getAllCdsData():
     cdsData = mongoDbDataManager.getAllAvailableCDSData()
     return {"data": cdsData}
 
 """
-Example Expected json body: 
+Example Expected json body for cds data, for definitions, there is no yearFrom and yearTo
 {
+    "type"
     "yearFrom": "2020",
     "yearTo": "2021",
     "data": {'General Info': 
@@ -63,18 +68,46 @@ Example Expected json body:
 async def parse_cds_data(request : Request):
     print("UPLOAD DATA")
     jsonData = await request.json()
+    dataType = jsonData["type"]
     excelData = jsonData["data"]
     # print(jsonData)
-    yearFrom = jsonData["yearFrom"]
-    yearTo = jsonData["yearTo"]
-    outputName = CDS_DATABASE_NAME_TEMPLATE.format(start_year = yearFrom, end_year = yearTo)
     jsonCdsLoader = JsonCDSDataLoader()
-    jsonCdsLoader.loadData(excelData)
-    dataWriter = MongoDBSparseMatrixDataWriter(outputName)
-    parserFacade = ParserFacade(dataLoader=jsonCdsLoader, dataWriter=dataWriter)
-    await parserFacade.parse()
+    outputName = ""
+    if dataType ==  "annual":
+        yearFrom = jsonData["yearFrom"]
+        yearTo = jsonData["yearTo"]
+        outputName = CDS_DATABASE_NAME_TEMPLATE.format(start_year = yearFrom, end_year = yearTo)
+        
+    elif dataType == "definition":
+        outputName = CDS_DEFINITION_DATABASE_NAME
 
-    return {"message": "Done"}
+    if not outputName == "":
+        # try:
+            print(excelData)
+            jsonCdsLoader.loadData(excelData)
+            dataWriter = MongoDBSparseMatrixDataWriter(outputName)
+            parserFacade = ParserFacade(dataLoader=jsonCdsLoader, dataWriter=dataWriter)
+            await parserFacade.parse()
+            return {"message": "Done"}
+        # except Exception:
+        #     raise HTTPException(status_code=500, detail="Something went wrong while parsing the input data")
+
+
+
+        
+    
+    
+
+@app.post("/api/get_section_and_subsection_for_cds_data")
+async def parse_cds_data(request : Request):
+    jsonData = await request.json()
+    print("JSON DATA")
+    print(jsonData)
+    cdsDataName = jsonData["cdsDataName"]
+    # # print(jsonData)
+    sectionAndSubsections : Dict[str, List[str]] = mongoDbDataManager.getSectionAndSubsectionsForCDSData(cdsDataName)
+    print(sectionAndSubsections)
+    return {"data": sectionAndSubsections}
 
 
 

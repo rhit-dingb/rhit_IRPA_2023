@@ -1,4 +1,4 @@
-from typing import Tuple
+from typing import Dict, List, Tuple
 from DataManager.DataManager import DataManager
 from Data_Ingestion.MongoProcessor import MongoProcessor
 from Data_Ingestion.SparseMatrix import SparseMatrix
@@ -11,6 +11,7 @@ import json
 from pymongo import MongoClient
 
 from DataManager.constants import CDS_DATABASE_NAME_TEMPLATE, DATABASE_PRENAME, MONGO_DB_CONNECTION_STRING
+from DataManager.constants import DATABASE_SUBSECTION_FIELD_KEY
 """
 MongoDataManager subclass that can handle connections with MongoDB data
 """
@@ -32,6 +33,34 @@ class MongoDataManager(DataManager):
     # cursor = collection.find({"undergraduate": 1})
     # for doc in cursor:
     #     print(doc)
+
+    def getSectionAndSubsectionsForCDSData(self, cdsDataName) -> Dict[str, List[str]] :
+        sectionToSubections = dict()
+        databases = self.client.list_database_names()
+        for databaseName in databases: 
+            if cdsDataName == databaseName:
+                db = self.client[databaseName]
+                collections = db.list_collection_names()
+                for collection in collections:
+                    subsectionsData = db[collection].find({}, {DATABASE_SUBSECTION_FIELD_KEY :1})
+                    for subsection in subsectionsData:
+                        subSectionName = subsection[DATABASE_SUBSECTION_FIELD_KEY]
+                        if collection in sectionToSubections:
+                            sectionToSubections[collection].append(subSectionName)
+                        else:
+                            sectionToSubections[collection] = [subSectionName]
+
+        # sort the keys and array
+        keys = list(sectionToSubections.keys())
+        keys.sort()
+        sortedDict = dict()
+
+        for key in keys:
+            subsections = sectionToSubections[key]
+            # subsections.sort()
+            sortedDict[key] = subsections
+
+        return sortedDict
 
     def getAllAvailableCDSData(self):
         databases = self.client.list_database_names()
