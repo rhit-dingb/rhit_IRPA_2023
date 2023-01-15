@@ -37,80 +37,91 @@ import Alert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
 
 function UploadData() {
-  const uploadCDSDataRef = useRef(null)
-  const uploadCDSDefinitionRef = useRef(null)
+  const uploadDataRef = useRef(null)
+  const uploadDefinitionRef = useRef(null)
 
   const [dataToUpload, setDataToUpload] = useState({})
-  const [cdsDataList, setCdsDataList] = useState([])
-  const [cdsDefinitionDataAvailable,  setCdsDefinition] = useState("")
+  const [dataList, setDataList] = useState([])
+  const [definitionDataAvailable,  setDefinition] = useState("")
 
   // This state looks something like this {"enrollment": "general"}
   const [sectionAndSubSections, setSectionAndSubSections] = useState({})
 
-  //0th index is the defintion list item, the cds data items indexed starting at 1. 
+  //0th index is the defintion list item, the annual data items indexed starting at 1. 
   const [selectedIndex, setSelectedIndex] = useState(1);
 
-  const [errorMessage, setErrorMessage] = useState("")
-  const [showErrorMessage, setShowErrorMessage] = useState(false)
+  const [notificationMessage, setNotificationMessage] = useState("")
+  const [showNotification, setShowNotification] = useState(false)
+  const [notificationBannerColor, setNotificationColor ] = useState("error")
   const [isUploading, setIsUploading] = useState(false)
 
-        
+
   useEffect(() => {
-    fetchAvailableCdsData().then(()=>{
-      // console.log("FINISHED FETCHING")
-      // console.log(cdsDataList)
-    })
-   
+    fetchAnnualData()
+    fetchDefinition()
   }, []);
 
 
+  const fetchAnnualData = ()=>{
+    fetchAvailableData(DataType.ANNUAL).then((dataAvailable)=>{
+    
+      setDataList(dataAvailable)
+    })
+  }
+
+  const fetchDefinition = () =>{
+  
+    fetchAvailableData(DataType.DEFINITION).then((definitionAvailable) => {
+      if (definitionAvailable.length > 0 ){
+        setDefinition(definitionAvailable[0])
+      } else{
+        setDefinition("")
+      }
+        
+    })
+  }
+
 
   useEffect(()=> {
-    if (cdsDataList.length>0){
-      let cdsDataName = cdsDataList[selectedIndex-1]
-      console.log("DAA")
-      console.log(cdsDataList)
-      console.log(selectedIndex)
-      console.log(cdsDataName)
-      fetchSectionSubsectionForCDSData(cdsDataName).then(()=>{
+    if (dataList.length>0){
+      let dataName = dataList[selectedIndex-1]
+    
+      fetchSectionSubsectionForData(dataName).then(()=>{
         console.log(sectionAndSubSections)
       }) 
     }
    
-  }, [cdsDataList])
+  }, [dataList])
 
 
-  const fetchAvailableCdsData = (()=> {
-    return new Promise((resolve, reject) =>{
-      fetch(CUSTOM_BACKEND_API_STRING+'/api/get_all_cds_data', {
+  // Should probably refactor these api calls to be a general function. 
+  const fetchAvailableData = ((type)=> {
+      return fetch(`${CUSTOM_BACKEND_API_STRING}/api/get_available_data/${type}`, {
         method: 'GET',
       }).then((response) => response.json())
       .then((data) => {
           // console.log("GOT DATA BACK")
           if ("data" in data){
-
-              let cdsDataAvailable = data["data"]
-              console.log("SETTING DATA ")
-              console.log(cdsDataAvailable)
-              setCdsDataList(cdsDataAvailable)
-              resolve()
+              let dataAvailable = data["data"]
+              
+              return dataAvailable
           } else{
-            console.log("NO DATA AVAILABLE")
-            resolve()
+            // console.log("NO DATA AVAILABLE")
+            return []
           }
         
       }).catch((err)=>{
           console.error(err)
-          reject(err)
+          return []
       })
-    });
   })
 
 
-  const fetchSectionSubsectionForCDSData = (async (cdsDataName) => {
-    let body = {"cdsDataName": cdsDataName}
+  const fetchSectionSubsectionForData = (async (dataName) => {
+    let body = {"dataName": dataName}
+    //With async function we can replace .then and .catch, but they basically do the same thing
     try {
-      const response = await fetch(CUSTOM_BACKEND_API_STRING + '/api/get_section_and_subsection_for_cds_data', {
+      const response = await fetch(CUSTOM_BACKEND_API_STRING + '/api/get_section_and_subsection_for_data', {
         method: 'POST',
         body: JSON.stringify(body),
         headers: {
@@ -136,13 +147,13 @@ function UploadData() {
   // }, [showErrorMessage, errorMessage]);
   
 
-  const validateCDSFileName = (fileName) => {
-    const errorMessage = "Input file for CDS should be of the format: someName_start year_end year"
+  const validateAnnualFileName = (fileName) => {
+    const errorMessage = "Input file for annual data should be of the format: someName_start year_end year"
     let tokens = fileName.split("_")
     
     if (tokens.length != 3) {
-      setErrorMessage(errorMessage)
-      return []
+      displayErrorMessage(errorMessage)
+      return false
     }
 
     let yearFrom = tokens[1]
@@ -150,104 +161,211 @@ function UploadData() {
     yearFrom = parseInt(yearFrom)
     yearTo = parseInt(yearTo)
     if (yearFrom == NaN || yearTo == NaN) {
-      setErrorMessage(errorMessage)
-      return []
+      displayErrorMessage(errorMessage)
+      return false
     }
 
-    return [yearFrom, yearTo]
+    return true 
+    // return [yearFrom, yearTo]
   }
 
-  const handleUploadAnnualCDSData = (event) => {
-    let file = event.target.files[0]
-    let fileName = file.
-    uploadCDSDataRef.current.value = ""
-    let years = validateCDSFileName(fileName)
-    if (years.length == 0){
-      // Set and show error messages
 
+  const validateDefinitionFileName = (fileName) => {
+    const definitionKey = "definition"
+    const errorMessage = "Input file for annual data should be of the format: someName_definition"
+    let tokens = fileName.split("_")
+    if (tokens.length > 2) {
+      displayErrorMessage(errorMessage)
+      return false
     }
-    let body = { yearTo: years[0], yearFrom: years[1], type: DataType.DEFINITION}
-    handleUpload(file, body)
+    for (let token of tokens) {
+      if (token.toLowerCase() == definitionKey){
+        return true
+      }
+    }
+
+    displayErrorMessage(errorMessage)
+    return false
+  }
+  
+  
+
+  const handleUploadDefinition = (event) => {
+    let file = event.target.files[0]
+    // let fileName = file.name
+    // uploadDefinitionRef.current.value = "" 
+    // let res = validateDefinitionFileName(fileName)
+    // let body = {"dataName": fileName, "type": DataType.DEFINITION}
+    // handleUpload(file, body).then(()=> {
+    //   console.log("RETRIEVING DEFINITION DATA AVAILABLE")
+    //   fetchDefinition()
+    // })
+    validateAndUpload(file, validateDefinitionFileName, fetchDefinition)
+    
   }
 
-  const handleUploadCDSDefinition = (event) => {
+  const validateAndUpload = (file, validationFunc, updateFunc)=>{
+    let fileName = file.name
+    //Remove file extension
+    fileName = fileName.slice(0, fileName.lastIndexOf("."));
+    let res = validationFunc(fileName)
+    let body = {"dataName": fileName}
+    if (res){
+      handleUpload(file, body).then(()=> {
+        console.log("RETRIEVING DATA AVAILABLE")
+        updateFunc()
+      })
+    } 
+  } 
+
+  const handleUploadAnnualData = (event) => {
     let file = event.target.files[0]
-    uploadCDSDefinitionRef.current.value = "" 
-    let body = {type: DataType.DEFINITION}
-    handleUpload(file, body)
+    validateAndUpload(file, validateAnnualFileName, fetchAnnualData)
+      
   }
 
   const handleUpload = (file, body) => {
         // let file = event.target.files[0]
         const reader = new FileReader();
         reader.readAsArrayBuffer(file)
-        return reader.onload = () => {
-          const result = reader.result
-          const workbook = XLSX.read(result, { type: 'array' });
+        // With async function, we can use await, along with try and catch instead of using then.
+        return new Promise((resolve, reject)=> {
+          reader.onload = () => {
+            const result = reader.result
+            const workbook = XLSX.read(result, { type: 'array' });
 
-          let jsonCDSData = {}
-          for (let sheetName of workbook.SheetNames) {
-              const sheet = workbook.Sheets[sheetName];
-              jsonCDSData[sheetName] = XLSX.utils.sheet_to_json(sheet);
-          }
+            let jsonData = {}
+            for (let sheetName of workbook.SheetNames) {
+                const sheet = workbook.Sheets[sheetName];
+                jsonData[sheetName] = XLSX.utils.sheet_to_json(sheet);
+            }
 
-          body["data"] = jsonCDSData
-         
-          setIsUploading(true)
-          return fetch(CUSTOM_BACKEND_API_STRING+'/api/upload_cds_data', {
-              method: 'POST',
-              body: JSON.stringify(body),
-              headers: {
-                "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "http://localhost:3000",
-                "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-                "Access-Control-Allow-Headers": "Content-Type"
-              },
-          }).then(async (result)=> {
-      
-              fetchAvailableCdsData()
-              setIsUploading(false)
-              if (!result.ok) {
-                // With async function, we can use await, along with try and catch instead of using then.
-                try{
-                  let resultJson = await result.json()
-                  setErrorMessage(resultJson["detail"])
-                  setShowErrorMessage(true)
-                }catch(err){
-                  console.error(err)
-                }
-              
+            body["data"] = jsonData
+          
+            setIsUploading(true)
+            const infoMessage = "File is uploading...."
+            displayInfoMessage(infoMessage)
+            
+            fetch(CUSTOM_BACKEND_API_STRING + '/api/upload_data', {
+                method: 'POST',
+                body: JSON.stringify(body),
+                headers: {
+                  "Content-Type": "application/json",
+                  "Access-Control-Allow-Origin": "http://localhost:3000",
+                  "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+                  "Access-Control-Allow-Headers": "Content-Type"
+                },
+              }).then((result_1) => {
+                  result_1.json().then((data) => {
+                    setIsUploading(false);
+                    let resultJson = data;
+                    if (!result_1.ok) {
+                      displayErrorMessage(resultJson["detail"])
+                    }else{
+                      let uploadedAs = ""
+                      if ("uploadedAs" in resultJson){
+                        let fileName = resultJson["uploadedAs"]
+                        uploadedAs = `as ${fileName}`
+                      }
+                      
+                      displaySuccessMessage(`File uploaded successfully ${uploadedAs}`)
+                      console.log("UPLOAD DONE")
+                    }
+
+                    resolve()
+                }).catch((err) =>{
+                      console.error(err);
+                      displayErrorMessage(err)
+                      reject()
+                  })
+                }).catch((err) => {
+                  console.log(err);
+                  setIsUploading(false);
+                  displayErrorMessage(err)
+                  reject()
+                })
               }
-          }).catch((err) => {
-              console.log(err);
-              setIsUploading(false)
-              setErrorMessage(err.message)
-              setShowErrorMessage(true)
-          });
-          };
+            })
+    };
+  
+
+
+    const displayErrorMessage = (message)=>{
+      displayMessage(message, "error")
+    }
+
+    const displayInfoMessage= (message) =>{
+      displayMessage(message, "info")
+    }
+
+    const displaySuccessMessage = (message)=> {
+      displayMessage(message, "success")
+    }
+
+    const displayMessage = (message, color) => {
+      setShowNotification(false)
+      setNotificationMessage(message);
+      setShowNotification(true);
+      setNotificationColor(color)
     }
 
 
-    const displayErrorMessage = ()=>{
-
-    }
-
-    const handleCDSDataClick = (event, index)=>{
-
-        let cdsDataName = ""
+  
+    const handleDataClick = (event, index)=>{
+        let dataName = ""
         //0th index is taken by definition
         if (index == 0){
-          cdsDataName = cdsDefinitionDataAvailable
+          dataName = definitionDataAvailable
         } else {
-          cdsDataName = cdsDataList[index-1]
+          dataName = dataList[index-1]
         }
        
         setSectionAndSubSections([])
         //0th index is taken by definition
         setSelectedIndex(index)
        
-        fetchSectionSubsectionForCDSData(cdsDataName)
+        fetchSectionSubsectionForData(dataName)
     }
+
+    const handleDeleteData = (event, index)=>{
+      let selectedDefinition = index == 0
+      let dataName = ""
+      let updateFunc = ()=>{}
+      if (selectedDefinition) {
+          dataName = definitionDataAvailable
+          updateFunc = fetchDefinition
+      } else {
+          dataName = dataList[index-1]
+          updateFunc = fetchAnnualData
+      }
+
+      deleteData(dataName, updateFunc)
+    }
+
+
+    const deleteData = (dataName, updateFunc)=>{
+      let body ={ "dataName": dataName}
+      fetch(CUSTOM_BACKEND_API_STRING + '/api/delete_data', {
+        method: 'POST',
+        body: JSON.stringify(body),
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "http://localhost:3000",
+          "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type"
+        },
+      }).then((response)=>{
+          if(response.ok) {
+            displaySuccessMessage("Deletion successful")
+            console.log("UPDATE after delete")
+            updateFunc()
+          }
+      }).catch((err)=>{
+        displayErrorMessage(err)
+      })
+    }
+
+
 
 
     const createElementForSectionAndSubSection = ()=> {
@@ -285,24 +403,23 @@ function UploadData() {
             <Navbar/>
             <Box
             sx={{ width: '80%', margin: "auto", marginTop:"3%"}}
-           
             >
           
-            {showErrorMessage && <Alert severity="error" onClose={() => {setShowErrorMessage(false)}}>{errorMessage}</Alert>}
+            {showNotification && <Alert severity={notificationBannerColor} onClose={() => {setShowNotification(false)}}>{notificationMessage}</Alert>}
             <Card variant="outlined"  sx={{padding:"10px",  minHeight: "550px"}}>
             <Grid container>
               <Grid item md={3} xs={12}  bgcolor="primary" sx={{ minHeight: "550px", backgroundColor: "#E7EBF0"
                    }}>
                 <Box sx={{ minHeight: "100px", padding:"2%"}}>
-                <h5>Uploaded CDS Definition</h5>
-                {cdsDefinitionDataAvailable && <List  sx={{
+                <h5>Uploaded Definition</h5>
+                {definitionDataAvailable && <List  sx={{
                     overflow: 'auto',
                 }}> 
                   <ListItem  component="div" 
                       disablePadding
                       sx ={{padding:"3%"}}
                       secondaryAction={
-                        <IconButton edge="end" aria-label="delete">
+                        <IconButton edge="end" aria-label="delete" onClick={(e)=> handleDeleteData(e, 0 )}>
                           <DeleteIcon />
                         </IconButton>
                       }
@@ -314,8 +431,8 @@ function UploadData() {
                   </ListItemAvatar>
                     <ListItemButton
                     selected={selectedIndex === 0}
-                    onClick={(event) => handleCDSDataClick(event, 0)}>
-                    <ListItemText primary={`${cdsDefinitionDataAvailable}`} className ="listItemText" /> 
+                    onClick={(event) => handleDataClick(event, 0)}>
+                    <ListItemText primary={`${definitionDataAvailable}`} className ="listItemText" /> 
                     </ListItemButton> 
                   </ListItem>
                 </List>}
@@ -335,27 +452,27 @@ function UploadData() {
                     />
                   )}
                     Upload
-                    {/*  handleUploadCDSDefinition */}
-                  <input hidden ref={uploadCDSDefinitionRef}  type="file" accept=".xlsx" onChange={(e) => handleUploadCDSDefinition(e)} />
+                  
+                  <input hidden ref={uploadDefinitionRef}  type="file" accept=".xlsx" onChange={async (e) => handleUploadDefinition(e)} />
                 </Button>
                 
                 </Box> 
                 <Divider variant="middle" />
   
-                <h5>Uploaded CDS Data</h5>
+                <h5>Uploaded Annual Data</h5>
                 <List  sx={{
                     overflow: 'auto',
                     maxHeight: "450px"
                 }}> 
 
-                  {cdsDataList.map((item, index)=>{
+                  {dataList.map((item, index)=>{
                     return ( 
                     <div  key={index}>
                     <ListItem  component="div" 
                       disablePadding
                       sx ={{padding:"3%"}}
                       secondaryAction={
-                        <IconButton edge="end" aria-label="delete">
+                        <IconButton edge="end" aria-label="delete" onClick={(e)=> handleDeleteData(e, index+1 )}>
                           <DeleteIcon />
                         </IconButton>
                       }
@@ -367,7 +484,7 @@ function UploadData() {
                   </ListItemAvatar>
                     <ListItemButton
                     selected={selectedIndex === index+1}
-                    onClick={(event) => handleCDSDataClick(event, index+1)}>
+                    onClick={(event) => handleDataClick(event, index+1)}>
                     <ListItemText primary={`${item}`} className ="listItemText" /> 
                     </ListItemButton> 
                   </ListItem>
@@ -391,7 +508,7 @@ function UploadData() {
                     />
                   )}
                     Upload
-                  <input hidden ref={uploadCDSDataRef}  type="file" accept=".xlsx" onChange={(e) => handleUploadAnnualCDSData(e)} />
+                  <input hidden ref={uploadDataRef}  type="file" accept=".xlsx" onChange={async (e) => handleUploadAnnualData(e)} />
                 </Button>
               </Grid>
 

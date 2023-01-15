@@ -85,7 +85,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
             filteredEntities = filterEntities(entitiesExtracted, [RANGE_ENTITY_LABEL, NUMBER_ENTITY_LABEL])
             searchResults : List[SearchResult] = rangeResultData.answers
             for searchResult in searchResults:
-                searchResult.addEntites(filteredEntities)
+                searchResult.addEntities(filteredEntities)
 
             # print("GOT IT")
             # print(entitiesUsedForEachResult)

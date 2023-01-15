@@ -7,11 +7,12 @@ from Exceptions.ExceptionMessages import NO_DATA_AVAILABLE_FOR_GIVEN_INTENT_FORM
 from Exceptions.NoDataFoundException import NoDataFoundException
 from Exceptions.NotEnoughInformationException import NotEnoughInformationException
 from Exceptions.ExceptionTypes import ExceptionTypes
-import json
+import re
 from pymongo import MongoClient
 
 from DataManager.constants import CDS_DATABASE_NAME_TEMPLATE, DATABASE_PRENAME, MONGO_DB_CONNECTION_STRING
 from DataManager.constants import DATABASE_SUBSECTION_FIELD_KEY
+from DataManager.constants import ANNUAL_DATA_REGEX_PATTERN
 """
 MongoDataManager subclass that can handle connections with MongoDB data
 """
@@ -34,11 +35,13 @@ class MongoDataManager(DataManager):
     # for doc in cursor:
     #     print(doc)
 
-    def getSectionAndSubsectionsForCDSData(self, cdsDataName) -> Dict[str, List[str]] :
+
+
+    def getSectionAndSubsectionsForData(self, dataName) -> Dict[str, List[str]] :
         sectionToSubections = dict()
         databases = self.client.list_database_names()
         for databaseName in databases: 
-            if cdsDataName == databaseName:
+            if dataName == databaseName:
                 db = self.client[databaseName]
                 collections = db.list_collection_names()
                 for collection in collections:
@@ -62,32 +65,59 @@ class MongoDataManager(DataManager):
 
         return sortedDict
 
-    def getAllAvailableCDSData(self):
-        databases = self.client.list_database_names()
-        cdsDatabase = []
-        for database in databases: 
-            if DATABASE_PRENAME in database:
-                cdsDatabase.append(database)
-        
-        return cdsDatabase
+    def deleteData(self, dataName) -> bool:
+        if dataName in self.client.list_database_names():
+            self.client.drop_database(dataName)
+            return True
+        else:
+            return False
 
+    def getAllAvailableData(self, regex : re.Pattern):
+        databases = self.client.list_database_names()
+        availableData = []
+        # print(databases)
+        
+        for database in databases: 
+            didMatch = regex.match(database.lower())
+            # print("_______-")
+            # print(regex)
+            # print(database.lower())
+            # print(didMatch)
+            if didMatch:
+                # print("MATCHED WITH", database)
+                # print(regex)
+                availableData.append(database)
+        
+        return availableData
+
+
+    def getSections(self, dataName):
+        return self.client[dataName].list_collection_names()
 
     """
     See docuementation in DataManager.py
     """
     def getSparseMatricesByStartEndYearAndIntent(self, intent, start, end, exceptionToThrow: Exception) -> TopicData:
-            cdsDatabase = CDS_DATABASE_NAME_TEMPLATE.format(start_year= start, end_year = end)
-            if not cdsDatabase in self.client.list_database_names():
+            # cdsDatabase = CDS_DATABASE_NAME_TEMPLATE.format(start_year= start, end_year = end)
+            # if not cdsDatabase in self.client.list_database_names():
+            #     raise exceptionToThrow
+
+            pattern = re.compile(".+"+str(start)+"."+str(end), re.IGNORECASE)
+            databasesAvailableForGivenYear = self.getAllAvailableData(pattern )
+            if len(databasesAvailableForGivenYear) == 0:
                 raise exceptionToThrow
-            # TODO: raise exception for this:
-            # if not intent in db.list_collection_names():
-            #     raise NoDataFoundException(NO_DATA_AVAILABLE_FOR_GIVEN_INTENT_FORMAT.format(topic = intent, start= start, end=end), ExceptionTypes.NoSparseMatrixDataAvailableForGivenIntent)
-            #localCollection = db[intent]
+
             intent = intent.replace("_", " ")
-            if intent not in self.client[cdsDatabase].list_collection_names():
+            selectedDatabaseName = ""
+            for databaseName in databasesAvailableForGivenYear:
+                sections = self.getSections(databaseName)
+                if intent in sections:
+                    selectedDatabaseName = databaseName
+
+            if selectedDatabaseName == "":
                 raise NoDataFoundException(NO_DATA_AVAILABLE_FOR_GIVEN_INTENT_FORMAT.format(topic = intent, start= start, end=end), ExceptionTypes.NoSparseMatrixDataAvailableForGivenIntent)
-            
-            topicData = self.mongoProcessor.getSparseMatricesByDbNameAndIntent(self.client, intent, cdsDatabase)
+        
+            topicData = self.mongoProcessor.getSparseMatricesByDbNameAndIntent(self.client, intent, selectedDatabaseName)
             print("TOPIC DATA")
             print(topicData)
             # cursor = topicData.find()
@@ -105,7 +135,9 @@ class MongoDataManager(DataManager):
             return startYear
 
         dbNameWithYears = self.client.list_database_names()
-        dbNameWithYears = list(filter(lambda db: DATABASE_PRENAME in db, dbNameWithYears))
+        pattern = re.compile(ANNUAL_DATA_REGEX_PATTERN, re.IGNORECASE)
+        dbNameWithYears = list(filter(lambda x : pattern.match(x), dbNameWithYears))
+
         dbNameWithYears.sort(key = sortFunc, reverse= True)
         if len(dbNameWithYears) == 0:
             raise Exception("No data found in database")
@@ -114,7 +146,7 @@ class MongoDataManager(DataManager):
             raise Exception("Wrong database name format, it should something like CDS_2020_2021")
 
         mostRecentYearRange = dbNameWithYears[0].split("_")
-        
+        print(mostRecentYearRange)
         return (mostRecentYearRange[1], mostRecentYearRange[2])
 
 # -----------The following are Unit Tests for the MongoDataManager Class

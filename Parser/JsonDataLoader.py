@@ -1,5 +1,5 @@
 from typing import Dict, List
-from Parser.CDSDataLoader import CDSDataLoader
+from Parser.DataLoader import DataLoader
 from Parser.QuestionAnswer import QuestionAnswer
 import pandas as pd
 
@@ -18,7 +18,7 @@ import pandas as pd
 #  }
 # }
 
-class JsonCDSDataLoader(CDSDataLoader):
+class JsonDataLoader(DataLoader):
     def __init__(self):
         super().__init__()
 

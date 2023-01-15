@@ -4,11 +4,11 @@ from typing import List, Dict
 import os
 from CustomEntityExtractor.NumberEntityExtractor import NumberEntityExtractor
 from DataManager.constants import RANGE_ENTITY_LABEL
-from Parser.CDSDataParser import CDSDataParser
+from Parser.DataParser import DataParser
 from Parser.SparseMatrixDataWriter import SparseMatrixDataWriter
 from Parser.RasaCommunicator import RasaCommunicator
 from Parser.QuestionAnswer import QuestionAnswer
-from Parser.CDSDataLoader import CDSDataLoader
+from Parser.DataLoader import DataLoader
 from Parser.ExcelSparseMatrixDataWriter import ExcelSparseMatrixDataWriter
 from Data_Ingestion.SparseMatrix import SparseMatrix
 
@@ -20,11 +20,11 @@ import asyncio
 class ParserFacade():
     def __init__(self, dataLoader, dataWriter ):
         
-        self.dataLoader : CDSDataLoader = dataLoader
+        self.dataLoader : DataLoader = dataLoader
         self.dataWriter : SparseMatrixDataWriter = dataWriter
         self.rasaCommunicator : RasaCommunicator = RasaCommunicator()
         self.numberEntityExtractor = NumberEntityExtractor()
-        self.parser = CDSDataParser()
+        self.parser = DataParser()
         self.entityConfidenceKey = "confidence_entity"
         self.confidenceThreshold = 0.5
         self.state = "idle"

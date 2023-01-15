@@ -6,7 +6,7 @@ from Parser.SparseMatrixDataWriter import SparseMatrixDataWriter
 from Data_Ingestion.SparseMatrix import SparseMatrix
 import pandas as pd
 
-class CDSDataParser():
+class DataParser():
     def __init__(self):
         pass
        

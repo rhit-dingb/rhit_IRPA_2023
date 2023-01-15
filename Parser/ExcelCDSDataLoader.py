@@ -2,10 +2,10 @@
 
 from typing import List, Dict
 from Parser.QuestionAnswer import QuestionAnswer
-from Parser.CDSDataLoader import CDSDataLoader
+from Parser.DataLoader import DataLoader
 import pandas as pd
 
-class ExcelCDSDataLoader(CDSDataLoader):
+class ExcelCDSDataLoader(DataLoader):
     def __init__(self, path):
         super().__init__()
         self.path = path

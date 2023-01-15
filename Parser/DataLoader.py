@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 from typing import List
 
 from Parser.QuestionAnswer import QuestionAnswer
-class CDSDataLoader(ABC):
+class DataLoader(ABC):
     def __init__(self):
         self.sectionFullNameToQuestionAnswers = dict()
         self.METADATA_KEY = "metadata"

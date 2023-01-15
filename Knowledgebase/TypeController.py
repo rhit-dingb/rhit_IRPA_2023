@@ -4,6 +4,7 @@ from Knowledgebase.SearchResultType import SearchResultType
 
 class TypeController():
     def determineResultType(self, searchResult) -> Tuple[any, SearchResultType]:
+            searchResult = str(searchResult)
             if searchResult == None:
                 return (searchResult, None)
             if len(searchResult) == 0:
