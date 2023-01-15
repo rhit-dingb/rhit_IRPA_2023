@@ -236,8 +236,8 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
                 rangesToUse.append(dRange)
         # print("MIN VALUE MAX VALUE")
         # print(minValue, maxValue)
-        # print("RANGE TO USE")
-        # print(rangesToUse)
+        print("RANGE TO USE")
+        print(rangesToUse)
         return rangesToUse
     
     # def convertNoneToInfinity(self,a):
@@ -306,6 +306,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
             searchResult = searchResults[0]
             if answerPointer == None:
                 answerPointer = searchResult
+                foundAnswers.append(searchResult)
             else:
                 answerPointer = sparseMatrix.addSearchResult(answerPointer, searchResult, foundAnswers, isSumming)
 
