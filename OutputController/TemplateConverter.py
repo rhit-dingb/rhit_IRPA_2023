@@ -28,12 +28,12 @@ class TemplateConverter():
         currIndex = 0 
        
         while currIndex < len(template):
-
+            print(template[currIndex])
             if template[currIndex] in self.possibleBracket:
                
                 matchIndex = self.lookForMatch(template[currIndex], currIndex+1 ,template)
                 if matchIndex == -1:
-                    raise Exception("No matching bracket found for"+self.entityExpBracket)
+                    raise Exception("No matching bracket found for "+ template[currIndex])
                 # expressionsParsed = self.parseTemplate(newTemplate)
                 newTemplate = template[currIndex+1:matchIndex]
                 # print("STARTING AGAIN on"+str(currIndex))

@@ -61,7 +61,6 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
     """
     async def searchForAnswer(self, intent, entitiesExtracted, shouldAddRowStrategy, outputFunc, shouldAdd = True):
         # print("BEGAN SEARCHING")
-
         sparseMatrixToSearch : SparseMatrix; startYear : str; endYear : str 
         sparseMatrixToSearch, startYear, endYear = self.determineMatrixToSearch(intent, entitiesExtracted, self.year)
         
@@ -123,6 +122,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
                 entities = entities+numberEntities
                 entities = removeDuplicatedEntities(entities)
                 searchResult.setEntitiesForRealQuestion(entities)
+            print("DONE")
             
 
     
@@ -165,7 +165,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
 
     def constructOutput(self, searchResults : List[SearchResult], intent, template):
        #return searchResult
-       print("CONSTRUCTING OUTPUT")
+     
        if searchResults is None or len(searchResults) == 0: 
             return ["Sorry, I couldn't find any answer to your question"]
         
@@ -175,17 +175,14 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
        constructSentenceFor = []
        stringSentence = []
        for result in searchResults:
-            if result.type== SearchResultType.STRING:
-                stringSentence.append(result.answer)
+            
+            if result.type == SearchResultType.STRING:
+                stringSentence.append(str(result.answer))
             else:
                 constructSentenceFor.append(result)
-
-      
        sentences = self.templateConverter.constructOutput(constructSentenceFor, template)
-       
        return sentences + stringSentence
-       #return constructSentence(searchResult, intent, entitiesUsed)
-
+       
   
     def findRange(self, entitiesFound, maxBound, minBound, sparseMatrix : SparseMatrix):
         maxValue = maxBound

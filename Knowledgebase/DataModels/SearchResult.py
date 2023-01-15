@@ -8,7 +8,7 @@ class SearchResult():
     def __init__(self, answer, entitiesUsed : List[Dict[str, str]], type : SearchResultType, realQuestion : str):
         # print("CHANGE ANSWER")
         # print(answer)
-        self.answer = answer
+        self.answer = str(answer)
         self.entitiesUsed = entitiesUsed
         self.type = type
         self.realQuestion = realQuestion

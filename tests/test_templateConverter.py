@@ -20,6 +20,7 @@ class test_template_converter(unittest.TestCase):
        self.badTemplate_3 = "(xor{Hello} done "
        self.complicatedTemplate = " (xor {On [*average], the [*percent] of financial need that was met for} {the number of}) degree-seeking, first-time, full-time freshman students (xor {whose need was [financial_aid_degree_met]} {who were awarded any [need_non_need_base_aid] [financial_aid_type] (xor [self-help] {scholarship and grant})}) aid is <value>"
        self.rangeTemplate = "(xor {[range] [number] and [number]} {[range] [number]})"
+       self.complicated2 = "The amount of [need_non_need_base_aid] (xor [self-help_aid] {[financial_aid_type] scholarship or grants} (xor {tuition [*waiver]} {(xor [*parent] [*student]) loan}))"
        self.templateConverter = TemplateConverter()
 
 
@@ -117,6 +118,14 @@ class test_template_converter(unittest.TestCase):
       sentences= self.templateConverter.constructOutput(searchResults, self.complicatedTemplate)
       checkAnswers(expectedAnswer, sentences, self)
       print(sentences)
+    
+
+   def test_parse_complicated_template_no_infinite_loop(self):
+      searchAnswers = ["5"]
+      searchResults = createSearchResult(searchAnswers,[])
+      sentences = self.templateConverter.constructOutput(searchResults, self.complicated2)
+      
+    
 
 
 def checkAnswers(sentences, answers, unitTest):
