@@ -4,8 +4,9 @@ version: "3.1"
 nlu:
 - intent: annual_expense
   examples: |
-    - What is the [URL]{"entity":"URL", "value": "URL"} of your institution's [net_price_calculator]{"entity":"net_price_calculator", "value": "net_price_calculator"}?
-    - Is there any [URL]{"entity":"URL", "value": "URL"} that i can use to [net_price_calculator]{"entity":"net_price_calculator", "value": "net_price_calculator"}?
+    - What is the [URL]{"entity":"way_of_contact", "value": "website"} of your institution's [net_price_calculator]{"entity":"net_price_calculator", "value": "net price calculator"}?
+    - What is the [web page]{"entity":"way_of_contact", "value": "website"} of your institution's [net price calculator]{"entity":"net_price_calculator", "value": "net price calculator"}?
+    - Is there any [URL]{"entity":"way_of_contact", "value": "website"} that i can use to [calculator for net price]{"entity":"net_price_calculator", "value": "net price calculator"}?
     - What is the approximate [date]{"entity":"time", "value": "date"} of the academic year [cost]{"entity":"money", "value": "cost"} release?
     - What is the approximate [date]{"entity":"time", "value": "date"} of the academic year [fee]{"entity":"money", "value": "fee"} release?
     - What is the approximate [date]{"entity":"time", "value": "date"} of the academic year [tuition]{"entity":"money", "value": "tuition"} release?
@@ -36,16 +37,16 @@ nlu:
     - what is the number of [credits]{"entity":"academic_credit", "value": "credit"} that stduents can take for a [full-time]{"entity":"other", "enrollment_status": "full-time"} [tuition]{"entity":"money", "value": "tuition"}?
     - how many [credits]{"entity":"academic_credit", "value": "credit"} can student with [full-time]{"entity":"other", "enrollment_status": "full-time"} [tuition]{"entity":"money", "value": "tuition"} take?
 
-    - Does [tuition]{"entity":"money", "value": "tuition"} [changes]{"entity":"change", "value": "change"} by year of study?
-    - Does [fee]{"entity":"money", "value": "fee"} [changes]{"entity":"change", "value": "change"} by year of study?
-    - Does [fee]{"entity":"money", "value": "fee"} [changes]{"entity":"change", "value": "change"} by undergraduate instructional program?
-    - Does  [tuition]{"entity":"money", "value": "tuition"} [changes]{"entity":"change", "value": "change"} by undergraduate instructional program?
+    - Does [tuition]{"entity":"money", "value": "tuition"} [changes]{"entity":"action", "value": "change"} by year of study?
+    - Does [fee]{"entity":"money", "value": "fee"} [changes]{"entity":"action", "value": "change"} by year of study?
+    - Does [fee]{"entity":"money", "value": "fee"} [changes]{"entity":"action", "value": "change"} by undergraduate instructional program?
+    - Does  [tuition]{"entity":"money", "value": "tuition"} [changes]{"entity":"action", "value": "change"} by undergraduate instructional program?
 
     - what is the [cost]{"entity":"money", "value": "cost"} of [books]{"entity":"school_supply", "value": "book"} and [supply]{"entity":"school_supply", "value": "supply"} for [resident]{"entity": "international_domestic", "value": "domestic"} student?
-    - what is the [cost]{"entity":"money", "value": "cost"} of [books]{"entity":"school_supply", "value": "book"} and [supply]{"entity":"school_supply", "value": "supply"} for [commuters]{"entity":"category", "value": "commuters"} student?
-    - what is the [cost]{"entity":"money", "value": "cost"} of [room]{"entity":"living_cost", "value": "room"} for [commuters]{"entity":"category", "value": "commuters"} student?
-    - what is the [cost]{"entity":"money", "value": "cost"} of [board]{"entity":"living_cost", "value": "borad"} for [commuters]{"entity":"category", "value": "commuters"} student?
-    - what is [other]{"entity":"other", "value": "other"} [cost]{"entity":"money", "value": "cost"} for [commuters]{"entity":"category", "value": "commuters"} student?
+    - what is the [cost]{"entity":"money", "value": "cost"} of [books]{"entity":"school_supply", "value": "book"} and [supply]{"entity":"school_supply", "value": "supply"} for [commuters]{"entity":"category", "value": "commute"} student?
+    - what is the [cost]{"entity":"money", "value": "cost"} of [room]{"entity":"living_cost", "value": "room"} for [commuters]{"entity":"category", "value": "commute"} student?
+    - what is the [cost]{"entity":"money", "value": "cost"} of [board]{"entity":"living_cost", "value": "borad"} for [commuters]{"entity":"category", "value": "commute"} student?
+    - what is [other]{"entity":"other", "value": "other"} [cost]{"entity":"money", "value": "cost"} for [commuters]{"entity":"category", "value": "commute"} student?
     - what is [other]{"entity":"other", "value": "other"} [cost]{"entity":"money", "value": "cost"}  for [resident]{"entity": "international_domestic", "value": "domestic"} student?
 
     - how much does a [credit]{"entity":"academic_credit", "value": "credit"} [costs]{"entity":"money", "value": "costs"}?
@@ -70,21 +71,23 @@ nlu:
     - supply
     - supplies
 
-- synonym: URL
-  examples: |
-    - url
-    - link
-    - web page
+# - synonym: URL
+#   examples: |
+#     - url
+#     - link
+#     - web page
 
-- synonym: first-year
-  examples: |
-    - first year
-    - first-year
-    - the first year
+# - synonym: first-year
+#   examples: |
+#     - first year
+#     - first-year
+#     - the first year
 
-- synonym: net_price_calculator
+- synonym: net price calculator
   examples: |
-    - Net price calculator
+    - net-price calculator
+    - net price calculation
     - price calculator
+    - calculate for net price
     - calculate price
     

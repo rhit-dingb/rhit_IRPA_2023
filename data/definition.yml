@@ -56,7 +56,7 @@ nlu:
 
     - What is the definition for [credit]{"entity":"academic_credit", "value": "credit"}?
 
-    - What is the definition for [credit course]{"entity":"credit_course", "value": "credit"}?
+    - What is the definition for [credit]{"entity":"academic_credit", "value": "credit"} course?
 
     - What is the definition for [cross-registration]{"entity":"program_offered", "value": "cross-registration"}?
 
@@ -68,8 +68,8 @@ nlu:
 
     - What does [diploma]{"entity": "academic_credential", "value": "diploma"} mean?
 
-    - What does [distance learning]{"entity": "distance learning", "value": "distance learning"} mean?
-    - What does [distant learning]{"entity": "distance learning", "value": "distance learning"} mean?
+    - What does [distance learning]{"entity": "distance_learning", "value": "distance learning"} mean?
+    - What does [distant learning]{"entity": "distance_learning", "value": "distance learning"} mean?
 
 
     - What is the definition of [doctor's]{"entity": "degree_level", "value": "doctorate"} [degree]{"entity": "academic_credential", "value": "degree"} - [research]{"entity": "program_offered", "value":"research"} or [scholarship]{"entity": "scholarship_grants", "value":"scholarship"}?
@@ -160,7 +160,7 @@ nlu:
     - What is the definition for [private]{"entity": "access_level", "value": "private"} [institution]{"entity": "education_level", "value": "college"} ?
 
 
-    - What is the definition for [private]{"entity": "access_level", "value": "private"} [for-profit]{"entity": "for_profit_not_for_profit", "value": "for-profit"} [institution]{"entity": "education_level", "value": "college"}?
+    - What is the definition for [private]{"entity": "access_level", "value": "private"} [for-profit]{"entity": "for_profit_non_profit", "value": "for-profit"} [institution]{"entity": "education_level", "value": "college"}?
 
     - What is the definition of [private]{"entity": "access_level", "value": "private"} [nonprofit]{"entity": "for_profit_non_profit", "value": "non-profit"} [institution]{"entity": "education_level", "value": "college"}?
 

@@ -13,6 +13,7 @@ from pymongo import MongoClient
 from DataManager.constants import CDS_DATABASE_NAME_TEMPLATE, DATABASE_PRENAME, MONGO_DB_CONNECTION_STRING
 from DataManager.constants import DATABASE_SUBSECTION_FIELD_KEY
 from DataManager.constants import ANNUAL_DATA_REGEX_PATTERN
+from DataManager.constants import DEFINITION_DATA_REGEX_PATTERN
 """
 MongoDataManager subclass that can handle connections with MongoDB data
 """
@@ -94,16 +95,21 @@ class MongoDataManager(DataManager):
     def getSections(self, dataName):
         return self.client[dataName].list_collection_names()
 
+    
+
     """
-    See docuementation in DataManager.py
+    See documentation in DataManager.py
     """
     def getSparseMatricesByStartEndYearAndIntent(self, intent, start, end, exceptionToThrow: Exception) -> TopicData:
             # cdsDatabase = CDS_DATABASE_NAME_TEMPLATE.format(start_year= start, end_year = end)
             # if not cdsDatabase in self.client.list_database_names():
             #     raise exceptionToThrow
 
-            pattern = re.compile(".+"+str(start)+"."+str(end), re.IGNORECASE)
-            databasesAvailableForGivenYear = self.getAllAvailableData(pattern )
+            patternYear = re.compile(".+"+str(start)+"."+str(end), re.IGNORECASE)
+            patternDefinition = re.compile(DEFINITION_DATA_REGEX_PATTERN)
+            definitionDatabases = self.getAllAvailableData(patternDefinition)
+            databasesAvailableForGivenYear = self.getAllAvailableData(patternYear)
+            
             if len(databasesAvailableForGivenYear) == 0:
                 raise exceptionToThrow
 
@@ -113,6 +119,13 @@ class MongoDataManager(DataManager):
                 sections = self.getSections(databaseName)
                 if intent in sections:
                     selectedDatabaseName = databaseName
+
+            # We expect there to be only one definition data
+            if selectedDatabaseName == "":
+                definitionSections = self.getSections(definitionDatabases[0])
+                if len(definitionDatabases) > 0:
+                    if intent in definitionSections:
+                        selectedDatabaseName = definitionDatabases[0]
 
             if selectedDatabaseName == "":
                 raise NoDataFoundException(NO_DATA_AVAILABLE_FOR_GIVEN_INTENT_FORMAT.format(topic = intent, start= start, end=end), ExceptionTypes.NoSparseMatrixDataAvailableForGivenIntent)

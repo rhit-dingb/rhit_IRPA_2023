@@ -64,8 +64,9 @@ entities:
   #race/ethnicity, value: minority, african american, unknown, american indian, white, hispanic,  pacific-islander, two-or-more
   - race
 
-  #Capture many different verbs. Values: applied addmitted, determined, awarded, met, borrowed, designed, offered
+  #Capture many different verbs. Values: applied addmitted, determined, awarded, met, borrowed, designed, offered, change
   - action
+
 
   - waiting-list
 
@@ -178,9 +179,8 @@ entities:
   - placement
 
 
-#Captures the concept with change
-#value: Change
-  - change
+#Capture value section, and subsection
+  - section_subsection
 
 #Use to capture anything word related to time such as word "date" or "when" - to see if user mention time anywhere in their sentence. 
 #Values: date.
@@ -195,10 +195,6 @@ entities:
 
 # Doctorate, Masters, Bachelors, Associates degree, and Unknown
   - degree_level 
-
-# # capture the concept of residents
-#   - resident
-
 
 
 #Use to capture the word age
@@ -307,6 +303,8 @@ entities:
 #Value : form
   - form
 
+#Captures size, usually used for class size.
+  - size
 
   ##ENTITIES FOR DEFINITIONS
 
