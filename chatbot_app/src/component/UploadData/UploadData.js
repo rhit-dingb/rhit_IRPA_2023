@@ -211,6 +211,7 @@ function UploadData() {
     let res = validationFunc(fileName)
     let body = {"dataName": fileName}
     if (res){
+      console.log("UPLOAD FILE")
       handleUpload(file, body).then(()=> {
         console.log("RETRIEVING DATA AVAILABLE")
         updateFunc()
@@ -453,7 +454,7 @@ function UploadData() {
                   )}
                     Upload
                   
-                  <input hidden ref={uploadDefinitionRef}  type="file" accept=".xlsx" onChange={async (e) => handleUploadDefinition(e)} />
+                  <input hidden ref={uploadDefinitionRef}  type="file" accept=".xlsx" onChange={(e) => handleUploadDefinition(e)} />
                 </Button>
                 
                 </Box> 
@@ -508,7 +509,7 @@ function UploadData() {
                     />
                   )}
                     Upload
-                  <input hidden ref={uploadDataRef}  type="file" accept=".xlsx" onChange={async (e) => handleUploadAnnualData(e)} />
+                  <input hidden ref={uploadDataRef}  type="file" accept=".xlsx" onChange={(e) => handleUploadAnnualData(e)} />
                 </Button>
               </Grid>
 
