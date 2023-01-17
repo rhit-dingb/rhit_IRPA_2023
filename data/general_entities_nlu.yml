@@ -257,6 +257,8 @@ nlu:
   examples: |
     - parent
     - student
+    - professor 
+    - faculty
 
 - synonym: parent
   examples: | 

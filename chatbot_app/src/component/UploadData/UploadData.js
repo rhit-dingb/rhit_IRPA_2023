@@ -160,7 +160,7 @@ function UploadData() {
     let yearTo = tokens[2]
     yearFrom = parseInt(yearFrom)
     yearTo = parseInt(yearTo)
-    if (yearFrom.isNaN() || yearTo.isNaN()) {
+    if (yearFrom === NaN || yearTo === NaN) {
       displayErrorMessage(errorMessage)
       return false
     }
@@ -193,7 +193,7 @@ function UploadData() {
   const handleUploadDefinition = (event) => {
     let file = event.target.files[0]
     // let fileName = file.name
-    // uploadDefinitionRef.current.value = "" 
+    uploadDefinitionRef.current.value = "" 
     // let res = validateDefinitionFileName(fileName)
     // let body = {"dataName": fileName, "type": DataType.DEFINITION}
     // handleUpload(file, body).then(()=> {
@@ -221,6 +221,7 @@ function UploadData() {
 
   const handleUploadAnnualData = (event) => {
     let file = event.target.files[0]
+    uploadDataRef.current.value = ""
     validateAndUpload(file, validateAnnualFileName, fetchAnnualData)
       
   }
