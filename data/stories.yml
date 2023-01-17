@@ -38,6 +38,7 @@ stories:
       - intent: faculty_and_class_size
       - intent: annual_expense
       - intent: academic_offering_policy
+      - intent: degree_conferred
     - action: action_query_knowledgebase
     - action: utter_ask_answer_helpful
     - intent: affirm
@@ -50,6 +51,7 @@ stories:
       - intent: sat_act_policies
       - intent: faculty_and_class_size
       - intent: annual_expense
+      - intent: degree_conferred
     - action: action_query_knowledgebase
     - action: utter_ask_answer_helpful
     - intent: deny

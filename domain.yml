@@ -21,6 +21,7 @@ intents:
   - general_info
   - definition
   - annual_expense
+  - degree_conferred
 
   - change_year
 

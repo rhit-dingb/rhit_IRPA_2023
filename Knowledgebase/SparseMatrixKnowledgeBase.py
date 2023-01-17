@@ -100,7 +100,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
                 # return outputFunc(percentages, intent, template)
       
         await self.getAllEntityForRealQuestionFoundForAnswer(searchResults)
-        print(searchResults[0].entitiesForRealQuestion)
+        # print(searchResults[0].entitiesForRealQuestion)
         return outputFunc(searchResults, intent,  template)
 
     async def getAllEntityForRealQuestionFoundForAnswer(self, searchResults : List[SearchResult]):

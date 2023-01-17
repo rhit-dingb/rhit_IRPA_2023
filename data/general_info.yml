@@ -13,7 +13,6 @@ nlu:
     - What is Rose-Hulman [admissions]{"entity":"academic_process", "value": "admission"} [number]{"entity":"way_of_contact", "value": "phone"} ?
     - What is Rose-Hulman [admissions]{"entity":"academic_process", "value": "admission"} [fax]{"entity":"way_of_contact", "value": "fax"} [number]{"entity":"way_of_contact", "value": "phone"}? 
 
-    - 
     - What is Rose-Hulman's www home page [address]{"entity":"way_of_contact", "value": "address"} / [website]{"entity":"way_of_contact", "value": "website"}?
     - What is Rose-Hulman [admissions]{"entity":"academic_process", "value": "admission"} toll free [number]{"entity":"way_of_contact", "value": "number"}?
     - What is Rose-Hulman [admissions]{"entity":"academic_process", "value": "admission"} office mailing [address]{"entity":"way_of_contact", "value": "address"}?
@@ -29,3 +28,6 @@ nlu:
     - What [calendar]{"entity": "calendar_system", "value": "calendar system"} does Rose-Hulman use? 
     - Does Rose-hulman use [quarter]{"entity": "calendar_system", "value": "quarter"}, [semester]{"entity": "calendar_system", "value": "semester"}, [trimester]{"entity": "calendar_system", "value": "trimester"}, [continuous]{"entity": "calendar_system", "value": "continuous basis"}, [4-1-4]{"entity": "calendar_system", "value": "4-1-4"}, or does it [differ by program]{"entity": "calendar_system", "value": "differ by program"}?
     - What [degrees]{"entity": "academic_credential", "value":"degree"} are offered by Rose-Hulman?
+    - does rose-hulman offer [bachelors]{"entity": "degree_level", "value": "bachelors"} [degree]{"entity": "academic_credential", "value":"degree"}?
+    - does rose-hulman offer any [graduate]{"entity": "student_level", "value": "graduate"} [degree]{"entity": "academic_credential", "value":"degree"}?
+    - does rose-hulman offer [masters]{"entity": "degree_level", "value": "master"} [degree]{"entity": "academic_credential", "value":"degree"}?
