@@ -1803,7 +1803,7 @@ nlu:
 
     - Is there [waiver]{"entity": "other_aid", "value": "waiver"} for [online]{"entity": "online", "value":"online" } [application]{"entity":"academic_process", "value":"application"}?
 
-    - What is the [deadline]{"entity":"date", "value": "date"} for [housing]{"entity": "housing", "value": "housing"} deposit?
+    - What is the [deadline]{"entity":"time", "value": "date"} for [housing]{"entity": "housing", "value": "housing"} deposit?
     
 
 

@@ -38,7 +38,7 @@ class ParserFacade():
 
     async def parse(self):
         sectionFullNames : List[str] = self.dataLoader.getAllSectionDataFullName()
-        sectionToSparseMatrices : Dict[str, List] = dict()
+        sectionToData : Dict[str, List] = dict()
        
 
         async with aiohttp.ClientSession() as session:
@@ -93,20 +93,22 @@ class ParserFacade():
                     questionAnswer.setEntities(entityValues)
 
                     index = index + 1
-                    
-                sparseMatrix : SparseMatrix = self.parser.parse(subSection, questionAnswers) 
-                if section in sectionToSparseMatrices:
-                    sectionToSparseMatrices[section].append(sparseMatrix)
+
+                # Parsed data is sparse matrix, it can be extended to support other types as well.
+                parsedData = self.parser.parse(subSection, questionAnswers) 
+                if section in sectionToData:
+                    sectionToData[section].append(parsedData)
                 else: 
-                    sectionToSparseMatrices[section] = [sparseMatrix]
+                    sectionToData[section] = [parsedData]
 
             # sparseMatrices.append(sparseMatrix)
-        self.writeSparseMatrix(sectionToSparseMatrices)
+        # might want to refactor so it doesn't assume sparse matrix
+        self.write(sectionToData)
            
         
         
-    def writeSparseMatrix(self,sectionToSparseMatrices):
-        self.dataWriter.writeSparseMatrices(sectionToSparseMatrices)
+    def write(self,sectionToData):
+        self.dataWriter.write(sectionToData)
 
         
 

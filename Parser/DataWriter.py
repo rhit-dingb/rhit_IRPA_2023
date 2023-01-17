@@ -7,5 +7,5 @@ class DataWriter(ABC):
         pass
 
     @abstractmethod
-    def writeSparseMatrices(self, sectionToSparseMatrices : Dict[str, List[SparseMatrix]]) -> None:
+    def write(self, parsedData) -> None:
         pass

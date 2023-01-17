@@ -18,7 +18,7 @@ class MongoDBSparseMatrixDataWriter(DataWriter):
         self.db = self.client[self.databaseName]
         self.subsectionKey = DATABASE_SUBSECTION_FIELD_KEY 
 
-    def writeSparseMatrix(self, sparseMatrix : SparseMatrix, sectionName : str) -> None:
+    def writeSingle(self, sparseMatrix : SparseMatrix, sectionName : str) -> None:
         #In the parse, the subsection name of the sparse matrix is the full sheet name on the input excel file.
         # print("writing")
         
@@ -37,12 +37,12 @@ class MongoDBSparseMatrixDataWriter(DataWriter):
         
     
 
-    def writeSparseMatrices(self, sectionToSparseMatrices : Dict[str, List[SparseMatrix]]): 
+    def write(self, sectionToSparseMatrices : Dict[str, List[SparseMatrix]]): 
         sectionsInserted = []
         for section in sectionToSparseMatrices:
             sparseMatrices = sectionToSparseMatrices[section]
             for sparseMatrix in sparseMatrices:
-                self.writeSparseMatrix(sparseMatrix, section)
+                self.writeSingle(sparseMatrix, section)
                 #Delete all the old sparse matrix-- the one that exist in the database but was not updated or newly inserted
                 subsectionsInserted = [sparseMatrix.subSectionName for sparseMatrix in sparseMatrices]
                 # Delete any documents for subsection that is not inserted.

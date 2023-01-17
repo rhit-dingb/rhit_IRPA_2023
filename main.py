@@ -3,7 +3,7 @@ import os
 from CustomEntityExtractor.NumberEntityExtractor import NumberEntityExtractor
 from Parser.MongoDBSparseMatrixDataWriter import MongoDBSparseMatrixDataWriter
 from Parser.ParserFacade import ParserFacade
-from Parser.CDSDataLoader import CDSDataLoader
+from Parser.DataLoader import DataLoader
 from Parser.ExcelSparseMatrixDataWriter import ExcelSparseMatrixDataWriter
 from Parser.ExcelCDSDataLoader import ExcelCDSDataLoader
 

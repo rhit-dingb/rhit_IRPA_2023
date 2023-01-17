@@ -1,4 +1,4 @@
-
+from Parser.DataWriter import DataWriter
 from typing import Dict, List
 from Data_Ingestion.SparseMatrix import SparseMatrix
 from Parser.DataWriter import DataWriter
@@ -15,7 +15,7 @@ class ExcelSparseMatrixDataWriter(DataWriter):
         self.excelWorkbook = load_workbook(self.excelPath)
     
     
-    def writeSparseMatrix(self, sparseMatrix : SparseMatrix, sectionName : str) -> None:
+    def writeSingle(self, sparseMatrix : SparseMatrix, sectionName : str) -> None:
         df = sparseMatrix.getSparseMatrixDf()
         # print(df)
         writer = pd.ExcelWriter(self.excelPath, engine = 'openpyxl')
@@ -25,10 +25,10 @@ class ExcelSparseMatrixDataWriter(DataWriter):
         # writer.save()
         writer.close()
 
-    def writeSparseMatrices(self,  sectionToSparseMatrices : Dict[str, List[SparseMatrix]]) -> None:
+    def write(self,  sectionToSparseMatrices : Dict[str, List[SparseMatrix]]) -> None:
         for section in sectionToSparseMatrices:
             sparseMatrices = sectionToSparseMatrices[section]
             for sparseMatrix in sparseMatrices:
-                self.writeSparseMatrix(sparseMatrix, section)
+                self.writeSingle(sparseMatrix, section)
 
     
