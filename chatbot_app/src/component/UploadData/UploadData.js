@@ -160,7 +160,7 @@ function UploadData() {
     let yearTo = tokens[2]
     yearFrom = parseInt(yearFrom)
     yearTo = parseInt(yearTo)
-    if (yearFrom == NaN || yearTo == NaN) {
+    if (yearFrom.isNaN() || yearTo.isNaN()) {
       displayErrorMessage(errorMessage)
       return false
     }

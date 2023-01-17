@@ -3,7 +3,7 @@ import React from "react";
 import react, { useEffect, useState } from "react";
 import { IoMdSend } from "react-icons/io";
 import { BiBot, BiUser } from "react-icons/bi";
-
+import { RASA_API_STRING } from "../constants/constants";
 function Basic() {
   const [chat, setChat] = useState([]);
   const [inputMessage, setInputMessage] = useState("");
@@ -34,7 +34,7 @@ function Basic() {
     //chatData.push({sender : "user", sender_id : name, msg : msg});
     console.log(chat);
     await fetch(
-      "http://irpa-chatbot.csse.rose-hulman.edu:5005/webhooks/rest/webhook",
+      `${RASA_API_STRING}/webhooks/rest/webhook`,
       {
         method: "POST",
         headers: {

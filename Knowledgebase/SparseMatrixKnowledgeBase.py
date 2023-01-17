@@ -75,8 +75,6 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         hasPercentageEntity = findEntityHelper(entitiesExtracted, AGGREGATION_ENTITY_PERCENTAGE_VALUE)
         template = sparseMatrixToSearch.findTemplate()
         searchResults = []
-
-
         print(sparseMatrixToSearch.subSectionName)
         if isRangeAllowed and hasRangeEntity:
             print("RANGE")
