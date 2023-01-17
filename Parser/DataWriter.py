@@ -2,7 +2,7 @@ from typing import Dict, List
 from Data_Ingestion.SparseMatrix import SparseMatrix
 from abc import ABC, abstractmethod
 
-class SparseMatrixDataWriter(ABC):
+class DataWriter(ABC):
     def __init__(self):
         pass
 

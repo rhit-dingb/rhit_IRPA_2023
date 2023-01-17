@@ -5,7 +5,7 @@ import os
 from CustomEntityExtractor.NumberEntityExtractor import NumberEntityExtractor
 from DataManager.constants import RANGE_ENTITY_LABEL
 from Parser.DataParser import DataParser
-from Parser.SparseMatrixDataWriter import SparseMatrixDataWriter
+from Parser.DataWriter import DataWriter
 from Parser.RasaCommunicator import RasaCommunicator
 from Parser.QuestionAnswer import QuestionAnswer
 from Parser.DataLoader import DataLoader
@@ -21,7 +21,7 @@ class ParserFacade():
     def __init__(self, dataLoader, dataWriter ):
         
         self.dataLoader : DataLoader = dataLoader
-        self.dataWriter : SparseMatrixDataWriter = dataWriter
+        self.dataWriter : DataWriter = dataWriter
         self.rasaCommunicator : RasaCommunicator = RasaCommunicator()
         self.numberEntityExtractor = NumberEntityExtractor()
         self.parser = DataParser()
@@ -94,7 +94,7 @@ class ParserFacade():
 
                     index = index + 1
                     
-                sparseMatrix : SparseMatrix = self.parser.parseQuestionAnswerToSparseMatrix(subSection, questionAnswers) 
+                sparseMatrix : SparseMatrix = self.parser.parse(subSection, questionAnswers) 
                 if section in sectionToSparseMatrices:
                     sectionToSparseMatrices[section].append(sparseMatrix)
                 else: 

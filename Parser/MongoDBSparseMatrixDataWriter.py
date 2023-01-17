@@ -1,7 +1,7 @@
 import json
 from typing import Dict, List
 from DataManager.constants import DATABASE_PRENAME, MONGO_DB_CONNECTION_STRING
-from Parser.SparseMatrixDataWriter import SparseMatrixDataWriter
+from Parser.DataWriter import DataWriter
 from Data_Ingestion.SparseMatrix import SparseMatrix
 from pymongo import MongoClient
 
@@ -9,7 +9,7 @@ from DataManager.constants import DATABASE_SUBSECTION_FIELD_KEY
 
 
 
-class MongoDBSparseMatrixDataWriter(SparseMatrixDataWriter):
+class MongoDBSparseMatrixDataWriter(DataWriter):
     #database name can be existing database or a new one
     def __init__(self, outputName):
         self.client = MongoClient(MONGO_DB_CONNECTION_STRING)

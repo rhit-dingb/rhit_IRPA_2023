@@ -1807,7 +1807,6 @@ nlu:
     
 
 
-
 - synonym: waiver
   examples: |
     - waived
