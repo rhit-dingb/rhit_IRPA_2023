@@ -62,11 +62,11 @@ class ActionQueryKnowledgebase(Action):
         intent = tracker.latest_message["intent"]["name"]
         print(intent)
         print(entitiesExtracted)
-        #try:
-        answers = await knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy, knowledgeBase.constructOutput,True)
-        utterAllAnswers(answers, dispatcher)        
-        #except Exception as e:
-            #utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
+        try:
+            answers = await knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy, knowledgeBase.constructOutput,True)
+            utterAllAnswers(answers, dispatcher)        
+        except Exception as e:
+            utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
         return []
     
 class ActionSetYear(Action):
@@ -99,6 +99,8 @@ class ActionQueryCohort(Action):
 
 
     def run(self, dispatcher, tracker, domain):
+        dispatcher.utter_message("Sorry, Cohort queries are not currently supported.")
+        return 
         print(tracker.latest_message["intent"])
         print("ENTITIES")
         # print(tracker.latest_message["entities"])

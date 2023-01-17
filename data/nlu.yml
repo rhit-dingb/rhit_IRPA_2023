@@ -1976,9 +1976,9 @@ nlu:
     - What is the [required]{"entity": "condition", "value": "require"} [unit]{"entity": "academic_credit", "value": "unit"}  for [academic electives]{"entity": "subject", "value": "academic-electives"}
     - What is the [required]{"entity": "condition", "value": "require"} [unit]{"entity": "academic_credit", "value": "unit"}  for [electives]{"entity": "subject", "value": "academic-electives"}
 
-    - What is the [required]{"entity": "condition", "value": "require"} [units]{"entity": "academic_credit", "value": "unit"}  for [computer science]{"entity": "subject", "value": "computer-science"}
-    - What is the [recommended]{"entity": "condition", "value": "recommend"} [units]{"entity": "academic_credit", "value": "unit"}  for [computer science]{"entity": "subject", "value": "computer-science"}
-    - What is the [required]{"entity": "condition", "value": "require"} [units]{"entity": "academic_credit", "value": "unit"}  for [computer-science]{"entity": "subject", "value": "computer-science"}
+    - What is the [required]{"entity": "condition", "value": "require"} [units]{"entity": "academic_credit", "value": "unit"}  for [computer science]{"entity": "subject", "value": "computer science"}
+    - What is the [recommended]{"entity": "condition", "value": "recommend"} [units]{"entity": "academic_credit", "value": "unit"}  for [computer science]{"entity": "subject", "value": "computer science"}
+    - What is the [required]{"entity": "condition", "value": "require"} [units]{"entity": "academic_credit", "value": "unit"}  for [computer science]{"entity": "subject", "value": "computer science"}
 
 
 
@@ -2360,7 +2360,7 @@ nlu:
 
     - academic-electives
     
-    - computer-science
+    - computer science
 
 
 
