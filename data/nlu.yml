@@ -1807,6 +1807,61 @@ nlu:
     
 
 
+    - What should I take in [high school] for [admission]{"entity":"academic_process", "value": "admission"} to rose-hulman?
+    - total [units]{"entity": "academic_credit", "value": "unit"} [recommended]{"entity": "condition", "value":"recommend"}?
+    - total [units]{"entity": "academic_credit", "value": "unit"} [required]{"entity": "condition", "value": "require"}?
+    - How many academic [units]{"entity": "academic_credit", "value": "unit"} are [required]{"entity": "condition", "value": "require"}?
+
+    - How many [units]{"entity": "academic_credit", "value": "unit"} [should]{"entity": "condition", "value": "recommend"} I take if I want to get into this school?
+
+    - How many [units]{"entity": "academic_credit", "value": "unit"} [must]{"entity": "condition", "value": "require"} I take if I want to get into this school?
+
+    - How many [unit]{"entity": "academic_credit", "value": "unit"} are [required]{"entity": "condition", "value": "require"} for [english]{"entity": "subject", "value": "english"} for [admission]{"entity":"academic_process", "value":"admission"} at this school?
+    - How many [unit]{"entity": "academic_credit", "value": "unit"} are [recommended]{"entity": "condition", "value": "recommend"} for [math]{"entity": "subject", "value": "mathematic"} for [admission]{"entity":"academic_process", "value": "admission"}?
+    - what is the [unit]{"entity": "academic_credit", "value": "unit"} [required]{"entity": "condition", "value": "required"} for [science]{"entity": "subject", "value": "science"} to get into this school?
+    - what is the [unit]{"entity": "academic_credit", "value": "unit"} [recommended]{"entity": "condition", "value": "recommend"} for [science]{"entity": "subject", "value": "science"} I should take during high-school for [admission]{"entity":"academic_process", "value":"admission"} into this school?
+    
+    - How many [unit]{"entity": "academic_credit", "value": "unit"} are [required]{"entity": "condition", "value": "require"} for [mathematic]{"entity": "subject", "value": "mathematic"}
+    - How many [lab]{"entity": "subject", "value": "lab"} [unit]{"entity": "academic_credit", "value": "unit"} are [required]{"entity": "condition", "value": "require"} 
+    - For admission, how many [lab]{"entity": "subject", "value": "lab"} [unit]{"entity": "academic_credit", "value": "unit"} are [recommended]{"entity": "condition", "value": "recommend"}?
+
+    - For admission, how many [science]{"entity": "subject", "value": "science"} [lab]{"entity": "subject", "value": "lab"} [unit]{"entity": "academic_credit", "value": "unit"} are [required]{"entity": "condition", "value": "require"} 
+    - For admission, how many [science]{"entity": "subject", "value": "science"} [lab]{"entity": "subject", "value": "lab"} [unit]{"entity": "academic_credit", "value": "unit"} are [recommended]{"entity": "condition", "value": "recommend"} 
+    - What is the [required]{"entity": "condition", "value": "require"} [unit]{"entity": "academic_credit", "value": "unit"}  for [laboratory]{"entity": "subject", "value": "lab"} [science]{"entity": "subject", "value": "science"} ? 
+    - What is the [required]{"entity": "condition", "value": "require"} [unit]{"entity": "academic_credit", "value": "unit"}  for [labatory]{"entity": "subject", "value": "lab"} [science]{"entity": "subject", "value": "science"} ? 
+    - What is the [recommended]{"entity": "condition", "value": "recommend"} [units]{"entity": "academic_credit", "value": "unit"}  for [foreign language]{"entity": "subject", "value": "foreign-language"}
+    - What is the [required]{"entity": "condition", "value": "require"} [units]{"entity": "academic_credit", "value": "unit"}  for [foreign-language]{"entity": "subject", "value": "foreign-language"}
+
+    - What is the [required]{"entity": "condition", "value": "require"} [units]{"entity": "academic_credit", "value": "unit"}  for [social studies]{"entity": "subject", "value": "social-studies"}?
+    - What is the [recommended]{"entity": "condition", "value": "recommend"} [units]{"entity": "academic_credit", "value": "unit"}  for [social-studies]{"entity": "subject", "value": "social-studies"}?
+    - What is the [required]{"entity": "condition", "value": "require"} [units]{"entity": "academic_credit", "value": "unit"}  for [social study]{"entity": "subject", "value": "social-studies"}?
+    - For admission, how many [social-study]{"entity": "subject", "value": "social-studies"} [unit]{"entity": "academic_credit", "value": "unit"} are [recommended]{"entity": "condition", "value": "recommend"} 
+
+    - What is the [recommended]{"entity": "condition", "value": "recommend"} [units]{"entity": "academic_credit", "value": "unit"}  for [history]{"entity": "subject", "value": "history"}
+    - What is the [required]{"entity": "condition", "value": "require"} [units]{"entity": "academic_credit", "value": "unit"}  for [history]{"entity": "subject", "value": "history"}
+
+    - What is the [recommended]{"entity": "condition", "value": "recommend"} [units]{"entity": "academic_credit", "value": "unit"}  for [academic electives]{"entity": "subject", "value": "academic-electives"}
+    - What is the [units]{"entity": "academic_credit", "value": "unit"} [required]{"entity": "condition", "value": "require"} for [academic-elective]{"entity": "subject", "value": "academic-electives"}
+    - What is the [required]{"entity": "condition", "value": "require"} [unit]{"entity": "academic_credit", "value": "unit"}  for [academic electives]{"entity": "subject", "value": "academic-electives"}
+    - What is the [required]{"entity": "condition", "value": "require"} [unit]{"entity": "academic_credit", "value": "unit"}  for [electives]{"entity": "subject", "value": "academic-electives"}
+
+    - What is the [required]{"entity": "condition", "value": "require"} [units]{"entity": "academic_credit", "value": "unit"}  for [computer science]{"entity": "subject", "value": "computer science"}
+    - What is the [recommended]{"entity": "condition", "value": "recommend"} [units]{"entity": "academic_credit", "value": "unit"}  for [computer science]{"entity": "subject", "value": "computer science"}
+    - What is the [required]{"entity": "condition", "value": "require"} [units]{"entity": "academic_credit", "value": "unit"}  for [computer science]{"entity": "subject", "value": "computer science"}
+
+    # For visual and performing arts
+    - What is the [required]{"entity": "condition", "value": "require"} [units]{"entity": "academic_credit", "value": "unit"}  for [visual/performing-arts]{"entity": "subject", "value": "visual/performing-arts"}
+    - How many [visual performing arts]{"entity": "subject", "value": "visual/performing-arts"} [unit]{"entity": "academic_credit", "value": "unit"} are [required]{"entity": "condition", "value": "require"} 
+    - How many [visual-performing art]{"entity": "subject", "value": "visual/performing-arts"} [unit]{"entity": "academic_credit", "value": "unit"} are [required]{"entity": "condition", "value": "require"} 
+    - How many [visual-performing-arts]{"entity": "subject", "value": "visual/performing-arts"} [unit]{"entity": "academic_credit", "value": "unit"} are [required]{"entity": "condition", "value": "require"} 
+    - How many [visual/performing arts]{"entity": "subject", "value": "visual/performing-arts"} [unit]{"entity": "academic_credit", "value": "unit"} are [recommended]{"entity": "condition", "value": "recommend"} 
+
+    - How many [visual arts]{"entity": "subject", "value": "visual/performing-arts"} [credit]{"entity": "academic_credit", "value": "credit"} [unit]{"entity": "academic_credit", "value": "unit"} are [recommended]{"entity": "condition", "value": "recommend"}
+    - How many [performing arts]{"entity": "subject", "value": "visual/performing-arts"} [credit]{"entity": "academic_credit", "value": "credit"} [unit]{"entity": "academic_credit", "value": "unit"} are [recommended]{"entity": "condition", "value": "recommend"}
+    - What is the [required]{"entity": "condition", "value": "require"} [units]{"entity": "academic_credit", "value": "unit"}  for all [other]{"entity": "other", "value": "other"} subjects?
+    - What is the [recommended]{"entity": "condition", "value": "recommend"} [units]{"entity": "academic_credit", "value": "unit"}  for [additional]{"entity": "other", "value": "other"} subjects?
+
+
 - synonym: waiver
   examples: |
     - waived
@@ -1936,72 +1991,14 @@ nlu:
     - put off
 
 
-- intent: high_school_units
-  examples: | 
-    - total [units]{"entity": "academic_credit", "value": "unit"} [recommended]{"entity": "condition", "value":"recommend"}?
-    - total [units]{"entity": "academic_credit", "value": "unit"} [required]{"entity": "condition", "value": "require"}?
-    - How many academic [units]{"entity": "academic_credit", "value": "unit"} are [required]{"entity": "condition", "value": "require"}?
-
-    - How many [units]{"entity": "academic_credit", "value": "unit"} [should]{"entity": "condition", "value": "recommend"} I take if I want to get into this school?
-
-    - How many [units]{"entity": "academic_credit", "value": "unit"} [must]{"entity": "condition", "value": "require"} I take if I want to get into this school?
-
-    - How many [unit]{"entity": "academic_credit", "value": "unit"} are [required]{"entity": "condition", "value": "require"} for [english]{"entity": "subject", "value": "english"} for [admission]{"entity":"academic_process", "value":"admission"} at this school?
-    - How many [unit]{"entity": "academic_credit", "value": "unit"} are [recommended]{"entity": "condition", "value": "recommend"} for [math]{"entity": "subject", "value": "mathematic"} for admission?
-    - what is the [unit]{"entity": "academic_credit", "value": "unit"} [required]{"entity": "condition", "value": "required"} for [science]{"entity": "subject", "value": "science"} to get into this school?
-    - what is the [unit]{"entity": "academic_credit", "value": "unit"} [recommended]{"entity": "condition", "value": "recommend"} for [science]{"entity": "subject", "value": "science"} I should take during high-school for [admission]{"entity":"academic_process", "value":"admission"} into this school?
-    
-    - How many [unit]{"entity": "academic_credit", "value": "unit"} are [required]{"entity": "condition", "value": "require"} for [mathematic]{"entity": "subject", "value": "mathematic"}
-    - How many [lab]{"entity": "subject", "value": "lab"} [unit]{"entity": "academic_credit", "value": "unit"} are [required]{"entity": "condition", "value": "require"} 
-    - For admission, how many [lab]{"entity": "subject", "value": "lab"} [unit]{"entity": "academic_credit", "value": "unit"} are [recommended]{"entity": "condition", "value": "recommend"}?
-
-    - For admission, how many [science]{"entity": "subject", "value": "science"} [lab]{"entity": "subject", "value": "lab"} [unit]{"entity": "academic_credit", "value": "unit"} are [required]{"entity": "condition", "value": "require"} 
-    - For admission, how many [science]{"entity": "subject", "value": "science"} [lab]{"entity": "subject", "value": "lab"} [unit]{"entity": "academic_credit", "value": "unit"} are [recommended]{"entity": "condition", "value": "recommend"} 
-    - What is the [required]{"entity": "condition", "value": "require"} [unit]{"entity": "academic_credit", "value": "unit"}  for [laboratory]{"entity": "subject", "value": "lab"} [science]{"entity": "subject", "value": "science"} ? 
-    - What is the [required]{"entity": "condition", "value": "require"} [unit]{"entity": "academic_credit", "value": "unit"}  for [labatory]{"entity": "subject", "value": "lab"} [science]{"entity": "subject", "value": "science"} ? 
-    - What is the [recommended]{"entity": "condition", "value": "recommend"} [units]{"entity": "academic_credit", "value": "unit"}  for [foreign language]{"entity": "subject", "value": "foreign-language"}
-    - What is the [required]{"entity": "condition", "value": "require"} [units]{"entity": "academic_credit", "value": "unit"}  for [foreign-language]{"entity": "subject", "value": "foreign-language"}
-
-    - What is the [required]{"entity": "condition", "value": "require"} [units]{"entity": "academic_credit", "value": "unit"}  for [social studies]{"entity": "subject", "value": "social-studies"}?
-    - What is the [recommended]{"entity": "condition", "value": "recommend"} [units]{"entity": "academic_credit", "value": "unit"}  for [social-studies]{"entity": "subject", "value": "social-studies"}?
-    - What is the [required]{"entity": "condition", "value": "require"} [units]{"entity": "academic_credit", "value": "unit"}  for [social study]{"entity": "subject", "value": "social-studies"}?
-    - For admission, how many [social-study]{"entity": "subject", "value": "social-studies"} [unit]{"entity": "academic_credit", "value": "unit"} are [recommended]{"entity": "condition", "value": "recommend"} 
-
-    - What is the [recommended]{"entity": "condition", "value": "recommend"} [units]{"entity": "academic_credit", "value": "unit"}  for [history]{"entity": "subject", "value": "history"}
-    - What is the [required]{"entity": "condition", "value": "require"} [units]{"entity": "academic_credit", "value": "unit"}  for [history]{"entity": "subject", "value": "history"}
-
-    - What is the [recommended]{"entity": "condition", "value": "recommend"} [units]{"entity": "academic_credit", "value": "unit"}  for [academic electives]{"entity": "subject", "value": "academic-electives"}
-    - What is the [units]{"entity": "academic_credit", "value": "unit"} [required]{"entity": "condition", "value": "require"} for [academic-elective]{"entity": "subject", "value": "academic-electives"}
-    - What is the [required]{"entity": "condition", "value": "require"} [unit]{"entity": "academic_credit", "value": "unit"}  for [academic electives]{"entity": "subject", "value": "academic-electives"}
-    - What is the [required]{"entity": "condition", "value": "require"} [unit]{"entity": "academic_credit", "value": "unit"}  for [electives]{"entity": "subject", "value": "academic-electives"}
-
-    - What is the [required]{"entity": "condition", "value": "require"} [units]{"entity": "academic_credit", "value": "unit"}  for [computer science]{"entity": "subject", "value": "computer science"}
-    - What is the [recommended]{"entity": "condition", "value": "recommend"} [units]{"entity": "academic_credit", "value": "unit"}  for [computer science]{"entity": "subject", "value": "computer science"}
-    - What is the [required]{"entity": "condition", "value": "require"} [units]{"entity": "academic_credit", "value": "unit"}  for [computer science]{"entity": "subject", "value": "computer science"}
-
-
-
-    # For visual and performing arts
-    - What is the [required]{"entity": "condition", "value": "require"} [units]{"entity": "academic_credit", "value": "unit"}  for [visual/performing-arts]{"entity": "subject", "value": "visual/performing-arts"}
-    - How many [visual performing arts]{"entity": "subject", "value": "visual/performing-arts"} [unit]{"entity": "academic_credit", "value": "unit"} are [required]{"entity": "condition", "value": "require"} 
-    - How many [visual-performing art]{"entity": "subject", "value": "visual/performing-arts"} [unit]{"entity": "academic_credit", "value": "unit"} are [required]{"entity": "condition", "value": "require"} 
-    - How many [visual-performing-arts]{"entity": "subject", "value": "visual/performing-arts"} [unit]{"entity": "academic_credit", "value": "unit"} are [required]{"entity": "condition", "value": "require"} 
-    - How many [visual/performing arts]{"entity": "subject", "value": "visual/performing-arts"} [unit]{"entity": "academic_credit", "value": "unit"} are [recommended]{"entity": "condition", "value": "recommend"} 
-
-    - How many [visual arts]{"entity": "subject", "value": "visual/performing-arts"} [credit]{"entity": "academic_credit", "value": "credit"} [unit]{"entity": "academic_credit", "value": "unit"} are [recommended]{"entity": "condition", "value": "recommend"}
-    - How many [performing arts]{"entity": "subject", "value": "visual/performing-arts"} [credit]{"entity": "academic_credit", "value": "credit"} [unit]{"entity": "academic_credit", "value": "unit"} are [recommended]{"entity": "condition", "value": "recommend"}
-    
-    - What is the [required]{"entity": "condition", "value": "require"} [units]{"entity": "academic_credit", "value": "unit"}  for all [other]{"entity": "other", "value": "other"} subjects?
-    - What is the [recommended]{"entity": "condition", "value": "recommend"} [units]{"entity": "academic_credit", "value": "unit"}  for [additional]{"entity": "other", "value": "other"} subjects?
-
 
 - intent: basis_for_selection
   examples: |
     - What is the relative important of academic factors and nonacademic factors in your [first-time]{"entity": "is_first_time", "value": "first-time"}, [first-year]{"entity": "is_first_year", "value": "first-year"} [first-time]{"entity": "is_first_time", "value": "first-time"}, [degreeseeking]{"entity": "degree-goal", "value": "degree-seeking"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} [admission]{"entity":"academic_process", "value":"admission"} decisions?
-    - What is the importance of the [rigor of secondary school record]{"entity": "academic_factor", "value": "rigor of secondary school record" } in [admission]{"entity":"academic_process", "value":"admission"} decisions?
-    - What is the importance of the [rigor of secondary school record]{"entity": "academic_factor", "value": "rigor of secondary school record" } in [admission]{"entity":"academic_process", "value":"admission"} decisions?
-    - What is the importance of the [rigor of secondary school record]{"entity": "academic_factor", "value": "rigor of secondary school record" } in basis for selection?
-    - What is the importance of the [rigor of high school record]{"entity": "academic_factor", "value": "rigor of secondary school record" } in [admission]{"entity":"academic_process", "value":"admission"} considerations?
+    - What is the importance of the [rigor of secondary school record]{"entity": "academic_factor", "value": "grades" } in [admission]{"entity":"academic_process", "value":"admission"} decisions?
+    - What is the importance of the [rigor of secondary school record]{"entity": "academic_factor", "value": "grades" } in [admission]{"entity":"academic_process", "value":"admission"} decisions?
+    - What is the importance of the [rigor of secondary school record]{"entity": "academic_factor", "value": "grades" } in basis for selection?
+    - What is the importance of the [rigor of high school record]{"entity": "academic_factor", "value": "grades" } in [admission]{"entity":"academic_process", "value":"admission"} considerations?
 
     - What is the importance of [class rank]{"entity": "academic_factor", "value": "class rank" } in [admission]{"entity":"academic_process", "value":"admission"} decisions?
     - What is the importance of [class-rank]{"entity": "academic_factor", "value": "class rank" } in [admission]{"entity":"academic_process", "value":"admission"} decisions?
@@ -2269,11 +2266,11 @@ nlu:
 
 - lookup: academic_factor
   examples: |
-    - rigor of secondary school record
-    - secondary school record
-    - secondary school rigor
-    - high school record rigor
-    - secondary school record
+    # - rigor of secondary school record
+    # - secondary school record
+    # - secondary school rigor
+    # - high school record rigor
+    # - secondary school record
 
     - class rank
     - class ranking
@@ -2294,23 +2291,27 @@ nlu:
     - grade
 
 
-#NOTE: I defined Grades and grade as different. Grade is one value of of academic factor while grades map to transcript
-- synonym: grade
-  examples: |
-    - grade
 
-- synonym: transcript
+# - synonym: rigor of secondary school record
+#   examples: |
+#     - rigor of secondary school record
+#     - secondary school record
+#     - secondary school rigor
+#     - high school record rigor
+#     - secondary school record
+
+
+
+#NOTE: I defined Grades and grade as different. Grade is one value of of academic factor while grades map to transcript
+# - synonym: grade
+#   examples: |
+#     - grade
+
+- synonym: grades
   examples: |
     - grades 
     - transcript
-
-- synonym: rigor of secondary school record
-  examples: |
-    - rigor of secondary school record
-    - secondary school record
-    - secondary school rigor
-    - high school record rigor
-    - secondary school record
+    - grade
 
 
 - synonym: class rank

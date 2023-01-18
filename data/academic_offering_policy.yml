@@ -9,7 +9,7 @@ nlu:
     - What [special study]{"entity":"program_offered", "value": "special study"} [program]{"entity":"organizational_term", "value": "program"} does rose-hulman have?
     - Is there any [program]{"entity":"organizational_term", "value": "program"} in your [institute]{"entity": "education_level", "value": "college"}?
     - What [program]{"entity":"organizational_term", "value": "program"} of [special studies]{"entity":"program_offered", "value": "special study"} do you have?
-    - Which [area]{"entity":"subject", "value": "subject"} are [required]{"entity": "condition", "value": "require"} to complete before students graduate
+    - Which [area]{"entity":"major", "value": "major"} are [required]{"entity": "condition", "value": "require"} to complete before students graduate
     - Which [subject]{"entity":"subject", "value": "subject"} are [required]{"entity": "condition", "value":"require"} to complete before students graduate?
-    - Which disciplinary [areas]{"entity":"subject", "value": "subject"} are [required]{"entity": "condition", "value":"require"} to complete before students graduate?
-    - Before students graduate, which [areas]{"entity":"subject", "value": "subject"} are students [required]{"entity": "condition", "value":"require"} to study?
+    - Which disciplinary [area]{"entity":"major", "value": "major"} are [required]{"entity": "condition", "value":"require"} to complete before students graduate?
+    - Before students graduate, which [area]{"entity":"major", "value": "major"} are students [required]{"entity": "condition", "value":"require"} to study?

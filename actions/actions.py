@@ -69,6 +69,26 @@ class ActionQueryKnowledgebase(Action):
             utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
         return []
     
+# FOR TEMPORARY USE
+class ActionQueryAdmission(Action):
+    def name(self) -> Text:
+        return "action_query_admission"
+
+    async def run(self, dispatcher, tracker, domain):
+        entitiesExtracted = tracker.latest_message["entities"]
+        numberEntities = numberEntityExtractor.extractEntities(tracker.latest_message["text"])
+        entitiesExtracted = entitiesExtracted + numberEntities
+        intent = tracker.latest_message["intent"]["name"]
+        print(intent)
+        print(entitiesExtracted)
+        try:
+            answers = await knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy, knowledgeBase.constructOutput,True)
+            utterAllAnswers(answers, dispatcher)        
+        except Exception as e:
+            utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
+        return []
+
+
 class ActionSetYear(Action):
     def name(self) -> Text:
         return "action_set_year"

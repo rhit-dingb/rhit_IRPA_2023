@@ -179,22 +179,22 @@ stories:
     - action: action_get_available_options
 
 
-- story: ask_about_high_school_units_helpful
-  steps:
-    - intent: high_school_units
-    - action: action_query_knowledgebase
-    - action: utter_ask_answer_helpful
-    - intent: affirm
-    - checkpoint: ask_feedback
+# - story: ask_about_high_school_units_helpful
+#   steps:
+#     - intent: high_school_units
+#     - action: action_query_knowledgebase
+#     - action: utter_ask_answer_helpful
+#     - intent: affirm
+#     - checkpoint: ask_feedback
 
-- story: ask_about_high_school_units_not_helpful
-  steps:
-    - intent: high_school_units
-    - action: action_query_knowledgebase
-    - action: utter_ask_answer_helpful
-    - intent: deny
-    - action: utter_sorry_question_not_helpful
-    - action: action_get_available_options
+# - story: ask_about_high_school_units_not_helpful
+#   steps:
+#     - intent: high_school_units
+#     - action: action_query_knowledgebase
+#     - action: utter_ask_answer_helpful
+#     - intent: deny
+#     - action: utter_sorry_question_not_helpful
+#     - action: action_get_available_options
 
 - story: ask_about_cohort_answer_helpful
   steps: 
