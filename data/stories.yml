@@ -39,6 +39,7 @@ stories:
       - intent: annual_expense
       - intent: academic_offering_policy
       - intent: degree_conferred
+      - intent: admission 
     - action: action_query_knowledgebase
     - action: utter_ask_answer_helpful
     - intent: affirm
@@ -222,23 +223,23 @@ stories:
     - intent: affirm
     - checkpoint: ask_feedback
     
-- story: ask_about_admission_and_answer_helpful
-  steps: 
-    - intent: admission 
-    - action: action_query_admission
-    - action: utter_ask_answer_helpful
-    - intent: affirm
-    - checkpoint: ask_feedback
+# - story: ask_about_admission_and_answer_helpful
+#   steps: 
+#     - intent: admission 
+#     - action: action_query_admission
+#     - action: utter_ask_answer_helpful
+#     - intent: affirm
+#     - checkpoint: ask_feedback
 
 
 
-- story: ask_about_admission_and_answer_not_helpful
-  steps: 
-    - intent: admission 
-    - action: action_query_admission
-    - action: utter_ask_answer_helpful
-    - intent: deny
-    - action: utter_sorry_question_not_helpful
+# - story: ask_about_admission_and_answer_not_helpful
+#   steps: 
+#     - intent: admission 
+#     - action: action_query_admission
+#     - action: utter_ask_answer_helpful
+#     - intent: deny
+#     - action: utter_sorry_question_not_helpful
 
 
 - story: ask_more_question

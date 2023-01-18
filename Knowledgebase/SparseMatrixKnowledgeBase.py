@@ -235,18 +235,6 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         print(rangesToUse)
         return rangesToUse
     
-    # def convertNoneToInfinity(self,a):
-    #     newRes = []
-    #     if a[0] and a[1]:
-    #         return a
-
-    #     if a[0] == None:
-    #         newRes.append(float('-inf'))
-    #         newRes.append(a[1])
-    #     if a[1] == None:
-    #         newRes.append(a[0])
-    #         newRes.append(float('inf'))
-    #     return newRes
         
     def doesIntervalOverlap(self,a, b):
         # a = self.convertNoneToInfinity(a)
