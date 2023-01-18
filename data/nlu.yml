@@ -1803,9 +1803,8 @@ nlu:
 
     - Is there [waiver]{"entity": "other_aid", "value": "waiver"} for [online]{"entity": "online", "value":"online" } [application]{"entity":"academic_process", "value":"application"}?
 
-    - What is the [deadline]{"entity":"date", "value": "date"} for [housing]{"entity": "housing", "value": "housing"} deposit?
+    - What is the [deadline]{"entity":"time", "value": "date"} for [housing]{"entity": "housing", "value": "housing"} deposit?
     
-
 
 
 - synonym: waiver
@@ -1948,11 +1947,11 @@ nlu:
     - How many [units]{"entity": "academic_credit", "value": "unit"} [must]{"entity": "condition", "value": "require"} I take if I want to get into this school?
 
     - How many [unit]{"entity": "academic_credit", "value": "unit"} are [required]{"entity": "condition", "value": "require"} for [english]{"entity": "subject", "value": "english"} for [admission]{"entity":"academic_process", "value":"admission"} at this school?
-    - How many [unit]{"entity": "academic_credit", "value": "unit"} are [recommended]{"entity": "condition", "value": "recommend"} for [math]{"entity": "subject", "value": "math"} for admission?
+    - How many [unit]{"entity": "academic_credit", "value": "unit"} are [recommended]{"entity": "condition", "value": "recommend"} for [math]{"entity": "subject", "value": "mathematic"} for admission?
     - what is the [unit]{"entity": "academic_credit", "value": "unit"} [required]{"entity": "condition", "value": "required"} for [science]{"entity": "subject", "value": "science"} to get into this school?
     - what is the [unit]{"entity": "academic_credit", "value": "unit"} [recommended]{"entity": "condition", "value": "recommend"} for [science]{"entity": "subject", "value": "science"} I should take during high-school for [admission]{"entity":"academic_process", "value":"admission"} into this school?
     
-    - How many [unit]{"entity": "academic_credit", "value": "unit"} are [required]{"entity": "condition", "value": "require"} for [mathematic]{"entity": "subject", "value": "math"}
+    - How many [unit]{"entity": "academic_credit", "value": "unit"} are [required]{"entity": "condition", "value": "require"} for [mathematic]{"entity": "subject", "value": "mathematic"}
     - How many [lab]{"entity": "subject", "value": "lab"} [unit]{"entity": "academic_credit", "value": "unit"} are [required]{"entity": "condition", "value": "require"} 
     - For admission, how many [lab]{"entity": "subject", "value": "lab"} [unit]{"entity": "academic_credit", "value": "unit"} are [recommended]{"entity": "condition", "value": "recommend"}?
 
@@ -1976,9 +1975,9 @@ nlu:
     - What is the [required]{"entity": "condition", "value": "require"} [unit]{"entity": "academic_credit", "value": "unit"}  for [academic electives]{"entity": "subject", "value": "academic-electives"}
     - What is the [required]{"entity": "condition", "value": "require"} [unit]{"entity": "academic_credit", "value": "unit"}  for [electives]{"entity": "subject", "value": "academic-electives"}
 
-    - What is the [required]{"entity": "condition", "value": "require"} [units]{"entity": "academic_credit", "value": "unit"}  for [computer science]{"entity": "subject", "value": "computer-science"}
-    - What is the [recommended]{"entity": "condition", "value": "recommend"} [units]{"entity": "academic_credit", "value": "unit"}  for [computer science]{"entity": "subject", "value": "computer-science"}
-    - What is the [required]{"entity": "condition", "value": "require"} [units]{"entity": "academic_credit", "value": "unit"}  for [computer-science]{"entity": "subject", "value": "computer-science"}
+    - What is the [required]{"entity": "condition", "value": "require"} [units]{"entity": "academic_credit", "value": "unit"}  for [computer science]{"entity": "subject", "value": "computer science"}
+    - What is the [recommended]{"entity": "condition", "value": "recommend"} [units]{"entity": "academic_credit", "value": "unit"}  for [computer science]{"entity": "subject", "value": "computer science"}
+    - What is the [required]{"entity": "condition", "value": "require"} [units]{"entity": "academic_credit", "value": "unit"}  for [computer science]{"entity": "subject", "value": "computer science"}
 
 
 
@@ -2360,7 +2359,7 @@ nlu:
 
     - academic-electives
     
-    - computer-science
+    - computer science
 
 
 

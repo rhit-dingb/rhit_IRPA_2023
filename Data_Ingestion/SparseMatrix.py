@@ -204,9 +204,10 @@ class SparseMatrix():
                 newAnswer= sparseMatrixToSearchDf.loc[i,'Value']
                 castedValue, type = self.determineResultType(newAnswer)
                 # Get question for now. May need to check for out of range
-                print(len(self.questions))
-                prints(self.questions)
-                newSearchResult : SearchResult = SearchResult(newAnswer, usedEntities, type, [])
+                # print(len(self.questions))
+                # print(self.questions)
+                question = self.questions[i]
+                newSearchResult : SearchResult = SearchResult(newAnswer, usedEntities, type, realQuestion= question )
                 if currentResultPointer == None: 
                     # searchResult : SearchResult = SearchResult(newAnswer, usedEntities, type, self.questions[i])
                     currentResultPointer = newSearchResult
@@ -245,7 +246,7 @@ class SparseMatrix():
                 searchResults.append(newSearchResult)
                 return newSearchResult
 
-        elif currentSearchResultType == newSearchResultType:
+        elif currentSearchResultType == newSearchResultType and isSumAllowed:
             newCalculatedValue = str(castedCurrValue + castedNewValue)
             currentSearchResult.changeAnswer(newCalculatedValue)
             if len(searchResults) == 0:

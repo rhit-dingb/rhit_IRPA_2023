@@ -2,15 +2,15 @@
 #This is a very basic implementation of parser that will parse the questions/answer from the client and convert to sparse matrix.
 from typing import List
 from Parser.QuestionAnswer import QuestionAnswer
-from Parser.SparseMatrixDataWriter import SparseMatrixDataWriter
+from Parser.DataWriter import DataWriter
 from Data_Ingestion.SparseMatrix import SparseMatrix
 import pandas as pd
 
-class CDSDataParser():
+class DataParser():
     def __init__(self):
         pass
        
-    def parseQuestionAnswerToSparseMatrix(self, subsectionName : str , questionAnswers : QuestionAnswer) -> bool:
+    def parse(self, subsectionName : str , questionAnswers : List[QuestionAnswer]) -> bool:
         everyUniqueEntity = []
         matrixData = []
         sparseMatrix = None

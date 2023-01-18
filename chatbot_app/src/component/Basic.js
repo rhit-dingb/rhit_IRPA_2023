@@ -3,6 +3,10 @@ import React from "react";
 import react, { useEffect, useState } from "react";
 import { IoMdSend } from "react-icons/io";
 import { BiBot, BiUser } from "react-icons/bi";
+import { RASA_API_STRING } from "../constants/constants";
+
+import Box from '@mui/material/Box';
+
 
 function Basic() {
   const [chat, setChat] = useState([]);
@@ -34,7 +38,7 @@ function Basic() {
     //chatData.push({sender : "user", sender_id : name, msg : msg});
     console.log(chat);
     await fetch(
-      "http://irpa-chatbot.csse.rose-hulman.edu:5005/webhooks/rest/webhook",
+      `${RASA_API_STRING}/webhooks/rest/webhook`,
       {
         method: "POST",
         headers: {
@@ -50,26 +54,33 @@ function Basic() {
       .then((response) => response.json())
       .then((response) => {
         if (response) {
-          const temp = response[0];
-          const recipient_id = temp["recipient_id"];
-          const recipient_msg = temp["text"];
-
-          const response_temp = {
-            sender: "bot",
-            recipient_id: recipient_id,
-            msg: recipient_msg,
-          };
+          
+          // const temp = response[0];
+          // console.log(response)
+          let messages = []
+          for (let r of response) {
+              const recipient_id = r["recipient_id"];
+              const recipient_msg = r["text"];
+              const response_temp = {
+                sender: "bot",
+                recipient_id: recipient_id,
+                msg: recipient_msg,
+              };
+              messages.push(response_temp)
+          }
+          
           setbotTyping(false);
 
-          setChat((chat) => [...chat, response_temp]);
+          setChat((chat) => [...chat, ... messages]);
           // scrollBottom();
         }
       });
   };
 
   const stylecard = {
-    maxWidth: "35rem",
-    width: "21rem",
+    // maxWidth: "35rem",
+    width: "80%",
+    // width: "21rem",
     border: "1px solid black",
     paddingLeft: "0px",
     paddingRight: "0px",
@@ -83,11 +94,12 @@ function Basic() {
     backgroundColor: "#800000",
   };
   const styleFooter = {
-    maxWidth: "35rem",
+    // maxWidth: "80%",
     borderTop: "1px solid black",
     borderRadius: "0px 0px 30px 30px",
     backgroundColor: "#800000",
   };
+
   const styleBody = {
     paddingTop: "10px",
     height: "28rem",
@@ -107,7 +119,8 @@ function Basic() {
               {botTyping ? <h6>Bot Typing....</h6> : null}
             </div>
             <div className="cardBody" id="messageArea" style={styleBody}>
-              <div className="row msgarea">
+              {/* <div className="row msgarea"> */}
+              <Box>
                 {chat.map((user, key) => (
                   <div key={key}>
                     {user.sender === "bot" ? (
@@ -123,12 +136,17 @@ function Basic() {
                     )}
                   </div>
                 ))}
-              </div>
+              </Box>
+              {/* </div> */}
+
+             
             </div>
             <div className="cardFooter text-white" style={styleFooter}>
-              <div className="row">
+              {/* <div className="row"> */}
+             
                 <form style={{ display: "flex" }} onSubmit={handleSubmit}>
-                  <div className="col-10" style={{ paddingRight: "0px" }}>
+                
+                  <div className="col-11" style={{ paddingRight: "0px"}}>
                     <input
                       onChange={(e) => setInputMessage(e.target.value)}
                       value={inputMessage}
@@ -136,13 +154,14 @@ function Basic() {
                       className="msginp"
                     ></input>
                   </div>
-                  <div className="col-2 cola">
+                  <div className="col-1 cola">
                     <button type="submit" className="circleBtn">
                       <IoMdSend className="sendBtn" />
                     </button>
                   </div>
+                
                 </form>
-              </div>
+              {/* </div> */}
             </div>
           </div>
         </div>

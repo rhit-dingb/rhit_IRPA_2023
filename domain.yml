@@ -20,7 +20,8 @@ intents:
   - sat_act_policies
   - general_info
   - definition
-  
+  - annual_expense
+  - degree_conferred
 
   - change_year
 
@@ -36,7 +37,9 @@ entities:
   # Value: phone, fax, number, address, email, website
   - way_of_contact
 
-
+  # Deadline '
+  # Value: deadline
+  - deadline
 
   # full-time, part-time
   - enrollment_status
@@ -62,8 +65,9 @@ entities:
   #race/ethnicity, value: minority, african american, unknown, american indian, white, hispanic,  pacific-islander, two-or-more
   - race
 
-  #Capture many different verbs. Values: applied addmitted, determined, awarded, met, borrowed, designed, offered
+  #Capture many different verbs. Values: applied addmitted, determined, awarded, met, borrowed, designed, offered, change
   - action
+
 
   - waiting-list
 
@@ -72,7 +76,7 @@ entities:
 
   # - waiting-list-detail
 
-  # - policy
+  - policy
 
 # used for something like: Initial 2015 cohort of first-time, fulltime, bachelor's (or equivalent) degreeseeking undergraduate students
 # and also something like: Final 2015 cohort, after adjusting for allowable exclusions
@@ -176,9 +180,8 @@ entities:
   - placement
 
 
-#Captures the concept with change
-#value: Change
-  - change
+#Capture value section, and subsection
+  - section_subsection
 
 #Use to capture anything word related to time such as word "date" or "when" - to see if user mention time anywhere in their sentence. 
 #Values: date.
@@ -194,8 +197,7 @@ entities:
 # Doctorate, Masters, Bachelors, Associates degree, and Unknown
   - degree_level 
 
-# capture the concept of residents
-  - resident
+
 #Use to capture the word age
   - age
 
@@ -298,27 +300,31 @@ entities:
 #Value: book, supply
   - school_supply
 
+#Form 
+#Value : form
+  - form
+
+#Captures size, usually used for class size.
+  - size
+
+  ##ENTITIES FOR DEFINITIONS
+
+  # #Definition. Captures the word definition
+  #   - definition
 
 
-
-##ENTITIES FOR DEFINITIONS
-
-# #Definition. Captures the word definition
-#   - definition
-
-
-#Program offered at school
-# Value: college-preparatory, accelerated, research, professional practice, cross-registration, double major, dual enrollment, cooperative, cooperative education, 
-# ,external degree, english as second language. 
-# NOTE: not all programs fall under this entity, some are a combination of multiple entities.
+  #Program offered at school
+  # Value: college-preparatory, accelerated, research, professional practice, cross-registration, double major, dual enrollment, cooperative, cooperative education, 
+  # ,external degree, english as second language. 
+  # NOTE: not all programs fall under this entity, some are a combination of multiple entities.
   - program_offered
 
-#Service offered at school
-# Career, 
+  #Service offered at school
+  # Career, 
   - service_offered
 
-# activities offer at school.
-# orientation, campus ministry
+  # activities offer at school.
+  # orientation, campus ministry
   - activity_offered
 
 #Type of unit, value: carnegie

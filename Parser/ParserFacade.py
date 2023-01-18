@@ -4,11 +4,11 @@ from typing import List, Dict
 import os
 from CustomEntityExtractor.NumberEntityExtractor import NumberEntityExtractor
 from DataManager.constants import RANGE_ENTITY_LABEL
-from Parser.CDSDataParser import CDSDataParser
-from Parser.SparseMatrixDataWriter import SparseMatrixDataWriter
+from Parser.DataParser import DataParser
+from Parser.DataWriter import DataWriter
 from Parser.RasaCommunicator import RasaCommunicator
 from Parser.QuestionAnswer import QuestionAnswer
-from Parser.CDSDataLoader import CDSDataLoader
+from Parser.DataLoader import DataLoader
 from Parser.ExcelSparseMatrixDataWriter import ExcelSparseMatrixDataWriter
 from Data_Ingestion.SparseMatrix import SparseMatrix
 
@@ -20,11 +20,11 @@ import asyncio
 class ParserFacade():
     def __init__(self, dataLoader, dataWriter ):
         
-        self.dataLoader : CDSDataLoader = dataLoader
-        self.dataWriter : SparseMatrixDataWriter = dataWriter
+        self.dataLoader : DataLoader = dataLoader
+        self.dataWriter : DataWriter = dataWriter
         self.rasaCommunicator : RasaCommunicator = RasaCommunicator()
         self.numberEntityExtractor = NumberEntityExtractor()
-        self.parser = CDSDataParser()
+        self.parser = DataParser()
         self.entityConfidenceKey = "confidence_entity"
         self.confidenceThreshold = 0.5
         self.state = "idle"
@@ -38,7 +38,7 @@ class ParserFacade():
 
     async def parse(self):
         sectionFullNames : List[str] = self.dataLoader.getAllSectionDataFullName()
-        sectionToSparseMatrices : Dict[str, List] = dict()
+        sectionToData : Dict[str, List] = dict()
        
 
         async with aiohttp.ClientSession() as session:
@@ -49,7 +49,7 @@ class ParserFacade():
                 print("PARSING", sectionFullName)
                 questionAnswers : List[QuestionAnswer] = self.dataLoader.getQuestionsAnswerForSection(sectionFullName)
                 for questionAnswer in questionAnswers:
-                    print(questionAnswer.question)
+                    # print(questionAnswer.question)
                     if questionAnswer.isMetaData: 
                         questionAnswer.setEntities([questionAnswer.question])
                     else:
@@ -93,20 +93,22 @@ class ParserFacade():
                     questionAnswer.setEntities(entityValues)
 
                     index = index + 1
-                    
-                sparseMatrix : SparseMatrix = self.parser.parseQuestionAnswerToSparseMatrix(subSection, questionAnswers) 
-                if section in sectionToSparseMatrices:
-                    sectionToSparseMatrices[section].append(sparseMatrix)
+
+                # Parsed data is sparse matrix, it can be extended to support other types as well.
+                parsedData = self.parser.parse(subSection, questionAnswers) 
+                if section in sectionToData:
+                    sectionToData[section].append(parsedData)
                 else: 
-                    sectionToSparseMatrices[section] = [sparseMatrix]
+                    sectionToData[section] = [parsedData]
 
             # sparseMatrices.append(sparseMatrix)
-        self.writeSparseMatrix(sectionToSparseMatrices)
+        # might want to refactor so it doesn't assume sparse matrix
+        self.write(sectionToData)
            
         
         
-    def writeSparseMatrix(self,sectionToSparseMatrices):
-        self.dataWriter.writeSparseMatrices(sectionToSparseMatrices)
+    def write(self,sectionToData):
+        self.dataWriter.write(sectionToData)
 
         
 

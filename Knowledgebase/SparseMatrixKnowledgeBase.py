@@ -24,6 +24,8 @@ from actions.constants import AGGREGATION_ENTITY_PERCENTAGE_VALUE, RANGE_LOWER_B
 from actions.entititesHelper import copyEntities, filterEntities, findEntityHelper, findMultipleSameEntitiesHelper
 from Parser.RasaCommunicator import RasaCommunicator
 from Knowledgebase.DataModels.SearchResult import SearchResult
+from actions.entititesHelper import removeDuplicatedEntities
+from CustomEntityExtractor.NumberEntityExtractor import NumberEntityExtractor
 from tests.testUtils import createEntityObjHelper
 import aiohttp
 import asyncio
@@ -35,6 +37,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         self.templateConverter : TemplateConverter = TemplateConverter()
         self.year = self.dataManager.getMostRecentYearRange()[0]
         self.rasaCommunicator = RasaCommunicator()
+        self.numberEntityExtractor = NumberEntityExtractor()
 
     
     def setYear(self,year):
@@ -56,7 +59,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
     Throws: exception when given year or intent for the data is not found or when exception encountered when parsing year entity values
 
     """
-    def searchForAnswer(self, intent, entitiesExtracted, shouldAddRowStrategy, outputFunc, shouldAdd = True):
+    async def searchForAnswer(self, intent, entitiesExtracted, shouldAddRowStrategy, outputFunc, shouldAdd = True):
         # print("BEGAN SEARCHING")
         sparseMatrixToSearch : SparseMatrix; startYear : str; endYear : str 
         sparseMatrixToSearch, startYear, endYear = self.determineMatrixToSearch(intent, entitiesExtracted, self.year)
@@ -72,22 +75,14 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         hasPercentageEntity = findEntityHelper(entitiesExtracted, AGGREGATION_ENTITY_PERCENTAGE_VALUE)
         template = sparseMatrixToSearch.findTemplate()
         searchResults = []
-
-        #Entities used corresponding to each search result
-        entitiesUsedForEachResult : List[List[Dict[str, str]]]= []
-
-        # print("ENTITIES EXTRACtED")
-        # print("TAOAOJFOAJFSOSJFJSAFOJFO_______________")
-        # print(entitiesExtracted)
         print(sparseMatrixToSearch.subSectionName)
         if isRangeAllowed and hasRangeEntity:
             print("RANGE")
             rangeResultData : RangeResultData =  self.aggregateDiscreteRange(entitiesExtracted, sparseMatrixToSearch, isSumAllowed)
             filteredEntities = filterEntities(entitiesExtracted, [RANGE_ENTITY_LABEL, NUMBER_ENTITY_LABEL])
-           
-            searchResults = rangeResultData.answers
-            for entities in rangeResultData.entitiesUsedForAnswer:
-                entitiesUsedForEachResult.append(entities+filteredEntities)
+            searchResults : List[SearchResult] = rangeResultData.answers
+            for searchResult in searchResults:
+                searchResult.addEntities(filteredEntities)
 
             # print("GOT IT")
             # print(entitiesUsedForEachResult)
@@ -103,11 +98,30 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         #         return outputFunc(searchResults, intent, template)
         #     else:
                 # return outputFunc(percentages, intent, template)
-        
-        print("REGULAR OUTPUT")
+      
+        await self.getAllEntityForRealQuestionFoundForAnswer(searchResults)
+        # print(searchResults[0].entitiesForRealQuestion)
         return outputFunc(searchResults, intent,  template)
 
-    
+    async def getAllEntityForRealQuestionFoundForAnswer(self, searchResults : List[SearchResult]):
+        async with aiohttp.ClientSession() as session:
+            tasks = []
+            for searchResult in searchResults:
+                realQuestion = searchResult.realQuestion
+                task = asyncio.create_task(self.rasaCommunicator.parseMessage(realQuestion, session=session))
+                tasks.append(task)
+            
+            responses = await asyncio.gather(*tasks)
+          
+            for searchResult, response in zip(searchResults, responses):
+                #Would probably be better if we put this number entity extractor in the config pipeline, so we don't need to call it everytime we want to get entities.
+                entities = response["entities"]
+                numberEntities = self.numberEntityExtractor.extractEntities(searchResult.realQuestion)
+                entities = entities+numberEntities
+                entities = removeDuplicatedEntities(entities)
+                searchResult.setEntitiesForRealQuestion(entities)
+            print("DONE")
+            
 
     
     # STILL WORK IN PROGRESS
@@ -149,7 +163,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
 
     def constructOutput(self, searchResults : List[SearchResult], intent, template):
        #return searchResult
-       print("CONSTRUCTING OUTPUT")
+     
        if searchResults is None or len(searchResults) == 0: 
             return ["Sorry, I couldn't find any answer to your question"]
         
@@ -159,17 +173,14 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
        constructSentenceFor = []
        stringSentence = []
        for result in searchResults:
-            if result.type== SearchResultType.STRING:
-                stringSentence.append(result.answer)
+            
+            if result.type == SearchResultType.STRING:
+                stringSentence.append(str(result.answer))
             else:
                 constructSentenceFor.append(result)
-
-      
        sentences = self.templateConverter.constructOutput(constructSentenceFor, template)
-       
        return sentences + stringSentence
-       #return constructSentence(searchResult, intent, entitiesUsed)
-
+       
   
     def findRange(self, entitiesFound, maxBound, minBound, sparseMatrix : SparseMatrix):
         maxValue = maxBound
@@ -220,22 +231,10 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
                 rangesToUse.append(dRange)
         # print("MIN VALUE MAX VALUE")
         # print(minValue, maxValue)
-        # print("RANGE TO USE")
-        # print(rangesToUse)
+        print("RANGE TO USE")
+        print(rangesToUse)
         return rangesToUse
     
-    def convertNoneToInfinity(self,a):
-        newRes = []
-        if a[0] and a[1]:
-            return a
-
-        if a[0] == None:
-            newRes.append(float('-inf'))
-            newRes.append(a[1])
-        if a[1] == None:
-            newRes.append(a[0])
-            newRes.append(float('inf'))
-        return newRes
         
     def doesIntervalOverlap(self,a, b):
         # a = self.convertNoneToInfinity(a)
@@ -248,12 +247,11 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
     def aggregateDiscreteRange(self, entities, sparseMatrix : SparseMatrix, isSumming):
         maxBound, minBound = sparseMatrix.findMaxBoundLowerBoundForDiscreteRange()
         rangesToSumOver = self.findRange(entities, maxBound,  minBound, sparseMatrix)
-        print("RANGE TO SUM OVER")
-        print(rangesToSumOver)
+        # print("RANGE TO SUM OVER")
+        # print(rangesToSumOver)
 
         shouldAddRowStrategy = RangeExactMatchRowStrategy()
         entities = filterEntities(entities, [RANGE_ENTITY_LABEL])
-        entitiesUsed = []
         answerPointer : SearchResult = None
 
         foundAnswers : List[SearchResult] = []
@@ -289,9 +287,12 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
 
             # On each iteration, we expect to only get one answer from search
             searchResult = searchResults[0]
-            # entitiesUsed.append(searchResult.entitiesUsed)
+            if answerPointer == None:
+                answerPointer = searchResult
+                foundAnswers.append(searchResult)
+            else:
+                answerPointer = sparseMatrix.addSearchResult(answerPointer, searchResult, foundAnswers, isSumming)
 
-            answerPointer = sparseMatrix.addSearchResult(answerPointer, searchResult, foundAnswers, isSumming)
         # Construct the range entity:   
         rangeToCreateEntityFor = rangesToSumOver
         if isSumming:
