@@ -62,11 +62,11 @@ class ActionQueryKnowledgebase(Action):
         intent = tracker.latest_message["intent"]["name"]
         print(intent)
         print(entitiesExtracted)
-        try:
-            answers = await knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy, knowledgeBase.constructOutput,True)
-            utterAllAnswers(answers, dispatcher)        
-        except Exception as e:
-            utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
+        # try:
+        answers = await knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy, knowledgeBase.constructOutput,True)
+        utterAllAnswers(answers, dispatcher)        
+        # except Exception as e:
+        #     utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
         return []
     
 # FOR TEMPORARY USE
@@ -81,11 +81,11 @@ class ActionQueryAdmission(Action):
         intent = tracker.latest_message["intent"]["name"]
         print(intent)
         print(entitiesExtracted)
-        try:
-            answers = await knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy, knowledgeBase.constructOutput,True)
-            utterAllAnswers(answers, dispatcher)        
-        except Exception as e:
-            utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
+        # try:
+        answers = await knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy, knowledgeBase.constructOutput,True)
+        utterAllAnswers(answers, dispatcher)        
+        # except Exception as e:
+        # utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
         return []
 
 

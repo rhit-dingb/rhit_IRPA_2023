@@ -36,7 +36,6 @@ entities:
 # Value: phone, fax, number, address, email, website
 # - entity: way_of_contact
 #   values: []
-
 - way_of_contact
 
 # # Deadline '

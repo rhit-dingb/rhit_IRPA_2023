@@ -24,6 +24,20 @@ class SparseMatrix():
         if len(questions) == self.sparseMatrixDf.shape[0]:
             self.questions = questions
 
+    def getColumn(self):
+        return self.sparseMatrixDf.loc[0].index
+        
+    # def getColumnWithOneForEachRow(self):
+    #     columnList : List[List[str]]
+    #     for row in self:
+    #         columnVals = []
+    #         for column in row.index:
+    #             if row[column] == 1:
+    #                 columnVals.append(column)
+            
+    #         columnList.append(columnVals)
+    #     return columnList
+
     def __iter__(self):
         for i in range(self.sparseMatrixDf.shape[0]):
             row = self.sparseMatrixDf.loc[i]
@@ -214,6 +228,8 @@ class SparseMatrix():
                     # currentResultPointer = str(currentResultPointer)
                     searchResults.append(currentResultPointer)
                 else:
+                    print("ADDING", newSearchResult.answer)
+                   
                     currentResultPointer = self.addSearchResult(currentResultPointer, newSearchResult, searchResults, isSumAllowed)
 
                 

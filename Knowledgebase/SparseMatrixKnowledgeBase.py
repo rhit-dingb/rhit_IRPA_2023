@@ -35,13 +35,24 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         self.dataManager : DataManager = dataManager
         self.typeController = TypeController()
         self.templateConverter : TemplateConverter = TemplateConverter()
-        self.year = self.dataManager.getMostRecentYearRange()[0]
+
+        self.year = None
+        self.useMostRecentYear()
+        
         self.rasaCommunicator = RasaCommunicator()
         self.numberEntityExtractor = NumberEntityExtractor()
 
     
     def setYear(self,year):
         self.year = year
+    
+    def useMostRecentYear(self):
+        try:
+            year = self.dataManager.getMostRecentYearRange()
+            self.year = year[0]
+        except Exception:
+            print("No year data in database")
+            self.year = None
 
 
     """
@@ -61,6 +72,9 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
     """
     async def searchForAnswer(self, intent, entitiesExtracted, shouldAddRowStrategy, outputFunc, shouldAdd = True):
         # print("BEGAN SEARCHING")
+        if self.year == None:
+            self.useMostRecentYear()
+
         sparseMatrixToSearch : SparseMatrix; startYear : str; endYear : str 
         sparseMatrixToSearch, startYear, endYear = self.determineMatrixToSearch(intent, entitiesExtracted, self.year)
         
