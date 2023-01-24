@@ -148,11 +148,11 @@ async def get_unans_questions():
     return unanswered_questions
 
 
-@app.post("/question_id/{id}/answer/{answer}}")
-async def handle_post_answer(id: str, answer : str):
+@app.post("/question_update/{id}")
+async def handle_post_answer(id: str, answer: str):
     db = client.freq_question_db
     questions_collection = db.unans_question
-    boo = questions_collection.update({'_id': ObjectId(id)}, {'is_addressed': True}, {'answer': answer})
+    boo = questions_collection.update_one({'_id': ObjectId(id)}, {'$set': {'is_addressed': True},'$set': {'answer': answer}})
     if boo:
         return {'message': 'update successfull'}
     else:
