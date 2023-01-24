@@ -153,7 +153,7 @@ async def handle_post_answer(id: str, answer : str):
     db = client.freq_question_db
     questions_collection = db.unans_question
     boo = questions_collection.update({'_id': ObjectId(id)}, {'is_addressed': True}, {'answer': answer})
-    if bool:
+    if boo:
         return {'message': 'update successfull'}
     else:
         return {'message': 'errors occurred while updating'}
