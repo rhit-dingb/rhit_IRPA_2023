@@ -3,8 +3,11 @@ from typing import Dict, List
 from fastapi import FastAPI
 from pymongo import MongoClient
 from bson.objectid import ObjectId
+from bson import json_util
+import json
 import sys
 import re
+from datetime import datetime, date
 
 from DataType import DataType
 
@@ -145,17 +148,44 @@ async def get_unans_questions():
     questions_collection = db.unans_question
     unanswered_questions = list(questions_collection.find({'is_addressed': False}))
     print("DATA FOUND")
+    unanswered_questions = json.loads(json_util.dumps(unanswered_questions))
+    print(unanswered_questions)
     return unanswered_questions
 
 
-@app.post("/question_update/{id}")
+@app.put("/question_update/{id}")
 async def handle_post_answer(id: str, answer: str):
     db = client.freq_question_db
     questions_collection = db.unans_question
-    boo = questions_collection.update_one({'_id': ObjectId(id)}, {'$set': {'is_addressed': True},'$set': {'answer': answer}})
-    if boo:
+    boo1 = questions_collection.update_one({'_id': ObjectId(id)}, {'$set': {'is_addressed': True}})
+    boo2 = questions_collection.update_one({'_id': ObjectId(id)}, {'$set': {'answer': answer}})
+    if boo1 and boo2:
         return {'message': 'update successfull'}
     else:
         return {'message': 'errors occurred while updating'}
+
+@app.delete("/question_delete/{id}")
+async def handle_post_answer(id: str):
+    db = client.freq_question_db
+    questions_collection = db.unans_question
+    boo1 = questions_collection.delete_one({'_id': ObjectId(id)})
+    if boo1:
+        return {'message': 'question is successfull deleted'}
+    else:
+        return {'message': 'question maybe not found and issue occurred'}
+
+@app.post("/question_add/{content}")
+async def handle_post_answer(content: str):
+    db = client.freq_question_db
+    questions_collection = db.unans_question
+    boo1 = questions_collection.insert_one({
+        "content": content,
+        "post_date": datetime.today(),
+        "is_addressed": False,
+        "answer": None})
+    if boo1:
+        return {'message': 'question is successfull added'}
+    else:
+        return {'message': 'errors occurred during question add'}
 
 
