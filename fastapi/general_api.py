@@ -188,4 +188,26 @@ async def handle_post_answer(content: str):
     else:
         return {'message': 'errors occurred during question add'}
 
+#====================Below are the list of APIs for Freqency API==========================
+CURRENT_INTENTIONS = ['enrollment', 'admission', 'high_school_units', 'basis_for_selection']
+
+#if intent not detected create new element
+@app.put("/question_asked/{intent}")
+async def handle_new_event(intent: str, content: str):
+    db = client.freq_question_db
+    freq_collection = db.cds_frequency
+    if(len(list(freq_collection.find({"intent": intent}))) == 0):
+        questions_asked = []
+        questions_asked.append(content)
+        boo1 = freq_collection.insert_one({
+            "intent": intent,
+            "frequency": 1,
+            "questions_asked": questions_asked})
+        if boo1:
+            return {'message': 'new intent is created'}
+        else:
+            return {'message': 'errors occurred'}
+
+    
+
 
