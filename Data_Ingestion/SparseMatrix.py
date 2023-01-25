@@ -3,7 +3,7 @@ Internal data model representing a sparse matrix
 """
 
 import json
-from typing import List, Tuple
+from typing import Dict, List, Tuple
 from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
 from Knowledgebase.SearchResultType import SearchResultType
 
@@ -16,7 +16,7 @@ from actions.constants import RANGE_LOWER_BOUND_VALUE
 from Knowledgebase.DataModels.SearchResult import SearchResult
 
 class SparseMatrix():
-    def __init__(self, subSectionName, sparseMatrixDf, questions=[]):
+    def __init__(self, subSectionName, sparseMatrixDf, metadata = dict(),  questions=[]):
         self.subSectionName = subSectionName
         self.sparseMatrixDf : pd.DataFrame  = sparseMatrixDf
         self.typeController = TypeController()
@@ -24,9 +24,11 @@ class SparseMatrix():
         if len(questions) == self.sparseMatrixDf.shape[0]:
             self.questions = questions
 
+        self.metadata : Dict[str, str]= metadata
+
     def getColumn(self):
-        return self.sparseMatrixDf.loc[0].index
-        
+        return self.sparseMatrixDf.columns
+
     # def getColumnWithOneForEachRow(self):
     #     columnList : List[List[str]]
     #     for row in self:
@@ -151,49 +153,55 @@ class SparseMatrix():
         return self.isThisOperationAllowed(constants.PERCENTAGE_ALLOWED_COLUMN_VALUE)
 
     def findDenominatorQuestion(self) -> str:
-        searchResults : List[SearchResult] = self.findValueForMetadata(constants.DENOMINATOR_QUESTION_COLUMN_VALUE)
-        if len(searchResults) == 0:
-            return ""
-        answer = searchResults[0].answer
-        if answer == "" or answer =="nan":
+        denominatorQuestion = self.findValueForMetadata(constants.DENOMINATOR_QUESTION_COLUMN_VALUE)
+        if denominatorQuestion == None:
             return ""
         else:
-            return answer
+            return denominatorQuestion
 
     def searchInSelfForPercentage(self) -> bool:
-        answers = self.findValueForMetadata(constants.PERCENTAGE_SEARCH_IN_SELF_COLUMN_VALUE)
-        return self.checkResultHelper(answers)
+        searchInSelfForPercentage = self.findValueForMetadata(constants.PERCENTAGE_SEARCH_IN_SELF_COLUMN_VALUE)
+        return self.checkIsEnabled(searchInSelfForPercentage)
     
 
     def findTemplate(self): 
-        searchResults : List[SearchResult] = self.findValueForMetadata(constants.TEMPLATE_LABEL)
-        if len(searchResults) == 0:
+        template = self.findValueForMetadata(constants.TEMPLATE_LABEL)
+        if template == None:
             return ""
 
-        return searchResults[0].answer
+        return template
 
 
-    def checkResultHelper(self, searchResults : List[SearchResult]):
-        if len(searchResults) == 0:
+    def checkIsEnabled(self, value):
+        if value == None:
             return False
-        elif str(searchResults[0].answer).lower() == constants.VALUE_FOR_ALLOW:
+        elif str(value).lower() == constants.VALUE_FOR_ALLOW:
             return True
 
         return False
 
     def isThisOperationAllowed(self, operationLabel):
         answer = self.findValueForMetadata(operationLabel)
-        return self.checkResultHelper(answer)
+        return self.checkIsEnabled(answer)
 
 
     def findValueForMetadata(self, metadataLabel):
-        booleanSearchStrategy = DefaultShouldAddRowStrategy()
-        operationAllowedEntity = createEntityObj(metadataLabel, entityLabel="none",  entityRole=None)
-        searchResults = self.searchOnSparseMatrix([operationAllowedEntity], booleanSearchStrategy, False)
-        return searchResults
+        # booleanSearchStrategy = DefaultShouldAddRowStrategy()
+        # operationAllowedEntity = createEntityObj(metadataLabel, entityLabel="none",  entityRole=None)
+        # searchResults = self.searchOnSparseMatrix([operationAllowedEntity], booleanSearchStrategy, False)
+        keys = self.metadata.keys()
+
+        #Use dict to be case insensitive
+        lowerKeyToOriginalKey = dict()
+        for key in keys:
+            lowerKeyToOriginalKey[key.lower()] = key
+        if metadataLabel in lowerKeyToOriginalKey:
+            originalKey = lowerKeyToOriginalKey[metadataLabel]
+            return self.metadata[originalKey]
+        else:
+            return None
 
     
-
     def searchOnSparseMatrix(self, entities, shouldAddRowStrategy, isSumAllowed):
         searchResults = []
         currentResultPointer = None
@@ -228,8 +236,7 @@ class SparseMatrix():
                     # currentResultPointer = str(currentResultPointer)
                     searchResults.append(currentResultPointer)
                 else:
-                    print("ADDING", newSearchResult.answer)
-                   
+                    # print("ADDING", newSearchResult.answer)
                     currentResultPointer = self.addSearchResult(currentResultPointer, newSearchResult, searchResults, isSumAllowed)
 
                 

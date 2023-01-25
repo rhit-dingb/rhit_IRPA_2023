@@ -24,6 +24,9 @@ intents:
   - degree_conferred
 
   - change_year
+  - get_year
+
+  - get_available_options 
 
   - mood_great
   - mood_unhappy
@@ -38,9 +41,21 @@ entities:
 #   values: []
 - way_of_contact
 
+
 # # Deadline '
 # Value: deadline
 - deadline
+
+
+# values:
+#   way_of_contact:
+#   - phone,
+#   - fax
+#   - number
+#   - address
+#   - email
+#   - website
+
 
 # full-time, part-time
 - enrollment_status
@@ -401,13 +416,16 @@ entities:
 
 
 
-
-
-
-
-
-
 slots:
+#A list of two elements, start year and end year for the data
+  yearRangeSelected:
+    type: list
+    influence_conversation: false
+    mappings:
+    - type: custom
+
+
+  # Not sure if we gonna use these 
   enrollment_status:
     type: categorical
     values:
@@ -490,18 +508,16 @@ slots:
 actions:
 
   - action_query_knowledgebase
-  
+  - action_set_year
+  - action_get_year 
   - action_get_available_options
   - action_ask_more_question
+
   - action_query_cohort
   - action_query_enrollment
-
   - action_query_admission
-
   - action_query_basis_for_selection
-
   - action_query_freshman_profile
-
   - action_query_transfer_admission
   
 

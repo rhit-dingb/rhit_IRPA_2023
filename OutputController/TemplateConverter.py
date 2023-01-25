@@ -28,7 +28,7 @@ class TemplateConverter():
         currIndex = 0 
        
         while currIndex < len(template):
-            print(template[currIndex])
+            # print(template[currIndex])
             if template[currIndex] in self.possibleBracket:
                
                 matchIndex = self.lookForMatch(template[currIndex], currIndex+1 ,template)
@@ -142,7 +142,7 @@ class TemplateConverter():
            sentence = " ".join(sentenceTokens)
            fullSentenceAnswers.append(sentence)
 
-        print(fullSentenceAnswers)
+        # print(fullSentenceAnswers)
         return fullSentenceAnswers
             
         

@@ -1,0 +1,13 @@
+
+version: "3.1"
+
+nlu:
+- intent: get_available_options
+  examples: |
+    - What can I ask about for this section?
+    - I want to know about the available options.
+    - What can I ask about?
+    - What should I ask?
+    - What to ask?
+    - I have no idea what to ask about
+    - Tell me what I can ask you abouts

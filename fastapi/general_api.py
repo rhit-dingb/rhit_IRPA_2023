@@ -4,13 +4,15 @@ from fastapi import FastAPI
 from pymongo import MongoClient
 import sys
 import re
+import aiohttp
+import asyncio
 
 from DataType import DataType
 
 sys.path.append('../')
+
 from fastapi import FastAPI, Request, HTTPException
-
-
+from Parser.RasaCommunicator import RasaCommunicator
 from DataManager.constants import DEFINITION
 from DataManager.constants import CDS_DEFINITION_DATABASE_NAME
 from Parser.JsonDataLoader import JsonDataLoader
@@ -26,8 +28,7 @@ from DataManager.constants import ANNUAL_DATA_REGEX_PATTERN, DEFINITION_DATA_REG
 
 
 mongoDbDataManager = MongoDataManager()
-client = MongoClient(MONGO_DB_CONNECTION_STRING)
-
+rasaCommunicator = RasaCommunicator()
 app = FastAPI()
 
 #A list of allowed origins
@@ -89,25 +90,18 @@ async def parse_data(request : Request):
     outputName = ""
     if "dataName" in jsonData:
         outputName = jsonData["dataName"]
-    # if dataType ==  DataType.ANNUAL.value:
-    #     yearFrom = jsonData["yearFrom"]
-    #     yearTo = jsonData["yearTo"]
 
-    #     outputName = CDS_DATABASE_NAME_TEMPLATE.format(start_year = yearFrom, end_year = yearTo)
-        
-    # elif dataType == DataType.DEFINITION.value:
-    #     outputName = CDS_DEFINITION_DATABASE_NAME
     if not outputName == "":
-        try:
-            # print(excelData)
-            print(outputName)
-            jsonCdsLoader.loadData(excelData)
-            dataWriter = MongoDBSparseMatrixDataWriter(outputName)
-            parserFacade = ParserFacade(dataLoader=jsonCdsLoader, dataWriter=dataWriter)
-            await parserFacade.parse()
-            return {"message": "Done", "uploadedAs": outputName}
-        except Exception:
-            raise HTTPException(status_code=500, detail="Something went wrong while parsing the input data")
+        # try:
+        # print(excelData)
+        print(outputName)
+        jsonCdsLoader.loadData(excelData)
+        dataWriter = MongoDBSparseMatrixDataWriter(outputName)
+        parserFacade = ParserFacade(dataLoader=jsonCdsLoader, dataWriter=dataWriter)
+        await parserFacade.parse()
+        return {"message": "Done", "uploadedAs": outputName}
+        # except Exception:
+        #     raise HTTPException(status_code=500, detail="Something went wrong while parsing the input data")
 
     
 
@@ -133,7 +127,41 @@ async def delete_data(request : Request):
 
     
 
+@app.get("/api/get_years_available")
+async def get_years_available():
+    yearsAvailable = mongoDbDataManager.getAllAvailableYearsSorted()
+    print(yearsAvailable)
+    response = {"data": yearsAvailable}
+    return response
 
+@app.post("/api/change_year")
+async def change_selected_year(request : Request):
+    print(request)
+    jsonData = await request.json()
+    conversationId = jsonData["conversationId"]
+    startYear = jsonData["startYear"]
+    endYear = jsonData["endYear"]
+    entities ={"startYear": startYear, "endYear": endYear}
+    try:
+        async with aiohttp.ClientSession() as session:
+            response = await rasaCommunicator.injectIntent("change_year", entities, session, conversationId )
+            return {"message": "success"}
+    except Exception:
+        raise HTTPException(status_code=500, detail="change failed")
 
+   
 
-
+@app.get("/api/get_selected_year/{conversation_id}")
+async def get_selected_year(conversation_id : str):
+    async with aiohttp.ClientSession() as session:
+        entities = {}
+        response = await rasaCommunicator.injectIntent("get_year",entities , session, conversation_id )
+        print(response.keys())
+        messages = response["messages"]
+        print(messages)
+        if len(messages) == 0:
+              return {"selectedYear": None  }
+        else:
+            startYear = messages[0]
+            endYear = messages[1]
+            return {"selectedYear":[startYear, endYear] }

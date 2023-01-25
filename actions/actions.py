@@ -22,7 +22,8 @@ from typing import Text
 from DataManager.MongoDataManager import MongoDataManager
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
-
+from rasa_sdk.events import SlotSet
+from actions.ResponseType import ResponseType
 
 # ExcelDataManager("./CDSData", [ENROLLMENT_INTENT, COHORT_INTENT, ADMISSION_INTENT, HIGH_SCHOOL_UNITS_INTENT, BASIS_FOR_SELECTION_INTENT, FRESHMAN_PROFILE_INTENT, TRANSFER_ADMISSION_INTENT, STUDENT_LIFE_INTENT])
 mongoDataManager = MongoDataManager()
@@ -34,14 +35,26 @@ defaultShouldAddRowStrategy = DefaultShouldAddRowStrategy()
 numberEntityExtractor = NumberEntityExtractor()
 
 class ActionGetAvailableOptions(Action):
+    def __init__(self) -> None:
+        super().__init__()
+        self.HEADER_MESSAGE = "Here is a available list of you can ask me about for the current selected year's data:"
+
     def name(self) -> Text:
         return "action_get_available_options"
 
     def run(self, dispatcher, tracker, domain):
-        dispatcher.utter_message(
-            "For enrollment, you can ask about: how many undergradute students, total graduate students, etc")
-        return []
+        startYear, endYear, res = getYearRangeInSlot(tracker)
+        intent = tracker.latest_message["intent"]["name"]
+        availableOptions = mongoDataManager.getAvailableOptions(intent, startYear, endYear)
+        print("RECEIVED INTENT")
+        print(intent)
 
+        response = {"type": ResponseType.ACCORDION_LIST, "header": self.HEADER_MESSAGE, "data": availableOptions}
+        dispatcher.utter_message(json_message= response)
+        if res:
+            return [res]
+        else:
+            return []
 
 class ActionAskMoreQuestion(Action):
     def name(self) -> Text:
@@ -56,45 +69,56 @@ class ActionQueryKnowledgebase(Action):
         return "action_query_knowledgebase"
 
     async def run(self, dispatcher, tracker, domain):
+        startYear, endYear, res = getYearRangeInSlot(tracker)
         entitiesExtracted = tracker.latest_message["entities"]
         numberEntities = numberEntityExtractor.extractEntities(tracker.latest_message["text"])
         entitiesExtracted = entitiesExtracted + numberEntities
         intent = tracker.latest_message["intent"]["name"]
-        print(intent)
-        print(entitiesExtracted)
-        # try:
-        answers = await knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy, knowledgeBase.constructOutput,True)
+        # print(intent)
+        # print(entitiesExtracted)
+        # # try:
+        # print("YEAR")
+        # print(startYear, endYear)
+        answers = await knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy,knowledgeBase.constructOutput,startYear, endYear )
         utterAllAnswers(answers, dispatcher)        
         # except Exception as e:
         #     utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
-        return []
-    
-# FOR TEMPORARY USE
-class ActionQueryAdmission(Action):
+        if res:
+            return [res]
+        else:
+            return []
+
+
+
+class ActionGetYear(Action):
     def name(self) -> Text:
-        return "action_query_admission"
+        return "action_get_year"
+    
+    def run(self, dispatcher, tracker, domain):
+        yearRange = tracker.get_slot("yearRangeSelected")
+        if yearRange == None:
+            return []
 
-    async def run(self, dispatcher, tracker, domain):
-        entitiesExtracted = tracker.latest_message["entities"]
-        numberEntities = numberEntityExtractor.extractEntities(tracker.latest_message["text"])
-        entitiesExtracted = entitiesExtracted + numberEntities
-        intent = tracker.latest_message["intent"]["name"]
-        print(intent)
-        print(entitiesExtracted)
-        # try:
-        answers = await knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy, knowledgeBase.constructOutput,True)
-        utterAllAnswers(answers, dispatcher)        
-        # except Exception as e:
-        # utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
+        if len(yearRange) == 2:
+            dispatcher.utter_message(yearRange[0])
+            dispatcher.utter_message(yearRange[1])
+        
         return []
-
+        
 
 class ActionSetYear(Action):
     def name(self) -> Text:
         return "action_set_year"
     
     def run(self, dispatcher, tracker, domain):
-        pass
+        print("YEAR CHANGED")
+        entitiesExtracted = tracker.latest_message["entities"]
+        yearRange = []
+        # Assume there are only two entities, the start year and end year
+        for entities in entitiesExtracted:
+            yearRange.append(entities["value"])
+        res = SlotSet("yearRangeSelected", yearRange)
+        return [res]
         #knowledgeBase.setYear()
 
 
@@ -185,16 +209,34 @@ class ActionQueryCohort(Action):
     #     return knowledgeBase.constructOutput(answer, intent, entities)
 
 
-def utterAllAnswers(answers, dispatcher):
+def getYearRangeInSlot(tracker):
+    startYear, endYear = None, None
+    yearRange = tracker.get_slot("yearRangeSelected")
+    print("YEAR RANGE FOUND")
+    print(yearRange)
+    res = None
+    if yearRange == None or len(yearRange) == 0:
+        startYear, endYear = mongoDataManager.getMostRecentYearRange()
+        if startYear and endYear:
+            res = SlotSet("yearRangeSelected", [startYear, endYear] )
+    else:
+        startYear = yearRange[0]
+        endYear = yearRange[1]
+    
+    return (startYear, endYear, res)
+
+
+def utterAllAnswers(answers, dispatcher ):
+    # json_str = json.dumps(json_message)
     for answer in answers:
-        dispatcher.utter_message(answer)
+        dispatcher.utter_message( json_message={"text":answer} )
 
 def utterAppropriateAnswerWhenExceptionHappen(exceptionReceived, dispatcher):
-    print(exceptionReceived)
+    # print(exceptionReceived)
     try:
         exceptionType = exceptionReceived.type
-        dispatcher.utter_message(str(exceptionReceived.fallBackMessage))
+        dispatcher.utter_message(text=str(exceptionReceived.fallBackMessage) )
     except:
-        print(exceptionReceived)
+        # print(exceptionReceived)
         dispatcher.utter_message(
             "Sorry something went wrong, can you please ask again?")

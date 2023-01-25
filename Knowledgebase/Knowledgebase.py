@@ -10,11 +10,11 @@ class KnowledgeBase(ABC):
         pass
     
     @abstractmethod
-    def getAvailableOptions(self, key):
+    def getAvailableOptions(self, intent, entities, startYear, endYear):
         pass
     
     @abstractmethod
-    def searchForAnswer(self, intent, entities):
+    def searchForAnswer(self, intent, entitiesExtracted, outputFunc, startYear, endYear):
         pass 
 
     # this function will aggregate number given a range, using the generator to create column name for those rows and 

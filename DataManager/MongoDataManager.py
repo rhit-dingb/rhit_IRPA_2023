@@ -14,6 +14,8 @@ from DataManager.constants import CDS_DATABASE_NAME_TEMPLATE, DATABASE_PRENAME, 
 from DataManager.constants import DATABASE_SUBSECTION_FIELD_KEY
 from DataManager.constants import ANNUAL_DATA_REGEX_PATTERN
 from DataManager.constants import DEFINITION_DATA_REGEX_PATTERN
+from DataManager.constants import DATABASE_METADATA_FIELD_KEY
+from Data_Ingestion.constants import ABOUT_METADATA_KEY
 """
 MongoDataManager subclass that can handle connections with MongoDB data
 """
@@ -23,19 +25,29 @@ class MongoDataManager(DataManager):
         self.mongoProcessor = MongoProcessor()
         self.client = MongoClient(MONGO_DB_CONNECTION_STRING)
 
-    # print("Started!")
-    
-    # client = MongoClient('mongodb://localhost:27017')
-    # dbs = MongoClient().list_database_names()
-    # CDS_DB_NAMES = ["CDS_2014-2015","CDS_2019-2020","CDS_2020-2021"]
-    #db = client["CDS_2020-2021"]
-    # INTENTION_LIST = db.list_collection_names()
-    # print(INTENTION_LIST)
-    # collection = db.Enrollment_General
-    # cursor = collection.find({"undergraduate": 1})
-    # for doc in cursor:
-    #     print(doc)
+    def getAvailableOptions(self, intent, startYear, endYear):
+        # allAvailableYears = self.getAllAvailableYearsSorted(self)
+        # yearRange = (startYear, endYear)
+        availableOptions = dict() 
+        databaseName = CDS_DATABASE_NAME_TEMPLATE.format(start_year = startYear, end_year = endYear)
+        # print("DATABASE NAME", databaseName)
+        if databaseName in self.client.list_database_names():
+            db = self.client[databaseName]
+            collections = db.list_collection_names()
+            for collection in collections:
+                # print(collection)
+                cursor = db[collection].find({},{DATABASE_METADATA_FIELD_KEY:1})
+                for data in cursor:
+                    metadata = data[DATABASE_METADATA_FIELD_KEY]
+                    if ABOUT_METADATA_KEY in metadata:
+                        aboutDescription = metadata[ABOUT_METADATA_KEY]
+                        if collection in availableOptions:
+                            availableOptions[collection] = [aboutDescription]
+                        else:
+                            availableOptions[collection].append(aboutDescription)
 
+        return availableOptions
+                # print(list(cursor))
 
 
     def getSectionAndSubsectionsForData(self, dataName) -> Dict[str, List[str]] :
@@ -142,25 +154,35 @@ class MongoDataManager(DataManager):
     See documentation in DataManager.py
     """
     def getMostRecentYearRange(self) -> Tuple[str, str] :
-        def sortFunc(e):
-            yearRange = e.split("_")
-            startYear= int(yearRange[1])
+        years = self.getAllAvailableYearsSorted()
+        if len(years) == 0:
+            raise Exception("No data found in database")
+
+        mostRecentYearRange = years[0]
+        print(mostRecentYearRange)
+        return years[0]
+
+
+    def getAllAvailableYearsSorted(self) -> List[Tuple[str,str]]:
+        def sortFunc(year):
+            startYear= year[1]
             return startYear
+
 
         dbNameWithYears = self.client.list_database_names()
         pattern = re.compile(ANNUAL_DATA_REGEX_PATTERN, re.IGNORECASE)
         dbNameWithYears = list(filter(lambda x : pattern.match(x), dbNameWithYears))
+        years = []
+        for name in dbNameWithYears:
+            nameSplitted = name.split("_")
+            yearRange = nameSplitted[1:]
+            if not yearRange in years:
+                years.append((yearRange[0], yearRange[1]))
 
-        dbNameWithYears.sort(key = sortFunc, reverse= True)
-        if len(dbNameWithYears) == 0:
-            raise Exception("No data found in database")
+        years.sort(key = sortFunc, reverse= True)
+        return years
 
-        if len(dbNameWithYears[0].split("_")) < 3:
-            raise Exception("Wrong database name format, it should something like CDS_2020_2021")
 
-        mostRecentYearRange = dbNameWithYears[0].split("_")
-        print(mostRecentYearRange)
-        return (mostRecentYearRange[1], mostRecentYearRange[2])
 
 # -----------The following are Unit Tests for the MongoDataManager Class
 # NO_DATA_FOUND_FOR_ACADEMIC_YEAR_ERROR_MESSAGE_FORMAT = "Sorry I could not find any data for academic year {start}-{end}"

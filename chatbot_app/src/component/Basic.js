@@ -3,15 +3,28 @@ import React from "react";
 import react, { useEffect, useState } from "react";
 import { IoMdSend } from "react-icons/io";
 import { BiBot, BiUser } from "react-icons/bi";
-import { RASA_API_STRING } from "../constants/constants";
-
+import { RASA_API_STRING, RESPONSE_TYPE_KEY} from "../constants/constants";
 import Box from '@mui/material/Box';
+import Select from '@mui/material/Select';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import YearSelect from "./YearSelect"
+import ChatbotResponse from "../chatbotResponse/ChatbotResponse"
+import { v4 as uuidv4 } from 'uuid';
 
 
 function Basic() {
+ 
   const [chat, setChat] = useState([]);
   const [inputMessage, setInputMessage] = useState("");
   const [botTyping, setbotTyping] = useState(false);
+  const [conversationId, setConversationId] = useState(uuidv4())
+
+  useEffect(()=>{
+    const request_temp = { sender: "bot", sender_id: "test", jsonData: {"type": "accordion list"} }
+    setChat([...chat, ...[request_temp]])
+  },[])
 
   useEffect(() => {
     //console.log("called");
@@ -28,13 +41,13 @@ function Basic() {
       setChat((chat) => [...chat, request_temp]);
       setbotTyping(true);
       setInputMessage("");
-      rasaAPI(name, inputMessage);
+      rasaAPI(conversationId, inputMessage);
     } else {
       window.alert("Please enter valid message");
     }
   };
 
-  const rasaAPI = async function handleClick(name, msg) {
+  const rasaAPI = async function handleClick(conversationId, msg) {
     //chatData.push({sender : "user", sender_id : name, msg : msg});
     console.log(chat);
     await fetch(
@@ -48,7 +61,7 @@ function Basic() {
         },
         credentials: "same-origin",
         mode: "cors",
-        body: JSON.stringify({ sender: name, message: msg }),
+        body: JSON.stringify({ sender: conversationId, message: msg }),
       }
     )
       .then((response) => response.json())
@@ -56,16 +69,20 @@ function Basic() {
         if (response) {
           
           // const temp = response[0];
-          // console.log(response)
+          console.log("RESPONSE RECEIVED")
+          console.log(response)
           let messages = []
           for (let r of response) {
               const recipient_id = r["recipient_id"];
-              const recipient_msg = r["text"];
+              //Expect the backend return the following json
+              // {custom:{text:"", ...other stuff }}
               const response_temp = {
                 sender: "bot",
                 recipient_id: recipient_id,
-                msg: recipient_msg,
+                jsonData: r
               };
+
+            
               messages.push(response_temp)
           }
           
@@ -77,9 +94,11 @@ function Basic() {
       });
   };
 
-  const stylecard = {
+
+
+  const styleChatbotBody  = {
     // maxWidth: "35rem",
-    width: "80%",
+    width: "100%",
     // width: "21rem",
     border: "1px solid black",
     paddingLeft: "0px",
@@ -87,6 +106,8 @@ function Basic() {
     borderRadius: "30px",
     boxShadow: "0 16px 20px 0 rgba(0,0,0,0.4)",
   };
+
+
   const styleHeader = {
     height: "4.5rem",
     borderBottom: "1px solid black",
@@ -112,22 +133,30 @@ function Basic() {
       {/* <button onClick={()=>rasaAPI("shreyas","hi")}>Try this</button> */}
 
       <div className="container">
+
         <div className="row justify-content-center">
-          <div className="card" style={stylecard}>
+          <div className="card" style={styleChatbotBody}>
             <div className="cardHeader text-white" style={styleHeader}>
-              <h1 style={{ marginBottom: "0px" }}>AI Assistant</h1>
-              {botTyping ? <h6>Bot Typing....</h6> : null}
+            <div id="chatHeader">
+            <YearSelect convId ={conversationId}/>
+            <Box>
+            <h1 style={{margin:"auto" }}></h1>
+              {botTyping ? <h6>Bot Typing....</h6> : null}   
+            </Box>
             </div>
+            </div>
+
+            {/*  */}
             <div className="cardBody" id="messageArea" style={styleBody}>
-              {/* <div className="row msgarea"> */}
               <Box>
                 {chat.map((user, key) => (
                   <div key={key}>
                     {user.sender === "bot" ? (
-                      <div className="msgalignstart">
-                        <BiBot className="botIcon" />
-                        <h5 className="botmsg">{user.msg}</h5>
-                      </div>
+                      // <div className="msgalignstart">
+                      //   <BiBot className="botIcon" />
+                      //   <h5 className="botmsg">{user.msg}</h5>
+                      // </div>
+                      <ChatbotResponse recipientId = {user.recipient_id} keyToUse ={key} jsonResponse = {user.jsonData}/>
                     ) : (
                       <div className="msgalignend">
                         <h5 className="usermsg">{user.msg}</h5>
@@ -137,15 +166,12 @@ function Basic() {
                   </div>
                 ))}
               </Box>
-              {/* </div> */}
-
-             
             </div>
+
+            
             <div className="cardFooter text-white" style={styleFooter}>
               {/* <div className="row"> */}
-             
                 <form style={{ display: "flex" }} onSubmit={handleSubmit}>
-                
                   <div className="col-11" style={{ paddingRight: "0px"}}>
                     <input
                       onChange={(e) => setInputMessage(e.target.value)}
@@ -159,7 +185,6 @@ function Basic() {
                       <IoMdSend className="sendBtn" />
                     </button>
                   </div>
-                
                 </form>
               {/* </div> */}
             </div>
@@ -168,6 +193,11 @@ function Basic() {
       </div>
     </div>
   );
+
+
+
 }
+
+
 
 export default Basic;

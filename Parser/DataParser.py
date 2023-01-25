@@ -1,6 +1,6 @@
 
 #This is a very basic implementation of parser that will parse the questions/answer from the client and convert to sparse matrix.
-from typing import List
+from typing import Dict, List, Tuple
 from Parser.QuestionAnswer import QuestionAnswer
 from Parser.DataWriter import DataWriter
 from Data_Ingestion.SparseMatrix import SparseMatrix
@@ -9,13 +9,27 @@ import pandas as pd
 class DataParser():
     def __init__(self):
         pass
+
+    def parseMetadata(self, metaDataQuestionAnswers : List[QuestionAnswer] ) -> Dict[str, str] :
+        metadata = dict()
+        for questionAnswer in metaDataQuestionAnswers:
+            question = questionAnswer.getQuestion()
+            answer = questionAnswer.getAnswer()
+            metadata[question.lower()] = answer
+
+        return metadata
        
-    def parse(self, subsectionName : str , questionAnswers : List[QuestionAnswer]) -> bool:
+    def parse(self, subsectionName : str , questionAnswers : List[QuestionAnswer]) -> SparseMatrix:
         everyUniqueEntity = []
         matrixData = []
         sparseMatrix = None
         
-        for questionAnswer in questionAnswers:
+        questionAnswersWithNoMetadata = list(filter(lambda quesAns: not quesAns.isMetaData, questionAnswers))
+        metadataQuestionAnswer = list(filter(lambda quesAns: quesAns.isMetaData, questionAnswers))
+
+        
+        metadata : Dict[str, str] = self.parseMetadata(metadataQuestionAnswer)
+        for questionAnswer in questionAnswersWithNoMetadata:
             # print(questionAnswer.entities)
             for entity in questionAnswer.entities:
                 if entity in everyUniqueEntity:
@@ -23,7 +37,7 @@ class DataParser():
                 else:
                     everyUniqueEntity.append(entity)
 
-        for questionAnswer in questionAnswers:
+        for questionAnswer in questionAnswersWithNoMetadata:
             row = self.convertQuestionAnswerToRow(questionAnswer, everyUniqueEntity)
             matrixData.append(row)
         
@@ -31,10 +45,11 @@ class DataParser():
         columns = columns + everyUniqueEntity
         sparseMatrixDataFrame = pd.DataFrame(columns=columns, data = matrixData)
         questions = []
-        for qa in questionAnswers:
+
+        for qa in questionAnswersWithNoMetadata:
             questions.append(qa.question)
 
-        sparseMatrix = SparseMatrix(sparseMatrixDf=sparseMatrixDataFrame, subSectionName= subsectionName, questions=questions)
+        sparseMatrix = SparseMatrix(sparseMatrixDf=sparseMatrixDataFrame, subSectionName= subsectionName, questions=questions, metadata=metadata)
         return sparseMatrix
                     
     def convertQuestionAnswerToRow(self, questionAnswer : QuestionAnswer, allEntities : List[str]) -> List[str]:

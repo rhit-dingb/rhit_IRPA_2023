@@ -38,6 +38,7 @@
 }
 
 .botmsg {
+  /* background-color: rgb(205, 173, 241); */
   background-color: rgb(205, 173, 241);
   padding-left: 15px;
   padding-right: 15px;
@@ -103,4 +104,12 @@
 
 .sendBtn {
   font-size: 25px;
+}
+
+
+#chatHeader{
+  display:flex;
+  flex-direction:row;
+  align-items: stretch;
+  margin-left: 1%;
 }

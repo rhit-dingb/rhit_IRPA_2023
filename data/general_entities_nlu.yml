@@ -270,9 +270,10 @@ nlu:
     - facultys
     - faculties
 
-- synonym: professor
-  examples: | 
-    - professor
+# - synonym: professor
+#   examples: | 
+#     - professor
+#     - faculty
 
 - synonym: parent
   examples: | 
