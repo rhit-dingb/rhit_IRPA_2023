@@ -101,13 +101,14 @@ function YearSelect({ convId }) {
 
 
     return(
-        <FormControl variant="filled" sx={{ m: 1, minWidth: 140,  backgroundColor: "white" ,borderRadius: "5px" }}>
-        <InputLabel >Year selected</InputLabel>
+        <FormControl variant ="filled" size="small" sx={{m: 0.6,maxHeight:50, minWidth: 120, color:"black",  backgroundColor: "white" ,borderRadius: "5px" }}>
+          <InputLabel >Year selected</InputLabel>
         <Select
+
         value={currYearRange}
         onChange={(e)=>{ setYearRange(e.target.value)}}
         label="Year selected"
-        sx={{color: "primary", backgrounColor:"white" }}
+        sx={{backgroundColor:"white", height:"100%" }}
     >
     {/* <MenuItem value="">
         <em>None</em>
@@ -124,3 +125,4 @@ function YearSelect({ convId }) {
 
 
 export default YearSelect;
+

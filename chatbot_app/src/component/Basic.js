@@ -117,10 +117,11 @@ function Basic() {
 
 
   const styleHeader = {
-    height: "4.5rem",
+    height: "3.5rem",
     borderBottom: "1px solid black",
     borderRadius: "30px 30px 0px 0px",
     backgroundColor: "#800000",
+    
   };
   const styleFooter = {
     // maxWidth: "80%",
@@ -131,7 +132,7 @@ function Basic() {
 
   const styleBody = {
     paddingTop: "10px",
-    height: "30rem",
+    height: "32rem",
     overflowY: "a",
     overflowX: "hidden",
   };
@@ -144,7 +145,7 @@ function Basic() {
       <Box
       sx={{
         margin: "auto",
-        width: "88%",
+        width: "95%",
         height: "88%"
       }}>
         <div className="row justify-content-center">

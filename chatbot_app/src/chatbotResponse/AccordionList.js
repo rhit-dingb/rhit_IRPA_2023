@@ -92,15 +92,17 @@ export function AccordionList({jsonResponse}) {
     return (
     <div className="msgalignstart">
         <BiBot className="botIcon" />
+        <div  className="botmsg" style={{maxWidth:800}}>
+        <h5>{header} </h5>
         <List
-            className="botmsg"
-            sx={{ width: '100%', maxWidth: 700, padding: "1%", backgroundColor: "#F8F8F8"}}
+            sx={{ width: '100%', maxWidth: "100%", padding: "1%", backgroundColor: "#F8F8F8"}}
             component="nav"
             aria-labelledby="nested-list-subheader"
         >
-            <h5>{header} </h5>
+           
            {generateList()}
         </List>
+        </div>
     </div>)
 }
 

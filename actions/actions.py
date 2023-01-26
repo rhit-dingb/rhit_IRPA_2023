@@ -77,7 +77,7 @@ class ActionQueryKnowledgebase(Action):
         entitiesExtracted = entitiesExtracted + numberEntities
         intent = tracker.latest_message["intent"]["name"]
         # print(intent)
-        # print(entitiesExtracted)
+        print(entitiesExtracted)
         try:
         # print("YEAR")
         # print(startYear, endYear)
