@@ -22,7 +22,8 @@ class DataManager():
         pass
     
     def getAvailableOptions(self,startYear, endYear):
-        raise Exception("This method should be override by a concrete class")
+        pass
+        # raise Exception("This method should be override by a concrete class")
 
     """
     This is an abstract method.
@@ -96,7 +97,6 @@ class DataManager():
     def determineBestMatchingMatrix(self, topicData : TopicData, entities : Dict, errorMessage : str) ->  SparseMatrix:
         doesEntityMapToAnySubsections, sparseMatricesFound = topicData.doesEntityIncludeAnySubsections(entities)
         candidates = list(topicData.getSparseMatrices().values())
-        
       
         if doesEntityMapToAnySubsections:
             candidates = sparseMatricesFound
@@ -104,11 +104,8 @@ class DataManager():
         for candidate in candidates:
             print(candidate.subSectionName)
             
-
         maxMatch = []
         currMax = 0
-
-        
         entityValues = []
         for entity in entities:
             entityValues.append(entity["value"])

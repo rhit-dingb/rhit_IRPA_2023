@@ -38,14 +38,20 @@ class MongoDataManager(DataManager):
                 # print(collection)
                 cursor = db[collection].find({},{DATABASE_METADATA_FIELD_KEY:1})
                 for data in cursor:
+                    # print(data)
                     metadata = data[DATABASE_METADATA_FIELD_KEY]
+                    print(metadata)
                     if ABOUT_METADATA_KEY in metadata:
                         aboutDescription = metadata[ABOUT_METADATA_KEY]
-                        if collection in availableOptions:
+                        if not collection in availableOptions.keys():
                             availableOptions[collection] = [aboutDescription]
                         else:
+                            print(collection)
+                            print(availableOptions.keys())
                             availableOptions[collection].append(aboutDescription)
 
+        print("AVIALABLE OPTIONS FOUND")
+        print(availableOptions)
         return availableOptions
                 # print(list(cursor))
 

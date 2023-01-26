@@ -8,10 +8,12 @@ export const DataType = {
 }
 
 export const RESPONSE_TYPE_KEY = "type"
+export const CHATBOT_TEXT_MESSAGE_KEY = "text"
+export const CHATBOT_CUSTOM_MESSAGE_KEY = "custom"
+export const GET_AVAILABLE_OPTIONS_MESSAGE = "What can I ask you about?"
 export const ChatbotResponseType = {
 	NORMAL_MESSAGE: "normal message",
 	ACCORDION_LIST: "accordion list"
-
 }
 
 

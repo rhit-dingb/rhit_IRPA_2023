@@ -58,8 +58,6 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
     """
     async def searchForAnswer(self, intent, entitiesExtracted, shouldAddRowStrategy, outputFunc, startYear, endYear):
         # print("BEGAN SEARCHING")
-        self.dataManager.getAvailableOptions(startYear, endYear)
-
         sparseMatrixToSearch : SparseMatrix
         sparseMatrixToSearch = self.determineMatrixToSearch(intent, entitiesExtracted, startYear, endYear)
         

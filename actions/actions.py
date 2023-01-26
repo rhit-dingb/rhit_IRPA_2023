@@ -37,7 +37,7 @@ numberEntityExtractor = NumberEntityExtractor()
 class ActionGetAvailableOptions(Action):
     def __init__(self) -> None:
         super().__init__()
-        self.HEADER_MESSAGE = "Here is a available list of you can ask me about for the current selected year's data:"
+        self.HEADER_MESSAGE = "Here is a available list sections of you can ask me about for the current selected year's data:"
 
     def name(self) -> Text:
         return "action_get_available_options"
@@ -49,8 +49,10 @@ class ActionGetAvailableOptions(Action):
         print("RECEIVED INTENT")
         print(intent)
 
-        response = {"type": ResponseType.ACCORDION_LIST, "header": self.HEADER_MESSAGE, "data": availableOptions}
+        response = {"type": ResponseType.ACCORDION_LIST.value, "header": self.HEADER_MESSAGE, "data": availableOptions}
+        print(response)
         dispatcher.utter_message(json_message= response)
+        
         if res:
             return [res]
         else:
@@ -76,13 +78,14 @@ class ActionQueryKnowledgebase(Action):
         intent = tracker.latest_message["intent"]["name"]
         # print(intent)
         # print(entitiesExtracted)
-        # # try:
+        try:
         # print("YEAR")
         # print(startYear, endYear)
-        answers = await knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy,knowledgeBase.constructOutput,startYear, endYear )
-        utterAllAnswers(answers, dispatcher)        
-        # except Exception as e:
-        #     utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
+            answers = await knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy,knowledgeBase.constructOutput,startYear, endYear )
+            utterAllAnswers(answers, dispatcher)        
+        except Exception as e:
+             utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
+             
         if res:
             return [res]
         else:
@@ -111,7 +114,7 @@ class ActionSetYear(Action):
         return "action_set_year"
     
     def run(self, dispatcher, tracker, domain):
-        print("YEAR CHANGED")
+        # print("YEAR CHANGED")
         entitiesExtracted = tracker.latest_message["entities"]
         yearRange = []
         # Assume there are only two entities, the start year and end year

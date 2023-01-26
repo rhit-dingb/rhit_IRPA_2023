@@ -3,7 +3,7 @@ import React from "react";
 import react, { useEffect, useState } from "react";
 import { IoMdSend } from "react-icons/io";
 import { BiBot, BiUser } from "react-icons/bi";
-import { RASA_API_STRING, RESPONSE_TYPE_KEY} from "../constants/constants";
+import { RASA_API_STRING, RESPONSE_TYPE_KEY, GET_AVAILABLE_OPTIONS_MESSAGE, CHATBOT_TEXT_MESSAGE_KEY } from "../constants/constants";
 import Box from '@mui/material/Box';
 import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
@@ -22,8 +22,16 @@ function Basic() {
   const [conversationId, setConversationId] = useState(uuidv4())
 
   useEffect(()=>{
-    const request_temp = { sender: "bot", sender_id: "test", jsonData: {"type": "accordion list"} }
-    setChat([...chat, ...[request_temp]])
+   
+    if (chat.length ==0) {
+      let body = { }
+      body[CHATBOT_TEXT_MESSAGE_KEY] =  "Hi! I am a chatbot for the IPRA office"
+      const request_temp = { sender: "bot", sender_id: "test", jsonData:  body }
+      setChat([...chat, ...[request_temp]])
+      rasaAPI(conversationId, GET_AVAILABLE_OPTIONS_MESSAGE);
+    }
+   
+
   },[])
 
   useEffect(() => {
@@ -97,9 +105,9 @@ function Basic() {
 
 
   const styleChatbotBody  = {
-    // maxWidth: "35rem",
+    // maxWidth: "100rem",
     width: "100%",
-    // width: "21rem",
+    // width: "200rem",
     border: "1px solid black",
     paddingLeft: "0px",
     paddingRight: "0px",
@@ -123,7 +131,7 @@ function Basic() {
 
   const styleBody = {
     paddingTop: "10px",
-    height: "28rem",
+    height: "30rem",
     overflowY: "a",
     overflowX: "hidden",
   };
@@ -132,8 +140,13 @@ function Basic() {
     <div>
       {/* <button onClick={()=>rasaAPI("shreyas","hi")}>Try this</button> */}
 
-      <div className="container">
-
+      {/* <div className="container"> */}
+      <Box
+      sx={{
+        margin: "auto",
+        width: "88%",
+        height: "88%"
+      }}>
         <div className="row justify-content-center">
           <div className="card" style={styleChatbotBody}>
             <div className="cardHeader text-white" style={styleHeader}>
@@ -190,7 +203,8 @@ function Basic() {
             </div>
           </div>
         </div>
-      </div>
+      {/* </div> */}
+      </Box>
     </div>
   );
 

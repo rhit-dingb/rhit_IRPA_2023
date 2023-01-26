@@ -2389,30 +2389,6 @@ nlu:
 #     - mathmatic
 #     - mathematics
 
-# - synonym: units-required
-#   examples: |
-#     - units required
-#     - units require
-#     - units-required
-#     - units-require
-
-#     - unit require  
-#     - unit required
-#     - unit-require
-#     - unit-required
-                                                                                                                                                                                                                                                                                                                                                                                                                                                   
-
-# - synonym: units-recommended
-#   examples: |
-#     - units recommend
-#     - units-recommended
-#     - units-recommend
-
-#     - unit recommend
-#     - unit recommended
-#     - unit-recommend
-#     - unit-recommended
-
 #---------------------END----------------------------------- 
 
 

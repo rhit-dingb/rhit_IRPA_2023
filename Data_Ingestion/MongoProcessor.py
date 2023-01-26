@@ -82,8 +82,8 @@ class MongoProcessor():
                     df = pd.DataFrame.from_dict(rows)
                     # print(df.head())
                     # print(questions)
-                    print("GOT METADATA")
-                    print(metadata)
+                    # print("GOT METADATA")
+                    # print(metadata)
                     sparseMatrix = SparseMatrix(subsection, df,  metadata=metadata, questions = questions,)
                     topicData.addSparseMatrix(subsection, sparseMatrix)
 

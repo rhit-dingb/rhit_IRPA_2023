@@ -15,8 +15,13 @@ class DataParser():
         for questionAnswer in metaDataQuestionAnswers:
             question = questionAnswer.getQuestion()
             answer = questionAnswer.getAnswer()
-            metadata[question.lower()] = answer
+         
+            if str(answer) == "nan":
+               
+                answer = ""
 
+            metadata[question.lower()] = answer
+            
         return metadata
        
     def parse(self, subsectionName : str , questionAnswers : List[QuestionAnswer]) -> SparseMatrix:
