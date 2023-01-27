@@ -25,7 +25,7 @@ function Basic() {
    
     if (chat.length ==0) {
       let body = { }
-      body[CHATBOT_TEXT_MESSAGE_KEY] =  "Hi! I am a chatbot for the IPRA office"
+      body[CHATBOT_TEXT_MESSAGE_KEY] =  "Hi! I am a chatbot for the IPRA office, I can help you answer various questions related to Rose-Hulman."
       const request_temp = { sender: "bot", sender_id: "test", jsonData:  body }
       setChat([...chat, ...[request_temp]])
       rasaAPI(conversationId, GET_AVAILABLE_OPTIONS_MESSAGE);

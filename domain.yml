@@ -13,7 +13,7 @@ intents:
   # - high_school_units
   - basis_for_selection 
   - freshman_profile
-  - academic_offering_policy
+  - academic_offering_and_policy
   - student_life
   - financial_aid
   - faculty_and_class_size
@@ -424,85 +424,93 @@ slots:
     mappings:
     - type: custom
 
-
-  # Not sure if we gonna use these 
-  enrollment_status:
-    type: categorical
-    values:
-      - full-time
-      - part-time
-    influence_conversation: true
+  lastTopicIntentAsked:
+    type: any
     mappings:
-    - type: from_entity
-      entity: enrollment_status
+    - type: from_intent
+      value: my_value
+      not_intent: [affirm, deny]
 
-  student_level:
-    type: categorical
-    values:
-      - undergraduate
-      - graduate
-    influence_conversation: true
-    mappings:
-     - type: from_entity
-       entity: student_level
 
-  undergraduate_grade_level:
-    type: categorical
-    values:
-      - freshman
-      - non-freshman
-    influence_conversation: true
-    mappings:
-      - type: from_entity
-        entity: undergraduate_grade_level
 
-  degree-goal:
-    type: categorical
-    values:
-      - degree-seeking
-      - non-degree-seeking 
-    influence_conversation: true
-    mappings:
-      - type: from_entity
-        entity: degree-goal
+#   # Not sure if we gonna use these 
+#   enrollment_status:
+#     type: categorical
+#     values:
+#       - full-time
+#       - part-time
+#     influence_conversation: true
+#     mappings:
+#     - type: from_entity
+#       entity: enrollment_status
 
-#might use boolean type here
-  is_first_time:
-    type: categorical
-    values:
-      - first-time
-      - non-first-time
-    influence_conversation: true
-    mappings:
-      - type: from_entity
-        entity: is_first_time
+#   student_level:
+#     type: categorical
+#     values:
+#       - undergraduate
+#       - graduate
+#     influence_conversation: true
+#     mappings:
+#      - type: from_entity
+#        entity: student_level
 
-  gender:
-    type: categorical
-    values:
-      - male
-      - female
-    influence_conversation: true
-    mappings:
-      - type: from_entity
-        entity: gender
+#   undergraduate_grade_level:
+#     type: categorical
+#     values:
+#       - freshman
+#       - non-freshman
+#     influence_conversation: true
+#     mappings:
+#       - type: from_entity
+#         entity: undergraduate_grade_level
 
-  race:
-    type: categorical
-    values:
-      - nonresident-alien
-      - hispanic
-      - african-american
-      - white
-      - american-indian
-      - asian
-      - pacific-islander
-      - two-or-more
-      - unknown
-    influence_conversation: true
-    mappings:
-      - type: from_entity
-        entity: race
+#   degree-goal:
+#     type: categorical
+#     values:
+#       - degree-seeking
+#       - non-degree-seeking 
+#     influence_conversation: true
+#     mappings:
+#       - type: from_entity
+#         entity: degree-goal
+
+# #might use boolean type here
+#   is_first_time:
+#     type: categorical
+#     values:
+#       - first-time
+#       - non-first-time
+#     influence_conversation: true
+#     mappings:
+#       - type: from_entity
+#         entity: is_first_time
+
+#   gender:
+#     type: categorical
+#     values:
+#       - male
+#       - female
+#     influence_conversation: true
+#     mappings:
+#       - type: from_entity
+#         entity: gender
+
+#   race:
+#     type: categorical
+#     values:
+#       - nonresident-alien
+#       - hispanic
+#       - african-american
+#       - white
+#       - american-indian
+#       - asian
+#       - pacific-islander
+#       - two-or-more
+#       - unknown
+#     influence_conversation: true
+#     mappings:
+#       - type: from_entity
+#         entity: race
 
 
 actions:

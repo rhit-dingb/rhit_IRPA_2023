@@ -2,7 +2,7 @@
 version: "3.1"
 
 nlu:
-- intent: academic_offering_policy
+- intent: academic_offering_and_policy
   examples: |
     - I want to know about academic offerings at Rose
     - Is there any [special-study]{"entity":"program_offered", "value": "special study"} [program]{"entity":"organizational_term", "value": "program"} in your institute?

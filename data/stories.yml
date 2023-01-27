@@ -55,7 +55,7 @@ stories:
       - intent: sat_act_policies
       - intent: faculty_and_class_size
       - intent: annual_expense
-      - intent: academic_offering_policy
+      - intent: academic_offering_and_policy
       - intent: degree_conferred
       - intent: admission 
     - action: action_query_knowledgebase

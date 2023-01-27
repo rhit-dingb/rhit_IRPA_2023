@@ -1730,15 +1730,15 @@ nlu:
     - How many [male]{"entity": "gender", "value": "male"} [first-time]{"entity": "is_first_time", "value": "first-time"} [first-year]{"entity": "is_first_year", "value": "first-year"}  [admitted]{"entity": "action", "value": "accepted"} in Rose-Hulman?
     - How many [female]{"entity": "gender", "value": "female"} [first-time]{"entity": "is_first_time", "value": "first-time"} [first-year]{"entity": "is_first_year", "value": "first-year"}  [admitted]{"entity": "action", "value": "accepted"} in Rose-Hulman?
 
-    - Do you have policy of placing student on [waiting-list]{"entity":"waiting-list"}?
+    - Do you have policy of placing student on [waiting-list]{"entity":"waiting-list", "value": "waiting-list"}?
     - Is there any [wait list]{"entity":"waiting-list", "value": "waiting-list"} policy
+    - Is rose-hulman's [waitlist]{"entity":"waiting-list", "value": "waiting-list"} ranked?
+    - What's the number of students did you offered a place on [waiting-list]{"entity":"waiting-list", "value": "waiting-list"}?
 
+    - How many students are offered a [waitlist]{"entity":"waiting-list", "value": "waiting-list"} position?
 
-    - What's the number of students did you offered a place on [waiting-list]{"entity":"waiting-list"}?
-    - How many students are offered a [waiting-list]{"entity":"waiting-list"} position?
-
-    - How many students [accepted]{"entity": "action", "value": "accepted"} [waiting-list]{"entity":"waiting-list"} ?
-    - What's the number of students who [accepted]{"entity": "action", "value": "accepted"} [waiting-list]{"entity":"waiting-list"} ?
+    - How many students [accepted]{"entity": "action", "value": "accepted"} [waiting list]{"entity":"waiting-list", "value": "waiting-list"} ?
+    - What's the number of students who [accepted]{"entity": "action", "value": "accepted"} [waiting-list]{"entity":"waiting-list", "value":"waiting-list"} ?
 
 
     - Does your institution [require]{"entity": "condition", "value": "require"} or [recommend]{"entity": "condition", "value": "condition"} a general [college-preparatory]{"entity": "program_offered", "value": "college-preparatory"} program for [degree-seeking]{"entity": "degree-goal", "value": "degree-seeking"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students?

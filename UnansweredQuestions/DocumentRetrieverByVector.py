@@ -20,17 +20,17 @@ class DocumentRetrieverByVector(DocumentRetriever):
         # print(query)
         # print(query)
         transformedVectors = self.model.fitOnDocuments([query])
+        # print(transformedVectors)
         documentVectors = []
         documentVectors = self.model.fitOnDocuments(self.corpus)
         # for doc in self.corpus:
         #     fittedDoc = self.model.fit([doc])
         #     documentVectors.append(fittedDoc[0])
         
-
-       
         transformedVector = transformedVectors[0]
         # print(transformedVector)
         # print(documentVectors)
+
         documentSimilarities = []
         for vector in documentVectors:
             # print(vector)

@@ -26,32 +26,39 @@ class MongoDataManager(DataManager):
         self.client = MongoClient(MONGO_DB_CONNECTION_STRING)
 
     def getAvailableOptions(self, intent, startYear, endYear):
-        # allAvailableYears = self.getAllAvailableYearsSorted(self)
-        # yearRange = (startYear, endYear)
         availableOptions = dict() 
-        databaseName = CDS_DATABASE_NAME_TEMPLATE.format(start_year = startYear, end_year = endYear)
-        # print("DATABASE NAME", databaseName)
-        if databaseName in self.client.list_database_names():
-            db = self.client[databaseName]
-            collections = db.list_collection_names()
-            for collection in collections:
-                # print(collection)
-                cursor = db[collection].find({},{DATABASE_METADATA_FIELD_KEY:1})
-                for data in cursor:
-                    # print(data)
-                    metadata = data[DATABASE_METADATA_FIELD_KEY]
-                    print(metadata)
-                    if ABOUT_METADATA_KEY in metadata:
-                        aboutDescription = metadata[ABOUT_METADATA_KEY]
+        patternDefinition = re.compile(DEFINITION_DATA_REGEX_PATTERN, re.IGNORECASE)
+        definitionDatabasesNames = self.getAllAvailableData(patternDefinition)
+        annualDatabaseNames = self.getAvailableDataForSpecificYearRange(startYear, endYear)
+        databaseNames = annualDatabaseNames+ definitionDatabasesNames
+        for databaseName in databaseNames:
+            if databaseName in self.client.list_database_names():
+                db = self.client[databaseName]
+                collections = db.list_collection_names()
+                for collection in collections:
+                    # print(collection)
+                    cursor = db[collection].find({},{DATABASE_METADATA_FIELD_KEY:1})
+                    for data in cursor:
                         if not collection in availableOptions.keys():
-                            availableOptions[collection] = [aboutDescription]
-                        else:
-                            print(collection)
-                            print(availableOptions.keys())
+                            availableOptions[collection] = []
+
+                        if not DATABASE_METADATA_FIELD_KEY in data:
+                            continue
+                        metadata = data[DATABASE_METADATA_FIELD_KEY]
+                        if ABOUT_METADATA_KEY in metadata:
+                            aboutDescription = metadata[ABOUT_METADATA_KEY]
                             availableOptions[collection].append(aboutDescription)
 
-        print("AVIALABLE OPTIONS FOUND")
-        print(availableOptions)
+        if intent == None:
+            intent = ""
+                                
+        intent = intent.replace("_", " ") 
+
+        if intent in availableOptions:
+            newDict = dict()
+            newDict[intent] = availableOptions[intent]
+            return newDict
+
         return availableOptions
                 # print(list(cursor))
 
@@ -67,6 +74,7 @@ class MongoDataManager(DataManager):
                     subsectionsData = db[collection].find({}, {DATABASE_SUBSECTION_FIELD_KEY :1})
                     for subsection in subsectionsData:
                         subSectionName = subsection[DATABASE_SUBSECTION_FIELD_KEY]
+
                         if collection in sectionToSubections:
                             sectionToSubections[collection].append(subSectionName)
                         else:
@@ -98,13 +106,7 @@ class MongoDataManager(DataManager):
         
         for database in databases: 
             didMatch = regex.match(database.lower())
-            # print("_______-")
-            # print(regex)
-            # print(database.lower())
-            # print(didMatch)
             if didMatch:
-                # print("MATCHED WITH", database)
-                # print(regex)
                 availableData.append(database)
         
         return availableData
@@ -113,8 +115,11 @@ class MongoDataManager(DataManager):
     def getSections(self, dataName):
         return self.client[dataName].list_collection_names()
 
+    def getAvailableDataForSpecificYearRange(self,startYear, endYear) -> List[str]:
+        patternYear = re.compile(".+"+str(startYear)+"."+str(endYear), re.IGNORECASE)
+        databasesAvailableForGivenYear = self.getAllAvailableData(patternYear)
+        return databasesAvailableForGivenYear
     
-
     """
     See documentation in DataManager.py
     """
@@ -122,11 +127,10 @@ class MongoDataManager(DataManager):
             # cdsDatabase = CDS_DATABASE_NAME_TEMPLATE.format(start_year= start, end_year = end)
             # if not cdsDatabase in self.client.list_database_names():
             #     raise exceptionToThrow
-
-            patternYear = re.compile(".+"+str(start)+"."+str(end), re.IGNORECASE)
-            patternDefinition = re.compile(DEFINITION_DATA_REGEX_PATTERN)
+            patternDefinition = re.compile(DEFINITION_DATA_REGEX_PATTERN)    
+            # patternYear = re.compile(".+"+str(start)+"."+str(end), re.IGNORECASE)
             definitionDatabases = self.getAllAvailableData(patternDefinition)
-            databasesAvailableForGivenYear = self.getAllAvailableData(patternYear)
+            databasesAvailableForGivenYear = self.getAvailableDataForSpecificYearRange(start, end)
             
             if len(databasesAvailableForGivenYear) == 0:
                 raise exceptionToThrow
@@ -149,8 +153,8 @@ class MongoDataManager(DataManager):
                 raise NoDataFoundException(NO_DATA_AVAILABLE_FOR_GIVEN_INTENT_FORMAT.format(topic = intent, start= start, end=end), ExceptionTypes.NoSparseMatrixDataAvailableForGivenIntent)
         
             topicData = self.mongoProcessor.getSparseMatricesByDbNameAndIntent(self.client, intent, selectedDatabaseName)
-            print("TOPIC DATA")
-            print(topicData)
+            # print("TOPIC DATA")
+            # print(topicData)
             # cursor = topicData.find()
             # for doc in cursor:
             #     print(doc)           
@@ -165,7 +169,7 @@ class MongoDataManager(DataManager):
             raise Exception("No data found in database")
 
         mostRecentYearRange = years[0]
-        print(mostRecentYearRange)
+        # print(mostRecentYearRange)
         return years[0]
 
 

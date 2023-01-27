@@ -95,7 +95,7 @@ export function AccordionList({jsonResponse}) {
         <div  className="botmsg" style={{maxWidth:800}}>
         <h5>{header} </h5>
         <List
-            sx={{ width: '100%', maxWidth: "100%", padding: "1%", backgroundColor: "#F8F8F8"}}
+            sx={{ width: '100%', maxWidth: "100%", padding: "1%", marginBottom:"1%", backgroundColor: "#F8F8F8"}}
             component="nav"
             aria-labelledby="nested-list-subheader"
         >

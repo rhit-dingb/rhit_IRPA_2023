@@ -16,7 +16,7 @@ from Knowledgebase.IgnoreRowPiece import IgnoreRowPiece
 from Knowledgebase.SparseMatrixKnowledgeBase import SparseMatrixKnowledgeBase
 from Knowledgebase.constants import PERCENTAGE_FORMAT
 from OutputController import output
-from actions.constants import AGGREGATION_ENTITY_PERCENTAGE_VALUE, ANY_AID_COLUMN_NAME, NO_AID_COLUMN_NAME, PELL_GRANT_COLUMN_NAME, RANGE_BETWEEN_VALUE, RANGE_UPPER_BOUND_VALUE, STAFFORD_LOAN_COLUMN_NAME, STUDENT_ENROLLMENT_RESULT_ENTITY_GRADUATION_VALUE
+from actions.constants import LAST_TOPIC_INTENT, YEAR_RANGE_SELECTED_SLOT_NAME, AGGREGATION_ENTITY_PERCENTAGE_VALUE, ANY_AID_COLUMN_NAME, NO_AID_COLUMN_NAME, PELL_GRANT_COLUMN_NAME, RANGE_BETWEEN_VALUE, RANGE_UPPER_BOUND_VALUE, STAFFORD_LOAN_COLUMN_NAME, STUDENT_ENROLLMENT_RESULT_ENTITY_GRADUATION_VALUE
 from actions.entititesHelper import changeEntityValue, changeEntityValueByRole, copyEntities, createEntityObj, filterEntities, findEntityHelper, findMultipleSameEntitiesHelper
 from typing import Text
 from DataManager.MongoDataManager import MongoDataManager
@@ -37,20 +37,33 @@ numberEntityExtractor = NumberEntityExtractor()
 class ActionGetAvailableOptions(Action):
     def __init__(self) -> None:
         super().__init__()
-        self.HEADER_MESSAGE = "Here is a available list sections of you can ask me about for the current selected year's data:"
+        self.HEADER_MESSAGE_TEMPLATE = "Here is a available list of topics you can ask me about for the {start_year}-{end_year} academic year"
 
     def name(self) -> Text:
         return "action_get_available_options"
 
     def run(self, dispatcher, tracker, domain):
+        lastTopicIntent = tracker.get_slot(LAST_TOPIC_INTENT)
+        # conversation_history = tracker.events
+        # lastMessageIntent = None
+        # if len(conversation_history) > 1:
+        #     length = len(conversation_history)
+        #     lastMessageIntent = conversation_history[length-2]
+        # intent = tracker.latest_message["intent"]["name"]
         startYear, endYear, res = getYearRangeInSlot(tracker)
-        intent = tracker.latest_message["intent"]["name"]
-        availableOptions = mongoDataManager.getAvailableOptions(intent, startYear, endYear)
-        print("RECEIVED INTENT")
-        print(intent)
+        # print(domain)
+        allIntents = list(map(lambda x: x.replace("_", " "), domain["intents"]))
+        filteredListOfOption = dict()
+        availableOptions = mongoDataManager.getAvailableOptions(lastTopicIntent, startYear, endYear)
+        print(allIntents)
+        for option in availableOptions:
+            if option in allIntents:
+                filteredListOfOption[option] = availableOptions[option]
+        
+       
+        headerMessage = self.HEADER_MESSAGE_TEMPLATE.format(start_year = startYear, end_year = endYear)
+        response = {"type": ResponseType.ACCORDION_LIST.value, "header": headerMessage, "data": filteredListOfOption}
 
-        response = {"type": ResponseType.ACCORDION_LIST.value, "header": self.HEADER_MESSAGE, "data": availableOptions}
-        print(response)
         dispatcher.utter_message(json_message= response)
         
         if res:
@@ -77,14 +90,18 @@ class ActionQueryKnowledgebase(Action):
         entitiesExtracted = entitiesExtracted + numberEntities
         intent = tracker.latest_message["intent"]["name"]
         # print(intent)
-        print(entitiesExtracted)
-        try:
+        # print(entitiesExtracted)
+        # conversation_history = tracker.events
+        # for event in conversation_history:
+        #     print(event)
+        
+        # try:
         # print("YEAR")
         # print(startYear, endYear)
-            answers = await knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy,knowledgeBase.constructOutput,startYear, endYear )
-            utterAllAnswers(answers, dispatcher)        
-        except Exception as e:
-             utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
+        answers = await knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy,knowledgeBase.constructOutput,startYear, endYear )
+        utterAllAnswers(answers, dispatcher)        
+        # except Exception as e:
+        #      utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
              
         if res:
             return [res]
@@ -98,7 +115,8 @@ class ActionGetYear(Action):
         return "action_get_year"
     
     def run(self, dispatcher, tracker, domain):
-        yearRange = tracker.get_slot("yearRangeSelected")
+        
+        yearRange = tracker.get_slot(YEAR_RANGE_SELECTED_SLOT_NAME )
         if yearRange == None:
             return []
 
@@ -122,7 +140,6 @@ class ActionSetYear(Action):
             yearRange.append(entities["value"])
         res = SlotSet("yearRangeSelected", yearRange)
         return [res]
-        #knowledgeBase.setYear()
 
 
 class ActionQueryCohort(Action):
@@ -214,14 +231,14 @@ class ActionQueryCohort(Action):
 
 def getYearRangeInSlot(tracker):
     startYear, endYear = None, None
-    yearRange = tracker.get_slot("yearRangeSelected")
+    yearRange = tracker.get_slot(YEAR_RANGE_SELECTED_SLOT_NAME )
     print("YEAR RANGE FOUND")
     print(yearRange)
     res = None
     if yearRange == None or len(yearRange) == 0:
         startYear, endYear = mongoDataManager.getMostRecentYearRange()
         if startYear and endYear:
-            res = SlotSet("yearRangeSelected", [startYear, endYear] )
+            res = SlotSet(YEAR_RANGE_SELECTED_SLOT_NAME , [startYear, endYear] )
     else:
         startYear = yearRange[0]
         endYear = yearRange[1]

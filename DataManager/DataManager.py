@@ -111,7 +111,8 @@ class DataManager():
             entityValues.append(entity["value"])
 
         entityValues = list(set(entityValues))
-    
+        print("ENTITY VALUES")
+        print(entityValues)
         for sparseMatrix in candidates:  
             # print(sparseMatrix.subSectionName)              
             entitiesMatchCount : int  = sparseMatrix.determineEntityMatchToColumnCount(entityValues)
@@ -135,13 +136,14 @@ class DataManager():
 
         #raise an error if no best matching matrix is found
 
-  
-        # for m in maxMatch:
-        #     print(m.sparseMatrixDf)
+        print("CANDIDATES")
+        print(len(maxMatch))
+        for m in maxMatch:
+            print(m.subSectionName)
 
         # decisionTreeSelector = DecisionTreeSelector()
         # decisionTreeSelector.selectBest(entityValues, candidates)
-
+      
         if len(maxMatch) == 0:
             raise NoDataFoundException(errorMessage, ExceptionTypes.NoSparseMatrixDataAvailableForGivenIntent)
         
