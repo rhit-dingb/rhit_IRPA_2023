@@ -21,8 +21,9 @@ import time
 from gensim.downloader import info
 
 
+print(info()["corpora"].keys())
 
-# print(info()["models"])
+corpus = Corpus(None, "./dictionaries/dictionary")
 # model = gensim.downloader.load("doc2vec-wikipedia-dbow")
 
 # glove_vectors = gensim.downloader.load('glove-wiki-gigaword-300')
@@ -31,7 +32,6 @@ from gensim.downloader import info
 # glove_file = datapath('./savedModels/glove_vector_300.txt')
 # tmp_file = get_tmpfile("./savedModels/test_word2vec.txt")
 
-# corpus = Corpus(None, "./dictionaries/dictionary")
 
 # # glove2word2vec("./savedModels/glove_vector_300.txt", tmp_file)
 # wordToVecModel = Word2VecModel(corpus, "./savedModels/glove_vector_300.bin")
@@ -41,19 +41,23 @@ from gensim.downloader import info
 # # model.trainModel(corpus)
 
 
-# # model2 = Doc2VecModel(corpus, 50, "./savedModels/Doc2Vec")
-# # # model2.loadModel()
-# # model2.initializeModel()
-# # model2.trainModel(corpus)
+model2 = Doc2VecModel(corpus, 50, "./savedModels/Doc2Vec")
+
+documentIndexManager = DocumentIndexRetriever(corpus, model2, "./indexes/unansweredQuestion.index")
+documentIndexManager.createAndSaveIndex()
+
+# # model2.loadModel()
+# model2.initializeModel()
+model2.trainModel(corpus, True)
 
 # documentIndexManager = DocumentIndexRetriever(corpus, wordToVecModel, "./indexes/unansweredQuestion.index")
 # documentIndexManager.createAndSaveIndex()
 
-# start = time.time()
-# sims = documentIndexManager.findSimilarDocuments("What age is Travis Zheng?")
-# print(sims)
-# end = time.time()
-# print(end-start)
+start = time.time()
+sims = documentIndexManager.findSimilarDocuments("What age is Travis Zheng?")
+print(sims)
+end = time.time()
+print(end-start)
 
 # # #Should be faster
 # start = time.time()

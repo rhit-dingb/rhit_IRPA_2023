@@ -181,10 +181,10 @@ class Corpus:
 
 
         ]
-        processedDoc = self.preprocessDocuments(self.documents)
-        self.dictionary = corpora.Dictionary(processedDoc)
-        self.dataSourceConnector = dataSourceConnector
-        self.dictionaryPath = dictionaryPath
+        # processedDoc = self.preprocessDocuments(self.documents)
+        # self.dictionary = corpora.Dictionary(processedDoc)
+        # self.dataSourceConnector = dataSourceConnector
+        # self.dictionaryPath = dictionaryPath
 
     def constructDictionary(self):
        self.dictionary = corpora.Dictionary(doc for doc in self)
@@ -197,8 +197,10 @@ class Corpus:
     def preprocessDoc(self,doc): 
         # processDocument = remove_stopwords(doc)
         processDocument = doc
+       
         # processDocument = preprocess_string(processDocument)
         processDocument = simple_preprocess(processDocument)
+        
         return processDocument
 
     def preprocessDocuments(self,documents):
