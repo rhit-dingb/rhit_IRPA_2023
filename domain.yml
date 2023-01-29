@@ -56,6 +56,8 @@ entities:
 #   - email
 #   - website
 
+#value: net_price_calculator
+- net_price_calculator
 
 # full-time, part-time
 - enrollment_status
@@ -425,11 +427,9 @@ slots:
     - type: custom
 
   lastTopicIntentAsked:
-    type: any
+    type: text
     mappings:
-    - type: from_intent
-      value: my_value
-      not_intent: [affirm, deny]
+    - type: custom
 
 
 
@@ -559,7 +559,7 @@ responses:
 
 
   utter_sorry_question_not_helpful:
-  - text: "I am sorry it does not help, thak you for your reply, we will update chatbot."
+  - text: "I am sorry it does not help, thak you for your reply, we will update the chatbot."
 
   utter_iamabot:
   - text: "I am a bot, powered by Rasa."

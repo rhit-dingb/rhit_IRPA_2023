@@ -8,15 +8,14 @@
 import asyncio
 from CustomEntityExtractor.NumberEntityExtractor import NumberEntityExtractor
 from DataManager.ExcelDataManager import ExcelDataManager
-from DataManager.constants import ADMISSION_INTENT, BASIS_FOR_SELECTION_INTENT, COHORT_BY_YEAR_ENTITY_LABEL, COHORT_INTENT, ENROLLMENT_INTENT, EXEMPTION_ENTITY_LABEL, FRESHMAN_PROFILE_INTENT, HIGH_SCHOOL_UNITS_INTENT, INITIAL_COHORT_ENTITY_LABEL,  AID_ENTITY_LABEL, NO_AID_ENTITY_LABEL, RANGE_ENTITY_LABEL, RECIPIENT_OF_PELL_GRANT_ENTITY_LABEL, RECIPIENT_OF_STAFFORD_LOAN_NO_PELL_GRANT_ENTITY_LABEL, STUDENT_LIFE_INTENT, TRANSFER_ADMISSION_INTENT, YEAR_FOR_COLLEGE_ENTITY_LABEL
+from DataManager.constants import  COHORT_BY_YEAR_ENTITY_LABEL, COHORT_INTENT, ENROLLMENT_INTENT, EXEMPTION_ENTITY_LABEL, FRESHMAN_PROFILE_INTENT, HIGH_SCHOOL_UNITS_INTENT, INITIAL_COHORT_ENTITY_LABEL,  AID_ENTITY_LABEL, NO_AID_ENTITY_LABEL, RANGE_ENTITY_LABEL, RECIPIENT_OF_PELL_GRANT_ENTITY_LABEL, RECIPIENT_OF_STAFFORD_LOAN_NO_PELL_GRANT_ENTITY_LABEL, STUDENT_LIFE_INTENT, TRANSFER_ADMISSION_INTENT, YEAR_FOR_COLLEGE_ENTITY_LABEL
 from Exceptions.ExceptionTypes import ExceptionTypes
 from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
 
 from Knowledgebase.IgnoreRowPiece import IgnoreRowPiece
 from Knowledgebase.SparseMatrixKnowledgeBase import SparseMatrixKnowledgeBase
-from Knowledgebase.constants import PERCENTAGE_FORMAT
 from OutputController import output
-from actions.constants import LAST_TOPIC_INTENT, YEAR_RANGE_SELECTED_SLOT_NAME, AGGREGATION_ENTITY_PERCENTAGE_VALUE, ANY_AID_COLUMN_NAME, NO_AID_COLUMN_NAME, PELL_GRANT_COLUMN_NAME, RANGE_BETWEEN_VALUE, RANGE_UPPER_BOUND_VALUE, STAFFORD_LOAN_COLUMN_NAME, STUDENT_ENROLLMENT_RESULT_ENTITY_GRADUATION_VALUE
+from actions.constants import YEAR_RANGE_SELECTED_SLOT_NAME, AGGREGATION_ENTITY_PERCENTAGE_VALUE, ANY_AID_COLUMN_NAME, NO_AID_COLUMN_NAME, PELL_GRANT_COLUMN_NAME, RANGE_BETWEEN_VALUE, RANGE_UPPER_BOUND_VALUE, STAFFORD_LOAN_COLUMN_NAME, STUDENT_ENROLLMENT_RESULT_ENTITY_GRADUATION_VALUE
 from actions.entititesHelper import changeEntityValue, changeEntityValueByRole, copyEntities, createEntityObj, filterEntities, findEntityHelper, findMultipleSameEntitiesHelper
 from typing import Text
 from DataManager.MongoDataManager import MongoDataManager
@@ -24,6 +23,7 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet
 from actions.ResponseType import ResponseType
+from actions.constants import LAST_TOPIC_INTENT_SLOT_NAME
 
 # ExcelDataManager("./CDSData", [ENROLLMENT_INTENT, COHORT_INTENT, ADMISSION_INTENT, HIGH_SCHOOL_UNITS_INTENT, BASIS_FOR_SELECTION_INTENT, FRESHMAN_PROFILE_INTENT, TRANSFER_ADMISSION_INTENT, STUDENT_LIFE_INTENT])
 mongoDataManager = MongoDataManager()
@@ -43,7 +43,10 @@ class ActionGetAvailableOptions(Action):
         return "action_get_available_options"
 
     def run(self, dispatcher, tracker, domain):
-        lastTopicIntent = tracker.get_slot(LAST_TOPIC_INTENT)
+        lastTopicIntent = tracker.get_slot(LAST_TOPIC_INTENT_SLOT_NAME)
+      
+        print("LAST INTENT")
+        print(lastTopicIntent)
         # conversation_history = tracker.events
         # lastMessageIntent = None
         # if len(conversation_history) > 1:
@@ -84,29 +87,25 @@ class ActionQueryKnowledgebase(Action):
         return "action_query_knowledgebase"
 
     async def run(self, dispatcher, tracker, domain):
-        startYear, endYear, res = getYearRangeInSlot(tracker)
+        startYear, endYear, setYearSlotEvent = getYearRangeInSlot(tracker)
         entitiesExtracted = tracker.latest_message["entities"]
         numberEntities = numberEntityExtractor.extractEntities(tracker.latest_message["text"])
         entitiesExtracted = entitiesExtracted + numberEntities
         intent = tracker.latest_message["intent"]["name"]
+        setLastIntentSlotEvent = SlotSet(LAST_TOPIC_INTENT_SLOT_NAME ,intent )
+
         # print(intent)
-        # print(entitiesExtracted)
-        # conversation_history = tracker.events
-        # for event in conversation_history:
-        #     print(event)
-        
+ 
         # try:
-        # print("YEAR")
-        # print(startYear, endYear)
         answers = await knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy,knowledgeBase.constructOutput,startYear, endYear )
         utterAllAnswers(answers, dispatcher)        
         # except Exception as e:
         #      utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
              
-        if res:
-            return [res]
+        if setYearSlotEvent:
+            return [setYearSlotEvent, setLastIntentSlotEvent]
         else:
-            return []
+            return [setLastIntentSlotEvent]
 
 
 

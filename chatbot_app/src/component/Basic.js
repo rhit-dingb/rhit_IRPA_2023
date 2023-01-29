@@ -12,7 +12,7 @@ import FormControl from '@mui/material/FormControl';
 import YearSelect from "./YearSelect"
 import ChatbotResponse from "../chatbotResponse/ChatbotResponse"
 import { v4 as uuidv4 } from 'uuid';
-
+import CircleIcon from '@mui/icons-material/Circle';
 
 function Basic() {
  
@@ -25,10 +25,13 @@ function Basic() {
    
     if (chat.length ==0) {
       let body = { }
+     
       body[CHATBOT_TEXT_MESSAGE_KEY] =  "Hi! I am a chatbot for the IPRA office, I can help you answer various questions related to Rose-Hulman."
       const request_temp = { sender: "bot", sender_id: "test", jsonData:  body }
+      setbotTyping(true)
       setChat([...chat, ...[request_temp]])
-      rasaAPI(conversationId, GET_AVAILABLE_OPTIONS_MESSAGE);
+      rasaAPI(conversationId, GET_AVAILABLE_OPTIONS_MESSAGE)
+      
     }
    
 
@@ -154,8 +157,8 @@ function Basic() {
             <div id="chatHeader">
             <YearSelect convId ={conversationId}/>
             <Box>
-            <h1 style={{margin:"auto" }}></h1>
-              {botTyping ? <h6>Bot Typing....</h6> : null}   
+            {/* <h1 style={{margin:"auto" }}></h1> */}
+              {/* {botTyping ? <h6>Bot Typing....</h6> : null}    */}
             </Box>
             </div>
             </div>
@@ -166,10 +169,7 @@ function Basic() {
                 {chat.map((user, key) => (
                   <div key={key}>
                     {user.sender === "bot" ? (
-                      // <div className="msgalignstart">
-                      //   <BiBot className="botIcon" />
-                      //   <h5 className="botmsg">{user.msg}</h5>
-                      // </div>
+                      
                       <ChatbotResponse recipientId = {user.recipient_id} keyToUse ={key} jsonResponse = {user.jsonData}/>
                     ) : (
                       <div className="msgalignend">
@@ -179,6 +179,28 @@ function Basic() {
                     )}
                   </div>
                 ))}
+
+                {botTyping &&
+                <div className="msgalignstart" >
+                  <BiBot className="botIcon" />
+                  <h5 className="botmsg saving" >
+                    Bot is typing <span>
+                    <CircleIcon sx={{fontSize: 10, color:"black"}}/>
+                    </span>
+                    <span>
+                    <CircleIcon sx={{fontSize: 10, color:"black"}}/>
+                    </span>
+
+                    <span>
+                    <CircleIcon sx={{fontSize: 10, color:"black"}}/>
+                    </span>
+                    {/* <span class ="dot">.</span><span>.</span><span>.</span>
+                  */}
+                  </h5>
+                  {/* <h5 className="botmsg loading" style={{}}>Bot is thinking............</h5> */}
+                  
+                </div>}
+
               </Box>
             </div>
 
