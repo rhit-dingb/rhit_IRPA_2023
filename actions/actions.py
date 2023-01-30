@@ -94,11 +94,11 @@ class ActionQueryKnowledgebase(Action):
         entitiesExtracted = entitiesExtracted + numberEntities
         intent = tracker.latest_message["intent"]["name"]
         setLastIntentSlotEvent = SlotSet(LAST_TOPIC_INTENT_SLOT_NAME ,intent )
-        try:
-            answers = await knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy,knowledgeBase.constructOutput,startYear, endYear )
-            utterAllAnswers(answers, dispatcher)        
-        except Exception as e:
-             utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
+        # try:
+        answers = await knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy,knowledgeBase.constructOutput,startYear, endYear )
+        utterAllAnswers(answers, dispatcher)        
+        # except Exception as e:
+        #      utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
              
         if setYearSlotEvent:
             return [setYearSlotEvent, setLastIntentSlotEvent]

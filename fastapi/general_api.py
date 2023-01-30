@@ -2,10 +2,14 @@
 from typing import Dict, List
 from fastapi import FastAPI
 from pymongo import MongoClient
+from bson.objectid import ObjectId
+from bson import json_util
+import json
 import sys
 import re
 import aiohttp
 import asyncio
+from datetime import datetime, date
 
 from DataType import DataType
 
@@ -29,6 +33,7 @@ from DataManager.constants import ANNUAL_DATA_REGEX_PATTERN, DEFINITION_DATA_REG
 
 mongoDbDataManager = MongoDataManager()
 rasaCommunicator = RasaCommunicator()
+client = MongoClient(MONGO_DB_CONNECTION_STRING)
 app = FastAPI()
 
 #A list of allowed origins
@@ -125,7 +130,6 @@ async def delete_data(request : Request):
     except Exception:
         raise HTTPException(status_code=500, detail="Deletion failed")
 
-    
 
 @app.get("/api/get_years_available")
 async def get_years_available():
@@ -149,7 +153,17 @@ async def change_selected_year(request : Request):
     except Exception:
         raise HTTPException(status_code=500, detail="change failed")
 
-   
+
+# General API for getting unanswered questions
+@app.get("/questions")
+async def get_unans_questions():
+    db = client.freq_question_db
+    questions_collection = db.unans_question
+    unanswered_questions = list(questions_collection.find({'is_addressed': False}))
+    print("DATA FOUND")
+    unanswered_questions = json.loads(json_util.dumps(unanswered_questions))
+    print(unanswered_questions)
+    return unanswered_questions
 
 @app.get("/api/get_selected_year/{conversation_id}")
 async def get_selected_year(conversation_id : str):
@@ -165,3 +179,40 @@ async def get_selected_year(conversation_id : str):
             startYear = messages[0]
             endYear = messages[1]
             return {"selectedYear":[startYear, endYear] }
+
+@app.put("/question_update/{id}")
+async def handle_post_answer(id: str, answer: str):
+    db = client.freq_question_db
+    questions_collection = db.unans_question
+    boo1 = questions_collection.update_one({'_id': ObjectId(id)}, {'$set': {'is_addressed': True}})
+    boo2 = questions_collection.update_one({'_id': ObjectId(id)}, {'$set': {'answer': answer}})
+    if boo1 and boo2:
+        return {'message': 'update successfull'}
+    else:
+        return {'message': 'errors occurred while updating'}
+
+@app.delete("/question_delete/{id}")
+async def handle_post_answer(id: str):
+    db = client.freq_question_db
+    questions_collection = db.unans_question
+    boo1 = questions_collection.delete_one({'_id': ObjectId(id)})
+    if boo1:
+        return {'message': 'question is successfull deleted'}
+    else:
+        return {'message': 'question maybe not found and issue occurred'}
+
+@app.post("/question_add/{content}")
+async def handle_post_answer(content: str):
+    db = client.freq_question_db
+    questions_collection = db.unans_question
+    boo1 = questions_collection.insert_one({
+        "content": content,
+        "post_date": datetime.today(),
+        "is_addressed": False,
+        "answer": None})
+    if boo1:
+        return {'message': 'question is successfull added'}
+    else:
+        return {'message': 'errors occurred during question add'}
+
+

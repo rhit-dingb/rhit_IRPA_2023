@@ -189,6 +189,9 @@ class SparseMatrix():
         # booleanSearchStrategy = DefaultShouldAddRowStrategy()
         # operationAllowedEntity = createEntityObj(metadataLabel, entityLabel="none",  entityRole=None)
         # searchResults = self.searchOnSparseMatrix([operationAllowedEntity], booleanSearchStrategy, False)
+        if self.metadata == None:
+            return None
+            
         keys = self.metadata.keys()
 
         #Use dict to be case insensitive
