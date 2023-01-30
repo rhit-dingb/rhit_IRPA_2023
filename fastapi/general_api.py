@@ -156,7 +156,7 @@ async def get_selected_year(conversation_id : str):
     async with aiohttp.ClientSession() as session:
         entities = {}
         response = await rasaCommunicator.injectIntent("get_year",entities , session, conversation_id )
-        print(response.keys())
+        # print(response.keys())
         messages = response["messages"]
         print(messages)
         if len(messages) == 0:

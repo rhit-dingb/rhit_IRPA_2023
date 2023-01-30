@@ -54,6 +54,5 @@ class Word2VecModel(Model):
         # print(self.model)
 
 
-        # ss= self.model[["fuck", "you"]]
-        # print(ss)
+      
         # self.model  = gensim.downloader.load('glove-wiki-gigaword-300')

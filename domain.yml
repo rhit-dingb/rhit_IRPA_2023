@@ -426,6 +426,12 @@ slots:
     mappings:
     - type: custom
 
+  lastUserQuestionAsked:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: custom
+
   lastTopicIntentAsked:
     type: text
     mappings:
@@ -527,6 +533,8 @@ actions:
   - action_query_basis_for_selection
   - action_query_freshman_profile
   - action_query_transfer_admission
+  - action_store_asked_question
+  - action_store_isHelpful_statistic
   
 
   

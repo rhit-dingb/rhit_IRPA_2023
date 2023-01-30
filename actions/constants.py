@@ -30,3 +30,5 @@ YEAR_RANGE_SELECTED_SLOT_NAME = "yearRangeSelected"
 LAST_TOPIC_INTENT_SLOT_NAME = "lastTopicIntentAsked"
 
 LAST_TOPIC_INTENT = "lastTopicIntentAsked"
+
+LAST_USER_QUESTION_ASKED = "lastUserQuestionAsked"

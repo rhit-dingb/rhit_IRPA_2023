@@ -1,5 +1,36 @@
 version: "3.1"
 stories:
+- story: ask_about_enrollment_and_answer_helpful (.\tests\test_stories.yml)
+  steps:
+  - intent: enrollment  # predicted: enrollment: How many [students]{"entity": "people", "value": "student"} are there at Rose-Hulman from 3053  to 3054?
+    entities: []
+  - action: action_query_enrollment  # predicted: action_query_knowledgebase
+  - action: utter_ask_answer_helpful
+  - intent: affirm
+  - action: action_ask_more_question
+- story: ask_about_enrollment_and_answer_helpful (.\tests\test_stories.yml)
+  steps:
+  - intent: enrollment
+    entities:
+    - year: 2033-2034
+  - action: action_query_enrollment  # predicted: action_query_knowledgebase
+  - action: utter_ask_answer_helpful
+  - intent: affirm
+  - action: action_ask_more_question
+  - intent: affirm
+  - action: utter_ask_whats_the_question
+- story: ask_about_enrollment_and_answer_helpful_non_first_time_non_first_year (.\tests\test_stories.yml)
+  steps:
+  - intent: enrollment
+    entities:
+    - is_first_time: non-first-time
+    - is_first_year: non-first-year
+  - action: action_query_enrollment  # predicted: action_query_knowledgebase
+  - action: utter_ask_answer_helpful
+  - intent: affirm
+  - action: action_ask_more_question
+  - intent: affirm
+  - action: utter_ask_whats_the_question
 - story: ask_about_enrollment_and_answer_helpful_male_non_freshman (.\tests\test_stories.yml)
   steps:
   - intent: enrollment
@@ -7,11 +38,7 @@ stories:
     - gender: male
     - gender: male
     - undergraduate_grade_level: non-freshman
-  - slot_was_set:
-    - undergraduate_grade_level: non-freshman
-  - slot_was_set:
-    - gender: male
-  - action: action_query_enrollment
+  - action: action_query_enrollment  # predicted: action_query_knowledgebase
   - action: utter_ask_answer_helpful
   - intent: affirm
   - action: action_ask_more_question
@@ -21,85 +48,126 @@ stories:
   steps:
   - intent: cohort
     entities:
-    - student_enrollment_result: graduation
-    - student_enrollment_result: graduation
-    - range: within
-    - years_for_college: 5 year
-    - years_for_college: 5 year
-    - range: within
     - range: more than
     - range: more than
-    - cohort_by_year: 3524 cohort
   - action: action_query_cohort
   - action: utter_ask_answer_helpful
   - intent: affirm
   - action: action_ask_more_question
   - intent: affirm
   - action: utter_ask_whats_the_question
+- story: ask_about_cohort_general_should_extract_five_year_2 (.\tests\test_stories.yml)
+  steps:
+  - intent: cohort
+    entities:
+    - aggregation: percent
+    - range: within
+    - range: within
+    - range: more than
+    - range: more than
+  - action: action_query_cohort
+  - action: utter_ask_answer_helpful
 - story: ask_about_cohort_general_5_year_graduation_time_should_extract_gradution_time_successfully (.\tests\test_stories.yml)
   steps:
   - intent: cohort
     entities:
-    - student_enrollment_result: graduation
-    - student_enrollment_result: graduation
     - aggregation: percent
-    - aggregation: percent
-    - student_enrollment_result: graduation
-    - student_enrollment_result: graduation
     - range: within
     - range: within
-    - years_for_college: 4 year
-    - cohort_by_year: cohort of 2014
   - action: action_query_cohort
   - action: utter_ask_answer_helpful
+- story: ask_about_cohort_general_should_extract_graduation_time_successfully (.\tests\test_stories.yml)
+  steps:
+  - intent: cohort
+    entities:
+    - aggregation: percent
+    - range: more than
+    - range: more than
+  - action: action_query_cohort
+  - action: utter_ask_answer_helpful
+- story: ask_about_cohort_retention_rate_should_extract_retention_successfully (.\tests\test_stories.yml)
+  steps:
+  - intent: cohort
+    entities:
+    - student_enrollment_result: retention
+    - student_enrollment_result: retention
+    - aggregation: percent
+  - action: action_query_cohort
+  - action: utter_ask_answer_helpful
+- story: ask_about_high_school_units_should_extract_subject_correctly (.\tests\test_stories.yml)
+  steps:
+  - intent: high_school_units  # predicted: admission: How many [visual arts][{"entity": "subject", "value": "visual/performing-arts"}, {"entity": "subject", "value": "visual/performing-arts"}] [credit](academic_credit) [units]{"entity": "academic_credit", "value": "unit"} are [recommended][{"entity": "condition", "value": "recommend"}, {"entity": "condition", "value": "recommend"}] ?
+    entities:
+    - subject: visual/performing-arts
+    - subject: visual/performing-arts
+    - unit_level: units-recommended  # predicted: academic_credit: unit
+  - action: action_query_high_school_units  # predicted: action_query_knowledgebase
+  - action: utter_ask_answer_helpful  # predicted: action_listen
+  - intent: deny
+  - action: utter_sorry_question_not_helpful  # predicted: utter_goodbye
+  - action: action_get_available_options
 - story: ask_about_talent_importance_in_basis_for_selection (.\tests\test_stories.yml)
   steps:
   - intent: basis_for_selection
     entities:
     - non_academic_factor: talent
     - non_academic_factor: talent
-  - action: action_query_basis_for_selection
-  - action: action_listen  # predicted: utter_ask_answer_helpful
+  - action: action_query_basis_for_selection  # predicted: action_query_knowledgebase
+  - action: utter_ask_answer_helpful  # predicted: action_listen
   - intent: affirm
-  - action: action_ask_more_question  # predicted: utter_ask_whats_the_question after action_unlikely_intent
+  - action: action_ask_more_question  # predicted: utter_ask_whats_the_question
   - intent: deny
   - action: utter_no_more_question
 - story: ask_about_religion_importance_in_basis_for_selection (.\tests\test_stories.yml)
   steps:
   - intent: basis_for_selection
     entities:
-    - non_academic_factor: talent
-  - action: action_query_basis_for_selection
-  - action: action_listen  # predicted: utter_ask_answer_helpful
+    - non_academic_factor: religious affiliation/commitment
+    - non_academic_factor: religious affiliation/commitment
+  - action: action_query_basis_for_selection  # predicted: action_query_knowledgebase
+  - action: utter_ask_answer_helpful  # predicted: action_listen
   - intent: affirm
-  - action: action_ask_more_question  # predicted: utter_ask_whats_the_question after action_unlikely_intent
+  - action: action_ask_more_question  # predicted: utter_ask_whats_the_question
   - intent: deny
   - action: utter_no_more_question
 - story: ask_about_percentage_submit_sat (.\tests\test_stories.yml)
   steps:
-  - intent: basis_for_selection  # predicted: freshman_profile: [percentage][{"entity": "aggregation", "value": "percent"}, {"entity": "aggregation", "value": "percent"}] of students who [submitted][{"entity": "submitted"}, {"entity": "submitted"}] [sat](standarized_test)
+  - intent: basis_for_selection  # predicted: freshman_profile: [percentage][{"entity": "aggregation", "value": "percent"}, {"entity": "aggregation", "value": "percent"}] of [students]{"entity": "people", "value": "student"} who [submitted][{"entity": "submitted"}, {"entity": "submitted"}] [sat][{"entity": "standarized_test"}, {"entity": "standarized_test"}]
     entities:
     - aggregation: percent
     - aggregation: percent
     - standardized_test: sat  # predicted: standarized_test: sat
-  - action: action_query_basis_for_selection
-  - action: action_listen  # predicted: utter_ask_answer_helpful
+    - standardized_test: sat  # predicted: standarized_test: sat
+  - action: action_query_basis_for_selection  # predicted: action_query_knowledgebase
+  - action: utter_ask_answer_helpful  # predicted: action_listen
   - intent: affirm
-  - action: action_ask_more_question  # predicted: utter_ask_whats_the_question after action_unlikely_intent
+  - action: action_ask_more_question  # predicted: utter_ask_whats_the_question
   - intent: deny
   - action: utter_no_more_question
 - story: ask_about_percentile_score_act (.\tests\test_stories.yml)
   steps:
-  - intent: basis_for_selection  # predicted: freshman_profile: What is the [75th percentile](test_percentile) score for [ACT]{"entity": "standarized_test", "value": "act"} [writing][{"entity": "test_component"}, {"entity": "test_component"}]
+  - intent: basis_for_selection  # predicted: freshman_profile: What is the [75th percentile][{"entity": "test_percentile"}, {"entity": "test_percentile"}] score for [ACT][{"entity": "standarized_test", "value": "act"}, {"entity": "standarized_test", "value": "act"}] [writing](test_component)
     entities:
     - test_percentile: 75th percentile
+    - test_percentile: 75th percentile
     - act_test_component: ACT writing  # predicted: standarized_test: act
-  - action: action_query_basis_for_selection
-  - action: action_listen  # predicted: utter_ask_answer_helpful
+    - act_test_component: ACT writing  # predicted: standarized_test: act
+  - action: action_query_basis_for_selection  # predicted: action_query_knowledgebase
+  - action: utter_ask_answer_helpful  # predicted: action_listen
   - intent: affirm
-  - action: action_ask_more_question  # predicted: utter_ask_whats_the_question after action_unlikely_intent
+  - action: action_ask_more_question  # predicted: utter_ask_whats_the_question
   - intent: deny
   - action: utter_no_more_question
+- story: ask_about_enrollment_and_answer_helpful (.\tests\test_stories.yml)
+  steps:
+  - intent: enrollment
+    entities:
+    - student_level: undergraduate
+    - student_level: undergraduate
+  - action: action_query_enrollment  # predicted: action_query_knowledgebase
+  - action: utter_ask_answer_helpful
+  - intent: affirm
+  - action: action_ask_more_question
 - story: ask_about_enrollment_and_answer_helpful (.\tests\test_stories.yml)
   steps:
   - intent: enrollment
@@ -108,13 +176,7 @@ stories:
     - degree-goal: degree-seeking
     - is_first_time: non-first-time
     - is_first_time: non-first-time
-    - year: '2013'
-    - year: '2014'
-  - slot_was_set:
-    - degree-goal: degree-seeking
-  - slot_was_set:
-    - is_first_time: non-first-time
-  - action: action_query_enrollment
+  - action: action_query_enrollment  # predicted: action_query_knowledgebase
   - action: utter_ask_answer_helpful
   - intent: affirm
   - action: action_ask_more_question
