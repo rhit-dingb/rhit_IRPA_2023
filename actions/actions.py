@@ -57,8 +57,8 @@ class ActionGetAvailableOptions(Action):
         # print(domain)
         allIntents = list(map(lambda x: x.replace("_", " "), domain["intents"]))
         filteredListOfOption = dict()
-        availableOptions = mongoDataManager.getAvailableOptions(lastTopicIntent, startYear, endYear)
-        print(allIntents)
+        availableOptions = mongoDataManager.getAvailableOptions(None, startYear, endYear)
+      
         for option in availableOptions:
             if option in allIntents:
                 filteredListOfOption[option] = availableOptions[option]
@@ -94,15 +94,11 @@ class ActionQueryKnowledgebase(Action):
         entitiesExtracted = entitiesExtracted + numberEntities
         intent = tracker.latest_message["intent"]["name"]
         setLastIntentSlotEvent = SlotSet(LAST_TOPIC_INTENT_SLOT_NAME ,intent )
-
-       
-        # print(intent)
- 
-        # try:
-        answers = await knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy,knowledgeBase.constructOutput,startYear, endYear )
-        utterAllAnswers(answers, dispatcher)        
-        # except Exception as e:
-        #      utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
+        try:
+            answers = await knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy,knowledgeBase.constructOutput,startYear, endYear )
+            utterAllAnswers(answers, dispatcher)        
+        except Exception as e:
+             utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
              
         if setYearSlotEvent:
             return [setYearSlotEvent, setLastIntentSlotEvent]

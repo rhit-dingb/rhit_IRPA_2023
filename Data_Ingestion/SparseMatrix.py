@@ -201,6 +201,8 @@ class SparseMatrix():
         else:
             return None
 
+    def shouldSearchInSelfForPercentage(self):
+        return False
     
     def searchOnSparseMatrix(self, entities, shouldAddRowStrategy, isSumAllowed):
         searchResults = []
@@ -210,10 +212,8 @@ class SparseMatrix():
         sparseMatrixToSearchDf = self.getSparseMatrixDf()
         for i in range(sparseMatrixToSearchDf.shape[0]):
             row = sparseMatrixToSearchDf.loc[i]
-            
             if "total" in row.index and sparseMatrixToSearchDf.loc[i,"total"] == 1:
                 continue
-
             # entityValues = [e["value"] for e in entities]
             usedEntities = shouldAddRowStrategy.determineShouldAddRow(row, entities, self)
 
@@ -279,38 +279,4 @@ class SparseMatrix():
         else:
             searchResults.append(newSearchResult)
             return newSearchResult
-
-
-    #This function will try to add up the search results, if the current search result and the new search result's type does not make sense
-    # to be added together, it will add it into the list of answers instead of adding up the value.
-    # def addSearchResult(self, currentSearchResult, newSearchResult, searchResults, isSumAllowed) -> str:
-    #     castedCurrValue, currentSearchResultType = self.determineResultType(currentSearchResult)
-    #     castedNewValue, newSearchResultType = self.determineResultType(newSearchResult)
-
-    #     if (currentSearchResultType == SearchResultType.FLOAT or currentSearchResultType == SearchResultType.NUMBER):
-    #         if isSumAllowed and (newSearchResultType == SearchResultType.FLOAT or newSearchResultType == SearchResultType.NUMBER):
-    #             newCalculatedValue = str(castedCurrValue + castedNewValue)
-    #             searchResults[len(searchResults)-1] = newCalculatedValue
-    #             return newCalculatedValue
-    #         else:
-    #             searchResults.append(newSearchResult)
-    #             return newSearchResult
-    #     elif currentSearchResultType == SearchResultType.STRING:
-    #         searchResults.append(newSearchResult)
-
-    #     elif currentSearchResultType == newSearchResult:
-    #         #Might move this common logic to a seperate function
-    #         newCalculatedValue = str(castedCurrValue + castedNewValue)
-    #         if len(searchResults) == 0:
-    #             searchResults.append(newCalculatedValue)
-    #         else:
-    #             searchResults[len(searchResults)-1] = newCalculatedValue
-
-    #         return newCalculatedValue
-    #     else:
-    #         searchResults.append(newSearchResult)
-
-    #     return newSearchResult
-
-
-
+    

@@ -63,9 +63,10 @@ stories:
       - intent: freshman_profile
       - intent: basis_for_selection
     - action: action_query_knowledgebase
+    - action: action_store_asked_question
     - action: utter_ask_answer_helpful
-    - action: store_isHelpful_statistic
     - intent: affirm
+    - action: action_store_isHelpful_statistic
     - checkpoint: ask_feedback
 
 - story: ask_about_cds_not_helpful
@@ -85,7 +86,7 @@ stories:
       - intent: freshman_profile
       - intent: basis_for_selection
     - action: action_query_knowledgebase
-    - action: action_store_last_asked_question
+    - action: action_store_asked_question
     - action: utter_ask_answer_helpful
     - intent: deny
     - action: utter_sorry_question_not_helpful
@@ -98,18 +99,43 @@ stories:
   steps:
     - intent: definition
     - action: action_query_knowledgebase
+    - action: action_store_asked_question
     - action: utter_ask_answer_helpful
     - intent: affirm
+    - action: action_store_isHelpful_statistic
     - checkpoint: ask_feedback
 
 - story: ask_about_definition_not_helpful
   steps:
     - intent: definition
     - action: action_query_knowledgebase
+    - action: action_store_asked_question
     - action: utter_ask_answer_helpful
     - intent: deny
     - action: utter_sorry_question_not_helpful
+    - action: action_store_isHelpful_statistic
     - action: action_get_available_options
+
+- story: ask_about_cohort_answer_helpful
+  steps: 
+    - intent: cohort
+    - action: action_query_cohort
+    - action: utter_ask_answer_helpful
+    - intent: affirm
+    - action: action_store_isHelpful_statistic
+    - checkpoint: ask_feedback
+
+
+- story: ask_about_cohort_answer_not_helpful
+  steps: 
+    - intent: cohort
+    - action: action_query_cohort
+    - action: utter_ask_answer_helpful
+    - intent: deny
+    - action: utter_sorry_question_not_helpful
+    - action: action_store_isHelpful_statistic
+    - action: action_get_available_options
+
 
 
 
@@ -128,24 +154,6 @@ stories:
   - intent: deny
   - action: utter_no_more_question
 
-
-- story: ask_about_cohort_answer_helpful
-  steps: 
-    - intent: cohort
-    - action: action_query_cohort
-    - action: utter_ask_answer_helpful
-    - intent: affirm
-    - checkpoint: ask_feedback
-
-
-- story: ask_about_cohort_answer_not_helpful
-  steps: 
-    - intent: cohort
-    - action: action_query_cohort
-    - action: utter_ask_answer_helpful
-    - intent: deny
-    - action: utter_sorry_question_not_helpful
-    - action: action_get_available_options
 
 
 

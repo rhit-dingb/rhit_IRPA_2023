@@ -69,7 +69,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         isSumAllowed = sparseMatrixToSearch.isSumOperationAllowed()
 
         isPercentageAllowed = sparseMatrixToSearch.isPercentageOperationAllowed()
-        hasPercentageEntity = findEntityHelper(entitiesExtracted, AGGREGATION_ENTITY_PERCENTAGE_VALUE)
+        percentageEntityDetected = findEntityHelper(entitiesExtracted, AGGREGATION_ENTITY_PERCENTAGE_VALUE, by="value")
         template = sparseMatrixToSearch.findTemplate()
         searchResults = []
       
@@ -80,24 +80,16 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
             searchResults : List[SearchResult] = rangeResultData.answers
             for searchResult in searchResults:
                 searchResult.addEntities(filteredEntities)
-
-            # print("GOT IT")
-            # print(entitiesUsedForEachResult)
-
         else:
 
             searchResults : List[SearchResult] = sparseMatrixToSearch.searchOnSparseMatrix(entitiesExtracted, shouldAddRowStrategy, isSumAllowed)
-            # entitiesUsedForEachResult = [entitiesUsed]*len(searchResults)
-
-        # if isPercentageAllowed and hasPercentageEntity:
-        #     percentages = self.calculatePercentages(searchResults, sparseMatrixToSearch)
-        #     if percentages == None or len(percentages) == 0:
-        #         return outputFunc(searchResults, intent, template)
-        #     else:
-                # return outputFunc(percentages, intent, template)
-      
+    
+        if isPercentageAllowed and percentageEntityDetected:
+            percentages = await self.calculatePercentages(searchResults, sparseMatrixToSearch,  percentageEntityDetected)
+            # print("GOT VALUE ", percentages)
+            if not percentages == None and len(percentages) > 0:
+                searchResults = percentages
         await self.getAllEntityForRealQuestionFoundForAnswer(searchResults)
-        # print(searchResults[0].entitiesForRealQuestion)
         return outputFunc(searchResults, intent,  template)
 
     async def getAllEntityForRealQuestionFoundForAnswer(self, searchResults : List[SearchResult]):
@@ -122,7 +114,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
 
     
     # STILL WORK IN PROGRESS
-    async def calculatePercentages(self, searchResults, entitiesForEachResult : List[List[Dict[str, str]]], sparseMatrix : SparseMatrix) -> List[str]:
+    async def calculatePercentages(self, searchResults : List[SearchResult], sparseMatrix : SparseMatrix, percentageEntityDetected : Dict[str, str]) -> List[str]:
         shouldAddRowStrategy = DefaultShouldAddRowStrategy()
         denominatorQuestion = sparseMatrix.findDenominatorQuestion()
         percentageSearchInSelf = sparseMatrix.shouldSearchInSelfForPercentage()
@@ -131,22 +123,30 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
             entitiesFromDenominatorQuestion = response["entities"]
 
             percentages = []
-            for searchResult, entitiesUsed in zip(searchResults, entitiesForEachResult):
+            
+            for searchResult in searchResults:
+                entitiesUsedForThisSearchResult = searchResult.getEntitiesUsed()
                 entitiesForDenominator = entitiesFromDenominatorQuestion
                 if percentageSearchInSelf:
-                    entitiesForDenominator =  entitiesFromDenominatorQuestion + entitiesUsed
-                answers, entitiesUsed = sparseMatrix.searchOnSparseMatrix(entitiesForDenominator, shouldAddRowStrategy, True)
-                if len(answers) == 0:
+                    entitiesForDenominator =  entitiesFromDenominatorQuestion + entitiesUsedForThisSearchResult
+                
+                searchResults = sparseMatrix.searchOnSparseMatrix(entitiesForDenominator, shouldAddRowStrategy, True)
+                if len(searchResults) == 0:
                     return []
-                denominator = answers[0]
-                try:
-                    numerator = searchResult
-                    percentageCalc = numerator/float(denominator)*100
-                    percentage = round(percentageCalc, 1)
-                    percentage = PERCENTAGE_FORMAT.format(value = percentage)
-                    percentages.append(percentage)
-                except:
-                    continue
+
+                denominator = searchResults[0]
+                # try:
+                numerator = float(searchResult.answer)
+                percentageCalc = numerator/float(denominator.answer)*100
+                percentage = round(percentageCalc, 1)
+                percentage = PERCENTAGE_FORMAT.format(value = percentage)
+                allEntityUsedAndPercentage = entitiesUsedForThisSearchResult + [percentageEntityDetected]
+                # print("NEW ENTITY")
+                # print(allEntityUsedAndPercentage)
+                percentageSearchResult = SearchResult(percentage, allEntityUsedAndPercentage, SearchResultType.PERCENTAGE, searchResult.realQuestion)
+                percentages.append(percentageSearchResult)
+                # except:
+                #     continue
 
             return percentages
         

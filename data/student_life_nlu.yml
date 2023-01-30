@@ -2,6 +2,7 @@ version: "3.1"
 nlu:
 - intent: student_life
   examples: |
+    - tell me about student life 
     - Does Rose-Hulman offer [air force](military_branch) [reserve Officers training corp]{"entity": "rotc", "value": "rotc"} ?
     - Does Rose-Hulman offer [air force](military_branch) [reserve Officers training corps]{"entity": "rotc", "value": "rotc"} ?
     - Does Rose-Hulman offer [air force](military_branch) [reserve officers's training Corps]{"entity": "rotc", "value": "rotc"} ?
