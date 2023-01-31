@@ -10,6 +10,8 @@ import re
 from datetime import datetime, date
 
 from DataType import DataType
+from abc import ABC, abstractmethod
+from enum import Enum
 
 sys.path.append('../')
 from fastapi import FastAPI, Request, HTTPException
@@ -190,23 +192,43 @@ async def handle_post_answer(content: str):
 
 #====================Below are the list of APIs for Freqency API==========================
 CURRENT_INTENTIONS = ['enrollment', 'admission', 'high_school_units', 'basis_for_selection']
+class UserFeedback(Enum):
+    NO_FEEDBACK = 1
+    HELPFUL = 2
+    NOT_HELPFUL = 3
 
-#if intent not detected create new element
-@app.put("/question_asked/{intent}")
-async def handle_new_event(intent: str, content: str):
+class QuestionCategory(Enum):
+    ENROLLMENT = 1
+    ADMISSION = 2
+    HIGH_SCHOOL_UNITS = 3
+    BASIS_FOR_SELECTION = 4
+    
+@app.put("/question_asked/")
+async def handle_new_event(intent: QuestionCategory, feedback: UserFeedback, timeAsked: datetime, content: str):
     db = client.freq_question_db
     freq_collection = db.cds_frequency
-    if(len(list(freq_collection.find({"intent": intent}))) == 0):
-        questions_asked = []
-        questions_asked.append(content)
+    if(len(list(freq_collection.find({"timeAsked": timeAsked}))) == 0):
         boo1 = freq_collection.insert_one({
             "intent": intent,
-            "frequency": 1,
-            "questions_asked": questions_asked})
+            "user_feedback": feedback,
+            "time_asked": timeAsked,
+            "questions_asked": content})
         if boo1:
-            return {'message': 'new intent is created'}
+            return {'message': 'data successfully inserted'}
         else:
             return {'message': 'errors occurred'}
+    else:
+        boo2 = freq_collection.update_one({'time_asked': timeAsked}, {'$set': {'user_feedback': feedback}})
+        if boo2:
+            return {'message': 'data successfully updated'}
+        else:
+            return {'message': 'errors occurred'}
+
+"""
+Testing1:
+PUT request: http://127.0.0.1:8000/question_asked/?intent=2&feedback=1&timeAsked=2021-01-01T12:00:00&content=How%20are%20you
+
+"""
 
     
 
