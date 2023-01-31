@@ -193,15 +193,15 @@ async def handle_post_answer(content: str):
 #====================Below are the list of APIs for Freqency API==========================
 CURRENT_INTENTIONS = ['enrollment', 'admission', 'high_school_units', 'basis_for_selection']
 class UserFeedback(Enum):
-    NO_FEEDBACK = 1
-    HELPFUL = 2
-    NOT_HELPFUL = 3
+    NO_FEEDBACK = "NO_FEEDBACK"
+    HELPFUL = "HELPFUL"
+    NOT_HELPFUL = "NOT_HELPFUL"
 
 class QuestionCategory(Enum):
-    ENROLLMENT = 1
-    ADMISSION = 2
-    HIGH_SCHOOL_UNITS = 3
-    BASIS_FOR_SELECTION = 4
+    ENROLLMENT = "ENROLLMENT"
+    ADMISSION = "ADMISSION"
+    HIGH_SCHOOL_UNITS = "HIGH_SCHOOL_UNITS"
+    BASIS_FOR_SELECTION = "BASIS_FOR_SELECTION"
     
 @app.put("/question_asked/")
 async def handle_new_event(intent: QuestionCategory, feedback: UserFeedback, timeAsked: datetime, content: str):
@@ -209,8 +209,8 @@ async def handle_new_event(intent: QuestionCategory, feedback: UserFeedback, tim
     freq_collection = db.cds_frequency
     if(len(list(freq_collection.find({"timeAsked": timeAsked}))) == 0):
         boo1 = freq_collection.insert_one({
-            "intent": intent,
-            "user_feedback": feedback,
+            "intent": intent.value,
+            "user_feedback": feedback.value,
             "time_asked": timeAsked,
             "questions_asked": content})
         if boo1:
@@ -218,7 +218,7 @@ async def handle_new_event(intent: QuestionCategory, feedback: UserFeedback, tim
         else:
             return {'message': 'errors occurred'}
     else:
-        boo2 = freq_collection.update_one({'time_asked': timeAsked}, {'$set': {'user_feedback': feedback}})
+        boo2 = freq_collection.update_one({'time_asked': timeAsked}, {'$set': {'user_feedback': feedback.value}})
         if boo2:
             return {'message': 'data successfully updated'}
         else:
@@ -226,8 +226,8 @@ async def handle_new_event(intent: QuestionCategory, feedback: UserFeedback, tim
 
 """
 Testing1:
-PUT request: http://127.0.0.1:8000/question_asked/?intent=2&feedback=1&timeAsked=2021-01-01T12:00:00&content=How%20are%20you
-
+PUT request: http://127.0.0.1:8000/question_asked/?intent=ADMISSION&feedback=NO_FEEDBACK&timeAsked=2021-01-01T12:00:00&content=What%20is%20rose%20rankings
+---output: data successfully inserted; check Database for result
 """
 
     
