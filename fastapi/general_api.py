@@ -153,18 +153,6 @@ async def change_selected_year(request : Request):
     except Exception:
         raise HTTPException(status_code=500, detail="change failed")
 
-
-# General API for getting unanswered questions
-@app.get("/questions")
-async def get_unans_questions():
-    db = client.freq_question_db
-    questions_collection = db.unans_question
-    unanswered_questions = list(questions_collection.find({'is_addressed': False}))
-    print("DATA FOUND")
-    unanswered_questions = json.loads(json_util.dumps(unanswered_questions))
-    print(unanswered_questions)
-    return unanswered_questions
-
 @app.get("/api/get_selected_year/{conversation_id}")
 async def get_selected_year(conversation_id : str):
     async with aiohttp.ClientSession() as session:
@@ -180,6 +168,19 @@ async def get_selected_year(conversation_id : str):
             endYear = messages[1]
             return {"selectedYear":[startYear, endYear] }
 
+
+# General API for getting unanswered questions
+@app.get("/questions")
+async def get_unans_questions():
+    db = client.freq_question_db
+    questions_collection = db.unans_question
+    unanswered_questions = list(questions_collection.find({'is_addressed': False}))
+    print("DATA FOUND")
+    unanswered_questions = json.loads(json_util.dumps(unanswered_questions))
+    print(unanswered_questions)
+    return unanswered_questions
+
+
 @app.put("/question_update/{id}")
 async def handle_post_answer(id: str, answer: str):
     db = client.freq_question_db
@@ -192,7 +193,7 @@ async def handle_post_answer(id: str, answer: str):
         return {'message': 'errors occurred while updating'}
 
 @app.delete("/question_delete/{id}")
-async def handle_post_answer(id: str):
+async def handle_delete_answer(id: str):
     db = client.freq_question_db
     questions_collection = db.unans_question
     boo1 = questions_collection.delete_one({'_id': ObjectId(id)})
@@ -202,7 +203,7 @@ async def handle_post_answer(id: str):
         return {'message': 'question maybe not found and issue occurred'}
 
 @app.post("/question_add/{content}")
-async def handle_post_answer(content: str):
+async def handle_add_question(content: str):
     db = client.freq_question_db
     questions_collection = db.unans_question
     boo1 = questions_collection.insert_one({

@@ -90,13 +90,16 @@ nlu:
     - percent
     - percentage
     - average
+    - proportions
+    - proportion
     
     
-
 - synonym: percent
   examples: |
     - percent
     - percentage
+    - proportions
+    - proportion
 
 - synonym: average
   examples: |

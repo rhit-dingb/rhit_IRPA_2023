@@ -47,14 +47,7 @@ class ActionGetAvailableOptions(Action):
       
         print("LAST INTENT")
         print(lastTopicIntent)
-        # conversation_history = tracker.events
-        # lastMessageIntent = None
-        # if len(conversation_history) > 1:
-        #     length = len(conversation_history)
-        #     lastMessageIntent = conversation_history[length-2]
-        # intent = tracker.latest_message["intent"]["name"]
         startYear, endYear, res = getYearRangeInSlot(tracker)
-        # print(domain)
         allIntents = list(map(lambda x: x.replace("_", " "), domain["intents"]))
         filteredListOfOption = dict()
         availableOptions = mongoDataManager.getAvailableOptions(None, startYear, endYear)
@@ -112,6 +105,7 @@ class ActionStoreAskedQuestion(Action):
 
     def run(self, dispatcher, tracker, domain):
         question = tracker.latest_message["text"]
+        print("STORING QUESTIOn", question)
         event = SlotSet(LAST_USER_QUESTION_ASKED, question)
         return [event]
 
@@ -124,6 +118,7 @@ class ActionStoreIsHelpfulStatistic(Action):
         #Get the stored question
         userAskedQuestion = tracker.get_slot(LAST_USER_QUESTION_ASKED)
         print(userAskedQuestion)
+        return [] 
 
 
 class ActionGetYear(Action):
@@ -131,7 +126,6 @@ class ActionGetYear(Action):
         return "action_get_year"
     
     def run(self, dispatcher, tracker, domain):
-        
         yearRange = tracker.get_slot(YEAR_RANGE_SELECTED_SLOT_NAME )
         if yearRange == None:
             return []

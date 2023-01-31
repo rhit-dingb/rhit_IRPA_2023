@@ -6,6 +6,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/js/dist/dropdown";
 import { Link } from "react-router-dom";
 import {CUSTOM_BACKEND_API_STRING} from "../constants/constants"
+import { Navbar } from "./Navbar";
 class Question extends React.Component {
   //todo: this thing
   constructor(props) {
@@ -135,37 +136,7 @@ function Admin() {
   
   return (
     <div>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand">
-          <img
-            style={roseIconStyle}
-            src={rose_icon}
-            alt="Rose-Hulman Institute of Technology"
-          />
-        </a>
-
-        <div class="dropdown navbar-brand">
-          <button
-            class="btn"
-            type="button"
-            id="dropdownMenuLink"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item">
-              <Link to="/admin_portal">Admin Login</Link>
-            </a>
-            <a class="dropdown-item">
-              <Link to="/report_issue">Report Issue</Link>
-            </a>
-          </div>
-        </div>
-        <h1 id="homepageTitle">IRPA ChatBot</h1>
-      </nav>
+      <Navbar/>
       <div style={leftBox}>
       <div class="dropdown">
         <button style = {questionDropdown} class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

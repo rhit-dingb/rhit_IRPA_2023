@@ -99,7 +99,9 @@ nlu:
     - How many [transfer]{"entity":"category", "value":"transfer"} [student]{"entity":"people", "value": "student"} [enroll]{"entity": "action", "value": "enrolled"} to Rose-Hulman?
     - How many [transfer]{"entity":"category", "value":"transfer"} [student]{"entity":"people", "value": "student"} [enrolled](action) to Rose-Hulman?
     - How many [transfer]{"entity":"category", "value":"transfer"} [student]{"entity":"people", "value": "student"} [enrolling]{"entity": "action", "value": "enrolled"} to Rose-Hulman?
-   
+    - How many [transfer]{"entity":"category", "value":"transfer"} [student]{"entity":"people", "value": "student"} [enrolling]{"entity": "action", "value": "enrolled"}?
+    - How many [transfer]{"entity":"category", "value":"transfer"} [student]{"entity":"people", "value": "student"} [enrolled]{"entity": "action", "value": "enrolled"}
+
     - May [transfer]{"entity":"category", "value":"transfer"} [students]{"entity":"people", "value": "student"} earn advanced standing [credit](academic_credit) by [transfer]{"entity":"category", "value":"transfer"} the [credits]{"entity": "academic_credit", "value": "credit"} they earned from course work completed at other [university]{"entity": "education_level", "value": "college"}
     - May [transfer]{"entity":"category", "value":"transfer"} [students]{"entity":"people", "value": "student"} earn advanced standing [credit](academic_credit) by [transferring]{"entity":"category", "value":"transfer"} [credits]{"entity": "academic_credit", "value": "credit"}  earned from course work completed at other [college]{"entity": "education_level", "value": "college" }
 

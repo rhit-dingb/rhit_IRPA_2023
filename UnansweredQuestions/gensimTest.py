@@ -3,6 +3,7 @@
 import sys
 
 from DocumentRetrieverByVector import DocumentRetrieverByVector
+from UnansweredQuestions import MongoDBUnansweredQuestionConnector
 sys.path.append('../')
 from gensim import corpora
 from gensim.parsing.preprocessing import remove_stopwords, preprocess_string
@@ -22,8 +23,8 @@ from gensim.downloader import info
 
 
 print(info()["corpora"].keys())
-
-corpus = Corpus(None, "./dictionaries/dictionary")
+mongoDBUnansweredQuestionConnector = MongoDBUnansweredQuestionConnector()
+corpus = Corpus(mongoDBUnansweredQuestionConnector, "./dictionaries/dictionary")
 # model = gensim.downloader.load("doc2vec-wikipedia-dbow")
 
 # glove_vectors = gensim.downloader.load('glove-wiki-gigaword-300')

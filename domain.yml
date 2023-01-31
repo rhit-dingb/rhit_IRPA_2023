@@ -567,13 +567,13 @@ responses:
 
 
   utter_sorry_question_not_helpful:
-  - text: "I am sorry it does not help, thak you for your reply, we will update the chatbot."
+  - text: "I am sorry it is not helpful. I have saved your question as unanswered question and we will update the chatbot."
 
   utter_iamabot:
   - text: "I am a bot, powered by Rasa."
 
   utter_ask_answer_helpful:
-  - text: "Was this answer helpful?"
+  - text: "Did I answer your question?"
 
 session_config:
   session_expiration_time: 60

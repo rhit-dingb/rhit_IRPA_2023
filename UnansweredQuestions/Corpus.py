@@ -240,9 +240,11 @@ class Corpus:
         self.dictionary.save(path)
     
     def __iter__(self):
+        index = 0
         for doc in self.retrieveDocumentFromDataSource():
             # yield self.convertDocToBow(doc)
             preprocessDoc = self.preprocessDoc(doc)
+            index = index + 1
             yield preprocessDoc
 
     def convertDocToBow(self,doc):

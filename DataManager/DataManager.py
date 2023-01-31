@@ -136,8 +136,8 @@ class DataManager():
 
         #raise an error if no best matching matrix is found
 
-        print("CANDIDATES")
-        print(len(maxMatch))
+        # print("CANDIDATES")
+        # print(len(maxMatch))
         for m in maxMatch:
             print(m.subSectionName)
 
