@@ -207,12 +207,12 @@ class QuestionCategory(Enum):
 async def handle_new_event(intent: QuestionCategory, feedback: UserFeedback, timeAsked: datetime, content: str):
     db = client.freq_question_db
     freq_collection = db.cds_frequency
-    if(len(list(freq_collection.find({"timeAsked": timeAsked}))) == 0):
+    if(len(list(freq_collection.find({"question_asked": content}))) == 0):
         boo1 = freq_collection.insert_one({
             "intent": intent.value,
             "user_feedback": feedback.value,
             "time_asked": timeAsked,
-            "questions_asked": content})
+            "question_asked": content})
         if boo1:
             return {'message': 'data successfully inserted'}
         else:
@@ -228,6 +228,9 @@ async def handle_new_event(intent: QuestionCategory, feedback: UserFeedback, tim
 Testing1:
 PUT request: http://127.0.0.1:8000/question_asked/?intent=ADMISSION&feedback=NO_FEEDBACK&timeAsked=2021-01-01T12:00:00&content=What%20is%20rose%20rankings
 ---output: data successfully inserted; check Database for result
+THEN!!!
+--------
+PUT request: http://127.0.0.1:8000/question_asked/?intent=ADMISSION&feedback=NOT_HELPFUL&timeAsked=2021-01-01T12:00:00&content=What%20is%20rose%20rankings
 """
 
     
