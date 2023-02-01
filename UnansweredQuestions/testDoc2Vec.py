@@ -8,6 +8,7 @@ from Corpus import Corpus
 documents = Corpus(None)
 
 # Train a Doc2Vec model on the documents
+
 docs= [TaggedDocument(doc, [i]) for i, doc in enumerate(documents)]
 model = Doc2Vec(vector_size=50, min_count=1, epochs=40)
 print(docs)

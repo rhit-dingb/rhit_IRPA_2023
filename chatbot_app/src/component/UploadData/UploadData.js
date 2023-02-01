@@ -372,6 +372,7 @@ function UploadData() {
 
     const createElementForSectionAndSubSection = ()=> {
       let keyToValueArr = Object.entries(sectionAndSubSections)
+      // Sort the sections alphabetically
       keyToValueArr = keyToValueArr.sort()
       return keyToValueArr.map(([key, value]) => {
         return (

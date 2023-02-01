@@ -5,7 +5,7 @@ from Parser.DataWriter import DataWriter
 from Data_Ingestion.SparseMatrix import SparseMatrix
 from pymongo import MongoClient
 
-from DataManager.constants import DATABASE_SUBSECTION_FIELD_KEY
+from DataManager.constants import DATABASE_SUBSECTION_FIELD_KEY, DATABASE_METADATA_FIELD_KEY
 
 
 
@@ -29,8 +29,11 @@ class MongoDBSparseMatrixDataWriter(DataWriter):
         #     jsonRows = row.to_json()
         #     print(jsonRows)
         jsonRows = sparseMatrix.rowsToJson()
+        # print("METADATA!")
+        # print(sparseMatrix.metadata)
         self.db[sectionName].update_one({self.subsectionKey : sparseMatrix.subSectionName},
-        {"$set": {"rows": jsonRows, self.subsectionKey : sparseMatrix.subSectionName}}, upsert=True)
+        {"$set": {"rows": jsonRows, self.subsectionKey : sparseMatrix.subSectionName, 
+        DATABASE_METADATA_FIELD_KEY: sparseMatrix.metadata}}, upsert=True)
 
 
     # def writeSparseMatrices(self, sparseMatrices : List[SparseMatrix], sectionName : str) -> None:

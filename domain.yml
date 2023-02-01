@@ -10,10 +10,10 @@ intents:
   - cohort
   - admission
   - transfer_admission
-  - high_school_units
+  # - high_school_units
   - basis_for_selection 
   - freshman_profile
-  - academic_offering_policy
+  - academic_offering_and_policy
   - student_life
   - financial_aid
   - faculty_and_class_size
@@ -24,6 +24,9 @@ intents:
   - degree_conferred
 
   - change_year
+  - get_year
+
+  - get_available_options 
 
   - mood_great
   - mood_unhappy
@@ -31,355 +34,370 @@ intents:
 
 
 
-
 entities:
-  # Ways to contact
-  # Value: phone, fax, number, address, email, website
-  - way_of_contact
-
-  # Deadline '
-  # Value: deadline
-  - deadline
-
-  # full-time, part-time
-  - enrollment_status
-
-  # graduate, undergraduate
-  - student_level
-  
-  #for our case, student_grade will only be freshman or non-freshman(i.e "all other")
-  - undergraduate_grade_level
-
-  #degree-seeking, non-degree-seeking (i.e. "all other")
-  - degree-goal
-
-  #First-time, or not first time.
-  - is_first_time
-
-  #First-year, non-first-year
-  - is_first_year
-
-  #male, female, also includes coeducational
-  - gender
-
-  #race/ethnicity, value: minority, african american, unknown, american indian, white, hispanic,  pacific-islander, two-or-more
-  - race
-
-  #Capture many different verbs. Values: applied addmitted, determined, awarded, met, borrowed, designed, offered, change
-  - action
+# Ways to contact
+# Value: phone, fax, number, address, email, website
+# - entity: way_of_contact
+#   values: []
+- way_of_contact
 
 
-  - waiting-list
+# # Deadline '
+# Value: deadline
+- deadline
 
 
-  - completion-requirement
+# values:
+#   way_of_contact:
+#   - phone,
+#   - fax
+#   - number
+#   - address
+#   - email
+#   - website
 
-  # - waiting-list-detail
+#value: net_price_calculator
+- net_price_calculator
 
-  - policy
+# full-time, part-time
+- enrollment_status
+
+# graduate, undergraduate
+- student_level
+
+#for our case, student_grade will only be freshman or non-freshman(i.e "all other")
+- undergraduate_grade_level
+
+#degree-seeking, non-degree-seeking (i.e. "all other")
+- degree-goal
+
+#First-time, or not first time.
+- is_first_time
+
+#First-year, non-first-year
+- is_first_year
+
+#male, female, also includes coeducational
+- gender
+
+#race/ethnicity, value: minority, african american, unknown, american indian, white, hispanic,  pacific-islander, two-or-more
+- race
+
+#Capture many different verbs. Values: applied addmitted, determined, awarded, met, borrowed, designed, offered, change
+- action
+
+
+- waiting-list
+
+
+- completion-requirement
+
+# - waiting-list-detail
+
+- policy
 
 # used for something like: Initial 2015 cohort of first-time, fulltime, bachelor's (or equivalent) degreeseeking undergraduate students
 # and also something like: Final 2015 cohort, after adjusting for allowable exclusions
-  - cohort_initial_final
+- cohort_initial_final
 
-  # Student enrollment result, captures retention. 
-  - student_enrollment_result
+# Student enrollment result, captures retention. 
+- student_enrollment_result
 
-  # exemptions - students for did not persist or graduate due to other circumstances.
-  # also know as allowable exclusions.
-  - exemptions
+# exemptions - students for did not persist or graduate due to other circumstances.
+# also know as allowable exclusions.
+- exemptions
 
-  
-  #- recipients_of_federal_pell_grant
-  #- recipients_of_a_subsidized_stafford_loan_who_did_not_receive_a_pell_grant 
-  #- students_who_did_not_receive_either_a_pell_grant_or_a_subsidized_stafford_loan
-  - aid_status_pell
-  - aid_status_stafford
-  - not_modifier_pell
-  - not_modifier_stafford
-  - aid_status_none
 
-  #year to query the dataset.
-  - year
+#- recipients_of_federal_pell_grant
+#- recipients_of_a_subsidized_stafford_loan_who_did_not_receive_a_pell_grant 
+#- students_who_did_not_receive_either_a_pell_grant_or_a_subsidized_stafford_loan
+- aid_status_pell
+- aid_status_stafford
+- not_modifier_pell
+- not_modifier_stafford
+- aid_status_none
 
-  # School subjects such as english, mathematics, science, etc, also captures the word subject
-  # Value: subject english, mathematics, science, liberal arts.
-  - subject
+#year to query the dataset.
+- year
+
+# School subjects such as english, mathematics, science, etc, also captures the word subject
+# Value: subject english, mathematics, science, liberal arts.
+- subject
 
 # This entity captures whether required or recommended is mentioned. Used in high school units required/recommended and transfer admission required items.
-  - condition
+- condition
 
-  #Academic factor for basis of selection for admissions such as Rigor of secondary school record, Class rank etc, academic GPA etc.
-  #NOTE: I defined Grades and grade as different. Grade is one value of of academic factor while grades map to transcript
-  - academic_factor
-  
-  #Non-academic factor for basis of selection for admissions such as Interview, Extracurricular activities, Talent/ability, Character/personal qualities, etc
-  - non_academic_factor
+#Academic factor for basis of selection for admissions such as Rigor of secondary school record, Class rank etc, academic GPA etc.
+#NOTE: I defined Grades and grade as different. Grade is one value of of academic factor while grades map to transcript
+- academic_factor
 
-
-  #Aggregation words: percentage, average 
-  - aggregation
+#Non-academic factor for basis of selection for admissions such as Interview, Extracurricular activities, Talent/ability, Character/personal qualities, etc
+- non_academic_factor
 
 
-  #Types of standarized test. Values: SAT and ACT.
-  - standarized_test
-
-  # Test percentile: 25th, 50th, 75th
-  - test_percentile
+#Aggregation words: percentage, average 
+- aggregation
 
 
-  #Component for sat and act test such as 
-  # composite
-  # essay
-  # reading
-  # writing
-  # math
-  # english
-  - test_component
-  
-  #highschool class rank, value: top tenth, top quarter, top half, bottom half, bottom quarter
-  - class_rank
+#Types of standarized test. Values: SAT and ACT.
+- standarized_test
+
+# Test percentile: 25th, 50th, 75th
+- test_percentile
+
+
+#Component for sat and act test such as 
+# composite
+# essay
+# reading
+# writing
+# math
+# english
+- test_component
+
+#highschool class rank, value: top tenth, top quarter, top half, bottom half, bottom quarter
+- class_rank
 
 
 #Whether student submitted something, such as gpa, class rank, sat score
-  - submitted
+- submitted
 
 #Whether rose-hulman enroll transfer students
 # Value: enroll transfer student
-  - allow_transfer
+- allow_transfer
 
 #Whether rose-hulman accept transfer credit
 #Value: accept transfer credit
-  - allow_transfer_credit
+- allow_transfer_credit
 
 
 #High school or college
 #Value: High school, college
-  - education_level
+- education_level
 
 # used to capture the word credit and unit as in class credits/unit
-  - academic_credit
+- academic_credit
 
 #Capture unit of measure. Value: Unit of measure
-  - unit_of_measure
+- unit_of_measure
 
 #Academic term. Used to capture the word "term" referring to academic terms, and different season of academic term
 # Values: term, fall, winter, spring, summer.
-  - academic_term
+- academic_term
 
 #admission decision date. Values:  priority, closing, notification, and reply.
 # Use in conjunction with date entity to create priority date, closing date, notification date and reply date.
-  - admission_decision_date
+- admission_decision_date
 
 # Terms that describe the process of attending university.
 # Value: application, enrollment, admission.
-  - academic_process
+- academic_process
 
 #Captures placement tests and the word placement
 #Value: Placement, Advanced Placement, Institutional Exam
-  - placement
+- placement
 
 
 #Capture value section, and subsection
-  - section_subsection
+- section_subsection
 
 #Use to capture anything word related to time such as word "date" or "when" - to see if user mention time anywhere in their sentence. 
 #Values: date.
 #This does not extract the numeric value, but rather, the word works
-  - time
+- time
 
 #Use to capture "other", can be used in terms of other subjects or other application requirements
-  - other
-  
+- other
+
 #Values: less than(within), more than(greater than),  maximum, minimum,
-  - range
+- range
 
 # Doctorate, Masters, Bachelors, Associates degree, and Unknown
-  - degree_level 
+- degree_level 
 
 
 #Use to capture the word age
-  - age
+- age
 
 #Different category/group of student described in student life section, which includes student from out of state, 
-  # those who join fraternity, sorority, etc.
-  # Values: out of state, fraternity, sorority, commute, 
-  # transfer, exchange
-  - category
+# those who join fraternity, sorority, etc.
+# Values: out of state, fraternity, sorority, commute, 
+# transfer, exchange
+- category
 
 # Describe college relation. 
 # Value: college-owned -operated, or -affliated
-  - college_relation
+- college_relation
 
 
 #Describes different military branch
 #Values: army, navy, air force
-  - military_branch
+- military_branch
 
 # Captures rotc which stands for reserve Officers training corps/
 # Value: rotc
-  - rotc
+- rotc
 
 
 # Captures housing
 # Value: housing
-  - housing
+- housing
 
 #Captures type
 #Value: type
-  - type
+- type
 
-  # Entities for early decision and early action. Values: early decision, early action and early admission
-  - early-admission
-
-
-  # Use to capture fee, money ,etc, things related to money
-  - money
-
-  # Captures if question is about online application. Value: online. 
-  - online
-  
-
-  # Defer admission
-  - defer
+# Entities for early decision and early action. Values: early decision, early action and early admission
+- early-admission
 
 
-  # #Captures the word "year"
-  # - year
+# Use to capture fee, money ,etc, things related to money
+- money
 
-  # Captures numerical value include decimals. For number that are formatted as words like "four", I wrote code for a custom extractor.
-  #NOTE: currently, this is not labelled in training data, I use a custom entity extractor.
-  - number
+# Captures if question is about online application. Value: online. 
+- online
+
+
+# Defer admission
+- defer
+
+
+# #Captures the word "year"
+# - year
+
+# Captures numerical value include decimals. For number that are formatted as words like "four", I wrote code for a custom extractor.
+#NOTE: currently, this is not labelled in training data, I use a custom entity extractor.
+- number
 
 #FINANCIAL AID entities
 
 # Captures methodology for the question: which needs-analysis methodology does your institution use in awarding institutional aid?
-  - methodology
+- methodology
 
 # Captures different types of scholar or grants and loans financial aid such as federal, state, external, athletic 
 # Values: federal, state, external, athletic, institutional
-  - financial_aid_type
+- financial_aid_type
 
 #Captures scholarship, grants itself.
 #Value: scholarship, grants.
-  - scholarship_grants
+- scholarship_grants
 
 #Captures aids that are classified as self help, also include word self-help itself.
 #Value : work-study, self-help
-  - self-help_aid
+- self-help_aid
 
 #Captures aids other than self-help, and scholarship or grants.
 #Value: waiver,  loan
-  - other_aid
+- other_aid
 
 #Captures Need or non need base aid
-  - need_non_need_base_aid
+- need_non_need_base_aid
 
 # Captures the word: financial aid, and financial need
-  - financial_aid_term
+- financial_aid_term
 
 # The degree to which a student's financial need is met.
 # Values: fully
-  - financial_aid_degree_met 
+- financial_aid_degree_met 
 
 #Captures people. Values: student, parent, faculty, applicant, teacher
-  - people
+- people
 
 #Captures private public
-  - access_level
+- access_level
 
 #Loan provider. Value: bank, lender
-  - loan_lender
+- loan_lender
 
 
 
 # Captures room and board
-  - living_cost
+- living_cost
 
 #School supplies need by students.
 #Value: book, supply
-  - school_supply
+- school_supply
 
 #Form 
 #Value : form
-  - form
+- form
 
 #Captures size, usually used for class size.
-  - size
+- size
 
-  ##ENTITIES FOR DEFINITIONS
+##ENTITIES FOR DEFINITIONS
 
-  # #Definition. Captures the word definition
-  #   - definition
+# #Definition. Captures the word definition
+#   - definition
 
 
-  #Program offered at school
-  # Value: college-preparatory, accelerated, research, professional practice, cross-registration, double major, dual enrollment, cooperative, cooperative education, 
-  # ,external degree, english as second language. 
-  # NOTE: not all programs fall under this entity, some are a combination of multiple entities.
-  - program_offered
+#Program offered at school
+# Value: college-preparatory, accelerated, research, professional practice, cross-registration, double major, dual enrollment, cooperative, cooperative education, 
+# ,external degree, english as second language. 
+# NOTE: not all programs fall under this entity, some are a combination of multiple entities.
+- program_offered
 
-  #Service offered at school
-  # Career, 
-  - service_offered
+#Service offered at school
+# Career, 
+- service_offered
 
-  # activities offer at school.
-  # orientation, campus ministry
-  - activity_offered
+# activities offer at school.
+# orientation, campus ministry
+- activity_offered
 
 #Type of unit, value: carnegie
-  - unit_type
+- unit_type
 
 #Value: certificate, diploma, degree.
-  - academic_credential
+- academic_credential
 
 #International, domestic
-  - international_domestic 
+- international_domestic 
 
 #Values: citizen, non_citizen
-  - citizen_non_citizen
+- citizen_non_citizen
 
 
 #Captures entity related to industry experience
 #Value: internship
-  - industry_experience
+- industry_experience
 
-  # Captures calendar system, but also includes calendar system classification such as continuous basis, trimester, semester, and quarter
-  # Value: calendar system, continuous basis, differ by program, trimester, semester, quarter, 
-  - calendar_system
+# Captures calendar system, but also includes calendar system classification such as continuous basis, trimester, semester, and quarter
+# Value: calendar system, continuous basis, differ by program, trimester, semester, quarter, 
+- calendar_system
 
- 
+
 # Im not sure how to group these entities, so they are standalone for now.
-  - contact_hour
-  
-  - distance_learning
+- contact_hour
 
-  - open_admission
-  
+- distance_learning
+
+- open_admission
+
 #Captures the word indebetedness
-  - indebtedness
+- indebtedness
 
 
 # Describes different terms that describe an organization or service
 # Values: service, center, group, program
-  - organizational_term
+- organizational_term
 
 # Captures the word post, for post masters, post bachelor, etc.
-  - post
+- post
 
 
 #Value: for-profit, non-profit
-  - for_profit_non_profit
-  
+- for_profit_non_profit
+
 #Captures the word major.... im not sure if this is the best approach
-  - major
+- major
 
 #Captures any sort of transportation, and the word transportation itself
-  - transportation
+- transportation
 
 #Captures any disability.....
 #Value: visually impaired
-  - disability
+- disability
 
 
 
@@ -400,110 +418,123 @@ entities:
 
 
 
-
-
-
-
-
-
 slots:
-  enrollment_status:
-    type: categorical
-    values:
-      - full-time
-      - part-time
-    influence_conversation: true
+#A list of two elements, start year and end year for the data
+  yearRangeSelected:
+    type: list
+    influence_conversation: false
     mappings:
-    - type: from_entity
-      entity: enrollment_status
+    - type: custom
 
-  student_level:
-    type: categorical
-    values:
-      - undergraduate
-      - graduate
-    influence_conversation: true
+  lastUserQuestionAsked:
+    type: text
+    influence_conversation: false
     mappings:
-     - type: from_entity
-       entity: student_level
+      - type: custom
 
-  undergraduate_grade_level:
-    type: categorical
-    values:
-      - freshman
-      - non-freshman
-    influence_conversation: true
+  lastTopicIntentAsked:
+    type: text
     mappings:
-      - type: from_entity
-        entity: undergraduate_grade_level
+    - type: custom
 
-  degree-goal:
-    type: categorical
-    values:
-      - degree-seeking
-      - non-degree-seeking 
-    influence_conversation: true
-    mappings:
-      - type: from_entity
-        entity: degree-goal
 
-#might use boolean type here
-  is_first_time:
-    type: categorical
-    values:
-      - first-time
-      - non-first-time
-    influence_conversation: true
-    mappings:
-      - type: from_entity
-        entity: is_first_time
 
-  gender:
-    type: categorical
-    values:
-      - male
-      - female
-    influence_conversation: true
-    mappings:
-      - type: from_entity
-        entity: gender
+#   # Not sure if we gonna use these 
+#   enrollment_status:
+#     type: categorical
+#     values:
+#       - full-time
+#       - part-time
+#     influence_conversation: true
+#     mappings:
+#     - type: from_entity
+#       entity: enrollment_status
 
-  race:
-    type: categorical
-    values:
-      - nonresident-alien
-      - hispanic
-      - african-american
-      - white
-      - american-indian
-      - asian
-      - pacific-islander
-      - two-or-more
-      - unknown
-    influence_conversation: true
-    mappings:
-      - type: from_entity
-        entity: race
+#   student_level:
+#     type: categorical
+#     values:
+#       - undergraduate
+#       - graduate
+#     influence_conversation: true
+#     mappings:
+#      - type: from_entity
+#        entity: student_level
+
+#   undergraduate_grade_level:
+#     type: categorical
+#     values:
+#       - freshman
+#       - non-freshman
+#     influence_conversation: true
+#     mappings:
+#       - type: from_entity
+#         entity: undergraduate_grade_level
+
+#   degree-goal:
+#     type: categorical
+#     values:
+#       - degree-seeking
+#       - non-degree-seeking 
+#     influence_conversation: true
+#     mappings:
+#       - type: from_entity
+#         entity: degree-goal
+
+# #might use boolean type here
+#   is_first_time:
+#     type: categorical
+#     values:
+#       - first-time
+#       - non-first-time
+#     influence_conversation: true
+#     mappings:
+#       - type: from_entity
+#         entity: is_first_time
+
+#   gender:
+#     type: categorical
+#     values:
+#       - male
+#       - female
+#     influence_conversation: true
+#     mappings:
+#       - type: from_entity
+#         entity: gender
+
+#   race:
+#     type: categorical
+#     values:
+#       - nonresident-alien
+#       - hispanic
+#       - african-american
+#       - white
+#       - american-indian
+#       - asian
+#       - pacific-islander
+#       - two-or-more
+#       - unknown
+#     influence_conversation: true
+#     mappings:
+#       - type: from_entity
+#         entity: race
 
 
 actions:
 
   - action_query_knowledgebase
-  
+  - action_set_year
+  - action_get_year 
   - action_get_available_options
   - action_ask_more_question
+
   - action_query_cohort
   - action_query_enrollment
-
   - action_query_admission
-
-  - action_query_high_school_units
-
   - action_query_basis_for_selection
-
   - action_query_freshman_profile
-
   - action_query_transfer_admission
+  - action_store_asked_question
+  - action_store_isHelpful_statistic
   
 
   
@@ -536,13 +567,13 @@ responses:
 
 
   utter_sorry_question_not_helpful:
-  - text: "I am sorry it does not help, thak you for your reply, we will update chatbot."
+  - text: "I am sorry it is not helpful. We will update the chatbot."
 
   utter_iamabot:
   - text: "I am a bot, powered by Rasa."
 
   utter_ask_answer_helpful:
-  - text: "Was this answer helpful?"
+  - text: "Did I answer your question?"
 
 session_config:
   session_expiration_time: 60

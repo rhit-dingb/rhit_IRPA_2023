@@ -8,7 +8,8 @@ class UnansweredQuestionDbConnector(ABC):
     def getAllUnansweredQuestionAndAnswer(self):
         pass
 
-    def sortUnansweredQuestionAndAnswerByDate(self):
+    @abstractmethod
+    def getAnsweredQuestionSortedByDate(self):
         pass
 
     @abstractmethod

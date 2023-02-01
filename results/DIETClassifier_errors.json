@@ -1,73 +1,44 @@
 [
   {
-    "text": "What is the graduation rate for students who graduated within five year in 2014 cohort?",
+    "text": "Of the initial 4014 cohort, how many completed the program in more than four years but in five years or less and are recipients of subsidized stafford loan and did not receive a pell grant",
     "entities": [
       {
-        "start": 12,
-        "end": 22,
-        "value": "graduation",
-        "entity": "student_enrollment_result"
+        "start": 7,
+        "end": 14,
+        "value": "initial",
+        "entity": "cohort_initial_final"
       },
       {
-        "start": 23,
-        "end": 27,
-        "value": "percent",
-        "entity": "aggregation"
+        "start": 62,
+        "end": 71,
+        "value": "more than",
+        "entity": "range"
       },
       {
-        "start": 45,
-        "end": 54,
-        "value": "graduation",
-        "entity": "student_enrollment_result"
-      },
-      {
-        "start": 55,
-        "end": 61,
+        "start": 104,
+        "end": 108,
         "value": "within",
         "entity": "range"
       },
       {
-        "start": 62,
-        "end": 71,
-        "value": "5 year",
-        "entity": "years_for_college"
-      },
-      {
-        "start": 75,
-        "end": 86,
-        "value": "2014 cohort",
-        "entity": "cohort_by_year"
+        "start": 117,
+        "end": 188,
+        "value": "stafford-loan",
+        "entity": "aid_status_stafford"
       }
     ],
     "predicted_entities": [
       {
-        "entity": "student_enrollment_result",
-        "start": 12,
-        "end": 22,
-        "value": "graduation",
-        "extractor": "RegexEntityExtractor"
-      },
-      {
-        "entity": "student_enrollment_result",
-        "start": 45,
-        "end": 54,
-        "value": "graduation",
-        "extractor": "RegexEntityExtractor",
-        "processors": [
-          "EntitySynonymMapper"
-        ]
-      },
-      {
         "entity": "range",
-        "start": 55,
-        "end": 61,
-        "value": "within",
+        "start": 62,
+        "end": 71,
+        "value": "more than",
         "extractor": "RegexEntityExtractor"
       },
       {
         "entity": "range",
-        "start": 72,
-        "end": 74,
+        "start": 104,
+        "end": 108,
         "value": "within",
         "extractor": "RegexEntityExtractor",
         "processors": [
@@ -75,58 +46,45 @@
         ]
       },
       {
-        "entity": "aggregation",
-        "start": 23,
-        "end": 27,
-        "value": "percent",
-        "extractor": "RegexEntityExtractor",
-        "processors": [
-          "EntitySynonymMapper"
-        ]
-      },
-      {
-        "entity": "student_enrollment_result",
-        "start": 12,
-        "end": 22,
-        "confidence_entity": 0.9991726279258728,
-        "value": "graduation",
+        "entity": "cohort_initial_final",
+        "start": 7,
+        "end": 14,
+        "confidence_entity": 0.9998277425765991,
+        "value": "initial",
         "extractor": "DIETClassifier"
       },
       {
-        "entity": "aggregation",
-        "start": 23,
-        "end": 27,
-        "confidence_entity": 0.9997994303703308,
-        "value": "percent",
-        "extractor": "DIETClassifier",
-        "processors": [
-          "EntitySynonymMapper"
-        ]
-      },
-      {
-        "entity": "student_enrollment_result",
-        "start": 45,
-        "end": 54,
-        "confidence_entity": 0.9979496598243713,
-        "value": "graduation",
-        "extractor": "DIETClassifier",
-        "processors": [
-          "EntitySynonymMapper"
-        ]
+        "entity": "cohort_by_year",
+        "start": 15,
+        "end": 26,
+        "confidence_entity": 0.4654075503349304,
+        "value": "4014 cohort",
+        "extractor": "DIETClassifier"
       },
       {
         "entity": "range",
-        "start": 55,
-        "end": 61,
-        "confidence_entity": 0.9956657290458679,
-        "value": "within",
+        "start": 62,
+        "end": 71,
+        "confidence_entity": 0.9580298662185669,
+        "value": "more than",
         "extractor": "DIETClassifier"
       },
       {
         "entity": "years_for_college",
-        "start": 62,
-        "end": 71,
-        "confidence_entity": 0.9841032028198242,
+        "start": 72,
+        "end": 82,
+        "confidence_entity": 0.48425668478012085,
+        "value": "4 year",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "years_for_college",
+        "start": 90,
+        "end": 100,
+        "confidence_entity": 0.4800821542739868,
         "value": "5 year",
         "extractor": "DIETClassifier",
         "processors": [
@@ -135,9 +93,9 @@
       },
       {
         "entity": "range",
-        "start": 72,
-        "end": 74,
-        "confidence_entity": 0.6400510668754578,
+        "start": 104,
+        "end": 108,
+        "confidence_entity": 0.6863047480583191,
         "value": "within",
         "extractor": "DIETClassifier",
         "processors": [
@@ -145,11 +103,669 @@
         ]
       },
       {
+        "entity": "aid_status_stafford",
+        "start": 117,
+        "end": 188,
+        "confidence_entity": 0.9719613790512085,
+        "value": "stafford-loan",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Of the initial 4014 cohort, how many completed the program in four years or more but in five years or less and are recipients of subsidized stafford loan and did not receive a pell grant",
+    "entities": [
+      {
+        "start": 7,
+        "end": 14,
+        "value": "initial",
+        "entity": "cohort_initial_final"
+      },
+      {
+        "start": 76,
+        "end": 80,
+        "value": "more than",
+        "entity": "range"
+      },
+      {
+        "start": 102,
+        "end": 106,
+        "value": "within",
+        "entity": "range"
+      },
+      {
+        "start": 115,
+        "end": 186,
+        "value": "stafford-loan",
+        "entity": "aid_status_stafford"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "range",
+        "start": 73,
+        "end": 80,
+        "value": "or more",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "range",
+        "start": 102,
+        "end": 106,
+        "value": "within",
+        "extractor": "RegexEntityExtractor",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "cohort_initial_final",
+        "start": 7,
+        "end": 14,
+        "confidence_entity": 0.999828577041626,
+        "value": "initial",
+        "extractor": "DIETClassifier"
+      },
+      {
         "entity": "cohort_by_year",
-        "start": 75,
-        "end": 86,
-        "confidence_entity": 0.994297444820404,
-        "value": "2014 cohort",
+        "start": 15,
+        "end": 26,
+        "confidence_entity": 0.46076133847236633,
+        "value": "4014 cohort",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "range",
+        "start": 76,
+        "end": 80,
+        "confidence_entity": 0.9784579873085022,
+        "value": "more than",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "range",
+        "start": 102,
+        "end": 106,
+        "confidence_entity": 0.7895501852035522,
+        "value": "within",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "aid_status_stafford",
+        "start": 115,
+        "end": 186,
+        "confidence_entity": 0.9724646210670471,
+        "value": "stafford-loan",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "What is the number of undergraduate students who borrowed a private loan from a bank or lender",
+    "entities": [
+      {
+        "start": 22,
+        "end": 35,
+        "value": "undergraduate",
+        "entity": "student_level"
+      },
+      {
+        "start": 36,
+        "end": 44,
+        "value": "student",
+        "entity": "people"
+      },
+      {
+        "start": 49,
+        "end": 57,
+        "value": "borrowed",
+        "entity": "action"
+      },
+      {
+        "start": 68,
+        "end": 72,
+        "value": "loan",
+        "entity": "other_aid"
+      },
+      {
+        "start": 80,
+        "end": 84,
+        "value": "bank",
+        "entity": "loan_lender"
+      },
+      {
+        "start": 88,
+        "end": 94,
+        "value": "lender",
+        "entity": "loan_lender"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "action",
+        "start": 49,
+        "end": 57,
+        "value": "borrowed",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "people",
+        "start": 36,
+        "end": 44,
+        "value": "student",
+        "extractor": "RegexEntityExtractor",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "student_level",
+        "start": 22,
+        "end": 35,
+        "value": "undergraduate",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "student_level",
+        "start": 22,
+        "end": 35,
+        "confidence_entity": 0.9999908208847046,
+        "value": "undergraduate",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "people",
+        "start": 36,
+        "end": 44,
+        "confidence_entity": 0.9999802112579346,
+        "value": "student",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "action",
+        "start": 49,
+        "end": 57,
+        "confidence_entity": 0.9999362230300903,
+        "value": "borrowed",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "access_level",
+        "start": 60,
+        "end": 67,
+        "confidence_entity": 0.6690699458122253,
+        "value": "private",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "other_aid",
+        "start": 68,
+        "end": 72,
+        "confidence_entity": 0.9997720122337341,
+        "value": "loan",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "loan_lender",
+        "start": 80,
+        "end": 84,
+        "confidence_entity": 0.9935247898101807,
+        "value": "bank",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "loan_lender",
+        "start": 88,
+        "end": 94,
+        "confidence_entity": 0.9948203563690186,
+        "value": "lender",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "What is your institution's policy policy regarding institutional  scholarship and grants aid for undergraduate degree-seeking nonresident aliens?",
+    "entities": [
+      {
+        "start": 34,
+        "end": 40,
+        "value": "policy",
+        "entity": "policy"
+      },
+      {
+        "start": 66,
+        "end": 77,
+        "value": "scholarship",
+        "entity": "scholarship_grants"
+      },
+      {
+        "start": 82,
+        "end": 88,
+        "value": "grant",
+        "entity": "scholarship_grants"
+      },
+      {
+        "start": 97,
+        "end": 110,
+        "value": "undergraduate",
+        "entity": "student_level"
+      },
+      {
+        "start": 111,
+        "end": 125,
+        "value": "degree-seeking",
+        "entity": "degree-goal"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "student_level",
+        "start": 97,
+        "end": 110,
+        "value": "undergraduate",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "degree-goal",
+        "start": 111,
+        "end": 125,
+        "value": "degree-seeking",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "international_domestic",
+        "start": 126,
+        "end": 137,
+        "value": "international",
+        "extractor": "RegexEntityExtractor",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "policy",
+        "start": 27,
+        "end": 33,
+        "confidence_entity": 0.7847496271133423,
+        "value": "policy",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "policy",
+        "start": 34,
+        "end": 40,
+        "confidence_entity": 0.8514041900634766,
+        "value": "policy",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "scholarship_grants",
+        "start": 66,
+        "end": 77,
+        "confidence_entity": 0.9999710321426392,
+        "value": "scholarship",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "scholarship_grants",
+        "start": 82,
+        "end": 88,
+        "confidence_entity": 0.9999630451202393,
+        "value": "grant",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "student_level",
+        "start": 97,
+        "end": 110,
+        "confidence_entity": 0.9999809265136719,
+        "value": "undergraduate",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "degree-goal",
+        "start": 111,
+        "end": 125,
+        "confidence_entity": 0.9991164803504944,
+        "value": "degree-seeking",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "How many non degree-seeking first-time students are enrolled?",
+    "entities": [
+      {
+        "start": 9,
+        "end": 27,
+        "value": "non-degree-seeking",
+        "entity": "degree-goal"
+      },
+      {
+        "start": 28,
+        "end": 38,
+        "value": "first-time",
+        "entity": "is_first_time"
+      },
+      {
+        "start": 52,
+        "end": 60,
+        "value": "enrolled",
+        "entity": "action"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "action",
+        "start": 52,
+        "end": 60,
+        "value": "enrolled",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "people",
+        "start": 39,
+        "end": 47,
+        "value": "student",
+        "extractor": "RegexEntityExtractor",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "is_first_time",
+        "start": 28,
+        "end": 38,
+        "value": "first-time",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "degree-goal",
+        "start": 13,
+        "end": 27,
+        "value": "degree-seeking",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "degree-goal",
+        "start": 9,
+        "end": 38,
+        "confidence_entity": 0.66,
+        "value": "non degree-seeking first-time",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "action",
+        "start": 52,
+        "end": 60,
+        "confidence_entity": 0.9999985694885254,
+        "value": "enrolled",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Percentage of full-time and part-time first year first time freshman students who are age 25 years old",
+    "entities": [
+      {
+        "start": 0,
+        "end": 10,
+        "value": "percent",
+        "entity": "aggregation"
+      },
+      {
+        "start": 14,
+        "end": 23,
+        "value": "full-time",
+        "entity": "enrollment_status"
+      },
+      {
+        "start": 28,
+        "end": 37,
+        "value": "part-time",
+        "entity": "enrollment_status"
+      },
+      {
+        "start": 38,
+        "end": 48,
+        "value": "first-year",
+        "entity": "is_first_year"
+      },
+      {
+        "start": 49,
+        "end": 59,
+        "value": "first-time",
+        "entity": "is_first_time"
+      },
+      {
+        "start": 60,
+        "end": 68,
+        "value": "freshman",
+        "entity": "undergraduate_grade_level"
+      },
+      {
+        "start": 86,
+        "end": 89,
+        "value": "age",
+        "entity": "age"
+      },
+      {
+        "start": 93,
+        "end": 102,
+        "value": "age",
+        "entity": "age"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "aggregation",
+        "start": 0,
+        "end": 10,
+        "value": "percent",
+        "extractor": "RegexEntityExtractor",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "people",
+        "start": 69,
+        "end": 77,
+        "value": "student",
+        "extractor": "RegexEntityExtractor",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "enrollment_status",
+        "start": 14,
+        "end": 23,
+        "value": "full-time",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "enrollment_status",
+        "start": 28,
+        "end": 37,
+        "value": "part-time",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "undergraduate_grade_level",
+        "start": 60,
+        "end": 68,
+        "value": "freshman",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "age",
+        "start": 86,
+        "end": 89,
+        "value": "age",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "aggregation",
+        "start": 0,
+        "end": 10,
+        "confidence_entity": 0.9999802112579346,
+        "value": "percent",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "enrollment_status",
+        "start": 14,
+        "end": 23,
+        "confidence_entity": 0.9999725818634033,
+        "value": "full-time",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "enrollment_status",
+        "start": 28,
+        "end": 37,
+        "confidence_entity": 0.9999269247055054,
+        "value": "part-time",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "is_first_year",
+        "start": 38,
+        "end": 48,
+        "confidence_entity": 0.9992770552635193,
+        "value": "first-year",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "is_first_time",
+        "start": 49,
+        "end": 59,
+        "confidence_entity": 0.9996882677078247,
+        "value": "first-time",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "undergraduate_grade_level",
+        "start": 60,
+        "end": 68,
+        "confidence_entity": 0.9999699592590332,
+        "value": "freshman",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "age",
+        "start": 86,
+        "end": 89,
+        "confidence_entity": 0.9974562525749207,
+        "value": "age",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "age",
+        "start": 90,
+        "end": 92,
+        "confidence_entity": 0.9400393962860107,
+        "value": "25 and older",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "age",
+        "start": 93,
+        "end": 102,
+        "confidence_entity": 0.9589332342147827,
+        "value": "age",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Does Rose-Hulman require statement of good standing to apply for transfer admission?",
+    "entities": [
+      {
+        "start": 17,
+        "end": 24,
+        "value": "require",
+        "entity": "condition"
+      },
+      {
+        "start": 25,
+        "end": 51,
+        "value": "statement of good standing",
+        "entity": "academic_factor"
+      },
+      {
+        "start": 65,
+        "end": 73,
+        "value": "transfer",
+        "entity": "category"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "condition",
+        "start": 17,
+        "end": 24,
+        "value": "require",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "action",
+        "start": 55,
+        "end": 60,
+        "value": "applied",
+        "extractor": "RegexEntityExtractor",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "condition",
+        "start": 17,
+        "end": 51,
+        "confidence_entity": 0.4942752420902252,
+        "value": "require statement of good standing",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "category",
+        "start": 65,
+        "end": 73,
+        "confidence_entity": 0.9999696016311646,
+        "value": "transfer",
         "extractor": "DIETClassifier"
       }
     ]

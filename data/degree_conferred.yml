@@ -23,6 +23,7 @@ nlu:
     - What type of [majors]{"entity":"major", "value": "major"} does rose-hulman offer?
     - What kind of [majors]{"entity":"major", "value": "major"} does rose-hulman offer?
     - What kind of [disciplinary area]{"entity":"major", "value": "major"} does rose-hulman offer?
+    - What kind of [area]{"entity":"major", "value": "major"} of [discipline]{"entity":"major", "value": "major"} does rose-hulman offer?
     - What kind of [discipline]{"entity":"major", "value": "major"} does rose-hulman offer?
 
 - synonym: major
@@ -30,6 +31,7 @@ nlu:
     - discipline
     - majors
     - disciplinary area
+    - area
 
 - synonym: computer science
   examples: |

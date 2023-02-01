@@ -1,69 +1,459 @@
 {
-  "degree-goal": {
-    "precision": 0.9901477832512315,
-    "recall": 0.33612040133779264,
-    "f1-score": 0.50187265917603,
-    "support": 598,
+  "scholarship_grants": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 359,
     "confused_with": {}
   },
-  "student_level": {
+  "defer": {
     "precision": 1.0,
-    "recall": 0.1746031746031746,
-    "f1-score": 0.29729729729729726,
-    "support": 378,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 4,
+    "confused_with": {}
+  },
+  "aid_status_stafford": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 207,
     "confused_with": {
-      "student_enrollment_result": 64
+      "action": 8
     }
   },
-  "aid_status.pell": {
+  "is_first_time": {
+    "precision": 0.9624413145539906,
+    "recall": 0.3068862275449102,
+    "f1-score": 0.4653802497162316,
+    "support": 668,
+    "confused_with": {}
+  },
+  "enrollment_status": {
+    "precision": 0.9968944099378882,
+    "recall": 1.0,
+    "f1-score": 0.9984447900466563,
+    "support": 642,
+    "confused_with": {}
+  },
+  "other_aid": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 70,
+    "confused_with": {}
+  },
+  "international_domestic": {
+    "precision": 0.9705882352941176,
+    "recall": 0.7333333333333333,
+    "f1-score": 0.8354430379746834,
+    "support": 45,
+    "confused_with": {}
+  },
+  "essay": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 2,
+    "confused_with": {}
+  },
+  "aid_status_none": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 48,
+    "confused_with": {}
+  },
+  "unit_of_measure": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 18,
+    "confused_with": {}
+  },
+  "online": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 6,
+    "confused_with": {}
+  },
+  "military_branch": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 20,
+    "confused_with": {}
+  },
+  "not_modifier_pell": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 252,
+    "confused_with": {
+      "action": 8
+    }
+  },
+  "people": {
+    "precision": 0.1450980392156863,
+    "recall": 0.8740157480314961,
+    "f1-score": 0.2488789237668162,
+    "support": 381,
+    "confused_with": {}
+  },
+  "indebtedness": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 1,
+    "confused_with": {}
+  },
+  "unit_type": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 1,
+    "confused_with": {}
+  },
+  "undergraduate_grade_level": {
+    "precision": 0.9912434325744308,
+    "recall": 0.7173637515842839,
+    "f1-score": 0.8323529411764706,
+    "support": 789,
+    "confused_with": {
+      "people": 1
+    }
+  },
+  "waiting-list": {
+    "precision": 1.0,
+    "recall": 0.36363636363636365,
+    "f1-score": 0.5333333333333333,
+    "support": 11,
+    "confused_with": {}
+  },
+  "submitted": {
+    "precision": 0.92,
+    "recall": 1.0,
+    "f1-score": 0.9583333333333334,
+    "support": 23,
+    "confused_with": {}
+  },
+  "date": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 25,
+    "confused_with": {}
+  },
+  "money": {
+    "precision": 1.0,
+    "recall": 0.41379310344827586,
+    "f1-score": 0.5853658536585366,
+    "support": 58,
+    "confused_with": {}
+  },
+  "organizational_term": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 24,
+    "confused_with": {}
+  },
+  "loan_lender": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 10,
+    "confused_with": {}
+  },
+  "subject": {
+    "precision": 0.8695652173913043,
+    "recall": 0.5714285714285714,
+    "f1-score": 0.689655172413793,
+    "support": 70,
+    "confused_with": {}
+  },
+  "post": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 2,
+    "confused_with": {}
+  },
+  "financial_aid_degree_met": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 12,
+    "confused_with": {}
+  },
+  "education_level": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 173,
+    "confused_with": {}
+  },
+  "disability": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 2,
+    "confused_with": {}
+  },
+  "not_modifier_stafford": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 252,
+    "confused_with": {
+      "action": 8
+    }
+  },
+  "range": {
+    "precision": 0.4444444444444444,
+    "recall": 0.07225806451612904,
+    "f1-score": 0.12430632630410655,
+    "support": 775,
+    "confused_with": {}
+  },
+  "citizen_non_citizen": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 25,
+    "confused_with": {}
+  },
+  "policy": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 1,
+    "confused_with": {}
+  },
+  "school_supply": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 6,
+    "confused_with": {}
+  },
+  "academic_term": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 56,
+    "confused_with": {}
+  },
+  "academic_credit": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 216,
+    "confused_with": {}
+  },
+  "financial_aid_type": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 243,
+    "confused_with": {}
+  },
+  "self-help_aid": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 153,
+    "confused_with": {}
+  },
+  "housing": {
     "precision": 0.0,
     "recall": 0.0,
     "f1-score": 0.0,
     "support": 13,
-    "confused_with": {
-      "aid_status": 3
-    }
-  },
-  "test_component": {
-    "precision": 0.9875,
-    "recall": 1.0,
-    "f1-score": 0.9937106918238994,
-    "support": 395,
     "confused_with": {}
   },
-  "waiting-list-detail": {
+  "race": {
+    "precision": 1.0,
+    "recall": 0.16666666666666666,
+    "f1-score": 0.2857142857142857,
+    "support": 42,
+    "confused_with": {
+      "range": 7
+    }
+  },
+  "access_level": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 15,
+    "confused_with": {}
+  },
+  "need_non_need_base_aid": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 578,
+    "confused_with": {}
+  },
+  "is_first_year": {
+    "precision": 0.9649122807017544,
+    "recall": 0.3183791606367583,
+    "f1-score": 0.47878128400435255,
+    "support": 691,
+    "confused_with": {}
+  },
+  "student_enrollment_result": {
+    "precision": 0.4,
+    "recall": 1.0,
+    "f1-score": 0.5714285714285715,
+    "support": 4,
+    "confused_with": {}
+  },
+  "program_offered": {
+    "precision": 1.0,
+    "recall": 0.30952380952380953,
+    "f1-score": 0.4727272727272727,
+    "support": 42,
+    "confused_with": {
+      "subject": 1
+    }
+  },
+  "section_subsection": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 36,
+    "confused_with": {}
+  },
+  "exemptions": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 18,
+    "confused_with": {}
+  },
+  "aid_status_pell.pell": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 12,
+    "confused_with": {}
+  },
+  "test_component": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 399,
+    "confused_with": {
+      "subject": 5
+    }
+  },
+  "placement": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 6,
+    "confused_with": {}
+  },
+  "student_level": {
+    "precision": 0.9904306220095693,
+    "recall": 0.8601108033240997,
+    "f1-score": 0.9206819866567828,
+    "support": 722,
+    "confused_with": {}
+  },
+  "rotc": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 56,
+    "confused_with": {}
+  },
+  "degree_level": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 129,
+    "confused_with": {}
+  },
+  "non_academic_factor": {
+    "precision": 0.9539473684210527,
+    "recall": 0.7795698924731183,
+    "f1-score": 0.8579881656804734,
+    "support": 186,
+    "confused_with": {}
+  },
+  "aid_status_pell": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 158,
+    "confused_with": {
+      "action": 8
+    }
+  },
+  "time": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 41,
+    "confused_with": {}
+  },
+  "action": {
+    "precision": 0.95937318630296,
+    "recall": 0.9856887298747764,
+    "f1-score": 0.9723529411764706,
+    "support": 1677,
+    "confused_with": {}
+  },
+  "size": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 5,
+    "confused_with": {}
+  },
+  "living_cost": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 21,
+    "confused_with": {}
+  },
+  "category": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 355,
+    "confused_with": {}
+  },
+  "financial_aid_term": {
+    "precision": 1.0,
+    "recall": 0.8181818181818182,
+    "f1-score": 0.9,
+    "support": 33,
+    "confused_with": {}
+  },
+  "activity_offered": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 3,
+    "confused_with": {}
+  },
+  "distance_learning": {
     "precision": 0.0,
     "recall": 0.0,
     "f1-score": 0.0,
     "support": 4,
     "confused_with": {}
   },
-  "undergraduate_grade_level": {
-    "precision": 0.9907235621521335,
-    "recall": 0.7072847682119205,
-    "f1-score": 0.8253477588871716,
-    "support": 755,
-    "confused_with": {}
-  },
-  "aid_status": {
-    "precision": 0.4864864864864865,
-    "recall": 0.375,
-    "f1-score": 0.42352941176470593,
-    "support": 48,
-    "confused_with": {}
-  },
-  "student_enrollment_result": {
-    "precision": 0.27358490566037735,
-    "recall": 1.0,
-    "f1-score": 0.4296296296296296,
-    "support": 29,
-    "confused_with": {}
-  },
-  "is_first_year": {
-    "precision": 0.976303317535545,
-    "recall": 0.3306581059390048,
-    "f1-score": 0.4940047961630695,
-    "support": 623,
+  "early-admission": {
+    "precision": 1.0,
+    "recall": 0.9411764705882353,
+    "f1-score": 0.9696969696969697,
+    "support": 17,
     "confused_with": {}
   },
   "year": {
@@ -73,41 +463,83 @@
     "support": 3,
     "confused_with": {}
   },
-  "gender": {
-    "precision": 1.0,
-    "recall": 0.2681912681912682,
-    "f1-score": 0.42295081967213116,
-    "support": 481,
-    "confused_with": {}
-  },
-  "subject": {
-    "precision": 0.7777777777777778,
-    "recall": 0.6885245901639344,
-    "f1-score": 0.7304347826086957,
-    "support": 61,
-    "confused_with": {}
-  },
-  "race": {
+  "net_price_calculator": {
     "precision": 0.0,
     "recall": 0.0,
     "f1-score": 0.0,
-    "support": 27,
+    "support": 9,
+    "confused_with": {}
+  },
+  "for_profit_non_profit": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 7,
+    "confused_with": {}
+  },
+  "service_offered": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 26,
     "confused_with": {
-      "non_academic_factor": 2
+      "people": 1
     }
   },
-  "completion-requirement": {
-    "precision": 0.0,
-    "recall": 0.0,
-    "f1-score": 0.0,
-    "support": 6,
+  "gender": {
+    "precision": 1.0,
+    "recall": 0.27425373134328357,
+    "f1-score": 0.4304538799414348,
+    "support": 536,
     "confused_with": {}
   },
-  "year.from": {
+  "type": {
     "precision": 0.0,
     "recall": 0.0,
     "f1-score": 0.0,
-    "support": 12,
+    "support": 4,
+    "confused_with": {}
+  },
+  "form": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 3,
+    "confused_with": {}
+  },
+  "age": {
+    "precision": 1.0,
+    "recall": 0.7971014492753623,
+    "f1-score": 0.8870967741935484,
+    "support": 69,
+    "confused_with": {}
+  },
+  "industry_experience": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 1,
+    "confused_with": {}
+  },
+  "standarized_test": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 406,
+    "confused_with": {}
+  },
+  "transportation": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 1,
+    "confused_with": {}
+  },
+  "academic_process": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 168,
     "confused_with": {}
   },
   "class_rank": {
@@ -117,186 +549,155 @@
     "support": 10,
     "confused_with": {}
   },
-  "standarized_test": {
-    "precision": 0.0,
-    "recall": 0.0,
-    "f1-score": 0.0,
-    "support": 399,
-    "confused_with": {}
-  },
-  "aid_status.stafford": {
-    "precision": 0.0,
-    "recall": 0.0,
-    "f1-score": 0.0,
-    "support": 31,
-    "confused_with": {
-      "aid_status": 8
-    }
-  },
-  "range": {
-    "precision": 0.05140961857379768,
-    "recall": 0.6595744680851063,
-    "f1-score": 0.09538461538461539,
-    "support": 47,
-    "confused_with": {}
-  },
-  "cohort_by_year": {
-    "precision": 0.0,
-    "recall": 0.0,
-    "f1-score": 0.0,
-    "support": 85,
-    "confused_with": {}
-  },
-  "exemptions": {
-    "precision": 0.0,
-    "recall": 0.0,
-    "f1-score": 0.0,
-    "support": 29,
-    "confused_with": {
-      "student_enrollment_result": 1
-    }
-  },
-  "waiting-list": {
-    "precision": 0.0,
-    "recall": 0.0,
-    "f1-score": 0.0,
-    "support": 6,
-    "confused_with": {}
-  },
-  "non_academic_factor": {
-    "precision": 0.9785714285714285,
-    "recall": 0.7611111111111111,
-    "f1-score": 0.8562499999999998,
-    "support": 180,
-    "confused_with": {
-      "range": 3
-    }
-  },
-  "is_first_time": {
-    "precision": 0.976303317535545,
-    "recall": 0.33495934959349594,
-    "f1-score": 0.49878934624697335,
-    "support": 615,
-    "confused_with": {}
-  },
-  "aggregation": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 450,
-    "confused_with": {}
-  },
-  "years_for_college": {
-    "precision": 1.0,
-    "recall": 0.8235294117647058,
-    "f1-score": 0.9032258064516129,
-    "support": 68,
-    "confused_with": {}
-  },
-  "enrollment_status": {
-    "precision": 1.0,
-    "recall": 0.33251833740831294,
-    "f1-score": 0.4990825688073394,
-    "support": 409,
-    "confused_with": {}
-  },
-  "action": {
-    "precision": 0.0,
-    "recall": 0.0,
-    "f1-score": 0.0,
-    "support": 12,
-    "confused_with": {}
-  },
   "cohort_initial_final": {
     "precision": 0.0,
     "recall": 0.0,
     "f1-score": 0.0,
-    "support": 8,
+    "support": 153,
     "confused_with": {}
   },
-  "academic_factor": {
-    "precision": 0.9821428571428571,
-    "recall": 0.9565217391304348,
-    "f1-score": 0.9691629955947136,
-    "support": 115,
-    "confused_with": {
-      "test_component": 3
-    }
-  },
-  "unit_level": {
-    "precision": 0.0,
-    "recall": 0.0,
-    "f1-score": 0.0,
-    "support": 95,
-    "confused_with": {
-      "subject": 10
-    }
-  },
-  "test_score_range": {
-    "precision": 1.0,
-    "recall": 0.9860529986052998,
-    "f1-score": 0.9929775280898877,
-    "support": 717,
-    "confused_with": {
-      "range": 10
-    }
-  },
-  "gpa_range": {
-    "precision": 1.0,
-    "recall": 0.9492753623188406,
-    "f1-score": 0.9739776951672863,
-    "support": 138,
-    "confused_with": {
-      "range": 4
-    }
-  },
-  "policy": {
+  "open_admission": {
     "precision": 0.0,
     "recall": 0.0,
     "f1-score": 0.0,
     "support": 2,
     "confused_with": {}
   },
-  "test_percentile": {
+  "methodology": {
     "precision": 0.0,
     "recall": 0.0,
     "f1-score": 0.0,
+    "support": 1,
+    "confused_with": {}
+  },
+  "college_relation": {
+    "precision": 1.0,
+    "recall": 0.8181818181818182,
+    "f1-score": 0.9,
+    "support": 11,
+    "confused_with": {}
+  },
+  "contact_hour": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 4,
+    "confused_with": {}
+  },
+  "other": {
+    "precision": 0.8571428571428571,
+    "recall": 0.9,
+    "f1-score": 0.8780487804878048,
+    "support": 20,
+    "confused_with": {
+      "enrollment_status": 2
+    }
+  },
+  "admission_decision_date": {
+    "precision": 0.9736842105263158,
+    "recall": 0.6166666666666667,
+    "f1-score": 0.7551020408163265,
+    "support": 60,
+    "confused_with": {}
+  },
+  "aggregation": {
+    "precision": 0.9671814671814671,
+    "recall": 0.893048128342246,
+    "f1-score": 0.9286376274328082,
+    "support": 561,
+    "confused_with": {}
+  },
+  "condition": {
+    "precision": 0.6486486486486487,
+    "recall": 0.9320388349514563,
+    "f1-score": 0.7649402390438248,
+    "support": 103,
+    "confused_with": {}
+  },
+  "academic_credential": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 15,
+    "confused_with": {
+      "action": 1
+    }
+  },
+  "calendar_system": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 30,
+    "confused_with": {}
+  },
+  "way_of_contact": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 22,
+    "confused_with": {}
+  },
+  "deadline": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 1,
+    "confused_with": {}
+  },
+  "degree-goal": {
+    "precision": 0.9951219512195122,
+    "recall": 0.3383084577114428,
+    "f1-score": 0.504950495049505,
+    "support": 603,
+    "confused_with": {}
+  },
+  "completion-requirement": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 3,
+    "confused_with": {}
+  },
+  "academic_factor": {
+    "precision": 0.96,
+    "recall": 0.676056338028169,
+    "f1-score": 0.7933884297520661,
+    "support": 213,
+    "confused_with": {
+      "aggregation": 16
+    }
+  },
+  "major": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 12,
+    "confused_with": {}
+  },
+  "test_percentile": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
     "support": 64,
     "confused_with": {}
   },
-  "year.to": {
-    "precision": 0.0,
-    "recall": 0.0,
-    "f1-score": 0.0,
-    "support": 7,
-    "confused_with": {}
-  },
-  "submitted": {
-    "precision": 1.0,
-    "recall": 0.782608695652174,
-    "f1-score": 0.878048780487805,
-    "support": 23,
-    "confused_with": {
-      "range": 5
-    }
-  },
   "micro avg": {
-    "precision": 0.8359248085402645,
-    "recall": 0.5187959095491862,
-    "f1-score": 0.6402417348027017,
-    "support": 6943
+    "precision": 0.7393790849673203,
+    "recall": 0.45140373378936866,
+    "f1-score": 0.5605698610742412,
+    "support": 14034
   },
   "macro avg": {
-    "precision": 0.44516083931586975,
-    "recall": 0.33693334546261017,
-    "f1-score": 0.345558842790618,
-    "support": 6943
+    "precision": 0.31883742218687233,
+    "recall": 0.2497624248860967,
+    "f1-score": 0.26110089048432406,
+    "support": 14034
   },
   "weighted avg": {
-    "precision": 0.8603004417060786,
-    "recall": 0.5187959095491862,
-    "f1-score": 0.6014160105422592,
-    "support": 6943
+    "precision": 0.6099965305733418,
+    "recall": 0.45140373378936866,
+    "f1-score": 0.48051455043969704,
+    "support": 14034
   },
-  "accuracy": 0.7947527644481536
+  "accuracy": 0.7165363385464582
 }

@@ -7,17 +7,18 @@ nlu:
   examples: |
     - Tell me about Rose-Hulman
     - What is Rose-Hulman's mailing [address]{"entity":"way_of_contact", "value": "address"}?
+    - What [type](type) of [college]{"entity": "education_level", "value": "college"} is rose?
     - [where]{"entity":"way_of_contact", "value": "address"} is rose-hulman?
     - [where]{"entity":"way_of_contact", "value": "address"} is Rose-Hulman [located]{"entity":"way_of_contact", "value": "address"}?
-    - What is Rose-Hulman [admissions]{"entity":"academic_process", "value": "admission"} [phone]{"entity":"way_of_contact", "value": "phone"} [number]{"entity":"way_of_contact", "value": "phone"} ?
-    - What is Rose-Hulman [admissions]{"entity":"academic_process", "value": "admission"} [phone]{"entity":"way_of_contact", "value": "phone"} ?
-    - What is Rose-Hulman [admissions]{"entity":"academic_process", "value": "admission"} [phone]{"entity":"way_of_contact", "value": "phone"} ?
-    - What is Rose-Hulman [admissions]{"entity":"academic_process", "value": "admission"} [number]{"entity":"way_of_contact", "value": "phone"} ?
-    - What is Rose-Hulman [admissions]{"entity":"academic_process", "value": "admission"} [fax]{"entity":"way_of_contact", "value": "fax"} [number]{"entity":"way_of_contact", "value": "phone"}? 
+    - What is Rose-Hulman admissions [phone]{"entity":"way_of_contact", "value": "phone"} [number]{"entity":"way_of_contact", "value": "phone"} ?
+    - What is Rose-Hulman admissions [phone]{"entity":"way_of_contact", "value": "phone"} ?
+    - What is Rose-Hulman admissions [phone]{"entity":"way_of_contact", "value": "phone"} ?
+    - What is Rose-Hulman admissions [number]{"entity":"way_of_contact", "value": "phone"} ?
+    - What is Rose-Hulman admissions [fax]{"entity":"way_of_contact", "value": "fax"} [number]{"entity":"way_of_contact", "value": "phone"}? 
 
     - What is Rose-Hulman's www home page [address]{"entity":"way_of_contact", "value": "address"} / [website]{"entity":"way_of_contact", "value": "website"}?
-    - What is Rose-Hulman [admissions]{"entity":"academic_process", "value": "admission"} toll free [number]{"entity":"way_of_contact", "value": "number"}?
-    - What is Rose-Hulman [admissions]{"entity":"academic_process", "value": "admission"} office mailing [address]{"entity":"way_of_contact", "value": "address"}?
+    - What is Rose-Hulman admissions toll free [number]{"entity":"way_of_contact", "value": "number"}?
+    - What is Rose-Hulman admissions office mailing [address]{"entity":"way_of_contact", "value": "address"}?
 
     - What is Rose-Hulman's [email address]{"entity": "way_of_contact", "value":"email"} ?
     - What is Rose-Hulman's [email]{"entity": "way_of_contact", "value":"email"} ?

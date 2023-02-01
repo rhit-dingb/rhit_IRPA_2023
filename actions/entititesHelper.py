@@ -30,6 +30,7 @@ def getEntityValueHelper(entities):
 
 
 def findEntityHelper(entities, key, by="entity"):
+    
     entitiesFound = findMultipleSameEntitiesHelper(entities, key, by)
     if len(entitiesFound) == 0:
         return None
