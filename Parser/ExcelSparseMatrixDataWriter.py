@@ -6,6 +6,7 @@ from Data_Ingestion.SparseMatrix import SparseMatrix
 import pandas as pd
 from openpyxl import load_workbook
 
+# This writer currently only writes to existing excel file instead of creating one.
 class ExcelSparseMatrixDataWriter(SparseMatrixDataWriter):
     def __init__(self, excelPath):
         self.excelPath = excelPath

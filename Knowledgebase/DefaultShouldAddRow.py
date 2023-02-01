@@ -45,8 +45,8 @@ class DefaultShouldAddRowStrategy(ShouldAddRowInterface):
                     temp_count = temp_count + 1
 
         if temp_count == len(uniqueEntities):
-            print("ACCEPT ROW")
-            print(row)
+            # print("ACCEPT ROW")
+            # print(row)
             return uniqueEntities
         else:
             return []

@@ -1,11 +1,14 @@
 
 from abc import ABC, abstractmethod
-class UnansweredQuestion(ABC):
+class UnansweredQuestionDbConnector(ABC):
     def __init__(self):
         pass
 
     @abstractmethod
     def getAllUnansweredQuestionAndAnswer(self):
+        pass
+
+    def sortUnansweredQuestionAndAnswerByDate(self):
         pass
 
     @abstractmethod

@@ -10,23 +10,27 @@ class Doc2VecModel(Model):
         super().__init__(corpus, modelPath)
         self.vector_size = vector_size
 
-    def train(self, corpus : Corpus):
-        index = 0
-        documents = []
-        for doc in corpus: 
-            document = TaggedDocument(doc, [index])
-            documents.append(document)
+    
+    def initializeModel(self):
+        self.model = Doc2Vec(vector_size=self.vector_size, window=2, min_count=1, workers=4)
+       
 
+    def _train(self, documents, update = False):
+        index = 0
+        taggedDocuments = []
+        for doc in documents: 
+            document = TaggedDocument(doc, [index])
+            taggedDocuments.append(document)
             index = index+1
 
-        model = Doc2Vec( vector_size=self.vector_size, window=2, min_count=1, workers=4)
-        model.build_vocab(documents)
-        model.train(documents, epochs=100, total_examples=model.corpus_count)
+        # model = Doc2Vec( vector_size=self.vector_size, window=2, min_count=1, workers=4)
 
-        self.model =model
+        self.model.build_vocab(taggedDocuments, update= update)
+        self.model.train(taggedDocuments, epochs=50, total_examples=len(taggedDocuments))
+        self.saveModel()
         
-    def fit(self, corpus : Corpus):
-        vectors = [self.model.infer_vector(doc) for doc in corpus]
+    def _fit(self, documents):
+        vectors = [self.model.infer_vector(doc) for doc in documents]
         # print(vectors)
         return vectors
 
@@ -36,8 +40,4 @@ class Doc2VecModel(Model):
     def loadModel(self):
         self.model = Doc2Vec.load(self.modelPath)
 
-
-    # def saveModel(path):
-    #     pass
-    
    
