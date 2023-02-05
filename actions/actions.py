@@ -25,13 +25,10 @@ from rasa_sdk.events import SlotSet
 from actions.ResponseType import ResponseType
 from actions.constants import LAST_TOPIC_INTENT_SLOT_NAME, LAST_USER_QUESTION_ASKED
 from UnansweredQuestions.UnansweredQuestionAnswerEngine import UnansweredQuestionAnswerEngine 
-
+from backendAPI.general_api import unansweredQuestionAnswerEngine
 # ExcelDataManager("./CDSData", [ENROLLMENT_INTENT, COHORT_INTENT, ADMISSION_INTENT, HIGH_SCHOOL_UNITS_INTENT, BASIS_FOR_SELECTION_INTENT, FRESHMAN_PROFILE_INTENT, TRANSFER_ADMISSION_INTENT, STUDENT_LIFE_INTENT])
 mongoDataManager = MongoDataManager()
 knowledgeBase = SparseMatrixKnowledgeBase(mongoDataManager)
-unansweredQuestionAnswerEngine = UnansweredQuestionAnswerEngine()
-
-
 numberEntityExtractor = NumberEntityExtractor()
 
 

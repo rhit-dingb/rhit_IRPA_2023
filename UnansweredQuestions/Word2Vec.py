@@ -32,6 +32,9 @@ class Word2VecModel(Model):
     def _fit(self, corpus):
         vectors = []
         for doc in corpus:
+            if doc =="":
+                continue
+            
             newDoc = []
             for word in doc:
                 if not word in self.model.index_to_key:

@@ -51,7 +51,7 @@ stories:
     - or:
       - intent: general_info
       - intent: enrollment
-      - intent: sat_act_policies
+      - intent: sat_act_policy
       - intent: faculty_and_class_size
       - intent: annual_expense
       - intent: academic_offering_and_policy
@@ -74,7 +74,7 @@ stories:
     - or:
       - intent: general_info
       - intent: enrollment
-      - intent: sat_act_policies
+      - intent: sat_act_policy
       - intent: faculty_and_class_size
       - intent: annual_expense
       - intent: academic_offering_and_policy

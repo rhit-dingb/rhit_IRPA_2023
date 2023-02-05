@@ -11,10 +11,10 @@ import aiohttp
 import asyncio
 from datetime import datetime, date
 
-from DataType import DataType
+
 
 sys.path.append('../')
-
+from backendAPI.DataType import DataType
 from fastapi import FastAPI, Request, HTTPException
 from Parser.RasaCommunicator import RasaCommunicator
 from DataManager.constants import DEFINITION
@@ -28,9 +28,9 @@ from Parser.DataLoader import DataLoader
 from DataManager.constants import DATABASE_PRENAME, MONGO_DB_CONNECTION_STRING
 from fastapi.middleware.cors import CORSMiddleware
 from DataManager.constants import ANNUAL_DATA_REGEX_PATTERN, DEFINITION_DATA_REGEX_PATTERN
+from UnansweredQuestions.UnansweredQuestionAnswerEngine import UnansweredQuestionAnswerEngine
 
-
-
+unansweredQuestionAnswerEngine = UnansweredQuestionAnswerEngine("../UnansweredQuestions")
 mongoDbDataManager = MongoDataManager()
 rasaCommunicator = RasaCommunicator()
 client = MongoClient(MONGO_DB_CONNECTION_STRING)
@@ -188,6 +188,7 @@ async def handle_post_answer(id: str, answer: str):
     boo1 = questions_collection.update_one({'_id': ObjectId(id)}, {'$set': {'is_addressed': True}})
     boo2 = questions_collection.update_one({'_id': ObjectId(id)}, {'$set': {'answer': answer}})
     if boo1 and boo2:
+        unansweredQuestionAnswerEngine.update()
         return {'message': 'update successfull'}
     else:
         return {'message': 'errors occurred while updating'}
@@ -198,6 +199,7 @@ async def handle_delete_answer(id: str):
     questions_collection = db.unans_question
     boo1 = questions_collection.delete_one({'_id': ObjectId(id)})
     if boo1:
+        unansweredQuestionAnswerEngine.update()
         return {'message': 'question is successfull deleted'}
     else:
         return {'message': 'question maybe not found and issue occurred'}
@@ -212,6 +214,7 @@ async def handle_add_question(content: str):
         "is_addressed": False,
         "answer": None})
     if boo1:
+        unansweredQuestionAnswerEngine.update()
         return {'message': 'question is successfull added'}
     else:
         return {'message': 'errors occurred during question add'}

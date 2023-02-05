@@ -17,7 +17,7 @@ intents:
   - student_life
   - financial_aid
   - faculty_and_class_size
-  - sat_act_policies
+  - sat_act_policy
   - general_info
   - definition
   - annual_expense
@@ -83,7 +83,7 @@ entities:
 #race/ethnicity, value: minority, african american, unknown, american indian, white, hispanic,  pacific-islander, two-or-more
 - race
 
-#Capture many different verbs. Values: applied addmitted, determined, awarded, met, borrowed, designed, offered, change
+#Capture many different verbs. Values: applied addmitted, determined, awarded, met, borrowed, designed, offered, change, submitted
 - action
 
 
@@ -124,7 +124,7 @@ entities:
 # Value: subject english, mathematics, science, liberal arts.
 - subject
 
-# This entity captures whether required or recommended is mentioned. Used in high school units required/recommended and transfer admission required items.
+# This entity captures whether required or recommended or optional is mentioned. 
 - condition
 
 #Academic factor for basis of selection for admissions such as Rigor of secondary school record, Class rank etc, academic GPA etc.
@@ -159,8 +159,8 @@ entities:
 - class_rank
 
 
-#Whether student submitted something, such as gpa, class rank, sat score
-- submitted
+# #Whether student submitted something, such as gpa, class rank, sat score
+# - submitted
 
 #Whether rose-hulman enroll transfer students
 # Value: enroll transfer student
@@ -557,7 +557,7 @@ responses:
   - text: "Great! Do you have anymore questions?"
 
   utter_ask_whats_the_question:
-  - text: "I am glad to help you with that, whats the question?"
+  - text: "I am glad to help you with that. What is the question?"
 
   utter_no_more_question:
   - text: "Have a good day!"

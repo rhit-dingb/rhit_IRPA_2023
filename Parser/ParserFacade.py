@@ -9,7 +9,6 @@ from Parser.DataWriter import DataWriter
 from Parser.RasaCommunicator import RasaCommunicator
 from Parser.QuestionAnswer import QuestionAnswer
 from Parser.DataLoader import DataLoader
-from Parser.ExcelSparseMatrixDataWriter import ExcelSparseMatrixDataWriter
 from Data_Ingestion.SparseMatrix import SparseMatrix
 
 from actions.entititesHelper import filterEntities

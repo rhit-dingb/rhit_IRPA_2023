@@ -116,8 +116,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
                 entities = removeDuplicatedEntities(entities)
                 searchResult.setEntitiesForRealQuestion(entities)
            
-            
-
+        
     
     # STILL WORK IN PROGRESS
     async def calculatePercentages(self, searchResults : List[SearchResult], sparseMatrix : SparseMatrix, percentageEntityDetected : Dict[str, str]) -> List[str]:

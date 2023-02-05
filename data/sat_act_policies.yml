@@ -1,7 +1,7 @@
 version: "3.1"
 
 nlu:
-- intent: sat_act_policies
+- intent: sat_act_policy
   examples: |
     - Does Rose-Hulman make use of [ACT]{"entity":"standarized_test", "value": "act"} and [SAT]{"entity":"standarized_test", "value": "sat"} or [ACT]{"entity":"standarized_test", "value": "act"} and [SAT]{"entity":"standarized_test", "value": "sat"} subject test in admission decisions for first-time first-year degree-seeking applicants? If yes, please state how the tests will be used.
     - Does Rose-Hulman use [ACT]{"entity":"standarized_test", "value": "act"} or [SAT]{"entity":"standarized_test", "value": "sat"} test scores for academic advising?
@@ -11,6 +11,9 @@ nlu:
     - Does Rose-Hulman use [advanced placement]{"entity": "placement", "value":"advanced placement"} test?
     - Does Rose-Hulman use [ap]{"entity": "placement", "value": "advanced placement"} test?
     - Does Rose-Hulman use [institutional exam]{"entity":"placement", "value":"institutional exam"}? 
+    - Are test scores [optional]{"entity":"condition", "value": "optional"}?
+    - Are test scores really [optional]{"entity":"condition", "value": "optional"}?
+    - Really, I don't need to submit test scores?
 
 
 

@@ -48,15 +48,15 @@ nlu:
 
 
 
-- synonym: essay
-  examples: |
-    - personal statement
-    - essays
-    - essay/personal statement
-    - essay or personal statement
-    - essays or personal statements
-    - personal statement or essay
-    - personal statement/essays
+# - synonym: essay
+#   examples: |
+#     - personal statement
+#     - essays
+#     - essay/personal statement
+#     - essay or personal statement
+#     - essays or personal statements
+#     - personal statement or essay
+#     - personal statement/essays
 
 # I purposely left out recommendation because recommendation goes into the academic factor entity, interpreted as recommendation letter
 - lookup: condition 
