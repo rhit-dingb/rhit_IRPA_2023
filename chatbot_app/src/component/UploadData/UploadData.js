@@ -40,7 +40,8 @@ function UploadData() {
   const uploadDataRef = useRef(null)
   const uploadDefinitionRef = useRef(null)
 
-  const [dataToUpload, setDataToUpload] = useState({})
+  // const [dataToUpload, setDataToUpload] = useState({})
+
   const [dataList, setDataList] = useState([])
   const [definitionDataAvailable,  setDefinition] = useState("")
 
@@ -54,6 +55,8 @@ function UploadData() {
   const [showNotification, setShowNotification] = useState(false)
   const [notificationBannerColor, setNotificationColor ] = useState("error")
   const [isUploading, setIsUploading] = useState(false)
+
+ 
 
 
   useEffect(() => {
