@@ -79,7 +79,7 @@ def changeEntityValueByRole(entities, targetEntity, targetRole, newValue):
     
 
 def createEntityObj(entityValue, entityLabel="none",  entityRole=None):
-        res = {"entity": entityLabel, "value": entityValue}
+        res = {"entity": entityLabel, "value": str(entityValue)}
         if (entityRole):
             res["role"] = entityRole
 

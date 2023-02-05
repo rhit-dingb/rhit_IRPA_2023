@@ -14,20 +14,27 @@ import sys
 import os
 
 
+
 class UnansweredQuestionAnswerEngine:
     # Basepath: ./UnansweredQuestions, or ../UnansweredQuestions
-    def __init__(self, basePath : str):
+    def __init__(self):
         self.modelToUse = None
         self.mongoDBUnansweredQuestionConnector = MongoDBUnansweredQuestionConnector()
+        basePath = self.determinePath()
         self.corpus = Corpus(self.mongoDBUnansweredQuestionConnector, basePath +"/dictionaries/dictionary")
         self.model = Word2VecModel(self.corpus, basePath +"/savedModels/glove_vector_300")
-        # self.model = TFIDFModel(self.corpus, "./savedModels/tfidf.tfidf")
+        #self.model = TFIDFModel(self.corpus, "./savedModels/tfidf.tfidf")
         self.model.initializeModel()
         self.documentRetriever = DocumentIndexRetriever(self.corpus, self.model, basePath +"/indexes/unansweredQuestion.index")
         self.documentRetriever.update()
-        self.confidenceThreshold = 0.7
+        self.confidenceThreshold = 0.8
        # self.documentRetriever= DocumentRetrieverByVector(self.corpus, self.wordToVecModel)
-     
+    def determinePath(self):
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        base_dir = os.path.dirname(current_dir)
+        unansweredQues_dir = os.path.join(base_dir, "UnansweredQuestions")
+        return unansweredQues_dir 
+
     def update(self):
         self.documentRetriever.update()
         #maybe train the model here

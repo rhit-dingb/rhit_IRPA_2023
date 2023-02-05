@@ -12,8 +12,8 @@ import asyncio
 from datetime import datetime, date
 
 
-
 sys.path.append('../')
+
 from backendAPI.DataType import DataType
 from fastapi import FastAPI, Request, HTTPException
 from Parser.RasaCommunicator import RasaCommunicator
@@ -30,10 +30,12 @@ from fastapi.middleware.cors import CORSMiddleware
 from DataManager.constants import ANNUAL_DATA_REGEX_PATTERN, DEFINITION_DATA_REGEX_PATTERN
 from UnansweredQuestions.UnansweredQuestionAnswerEngine import UnansweredQuestionAnswerEngine
 
-unansweredQuestionAnswerEngine = UnansweredQuestionAnswerEngine("../UnansweredQuestions")
 mongoDbDataManager = MongoDataManager()
 rasaCommunicator = RasaCommunicator()
 client = MongoClient(MONGO_DB_CONNECTION_STRING)
+unansweredQuestionAnswerEngine = UnansweredQuestionAnswerEngine()
+
+
 app = FastAPI()
 
 #A list of allowed origins
@@ -214,9 +216,8 @@ async def handle_add_question(content: str):
         "is_addressed": False,
         "answer": None})
     if boo1:
-        unansweredQuestionAnswerEngine.update()
+        
         return {'message': 'question is successfull added'}
     else:
         return {'message': 'errors occurred during question add'}
-
 

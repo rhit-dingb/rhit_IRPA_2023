@@ -4,7 +4,7 @@ from DataManager.constants import NUMBER_ENTITY_LABEL, RANGE_ENTITY_LABEL
 from actions.entititesHelper import getEntityValueHelper
 from Knowledgebase.DataModels.SearchResult import SearchResult
 
-from tests.testUtils import createEntityObjHelper
+from actions.entititesHelper import createEntityObj
 
 
 class RangeResultData():
@@ -54,23 +54,23 @@ class RangeResultData():
 
     def constructRangeEntityHelper(self, intention, numbersUsed):
         entities = []
-        minEntity = createEntityObjHelper(min(numbersUsed), entityLabel=NUMBER_ENTITY_LABEL)
-        maxEntity = createEntityObjHelper(max(numbersUsed), entityLabel=NUMBER_ENTITY_LABEL)
+        minEntity = createEntityObj(min(numbersUsed), entityLabel=NUMBER_ENTITY_LABEL)
+        maxEntity = createEntityObj(max(numbersUsed), entityLabel=NUMBER_ENTITY_LABEL)
         # print("INTENTION")
         # print(intention)
 
         # print(entities)
         if intention == "upperBound":
-            rangeEntityUpperBound =  createEntityObjHelper("within", entityLabel=RANGE_ENTITY_LABEL)
+            rangeEntityUpperBound =  createEntityObj("within", entityLabel=RANGE_ENTITY_LABEL)
             entities.append(rangeEntityUpperBound)
             entities.append(maxEntity)
         elif intention == "lowerBound":
-            rangeEntityLowerBound=  createEntityObjHelper("more than", entityLabel=RANGE_ENTITY_LABEL)
+            rangeEntityLowerBound=  createEntityObj("more than", entityLabel=RANGE_ENTITY_LABEL)
             entities.append(rangeEntityLowerBound)
             entities.append(minEntity)
         #If the intention is "between"
         elif intention == "between":
-            rangeEntityWithBetweenValue =  createEntityObjHelper("between", entityLabel=RANGE_ENTITY_LABEL)
+            rangeEntityWithBetweenValue =  createEntityObj("between", entityLabel=RANGE_ENTITY_LABEL)
             entities.append(rangeEntityWithBetweenValue)
             entities.append(minEntity)
             entities.append(maxEntity)
