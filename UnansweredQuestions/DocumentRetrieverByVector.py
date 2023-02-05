@@ -31,7 +31,7 @@ class DocumentRetrieverByVector(DocumentRetriever):
         for vector in documentVectors:
             # print(vector)
             sim = cosine_similarity([transformedVector], [vector])
-            print(sim)
+            # print(sim)
             documentSimilarities.append(sim[0])
 
         

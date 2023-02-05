@@ -170,8 +170,10 @@ nlu:
      - fee 
      - money
      - dollar
+     - cost
+     - pay
 
-- synonym: fee
+- synonym: cost
   examples: |
     - fee
     - money

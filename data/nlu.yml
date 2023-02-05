@@ -1784,23 +1784,23 @@ nlu:
 
     - Do your [institute]{"entity":"education_level", "value": "college"} offer [early action]{"entity": "early-admission", "value": "early action" }?
 
-    - Do your [institute]{"entity":"education_level", "value": "college"} have [application]{"entity":"academic_process", "value":"application" } [fee]{"entity":"money", "value": "fee"}?
+    - Do your [institute]{"entity":"education_level", "value": "college"} have [application]{"entity":"academic_process", "value":"application" } [fee]{"entity":"money", "value": "cost"}?
 
     - Does your [institute]{"entity":"education_level", "value": "college"} allow [early admission]{"entity": "early-admission", "value": "early admission" } of [high school]{"entity": "education_level", "value": "high school"} students
 
-    - Is there any [application]{"entity":"academic_process", "value": "application"} [fee]{"entity":"money", "value": "fee"} for applicants?
+    - Is there any [application]{"entity":"academic_process", "value": "application"} [fee]{"entity":"money", "value": "cost"} for applicants?
 
-    - Can [application]{"entity":"academic_process", "value":"application" } [fee]{"entity":"money", "value": "fee"} be [waived]{"entity": "other_aid", "value":"waiver" }?
+    - Can [application]{"entity":"academic_process", "value":"application" } [fee]{"entity":"money", "value": "cost"} be [waived]{"entity": "other_aid", "value":"waiver" }?
     
-    - How much [money]{"entity":"money", "value": "fee"} do I have to pay for [application]{"entity":"academic_process", "value":"application" }?
+    - How much [money]{"entity":"money", "value": "cost"} do I have to pay for [application]{"entity":"academic_process", "value":"application" }?
 
-    - Is there any [application]{"entity":"academic_process", "value":"application" } [fee]{"entity":"money", "value": "fee"} for [online]{"entity": "online", "value":"online" } [application]{"entity":"academic_process", "value":"application" }?
+    - Is there any [application]{"entity":"academic_process", "value":"application" } [fee]{"entity":"money", "value": "cost"} for [online]{"entity": "online", "value":"online" } [application]{"entity":"academic_process", "value":"application" }?
 
-    - Does [online]{"entity": "online", "value":"online" } [application]{"entity":"academic_process", "value":"application" } have [application]{"entity":"academic_process", "value":"application" } [fee]{"entity":"money", "value": "fee"} ?
+    - Does [online]{"entity": "online", "value":"online" } [application]{"entity":"academic_process", "value":"application" } have [application]{"entity":"academic_process", "value":"application" } [fee]{"entity":"money", "value": "cost"} ?
     
-    - Can [online]{"entity": "online", "value":"online" } [application]{"entity":"academic_process", "value":"application" } [application]{"entity":"academic_process", "value":"application" } '[fee]{"entity":"money", "value": "fee"}  be [waived]{"entity": "other_aid", "value": "waiver"} ?
+    - Can [online]{"entity": "online", "value":"online" } [application]{"entity":"academic_process", "value":"application" } [application]{"entity":"academic_process", "value":"application" } '[fee]{"entity":"money", "value": "cost"}  be [waived]{"entity": "other_aid", "value": "waiver"} ?
    
-    - Yo, do have to pay [money]{"entity":"money", "value": "fee"} to apply on the [internet]{"entity": "online", "value":"online" }?
+    - Yo, do have to pay [money]{"entity":"money", "value": "cost"} to apply on the [internet]{"entity": "online", "value":"online" }?
 
     - Is there [waiver]{"entity": "other_aid", "value": "waiver"} for [online]{"entity": "online", "value":"online" } [application]{"entity":"academic_process", "value":"application"}?
 
