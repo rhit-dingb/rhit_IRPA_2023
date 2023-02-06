@@ -8,16 +8,15 @@ import { Link } from "react-router-dom";
 
 import React, { Component, useEffect, useState, useRef} from "react";
 import {IS_LOGGED_IN_CONSTANT} from "../constants/constants"
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 export function Navbar() {
   const history = useHistory();
-  const location = useLocation();
 
     const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem(IS_LOGGED_IN_CONSTANT))
  
     useEffect(() => {
-    
+      console.log(isLoggedIn)
       if (history.location.pathname == "/admin_login"){
         return 
       }

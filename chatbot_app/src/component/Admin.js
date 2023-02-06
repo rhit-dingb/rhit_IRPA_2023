@@ -148,7 +148,7 @@ function Admin() {
       </div>
       </div>
       <div id="mainDiv" style={{ width: "80%", height: "42em", float: "right" }}>
-        right content in there
+        {/* right content in there */}
       </div>
       
     </div>

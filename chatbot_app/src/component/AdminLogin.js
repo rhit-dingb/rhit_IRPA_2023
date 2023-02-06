@@ -40,6 +40,7 @@ function AdminLogin() {
         const username = data.get('username')
         const password = data.get('password')
         // check password and username.. I'll do it here for now.
+
         if (username == "admin" && password =="admin123"){
             localStorage.setItem(IS_LOGGED_IN_CONSTANT, true)
             //redirect
