@@ -87,13 +87,13 @@ class ActionQueryKnowledgebase(Action):
         answersFromUnansweredQuestion = API.unansweredQuestionAnswerEngine.answerQuestion(question)  
         return answersFromUnansweredQuestion
 
-    def utterAppropriateAnswerWhenExceptionHappen(self, question, exceptionReceived, dispatcher):
+    def utterAppropriateAnswerWhenExceptionHappen(self, question, answers, exceptionReceived, dispatcher):
         try:
             exceptionType = exceptionReceived.type
-            # dispatcher.utter_message(text=str(exceptionReceived.fallBackMessage))
-            answers = self.getAnswerForUnansweredQuestion(question)
-            
-            utterAllAnswers(answers)
+            if exceptionType ==  ExceptionTypes.NoDataFoundForAcademicYearException:
+                dispatcher.utter_message(text=str(exceptionReceived.fallBackMessage))
+            else:
+                utterAllAnswers(answers, dispatcher)
         except:
             # print(exceptionReceived)
             dispatcher.utter_message(
@@ -101,7 +101,11 @@ class ActionQueryKnowledgebase(Action):
 
 
     async def run(self, dispatcher, tracker, domain):
-        startYear, endYear, setYearSlotEvent = getYearRangeInSlot(tracker)
+        startYear, endYear, setYearSlotEvent = None, None, None
+        try:
+            startYear, endYear, setYearSlotEvent = getYearRangeInSlot(tracker)
+        except:
+            pass
 
         question = tracker.latest_message["text"]
         entitiesExtracted = tracker.latest_message["entities"]
@@ -111,6 +115,7 @@ class ActionQueryKnowledgebase(Action):
         print(entitiesExtracted)
         print(intent)
         setLastIntentSlotEvent = SlotSet(LAST_TOPIC_INTENT_SLOT_NAME ,intent )
+        answers = []
         try:
             defaultShouldAddRowStrategy = DefaultShouldAddRowStrategy()
             answers = await knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy,knowledgeBase.constructOutput,startYear, endYear )
@@ -120,7 +125,7 @@ class ActionQueryKnowledgebase(Action):
         except Exception as e:
              answerFromUnansweredQuestion = self.getAnswerForUnansweredQuestion(question)
              answers = answers + answerFromUnansweredQuestion
-             self.utterAppropriateAnswerWhenExceptionHappen(question, e, dispatcher)
+             self.utterAppropriateAnswerWhenExceptionHappen(question, answers, e, dispatcher)
              
         if setYearSlotEvent:
             return [setYearSlotEvent, setLastIntentSlotEvent]

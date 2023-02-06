@@ -67,9 +67,6 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
 
         isOperationAllowed = sparseMatrixToSearch.isAnyOperationAllowed()
 
-        # if not isOperationAllowed:
-        #     shouldAddRowStrategy = FuzzyShouldAddRowStrategy()
-
         isRangeAllowed = sparseMatrixToSearch.isRangeOperationAllowed()
         hasRangeEntity = findEntityHelper(entitiesExtracted, RANGE_ENTITY_LABEL)
         isSumAllowed = sparseMatrixToSearch.isSumOperationAllowed()
