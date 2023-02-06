@@ -6,6 +6,7 @@
 
 
 import asyncio
+import requests
 from CustomEntityExtractor.NumberEntityExtractor import NumberEntityExtractor
 from DataManager.ExcelDataManager import ExcelDataManager
 from DataManager.constants import ADMISSION_INTENT, BASIS_FOR_SELECTION_INTENT, COHORT_BY_YEAR_ENTITY_LABEL, COHORT_INTENT, ENROLLMENT_INTENT, EXEMPTION_ENTITY_LABEL, FRESHMAN_PROFILE_INTENT, HIGH_SCHOOL_UNITS_INTENT, INITIAL_COHORT_ENTITY_LABEL,  AID_ENTITY_LABEL, NO_AID_ENTITY_LABEL, RANGE_ENTITY_LABEL, RECIPIENT_OF_PELL_GRANT_ENTITY_LABEL, RECIPIENT_OF_STAFFORD_LOAN_NO_PELL_GRANT_ENTITY_LABEL, STUDENT_LIFE_INTENT, TRANSFER_ADMISSION_INTENT, YEAR_FOR_COLLEGE_ENTITY_LABEL
@@ -64,6 +65,11 @@ class ActionQueryKnowledgebase(Action):
         print(entitiesExtracted)
         #try:
         answers = await knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy, knowledgeBase.constructOutput,True)
+
+        if(len(answers) == 0) :
+            response = requests.post("http://127.0.0.1:8000/" + tracker.latest_message["text"])
+            answers = ["Sorry, I couldn't find any answer to your question"]
+
         utterAllAnswers(answers, dispatcher)        
         #except Exception as e:
             #utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)
@@ -148,6 +154,11 @@ class ActionQueryCohort(Action):
             
         try:
             answers = knowledgeBase.searchForAnswer(intent, entitiesExtracted, ignoreAnyAidShouldAddRow, outputFunc=knowledgeBase.constructOutput)
+
+            if(len(answers) == 0) :
+                response = requests.post("http://127.0.0.1:8000/" + tracker.latest_message["text"])
+                answers = ["Sorry, I couldn't find any answer to your question"]
+
             utterAllAnswers(answers, dispatcher)
         except Exception as e:
             utterAppropriateAnswerWhenExceptionHappen(e, dispatcher)

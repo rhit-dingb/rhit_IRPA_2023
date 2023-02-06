@@ -29,6 +29,7 @@ from CustomEntityExtractor.NumberEntityExtractor import NumberEntityExtractor
 from tests.testUtils import createEntityObjHelper
 import aiohttp
 import asyncio
+import requests
 
 class SparseMatrixKnowledgeBase(KnowledgeBase):
     def __init__(self, dataManager):
@@ -101,7 +102,13 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
       
         await self.getAllEntityForRealQuestionFoundForAnswer(searchResults)
         # print(searchResults[0].entitiesForRealQuestion)
-        return outputFunc(searchResults, intent,  template)
+
+        outputResult = outputFunc(searchResults, intent,  template)
+        if(outputResult == []) :
+                # response = requests.post("http://127.0.0.1:8000/" + )
+                print("EMPTY SEARCH RESULTS")
+
+        return outputResult
 
     async def getAllEntityForRealQuestionFoundForAnswer(self, searchResults : List[SearchResult]):
         async with aiohttp.ClientSession() as session:
@@ -165,7 +172,8 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
        #return searchResult
      
        if searchResults is None or len(searchResults) == 0: 
-            return ["Sorry, I couldn't find any answer to your question"]
+            # return ["Sorry, I couldn't find any answer to your question"]
+            return []
         
        if template == "" or template == "nan":
             return map(lambda x: x.answer , searchResults)
