@@ -40,7 +40,7 @@ function ChatbotResponse({recipientId, keyToUse, jsonResponse}) {
     }
 
     const parseToUI = (jsonResponse) => {
-        console.log(type)
+        // console.log(type)
         switch(type) {
             case ChatbotResponseType.ACCORDION_LIST:
               return (<AccordionList jsonResponse = {responseData}/>)

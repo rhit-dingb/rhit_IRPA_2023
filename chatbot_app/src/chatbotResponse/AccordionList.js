@@ -63,7 +63,7 @@ export function AccordionList({jsonResponse}) {
     const generateList = () =>{
         let keyToValueArr = Object.entries(data)
         keyToValueArr = keyToValueArr.sort()
-        console.log(keyToValueArr)
+        // console.log(keyToValueArr)
         return keyToValueArr.map(([key, value], index) => {
             return (
                 <div key ={key}>
@@ -76,7 +76,7 @@ export function AccordionList({jsonResponse}) {
                 </ListItemButton>
                 <Collapse in={expandForEach[index]} >
                     <List component="div" disablePadding>
-                    {console.log(value)}
+                    {/* {console.log(value)} */}
                     {Array.isArray(value)? 
                         generateListContent(value)
                     : null}

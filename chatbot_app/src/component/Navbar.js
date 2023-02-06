@@ -17,13 +17,17 @@ export function Navbar() {
     const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem(IS_LOGGED_IN_CONSTANT))
  
     useEffect(() => {
-      
+    
+      if (history.location.pathname == "/admin_login"){
+        return 
+      }
+
       if (!isLoggedIn) {
         history.push('/');
       }
     }, [history]);
 
-    console.log(isLoggedIn)
+ 
     return (
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand">
