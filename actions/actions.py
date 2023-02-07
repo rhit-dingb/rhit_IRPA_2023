@@ -49,8 +49,8 @@ class ActionGetAvailableOptions(Action):
     def run(self, dispatcher, tracker, domain):
         lastTopicIntent = tracker.get_slot(LAST_TOPIC_INTENT_SLOT_NAME)
       
-        print("LAST INTENT")
-        print(lastTopicIntent)
+        # print("LAST INTENT")
+        # print(lastTopicIntent)
         startYear, endYear, res = getYearRangeInSlot(tracker)
         allIntents = list(map(lambda x: x.replace("_", " "), domain["intents"]))
         filteredListOfOption = dict()
@@ -77,6 +77,19 @@ class ActionAskMoreQuestion(Action):
     def run(self, dispatcher, tracker, domain):
         dispatcher.utter_message("Great! Do you have anymore questions?")
         return []
+
+
+class ActionAskMoreQuestion(Action):
+    def name(self) -> Text:
+        return "action_answer_not_helpful"
+
+    def run(self, dispatcher, tracker, domain):
+        dispatcher.utter_message("I am sorry my answer is not helpful. I will be updated by the administator to answer this question better!")
+        userAskedQuestion = tracker.get_slot(LAST_USER_QUESTION_ASKED)
+        if not userAskedQuestion == None:
+            response = requests.post("http://127.0.0.1:8000/question_add/" + userAskedQuestion)
+        return []
+
 
 
 
@@ -113,8 +126,8 @@ class ActionQueryKnowledgebase(Action):
         numberEntities = numberEntityExtractor.extractEntities(question)
         entitiesExtracted = entitiesExtracted + numberEntities
         intent = tracker.latest_message["intent"]["name"]
-        print(entitiesExtracted)
-        print(intent)
+        # print(entitiesExtracted)
+        # print(intent)
         setLastIntentSlotEvent = SlotSet(LAST_TOPIC_INTENT_SLOT_NAME ,intent )
         answers = []
         try:
@@ -123,8 +136,8 @@ class ActionQueryKnowledgebase(Action):
             # answerFromUnansweredQuestion = self.getAnswerForUnansweredQuestion(question)
             # answers = answers + answerFromUnansweredQuestion
             if len(answers) <= 0:
-                response = requests.post("http://127.0.0.1:8000/question_add/" + tracker.latest_message["text"])
-                print("RESPONSE" + response)
+                response = requests.post("http://127.0.0.1:8000/question_add/" + question)
+                # print("RESPONSE" + response)
                 answers = ["Sorry, I couldn't find any answer to your question"]
 
             utterAllAnswers(answers, dispatcher)        
@@ -145,7 +158,7 @@ class ActionStoreAskedQuestion(Action):
 
     def run(self, dispatcher, tracker, domain):
         question = tracker.latest_message["text"]
-        print("STORING QUESTIOn", question)
+        # print("STORING QUESTIOn", question)
         event = SlotSet(LAST_USER_QUESTION_ASKED, question)
         return [event]
 
@@ -157,7 +170,7 @@ class ActionStoreIsHelpfulStatistic(Action):
     def run(self, dispatcher, tracker, domain):
         #Get the stored question
         userAskedQuestion = tracker.get_slot(LAST_USER_QUESTION_ASKED)
-        print(userAskedQuestion)
+        # print(userAskedQuestion)
         return [] 
 
 
@@ -282,8 +295,8 @@ class ActionQueryCohort(Action):
 def getYearRangeInSlot(tracker):
     startYear, endYear = None, None
     yearRange = tracker.get_slot(YEAR_RANGE_SELECTED_SLOT_NAME )
-    print("YEAR RANGE FOUND")
-    print(yearRange)
+    # print("YEAR RANGE FOUND")
+    # print(yearRange)
     res = None
     if yearRange == None or len(yearRange) == 0:
         startYear, endYear = mongoDataManager.getMostRecentYearRange()

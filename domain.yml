@@ -528,13 +528,16 @@ actions:
   - action_ask_more_question
 
   - action_query_cohort
-  - action_query_enrollment
-  - action_query_admission
-  - action_query_basis_for_selection
-  - action_query_freshman_profile
-  - action_query_transfer_admission
+
+  - action_answer_not_helpful
   - action_store_asked_question
   - action_store_isHelpful_statistic
+  
+  # - action_query_enrollment
+  # - action_query_admission
+  # - action_query_basis_for_selection
+  # - action_query_freshman_profile
+  # - action_query_transfer_admission
  
 
   

@@ -89,8 +89,8 @@ stories:
     - action: action_store_asked_question
     - action: utter_ask_answer_helpful
     - intent: deny
-    
-    - action: utter_sorry_question_not_helpful
+    # - action: utter_sorry_question_not_helpful
+    - action: action_answer_not_helpful
     - action: action_store_isHelpful_statistic
     - action: action_get_available_options
 
@@ -113,9 +113,13 @@ stories:
     - action: action_store_asked_question
     - action: utter_ask_answer_helpful
     - intent: deny
-    - action: utter_sorry_question_not_helpful
+    # - action: utter_sorry_question_not_helpful
+    - action: action_answer_not_helpful
     - action: action_store_isHelpful_statistic
     - action: action_get_available_options
+
+
+
 
 - story: ask_about_cohort_answer_helpful
   steps: 
@@ -133,7 +137,8 @@ stories:
     - action: action_query_cohort
     - action: utter_ask_answer_helpful
     - intent: deny
-    - action: utter_sorry_question_not_helpful
+    # - action: utter_sorry_question_not_helpful
+    - action: action_answer_not_helpful
     - action: action_store_isHelpful_statistic
     - action: action_get_available_options
 
@@ -152,11 +157,6 @@ stories:
   - action: action_ask_more_question
   - intent: deny
   - action: utter_no_more_question
-
-- story: unansweredQuestion_update_run_updateAction
-
-
-
 
 
 # - story: ask_about_financial_aid_helpful
