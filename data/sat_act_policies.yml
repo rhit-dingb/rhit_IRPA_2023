@@ -14,9 +14,14 @@ nlu:
     - Are test scores [optional]{"entity":"condition", "value": "optional"}?
     - Are test scores really [optional]{"entity":"condition", "value": "optional"}?
     - Really, I don't need to submit test scores?
+    - Does Rose-Hulman use the following tests for [placement]{"entity":"placement", "value": "placement"}
+    - What is used for [placement]{"entity":"placement", "value": "placement"}
+    - Does rose use [clep]{"entity": "placement", "value": "clep"} for [placement]{"entity":"placement", "value": "placement"}?
 
-
-
+- lookup: placement
+  examples: |
+    - placement
+    - 
 
 
 
