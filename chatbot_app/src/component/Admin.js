@@ -34,7 +34,7 @@ class Question extends React.Component {
   }
 
   render() {
-    return <button key ={this.props.questionObject.content} style={{ display: "block", maxHeight:50, maxWidth:200, margin:"auto", borderColor: this.props.questionObject.is_addressed ? 'white' : 'red' }} onClick={this.handleClick}><div style={{textOverflow: "ellipsis", overflow: "hidden", whiteSpace: "nowrap"}}>{this.props.questionObject.content}</div></button>;
+    return <button key ={this.props.questionObject.content} style={{ height:30, maxWidth:250, margin:"auto", borderColor: this.props.questionObject.is_addressed ? 'white' : 'red' }} onClick={this.handleClick}><div style={{textOverflow: "ellipsis", overflow: "hidden", whiteSpace: "nowrap"}}>{this.props.questionObject.content}</div></button>;
   }
 }
 
@@ -126,7 +126,7 @@ class QuestionAnswer extends React.Component {
   render() {
     return (
       <Card >
-      <CardContent>
+      <CardContent sx={{backgroundColor:"#E7EBF0"}}>
       {/* <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           Question
         </Typography> */}
@@ -137,12 +137,17 @@ class QuestionAnswer extends React.Component {
           }}>{this.state.notificationMessage}</Alert>}
 
         <h5>Question</h5>
-        <div style={{textOverflow: "ellipsis", overflow: "scroll", maxHeight:150, marginBottom:50, "overflowX": "hidden"}} >
+        <div style={{textOverflow: "ellipsis", overflow: "scroll", marginBottom:50, "overflowX": "hidden"}} >
           <h5 >{this.state.question}</h5>
         </div>
         <div id="warningText"></div>
         <div class="form-floating">
+        <h5>Chatbot Answer</h5>
+        <div style={{textOverflow: "ellipsis", overflow: "scroll", marginBottom:50, "overflowX": "hidden"}} >
+          <h5 >{this.state.question}</h5>
+        </div>
 
+        
         <h5>Answer</h5>
         <textarea id="answerInput" class="form-control" value={this.state.answer || ""} onChange={e => this.setState({ answer : e.target.value })} placeholder="Provide answer here" style={{minHeight:150, maxHeight:300,minWidth: "100%",  maxWidth: "100%", textAlign: "center",  }}    />
         

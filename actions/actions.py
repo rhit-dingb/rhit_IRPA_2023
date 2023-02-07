@@ -126,25 +126,25 @@ class ActionQueryKnowledgebase(Action):
         numberEntities = numberEntityExtractor.extractEntities(question)
         entitiesExtracted = entitiesExtracted + numberEntities
         intent = tracker.latest_message["intent"]["name"]
-        # print(entitiesExtracted)
-        # print(intent)
+        print(entitiesExtracted)
+        print(intent)
         setLastIntentSlotEvent = SlotSet(LAST_TOPIC_INTENT_SLOT_NAME ,intent )
         answers = []
-        try:
-            defaultShouldAddRowStrategy = DefaultShouldAddRowStrategy()
-            answers = await knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy,knowledgeBase.constructOutput,startYear, endYear )
-            # answerFromUnansweredQuestion = self.getAnswerForUnansweredQuestion(question)
-            # answers = answers + answerFromUnansweredQuestion
-            if len(answers) <= 0:
-                response = requests.post("http://127.0.0.1:8000/question_add/" + question)
-                # print("RESPONSE" + response)
-                answers = ["Sorry, I couldn't find any answer to your question"]
+        # try:
+        defaultShouldAddRowStrategy = DefaultShouldAddRowStrategy()
+        answers = await knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy,knowledgeBase.constructOutput,startYear, endYear )
+        answerFromUnansweredQuestion = self.getAnswerForUnansweredQuestion(question)
+        answers = answers + answerFromUnansweredQuestion
+        if len(answers) <= 0:
+            response = requests.post("http://127.0.0.1:8000/question_add/" + question)
+            # print("RESPONSE" + response)
+            answers = ["Sorry, I couldn't find any answer to your question"]
 
-            utterAllAnswers(answers, dispatcher)        
-        except Exception as e:
-            #  answerFromUnansweredQuestion = self.getAnswerForUnansweredQuestion(question)
-            #  answers = answers + answerFromUnansweredQuestion
-             self.utterAppropriateAnswerWhenExceptionHappen(question, answers, e, dispatcher)
+        utterAllAnswers(answers, dispatcher)        
+        # except Exception as e:
+        #     #  answerFromUnansweredQuestion = self.getAnswerForUnansweredQuestion(question)
+        #     #  answers = answers + answerFromUnansweredQuestion
+        #      self.utterAppropriateAnswerWhenExceptionHappen(question, answers, e, dispatcher)
              
         if setYearSlotEvent:
             return [setYearSlotEvent, setLastIntentSlotEvent]
@@ -157,8 +157,13 @@ class ActionStoreAskedQuestion(Action):
         return "action_store_asked_question"
 
     def run(self, dispatcher, tracker, domain):
+        intent = tracker.latest_message["intent"]["name"]
         question = tracker.latest_message["text"]
-        # print("STORING QUESTIOn", question)
+        if intent =="deny": 
+            pass
+        elif intent =="affirm":
+            pass
+        
         event = SlotSet(LAST_USER_QUESTION_ASKED, question)
         return [event]
 

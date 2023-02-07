@@ -18,10 +18,25 @@ nlu:
     - What is used for [placement]{"entity":"placement", "value": "placement"}
     - Does rose use [clep]{"entity": "placement", "value": "clep"} for [placement]{"entity":"placement", "value": "placement"}?
 
-- lookup: placement
+# - lookup: placement
+#   examples: |
+#     - placement
+#     - advanced placement
+
+  
+
+- synonym: placement
   examples: |
-    - placement
-    - 
+    - placements
+
+- synonym: advanced placement
+  examples: |
+    - ap
+    - advance placement
+
+  
+
+
 
 
 
