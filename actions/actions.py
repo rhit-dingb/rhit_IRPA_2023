@@ -6,6 +6,7 @@
 
 
 import asyncio
+import requests
 
 
 
@@ -119,12 +120,17 @@ class ActionQueryKnowledgebase(Action):
         try:
             defaultShouldAddRowStrategy = DefaultShouldAddRowStrategy()
             answers = await knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy,knowledgeBase.constructOutput,startYear, endYear )
-            answerFromUnansweredQuestion = self.getAnswerForUnansweredQuestion(question)
-            answers = answers + answerFromUnansweredQuestion
+            # answerFromUnansweredQuestion = self.getAnswerForUnansweredQuestion(question)
+            # answers = answers + answerFromUnansweredQuestion
+            if len(answers) <= 0:
+                response = requests.post("http://127.0.0.1:8000/question_add/" + tracker.latest_message["text"])
+                print("RESPONSE" + response)
+                answers = ["Sorry, I couldn't find any answer to your question"]
+
             utterAllAnswers(answers, dispatcher)        
         except Exception as e:
-             answerFromUnansweredQuestion = self.getAnswerForUnansweredQuestion(question)
-             answers = answers + answerFromUnansweredQuestion
+            #  answerFromUnansweredQuestion = self.getAnswerForUnansweredQuestion(question)
+            #  answers = answers + answerFromUnansweredQuestion
              self.utterAppropriateAnswerWhenExceptionHappen(question, answers, e, dispatcher)
              
         if setYearSlotEvent:
