@@ -176,7 +176,8 @@ async def get_selected_year(conversation_id : str):
 async def get_unans_questions():
     db = client.freq_question_db
     questions_collection = db.unans_question
-    unanswered_questions = list(questions_collection.find({'is_addressed': False}))
+    # unanswered_questions = list(questions_collection.find({'is_addressed': False}))
+    unanswered_questions = list(questions_collection.find())
     print("DATA FOUND")
     unanswered_questions = json.loads(json_util.dumps(unanswered_questions))
     print(unanswered_questions)

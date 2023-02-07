@@ -7,6 +7,16 @@ import "bootstrap/js/dist/dropdown";
 import { Link } from "react-router-dom";
 import {CUSTOM_BACKEND_API_STRING} from "../constants/constants"
 import { Navbar } from "./Navbar";
+
+
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Alert from '@mui/material/Alert';
+
 class Question extends React.Component {
   //todo: this thing
   constructor(props) {
@@ -18,12 +28,13 @@ class Question extends React.Component {
   handleClick() {
     //make api call here
     console.log(this.props.questionObject);
-    const answerPage = (<QuestionAnswer questionObj = {this.props.questionObject}/>);
-    ReactDOM.render(answerPage, document.getElementById("mainDiv"));
+    const answerPage = (<QuestionAnswer questionObj = {this.props.questionObject} updateFunc ={this.props.updateFunc}/>);
+    // ReactDOM.render(answerPage, document.getElementById("mainDiv"));
+    this.props.setSelectedQuestion(answerPage)
   }
 
   render() {
-    return <button onClick={this.handleClick}>{this.props.questionObject.content}</button>;
+    return <button key ={this.props.questionObject.content} style={{ display: "block", maxHeight:50, maxWidth:200, margin:"auto" }} onClick={this.handleClick}><div style={{textOverflow: "ellipsis", overflow: "hidden", whiteSpace: "nowrap"}}>{this.props.questionObject.content}</div></button>;
   }
 }
 
@@ -33,11 +44,34 @@ class QuestionAnswer extends React.Component {
     // This binding is necessary to make `this` work in the callback
     this.handleClick = this.handleClick.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+   
+    this.state = {
+      question:props.questionObj.content,
+      answer: props.questionObj.content,
+      notificationMessage: "",
+      showNotificationMessage: false
+    }
   }
 
-  handleClick() {
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.questionObj !== this.props.questionObj) {
+      this.setState({
+         question : nextProps.questionObj.content, answer: nextProps.questionObj.answer,
+         notificationMessage: "",
+         showNotificationMessage: false
+    
+      });
+    }
+  }
+  
+  
+
+  handleClick(e) {
     //make api call here
+
+    e.preventDefault()
     var inputtedAnswer = document.getElementById("answerInput").value;
+    console.log("ANSWER")
     // console.log(inputtedAnswer);
     if(inputtedAnswer.trim().length <= 0) {
       document.getElementById("warningText").innerHTML = "Please enter an answer";
@@ -50,15 +84,25 @@ class QuestionAnswer extends React.Component {
       .then(response => response.json)
       .then(data => {
         console.log(data)
-        getQuestions().then((data) => {this.props.updateFunc(data)});
+        getQuestions().then((data) => {
+          this.props.updateFunc(data)
+          this.setState(prevState => ({
+            notificationMessage: "Answer updated successfully!",
+            showNotificationMessage: true
+          }));
+
+
+        });
+
         // ReactDOM.render(null, document.getElementById("mainDiv"));
-        window.location.reload(false);
+        // window.location.reload(false);
       });
       // ReactDOM.render(null, document.getElementById("mainDiv"));
     }
   }
 
-  handleDelete() {
+  handleDelete(e) {
+    e.preventDefault()
     fetch(`${CUSTOM_BACKEND_API_STRING}/question_delete/${this.props.questionObj._id.$oid}`, {
       method: 'DELETE',
     })
@@ -66,23 +110,57 @@ class QuestionAnswer extends React.Component {
     .then(data => {
       console.log(data)
       // ReactDOM.render(null, document.getElementById("mainDiv"));
-      window.location.reload(false);
+      // window.location.reload(false);
     });
   }
 
   render() {
     return (
-      <div>
-        <h5>{this.props.questionObj.content}</h5>
+      <Card >
+      <CardContent>
+      {/* <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+          Question
+        </Typography> */}
+         {this.state.showNotificationMessage && <Alert severity={"success"} onClose={() => { this.setState(prevState => ({
+            showNotificationMessage: false
+          })) 
+          
+          }}>{this.state.notificationMessage}</Alert>}
+
+        <h5>Question</h5>
+        <div style={{textOverflow: "ellipsis", overflow: "scroll", maxHeight:150, marginBottom:50, "overflowX": "hidden"}} >
+          <h5 >{this.state.question}</h5>
+        </div>
         <div id="warningText"></div>
-        <input id="answerInput" type="text" placeholder="Enter answer text"></input>
+        <div class="form-floating">
+
+        <h5>Answer</h5>
+        <textarea id="answerInput" class="form-control" value={this.state.answer || ""} onChange={e => this.setState({ answer : e.target.value })} placeholder="Provide answer here" style={{minHeight:150, maxHeight:300,minWidth: "100%",  maxWidth: "100%", textAlign: "center",  }}    />
+        
+      </div>
+        {/* <input id="answerInput" type="text" placeholder="Enter answer text"></input> */}
         <button onClick={this.handleClick}>
           {"Submit"}
         </button>
         <button onClick={this.handleDelete}>
           {"Delete Question"}
         </button>
-      </div>
+
+       
+        {/* <Typography variant="h5" component="div">
+         Test
+        </Typography>
+        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+          adjective
+        </Typography>
+        <Typography variant="body2">
+          well meaning and kindly.
+          <br />
+          {'"a benevolent smile"'}
+        </Typography> */}
+      </CardContent>
+    
+    </Card>
     );
   }
 }
@@ -104,6 +182,7 @@ function getQuestions() {
 function Admin() {
   //todo: make a request to refresh the 
   const [questions, setQuestions] = useState([]);
+  const [selectedQuestion, setSelectedQuestion] = useState(null)
   // const getQuestions = () => {
   //   fetch(`${CUSTOM_BACKEND_API_STRING}/questions`, {
   //     method: 'GET'
@@ -142,13 +221,13 @@ function Admin() {
         <button style = {questionDropdown} class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           New Question
         </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          {questions.map((question) => (<Question class="dropdown-menu" questionObject={question} updateFunc={(data)=>{setQuestions(data)}} />))}
+        <div class="dropdown-menu" style={{ padding:5}} aria-labelledby="dropdownMenuButton">
+          {questions.map((question) => (<Question class="dropdown-menu" questionObject={question} updateFunc={(data)=>{setQuestions(data)}} setSelectedQuestion = {setSelectedQuestion} />))}
         </div>
       </div>
       </div>
-      <div id="mainDiv" style={{ width: "80%", height: "42em", float: "right" }}>
-        {/* right content in there */}
+      <div id="mainDiv" style={{ width: "80%", height: "80%", float: "right", padding: 40}}>
+        {selectedQuestion}
       </div>
       
     </div>

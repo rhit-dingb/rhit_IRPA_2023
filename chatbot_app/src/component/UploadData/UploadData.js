@@ -34,7 +34,6 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import Alert from '@mui/material/Alert';
-import Snackbar from '@mui/material/Snackbar';
 
 function UploadData() {
   const uploadDataRef = useRef(null)

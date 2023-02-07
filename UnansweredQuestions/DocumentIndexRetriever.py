@@ -26,9 +26,10 @@ class DocumentIndexRetriever(DocumentRetriever):
         query = self.corpus.preprocessDoc(query)
        
         transformedVectors = self.model.fitOnDocuments([query])
-        if len(transformedVectors) == 0:
+        if len(transformedVectors) == 0 or len(transformedVectors[0]) ==0:
             return ([], [])
 
+   
         documentSimilarities = self.index[transformedVectors[0]] 
         for i, sim in enumerate(documentSimilarities):  
             doc = self.corpus.getDocumentByIndex(i)

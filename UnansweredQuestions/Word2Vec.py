@@ -40,6 +40,8 @@ class Word2VecModel(Model):
                 if not word in self.model.index_to_key:
                     continue
                 newDoc.append(word)
+            if len(newDoc) == 0:
+                continue
             mean = np.mean(self.model[newDoc], axis=0)
             #Normalize the average representation of the document
             mean = mean / np.linalg.norm(mean)
