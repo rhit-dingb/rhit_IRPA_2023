@@ -28,7 +28,7 @@ class Question extends React.Component {
   handleClick() {
     //make api call here
     console.log(this.props.questionObject);
-    const answerPage = (<QuestionAnswer questionObj = {this.props.questionObject} updateFunc ={this.props.updateFunc}/>);
+    const answerPage = (<QuestionAnswer questionObj = {this.props.questionObject} updateFunc ={this.props.updateFunc} setSelectedQuestion = {this.props.setSelectedQuestion}/>);
     // ReactDOM.render(answerPage, document.getElementById("mainDiv"));
     this.props.setSelectedQuestion(answerPage)
   }
@@ -111,10 +111,11 @@ class QuestionAnswer extends React.Component {
       console.log(data)
       getQuestions().then((data) => {
         this.props.updateFunc(data)
-        //   this.setState(prevState => ({
-        //     notificationMessage: "Answer updated successfully!",
-        //     showNotificationMessage: true
-        // }))
+        this.props.setSelectedQuestion(null)
+          this.setState(prevState => ({
+            notificationMessage: "Questions deleted successfully!",
+            showNotificationMessage: true
+        }))
       })
 
       // ReactDOM.render(null, document.getElementById("mainDiv"));
