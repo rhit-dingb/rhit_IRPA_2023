@@ -482,12 +482,12 @@ nlu:
     - need financial aid
 
   
-- lookup: need_non_need_base_aid
-  examples: | 
-    - need-based 
-    - need based
-    - non-need-based
-    - non need based
+# - lookup: need_non_need_base_aid
+#   examples: | 
+#     - need-based 
+#     - need based
+#     - non-need-based
+#     - non need based
 
 - synonym: need-based
   examples: |

@@ -4,7 +4,7 @@ version: "3.1"
 nlu:
 - intent: annual_expense
   examples: |
-    - What is the [URL]{"entity":"way_of_contact", "value": "website"} of your institution's [net_price_calculator]{"entity":"net_price_calculator", "value": "net price calculator"}?
+    - What is the [URL]{"entity":"way_of_contact", "value": "website"} of your institution's [net-price calculator]{"entity":"net_price_calculator", "value": "net price calculator"}?
     - What is the [web page]{"entity":"way_of_contact", "value": "website"} of your institution's [net price calculator]{"entity":"net_price_calculator", "value": "net price calculator"}?
     - Is there any [URL]{"entity":"way_of_contact", "value": "website"} that i can use to [calculator for net price]{"entity":"net_price_calculator", "value": "net price calculator"}?
     - What is the approximate [date]{"entity":"time", "value": "date"} of the academic year [cost]{"entity":"money", "value": "cost"} release?

@@ -6,5 +6,6 @@ class ExceptionTypes(Enum):
     CohortByYearEntityValueException = auto()
     NoDataFoundForAcademicYearException = auto()
     NoDataFoundForCohortYearException = auto() 
+    NoDataFoundAtAll = auto()
     NotEnoughDataForCohortYearException = auto()
     NoSparseMatrixDataAvailableForGivenIntent = auto()

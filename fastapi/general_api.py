@@ -7,16 +7,22 @@ from bson import json_util
 import json
 import sys
 import re
+<<<<<<< HEAD
 from datetime import datetime, date, timedelta
+=======
+import aiohttp
+import asyncio
+from datetime import datetime, date
+>>>>>>> winter_iteration_5_available_options
 
 from DataType import DataType
 from abc import ABC, abstractmethod
 from enum import Enum
 
 sys.path.append('../')
+
 from fastapi import FastAPI, Request, HTTPException
-
-
+from Parser.RasaCommunicator import RasaCommunicator
 from DataManager.constants import DEFINITION
 from DataManager.constants import CDS_DEFINITION_DATABASE_NAME
 from Parser.JsonDataLoader import JsonDataLoader
@@ -32,8 +38,8 @@ from DataManager.constants import ANNUAL_DATA_REGEX_PATTERN, DEFINITION_DATA_REG
 
 
 mongoDbDataManager = MongoDataManager()
+rasaCommunicator = RasaCommunicator()
 client = MongoClient(MONGO_DB_CONNECTION_STRING)
-
 app = FastAPI()
 
 #A list of allowed origins
@@ -95,25 +101,18 @@ async def parse_data(request : Request):
     outputName = ""
     if "dataName" in jsonData:
         outputName = jsonData["dataName"]
-    # if dataType ==  DataType.ANNUAL.value:
-    #     yearFrom = jsonData["yearFrom"]
-    #     yearTo = jsonData["yearTo"]
 
-    #     outputName = CDS_DATABASE_NAME_TEMPLATE.format(start_year = yearFrom, end_year = yearTo)
-        
-    # elif dataType == DataType.DEFINITION.value:
-    #     outputName = CDS_DEFINITION_DATABASE_NAME
     if not outputName == "":
-        try:
-            # print(excelData)
-            print(outputName)
-            jsonCdsLoader.loadData(excelData)
-            dataWriter = MongoDBSparseMatrixDataWriter(outputName)
-            parserFacade = ParserFacade(dataLoader=jsonCdsLoader, dataWriter=dataWriter)
-            await parserFacade.parse()
-            return {"message": "Done", "uploadedAs": outputName}
-        except Exception:
-            raise HTTPException(status_code=500, detail="Something went wrong while parsing the input data")
+        # try:
+        # print(excelData)
+        print(outputName)
+        jsonCdsLoader.loadData(excelData)
+        dataWriter = MongoDBSparseMatrixDataWriter(outputName)
+        parserFacade = ParserFacade(dataLoader=jsonCdsLoader, dataWriter=dataWriter)
+        await parserFacade.parse()
+        return {"message": "Done", "uploadedAs": outputName}
+        # except Exception:
+        #     raise HTTPException(status_code=500, detail="Something went wrong while parsing the input data")
 
     
 
@@ -138,10 +137,43 @@ async def delete_data(request : Request):
         raise HTTPException(status_code=500, detail="Deletion failed")
 
 
+@app.get("/api/get_years_available")
+async def get_years_available():
+    yearsAvailable = mongoDbDataManager.getAllAvailableYearsSorted()
+    print(yearsAvailable)
+    response = {"data": yearsAvailable}
+    return response
 
-@app.get("/")
-async def root():
-    return {"message": "Hello, this is IRPA Common Dataset Database Service"}
+@app.post("/api/change_year")
+async def change_selected_year(request : Request):
+    print(request)
+    jsonData = await request.json()
+    conversationId = jsonData["conversationId"]
+    startYear = jsonData["startYear"]
+    endYear = jsonData["endYear"]
+    entities ={"startYear": startYear, "endYear": endYear}
+    try:
+        async with aiohttp.ClientSession() as session:
+            response = await rasaCommunicator.injectIntent("change_year", entities, session, conversationId )
+            return {"message": "success"}
+    except Exception:
+        raise HTTPException(status_code=500, detail="change failed")
+
+@app.get("/api/get_selected_year/{conversation_id}")
+async def get_selected_year(conversation_id : str):
+    async with aiohttp.ClientSession() as session:
+        entities = {}
+        response = await rasaCommunicator.injectIntent("get_year",entities , session, conversation_id )
+        # print(response.keys())
+        messages = response["messages"]
+        print(messages)
+        if len(messages) == 0:
+              return {"selectedYear": None  }
+        else:
+            startYear = messages[0]
+            endYear = messages[1]
+            return {"selectedYear":[startYear, endYear] }
+
 
 # General API for getting unanswered questions
 @app.get("/questions")
@@ -167,7 +199,7 @@ async def handle_post_answer(id: str, answer: str):
         return {'message': 'errors occurred while updating'}
 
 @app.delete("/question_delete/{id}")
-async def handle_post_answer(id: str):
+async def handle_delete_answer(id: str):
     db = client.freq_question_db
     questions_collection = db.unans_question
     boo1 = questions_collection.delete_one({'_id': ObjectId(id)})
@@ -177,7 +209,7 @@ async def handle_post_answer(id: str):
         return {'message': 'question maybe not found and issue occurred'}
 
 @app.post("/question_add/{content}")
-async def handle_post_answer(content: str):
+async def handle_add_question(content: str):
     db = client.freq_question_db
     questions_collection = db.unans_question
     boo1 = questions_collection.insert_one({

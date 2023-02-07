@@ -90,13 +90,16 @@ nlu:
     - percent
     - percentage
     - average
+    - proportions
+    - proportion
     
     
-
 - synonym: percent
   examples: |
     - percent
     - percentage
+    - proportions
+    - proportion
 
 - synonym: average
   examples: |
@@ -256,14 +259,28 @@ nlu:
 - lookup: people
   examples: |
     - parent
+    - parents
     - student
+    - students 
     - professor 
+    - professors
     - faculty
+    - faculties
+    - facultys
+
+- synonym: faculty
+  examples: |
+    - facultys
+    - faculties
+
+# - synonym: professor
+#   examples: | 
+#     - professor
+#     - faculty
 
 - synonym: parent
   examples: | 
     - parents
-
 
 - synonym: student
   examples: | 

@@ -23,9 +23,9 @@ class EntityExpression(Expression):
         entitiesToUse = entities
         if self.entitiesOrigin == self.REAL_QUESTION_ORIGIN:
             entitiesToUse = realQuestionEntities
-        else: 
-            print("USE USER ENTITIES")
-            print(entities)
+        # else: 
+        #     print("USE USER ENTITIES")
+        #     print(entities)
             
         for i in range(len(entitiesToUse)):
             entity = entitiesToUse[i]

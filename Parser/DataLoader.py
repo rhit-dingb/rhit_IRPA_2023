@@ -9,7 +9,7 @@ class DataLoader(ABC):
         self.METADATA_KEY = "metadata"
 
     @abstractmethod
-    def loadData(self): 
+    def loadData(self, data): 
         pass
 
     #Get all section that "we need to parse into sparse matrix, including sub sections 

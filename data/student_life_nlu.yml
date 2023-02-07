@@ -2,6 +2,7 @@ version: "3.1"
 nlu:
 - intent: student_life
   examples: |
+    - tell me about student life 
     - Does Rose-Hulman offer [air force](military_branch) [reserve Officers training corp]{"entity": "rotc", "value": "rotc"} ?
     - Does Rose-Hulman offer [air force](military_branch) [reserve Officers training corps]{"entity": "rotc", "value": "rotc"} ?
     - Does Rose-Hulman offer [air force](military_branch) [reserve officers's training Corps]{"entity": "rotc", "value": "rotc"} ?
@@ -20,8 +21,11 @@ nlu:
     - Does Rose-Hulman offer [navy](military_branch) [rotc](rotc) ?
 
     - What [activities]{"entity": "academic_factor", "value": "extracurricular activities"} does Rose-Hulman offer?
-    - What [clubs]{"entity": "academic_factor", "value": "extracurricular activities"} does Rose-Hulman offer?
+    - What [clubs]{"entity": "academic_factor", "value": "extracurricular activities"} does rose offer?
+    - What [club]{"entity": "academic_factor", "value": "extracurricular activities"} are offered?
     - What [extracirricular]{"entity": "academic_factor", "value": "extracurricular activities"} does Rose-Hulman offer?
+    - What [extracirricular]{"entity": "academic_factor", "value": "extracurricular activities"} are offered at Rose-Hulman offer?
+    - What [extracirricular activity]{"entity": "academic_factor", "value": "extracurricular activities"} are offered at rose-hulman?
 
     - What [type](type) of [college]{"entity": "education_level", "value": "college"} [affiliated]{"entity":"college_relation", "value": "affiliated"} [housing]{"entity":"housing", "value": "housing"} is available at Rose-Hulman?
     - What [type](type) of [college]{"entity": "education_level", "value": "college"} [operated]{"entity":"college_relation", "value": "operated"} [housing]{"entity":"housing", "value": "housing"} is available at Rose-Hulman?
@@ -142,9 +146,7 @@ nlu:
   examples: |
     - subject
     - subjects
-    - areas
-    - area
-    - discipline
+    
 
 
 - synonym: owned
@@ -186,6 +188,7 @@ nlu:
     - clubs
     - activities
     - extracirricular
+    - club
 
 - synonym: out of state
   examples: |

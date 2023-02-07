@@ -14,6 +14,10 @@ class SearchResult():
         self.realQuestion = realQuestion
         self.entitiesForRealQuestion = []
 
+    def getEntitiesUsed(self):
+        return self.entitiesUsed 
+
+
     def setEntitiesForRealQuestion(self,entities):
         self.entitiesForRealQuestion = entities
 

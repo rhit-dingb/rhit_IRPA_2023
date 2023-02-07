@@ -43,7 +43,7 @@ export function Navbar() {
 
           </div>
         </div>
-        <h1 id="homepageTitle">IRPA ChatBot</h1>
+        <h1 id="homepageTitle">IRPA Chatbot</h1>
       </nav>
     )
 

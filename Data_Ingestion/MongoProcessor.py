@@ -7,6 +7,7 @@ from Exceptions.ExceptionMessages import NO_DATA_AVAILABLE_FOR_GIVEN_INTENT_FORM
 from Exceptions.ExceptionTypes import ExceptionTypes
 from Exceptions.NoDataFoundException import NoDataFoundException
 from DataManager.constants import QUESTION_COLUMN_KEY
+from DataManager.constants import DATABASE_METADATA_FIELD_KEY
 
 
 class MongoProcessor():
@@ -74,17 +75,16 @@ class MongoProcessor():
                     questions = []
                     subsection = sparseMatrixData.get(DATABASE_SPARSE_MATRIX_SUBSECTION_KEY)
                     rows = sparseMatrixData.get(DATABASE_SPARSE_MATRIX_ROWS_KEY)
+                    metadata = sparseMatrixData.get(DATABASE_METADATA_FIELD_KEY)
                     for row in rows:
-                        # print("INGESTING QUESTIONS")
-                        # print(row)
-                        # print(row[QUESTION_COLUMN_KEY])
-                        # if QUESTION_COLUMN_KEY in row:
                         questions.append(row[QUESTION_COLUMN_KEY])
                         del row[QUESTION_COLUMN_KEY]
                     df = pd.DataFrame.from_dict(rows)
                     # print(df.head())
                     # print(questions)
-                    sparseMatrix = SparseMatrix(subsection, df, questions)
+                    # print("GOT METADATA")
+                    # print(metadata)
+                    sparseMatrix = SparseMatrix(subsection, df,  metadata=metadata, questions = questions,)
                     topicData.addSparseMatrix(subsection, sparseMatrix)
 
                 return topicData  

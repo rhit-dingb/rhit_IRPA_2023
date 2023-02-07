@@ -12,6 +12,7 @@ class Doc2VecModel(Model):
 
     
     def initializeModel(self):
+        print("INITIALIZE")
         self.model = Doc2Vec(vector_size=self.vector_size, window=2, min_count=1, workers=4)
        
 
@@ -27,6 +28,7 @@ class Doc2VecModel(Model):
 
         self.model.build_vocab(taggedDocuments, update= update)
         self.model.train(taggedDocuments, epochs=50, total_examples=len(taggedDocuments))
+        print("TRAINING")
         self.saveModel()
         
     def _fit(self, documents):

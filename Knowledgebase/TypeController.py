@@ -23,8 +23,6 @@ class TypeController():
                         if searchResult[i] == "%":
                             break
                         value = value + searchResult[i]
-                    # print("CASTED SEARCH RESULT")
-                    # print(searchResult)
                     val = self.tryCastToFloat(value)
                     if val is None:
                         return (searchResult, SearchResultType.STRING)

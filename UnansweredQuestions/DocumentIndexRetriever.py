@@ -4,12 +4,19 @@ from gensim import similarities
 from Corpus import Corpus
 from DocumentRetriever import DocumentRetriever
 from Model import Model
+from os import path
+
 class DocumentIndexRetriever(DocumentRetriever):
     def __init__(self, corpus, model : Model, indexPath, topN = 3):
         super().__init__(corpus = corpus, model = model)
         # self.index = None
         self.indexPath = indexPath
         self.topN = topN
+        self.index = None
+        if path.exists(self.indexPath):
+            self.index = self.loadIndex(self.indexPath)
+        else:
+            self.index = self.createAndSaveIndex()
 
 
     def findSimilarDocuments(self,query):
@@ -31,9 +38,7 @@ class DocumentIndexRetriever(DocumentRetriever):
         #     print(doc_score, self.corpus.getDocumentByIndex(doc_position))
         # return documentSimilarities
        
-        
-
-
+    
     def addNewDocuments(self,documents):
         self.corpus.addDocuments(documents)
         #Recreate the index
@@ -47,8 +52,9 @@ class DocumentIndexRetriever(DocumentRetriever):
         # print(self.corpus)
         #self.model.train(self.corpus)
         transformedCorpus = self.model.fitOnDocuments(self.corpus)
-        index = similarities.Similarity(output_prefix=None, corpus = transformedCorpus, num_features= self.model.getNumFeatures())
-        self.saveIndex(self.indexPath, index)
+        self.index = similarities.Similarity(output_prefix=None, corpus = transformedCorpus, num_features= self.model.getNumFeatures())
+        # print(transformedCorpus)
+        self.saveIndex(self.indexPath, self.index)
 
 
 
