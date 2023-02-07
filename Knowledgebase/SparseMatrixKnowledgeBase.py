@@ -84,9 +84,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
             for searchResult in searchResults:
                 searchResult.addEntities(filteredEntities)
         else:
-
             searchResults : List[SearchResult] = sparseMatrixToSearch.searchOnSparseMatrix(entitiesExtracted, shouldAddRowStrategy, isSumAllowed)
-    
         if isPercentageAllowed and percentageEntityDetected:
             percentages = await self.calculatePercentages(searchResults, sparseMatrixToSearch,  percentageEntityDetected)
             # print("GOT VALUE ", percentages)
@@ -94,6 +92,8 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
                 searchResults = percentages
         await self.getAllEntityForRealQuestionFoundForAnswer(searchResults)
         return outputFunc(searchResults, intent,  template)
+
+
 
     async def getAllEntityForRealQuestionFoundForAnswer(self, searchResults : List[SearchResult]):
         async with aiohttp.ClientSession() as session:

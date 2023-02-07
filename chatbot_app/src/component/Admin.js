@@ -34,7 +34,7 @@ class Question extends React.Component {
   }
 
   render() {
-    return <button key ={this.props.questionObject.content} style={{ display: "block", maxHeight:50, maxWidth:200, margin:"auto" }} onClick={this.handleClick}><div style={{textOverflow: "ellipsis", overflow: "hidden", whiteSpace: "nowrap"}}>{this.props.questionObject.content}</div></button>;
+    return <button key ={this.props.questionObject.content} style={{ display: "block", maxHeight:50, maxWidth:200, margin:"auto", borderColor: this.props.questionObject.is_addressed ? 'white' : 'red' }} onClick={this.handleClick}><div style={{textOverflow: "ellipsis", overflow: "hidden", whiteSpace: "nowrap"}}>{this.props.questionObject.content}</div></button>;
   }
 }
 
@@ -47,7 +47,7 @@ class QuestionAnswer extends React.Component {
    
     this.state = {
       question:props.questionObj.content,
-      answer: props.questionObj.content,
+      answer: props.questionObj.answer,
       notificationMessage: "",
       showNotificationMessage: false
     }
@@ -109,6 +109,14 @@ class QuestionAnswer extends React.Component {
     .then(response => response.json)
     .then(data => {
       console.log(data)
+      getQuestions().then((data) => {
+        this.props.updateFunc(data)
+        //   this.setState(prevState => ({
+        //     notificationMessage: "Answer updated successfully!",
+        //     showNotificationMessage: true
+        // }))
+      })
+
       // ReactDOM.render(null, document.getElementById("mainDiv"));
       // window.location.reload(false);
     });
@@ -212,13 +220,13 @@ function Admin() {
     })
   }, []);
 
-  
+
   return (
     <div>
       <Navbar/>
       <div style={leftBox}>
       <div class="dropdown">
-        <button style = {questionDropdown} class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button style = {questionDropdown}  class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           New Question
         </button>
         <div class="dropdown-menu" style={{ padding:5}} aria-labelledby="dropdownMenuButton">
@@ -232,6 +240,9 @@ function Admin() {
       
     </div>
   );
+
+  
+
 }
 
 const roseIconStyle = {

@@ -220,17 +220,17 @@ class SparseMatrix():
             # entityValues = [e["value"] for e in entities]
             usedEntities = shouldAddRowStrategy.determineShouldAddRow(row, entities, self)
 
-            shouldUseRow = len(usedEntities)>0
-            # print(usedEntities)
+            shouldUseRow = len(usedEntities)>0 
+
+            if isSumAllowed and len(entities) == 0:
+                shouldUseRow = True
+
             if shouldUseRow:
                 if len(entitiesUsed) <= 0:
                     entitiesUsed = usedEntities
 
                 newAnswer= sparseMatrixToSearchDf.loc[i,'Value']
                 castedValue, type = self.determineResultType(newAnswer)
-                # Get question for now. May need to check for out of range
-                # print(len(self.questions))
-                # print(self.questions)
                 question = self.questions[i]
                 newSearchResult : SearchResult = SearchResult(newAnswer, usedEntities, type, realQuestion= question )
                 if currentResultPointer == None: 
