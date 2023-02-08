@@ -1,4 +1,5 @@
 
+from enum import Enum
 from typing import Dict, List
 from fastapi import FastAPI
 from pymongo import MongoClient
@@ -9,7 +10,7 @@ import sys
 import re
 import aiohttp
 import asyncio
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 
 
 sys.path.append('../')
@@ -222,3 +223,60 @@ async def handle_add_question(content: str):
     else:
         return {'message': 'errors occurred during question add'}
 
+#====================Below are the list of APIs for Freqency API==========================
+CURRENT_INTENTIONS = ['enrollment', 'admission', 'high_school_units', 'basis_for_selection']
+class UserFeedback(Enum):
+    NO_FEEDBACK = "NO_FEEDBACK"
+    HELPFUL = "HELPFUL"
+    NOT_HELPFUL = "NOT_HELPFUL"
+
+class QuestionCategory(Enum):
+    ENROLLMENT = "ENROLLMENT"
+    ADMISSION = "ADMISSION"
+    HIGH_SCHOOL_UNITS = "HIGH_SCHOOL_UNITS"
+    BASIS_FOR_SELECTION = "BASIS_FOR_SELECTION"
+    
+@app.put("/question_asked/")
+async def handle_new_event(intent: QuestionCategory, feedback: UserFeedback, content: str, timeAsked: datetime = datetime.now()):
+    db = client.freq_question_db
+    freq_collection = db.cds_frequency
+    if(len(list(freq_collection.find({"question_asked": content}))) == 0):
+        boo1 = freq_collection.insert_one({
+            "intent": intent.value,
+            "user_feedback": feedback.value,
+            "time_asked": timeAsked,
+            "question_asked": content})
+        if boo1:
+            return {'message': 'data successfully inserted'}
+        else:
+            return {'message': 'errors occurred'}
+    else:
+        boo2 = freq_collection.update_one({'time_asked': timeAsked}, {'$set': {'user_feedback': feedback.value}})
+        if boo2:
+            return {'message': 'user stats successfully updated'}
+        else:
+            return {'message': 'errors occurred while updating user stats'}
+
+"""
+Testing1:
+PUT request: http://127.0.0.1:8000/question_asked/?intent=ADMISSION&feedback=NO_FEEDBACK&timeAsked=2023-01-01T12:00:00&content=What%20is%20rose%20rankings
+---output: data successfully inserted; check Database for result
+THEN!!!
+--------
+PUT request: http://127.0.0.1:8000/question_asked/?intent=ADMISSION&feedback=NOT_HELPFUL&timeAsked=2023-01-01T12:00:00&content=What%20is%20rose%20rankings
+"""
+
+@app.get("/general_stats/")
+async def handle_new_event(endDate: datetime = datetime.now(), startDate_short: datetime = (datetime.now() - timedelta(days=30)), startDate_long: datetime = (datetime.now() - timedelta(days=365))):
+    db = client.freq_question_db
+    freq_collection = db.cds_frequency
+    short_stats = list(freq_collection.find({"time_asked": {"$gte": startDate_short, "$lte": endDate}}))
+    long_stats = list(freq_collection.find({"time_asked": {"$gte": startDate_long, "$lte": endDate}}))
+    short_stats = json.loads(json_util.dumps(short_stats))
+    long_stats = json.loads(json_util.dumps(long_stats))
+    return short_stats
+
+"""
+Test 1: DEFAULT VIEW
+GET request: http://127.0.0.1:8000/general_stats/
+"""

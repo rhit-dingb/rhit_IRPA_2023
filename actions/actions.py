@@ -170,8 +170,10 @@ class ActionStoreIsHelpfulStatistic(Action):
     def run(self, dispatcher, tracker, domain):
         #Get the stored question
         userAskedQuestion = tracker.get_slot(LAST_USER_QUESTION_ASKED)
+        intent = tracker.latest_message["intent"]["name"]
+        response = requests.post("http://127.0.0.1:8000/question_asked/?intent="+intent+"&feedback=NO_FEEDBACK"+"&content="+userAskedQuestion)
         # print(userAskedQuestion)
-        return [] 
+        return response
 
 
 class ActionGetYear(Action):
