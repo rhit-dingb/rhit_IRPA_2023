@@ -237,7 +237,8 @@ class QuestionCategory(Enum):
     BASIS_FOR_SELECTION = "BASIS_FOR_SELECTION"
     
 @app.put("/question_asked/")
-async def handle_new_event(intent: QuestionCategory, feedback: UserFeedback, content: str, timeAsked: datetime = datetime.now()):
+async def handle_new_event(request: Request):
+    timeAsked: datetime = datetime.now()
     db = client.freq_question_db
     freq_collection = db.cds_frequency
     if(len(list(freq_collection.find({"question_asked": content}))) == 0):

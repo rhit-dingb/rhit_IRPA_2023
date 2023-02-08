@@ -158,7 +158,10 @@ class ActionStoreAskedQuestion(Action):
 
     def run(self, dispatcher, tracker, domain):
         question = tracker.latest_message["text"]
-        # print("STORING QUESTIOn", question)
+        # print("STORING QUESTIOn", question
+        intent = tracker.latest_message["intent"]["name"]
+        data = {"intent": intent, "feddback": "NO_FEEDBACK", "content": question}
+        response = requests.post("http://127.0.0.1:8000/question_asked/", json=data)
         event = SlotSet(LAST_USER_QUESTION_ASKED, question)
         return [event]
 
@@ -171,7 +174,13 @@ class ActionStoreIsHelpfulStatistic(Action):
         #Get the stored question
         userAskedQuestion = tracker.get_slot(LAST_USER_QUESTION_ASKED)
         intent = tracker.latest_message["intent"]["name"]
-        response = requests.post("http://127.0.0.1:8000/question_asked/?intent="+intent+"&feedback=NO_FEEDBACK"+"&content="+userAskedQuestion)
+        update_intent = "NO_FEEDBACK"
+        if(intent == "deny"):
+            update_intent = "NOT_HELPFUL"
+        if(intent == "affirm"):
+            update_intent = "HELPFUL"
+        data = {"intent": "UPDATE", "feddback": update_intent, "content": userAskedQuestion}
+        response = requests.post("http://127.0.0.1:8000/question_asked/", json=data)
         # print(userAskedQuestion)
         return response
 
