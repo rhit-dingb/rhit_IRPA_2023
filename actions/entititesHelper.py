@@ -22,11 +22,18 @@ def findCharIndexForWord(word, question):
 
 
 def getEntityValueHelper(entities):
-    entityValues = []
-    for entity in entities:
-        entityValues.append(entity["value"])
-    
+    entityValues = getEntityAttribute(entities, "value")
     return entityValues
+
+def getEntityAttribute(entities, attribute):
+    entityAttribute = []
+    for entity in entities:
+        entityAttribute.append(entity[attribute])
+    return  entityAttribute
+
+def getEntityLabel(entities):
+    entityLabels = getEntityAttribute(entities, "entity")
+    return entityLabels
 
 
 def findEntityHelper(entities, key, by="entity"):

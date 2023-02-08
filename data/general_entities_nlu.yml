@@ -63,8 +63,6 @@ nlu:
   examples: | 
     - recommended
     - recommend
-    - should
-   
     - required
     - require 
     - requirement
@@ -74,7 +72,6 @@ nlu:
   examples: | 
     - recommended
     - recommending
-    - should
 
 - synonym: require
   examples: |

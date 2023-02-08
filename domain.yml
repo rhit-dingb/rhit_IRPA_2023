@@ -432,6 +432,12 @@ slots:
     mappings:
       - type: custom
 
+  lastAnswersProvided:
+    type: list
+    influence_conversation: false
+    mappings:
+      - type: custom
+
   lastTopicIntentAsked:
     type: text
     mappings:

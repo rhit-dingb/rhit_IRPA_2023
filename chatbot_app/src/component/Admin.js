@@ -49,17 +49,20 @@ class QuestionAnswer extends React.Component {
       question:props.questionObj.content,
       answer: props.questionObj.answer,
       notificationMessage: "",
-      showNotificationMessage: false
+      showNotificationMessage: false,
+      chatbotAnswers: props.questionObj.chatbotAnswers
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.questionObj !== this.props.questionObj) {
       this.setState({
-         question : nextProps.questionObj.content, answer: nextProps.questionObj.answer,
+         question : nextProps.questionObj.content, 
+         answer: nextProps.questionObj.answer,
+         chatbotAnswers: nextProps.chatbotAnswers,
          notificationMessage: "",
          showNotificationMessage: false
-    
+        
       });
     }
   }
@@ -144,10 +147,10 @@ class QuestionAnswer extends React.Component {
         <div class="form-floating">
         <h5>Chatbot Answer</h5>
         <div style={{textOverflow: "ellipsis", overflow: "scroll", marginBottom:50, "overflowX": "hidden"}} >
-          <h5 >{this.state.question}</h5>
+          <h5 >{this.state.chatbotAnswers? this.state.chatbotAnswers: "No answer from chatbot"}</h5>
         </div>
 
-        
+
         <h5>Answer</h5>
         <textarea id="answerInput" class="form-control" value={this.state.answer || ""} onChange={e => this.setState({ answer : e.target.value })} placeholder="Provide answer here" style={{minHeight:150, maxHeight:300,minWidth: "100%",  maxWidth: "100%", textAlign: "center",  }}    />
         
@@ -160,18 +163,6 @@ class QuestionAnswer extends React.Component {
           {"Delete Question"}
         </button>
 
-       
-        {/* <Typography variant="h5" component="div">
-         Test
-        </Typography>
-        <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          adjective
-        </Typography>
-        <Typography variant="body2">
-          well meaning and kindly.
-          <br />
-          {'"a benevolent smile"'}
-        </Typography> */}
       </CardContent>
     
     </Card>

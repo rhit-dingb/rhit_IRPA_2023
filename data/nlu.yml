@@ -1813,7 +1813,7 @@ nlu:
     - total [units]{"entity": "academic_credit", "value": "unit"} [required]{"entity": "condition", "value": "require"}?
     - How many academic [units]{"entity": "academic_credit", "value": "unit"} are [required]{"entity": "condition", "value": "require"}?
 
-    - How many [units]{"entity": "academic_credit", "value": "unit"} [should]{"entity": "condition", "value": "recommend"} I take if I want to get into this school?
+    - How many [units]{"entity": "academic_credit", "value": "unit"} should I take if I want to get into this school?
 
     - How many [units]{"entity": "academic_credit", "value": "unit"} [must]{"entity": "condition", "value": "require"} I take if I want to get into this school?
 

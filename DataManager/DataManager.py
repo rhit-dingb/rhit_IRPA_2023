@@ -54,10 +54,6 @@ class DataManager():
 
     """
     def determineMatrixToSearch(self, intent, entities, startYear : str, endYear : str) -> Tuple[SparseMatrix, str, str]: 
-        # sparseMatrices, startYear, endYear = self.cohortYearDataSelector.selectDataToSearchByYear(self, intent, entities)
-        # # print(sparseMatrices)
-        # if sparseMatrices == None:
-        # sparseMatrices, startYear, endYear = self.academicYearDataSelector.selectDataToSearchByYear(self, intent, entities)   
         if startYear == None or endYear == None:
             raise NoDataFoundException(NO_DATA_EXIST_MESSAGE, ExceptionTypes.NoDataFoundAtAll)
         startYear = str(startYear)
@@ -101,8 +97,8 @@ class DataManager():
         if doesEntityMapToAnySubsections:
             candidates = sparseMatricesFound
             
-        for candidate in candidates:
-            print(candidate.subSectionName)
+        # for candidate in candidates:
+        #     print(candidate.subSectionName)
             
         maxMatch = []
         currMax = 0
@@ -111,8 +107,8 @@ class DataManager():
             entityValues.append(entity["value"])
 
         entityValues = list(set(entityValues))
-        print("ENTITY VALUES")
-        print(entityValues)
+        # print("ENTITY VALUES")
+        # print(entityValues)
         for sparseMatrix in candidates:  
             # print(sparseMatrix.subSectionName)              
             entitiesMatchCount : int  = sparseMatrix.determineEntityMatchToColumnCount(entityValues)
@@ -144,7 +140,8 @@ class DataManager():
 
         # decisionTreeSelector = DecisionTreeSelector()
         # decisionTreeSelector.selectBest(entityValues, candidates)
-        print(maxMatch[0].subSectionName)
+        # print(maxMatch[0].subSectionName)
+
         if len(maxMatch) == 0:
             raise NoDataFoundException(errorMessage, ExceptionTypes.NoSparseMatrixDataAvailableForGivenIntent)
         
