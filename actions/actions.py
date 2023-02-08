@@ -87,7 +87,11 @@ class ActionAnswerNotHelpful(Action):
         dispatcher.utter_message("I am sorry my answer is not helpful. I will be updated by the administator to answer this question better!")
         userAskedQuestion = tracker.get_slot(LAST_USER_QUESTION_ASKED)
         answersProvidedByChatbot = tracker.get_slot(LAST_ANSWERS_PROVIDED_SLOT_NAME)
-        if not userAskedQuestion == None and not answersProvidedByChatbot == None:
+        print("ANSWER PROVIDED")
+        print(answersProvidedByChatbot)
+        if answersProvidedByChatbot == None:
+            answersProvidedByChatbot = []
+        if not userAskedQuestion == None:
             addUnansweredQuestion(userAskedQuestion, answersProvidedByChatbot)
 
         return []
@@ -137,12 +141,14 @@ class ActionQueryKnowledgebase(Action):
             defaultShouldAddRowStrategy = DefaultShouldAddRowStrategy()
             answers = await knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy,knowledgeBase.constructOutput,startYear, endYear )
             answerFromUnansweredQuestion = self.getAnswerForUnansweredQuestion(question)
+            print("ANSWER FOUND")
+            print(answerFromUnansweredQuestion)
             answers = answers + answerFromUnansweredQuestion
             if len(answers) <= 0:
                 answers = ["Sorry, I couldn't find any answer to your question"]
                 addUnansweredQuestion(question, answers)
             
-            utterAllAnswers(answers, dispatcher)        
+            event = utterAllAnswers(answers, dispatcher)        
         except Exception as e:
             if len(answers) <= 0:
                 answers = ["Sorry, I couldn't find any answer to your question"]
@@ -151,9 +157,9 @@ class ActionQueryKnowledgebase(Action):
             self.utterAppropriateAnswerWhenExceptionHappen(question, answers, e, dispatcher)
              
         if setYearSlotEvent:
-            return [setYearSlotEvent, setLastIntentSlotEvent]
+            return [setYearSlotEvent, setLastIntentSlotEvent, event]
         else:
-            return [setLastIntentSlotEvent]
+            return [setLastIntentSlotEvent, event]
 
 
 class ActionStoreAskedQuestion(Action):
@@ -329,13 +335,16 @@ def getYearRangeInSlot(tracker):
     return (startYear, endYear, res)
 
 
-def utterAllAnswers(answers, dispatcher, tracker ):
+def utterAllAnswers(answers, dispatcher ):
     # json_str = json.dumps(json_message)
     for answer in answers:
         dispatcher.utter_message( json_message={"text":answer} )
 
+    print("SETTING ANSWER")
+    print(answers)
     return SlotSet(LAST_ANSWERS_PROVIDED_SLOT_NAME, answers)
 
 def addUnansweredQuestion(question, chatbotAnswers): 
     data = {"content": question, "chatbotAnswers":chatbotAnswers}
-    response = requests.post("http://127.0.0.1:8000/question_add/", data=data )
+    response = requests.post("http://127.0.0.1:8000/question_add/", json=data )
+    print(response)

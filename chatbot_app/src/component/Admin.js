@@ -59,7 +59,7 @@ class QuestionAnswer extends React.Component {
       this.setState({
          question : nextProps.questionObj.content, 
          answer: nextProps.questionObj.answer,
-         chatbotAnswers: nextProps.chatbotAnswers,
+         chatbotAnswers: nextProps.questionObj.chatbotAnswers,
          notificationMessage: "",
          showNotificationMessage: false
         
@@ -147,7 +147,11 @@ class QuestionAnswer extends React.Component {
         <div class="form-floating">
         <h5>Chatbot Answer</h5>
         <div style={{textOverflow: "ellipsis", overflow: "scroll", marginBottom:50, "overflowX": "hidden"}} >
-          <h5 >{this.state.chatbotAnswers? this.state.chatbotAnswers: "No answer from chatbot"}</h5>
+          {this.state.chatbotAnswers? this.state.chatbotAnswers.map((elem)=>{
+            console.log(elem)
+            return <h5>{elem}</h5>
+          })
+          : <h5>No answer from chatbot</h5>}
         </div>
 
 
