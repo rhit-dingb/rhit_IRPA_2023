@@ -5,6 +5,9 @@ from gensim.parsing.preprocessing import remove_stopwords, preprocess_string
 from gensim.utils import simple_preprocess
 from UnansweredQuestions.UnasweredQuestionDBConnector import UnansweredQuestionDbConnector
 from UnansweredQuestions.constants import DB_UNANSWERED_QUESTION_ANSWER_FIELD_KEY 
+import nltk
+from nltk.stem import WordNetLemmatizer 
+
 
 class Corpus:
     def __init__(self, dataSourceConnector : UnansweredQuestionDbConnector, dictionaryPath):
@@ -27,10 +30,16 @@ class Corpus:
         self.dictionaryPath = dictionaryPath
         self.dataSourceConnector = dataSourceConnector
         self.dictionary = None
+        self.lemmatizer = WordNetLemmatizer()
         self.constructDictionary()
       
         # self.documents = self.dataSourceConnector.getAnsweredQuestionSortedByDate()
         # print("DATA", list(self.documents))
+
+
+    def update(self):
+        self.constructDictionary()
+        self.saveDictionary(self.dictionaryPath)
 
     def constructDictionary(self):
        self.dictionary = corpora.Dictionary(doc for doc in self)
@@ -45,9 +54,14 @@ class Corpus:
         processDocument = doc
        
         # processDocument = preprocess_string(processDocument)
-        processDocument = simple_preprocess(processDocument)
         
-        return processDocument
+        processDocument = simple_preprocess(processDocument)
+        res = []
+        for token in processDocument:
+           tokenLemma = self.lemmatizer.lemmatize(token)
+           res.append(tokenLemma)
+   
+        return res
 
     def preprocessDocuments(self,documents):
         processedDocuments = []

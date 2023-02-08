@@ -100,16 +100,16 @@ async def parse_data(request : Request):
         outputName = jsonData["dataName"]
 
     if not outputName == "":
-        # try:
-        # print(excelData)
-        print(outputName)
-        jsonCdsLoader.loadData(excelData)
-        dataWriter = MongoDBSparseMatrixDataWriter(outputName)
-        parserFacade = ParserFacade(dataLoader=jsonCdsLoader, dataWriter=dataWriter)
-        await parserFacade.parse()
-        return {"message": "Done", "uploadedAs": outputName}
-        # except Exception:
-        #     raise HTTPException(status_code=500, detail="Something went wrong while parsing the input data")
+        try:
+            print(excelData)
+            print(outputName)
+            jsonCdsLoader.loadData(excelData)
+            dataWriter = MongoDBSparseMatrixDataWriter(outputName)
+            parserFacade = ParserFacade(dataLoader=jsonCdsLoader, dataWriter=dataWriter)
+            await parserFacade.parse()
+            return {"message": "Done", "uploadedAs": outputName}
+        except Exception:
+            raise HTTPException(status_code=500, detail="Something went wrong while parsing the input data")
 
     
 
@@ -208,14 +208,18 @@ async def handle_delete_answer(id: str):
     else:
         return {'message': 'question maybe not found and issue occurred'}
 
-@app.post("/question_add/{content}")
-async def handle_add_question(content: str):
+@app.post("/question_add")
+async def handle_add_question(request : Request):
+    jsonData = await request.json()
+    content = jsonData["content"]
+    chatbotAnswers = jsonData["chatbotAnswers"]
     db = client.freq_question_db
     questions_collection = db.unans_question
     boo1 = questions_collection.insert_one({
         "content": content,
         "post_date": datetime.today(),
         "is_addressed": False,
+        "chatbotAnswers": chatbotAnswers,
         "answer": None})
     if boo1:
         

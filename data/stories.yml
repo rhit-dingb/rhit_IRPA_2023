@@ -125,6 +125,7 @@ stories:
   steps: 
     - intent: cohort
     - action: action_query_cohort
+    - action: action_store_asked_question
     - action: utter_ask_answer_helpful
     - intent: affirm
     - action: action_store_isHelpful_statistic
@@ -135,6 +136,7 @@ stories:
   steps: 
     - intent: cohort
     - action: action_query_cohort
+    - action: action_store_asked_question
     - action: utter_ask_answer_helpful
     - intent: deny
     # - action: utter_sorry_question_not_helpful

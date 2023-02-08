@@ -27,7 +27,7 @@ class UnansweredQuestionAnswerEngine:
         self.model.initializeModel()
         self.documentRetriever = DocumentIndexRetriever(self.corpus, self.model, basePath +"/indexes/unansweredQuestion.index")
         self.documentRetriever.update()
-        self.confidenceThreshold = 0.85
+        self.confidenceThreshold = 0.75
        # self.documentRetriever= DocumentRetrieverByVector(self.corpus, self.wordToVecModel)
     def determinePath(self):
         current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -36,7 +36,9 @@ class UnansweredQuestionAnswerEngine:
         return unansweredQues_dir 
 
     def update(self):
+        self.corpus.update()
         self.documentRetriever.update()
+       
         #maybe train the model here
 
     def answerQuestion(self,question) -> List[str]:

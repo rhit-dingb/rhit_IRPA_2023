@@ -32,3 +32,4 @@ LAST_TOPIC_INTENT_SLOT_NAME = "lastTopicIntentAsked"
 LAST_TOPIC_INTENT = "lastTopicIntentAsked"
 
 LAST_USER_QUESTION_ASKED = "lastUserQuestionAsked"
+LAST_ANSWERS_PROVIDED_SLOT_NAME = "lastAnswersProvided"

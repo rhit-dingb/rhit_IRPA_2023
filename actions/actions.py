@@ -20,8 +20,8 @@ from Knowledgebase.IgnoreRowPiece import IgnoreRowPiece
 from Knowledgebase.SparseMatrixKnowledgeBase import SparseMatrixKnowledgeBase
 from OutputController import output
 
-from actions.constants import  YEAR_RANGE_SELECTED_SLOT_NAME, AGGREGATION_ENTITY_PERCENTAGE_VALUE, ANY_AID_COLUMN_NAME, NO_AID_COLUMN_NAME, PELL_GRANT_COLUMN_NAME, RANGE_BETWEEN_VALUE, RANGE_UPPER_BOUND_VALUE, STAFFORD_LOAN_COLUMN_NAME, STUDENT_ENROLLMENT_RESULT_ENTITY_GRADUATION_VALUE
-from actions.entititesHelper import changeEntityValue, changeEntityValueByRole, copyEntities, createEntityObj, filterEntities, findEntityHelper, findMultipleSameEntitiesHelper
+from actions.constants import  LAST_ANSWERS_PROVIDED_SLOT_NAME, YEAR_RANGE_SELECTED_SLOT_NAME, AGGREGATION_ENTITY_PERCENTAGE_VALUE, ANY_AID_COLUMN_NAME, NO_AID_COLUMN_NAME, PELL_GRANT_COLUMN_NAME, RANGE_BETWEEN_VALUE, RANGE_UPPER_BOUND_VALUE, STAFFORD_LOAN_COLUMN_NAME, STUDENT_ENROLLMENT_RESULT_ENTITY_GRADUATION_VALUE
+from actions.entititesHelper import changeEntityValue, changeEntityValueByRole, copyEntities, createEntityObj, filterEntities, findEntityHelper, findMultipleSameEntitiesHelper, getEntityLabel, getEntityValueHelper, removeDuplicatedEntities
 from typing import Text
 from DataManager.MongoDataManager import MongoDataManager
 from rasa_sdk import Action, Tracker
@@ -79,15 +79,21 @@ class ActionAskMoreQuestion(Action):
         return []
 
 
-class ActionAskMoreQuestion(Action):
+class ActionAnswerNotHelpful(Action):
     def name(self) -> Text:
         return "action_answer_not_helpful"
 
     def run(self, dispatcher, tracker, domain):
         dispatcher.utter_message("I am sorry my answer is not helpful. I will be updated by the administator to answer this question better!")
         userAskedQuestion = tracker.get_slot(LAST_USER_QUESTION_ASKED)
+        answersProvidedByChatbot = tracker.get_slot(LAST_ANSWERS_PROVIDED_SLOT_NAME)
+        print("ANSWER PROVIDED")
+        print(answersProvidedByChatbot)
+        if answersProvidedByChatbot == None:
+            answersProvidedByChatbot = []
         if not userAskedQuestion == None:
-            response = requests.post("http://127.0.0.1:8000/question_add/" + userAskedQuestion)
+            addUnansweredQuestion(userAskedQuestion, answersProvidedByChatbot)
+
         return []
 
 
@@ -104,7 +110,7 @@ class ActionQueryKnowledgebase(Action):
     def utterAppropriateAnswerWhenExceptionHappen(self, question, answers, exceptionReceived, dispatcher):
         try:
             exceptionType = exceptionReceived.type
-            if exceptionType ==  ExceptionTypes.NoDataFoundForAcademicYearException:
+            if exceptionType ==  ExceptionTypes.NoDataFoundAtAll:
                 dispatcher.utter_message(text=str(exceptionReceived.fallBackMessage))
             else:
                 utterAllAnswers(answers, dispatcher)
@@ -126,43 +132,60 @@ class ActionQueryKnowledgebase(Action):
         numberEntities = numberEntityExtractor.extractEntities(question)
         entitiesExtracted = entitiesExtracted + numberEntities
         intent = tracker.latest_message["intent"]["name"]
-        # print(entitiesExtracted)
+        print(getEntityLabel(removeDuplicatedEntities(entitiesExtracted)))
+        print(getEntityValueHelper(removeDuplicatedEntities(entitiesExtracted)))
         # print(intent)
         setLastIntentSlotEvent = SlotSet(LAST_TOPIC_INTENT_SLOT_NAME ,intent )
         answers = []
         try:
             defaultShouldAddRowStrategy = DefaultShouldAddRowStrategy()
             answers = await knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy,knowledgeBase.constructOutput,startYear, endYear )
-            # answerFromUnansweredQuestion = self.getAnswerForUnansweredQuestion(question)
-            # answers = answers + answerFromUnansweredQuestion
+            answerFromUnansweredQuestion = self.getAnswerForUnansweredQuestion(question)
+            print("ANSWER FOUND")
+            print(answerFromUnansweredQuestion)
+            answers = answers + answerFromUnansweredQuestion
             if len(answers) <= 0:
-                response = requests.post("http://127.0.0.1:8000/question_add/" + question)
-                # print("RESPONSE" + response)
                 answers = ["Sorry, I couldn't find any answer to your question"]
-
-            utterAllAnswers(answers, dispatcher)        
+                addUnansweredQuestion(question, answers)
+            
+            event = utterAllAnswers(answers, dispatcher)        
         except Exception as e:
-            #  answerFromUnansweredQuestion = self.getAnswerForUnansweredQuestion(question)
-            #  answers = answers + answerFromUnansweredQuestion
-             self.utterAppropriateAnswerWhenExceptionHappen(question, answers, e, dispatcher)
+            if len(answers) <= 0:
+                answers = ["Sorry, I couldn't find any answer to your question"]
+                addUnansweredQuestion(question, answers)
+                
+            self.utterAppropriateAnswerWhenExceptionHappen(question, answers, e, dispatcher)
              
         if setYearSlotEvent:
-            return [setYearSlotEvent, setLastIntentSlotEvent]
+            return [setYearSlotEvent, setLastIntentSlotEvent, event]
         else:
-            return [setLastIntentSlotEvent]
+            return [setLastIntentSlotEvent, event]
 
 
 class ActionStoreAskedQuestion(Action):
     def name(self) -> Text:
+        # return "action_store_asked_question_and_answer_provided"
         return "action_store_asked_question"
 
     def run(self, dispatcher, tracker, domain):
+        intent = tracker.latest_message["intent"]["name"]
         question = tracker.latest_message["text"]
         # print("STORING QUESTIOn", question
+        event = SlotSet(LAST_USER_QUESTION_ASKED, question)
         intent = tracker.latest_message["intent"]["name"]
         data = {"intent": intent, "feddback": "NO_FEEDBACK", "content": question}
         response = requests.post("http://127.0.0.1:8000/question_asked/", json=data)
-        event = SlotSet(LAST_USER_QUESTION_ASKED, question)
+
+
+        # latestChatbotAnswers = tracker.latest_message.get("text")
+        # # print(tracker.latest_message)
+        # print("LATEST MESSAGE")
+   
+        # conversation_history = tracker.events
+        # for event in conversation_history:
+        #     # if the answer is provided by bot,
+        #     if event["event"] == "bot":
+
         return [event]
 
 
@@ -214,6 +237,11 @@ class ActionSetYear(Action):
             yearRange.append(entities["value"])
         res = SlotSet("yearRangeSelected", yearRange)
         return [res]
+
+
+
+
+
 
 
 class ActionQueryCohort(Action):
@@ -322,8 +350,14 @@ def getYearRangeInSlot(tracker):
 
 def utterAllAnswers(answers, dispatcher ):
     # json_str = json.dumps(json_message)
-    if len(answers) == 0:
-        answers= ["Sorry, I couldn't find any answers related to your question"]
     for answer in answers:
         dispatcher.utter_message( json_message={"text":answer} )
 
+    print("SETTING ANSWER")
+    print(answers)
+    return SlotSet(LAST_ANSWERS_PROVIDED_SLOT_NAME, answers)
+
+def addUnansweredQuestion(question, chatbotAnswers): 
+    data = {"content": question, "chatbotAnswers":chatbotAnswers}
+    response = requests.post("http://127.0.0.1:8000/question_add/", json=data )
+    print(response)

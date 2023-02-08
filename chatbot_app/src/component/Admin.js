@@ -34,7 +34,7 @@ class Question extends React.Component {
   }
 
   render() {
-    return <button key ={this.props.questionObject.content} style={{ display: "block", maxHeight:50, maxWidth:200, margin:"auto", borderColor: this.props.questionObject.is_addressed ? 'white' : 'red' }} onClick={this.handleClick}><div style={{textOverflow: "ellipsis", overflow: "hidden", whiteSpace: "nowrap"}}>{this.props.questionObject.content}</div></button>;
+    return <button key ={this.props.questionObject.content} style={{ height:30, maxWidth:250, margin:"auto", borderColor: this.props.questionObject.is_addressed ? 'white' : 'red' }} onClick={this.handleClick}><div style={{textOverflow: "ellipsis", overflow: "hidden", whiteSpace: "nowrap"}}>{this.props.questionObject.content}</div></button>;
   }
 }
 
@@ -49,17 +49,20 @@ class QuestionAnswer extends React.Component {
       question:props.questionObj.content,
       answer: props.questionObj.answer,
       notificationMessage: "",
-      showNotificationMessage: false
+      showNotificationMessage: false,
+      chatbotAnswers: props.questionObj.chatbotAnswers
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.questionObj !== this.props.questionObj) {
       this.setState({
-         question : nextProps.questionObj.content, answer: nextProps.questionObj.answer,
+         question : nextProps.questionObj.content, 
+         answer: nextProps.questionObj.answer,
+         chatbotAnswers: nextProps.questionObj.chatbotAnswers,
          notificationMessage: "",
          showNotificationMessage: false
-    
+        
       });
     }
   }
@@ -126,7 +129,7 @@ class QuestionAnswer extends React.Component {
   render() {
     return (
       <Card >
-      <CardContent>
+      <CardContent sx={{backgroundColor:"#E7EBF0"}}>
       {/* <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           Question
         </Typography> */}
@@ -137,11 +140,20 @@ class QuestionAnswer extends React.Component {
           }}>{this.state.notificationMessage}</Alert>}
 
         <h5>Question</h5>
-        <div style={{textOverflow: "ellipsis", overflow: "scroll", maxHeight:150, marginBottom:50, "overflowX": "hidden"}} >
+        <div style={{textOverflow: "ellipsis", overflow: "scroll", marginBottom:50, "overflowX": "hidden"}} >
           <h5 >{this.state.question}</h5>
         </div>
         <div id="warningText"></div>
         <div class="form-floating">
+        <h5>Chatbot Answer</h5>
+        <div style={{textOverflow: "ellipsis", overflow: "scroll", marginBottom:50, "overflowX": "hidden"}} >
+          {this.state.chatbotAnswers? this.state.chatbotAnswers.map((elem)=>{
+            console.log(elem)
+            return <h5>{elem}</h5>
+          })
+          : <h5>No answer from chatbot</h5>}
+        </div>
+
 
         <h5>Answer</h5>
         <textarea id="answerInput" class="form-control" value={this.state.answer || ""} onChange={e => this.setState({ answer : e.target.value })} placeholder="Provide answer here" style={{minHeight:150, maxHeight:300,minWidth: "100%",  maxWidth: "100%", textAlign: "center",  }}    />
@@ -155,18 +167,6 @@ class QuestionAnswer extends React.Component {
           {"Delete Question"}
         </button>
 
-       
-        {/* <Typography variant="h5" component="div">
-         Test
-        </Typography>
-        <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          adjective
-        </Typography>
-        <Typography variant="body2">
-          well meaning and kindly.
-          <br />
-          {'"a benevolent smile"'}
-        </Typography> */}
       </CardContent>
     
     </Card>

@@ -17,8 +17,10 @@ class TFIDFModel(Model):
         
         
     def _fit(self, documents):
+        # for doc in documents:
+        #     print(doc)
+
         corpusBow = [self.corpus.convertDocToBow(doc) for doc in documents]
-       
         result = []
         
         for bow in corpusBow:
@@ -30,8 +32,10 @@ class TFIDFModel(Model):
         return len(self.corpus.dictionary)
     
     def initializeModel(self):
-        corpusBow = [self.corpus.convertDocToBow(doc) for doc in self.corpus]
+        print("INTIAlIzING MODEL")
+        corpusBow = [self.corpus.convertDocToBow(doc) for doc in self.corpus] 
         self.model = models.TfidfModel(corpusBow)  
+        
         self.trained = True
 
     def loadModel(self):
