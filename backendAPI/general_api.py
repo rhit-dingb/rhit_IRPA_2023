@@ -242,13 +242,17 @@ class QuestionCategory(Enum):
     
 @app.put("/question_asked/")
 async def handle_new_event(request: Request):
+    jsonData = await request.json()
+    content = jsonData["content"]
+    intent = jsonData["intent"]
+    feedback = jsonData["feedback"]
     timeAsked: datetime = datetime.now()
     db = client.freq_question_db
     freq_collection = db.cds_frequency
     if(len(list(freq_collection.find({"question_asked": content}))) == 0):
         boo1 = freq_collection.insert_one({
-            "intent": intent.value,
-            "user_feedback": feedback.value,
+            "intent": intent,
+            "user_feedback": feedback,
             "time_asked": timeAsked,
             "question_asked": content})
         if boo1:
@@ -256,9 +260,10 @@ async def handle_new_event(request: Request):
         else:
             return {'message': 'errors occurred'}
     else:
-        boo2 = freq_collection.update_one({'time_asked': timeAsked}, {'$set': {'user_feedback': feedback.value}})
+        boo2 = freq_collection.update_one({'question_asked': content}, {'$set': {'user_feedback': feedback}})
         if boo2:
-            return {'message': 'user stats successfully updated'}
+            print("hahahahah")
+            return {'message': 'user feedback successfully updated'}
         else:
             return {'message': 'errors occurred while updating user stats'}
 
