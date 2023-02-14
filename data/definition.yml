@@ -12,11 +12,11 @@ nlu:
     
 
     - What is the definition of [accelerated]{"entity":"program_offered", "value": "accelerated"} [program]{"entity": "organizational_term", "value": "program"} ? ?
-    - What is the definition of [admitted]{"entity": "action", "value": "admitted"} [student]{"entity":"people", "value": "student"} ?
+    - What is the definition of [admitted]{"entity": "action", "value": "admitted"} student ?
 
     - What is the definition of [adult student]{"entity":"service_offered", "value": "adult student service"} [service]{"entity": "organizational_term", "value": "service"} ? 
     
-    - What is the definition of first-time first-year [applicant]{"entity":"people", "value": "applicant"}?
+    - What is the definition of first-time first-year applicant
 
     - What is the definition of [application]{"entity":"academic_process", "value": "application"} [fee]{"entity":"money", "value":"fee"}?
 
@@ -62,7 +62,7 @@ nlu:
 
     - What is the definition for [degree]{"entity": "academic_credential", "value": "degree"}?
 
-    - What is the definition for [degree seeking]{"entity": "degree-goal", "value": "degree-seeking"} [students]{"entity": "people", "value": "student"}?
+    - What is the definition for [degree seeking]{"entity": "degree-goal", "value": "degree-seeking"} student?
 
     - What is the definition for [differs by program]{"entity": "calendar_system", "value": "differs by program"}
 
@@ -92,7 +92,7 @@ nlu:
 
     - What is [esl]{"entity":"program_offered", "value": "english as second language"}?
 
-    - What is the definition of [exchange]{"entity": "category", "value": "exchange"} [student]{"entity": "people", "value": "student"} [program]{"entity": "organizational_term", "value": "program"} ? - [domestic]{"entity":"international_domestic", "value":"domestic"}?
+    - What is the definition of [exchange]{"entity": "category", "value": "exchange"} student [program]{"entity": "organizational_term", "value": "program"} ? - [domestic]{"entity":"international_domestic", "value":"domestic"}?
 
     # might want to redefine the label for external
     #- What is the definition of [external]{"entity": "financial_aid_type", "value": "external"} [degree]{"entity": "academic_credential", "value": "degree"} [program]{"entity": "organizational_term", "value": "program"} ??
@@ -118,7 +118,7 @@ nlu:
 
 
 
-    - What is the definition of [international]{"entity":"international_domestic", "value": "international"} [student]{"entity":"people", "value": "student"} [group]{"entity": "organizational_term", "value": "group"}?
+    - What is the definition of [international]{"entity":"international_domestic", "value": "international"} student [group]{"entity": "organizational_term", "value": "group"}?
 
     - What is the definition of [internship]{"entity":"industry_experience", "value":"internship"} ?
 
@@ -132,7 +132,7 @@ nlu:
 
     - What is the definition of [minority]{"entity": "race", "value": "minority"} affiliation as admission factor?
 
-    - What is the definition of [minority]{"entity": "race", "value": "minority"} [student]{"entity":"people", "value": "student"} [center]{"entity": "organizational_term", "value": "center"}?
+    - What is the definition of [minority]{"entity": "race", "value": "minority"} student [center]{"entity": "organizational_term", "value": "center"}?
 
     - What is the definition of [model united nations]{"entity":"program_offered", "value": "model united nation"}?
 
@@ -189,7 +189,7 @@ nlu:
 
     - What is the definition for [semester]{"entity": "calendar_system", "value": "semester"} [calendar system]{"entity": "calendar_system", "value": "calendar system"}?
 
-    - What is the definition for [student]{"entity": "people", "value": "student"} [designed]{"entity":"action", "value": "designed"} [major]{"entity":"major", "value": "major"}?
+    - What is the definition for student [designed]{"entity":"action", "value": "designed"} [major]{"entity":"major", "value": "major"}?
 
     - What is the definition for [study abroad]{"entity": "program_offered", "value":"study abroad"}?
 
@@ -199,9 +199,9 @@ nlu:
 
     - What is the definition for [teacher]{"entity": "people", "value": "teacher", "value": "people"} [certification]{"entity": "academic_credential", "value": "certificate"} [program]{"entity": "organizational_term", "value": "program"} ??
 
-    - What is the definition for [transfer]{"entity":"category", "value":"transfer"} [applicant]{"entity":"people", "value":"applicant"}?
+    - What is the definition for [transfer]{"entity":"category", "value":"transfer"} applicant
 
-    - What is the definition for [transfer]{"entity":"category", "value":"transfer"} [student]{"entity":"people", "value":"student"}?
+    - What is the definition for [transfer]{"entity":"category", "value":"transfer"} student?
 
     - What is the definition for [transportation]{"entity": "transportation", "value": "transportation"} [costs]{"entity":"money", "value":"cost"}
 

@@ -1,4 +1,5 @@
 
+from enum import Enum
 from typing import Dict, List
 from fastapi import FastAPI
 from pymongo import MongoClient
@@ -7,14 +8,16 @@ from bson import json_util
 import json
 import sys
 import re
-from datetime import datetime, date
+import aiohttp
+import asyncio
+from datetime import datetime, date, timedelta
 
-from DataType import DataType
 
 sys.path.append('../')
+
+from backendAPI.DataType import DataType
 from fastapi import FastAPI, Request, HTTPException
-
-
+from Parser.RasaCommunicator import RasaCommunicator
 from DataManager.constants import DEFINITION
 from DataManager.constants import CDS_DEFINITION_DATABASE_NAME
 from Parser.JsonDataLoader import JsonDataLoader
@@ -26,11 +29,13 @@ from Parser.DataLoader import DataLoader
 from DataManager.constants import DATABASE_PRENAME, MONGO_DB_CONNECTION_STRING
 from fastapi.middleware.cors import CORSMiddleware
 from DataManager.constants import ANNUAL_DATA_REGEX_PATTERN, DEFINITION_DATA_REGEX_PATTERN
-
-
+from UnansweredQuestions.UnansweredQuestionAnswerEngine import UnansweredQuestionAnswerEngine
 
 mongoDbDataManager = MongoDataManager()
+rasaCommunicator = RasaCommunicator()
 client = MongoClient(MONGO_DB_CONNECTION_STRING)
+unansweredQuestionAnswerEngine = UnansweredQuestionAnswerEngine()
+
 
 app = FastAPI()
 
@@ -93,17 +98,10 @@ async def parse_data(request : Request):
     outputName = ""
     if "dataName" in jsonData:
         outputName = jsonData["dataName"]
-    # if dataType ==  DataType.ANNUAL.value:
-    #     yearFrom = jsonData["yearFrom"]
-    #     yearTo = jsonData["yearTo"]
 
-    #     outputName = CDS_DATABASE_NAME_TEMPLATE.format(start_year = yearFrom, end_year = yearTo)
-        
-    # elif dataType == DataType.DEFINITION.value:
-    #     outputName = CDS_DEFINITION_DATABASE_NAME
     if not outputName == "":
         try:
-            # print(excelData)
+            print(excelData)
             print(outputName)
             jsonCdsLoader.loadData(excelData)
             dataWriter = MongoDBSparseMatrixDataWriter(outputName)
@@ -136,17 +134,51 @@ async def delete_data(request : Request):
         raise HTTPException(status_code=500, detail="Deletion failed")
 
 
+@app.get("/api/get_years_available")
+async def get_years_available():
+    yearsAvailable = mongoDbDataManager.getAllAvailableYearsSorted()
+    print(yearsAvailable)
+    response = {"data": yearsAvailable}
+    return response
 
-@app.get("/")
-async def root():
-    return {"message": "Hello, this is IRPA Common Dataset Database Service"}
+@app.post("/api/change_year")
+async def change_selected_year(request : Request):
+    print(request)
+    jsonData = await request.json()
+    conversationId = jsonData["conversationId"]
+    startYear = jsonData["startYear"]
+    endYear = jsonData["endYear"]
+    entities ={"startYear": startYear, "endYear": endYear}
+    try:
+        async with aiohttp.ClientSession() as session:
+            response = await rasaCommunicator.injectIntent("change_year", entities, session, conversationId )
+            return {"message": "success"}
+    except Exception:
+        raise HTTPException(status_code=500, detail="change failed")
+
+@app.get("/api/get_selected_year/{conversation_id}")
+async def get_selected_year(conversation_id : str):
+    async with aiohttp.ClientSession() as session:
+        entities = {}
+        response = await rasaCommunicator.injectIntent("get_year",entities , session, conversation_id )
+        # print(response.keys())
+        messages = response["messages"]
+        print(messages)
+        if len(messages) == 0:
+              return {"selectedYear": None  }
+        else:
+            startYear = messages[0]
+            endYear = messages[1]
+            return {"selectedYear":[startYear, endYear] }
+
 
 # General API for getting unanswered questions
 @app.get("/questions")
 async def get_unans_questions():
     db = client.freq_question_db
     questions_collection = db.unans_question
-    unanswered_questions = list(questions_collection.find({'is_addressed': False}))
+    # unanswered_questions = list(questions_collection.find({'is_addressed': False}))
+    unanswered_questions = list(questions_collection.find())
     print("DATA FOUND")
     unanswered_questions = json.loads(json_util.dumps(unanswered_questions))
     print(unanswered_questions)
@@ -160,32 +192,101 @@ async def handle_post_answer(id: str, answer: str):
     boo1 = questions_collection.update_one({'_id': ObjectId(id)}, {'$set': {'is_addressed': True}})
     boo2 = questions_collection.update_one({'_id': ObjectId(id)}, {'$set': {'answer': answer}})
     if boo1 and boo2:
+        unansweredQuestionAnswerEngine.update()
         return {'message': 'update successfull'}
     else:
         return {'message': 'errors occurred while updating'}
 
 @app.delete("/question_delete/{id}")
-async def handle_post_answer(id: str):
+async def handle_delete_answer(id: str):
     db = client.freq_question_db
     questions_collection = db.unans_question
     boo1 = questions_collection.delete_one({'_id': ObjectId(id)})
     if boo1:
+        unansweredQuestionAnswerEngine.update()
         return {'message': 'question is successfull deleted'}
     else:
         return {'message': 'question maybe not found and issue occurred'}
 
-@app.post("/question_add/{content}")
-async def handle_post_answer(content: str):
+@app.post("/question_add")
+async def handle_add_question(request : Request):
+    jsonData = await request.json()
+    content = jsonData["content"]
+    chatbotAnswers = jsonData["chatbotAnswers"]
     db = client.freq_question_db
     questions_collection = db.unans_question
     boo1 = questions_collection.insert_one({
         "content": content,
         "post_date": datetime.today(),
         "is_addressed": False,
+        "chatbotAnswers": chatbotAnswers,
         "answer": None})
     if boo1:
+        
         return {'message': 'question is successfull added'}
     else:
         return {'message': 'errors occurred during question add'}
 
+#====================Below are the list of APIs for Freqency API==========================
+CURRENT_INTENTIONS = ['enrollment', 'admission', 'high_school_units', 'basis_for_selection']
+class UserFeedback(Enum):
+    NO_FEEDBACK = "NO_FEEDBACK"
+    HELPFUL = "HELPFUL"
+    NOT_HELPFUL = "NOT_HELPFUL"
 
+class QuestionCategory(Enum):
+    ENROLLMENT = "ENROLLMENT"
+    ADMISSION = "ADMISSION"
+    HIGH_SCHOOL_UNITS = "HIGH_SCHOOL_UNITS"
+    BASIS_FOR_SELECTION = "BASIS_FOR_SELECTION"
+    
+@app.put("/question_asked/")
+async def handle_new_event(request: Request):
+    jsonData = await request.json()
+    content = jsonData["content"]
+    intent = jsonData["intent"]
+    feedback = jsonData["feedback"]
+    timeAsked: datetime = datetime.now()
+    db = client.freq_question_db
+    freq_collection = db.cds_frequency
+    if(len(list(freq_collection.find({"question_asked": content}))) == 0):
+        boo1 = freq_collection.insert_one({
+            "intent": intent,
+            "user_feedback": feedback,
+            "time_asked": timeAsked,
+            "question_asked": content})
+        if boo1:
+            return {'message': 'data successfully inserted'}
+        else:
+            return {'message': 'errors occurred'}
+    else:
+        boo2 = freq_collection.update_one({'question_asked': content}, {'$set': {'user_feedback': feedback}})
+        if boo2:
+            print("hahahahah")
+            return {'message': 'user feedback successfully updated'}
+        else:
+            return {'message': 'errors occurred while updating user stats'}
+
+"""
+Testing1:
+PUT request: http://127.0.0.1:8000/question_asked/?intent=ADMISSION&feedback=NO_FEEDBACK&timeAsked=2023-01-01T12:00:00&content=What%20is%20rose%20rankings
+---output: data successfully inserted; check Database for result
+THEN!!!
+--------
+PUT request: http://127.0.0.1:8000/question_asked/?intent=ADMISSION&feedback=NOT_HELPFUL&timeAsked=2023-01-01T12:00:00&content=What%20is%20rose%20rankings
+"""
+
+@app.get("/general_stats/")
+async def handle_new_event(endDate: datetime = datetime.now(), startDate_short: datetime = (datetime.now() - timedelta(days=30)), startDate_long: datetime = (datetime.now() - timedelta(days=365))):
+    db = client.freq_question_db
+    freq_collection = db.cds_frequency
+    short_stats = list(freq_collection.find({"time_asked": {"$gte": startDate_short, "$lte": endDate}}))
+    long_stats = list(freq_collection.find({"time_asked": {"$gte": startDate_long, "$lte": endDate}}))
+    short_stats = json.loads(json_util.dumps(short_stats))
+    long_stats = json.loads(json_util.dumps(long_stats))
+    return short_stats
+
+"""
+Test 1: DEFAULT VIEW
+GET request: http://127.0.0.1:8000/general_stats/
+"""

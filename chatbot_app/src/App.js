@@ -15,6 +15,7 @@ import Home from "./component/Home";
 import Admin from "./component/Admin";
 import ReportIssue from "./component/ReportIssue";
 import UploadData from "./component/UploadData/UploadData"
+import AdminLogin from "./component/AdminLogin"
 // firebase.initializeApp({
 //   apiKey: "AIzaSyDWEnr4gUrMXGIGuSSUdkAgrO4CvHC-JO0",
 //   authDomain: "irpa-chabot.firebaseapp.com",
@@ -29,51 +30,17 @@ function App() {
   return (
     <div className="App">
       <Router>
-        {/* <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand">
-            <img
-              style={roseIconStyle}
-              src={rose_icon}
-              alt="Rose-Hulman Institute of Technology"
-            />
-          </a>
-
-          <div class="dropdown navbar-brand">
-            <button
-              class="btn"
-              type="button"
-              id="dropdownMenuLink"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item">
-                <Link to="/admin_portal">Admin Login</Link>
-              </a>
-              <a class="dropdown-item">
-                <Link to="/report_issue">Report Issue</Link>
-              </a>
-            </div>
-          </div>
-          <h1 id="homepageTitle">IRPA ChatBot</h1>
-        </nav> */}
         <Switch>
-          {/* This route is for home component 
-          with exact path "/", in component props 
-          we passes the imported component*/}
+       
           <Route exact path="/" component={Home} />
 
-          {/* This route is for about component 
-          with exact path "/about", in component 
-          props we passes the imported component*/}
-          <Route path="/admin_portal" component={Admin} />
+      
+          {/* Will probably have to rename the component */}
+          <Route path="/unanswered_questions" component={Admin} />
 
-          {/* This route is for contactus component
-          with exact path "/contactus", in 
-          component props we passes the imported component*/}
+          <Route path="/admin_login" component={AdminLogin} />
+
+        
           <Route path="/report_issue" component={ReportIssue} />
 
 

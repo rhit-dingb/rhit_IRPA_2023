@@ -48,23 +48,21 @@ nlu:
 
 
 
-- synonym: essay
-  examples: |
-    - personal statement
-    - essays
-    - essay/personal statement
-    - essay or personal statement
-    - essays or personal statements
-    - personal statement or essay
-    - personal statement/essays
+# - synonym: essay
+#   examples: |
+#     - personal statement
+#     - essays
+#     - essay/personal statement
+#     - essay or personal statement
+#     - essays or personal statements
+#     - personal statement or essay
+#     - personal statement/essays
 
 # I purposely left out recommendation because recommendation goes into the academic factor entity, interpreted as recommendation letter
 - lookup: condition 
   examples: | 
     - recommended
     - recommend
-    - should
-   
     - required
     - require 
     - requirement
@@ -74,7 +72,6 @@ nlu:
   examples: | 
     - recommended
     - recommending
-    - should
 
 - synonym: require
   examples: |
@@ -90,13 +87,16 @@ nlu:
     - percent
     - percentage
     - average
+    - proportions
+    - proportion
     
     
-
 - synonym: percent
   examples: |
     - percent
     - percentage
+    - proportions
+    - proportion
 
 - synonym: average
   examples: |
@@ -167,8 +167,10 @@ nlu:
      - fee 
      - money
      - dollar
+     - cost
+     - pay
 
-- synonym: fee
+- synonym: cost
   examples: |
     - fee
     - money
@@ -255,19 +257,29 @@ nlu:
 
 - lookup: people
   examples: |
-    - parent
-    - student
     - professor 
+    - professors
     - faculty
+    - faculties
+    - facultys
 
-- synonym: parent
-  examples: | 
-    - parents
+- synonym: faculty
+  examples: |
+    - facultys
+    - faculties
 
+# - synonym: professor
+#   examples: | 
+#     - professor
+#     - faculty
 
-- synonym: student
-  examples: | 
-    - students
+# - synonym: parent
+#   examples: | 
+#     - parents
+
+# - student
+#   examples: | 
+#     - students
 
 
 

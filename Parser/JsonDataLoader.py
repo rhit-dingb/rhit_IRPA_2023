@@ -21,8 +21,8 @@ import pandas as pd
 class JsonDataLoader(DataLoader):
     def __init__(self):
         super().__init__()
-
-    def loadData(self, inputExcelJsonData : Dict[str, List]): 
+        
+    def loadData(self, inputExcelJsonData : Dict[str, List[Dict[str, str]]]): 
         for sectionAndSubsectionFullName in inputExcelJsonData.keys():
             sheetData = inputExcelJsonData[sectionAndSubsectionFullName]
             questionAnswersDataFrame = pd.DataFrame.from_dict(sheetData)

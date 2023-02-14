@@ -31,8 +31,7 @@ nlu:
 
     - What is the six year graduation [rate]{"entity": "aggregation", "value": "percent"} for students who are [recipients of a federal pell grant]{"entity": "aid_status_pell", "value": "pell-grant"} in the 2013 cohort?
     - what is the total number of students graduating [within]{"entity": "range", "value": "within"} six years for 2019 cohort who [did not receive either a pell grant or a subsidized stafford loan]{"entity":"aid_status_none", "value": "no-aid"}
-    - Of the [initial](cohort_initial_final) [4014 cohort](cohort_by_year), how many completed the program in [more than]{"entity": "range", "value": "more than"} [four years]{"entity": "years_for_college", "value": "4 year"} but in [five years]{"entity": "years_for_college", "value": "5 year"} [or less]{"entity": "range", "value": "within"} and are [recipients of subsidized stafford loan and did not receive a pell grant]{"entity": "aid_status_stafford", "value": "stafford-loan"}
-    
+
     - What is the six year graduation [rate]{"entity": "aggregation", "value": "percent"} for the 2013 cohort?
     - What is the five year graduation [rate]{"entity": "aggregation", "value": "percent"} for the 2013 cohort?
     - What is the four year graduation [rate]{"entity": "aggregation", "value": "percent"} for the 2013 cohort?

@@ -3,27 +3,39 @@ version: "3.1"
 nlu:
 - intent: degree_conferred
   examples: |
-    - I want to know about the degree [conferred]{"entity":"action", "value": "conferred"} information.
-    - How many [computer-science]{"entity":"subject", "value": "computer-science"} degrees are [conferred]{"entity":"action", "value": "conferred"}?
-    - How many [engineering]{"entity":"subject", "value": "engineering"} degrees are [conferred]{"entity":"action", "value": "conferred"}?
-    - How many [biological-sciences]{"entity":"subject", "value": "biological science"} degrees are [conferred]{"entity":"action", "value": "conferred"}?
-    - How many [mathematics]{"entity":"subject", "value": "mathematic"} degrees are [conferred]{"entity":"action", "value": "conferred"}?
-    - How many [mathematics]{"entity":"subject", "value": "mathematic"} and [statistics]{"entity":"subject", "value": "statistic"} degrees are [conferred]{"entity":"action", "value": "conferred"}?
-    - How many [interdisciplinary-studies]{"entity":"subject", "value": "interdisciplinary-studies"} degrees are [conferred]{"entity":"action", "value": "conferred"}?
-    - How many [physical science]{"entity":"subject", "value": "physical science"} degrees are [conferred]{"entity":"action", "value": "conferred"}?
-    - How many [social science]{"entity":"subject", "value": "social science"} degrees are [conferred]{"entity":"action", "value": "conferred"}?
-    - What is the percentage of degrees [conferred]{"entity":"action", "value": "conferred"}?
-    - What is the percentage of degrees [conferred]{"entity":"action", "value": "conferred"}?
+    - I want to know about the degree [conferred]{"entity":"action", "value": "awarded"} information.
+    - How many [computer science]{"entity":"subject", "value": "computer science"} degrees are [conferred]{"entity":"action", "value": "awarded"}?
+    - How many [engineering]{"entity":"subject", "value": "engineering"} degrees are [conferred]{"entity":"action", "value": "awarded"}?
+    - How many [biological-sciences]{"entity":"subject", "value": "biological science"} degrees are [conferred]{"entity":"action", "value": "awarded"}?
+    - How many [biological sciences]{"entity":"subject", "value": "biological science"} degrees are [granted]{"entity":"action", "value": "awarded"}?
+    - How many [biological sciences]{"entity":"subject", "value": "biological science"} degrees are [given]{"entity":"action", "value": "awarded"}?
+    - How many [mathematics]{"entity":"subject", "value": "mathematic"} degrees are [conferred]{"entity":"action", "value": "awarded"}?
+    - How many [mathematics]{"entity":"subject", "value": "mathematic"} and [statistics]{"entity":"subject", "value": "statistic"} degrees are [conferred]{"entity":"action", "value": "awarded"}?
+    - How many [interdisciplinary-studies]{"entity":"subject", "value": "interdisciplinary-studies"} degrees are [conferred]{"entity":"action", "value": "awarded"}?
+    - How many [physical science]{"entity":"subject", "value": "physical science"} degrees are [conferred]{"entity":"action", "value": "awarded"}?
+    - How many [social science]{"entity":"subject", "value": "social science"} degrees are [conferred]{"entity":"action", "value": "awarded"}?
+    - What is the percentage of degrees [conferred]{"entity":"action", "value": "awarded"}?
+    - What is the percentage of degrees [conferred]{"entity":"action", "value": "awarded"}?
 
-    - 
+
+    - How many [social science]{"entity":"subject", "value": "social science"} degrees are [handed out]{"entity":"action", "value": "awarded"}?
     - What [majors]{"entity":"major", "value": "major"} does rose-hulman offer?
     - What type of [majors]{"entity":"major", "value": "major"} does rose-hulman offer?
     - What kind of [majors]{"entity":"major", "value": "major"} does rose-hulman offer?
+    - What kind of [disciplinary area]{"entity":"major", "value": "major"} does rose-hulman offer?
+    - What kind of [area]{"entity":"major", "value": "major"} of [discipline]{"entity":"major", "value": "major"} does rose-hulman offer?
+    - What kind of [discipline]{"entity":"major", "value": "major"} does rose-hulman offer?
 
-
-- synonym: computer-science
+- synonym: major
   examples: |
-    - computer-science
+    - discipline
+    - majors
+    - disciplinary area
+    - area
+
+- synonym: computer science
+  examples: |
+    - computer science
     - computer science
     - computer and information science
 
