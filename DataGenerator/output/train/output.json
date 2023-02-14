@@ -35,7 +35,7 @@
           }
         ],
         "intent": "faculty_and_class_size",
-        "text": "How many class section at Rose-Hulman have 100+ [students]{\"entity\":\"people\", \"value\":\"student\"}?"
+        "text": "How many class section at Rose-Hulman have 100+ student?"
       },
       {
         "entities": [
@@ -47,7 +47,7 @@
           }
         ],
         "intent": "faculty_and_class_size",
-        "text": "How many class section at Rose-Hulman have 20 to 29 [students]{\"entity\":\"people\", \"value\":\"student\"}?"
+        "text": "How many class section at Rose-Hulman have 20 to 29 student?"
       },
       {
         "entities": [
@@ -59,7 +59,7 @@
           }
         ],
         "intent": "faculty_and_class_size",
-        "text": "How many class section have 2 to 9 [students]{\"entity\":\"people\", \"value\":\"student\"}?"
+        "text": "How many class section have 2 to 9 student?"
       },
       {
         "entities": [
@@ -71,7 +71,7 @@
           }
         ],
         "intent": "faculty_and_class_size",
-        "text": "How many class section have 40 to 49 [students]{\"entity\":\"people\", \"value\":\"student\"}?"
+        "text": "How many class section have 40 to 49 student?"
       },
       {
         "entities": [
@@ -83,7 +83,7 @@
           }
         ],
         "intent": "faculty_and_class_size",
-        "text": "How many class sections at Rose-Hulman have 100+ [students]{\"entity\":\"people\", \"value\":\"student\"}?"
+        "text": "How many class sections at Rose-Hulman have 100+ student?"
       },
       {
         "entities": [
@@ -95,7 +95,7 @@
           }
         ],
         "intent": "faculty_and_class_size",
-        "text": "How many class sections at Rose-Hulman have 20 to 29 [students]{\"entity\":\"people\", \"value\":\"student\"}?"
+        "text": "How many class sections at Rose-Hulman have 20 to 29 student?"
       },
       {
         "entities": [
@@ -107,7 +107,7 @@
           }
         ],
         "intent": "faculty_and_class_size",
-        "text": "How many class sections have 2 to 9 [students]{\"entity\":\"people\", \"value\":\"student\"}?"
+        "text": "How many class sections have 2 to 9 student?"
       },
       {
         "entities": [
@@ -119,7 +119,7 @@
           }
         ],
         "intent": "faculty_and_class_size",
-        "text": "How many class sections have 40 to 49 [students]{\"entity\":\"people\", \"value\":\"student\"}?"
+        "text": "How many class sections have 40 to 49 student?"
       },
       {
         "entities": [
@@ -131,7 +131,7 @@
           }
         ],
         "intent": "faculty_and_class_size",
-        "text": "How many class sub section at Rose-Hulman have 100+ [students]{\"entity\":\"people\", \"value\":\"student\"}?"
+        "text": "How many class sub section at Rose-Hulman have 100+ student?"
       },
       {
         "entities": [
@@ -143,7 +143,7 @@
           }
         ],
         "intent": "faculty_and_class_size",
-        "text": "How many class sub section at Rose-Hulman have 20 to 29 [students]{\"entity\":\"people\", \"value\":\"student\"}?"
+        "text": "How many class sub section at Rose-Hulman have 20 to 29 student?"
       },
       {
         "entities": [
@@ -155,7 +155,7 @@
           }
         ],
         "intent": "faculty_and_class_size",
-        "text": "How many class sub section have 2 to 9 [students]{\"entity\":\"people\", \"value\":\"student\"}?"
+        "text": "How many class sub section have 2 to 9 student?"
       },
       {
         "entities": [
@@ -167,7 +167,7 @@
           }
         ],
         "intent": "faculty_and_class_size",
-        "text": "How many class sub section have 40 to 49 [students]{\"entity\":\"people\", \"value\":\"student\"}?"
+        "text": "How many class sub section have 40 to 49 student?"
       },
       {
         "entities": [
@@ -179,7 +179,7 @@
           }
         ],
         "intent": "faculty_and_class_size",
-        "text": "How many class sub sections at Rose-Hulman have 100+ [students]{\"entity\":\"people\", \"value\":\"student\"}?"
+        "text": "How many class sub sections at Rose-Hulman have 100+ student?"
       },
       {
         "entities": [
@@ -191,7 +191,7 @@
           }
         ],
         "intent": "faculty_and_class_size",
-        "text": "How many class sub sections at Rose-Hulman have 20 to 29 [students]{\"entity\":\"people\", \"value\":\"student\"}?"
+        "text": "How many class sub sections at Rose-Hulman have 20 to 29 student?"
       },
       {
         "entities": [
@@ -203,7 +203,7 @@
           }
         ],
         "intent": "faculty_and_class_size",
-        "text": "How many class sub sections have 2 to 9 [students]{\"entity\":\"people\", \"value\":\"student\"}?"
+        "text": "How many class sub sections have 2 to 9 student?"
       },
       {
         "entities": [
@@ -215,7 +215,7 @@
           }
         ],
         "intent": "faculty_and_class_size",
-        "text": "How many class sub sections have 40 to 49 [students]{\"entity\":\"people\", \"value\":\"student\"}?"
+        "text": "How many class sub sections have 40 to 49 student?"
       },
       {
         "entities": [
@@ -227,7 +227,7 @@
           }
         ],
         "intent": "faculty_and_class_size",
-        "text": "How many class sub-section at Rose-Hulman have 100+ [students]{\"entity\":\"people\", \"value\":\"student\"}?"
+        "text": "How many class sub-section at Rose-Hulman have 100+ student?"
       },
       {
         "entities": [
@@ -239,7 +239,7 @@
           }
         ],
         "intent": "faculty_and_class_size",
-        "text": "How many class sub-section at Rose-Hulman have 20 to 29 [students]{\"entity\":\"people\", \"value\":\"student\"}?"
+        "text": "How many class sub-section at Rose-Hulman have 20 to 29 student?"
       },
       {
         "entities": [
@@ -251,7 +251,7 @@
           }
         ],
         "intent": "faculty_and_class_size",
-        "text": "How many class sub-section have 2 to 9 [students]{\"entity\":\"people\", \"value\":\"student\"}?"
+        "text": "How many class sub-section have 2 to 9 student?"
       },
       {
         "entities": [
@@ -263,7 +263,7 @@
           }
         ],
         "intent": "faculty_and_class_size",
-        "text": "How many class sub-section have 40 to 49 [students]{\"entity\":\"people\", \"value\":\"student\"}?"
+        "text": "How many class sub-section have 40 to 49 student?"
       },
       {
         "entities": [
@@ -275,7 +275,7 @@
           }
         ],
         "intent": "faculty_and_class_size",
-        "text": "How many class subsection at Rose-Hulman have 100+ [students]{\"entity\":\"people\", \"value\":\"student\"}?"
+        "text": "How many class subsection at Rose-Hulman have 100+ student?"
       },
       {
         "entities": [
@@ -287,7 +287,7 @@
           }
         ],
         "intent": "faculty_and_class_size",
-        "text": "How many class subsection at Rose-Hulman have 20 to 29 [students]{\"entity\":\"people\", \"value\":\"student\"}?"
+        "text": "How many class subsection at Rose-Hulman have 20 to 29 student?"
       },
       {
         "entities": [
@@ -299,7 +299,7 @@
           }
         ],
         "intent": "faculty_and_class_size",
-        "text": "How many class subsection have 2 to 9 [students]{\"entity\":\"people\", \"value\":\"student\"}?"
+        "text": "How many class subsection have 2 to 9 student?"
       },
       {
         "entities": [
@@ -311,7 +311,7 @@
           }
         ],
         "intent": "faculty_and_class_size",
-        "text": "How many class subsection have 40 to 49 [students]{\"entity\":\"people\", \"value\":\"student\"}?"
+        "text": "How many class subsection have 40 to 49 student?"
       },
       {
         "entities": [
@@ -323,7 +323,7 @@
           }
         ],
         "intent": "faculty_and_class_size",
-        "text": "How many class subsections at Rose-Hulman have 100+ [students]{\"entity\":\"people\", \"value\":\"student\"}?"
+        "text": "How many class subsections at Rose-Hulman have 100+ student?"
       },
       {
         "entities": [
@@ -335,7 +335,7 @@
           }
         ],
         "intent": "faculty_and_class_size",
-        "text": "How many class subsections at Rose-Hulman have 20 to 29 [students]{\"entity\":\"people\", \"value\":\"student\"}?"
+        "text": "How many class subsections at Rose-Hulman have 20 to 29 student?"
       },
       {
         "entities": [
@@ -347,7 +347,7 @@
           }
         ],
         "intent": "faculty_and_class_size",
-        "text": "How many class subsections have 2 to 9 [students]{\"entity\":\"people\", \"value\":\"student\"}?"
+        "text": "How many class subsections have 2 to 9 student?"
       },
       {
         "entities": [
@@ -359,7 +359,7 @@
           }
         ],
         "intent": "faculty_and_class_size",
-        "text": "How many class subsections have 40 to 49 [students]{\"entity\":\"people\", \"value\":\"student\"}?"
+        "text": "How many class subsections have 40 to 49 student?"
       },
       {
         "entities": [
@@ -443,7 +443,7 @@
           }
         ],
         "intent": "faculty_and_class_size",
-        "text": "What is the [students]{\"entity\":\"people\", \"value\":\"student\"} to faculty ratio?"
+        "text": "What is the student to faculty ratio?"
       },
       {
         "entities": [
@@ -455,7 +455,7 @@
           }
         ],
         "intent": "faculty_and_class_size",
-        "text": "What is the [students]{\"entity\":\"people\", \"value\":\"student\"} to prof ratio?"
+        "text": "What is the student to prof ratio?"
       },
       {
         "entities": [
@@ -467,7 +467,7 @@
           }
         ],
         "intent": "faculty_and_class_size",
-        "text": "What is the [students]{\"entity\":\"people\", \"value\":\"student\"} to professor ratio?"
+        "text": "What is the student to professor ratio?"
       },
       {
         "entities": [
@@ -485,7 +485,7 @@
           }
         ],
         "intent": "faculty_and_class_size",
-        "text": "What is the total number of full-time faculty who are in stand-alone [graduate]{\"entity\": \"student_level\", \"value\":\"graduate\"} programs in which faculty teach virtually only [graduate]{\"entity\": \"student_level\", \"value\":\"graduate\"} level [students]{\"entity\":\"people\", \"value\":\"student\"}"
+        "text": "What is the total number of full-time faculty who are in stand-alone [graduate]{\"entity\": \"student_level\", \"value\":\"graduate\"} programs in which faculty teach virtually only [graduate]{\"entity\": \"student_level\", \"value\":\"graduate\"} level student"
       },
       {
         "entities": [
@@ -1067,7 +1067,7 @@
           }
         ],
         "intent": "faculty_and_class_size",
-        "text": "What is the total number of full-time prof who are in stand-alone [graduate]{\"entity\": \"student_level\", \"value\":\"graduate\"} programs in which faculty teach virtually only [graduate]{\"entity\": \"student_level\", \"value\":\"graduate\"} level [students]{\"entity\":\"people\", \"value\":\"student\"}"
+        "text": "What is the total number of full-time prof who are in stand-alone [graduate]{\"entity\": \"student_level\", \"value\":\"graduate\"} programs in which faculty teach virtually only [graduate]{\"entity\": \"student_level\", \"value\":\"graduate\"} level student"
       },
       {
         "entities": [
@@ -1595,7 +1595,7 @@
           }
         ],
         "intent": "faculty_and_class_size",
-        "text": "What is the total number of full-time professor who are in stand-alone [graduate]{\"entity\": \"student_level\", \"value\":\"graduate\"} programs in which faculty teach virtually only [graduate]{\"entity\": \"student_level\", \"value\":\"graduate\"} level [students]{\"entity\":\"people\", \"value\":\"student\"}"
+        "text": "What is the total number of full-time professor who are in stand-alone [graduate]{\"entity\": \"student_level\", \"value\":\"graduate\"} programs in which faculty teach virtually only [graduate]{\"entity\": \"student_level\", \"value\":\"graduate\"} level student"
       },
       {
         "entities": [
@@ -2123,7 +2123,7 @@
           }
         ],
         "intent": "faculty_and_class_size",
-        "text": "What is the total number of part-time faculty who are in stand-alone [graduate]{\"entity\": \"student_level\", \"value\":\"graduate\"} programs in which faculty teach virtually only [graduate]{\"entity\": \"student_level\", \"value\":\"graduate\"} level [students]{\"entity\":\"people\", \"value\":\"student\"}"
+        "text": "What is the total number of part-time faculty who are in stand-alone [graduate]{\"entity\": \"student_level\", \"value\":\"graduate\"} programs in which faculty teach virtually only [graduate]{\"entity\": \"student_level\", \"value\":\"graduate\"} level student"
       },
       {
         "entities": [
@@ -2705,7 +2705,7 @@
           }
         ],
         "intent": "faculty_and_class_size",
-        "text": "What is the total number of part-time prof who are in stand-alone [graduate]{\"entity\": \"student_level\", \"value\":\"graduate\"} programs in which faculty teach virtually only [graduate]{\"entity\": \"student_level\", \"value\":\"graduate\"} level [students]{\"entity\":\"people\", \"value\":\"student\"}"
+        "text": "What is the total number of part-time prof who are in stand-alone [graduate]{\"entity\": \"student_level\", \"value\":\"graduate\"} programs in which faculty teach virtually only [graduate]{\"entity\": \"student_level\", \"value\":\"graduate\"} level student"
       },
       {
         "entities": [
@@ -3233,7 +3233,7 @@
           }
         ],
         "intent": "faculty_and_class_size",
-        "text": "What is the total number of part-time professor who are in stand-alone [graduate]{\"entity\": \"student_level\", \"value\":\"graduate\"} programs in which faculty teach virtually only [graduate]{\"entity\": \"student_level\", \"value\":\"graduate\"} level [students]{\"entity\":\"people\", \"value\":\"student\"}"
+        "text": "What is the total number of part-time professor who are in stand-alone [graduate]{\"entity\": \"student_level\", \"value\":\"graduate\"} programs in which faculty teach virtually only [graduate]{\"entity\": \"student_level\", \"value\":\"graduate\"} level student"
       },
       {
         "entities": [

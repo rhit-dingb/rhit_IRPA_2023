@@ -2,8 +2,8 @@ from gensim import models
 import gensim.downloader
 from gensim.models.doc2vec import Doc2Vec, TaggedDocument
 
-from Corpus import Corpus
-from Model import Model
+from UnansweredQuestions.Corpus import Corpus
+from UnansweredQuestions.Model import Model
 
 class Doc2VecModel(Model):
     def __init__(self, corpus, vector_size, modelPath : str):
@@ -12,6 +12,7 @@ class Doc2VecModel(Model):
 
     
     def initializeModel(self):
+        print("INITIALIZE")
         self.model = Doc2Vec(vector_size=self.vector_size, window=2, min_count=1, workers=4)
        
 
@@ -27,6 +28,7 @@ class Doc2VecModel(Model):
 
         self.model.build_vocab(taggedDocuments, update= update)
         self.model.train(taggedDocuments, epochs=50, total_examples=len(taggedDocuments))
+      
         self.saveModel()
         
     def _fit(self, documents):

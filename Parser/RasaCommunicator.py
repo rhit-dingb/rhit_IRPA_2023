@@ -29,8 +29,19 @@ class RasaCommunicator():
         # r = requests.post(self.connectionString+"model/"+"parse", json=body)
         # return r.json()
         
-            
+    # http://localhost:5005/conversations/{conversation_id}/trigger_intent
+    async def injectIntent(self, intent, entities, session, convId):
+        print("USING INTENT")
+        print(intent)
+        body={
+            "name": intent,
+            "entities": entities
+        }
 
+        body = json.dumps(body)
+        async with session.post(self.connectionString+"conversations/"+convId+"/trigger_intent",
+        headers ={ "Content-Type": "application/json" }, data = body) as response:
+            return await response.json()
 
 # def main():
 #     comm = RasaCommunicator()

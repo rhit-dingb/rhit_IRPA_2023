@@ -5,6 +5,5 @@ from enum import Enum, auto
 class ExceptionTypes(Enum):
     CohortByYearEntityValueException = auto()
     NoDataFoundForAcademicYearException = auto()
-    NoDataFoundForCohortYearException = auto() 
-    NotEnoughDataForCohortYearException = auto()
+    NoDataFoundAtAll = auto()
     NoSparseMatrixDataAvailableForGivenIntent = auto()

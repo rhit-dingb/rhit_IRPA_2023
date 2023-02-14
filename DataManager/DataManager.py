@@ -1,13 +1,16 @@
 
 from typing import Dict, Tuple
-from DataManager.YearDataSelector import YearlyDataSelector
-from DataManager.YearDataSelectorByCohort import YearlyDataSelectorByCohort
+# from DataManager.YearDataSelector import YearlyDataSelector
+# from DataManager.YearDataSelectorByCohort import YearlyDataSelectorByCohort
 from Data_Ingestion.SparseMatrix import SparseMatrix
 from Data_Ingestion.TopicData import TopicData
 from Exceptions.ExceptionTypes import ExceptionTypes
 
 from Exceptions.ExceptionMessages import NO_DATA_AVAILABLE_FOR_GIVEN_INTENT_FORMAT, NO_DATA_FOUND_FOR_ACADEMIC_YEAR_ERROR_MESSAGE_FORMAT
 from Exceptions.NoDataFoundException import NoDataFoundException
+from DataManager.DataSelection.TFIDFSelector import TFIDFSelector
+from Exceptions.ExceptionMessages import NO_DATA_EXIST_MESSAGE
+from DataManager.DataSelection.DecisionTreeSelector import DecisionTreeSelector
 """
 "Abstract" class to abstract sub classes responsible for retrieving sparse matrix to be searched
  given intent and entities containing year information.
@@ -16,9 +19,11 @@ There probably will be two implementation of this class one is for excel and ano
 """
 class DataManager():
     def __init__(self):
-        # self.cohortYearDataSelector = YearlyDataSelectorByCohort()
-        #self.academicYearDataSelector = YearlyDataSelector()
         pass
+    
+    def getAvailableOptions(self,startYear, endYear):
+        pass
+        # raise Exception("This method should be override by a concrete class")
 
     """
     This is an abstract method.
@@ -48,20 +53,17 @@ class DataManager():
     The year values is the what year CDS data was used.
 
     """
-    def determineMatrixToSearch(self, intent, entities, year : str) -> Tuple[SparseMatrix, str, str]: 
-        # sparseMatrices, startYear, endYear = self.cohortYearDataSelector.selectDataToSearchByYear(self, intent, entities)
-        # # print(sparseMatrices)
-        # if sparseMatrices == None:
-        # sparseMatrices, startYear, endYear = self.academicYearDataSelector.selectDataToSearchByYear(self, intent, entities)   
-        year = int(year)
-        startYear = str(year)
-        endYear = str(year + 1)
-        exceptionToThrow = NoDataFoundException(NO_DATA_FOUND_FOR_ACADEMIC_YEAR_ERROR_MESSAGE_FORMAT.format(start=str(year), end=str(year+1)), ExceptionTypes.NoDataFoundForAcademicYearException)
+    def determineMatrixToSearch(self, intent, entities, startYear : str, endYear : str) -> Tuple[SparseMatrix, str, str]: 
+        if startYear == None or endYear == None:
+            raise NoDataFoundException(NO_DATA_EXIST_MESSAGE, ExceptionTypes.NoDataFoundAtAll)
+        startYear = str(startYear)
+        endYear = str(endYear)
+        exceptionToThrow = NoDataFoundException(NO_DATA_FOUND_FOR_ACADEMIC_YEAR_ERROR_MESSAGE_FORMAT.format(start=startYear, end=endYear), ExceptionTypes.NoDataFoundForAcademicYearException)
         sparseMatrices = self.getSparseMatricesByStartEndYearAndIntent(intent, startYear, endYear, exceptionToThrow)
         intentWithNoUnderScore = intent.replace("_", " ")
         errorMessage = NO_DATA_AVAILABLE_FOR_GIVEN_INTENT_FORMAT.format(topic = intentWithNoUnderScore, start= str(startYear), end = str(endYear))
         selectedSparseMatrix = self.determineBestMatchingMatrix(sparseMatrices, entities, errorMessage)     
-        return (selectedSparseMatrix, startYear, endYear)
+        return selectedSparseMatrix
        
 
 
@@ -90,22 +92,25 @@ class DataManager():
     """
     def determineBestMatchingMatrix(self, topicData : TopicData, entities : Dict, errorMessage : str) ->  SparseMatrix:
         doesEntityMapToAnySubsections, sparseMatricesFound = topicData.doesEntityIncludeAnySubsections(entities)
-        candidates = topicData.getSparseMatrices().values()
+        candidates = list(topicData.getSparseMatrices().values())
+      
         if doesEntityMapToAnySubsections:
             candidates = sparseMatricesFound
-
+            
+        # for candidate in candidates:
+        #     print(candidate.subSectionName)
+            
         maxMatch = []
         currMax = 0
-
-        
         entityValues = []
         for entity in entities:
             entityValues.append(entity["value"])
 
         entityValues = list(set(entityValues))
+        # print("ENTITY VALUES")
         # print(entityValues)
-        # print(len(candidates))
-        for sparseMatrix in candidates:                
+        for sparseMatrix in candidates:  
+            # print(sparseMatrix.subSectionName)              
             entitiesMatchCount : int  = sparseMatrix.determineEntityMatchToColumnCount(entityValues)
             if entitiesMatchCount>currMax:
                 maxMatch = []
@@ -114,11 +119,29 @@ class DataManager():
             elif entitiesMatchCount == currMax:
                 maxMatch.append(sparseMatrix)
 
+        
+        #NEW CODE
+        # columnsForEachMatrix  = []
+        # for sparseMatrix in candidates: 
+        #     columnsList = sparseMatrix.getColumn()
+        #     columnsForEachMatrix.append(list(columnsList))
+            
+        # best_index = self.tfidfSelector.selectBest(entities, columnsForEachMatrix)
+        # candidates = list(candidates)
+        # print(candidates[best_index].subSectionName)
+        # return candidates[best_index]
+
         #raise an error if no best matching matrix is found
 
-  
+        # print("CANDIDATES")
+        # print(len(maxMatch))
         # for m in maxMatch:
-        #     print(m.sparseMatrixDf)
+        #     print(m.subSectionName)
+
+        # decisionTreeSelector = DecisionTreeSelector()
+        # decisionTreeSelector.selectBest(entityValues, candidates)
+        print(maxMatch[0].subSectionName)
+
         if len(maxMatch) == 0:
             raise NoDataFoundException(errorMessage, ExceptionTypes.NoSparseMatrixDataAvailableForGivenIntent)
         

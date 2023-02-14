@@ -1,39 +1,49 @@
 
 from gensim import similarities
 
-from Corpus import Corpus
-from DocumentRetriever import DocumentRetriever
-from Model import Model
+from UnansweredQuestions.Corpus import Corpus
+from UnansweredQuestions.DocumentRetriever import DocumentRetriever
+from UnansweredQuestions.Model import Model
+from os import path
+import numpy as np
+
 class DocumentIndexRetriever(DocumentRetriever):
-    def __init__(self, corpus, model : Model, indexPath, topN = 3):
+    def __init__(self, corpus, model : Model, indexPath, topN = 1):
         super().__init__(corpus = corpus, model = model)
         # self.index = None
         self.indexPath = indexPath
         self.topN = topN
+        self.index = None
+        # if path.exists(self.indexPath):
+        #     self.index = self.loadIndex(self.indexPath)
+        # else:
+        #     self.index = self.createAndSaveIndex()
 
 
     def findSimilarDocuments(self,query):
-        index = self.loadIndex(self.indexPath)
+        # index = self.loadIndex(self.indexPath)
         # # bowVectors = self.corpus.convertDocToBow(processedAndTokenizedQuery)
         query = self.corpus.preprocessDoc(query)
-        # print("QUERY!!")
-        # print(query)
-        # print(query)
-        transformedVectors = self.model.fitOnDocuments([query])
-        if len(transformedVectors) == 0:
-            return []
-
-        documentSimilarities = index[transformedVectors[0]] 
-        # print(documentSimilarities)
-        return self.getTopDocs(documentSimilarities, self.topN)
-        # counter = 0
-        # for doc_position, doc_score in sims:
-        #     print(doc_score, self.corpus.getDocumentByIndex(doc_position))
-        # return documentSimilarities
        
-        
+        transformedVectors = self.model.fitOnDocuments([query])
+        # print(transformedVectors)
+        if len(transformedVectors) == 0 or len(transformedVectors[0]) ==0:
+            print("RETURN")
+            return ([], [])
 
-
+        # try:
+        documentSimilarities = self.index[transformedVectors[0]] 
+        for i, sim in enumerate(documentSimilarities):  
+            doc = self.corpus.getDocumentByIndex(i)
+            print(doc)
+            print(sim)
+    
+        return self.getTopDocs(documentSimilarities, self.topN)
+        # except:
+        #     return ([],[])
+     
+       
+    
     def addNewDocuments(self,documents):
         self.corpus.addDocuments(documents)
         #Recreate the index
@@ -47,8 +57,9 @@ class DocumentIndexRetriever(DocumentRetriever):
         # print(self.corpus)
         #self.model.train(self.corpus)
         transformedCorpus = self.model.fitOnDocuments(self.corpus)
-        index = similarities.Similarity(output_prefix=None, corpus = transformedCorpus, num_features= self.model.getNumFeatures())
-        self.saveIndex(self.indexPath, index)
+        self.index = similarities.Similarity(output_prefix=None, corpus = transformedCorpus, num_features= self.model.getNumFeatures())
+        # print(transformedCorpus)
+        self.saveIndex(self.indexPath, self.index)
 
 
 

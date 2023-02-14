@@ -26,6 +26,7 @@ from Parser.RasaCommunicator import RasaCommunicator
 from Knowledgebase.DataModels.SearchResult import SearchResult
 from actions.entititesHelper import removeDuplicatedEntities
 from CustomEntityExtractor.NumberEntityExtractor import NumberEntityExtractor
+from Knowledgebase.FuzzyShouldAddRowStrategy import FuzzyShouldAddRowStrategy
 from tests.testUtils import createEntityObjHelper
 import aiohttp
 import asyncio
@@ -35,14 +36,11 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         self.dataManager : DataManager = dataManager
         self.typeController = TypeController()
         self.templateConverter : TemplateConverter = TemplateConverter()
-        self.year = self.dataManager.getMostRecentYearRange()[0]
+
         self.rasaCommunicator = RasaCommunicator()
         self.numberEntityExtractor = NumberEntityExtractor()
 
     
-    def setYear(self,year):
-        self.year = year
-
 
     """
     This function will search in the sparse matrices retrieved by the given intent and calculate the total sum 
@@ -59,49 +57,43 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
     Throws: exception when given year or intent for the data is not found or when exception encountered when parsing year entity values
 
     """
-    async def searchForAnswer(self, intent, entitiesExtracted, shouldAddRowStrategy, outputFunc, shouldAdd = True):
+    async def searchForAnswer(self, intent, entitiesExtracted, shouldAddRowStrategy, outputFunc, startYear, endYear):
         # print("BEGAN SEARCHING")
-        sparseMatrixToSearch : SparseMatrix; startYear : str; endYear : str 
-        sparseMatrixToSearch, startYear, endYear = self.determineMatrixToSearch(intent, entitiesExtracted, self.year)
+        sparseMatrixToSearch : SparseMatrix
+        sparseMatrixToSearch = self.determineMatrixToSearch(intent, entitiesExtracted, startYear, endYear)
         
         if sparseMatrixToSearch is None:
             raise Exception("No valid sparse matrix found for given intent and entities", intent, entitiesExtracted)
+
+        isOperationAllowed = sparseMatrixToSearch.isAnyOperationAllowed()
 
         isRangeAllowed = sparseMatrixToSearch.isRangeOperationAllowed()
         hasRangeEntity = findEntityHelper(entitiesExtracted, RANGE_ENTITY_LABEL)
         isSumAllowed = sparseMatrixToSearch.isSumOperationAllowed()
 
         isPercentageAllowed = sparseMatrixToSearch.isPercentageOperationAllowed()
-        hasPercentageEntity = findEntityHelper(entitiesExtracted, AGGREGATION_ENTITY_PERCENTAGE_VALUE)
+        percentageEntityDetected = findEntityHelper(entitiesExtracted, AGGREGATION_ENTITY_PERCENTAGE_VALUE, by="value")
         template = sparseMatrixToSearch.findTemplate()
         searchResults = []
-        print(sparseMatrixToSearch.subSectionName)
+      
         if isRangeAllowed and hasRangeEntity:
-            print("RANGE")
+           
             rangeResultData : RangeResultData =  self.aggregateDiscreteRange(entitiesExtracted, sparseMatrixToSearch, isSumAllowed)
             filteredEntities = filterEntities(entitiesExtracted, [RANGE_ENTITY_LABEL, NUMBER_ENTITY_LABEL])
             searchResults : List[SearchResult] = rangeResultData.answers
             for searchResult in searchResults:
                 searchResult.addEntities(filteredEntities)
-
-            # print("GOT IT")
-            # print(entitiesUsedForEachResult)
-
         else:
-
             searchResults : List[SearchResult] = sparseMatrixToSearch.searchOnSparseMatrix(entitiesExtracted, shouldAddRowStrategy, isSumAllowed)
-            # entitiesUsedForEachResult = [entitiesUsed]*len(searchResults)
-
-        # if isPercentageAllowed and hasPercentageEntity:
-        #     percentages = self.calculatePercentages(searchResults, sparseMatrixToSearch)
-        #     if percentages == None or len(percentages) == 0:
-        #         return outputFunc(searchResults, intent, template)
-        #     else:
-                # return outputFunc(percentages, intent, template)
-      
+        if isPercentageAllowed and percentageEntityDetected:
+            percentages = await self.calculatePercentages(searchResults, sparseMatrixToSearch,  percentageEntityDetected)
+            # print("GOT VALUE ", percentages)
+            if not percentages == None and len(percentages) > 0:
+                searchResults = percentages
         await self.getAllEntityForRealQuestionFoundForAnswer(searchResults)
-        # print(searchResults[0].entitiesForRealQuestion)
         return outputFunc(searchResults, intent,  template)
+
+
 
     async def getAllEntityForRealQuestionFoundForAnswer(self, searchResults : List[SearchResult]):
         async with aiohttp.ClientSession() as session:
@@ -120,12 +112,11 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
                 entities = entities+numberEntities
                 entities = removeDuplicatedEntities(entities)
                 searchResult.setEntitiesForRealQuestion(entities)
-            print("DONE")
-            
-
+           
+        
     
     # STILL WORK IN PROGRESS
-    async def calculatePercentages(self, searchResults, entitiesForEachResult : List[List[Dict[str, str]]], sparseMatrix : SparseMatrix) -> List[str]:
+    async def calculatePercentages(self, searchResults : List[SearchResult], sparseMatrix : SparseMatrix, percentageEntityDetected : Dict[str, str]) -> List[str]:
         shouldAddRowStrategy = DefaultShouldAddRowStrategy()
         denominatorQuestion = sparseMatrix.findDenominatorQuestion()
         percentageSearchInSelf = sparseMatrix.shouldSearchInSelfForPercentage()
@@ -134,47 +125,56 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
             entitiesFromDenominatorQuestion = response["entities"]
 
             percentages = []
-            for searchResult, entitiesUsed in zip(searchResults, entitiesForEachResult):
+            
+            for searchResult in searchResults:
+                entitiesUsedForThisSearchResult = searchResult.getEntitiesUsed()
                 entitiesForDenominator = entitiesFromDenominatorQuestion
                 if percentageSearchInSelf:
-                    entitiesForDenominator =  entitiesFromDenominatorQuestion + entitiesUsed
-                answers, entitiesUsed = sparseMatrix.searchOnSparseMatrix(entitiesForDenominator, shouldAddRowStrategy, True)
-                if len(answers) == 0:
+                    entitiesForDenominator =  entitiesFromDenominatorQuestion + entitiesUsedForThisSearchResult
+                
+                searchResults = sparseMatrix.searchOnSparseMatrix(entitiesForDenominator, shouldAddRowStrategy, True)
+                if len(searchResults) == 0:
                     return []
 
-                denominator = answers[0]
-                try:
-                    numerator = searchResult
-                    percentageCalc = numerator/float(denominator)*100
-                    percentage = round(percentageCalc, 1)
-                    percentage = PERCENTAGE_FORMAT.format(value = percentage)
-                    percentages.append(percentage)
-                except:
-                    continue
+                denominator = searchResults[0]
+                # try:
+                numerator = float(searchResult.answer)
+                percentageCalc = numerator/float(denominator.answer)*100
+                percentage = round(percentageCalc, 1)
+                percentage = PERCENTAGE_FORMAT.format(value = percentage)
+                allEntityUsedAndPercentage = entitiesUsedForThisSearchResult + [percentageEntityDetected]
+                # print("NEW ENTITY")
+                # print(allEntityUsedAndPercentage)
+                percentageSearchResult = SearchResult(percentage, allEntityUsedAndPercentage, SearchResultType.PERCENTAGE, searchResult.realQuestion)
+                percentages.append(percentageSearchResult)
+                # except:
+                #     continue
 
             return percentages
         
-        
-    def getAvailableOptions(self, key):
-        pass
 
-    def determineMatrixToSearch(self, intent, entities, year):
-        return self.dataManager.determineMatrixToSearch(intent, entities, year)
+    def getAvailableOptions(self, intent, startYear, endYear) -> Dict[str, List[str]]:
+        return self.dataManager.getAvailableOptions(self,startYear, endYear)
+
+    def determineMatrixToSearch(self, intent, entities, startYear, endYear):
+        return self.dataManager.determineMatrixToSearch(intent, entities, startYear, endYear)
 
     def constructOutput(self, searchResults : List[SearchResult], intent, template):
        #return searchResult
      
        if searchResults is None or len(searchResults) == 0: 
-            return ["Sorry, I couldn't find any answer to your question"]
+            return []
         
        if template == "" or template == "nan":
-            return map(lambda x: x.answer , searchResults)
+            return list(map(lambda x: x.answer , searchResults))
 
        constructSentenceFor = []
        stringSentence = []
        for result in searchResults:
-            
-            if result.type == SearchResultType.STRING:
+            if result.answer.lower() == "n/a":
+                constructSentenceFor.append(result)
+                
+            elif result.type == SearchResultType.STRING:
                 stringSentence.append(str(result.answer))
             else:
                 constructSentenceFor.append(result)
@@ -229,16 +229,11 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         for dRange in discreteRanges:
             if self.doesIntervalOverlap(intervalToCheck, dRange):
                 rangesToUse.append(dRange)
-        # print("MIN VALUE MAX VALUE")
-        # print(minValue, maxValue)
-        print("RANGE TO USE")
-        print(rangesToUse)
+    
         return rangesToUse
     
         
     def doesIntervalOverlap(self,a, b):
-        # a = self.convertNoneToInfinity(a)
-        # b = self.convertNoneToInfinity(b)
         if not a[0] >= b[1] and not a[1] <= b[0]:
             return True
         else:
@@ -256,9 +251,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
 
         foundAnswers : List[SearchResult] = []
         rangeResultData = RangeResultData()
-        # print("RANGE TO SUM")
-        # print(rangesToSumOver)
-
+       
         minRange = float('-inf')
         maxRange = float('inf')
         for r in rangesToSumOver:
