@@ -14,8 +14,9 @@ import { Link } from "react-router-dom";
 import Home from "./component/Home";
 import Admin from "./component/Admin";
 import ReportIssue from "./component/ReportIssue";
-import UploadData from "./component/UploadData/UploadData"
-import AdminLogin from "./component/AdminLogin"
+import UploadData from "./component/UploadData/UploadData";
+import AdminLogin from "./component/AdminLogin";
+import Frequency from "./component/Frequency";
 // firebase.initializeApp({
 //   apiKey: "AIzaSyDWEnr4gUrMXGIGuSSUdkAgrO4CvHC-JO0",
 //   authDomain: "irpa-chabot.firebaseapp.com",
@@ -37,6 +38,8 @@ function App() {
       
           {/* Will probably have to rename the component */}
           <Route path="/unanswered_questions" component={Admin} />
+
+          <Route path="/frequency" component={Frequency} />
 
           <Route path="/admin_login" component={AdminLogin} />
 
