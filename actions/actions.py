@@ -163,7 +163,6 @@ class ActionQueryKnowledgebase(Action):
         else:
             return [setLastIntentSlotEvent, event]
 
-
 class ActionStoreAskedQuestion(Action):
     def name(self) -> Text:
         # return "action_store_asked_question_and_answer_provided"
@@ -172,7 +171,12 @@ class ActionStoreAskedQuestion(Action):
     def run(self, dispatcher, tracker, domain):
         intent = tracker.latest_message["intent"]["name"]
         question = tracker.latest_message["text"]
+        # print("STORING QUESTIOn", question
         event = SlotSet(LAST_USER_QUESTION_ASKED, question)
+        intent = tracker.latest_message["intent"]["name"]
+        data = {"intent": intent, "feedback": "NO_FEEDBACK", "content": question}
+        response = requests.put("http://127.0.0.1:8000/question_asked/", json=data)
+
 
         # latestChatbotAnswers = tracker.latest_message.get("text")
         # # print(tracker.latest_message)
@@ -193,8 +197,17 @@ class ActionStoreIsHelpfulStatistic(Action):
     def run(self, dispatcher, tracker, domain):
         #Get the stored question
         userAskedQuestion = tracker.get_slot(LAST_USER_QUESTION_ASKED)
+        intent = tracker.latest_message["intent"]["name"]
+        update_intent = "NO_FEEDBACK"
+        if(intent == "deny"):
+            update_intent = "NOT_HELPFUL"
+        if(intent == "affirm"):
+            update_intent = "HELPFUL"
+        print(update_intent)
+        data = {"intent": "UPDATE", "feedback": update_intent, "content": userAskedQuestion}
+        response = requests.put("http://127.0.0.1:8000/question_asked/", json=data)
         # print(userAskedQuestion)
-        return [] 
+        return []
 
 
 class ActionGetYear(Action):
