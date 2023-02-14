@@ -4,16 +4,16 @@ version: "3.1"
 nlu:
 - intent: annual_expense
   examples: |
-    - How much do I gotta [pay]{"entity":"money", "value": "cost"} for [tuition]{"entity":"money", "value": "tuition"} for [first-year]{"entity":"is_first_year", "value": "first-year"} student?
+    - How much do I gotta [pay]{"entity":"money", "value": "cost"} for [tuition]{"entity":"money", "value": "cost"} for [first-year]{"entity":"is_first_year", "value": "first-year"} student?
     - What [cost]{"entity":"money", "value": "cost"} is [required]{"entity":"condition", "value": "required"} to attend rose-hulman
     - What is the [URL]{"entity":"way_of_contact", "value": "website"} of your institution's [net-price calculator]{"entity":"net_price_calculator", "value": "net price calculator"}?
     - What is the [web page]{"entity":"way_of_contact", "value": "website"} of your institution's [net price calculator]{"entity":"net_price_calculator", "value": "net price calculator"}?
     - Is there any [URL]{"entity":"way_of_contact", "value": "website"} that i can use to [calculator for net price]{"entity":"net_price_calculator", "value": "net price calculator"}?
     - What is the approximate [date]{"entity":"time", "value": "date"} of the academic year [cost]{"entity":"money", "value": "cost"} release?
     - What is the approximate [date]{"entity":"time", "value": "date"} of the academic year [fee]{"entity":"money", "value": "cost"} release?
-    - What is the approximate [date]{"entity":"time", "value": "date"} of the academic year [tuition]{"entity":"money", "value": "tuition"} release?
-    - What is the [tuition]{"entity":"money", "value": "tuition"} for [first-year]{"entity":"is_first_year", "value": "first-year"} student?
-    - What is the [tuition]{"entity":"money", "value": "tuition"} for [undergraduate]{"entity":"student_level", "value": "undergraduate"} student?
+    - What is the approximate [date]{"entity":"time", "value": "date"} of the academic year [tuition]{"entity":"money", "value": "cost"} release?
+    - What is the [tuition]{"entity":"money", "value": "cost"} for [first-year]{"entity":"is_first_year", "value": "first-year"} student?
+    - What is the [tuition]{"entity":"money", "value": "cost"} for [undergraduate]{"entity":"student_level", "value": "undergraduate"} student?
     - What is [required]{"entity":"condition", "value": "required"} [fee]{"entity":"money", "value": "cost"} for [first-year]{"entity":"is_first_year", "value": "first-year"} student?
     - What is [required]{"entity":"condition", "value": "required"} [fee]{"entity":"money", "value": "cost"} for [undergraduate]{"entity":"student_level", "value": "undergraduate"} student?
     - what is the [cost]{"entity":"money", "value": "cost"} of [room]{"entity":"living_cost", "value": "room"} and [board]{"entity":"living_cost", "value": "borad"} for [first-year]{"entity":"is_first_year", "value": "first-year"} student?
@@ -37,13 +37,13 @@ nlu:
     - Is there any [other]{"entity":"other", "value": "other"} [cost]{"entity":"money", "value": "cost"} for student?
     - Is there any [other]{"entity":"other", "value": "other"}  [fee]{"entity":"money", "value": "cost"} for student?
 
-    - what is the number of [credits]{"entity":"academic_credit", "value": "credit"} that stduents can take for a [full-time]{"entity":"other", "enrollment_status": "full-time"} [tuition]{"entity":"money", "value": "tuition"}?
-    - how many [credits]{"entity":"academic_credit", "value": "credit"} can student with [full-time]{"entity":"other", "enrollment_status": "full-time"} [tuition]{"entity":"money", "value": "tuition"} take?
+    - what is the number of [credits]{"entity":"academic_credit", "value": "credit"} that stduents can take for a [full-time]{"entity":"other", "enrollment_status": "full-time"} [tuition]{"entity":"money", "value": "cost"} ?
+    - how many [credits]{"entity":"academic_credit", "value": "credit"} can student with [full-time]{"entity":"other", "enrollment_status": "full-time"} [tuition]{"entity":"money", "value": "cost"} take?
 
-    - Does [tuition]{"entity":"money", "value": "tuition"} [changes]{"entity":"action", "value": "change"} by year of study?
+    - Does [tuition]{"entity":"money", "value": "cost"} [changes]{"entity":"action", "value": "change"} by year of study?
     - Does [fee]{"entity":"money", "value": "cost"} [changes]{"entity":"action", "value": "change"} by year of study?
     - Does [fee]{"entity":"money", "value": "cost"} [changes]{"entity":"action", "value": "change"} by undergraduate instructional program?
-    - Does  [tuition]{"entity":"money", "value": "tuition"} [changes]{"entity":"action", "value": "change"} by undergraduate instructional program?
+    - Does  [tuition]{"entity":"money", "value": "cost"} [changes]{"entity":"action", "value": "change"} by undergraduate instructional program?
 
     - what is the [cost]{"entity":"money", "value": "cost"} of [books]{"entity":"school_supply", "value": "book"} and [supply]{"entity":"school_supply", "value": "supply"} for [resident]{"entity": "international_domestic", "value": "domestic"} student?
     - what is the [cost]{"entity":"money", "value": "cost"} of [books]{"entity":"school_supply", "value": "book"} and [supply]{"entity":"school_supply", "value": "supply"} for student who live [on campus]{"entity": "category", "value": "on campus"}

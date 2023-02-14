@@ -140,7 +140,7 @@ class DataManager():
 
         # decisionTreeSelector = DecisionTreeSelector()
         # decisionTreeSelector.selectBest(entityValues, candidates)
-        # print(maxMatch[0].subSectionName)
+        print(maxMatch[0].subSectionName)
 
         if len(maxMatch) == 0:
             raise NoDataFoundException(errorMessage, ExceptionTypes.NoSparseMatrixDataAvailableForGivenIntent)

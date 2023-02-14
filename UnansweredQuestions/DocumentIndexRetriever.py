@@ -26,7 +26,7 @@ class DocumentIndexRetriever(DocumentRetriever):
         query = self.corpus.preprocessDoc(query)
        
         transformedVectors = self.model.fitOnDocuments([query])
-        print(transformedVectors)
+        # print(transformedVectors)
         if len(transformedVectors) == 0 or len(transformedVectors[0]) ==0:
             print("RETURN")
             return ([], [])
