@@ -171,8 +171,10 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
        constructSentenceFor = []
        stringSentence = []
        for result in searchResults:
-            
-            if result.type == SearchResultType.STRING:
+            if result.answer.lower() == "n/a":
+                constructSentenceFor.append(result)
+                
+            elif result.type == SearchResultType.STRING:
                 stringSentence.append(str(result.answer))
             else:
                 constructSentenceFor.append(result)

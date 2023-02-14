@@ -14,7 +14,6 @@ import sys
 import os
 
 
-
 class UnansweredQuestionAnswerEngine:
     # Basepath: ./UnansweredQuestions, or ../UnansweredQuestions
     def __init__(self):
@@ -27,7 +26,7 @@ class UnansweredQuestionAnswerEngine:
         self.model.initializeModel()
         self.documentRetriever = DocumentIndexRetriever(self.corpus, self.model, basePath +"/indexes/unansweredQuestion.index")
         self.documentRetriever.update()
-        self.confidenceThreshold = 0.75
+        self.confidenceThreshold = 0.8
        # self.documentRetriever= DocumentRetrieverByVector(self.corpus, self.wordToVecModel)
     def determinePath(self):
         current_dir = os.path.dirname(os.path.abspath(__file__))

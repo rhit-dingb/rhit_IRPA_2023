@@ -132,9 +132,11 @@ class ActionQueryKnowledgebase(Action):
         numberEntities = numberEntityExtractor.extractEntities(question)
         entitiesExtracted = entitiesExtracted + numberEntities
         intent = tracker.latest_message["intent"]["name"]
+        
+        print(intent)
         print(getEntityLabel(removeDuplicatedEntities(entitiesExtracted)))
         print(getEntityValueHelper(removeDuplicatedEntities(entitiesExtracted)))
-        # print(intent)
+       
         setLastIntentSlotEvent = SlotSet(LAST_TOPIC_INTENT_SLOT_NAME ,intent )
         answers = []
         try:
@@ -360,4 +362,4 @@ def utterAllAnswers(answers, dispatcher ):
 def addUnansweredQuestion(question, chatbotAnswers): 
     data = {"content": question, "chatbotAnswers":chatbotAnswers}
     response = requests.post("http://127.0.0.1:8000/question_add/", json=data )
-    print(response)
+    

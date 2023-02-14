@@ -300,7 +300,7 @@ entities:
 # Values: fully
 - financial_aid_degree_met 
 
-#Captures people. Values: student, parent, faculty, applicant, teacher
+#Captures people. Values:  faculty, teacher
 - people
 
 #Captures private public

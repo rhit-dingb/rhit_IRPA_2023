@@ -114,7 +114,7 @@ nlu:
     - What is the definition of [independent study]{"entity": "program_offered", "value": "independent study"}?
 
     #Might wanna the entity label here
-    - What is the definition of [in-state]{"entity":"financial_aid_type", "value": "state"} [tuition]{"entity": "money", "value": "tuition"}?
+    - What is the definition of [in-state]{"entity":"financial_aid_type", "value": "state"} [tuition]{"entity": "money", "value": "cost"}?
 
 
 
@@ -147,7 +147,7 @@ nlu:
     - What is the definition for [other]{"entity": "other", "value": "other"} [expenses]{"entity":"money", "value":"cost"}?
 
     #Will have to relabel this probably
-    - What is the definition for [out-of-state]{"entity": "financial_aid_type", "value": "out of state"} [tuition]{"entity":"money", "value":"tuition"}?
+    - What is the definition for [out-of-state]{"entity": "financial_aid_type", "value": "out of state"} [tuition]{"entity":"money", "value": "cost"} ?
 
     - What is the definition for personal [counseling]{"entity": "service_offered", "value": "couseling"}?
 
