@@ -60,6 +60,10 @@ export function Navbar() {
             </a>
 
             <a class="dropdown-item">
+              <Link to="/frequency">Frequency Data</Link>
+            </a>
+
+            <a class="dropdown-item">
               <Link to="/">Chatbot</Link>
             </a>
           
