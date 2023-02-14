@@ -32,7 +32,7 @@ class DocumentRetriever(ABC):
             if counter == topN:
                 return (topDocs, confidence)
             
-            document = self.corpus.getDocumentByIndex(doc_position)
+            document = self.corpus.getAnswerByIndex(doc_position)
             topDocs.append(document) 
             confidence.append(doc_score)
             counter = counter + 1

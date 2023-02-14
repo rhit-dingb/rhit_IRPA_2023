@@ -8,7 +8,6 @@ from UnansweredQuestions.constants import DB_UNANSWERED_QUESTION_ANSWER_FIELD_KE
 import nltk
 from nltk.stem import WordNetLemmatizer 
 
-
 class Corpus:
     def __init__(self, dataSourceConnector : UnansweredQuestionDbConnector, dictionaryPath):
         # self.documents = [
@@ -85,10 +84,28 @@ class Corpus:
                 return doc
             index = index +1
 
-    def retrieveDocumentFromDataSource(self):
-        # Probably replace this with a database call.
+
+    def getAnswerByIndex(self, position):
+        index = 0
+        for doc in self.retrieveAnswerFromDataSource():
+            if index == position:
+                return doc
+                
+            index = index +1
+       
+
+    def retrieveDoc(self):
         cursor = self.dataSourceConnector.getAnsweredQuestionSortedByDate()
         for doc in cursor:
+            yield doc
+
+    def retrieveDocumentFromDataSource(self):
+        # Probably replace this with a database call.
+        for doc in self.retrieveDoc():
+            yield doc["content"]
+
+    def retrieveAnswerFromDataSource(self):
+        for doc in self.retrieveDoc():
             yield doc[DB_UNANSWERED_QUESTION_ANSWER_FIELD_KEY]
 
         
