@@ -16,48 +16,48 @@ nlu:
     - What is the [percent]{"entity":"aggregation", "value": "percent"} of students [submitting]{"entity": "action", "value":  "submitted"} [ACT]{"entity":"standarized_test", "value": "act"} scores
     - What is the [percent]{"entity":"aggregation", "value": "percent"} of students [submitting]{"entity": "action", "value":  "submitted"} [SAT]{"entity":"standarized_test", "value": "sat"} scores
 
-    - What is the [25th percentile]{"entity":"test_percentile", "value": "25th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [composite](test_component)
-    - What is the [25th percentile]{"entity":"test_percentile", "value": "25th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [essay]{"entity": "test_component", "value": "essay" }
-    - What is the [25th percentile]{"entity":"test_percentile", "value": "25th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [reading](test_component) and writing(test_component)
-    - What is the [25th percentile]{"entity":"test_percentile", "value": "25th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [written]{"entity": "test_component", "value": "writing"} part
+    - What is the [25th percentile]{"entity":"percentile", "value": "25th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [composite](test_component)
+    - What is the [25th percentile]{"entity":"percentile", "value": "25th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [essay]{"entity": "test_component", "value": "essay" }
+    - What is the [25th percentile]{"entity":"percentile", "value": "25th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [reading](test_component) and writing(test_component)
+    - What is the [25th percentile]{"entity":"percentile", "value": "25th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [written]{"entity": "test_component", "value": "writing"} part
 
-    - What is the [25th percentile]{"entity":"test_percentile", "value": "25th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [composite](test_component)
-    - What is the [25th percentile]{"entity":"test_percentile", "value": "25th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [essay]{"entity": "test_component", "value": "essay" } 
-    - What is the [25th percentile]{"entity":"test_percentile", "value": "25th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [reading](test_component) and [writing](test_component) part
+    - What is the [25th percentile]{"entity":"percentile", "value": "25th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [composite](test_component)
+    - What is the [25th percentile]{"entity":"percentile", "value": "25th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [essay]{"entity": "test_component", "value": "essay" } 
+    - What is the [25th percentile]{"entity":"percentile", "value": "25th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [reading](test_component) and [writing](test_component) part
 
-    - What is the [25th percentile]{"entity":"test_percentile", "value": "25th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} evidence-based [writing](test_component) and [reading](test_component)
-    - What is the [25th percentile]{"entity":"test_percentile", "value": "25th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} evidence based [reading]{"entity": "test_component", "value": "reading"} and [written]{"entity": "test_component", "value": "writing"} part
+    - What is the [25th percentile]{"entity":"percentile", "value": "25th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} evidence-based [writing](test_component) and [reading](test_component)
+    - What is the [25th percentile]{"entity":"percentile", "value": "25th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} evidence based [reading]{"entity": "test_component", "value": "reading"} and [written]{"entity": "test_component", "value": "writing"} part
 
 
-    - What is the [50th percentile]{"entity":"test_percentile", "value": "50th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [composite](test_component)
-    - What is the [50th percentile]{"entity":"test_percentile", "value": "50th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [essay]{"entity": "test_component", "value": "essay" } 
+    - What is the [50th percentile]{"entity":"percentile", "value": "50th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [composite](test_component)
+    - What is the [50th percentile]{"entity":"percentile", "value": "50th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [essay]{"entity": "test_component", "value": "essay" } 
 
-    - What is the [50th percentile]{"entity":"test_percentile", "value": "50th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [english]{"entity":"test_component", "value": "english"} section
-    - What is the [50th percentile]{"entity":"test_percentile", "value": "50th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [math]{"entity": "test_component", "value": "math"}  section
+    - What is the [50th percentile]{"entity":"percentile", "value": "50th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [english]{"entity":"test_component", "value": "english"} section
+    - What is the [50th percentile]{"entity":"percentile", "value": "50th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [math]{"entity": "test_component", "value": "math"}  section
     
-    - What is the [50th percentile]{"entity":"test_percentile", "value": "50th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [english]{"entity":"test_component", "value": "english"} section
-    - What is the [50th percentile]{"entity":"test_percentile", "value": "50th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [math]{"entity": "test_component", "value": "math"}  section
+    - What is the [50th percentile]{"entity":"percentile", "value": "50th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [english]{"entity":"test_component", "value": "english"} section
+    - What is the [50th percentile]{"entity":"percentile", "value": "50th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [math]{"entity": "test_component", "value": "math"}  section
 
-    - What is the [50th percentile]{"entity":"test_percentile", "value": "50th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [writing](test_component)
-    - What is the [50th percentile]{"entity":"test_percentile", "value": "50th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [written]{"entity": "test_component", "value": "writing"}
+    - What is the [50th percentile]{"entity":"percentile", "value": "50th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [writing](test_component)
+    - What is the [50th percentile]{"entity":"percentile", "value": "50th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [written]{"entity": "test_component", "value": "writing"}
 
-    - What is the [50th percentile]{"entity":"test_percentile", "value": "50th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [composite](test_component)
-    - What is the [50th percentile]{"entity":"test_percentile", "value": "50th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [essay]{"entity": "test_component", "value": "essay" }
-    - What is the [50th percentile]{"entity":"test_percentile", "value": "50th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [reading](test_component) and [writing](test_component)
-    - What is the [50th percentile]{"entity":"test_percentile", "value": "50th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [reading](test_component) and [writing](test_component) section
-    - What is the [50th percentile]{"entity":"test_percentile", "value": "50th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [written]{"entity": "test_component", "value": "writing"} and [read]{"entity": "test_component", "value": "reading"} part
+    - What is the [50th percentile]{"entity":"percentile", "value": "50th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [composite](test_component)
+    - What is the [50th percentile]{"entity":"percentile", "value": "50th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [essay]{"entity": "test_component", "value": "essay" }
+    - What is the [50th percentile]{"entity":"percentile", "value": "50th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [reading](test_component) and [writing](test_component)
+    - What is the [50th percentile]{"entity":"percentile", "value": "50th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [reading](test_component) and [writing](test_component) section
+    - What is the [50th percentile]{"entity":"percentile", "value": "50th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [written]{"entity": "test_component", "value": "writing"} and [read]{"entity": "test_component", "value": "reading"} part
 
-    - What is the [75th percentile]{"entity":"test_percentile", "value": "75th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [composite](test_component)
-    - What is the [75th percentile]{"entity":"test_percentile", "value": "75th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [essay]{"entity": "test_component", "value": "essay" }
-    - What is the [75th percentile]{"entity":"test_percentile", "value": "75th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [written]{"entity": "test_component", "value": "writing"} part
-    - What is the [75th percentile]{"entity":"test_percentile", "value": "75th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [writing](test_component)
-    - What is the [75th percentile]{"entity":"test_percentile", "value": "75th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [written]{"entity": "test_component", "value": "writing"}
+    - What is the [75th percentile]{"entity":"percentile", "value": "75th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [composite](test_component)
+    - What is the [75th percentile]{"entity":"percentile", "value": "75th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [essay]{"entity": "test_component", "value": "essay" }
+    - What is the [75th percentile]{"entity":"percentile", "value": "75th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [written]{"entity": "test_component", "value": "writing"} part
+    - What is the [75th percentile]{"entity":"percentile", "value": "75th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [writing](test_component)
+    - What is the [75th percentile]{"entity":"percentile", "value": "75th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [written]{"entity": "test_component", "value": "writing"}
 
-    - What is the [75th percentile]{"entity":"test_percentile", "value": "75th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [composite](test_component)
-    - What is the [75th percentile]{"entity":"test_percentile", "value": "75th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [essay]{"entity": "test_component", "value": "essay" } component
-    - What is the [75th percentile]{"entity":"test_percentile", "value": "75th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} evidence-based [reading](test_component) and [writing](test_component)
-    - What is the [75th percentile]{"entity":"test_percentile", "value": "75th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [writing](test_component) portion and [reading](test_component) component
-    - What is the [75th percentile]{"entity":"test_percentile", "value": "75th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} evidence-based [written]{"entity": "test_component", "value": "writing"} and evidence-based [reading](test_component)
+    - What is the [75th percentile]{"entity":"percentile", "value": "75th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [composite](test_component)
+    - What is the [75th percentile]{"entity":"percentile", "value": "75th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [essay]{"entity": "test_component", "value": "essay" } component
+    - What is the [75th percentile]{"entity":"percentile", "value": "75th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} evidence-based [reading](test_component) and [writing](test_component)
+    - What is the [75th percentile]{"entity":"percentile", "value": "75th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [writing](test_component) portion and [reading](test_component) component
+    - What is the [75th percentile]{"entity":"percentile", "value": "75th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} evidence-based [written]{"entity": "test_component", "value": "writing"} and evidence-based [reading](test_component)
 
     - What is the [average]{"entity": "aggregation", "value": "average"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [composite](test_component)
     - What is the [average]{"entity": "aggregation", "value": "average"} score for [ACT]{"entity":"standarized_test", "value": "act"} [composite](test_component)
@@ -579,7 +579,7 @@ nlu:
     - act
 
 
-- lookup: test_percentile
+- lookup: percentile
   examples: |
     - 15th percentile
     - 25th percentile

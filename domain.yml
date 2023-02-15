@@ -143,7 +143,7 @@ entities:
 - standarized_test
 
 # Test percentile: 25th, 50th, 75th
-- test_percentile
+- percentile
 
 
 #Component for sat and act test such as 

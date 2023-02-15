@@ -373,28 +373,26 @@ nlu:
     - What is the [average]{"entity":"aggregation", "value": "average"} total [money]{"entity":"money", "value": "cost"} [owed]{"entity":"action", "value": "borrowed"} by each [undergraduate]{"entity": "student_level", "value": "undergraduate"} student from a [private]{"entity": "access_level", "value": "private"} [loan](other_aid) from a [bank]{"entity": "loan_lender", "value": "bank"} or [lender]{"entity": "loan_lender", "value": "lender"}
 
 
-    - What is your institution's policy [policy]{"entity":"policy", "value": "policy"} regarding institutional  [scholarship]{"entity": "scholarship_grants", "value": "scholarship"} and [grants]{"entity": "scholarship_grants", "value": "grant"} aid for [undergraduate]{"entity": "student_level", "value": "undergraduate" } [degree-seeking]{"entity": "degree-goal", "value": "degree-seeking" } nonresident aliens?
+    - What is your [institution]{"entity": "education_level", "value": "college"} [scholarship]{"entity": "scholarship_grants", "value": "scholarship"} and [grants]{"entity": "scholarship_grants", "value": "grant"} aid for [undergraduate]{"entity": "student_level", "value": "undergraduate" } [degree-seeking]{"entity": "degree-goal", "value": "degree-seeking" } nonresident aliens?
     
-    - What  [financial-aid]{"entity":"financial_aid_term", "value": "financial aid"}  [forms]{"entity":"form", "value": "forms"} that [international]{"entity":"international_domestic", "value": "international"}  [first-year]{"entity":"is_first_year", "value": "first-year"} students must submit?
+    - What  [financial-aid]{"entity":"financial_aid_term", "value": "financial aid"}  [form]{"entity":"form", "value": "form"} that [international]{"entity":"international_domestic", "value": "international"}  [first-year]{"entity":"is_first_year", "value": "first-year"} students must submit?
 
 
-    - What  [financial-aid]{"entity":"financial_aid_term", "value": "financial aid"}  [forms]{"entity":"form", "value": "forms"} that [domestic]{"entity":"international_domestic", "value": "domestic"} [first-year]{"entity":"is_first_year", "value": "first-year"} students must submit?
+    - What  [financial-aid]{"entity":"financial_aid_term", "value": "financial aid"}  [forms]{"entity":"form", "value": "form"} that [domestic]{"entity":"international_domestic", "value": "domestic"} [first-year]{"entity":"is_first_year", "value": "first-year"} students must submit?
 
-    - what if the Priority daye for filling required [financial-aid]{"entity":"financial_aid_term", "value": "financial aid"} [forms]{"entity":"form", "value": "forms"} for [first-year]{"entity":"is_first_year", "value": "first-year"} students ?
+    - what is the [priority]{"entity": "admission_decision_date", "value": "closing"} [day] for filling [required]{"entity": "condition", "value": "require"} [financial-aid]{"entity":"financial_aid_term", "value": "financial aid"} [forms]{"entity":"form", "value": "form"} for [first-year]{"entity":"is_first_year", "value": "first-year"} students ?
 
     - Is there any [deadline]{"entity":"deadline", "value": "deadline"} for [first-year]{"entity":"is_first_year", "value": "first-year"} students?
 
-    - what is the [notification]{"entity":"admission_decision_date", "value": "notification"} date for [first-year]{"entity":"is_first_year", "value": "first-year"} students apply for [financial-aid]{"entity":"financial_aid_term", "value": "financial aid"} ?
+    - what is the [notification]{"entity":"admission_decision_date", "value": "notification"} [date]{"entity": "time" , "value": "date"} for [first-year]{"entity":"is_first_year", "value": "first-year"} students apply for [financial-aid]{"entity":"financial_aid_term", "value": "financial aid"} ?
 
-    - what is the [reply]{"entity":"admission_decision_date", "value": "reply"} date for [first-year]{"entity":"is_first_year", "value": "first-year"} students?
+    - what is the [reply]{"entity":"admission_decision_date", "value": "reply"} [date]{"entity": "time" , "value": "date"} for [first-year]{"entity":"is_first_year", "value": "first-year"} students?
 
     - What kinds of [financial-aid]{"entity":"financial_aid_term", "value": "financial aid"} [loan](other_aid) is avaliable to [undergraduate]{"entity": "student_level", "value": "undergraduate" } students?
     
     - What kinds of [financial-aid]{"entity":"financial_aid_term", "value": "financial aid"}  [scholarship]{"entity": "scholarship_grants", "value": "scholarship"} or [grants]{"entity": "scholarship_grants", "value": "grant"} is avaliable to [undergraduate]{"entity": "student_level", "value": "undergraduate" } students?
 
-    - Please list all the awarding [institutional]{"entity": "financial_aid_type", "value": "institutional" } aid.
-
-
+    
 
 
 - lookup: scholarship_grant
@@ -405,6 +403,7 @@ nlu:
     - state
     - external
     - athletic 
+
 - synonym: first-year
   examples: |
     - first-year
@@ -525,3 +524,7 @@ nlu:
   examples: |
     - self-help
     - self help
+
+- synonym: form
+  examples: |
+    - forms
