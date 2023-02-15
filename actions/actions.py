@@ -140,8 +140,8 @@ class ActionQueryKnowledgebase(Action):
 
         print("INTENT")
         print(intent)
-        # print(getEntityLabel(removeDuplicatedEntities(entitiesExtracted)))
-        # print(getEntityValueHelper(removeDuplicatedEntities(entitiesExtracted)))
+        print(getEntityLabel(removeDuplicatedEntities(entitiesExtracted)))
+        print(getEntityValueHelper(removeDuplicatedEntities(entitiesExtracted)))
        
         setLastIntentSlotEvent = SlotSet(LAST_TOPIC_INTENT_SLOT_NAME ,intent )
         events.append(setLastIntentSlotEvent)
