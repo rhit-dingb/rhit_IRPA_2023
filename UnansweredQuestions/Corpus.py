@@ -90,7 +90,7 @@ class Corpus:
         for doc in self.retrieveAnswerFromDataSource():
             if index == position:
                 return doc
-                
+
             index = index +1
        
 
@@ -101,7 +101,9 @@ class Corpus:
 
     def retrieveDocumentFromDataSource(self):
         # Probably replace this with a database call.
+        print("DOC")
         for doc in self.retrieveDoc():
+            print(doc["content"])
             yield doc["content"]
 
     def retrieveAnswerFromDataSource(self):
