@@ -132,13 +132,14 @@ class ActionQueryKnowledgebase(Action):
         numberEntities = numberEntityExtractor.extractEntities(question)
         entitiesExtracted = entitiesExtracted + numberEntities
         intent = tracker.latest_message["intent"]["name"]
-        
+
         print(intent)
         print(getEntityLabel(removeDuplicatedEntities(entitiesExtracted)))
         print(getEntityValueHelper(removeDuplicatedEntities(entitiesExtracted)))
        
         setLastIntentSlotEvent = SlotSet(LAST_TOPIC_INTENT_SLOT_NAME ,intent )
         answers = []
+        event = None
         try:
             defaultShouldAddRowStrategy = DefaultShouldAddRowStrategy()
             answers = await knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy,knowledgeBase.constructOutput,startYear, endYear )
