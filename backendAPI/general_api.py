@@ -222,8 +222,9 @@ async def handle_add_question(request : Request):
         "chatbotAnswers": chatbotAnswers,
         "answer": None})
     if boo1:
-        
+      
         return {'message': 'question is successfull added'}
+
     else:
         return {'message': 'errors occurred during question add'}
 

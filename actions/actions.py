@@ -87,8 +87,9 @@ class ActionAnswerNotHelpful(Action):
         dispatcher.utter_message("I am sorry my answer is not helpful. I will be updated by the administator to answer this question better!")
         userAskedQuestion = tracker.get_slot(LAST_USER_QUESTION_ASKED)
         answersProvidedByChatbot = tracker.get_slot(LAST_ANSWERS_PROVIDED_SLOT_NAME)
-        print("ANSWER PROVIDED")
-        print(answersProvidedByChatbot)
+        
+        # print("ANSWER PROVIDED")
+        # print(answersProvidedByChatbot)
         if answersProvidedByChatbot == None:
             answersProvidedByChatbot = []
         if not userAskedQuestion == None:
@@ -104,6 +105,7 @@ class ActionQueryKnowledgebase(Action):
         return "action_query_knowledgebase"
 
     def getAnswerForUnansweredQuestion(self,question):
+    
         answersFromUnansweredQuestion = API.unansweredQuestionAnswerEngine.answerQuestion(question)  
         return answersFromUnansweredQuestion
 
@@ -122,8 +124,11 @@ class ActionQueryKnowledgebase(Action):
 
     async def run(self, dispatcher, tracker, domain):
         startYear, endYear, setYearSlotEvent = None, None, None
+        events =[]
         try:
             startYear, endYear, setYearSlotEvent = getYearRangeInSlot(tracker)
+            if setYearSlotEvent:
+                events.append(setYearSlotEvent)
         except:
             pass
 
@@ -133,36 +138,38 @@ class ActionQueryKnowledgebase(Action):
         entitiesExtracted = entitiesExtracted + numberEntities
         intent = tracker.latest_message["intent"]["name"]
 
+        print("INTENT")
         print(intent)
-        print(getEntityLabel(removeDuplicatedEntities(entitiesExtracted)))
-        print(getEntityValueHelper(removeDuplicatedEntities(entitiesExtracted)))
+        # print(getEntityLabel(removeDuplicatedEntities(entitiesExtracted)))
+        # print(getEntityValueHelper(removeDuplicatedEntities(entitiesExtracted)))
        
         setLastIntentSlotEvent = SlotSet(LAST_TOPIC_INTENT_SLOT_NAME ,intent )
+        events.append(setLastIntentSlotEvent)
+
         answers = []
-        event = None
-        try:
-            defaultShouldAddRowStrategy = DefaultShouldAddRowStrategy()
-            answers = await knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy,knowledgeBase.constructOutput,startYear, endYear )
-            answerFromUnansweredQuestion = self.getAnswerForUnansweredQuestion(question)
-            print("ANSWER FOUND")
-            print(answerFromUnansweredQuestion)
-            answers = answers + answerFromUnansweredQuestion
-            if len(answers) <= 0:
-                answers = ["Sorry, I couldn't find any answer to your question"]
-                addUnansweredQuestion(question, answers)
-            
-            event = utterAllAnswers(answers, dispatcher)        
-        except Exception as e:
-            if len(answers) <= 0:
-                answers = ["Sorry, I couldn't find any answer to your question"]
-                addUnansweredQuestion(question, answers)
+      
+        # try:
+        defaultShouldAddRowStrategy = DefaultShouldAddRowStrategy()
+        answers = await knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy,knowledgeBase.constructOutput,startYear, endYear )
+        answerFromUnansweredQuestion = self.getAnswerForUnansweredQuestion(question)
+        # print("ANSWER FOUND")
+        # print(answerFromUnansweredQuestion)
+
+        answers = answers + answerFromUnansweredQuestion
+        if len(answers) <= 0:
+            answers = ["Sorry, I couldn't find any answer to your question"]
+            addUnansweredQuestion(question, answers)
+        
+        event = utterAllAnswers(answers, dispatcher) 
+        events.append(event)       
+        # except Exception as e:
+        #     if len(answers) <= 0:
+        #         answers = ["Sorry, I couldn't find any answer to your question"]
+        #         addUnansweredQuestion(question, answers)
                 
-            self.utterAppropriateAnswerWhenExceptionHappen(question, answers, e, dispatcher)
+        #     self.utterAppropriateAnswerWhenExceptionHappen(question, answers, e, dispatcher)
              
-        if setYearSlotEvent:
-            return [setYearSlotEvent, setLastIntentSlotEvent, event]
-        else:
-            return [setLastIntentSlotEvent, event]
+        return events
 
 class ActionStoreAskedQuestion(Action):
     def name(self) -> Text:

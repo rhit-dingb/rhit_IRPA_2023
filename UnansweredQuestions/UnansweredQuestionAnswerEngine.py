@@ -12,7 +12,7 @@ from UnansweredQuestions.TFIDFModel import TFIDFModel
 from UnansweredQuestions.Word2Vec import Word2VecModel
 import sys
 import os
-
+   #self.model = TFIDFModel(self.corpus, "./savedModels/tfidf.tfidf")
 
 class UnansweredQuestionAnswerEngine:
     # Basepath: ./UnansweredQuestions, or ../UnansweredQuestions
@@ -21,8 +21,8 @@ class UnansweredQuestionAnswerEngine:
         self.mongoDBUnansweredQuestionConnector = MongoDBUnansweredQuestionConnector()
         basePath = self.determinePath()
         self.corpus = Corpus(self.mongoDBUnansweredQuestionConnector, basePath +"/dictionaries/dictionary")
-        #self.model = Word2VecModel(self.corpus, basePath +"/savedModels/glove_vector_300")
-        self.model = TFIDFModel(self.corpus, "./savedModels/tfidf.tfidf")
+        self.model = Word2VecModel(self.corpus, basePath +"/savedModels/glove_vector_300")
+     
         self.model.initializeModel()
         self.documentRetriever = DocumentIndexRetriever(self.corpus, self.model, basePath +"/indexes/unansweredQuestion.index")
         self.documentRetriever.update()
@@ -37,12 +37,16 @@ class UnansweredQuestionAnswerEngine:
     def update(self):
         self.corpus.update()
         self.documentRetriever.update()
-       
+        print("UPDATED")
         #maybe train the model here
 
     def answerQuestion(self,question) -> List[str]:
         answers, confidences = self.documentRetriever.findSimilarDocuments(query=question)
         answersToReturn = []
+
+        print("SEARCHING FOR QUESTION")
+        print(answersToReturn)
+        print(confidences)
         for answer, confidence in zip(answers, confidences):
             print("CONFIDENCE")
             print(confidence)
