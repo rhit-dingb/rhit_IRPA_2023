@@ -21,8 +21,15 @@ Activate the environment: conda activate irpa_chatbot
 Install the following packages:
 
 conda install ujson
-
 Conda install tensorflow
+conda install -c anaconda requests
+conda install -c conda-forge word2number
+conda install -c anaconda pandas
+conda install -c conda-forge fastapi
+conda install -c conda-forge uvicorn
+conda install -c conda-forge gensim
+conda install -c anaconda nltk
+
 
 pip install rasa
 
