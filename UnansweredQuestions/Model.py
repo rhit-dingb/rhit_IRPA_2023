@@ -33,6 +33,7 @@ class Model(ABC):
         self.trained = True
 
     def fitOnDocuments(self, documents):
+    
         return self._fit(documents)
         # if self.trained:
         #     return self._fit(documents)

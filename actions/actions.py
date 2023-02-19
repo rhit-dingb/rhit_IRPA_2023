@@ -142,7 +142,7 @@ class ActionQueryKnowledgebase(Action):
         print(intent)
         print(getEntityLabel(removeDuplicatedEntities(entitiesExtracted)))
         print(getEntityValueHelper(removeDuplicatedEntities(entitiesExtracted)))
-       
+        print(entitiesExtracted)
         setLastIntentSlotEvent = SlotSet(LAST_TOPIC_INTENT_SLOT_NAME ,intent )
         events.append(setLastIntentSlotEvent)
 
@@ -184,16 +184,6 @@ class ActionStoreAskedQuestion(Action):
         intent = tracker.latest_message["intent"]["name"]
         data = {"intent": intent, "feedback": "NO_FEEDBACK", "content": question}
         response = requests.put("http://127.0.0.1:8000/question_asked/", json=data)
-
-
-        # latestChatbotAnswers = tracker.latest_message.get("text")
-        # # print(tracker.latest_message)
-        # print("LATEST MESSAGE")
-   
-        # conversation_history = tracker.events
-        # for event in conversation_history:
-        #     # if the answer is provided by bot,
-        #     if event["event"] == "bot":
 
         return [event]
 
@@ -247,9 +237,6 @@ class ActionSetYear(Action):
             yearRange.append(entities["value"])
         res = SlotSet("yearRangeSelected", yearRange)
         return [res]
-
-
-
 
 
 
@@ -363,8 +350,6 @@ def utterAllAnswers(answers, dispatcher ):
     for answer in answers:
         dispatcher.utter_message( json_message={"text":answer} )
 
-    print("SETTING ANSWER")
-    print(answers)
     return SlotSet(LAST_ANSWERS_PROVIDED_SLOT_NAME, answers)
 
 def addUnansweredQuestion(question, chatbotAnswers): 

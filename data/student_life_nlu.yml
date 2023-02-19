@@ -195,6 +195,7 @@ nlu:
     - not from here
     - out-of-state
     - out of state
+    
 - synonym: fraternity
   examples: |
     - frat
