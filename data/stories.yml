@@ -89,7 +89,6 @@ stories:
     - action: action_store_asked_question
     - action: utter_ask_answer_helpful
     - intent: deny
-    # - action: utter_sorry_question_not_helpful
     - action: action_answer_not_helpful
     - action: action_store_isHelpful_statistic
     - action: action_get_available_options

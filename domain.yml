@@ -96,6 +96,7 @@ entities:
 
 - policy
 
+
 # used for something like: Initial 2015 cohort of first-time, fulltime, bachelor's (or equivalent) degreeseeking undergraduate students
 # and also something like: Final 2015 cohort, after adjusting for allowable exclusions
 - cohort_initial_final
@@ -108,14 +109,15 @@ entities:
 - exemptions
 
 
-#- recipients_of_federal_pell_grant
-#- recipients_of_a_subsidized_stafford_loan_who_did_not_receive_a_pell_grant 
-#- students_who_did_not_receive_either_a_pell_grant_or_a_subsidized_stafford_loan
-- aid_status_pell
-- aid_status_stafford
-- not_modifier_pell
-- not_modifier_stafford
+# - aid_status_pell
+# - aid_status_stafford
+# - not_modifier_pell
+# - not_modifier_stafford
+
+#Value: no aid
 - aid_status_none
+
+
 
 #year to query the dataset.
 - year
@@ -262,9 +264,6 @@ entities:
 - defer
 
 
-# #Captures the word "year"
-# - year
-
 # Captures numerical value include decimals. For number that are formatted as words like "four", I wrote code for a custom extractor.
 #NOTE: currently, this is not labelled in training data, I use a custom entity extractor.
 - number
@@ -279,7 +278,7 @@ entities:
 - financial_aid_type
 
 #Captures scholarship, grants itself.
-#Value: scholarship, grants.
+#Value: scholarship, grants, pell grant.
 - scholarship_grants
 
 #Captures aids that are classified as self help, also include word self-help itself.
@@ -326,10 +325,6 @@ entities:
 - size
 
 ##ENTITIES FOR DEFINITIONS
-
-# #Definition. Captures the word definition
-#   - definition
-
 
 #Program offered at school
 # Value: college-preparatory, accelerated, research, professional practice, cross-registration, double major, dual enrollment, cooperative, cooperative education, 
