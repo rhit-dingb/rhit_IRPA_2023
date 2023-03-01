@@ -22,12 +22,12 @@ nlu:
     - Of the [initial](cohort_initial_final) 2013 cohort, how many completed the program in [more than]{"entity": "range", "value": "more than"} five years but in six years or [less]{"entity": "range", "value": "within"}?
 
 
-    - Of the [initial](cohort_initial_final) 4014 cohort, how many completed the program in [more than]{"entity": "range", "value": "more than"} four years but in five years or [less]{"entity": "range", "value": "within"} and are [recipients of subsidized stafford loan and did not receive a pell grant]{"entity": "aid_status_stafford", "value": "stafford-loan"}
-    - Of the [initial](cohort_initial_final) 4014 cohort, how many completed the program in four years or [more]{"entity": "range", "value": "more than"} but in five years or [less]{"entity": "range", "value": "within"} and are [recipients of subsidized stafford loan and did not receive a pell grant]{"entity": "aid_status_stafford", "value": "stafford-loan"}
-    - In 4014 cohort, how many completed the program in [at least]{"entity": "range", "value": "more than"} four years but in five years or [less]{"entity": "range", "value": "within"} and are [recipients of subsidized stafford loan and did not receive a pell grant]{"entity": "aid_status_stafford", "value": "stafford-loan"}
+    - Of the [initial](cohort_initial_final) 4014 cohort, how many completed the program in [more than]{"entity": "range", "value": "more than"} four years but in five years or [less]{"entity": "range", "value": "within"} and are recipients of subsidized stafford [loan]{"entity":"other_aid", "value":"loan"} and did not receive a [pell grant]{"entity": "scholarship_grants", "value": "pell grant"}
+    - Of the [initial](cohort_initial_final) 4014 cohort, how many completed the program in four years or [more]{"entity": "range", "value": "more than"} but in five years or [less]{"entity": "range", "value": "within"} and are recipients of subsidized stafford [loan]{"entity":"other_aid", "value":"loan"} and did not receive a [pell grant]{"entity": "scholarship_grants", "value": "pell grant"}
+    - In 4014 cohort, how many completed the program in [at least]{"entity": "range", "value": "more than"} four years but in five years or [less]{"entity": "range", "value": "within"} and are recipients of subsidized stafford [loan]{"entity":"other_aid", "value":"loan"} and did not receive a [pell grant]{"entity": "scholarship_grants", "value": "pell grant"}
 
     - What is the six year graduation [rate]{"entity": "aggregation", "value": "percent"} for students who are [recipients of a federal pell grant]{"entity": "aid_status_pell", "value": "pell-grant"} in the 2013 cohort?
-    - what is the total number of students graduating [within]{"entity": "range", "value": "within"} six years for 2019 cohort who [did not receive either a pell grant or a subsidized stafford loan]{"entity":"aid_status_none", "value": "no-aid"}
+   
 
     - What is the six year graduation [rate]{"entity": "aggregation", "value": "percent"} for the 2013 cohort?
     - What is the five year graduation [rate]{"entity": "aggregation", "value": "percent"} for the 2013 cohort?
@@ -55,8 +55,7 @@ nlu:
 
     - How many students graduated [more than]{"entity": "range", "value": "more than"} five years ?
     - How many students graduated [within]{"entity": "range", "value": "within"} five years  but in [more than]{"entity": "range", "value": "more than"} four years  for 2046 cohort?
-    - How many students graduated in five year or [less]{"entity": "range", "value": "within"} for 2055 cohort who received [no aid]{"entity":"aid_status_none", "value": "no-aid"}
-
+ 
     - How many students graduated [between]{"entity": "range", "value": "between"} 5 years  and 6 years  for the 2014 cohort?
 
 
@@ -67,8 +66,6 @@ nlu:
     - How many students in the 6590 cohort are recipients of subsidized [loan]{"entity":"other_aid", "value":"loan"} and did not receive federal [pell grant]{"entity": "scholarship_grants", "value": "pell grant"}?
     
     - How many students in the 2019 cohort are did not receive subsidized [loan]{"entity":"other_aid", "value":"loan"} and did not receive federal [pell grant]{"entity": "scholarship_grants", "value": "pell grant"}?
-    - How many students in the 6590 cohort are [recipients of subsidized loan and did not receive federal pell grant]{"entity": "aid_status_stafford", "value": "stafford-loan"}?
-
     - How many students did not received [pell grant]{"entity": "scholarship_grants", "value": "pell grant"} but received subsidized stafford [loan]{"entity":"other_aid", "value":"loan"} for 2014 cohort?
     - How many students in the 2019 cohort are did not receive subsidized [loan]{"entity":"other_aid", "value":"loan"} and did not receive federal [pell grant]{"entity": "scholarship_grants", "value": "pell grant"}?
     - How many students in the 2019 cohort did not receive federal [pell grant]{"entity": "scholarship_grants", "value": "pell grant"} and did not receive subsidized stafford [loan]{"entity":"other_aid", "value":"loan"} for 2014 cohort?
@@ -84,7 +81,6 @@ nlu:
     - How many students in the [inital](cohort_initial_final) 2019 cohort recipient of federal [pell grant]{"entity": "scholarship_grants", "value": "pell grant"}
 
     - How many students in the 2019 cohort are did not receive subsidized [loan]{"entity":"other_aid", "value":"loan"} and did not receive federal [pell grant]{"entity": "scholarship_grants", "value": "pell grant"}?
-    - How many students in the 6590 cohort are [recipients of subsidized loan and did not receive federal pell grant]{"entity": "aid_status_stafford", "value": "stafford-loan"}?
     - How many students did not received [pell grant]{"entity": "scholarship_grants", "value": "pell grant"} but received subsidized stafford [loan]{"entity":"other_aid", "value":"loan"} for 2014 cohort?
     - How many students in the 2019 cohort are [did not receive subsidized [loan]{"entity":"other_aid", "value":"loan"} and did not receive federal [pell grant]{"entity": "scholarship_grants", "value": "pell grant"}.
     - How many students in the 2019 cohort did not receive federal [pell grant]{"entity": "scholarship_grants", "value": "pell grant"} and did not receive subsidized stafford [loan]{"entity":"other_aid", "value":"loan"}

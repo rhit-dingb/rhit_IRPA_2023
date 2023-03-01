@@ -2,6 +2,7 @@ version: "3.1"
 nlu:
 - intent: financial_aid
   examples: |
+    - What do I [need]{"entity":"condition", "value":"need"} for [financial aid]{"entity": "financial_aid_term", "value": "financial aid"}?
     - Which needs-analysis [methodology]{"entity": "methodology", "value": "methodology"} does your [institution]{"entity": "education_level", "value": "college" } use in awarding [institutional]{"entity": "financial_aid_type", "value": "institutional" } aid?
     - How much [need base]{"entity": "need_non_need_base_aid", "value": "need-based"} [college]{"entity": "financial_aid_type", "value": "institutional" } [scholarship]{"entity": "scholarship_grants", "value": "scholarship"} and [grants]{"entity": "scholarship_grants", "value": "grant"} was [awarded]{"entity": "action", "value": "awarded" } to [undergraduate]{"entity": "student_level", "value": "undergraduate" } students
     - How much [need base]{"entity": "need_non_need_base_aid", "value": "need-based"} [college]{"entity": "financial_aid_type", "value": "institutional" } [scholarship]{"entity": "scholarship_grants", "value": "scholarship"} or [grants]{"entity": "scholarship_grants", "value": "grant"} was [awarded]{"entity": "action", "value": "awarded" } to [undergraduate]{"entity": "student_level", "value": "undergraduate" } students

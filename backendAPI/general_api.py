@@ -12,7 +12,6 @@ import aiohttp
 import asyncio
 from datetime import datetime, date, timedelta
 
-
 sys.path.append('../')
 
 from backendAPI.DataType import DataType
@@ -24,12 +23,18 @@ from Parser.JsonDataLoader import JsonDataLoader
 from DataManager.constants import CDS_DATABASE_NAME_TEMPLATE
 from DataManager.MongoDataManager import MongoDataManager
 from Parser.MongoDBSparseMatrixDataWriter import MongoDBSparseMatrixDataWriter
+from Parser.MongoDbNoChangeDataWriter import MongoDbNoChangeDataWriter
+
 from Parser.ParserFacade import ParserFacade
 from Parser.DataLoader import DataLoader
 from DataManager.constants import DATABASE_PRENAME, MONGO_DB_CONNECTION_STRING
 from fastapi.middleware.cors import CORSMiddleware
 from DataManager.constants import ANNUAL_DATA_REGEX_PATTERN, DEFINITION_DATA_REGEX_PATTERN
 from UnansweredQuestions.UnansweredQuestionAnswerEngine import UnansweredQuestionAnswerEngine
+
+from Parser.SparseMatrixDataParser import SparseMatrixDataParser
+
+
 
 mongoDbDataManager = MongoDataManager()
 rasaCommunicator = RasaCommunicator()
@@ -99,17 +104,20 @@ async def parse_data(request : Request):
     if "dataName" in jsonData:
         outputName = jsonData["dataName"]
 
+
     if not outputName == "":
-        try:
-            print(excelData)
-            print(outputName)
-            jsonCdsLoader.loadData(excelData)
-            dataWriter = MongoDBSparseMatrixDataWriter(outputName)
-            parserFacade = ParserFacade(dataLoader=jsonCdsLoader, dataWriter=dataWriter)
-            await parserFacade.parse()
-            return {"message": "Done", "uploadedAs": outputName}
-        except Exception:
-            raise HTTPException(status_code=500, detail="Something went wrong while parsing the input data")
+        # try:
+       
+        jsonCdsLoader.loadData(excelData)
+        dataWriter = MongoDbNoChangeDataWriter(outputName)
+        dataParser = SparseMatrixDataParser()
+        #dataWriter = MongoDbNoChangeDataWriter(outputName)
+
+        parserFacade = ParserFacade(dataLoader=jsonCdsLoader, dataWriter=dataWriter, dataParser=dataParser)
+        await parserFacade.parse()
+        return {"message": "Done", "uploadedAs": outputName}
+        # except Exception:
+        #     raise HTTPException(status_code=500, detail="Something went wrong while parsing the input data")
 
     
 

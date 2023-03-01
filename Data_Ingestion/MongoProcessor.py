@@ -1,4 +1,5 @@
 
+from typing import List
 import pandas as pd
 from Data_Ingestion.SparseMatrix import SparseMatrix
 from Data_Ingestion.TopicData import TopicData
@@ -8,6 +9,8 @@ from Exceptions.ExceptionTypes import ExceptionTypes
 from Exceptions.NoDataFoundException import NoDataFoundException
 from DataManager.constants import QUESTION_COLUMN_KEY
 from DataManager.constants import DATABASE_METADATA_FIELD_KEY
+from DataManager.constants import DATABASE_QUESTION_ANSWERS_KEY
+from Data_Ingestion.SubsectionQnA import SubsectionQnA
 
 
 class MongoProcessor():
@@ -19,76 +22,93 @@ class MongoProcessor():
     # def getData(self) -> TopicData:
     #     return self.data
 
-    """ 
-    
-    """ 
-    def getSparseMatricesByDbNameAndIntent(self, client, intent, dbName):
-        # yearToData = dict()
 
-        # for db_name in db.list_database_names():
-            # if(db_name != 'admin' and db_name != 'config' and db_name != 'local'):
+
+    async def getDataByDbNameAndIntent(self, client, intent, dbName) -> List[SubsectionQnA]:
         cur_db = client[dbName]
-        # data = dict()
-            #xl = pd.DataFrame.from_dict(cur_db) #convert current database to Panda DataFrame                            
-        # for topic in topicToParse:
-        topicData = self.getAllSparseMatrixForTopic(intent, cur_db)
-            # get the year key. !!! Assume current standart is CDS_xxxx_xxxx
-            # yearKey = db_name[-9:-5]+"_"+db_name[-4:]
-                #print('yearkey is  ' + yearKey)
-        # yearToData[yearKey] = data
+        subsectionsQnAList = []
+        for name in cur_db.list_collection_names():
+            if intent == name:
+                cursor = cur_db[name].find({})
+                for data in cursor:
+                    subsection = data.get(DATABASE_SPARSE_MATRIX_SUBSECTION_KEY)
+                    questionAnswer = data.get(DATABASE_QUESTION_ANSWERS_KEY)
+                  
+                    metadata = data.get(DATABASE_METADATA_FIELD_KEY)
+                    subsectionQnA = SubsectionQnA(subsection, questionAnswer, metadata)
+                    subsectionsQnAList.append(subsectionQnA)
 
-        return topicData     
+        return subsectionsQnAList
+    
+                
+
+
+ 
+    # def getSparseMatricesByDbNameAndIntent(self, client, intent, dbName):
+    #     # yearToData = dict()
+
+    #     # for db_name in db.list_database_names():
+    #         # if(db_name != 'admin' and db_name != 'config' and db_name != 'local'):
+    #     cur_db = client[dbName]
+    #     # data = dict()
+    #         #xl = pd.DataFrame.from_dict(cur_db) #convert current database to Panda DataFrame                            
+    #     # for topic in topicToParse:
+    #     topicData = self.getAllSparseMatrixForTopic(intent, cur_db)
+    #         # get the year key. !!! Assume current standart is CDS_xxxx_xxxx
+    #         # yearKey = db_name[-9:-5]+"_"+db_name[-4:]
+    #             #print('yearkey is  ' + yearKey)
+    #     # yearToData[yearKey] = data
+
+    #     return topicData     
    
 
        
 
-    """ 
-    Given a topic, this function will find all the sparse matrix for a topic. Currently it is getting it from excel file, but 
-    we can swap out for database easily.
-
-    PARAMETERS: 
+    # """ 
+    # Given a topic, this function will find all the sparse matrix for a topic. 
+    # PARAMETERS: 
     
-    topic: the topic to get the sparse matrix for
+    # topic: the topic to get the sparse matrix for
 
-    dataSourceConnector: excel connector from pandas that we can use to retrieve data.
+    # dataSourceConnector: excel connector from pandas that we can use to retrieve data.
 
-    Returns: TopicData class.
-    """
-    def getAllSparseMatrixForTopic(self, topic, curDB) -> TopicData:    
-        seperator = "_"
-        topicData = TopicData(topic)
-        #put this here for now
-        topic = topic.replace("_", " ")
-        for name in curDB.list_collection_names():
-            # topic_key_words = [x.lower() for x in name.split(seperator)]
-            # for each sheet, the name has to be in the format subsection_topic. For example: race_enrollment
-            # print("CHECKING")
-            # # print(name)
-            # print(name, topic, topic == name)
+    # Returns: TopicData class.
+    # """
+    # def getAllSparseMatrixForTopic(self, topic, curDB) -> TopicData:    
+    #     seperator = "_"
+    #     topicData = TopicData(topic)
+    #     #put this here for now
+    #     topic = topic.replace("_", " ")
+    #     for name in curDB.list_collection_names():
+    #         # topic_key_words = [x.lower() for x in name.split(seperator)]
+    #         # for each sheet, the name has to be in the format subsection_topic. For example: race_enrollment
+    #         # print("CHECKING")
+    #         # # print(name)
+    #         # print(name, topic, topic == name)
             
-            if topic == name:
-                cursor = curDB[name].find({})
-                # print("CURSOR")
-                # print(cursor[0])
+    #         if topic == name:
+    #             cursor = curDB[name].find({})
+    #             # print("CURSOR")
+    #             # print(cursor[0])
                
-                for sparseMatrixData in cursor:
-                    questions = []
-                    subsection = sparseMatrixData.get(DATABASE_SPARSE_MATRIX_SUBSECTION_KEY)
-                    rows = sparseMatrixData.get(DATABASE_SPARSE_MATRIX_ROWS_KEY)
-                    metadata = sparseMatrixData.get(DATABASE_METADATA_FIELD_KEY)
-                    for row in rows:
-                        questions.append(row[QUESTION_COLUMN_KEY])
-                        del row[QUESTION_COLUMN_KEY]
-                    df = pd.DataFrame.from_dict(rows)
-                    # print(df.head())
-                    # print(questions)
-                    # print("GOT METADATA")
-                    # print(metadata)
-                    sparseMatrix = SparseMatrix(subsection, df,  metadata=metadata, questions = questions,)
-                    topicData.addSparseMatrix(subsection, sparseMatrix)
+    #             for sparseMatrixData in cursor:
+    #                 questions = []
+    #                 subsection = sparseMatrixData.get(DATABASE_SPARSE_MATRIX_SUBSECTION_KEY)
+    #                 rows = sparseMatrixData.get(DATABASE_SPARSE_MATRIX_ROWS_KEY)
+    #                 metadata = sparseMatrixData.get(DATABASE_METADATA_FIELD_KEY)
+    #                 for row in rows:
+    #                     questions.append(row[QUESTION_COLUMN_KEY])
+    #                     del row[QUESTION_COLUMN_KEY]
+    #                 df = pd.DataFrame.from_dict(rows)
+    #                 # print(df.head())
+    #                 # print(questions)
+    #                 # print("GOT METADATA")
+    #                 # print(metadata)
+    #                 sparseMatrix = SparseMatrix(subsection, df,  metadata=metadata, questions = questions,)
+    #                 topicData.addSparseMatrix(subsection, sparseMatrix)
 
-                return topicData  
+    #             return topicData  
 
-        # If nothing found, return empty topic data        
-        return topicData
+    #     # If nothing found, return empty topic data        
+    #     return topicData
                 

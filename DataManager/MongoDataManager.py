@@ -1,5 +1,6 @@
 from typing import Dict, List, Tuple
 from DataManager.DataManager import DataManager
+from Data_Ingestion.ConvertToSparseMatrixDecorator import ConvertToSparseMatrixDecorator
 from Data_Ingestion.MongoProcessor import MongoProcessor
 from Data_Ingestion.SparseMatrix import SparseMatrix
 from Data_Ingestion.TopicData import TopicData
@@ -16,6 +17,8 @@ from DataManager.constants import ANNUAL_DATA_REGEX_PATTERN
 from DataManager.constants import DEFINITION_DATA_REGEX_PATTERN
 from DataManager.constants import DATABASE_METADATA_FIELD_KEY
 from Data_Ingestion.constants import ABOUT_METADATA_KEY
+from Parser.RasaCommunicator import RasaCommunicator
+from Data_Ingestion.SubsectionQnA import SubsectionQnA
 """
 MongoDataManager subclass that can handle connections with MongoDB data
 """
@@ -23,7 +26,9 @@ class MongoDataManager(DataManager):
     def __init__(self):
         super().__init__()
         self.mongoProcessor = MongoProcessor()
+        self.mongoProcessor = ConvertToSparseMatrixDecorator(self.mongoProcessor)
         self.client = MongoClient(MONGO_DB_CONNECTION_STRING)
+        self.rasaCommunicator = RasaCommunicator()
 
     def getAvailableOptions(self, intent, startYear, endYear):
         availableOptions = dict() 
@@ -120,10 +125,41 @@ class MongoDataManager(DataManager):
         databasesAvailableForGivenYear = self.getAllAvailableData(patternYear)
         return databasesAvailableForGivenYear
     
+
+    # def getDataByStartEndYearAndIntent(self, intent, start, end, exceptionToThrow: Exception) -> List[SubsectionQnA]:
+    #         patternDefinition = re.compile(DEFINITION_DATA_REGEX_PATTERN)    
+    #         # patternYear = re.compile(".+"+str(start)+"."+str(end), re.IGNORECASE)
+    #         definitionDatabases = self.getAllAvailableData(patternDefinition)
+    #         databasesAvailableForGivenYear = self.getAvailableDataForSpecificYearRange(start, end)
+            
+    #         if len(databasesAvailableForGivenYear) == 0:
+    #             raise exceptionToThrow
+
+    #         intent = intent.replace("_", " ")
+    #         selectedDatabaseName = ""
+    #         for databaseName in databasesAvailableForGivenYear:
+    #             sections = self.getSections(databaseName)
+    #             if intent in sections:
+    #                 selectedDatabaseName = databaseName
+
+    #         # We expect there to be only one definition data
+    #         if selectedDatabaseName == "":
+    #             definitionSections = self.getSections(definitionDatabases[0])
+    #             if len(definitionDatabases) > 0:
+    #                 if intent in definitionSections:
+    #                     selectedDatabaseName = definitionDatabases[0]
+
+    #         if selectedDatabaseName == "":
+    #             raise NoDataFoundException(NO_DATA_AVAILABLE_FOR_GIVEN_INTENT_FORMAT.format(topic = intent, start= start, end=end), ExceptionTypes.NoSparseMatrixDataAvailableForGivenIntent)
+        
+    #         subsectionQnAList = self.mongoProcessor.getDataByDbNameAndIntent(self.client, intent, selectedDatabaseName)   
+    #         return 
+        
+    
     """
     See documentation in DataManager.py
     """
-    def getSparseMatricesByStartEndYearAndIntent(self, intent, start, end, exceptionToThrow: Exception) -> TopicData:
+    async def getDataByStartEndYearAndIntent(self, intent, start, end, exceptionToThrow: Exception) -> TopicData:
             # cdsDatabase = CDS_DATABASE_NAME_TEMPLATE.format(start_year= start, end_year = end)
             # if not cdsDatabase in self.client.list_database_names():
             #     raise exceptionToThrow
@@ -152,7 +188,7 @@ class MongoDataManager(DataManager):
             if selectedDatabaseName == "":
                 raise NoDataFoundException(NO_DATA_AVAILABLE_FOR_GIVEN_INTENT_FORMAT.format(topic = intent, start= start, end=end), ExceptionTypes.NoSparseMatrixDataAvailableForGivenIntent)
         
-            topicData = self.mongoProcessor.getSparseMatricesByDbNameAndIntent(self.client, intent, selectedDatabaseName)
+            topicData = await self.mongoProcessor.getDataByDbNameAndIntent(self.client, intent, selectedDatabaseName)
             # print("TOPIC DATA")
             # print(topicData)
             # cursor = topicData.find()

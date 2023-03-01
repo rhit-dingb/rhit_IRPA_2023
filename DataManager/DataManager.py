@@ -38,7 +38,7 @@ class DataManager():
 
     return: a list of sparse matrices corresponding to the given intent. Each matrix is reprsented by pandas dataframe.
     """
-    def getSparseMatricesByStartEndYearAndIntent(self, intent, start, end, exceptionToThrow) -> TopicData:
+    async def getDataByStartEndYearAndIntent(self, intent, start, end, exceptionToThrow) -> TopicData:
         raise Exception("This method should be override by a concrete class")
 
 
@@ -53,13 +53,13 @@ class DataManager():
     The year values is the what year CDS data was used.
 
     """
-    def determineMatrixToSearch(self, intent, entities, startYear : str, endYear : str) -> Tuple[SparseMatrix, str, str]: 
+    async def determineMatrixToSearch(self, intent, entities, startYear : str, endYear : str) -> Tuple[SparseMatrix, str, str]: 
         if startYear == None or endYear == None:
             raise NoDataFoundException(NO_DATA_EXIST_MESSAGE, ExceptionTypes.NoDataFoundAtAll)
         startYear = str(startYear)
         endYear = str(endYear)
         exceptionToThrow = NoDataFoundException(NO_DATA_FOUND_FOR_ACADEMIC_YEAR_ERROR_MESSAGE_FORMAT.format(start=startYear, end=endYear), ExceptionTypes.NoDataFoundForAcademicYearException)
-        sparseMatrices = self.getSparseMatricesByStartEndYearAndIntent(intent, startYear, endYear, exceptionToThrow)
+        sparseMatrices = await self.getDataByStartEndYearAndIntent(intent, startYear, endYear, exceptionToThrow)
         intentWithNoUnderScore = intent.replace("_", " ")
         errorMessage = NO_DATA_AVAILABLE_FOR_GIVEN_INTENT_FORMAT.format(topic = intentWithNoUnderScore, start= str(startYear), end = str(endYear))
         selectedSparseMatrix = self.determineBestMatchingMatrix(sparseMatrices, entities, errorMessage)     
@@ -97,9 +97,7 @@ class DataManager():
         if doesEntityMapToAnySubsections:
             candidates = sparseMatricesFound
             
-        # for candidate in candidates:
-        #     print(candidate.subSectionName)
-            
+     
         maxMatch = []
         currMax = 0
         entityValues = []
@@ -140,6 +138,10 @@ class DataManager():
 
         # decisionTreeSelector = DecisionTreeSelector()
         # decisionTreeSelector.selectBest(entityValues, candidates)
+        for candidate in maxMatch:
+            print(candidate.subSectionName)
+            
+
         print(maxMatch[0].subSectionName)
 
         if len(maxMatch) == 0:

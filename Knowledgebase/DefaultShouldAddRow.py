@@ -33,18 +33,23 @@ class DefaultShouldAddRowStrategy(ShouldAddRowInterface):
             if entityValue.lower() in processedColumn:
                 filteredEntities.append(entity)
 
-        #filteredEntities = set(filteredEntities)
-        
         uniqueEntities = removeDuplicatedEntities(filteredEntities)
         uniqueEntityValuesFound = [e["value"].lower() for e in uniqueEntities]
-        # print("UNIQUE ENTITY FOUND")
-        # print(uniqueEntityValuesFound)
 
-
-        for column in columns:
-            if str(column).lower() in uniqueEntityValuesFound:
-                if row[column] == 1:
-                    temp_count = temp_count + 1
+        # for column in columns:
+        #     print("CHECKING")
+        #     print(column)
+        #     if str(column).lower() in uniqueEntityValuesFound:
+        #         if row[column] == 1:
+        #             temp_count = temp_count + 1
+        #     else:
+        #         print("MISMATCH AT", column)
+        # print(row)
+        for entityValue in uniqueEntityValuesFound:
+            if entityValue in columns and row[entityValue] == 1:
+                temp_count = temp_count+1
+            # else:
+            #     print("MIS MATCH AT", entityValue)
 
         if temp_count == len(uniqueEntities):
             # print("ACCEPT ROW")

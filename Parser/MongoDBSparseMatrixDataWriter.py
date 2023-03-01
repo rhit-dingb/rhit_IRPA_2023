@@ -13,7 +13,7 @@ class MongoDBSparseMatrixDataWriter(DataWriter):
     #database name can be existing database or a new one
     def __init__(self, outputName):
         self.client = MongoClient(MONGO_DB_CONNECTION_STRING)
-        print("CONNECTED")
+      
         self.databaseName = outputName
         self.db = self.client[self.databaseName]
         self.subsectionKey = DATABASE_SUBSECTION_FIELD_KEY 
@@ -21,13 +21,7 @@ class MongoDBSparseMatrixDataWriter(DataWriter):
     def writeSingle(self, sparseMatrix : SparseMatrix, sectionName : str) -> None:
         #In the parse, the subsection name of the sparse matrix is the full sheet name on the input excel file.
         # print("writing")
-        
-        # print(sparseMatrix.toJson)
-        # sparseMatrixJsob = sparseMatrix.toJson()
-        # val = json.loads(sparseMatrixJsob)
-        # for row in sparseMatrix:
-        #     jsonRows = row.to_json()
-        #     print(jsonRows)
+
         jsonRows = sparseMatrix.rowsToJson()
         # print("METADATA!")
         # print(sparseMatrix.metadata)

@@ -44,12 +44,12 @@ class UnansweredQuestionAnswerEngine:
         answers, confidences = self.documentRetriever.findSimilarDocuments(query=question)
         answersToReturn = []
 
-        print("SEARCHING FOR QUESTION")
-        print(answersToReturn)
-        print(confidences)
+        # print("SEARCHING FOR QUESTION")
+        # print(answersToReturn)
+        # print(confidences)
         for answer, confidence in zip(answers, confidences):
-            print("CONFIDENCE")
-            print(confidence)
+            # print("CONFIDENCE")
+            # print(confidence)
             if confidence >=self.confidenceThreshold:
                 answersToReturn.append(answer)
         

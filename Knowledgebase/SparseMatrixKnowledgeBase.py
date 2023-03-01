@@ -60,12 +60,14 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
     async def searchForAnswer(self, intent, entitiesExtracted, shouldAddRowStrategy, outputFunc, startYear, endYear):
         # print("BEGAN SEARCHING")
         sparseMatrixToSearch : SparseMatrix
-        sparseMatrixToSearch = self.determineMatrixToSearch(intent, entitiesExtracted, startYear, endYear)
+        sparseMatrixToSearch = await self.determineMatrixToSearch(intent, entitiesExtracted, startYear, endYear)
         
         if sparseMatrixToSearch is None:
             raise Exception("No valid sparse matrix found for given intent and entities", intent, entitiesExtracted)
 
         isOperationAllowed = sparseMatrixToSearch.isAnyOperationAllowed()
+        print("YEAR")
+        print(startYear, endYear)
 
         isRangeAllowed = sparseMatrixToSearch.isRangeOperationAllowed()
         hasRangeEntity = findEntityHelper(entitiesExtracted, RANGE_ENTITY_LABEL)
@@ -77,7 +79,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         searchResults = []
       
         if isRangeAllowed and hasRangeEntity:
-           
+            print("CALCULATING RANGE")
             rangeResultData : RangeResultData =  self.aggregateDiscreteRange(entitiesExtracted, sparseMatrixToSearch, isSumAllowed)
             filteredEntities = filterEntities(entitiesExtracted, [RANGE_ENTITY_LABEL, NUMBER_ENTITY_LABEL])
             searchResults : List[SearchResult] = rangeResultData.answers
@@ -156,15 +158,13 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
     def getAvailableOptions(self, intent, startYear, endYear) -> Dict[str, List[str]]:
         return self.dataManager.getAvailableOptions(self,startYear, endYear)
 
-    def determineMatrixToSearch(self, intent, entities, startYear, endYear):
-        return self.dataManager.determineMatrixToSearch(intent, entities, startYear, endYear)
+    async def determineMatrixToSearch(self, intent, entities, startYear, endYear):
+        return await self.dataManager.determineMatrixToSearch(intent, entities, startYear, endYear)
 
     def constructOutput(self, searchResults : List[SearchResult], intent, template):
        #return searchResult
-     
        if searchResults is None or len(searchResults) == 0: 
             return []
-        
        if template == "" or template == "nan":
             return list(map(lambda x: x.answer , searchResults))
 
@@ -216,16 +216,12 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         elif len(numberEntities) == 0:
             minValue = float('-inf')
             maxValue = float('inf')
-            
         discreteRanges = sparseMatrix.findAllDiscreteRange()
-        # print("DISCRETE RANGES")
-        # print(discreteRanges)
-        # print(minBound,maxBound)
+    
         rangesToUse = []
         intervalToCheck = [minValue, maxValue]
-        
-        # print("INTERVAL TO CHECK")
-        # print(intervalToCheck)
+        print("INTERVAL TO CHECK")
+        print(intervalToCheck)
         for dRange in discreteRanges:
             if self.doesIntervalOverlap(intervalToCheck, dRange):
                 rangesToUse.append(dRange)
@@ -242,8 +238,9 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
     def aggregateDiscreteRange(self, entities, sparseMatrix : SparseMatrix, isSumming):
         maxBound, minBound = sparseMatrix.findMaxBoundLowerBoundForDiscreteRange()
         rangesToSumOver = self.findRange(entities, maxBound,  minBound, sparseMatrix)
-        # print("RANGE TO SUM OVER")
-        # print(rangesToSumOver)
+        print(maxBound, minBound)
+        print("RANGE TO SUM OVER")
+        print(rangesToSumOver)
 
         shouldAddRowStrategy = RangeExactMatchRowStrategy()
         entities = filterEntities(entities, [RANGE_ENTITY_LABEL])
