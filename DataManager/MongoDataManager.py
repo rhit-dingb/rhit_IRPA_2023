@@ -26,7 +26,7 @@ class MongoDataManager(DataManager):
     def __init__(self):
         super().__init__()
         self.mongoProcessor = MongoProcessor()
-        self.mongoProcessor = ConvertToSparseMatrixDecorator(self.mongoProcessor)
+        #self.mongoProcessor = ConvertToSparseMatrixDecorator(self.mongoProcessor)
         self.client = MongoClient(MONGO_DB_CONNECTION_STRING)
         self.rasaCommunicator = RasaCommunicator()
 
@@ -53,7 +53,6 @@ class MongoDataManager(DataManager):
                         if ABOUT_METADATA_KEY in metadata:
                             aboutDescription = metadata[ABOUT_METADATA_KEY]
                             availableOptions[collection].append(aboutDescription)
-
         if intent == None:
             intent = ""
                                 
@@ -84,7 +83,7 @@ class MongoDataManager(DataManager):
                             sectionToSubections[collection].append(subSectionName)
                         else:
                             sectionToSubections[collection] = [subSectionName]
-
+                            
         # sort the keys and array
         keys = list(sectionToSubections.keys())
         keys.sort()
@@ -126,35 +125,7 @@ class MongoDataManager(DataManager):
         return databasesAvailableForGivenYear
     
 
-    # def getDataByStartEndYearAndIntent(self, intent, start, end, exceptionToThrow: Exception) -> List[SubsectionQnA]:
-    #         patternDefinition = re.compile(DEFINITION_DATA_REGEX_PATTERN)    
-    #         # patternYear = re.compile(".+"+str(start)+"."+str(end), re.IGNORECASE)
-    #         definitionDatabases = self.getAllAvailableData(patternDefinition)
-    #         databasesAvailableForGivenYear = self.getAvailableDataForSpecificYearRange(start, end)
-            
-    #         if len(databasesAvailableForGivenYear) == 0:
-    #             raise exceptionToThrow
 
-    #         intent = intent.replace("_", " ")
-    #         selectedDatabaseName = ""
-    #         for databaseName in databasesAvailableForGivenYear:
-    #             sections = self.getSections(databaseName)
-    #             if intent in sections:
-    #                 selectedDatabaseName = databaseName
-
-    #         # We expect there to be only one definition data
-    #         if selectedDatabaseName == "":
-    #             definitionSections = self.getSections(definitionDatabases[0])
-    #             if len(definitionDatabases) > 0:
-    #                 if intent in definitionSections:
-    #                     selectedDatabaseName = definitionDatabases[0]
-
-    #         if selectedDatabaseName == "":
-    #             raise NoDataFoundException(NO_DATA_AVAILABLE_FOR_GIVEN_INTENT_FORMAT.format(topic = intent, start= start, end=end), ExceptionTypes.NoSparseMatrixDataAvailableForGivenIntent)
-        
-    #         subsectionQnAList = self.mongoProcessor.getDataByDbNameAndIntent(self.client, intent, selectedDatabaseName)   
-    #         return 
-        
     
     """
     See documentation in DataManager.py
@@ -188,7 +159,8 @@ class MongoDataManager(DataManager):
             if selectedDatabaseName == "":
                 raise NoDataFoundException(NO_DATA_AVAILABLE_FOR_GIVEN_INTENT_FORMAT.format(topic = intent, start= start, end=end), ExceptionTypes.NoSparseMatrixDataAvailableForGivenIntent)
         
-            topicData = await self.mongoProcessor.getDataByDbNameAndIntent(self.client, intent, selectedDatabaseName)
+            #topicData = await self.mongoProcessor.getDataByDbNameAndIntent(self.client, intent, selectedDatabaseName)
+            topicData =  self.mongoProcessor.getSparseMatricesByDbNameAndIntent(self.client, intent, selectedDatabaseName)
             # print("TOPIC DATA")
             # print(topicData)
             # cursor = topicData.find()

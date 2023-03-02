@@ -40,11 +40,13 @@ class MongoDBSparseMatrixDataWriter(DataWriter):
             sparseMatrices = sectionToSparseMatrices[section]
             for sparseMatrix in sparseMatrices:
                 self.writeSingle(sparseMatrix, section)
-                #Delete all the old sparse matrix-- the one that exist in the database but was not updated or newly inserted
-                subsectionsInserted = [sparseMatrix.subSectionName for sparseMatrix in sparseMatrices]
-                # Delete any documents for subsection that is not inserted.
-                query = { self.subsectionKey : { "$nin": subsectionsInserted } }
-                self.db[section].delete_many(query)
+
+            #Delete all the old sparse matrix-- the one that exist in the database but was not updated or newly inserted
+            subsectionsInserted = [sparseMatrix.subSectionName for sparseMatrix in sparseMatrices]
+            # Delete any documents for subsection that is not inserted.
+            query = { self.subsectionKey : { "$nin": subsectionsInserted } }
+            self.db[section].delete_many(query)
+            
             sectionsInserted.append(section)
 
         #Drop any section that is not in the uploaded excel file

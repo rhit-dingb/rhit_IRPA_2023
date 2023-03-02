@@ -106,18 +106,17 @@ async def parse_data(request : Request):
 
 
     if not outputName == "":
-        # try:
-       
-        jsonCdsLoader.loadData(excelData)
-        dataWriter = MongoDbNoChangeDataWriter(outputName)
-        dataParser = SparseMatrixDataParser()
-        #dataWriter = MongoDbNoChangeDataWriter(outputName)
-
-        parserFacade = ParserFacade(dataLoader=jsonCdsLoader, dataWriter=dataWriter, dataParser=dataParser)
-        await parserFacade.parse()
-        return {"message": "Done", "uploadedAs": outputName}
-        # except Exception:
-        #     raise HTTPException(status_code=500, detail="Something went wrong while parsing the input data")
+        try:
+            jsonCdsLoader.loadData(excelData)
+            dataWriter = MongoDbNoChangeDataWriter(outputName)
+            dataWriter = MongoDBSparseMatrixDataWriter(outputName)
+            dataParser = SparseMatrixDataParser()
+            #dataWriter = MongoDbNoChangeDataWriter(outputName)
+            parserFacade = ParserFacade(dataLoader=jsonCdsLoader, dataWriter=dataWriter, dataParser=dataParser)
+            await parserFacade.parse()
+            return {"message": "Done", "uploadedAs": outputName}
+        except Exception:
+            raise HTTPException(status_code=500, detail="Something went wrong while parsing the input data")
 
     
 

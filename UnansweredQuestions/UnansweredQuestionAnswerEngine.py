@@ -41,6 +41,7 @@ class UnansweredQuestionAnswerEngine:
         #maybe train the model here
 
     def answerQuestion(self,question) -> List[str]:
+        return []
         answers, confidences = self.documentRetriever.findSimilarDocuments(query=question)
         answersToReturn = []
 

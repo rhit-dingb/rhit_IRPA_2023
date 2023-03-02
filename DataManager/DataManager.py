@@ -142,7 +142,7 @@ class DataManager():
             print(candidate.subSectionName)
             
 
-        print(maxMatch[0].subSectionName)
+        # print(maxMatch[0].subSectionName)
 
         if len(maxMatch) == 0:
             raise NoDataFoundException(errorMessage, ExceptionTypes.NoSparseMatrixDataAvailableForGivenIntent)

@@ -220,8 +220,8 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
     
         rangesToUse = []
         intervalToCheck = [minValue, maxValue]
-        print("INTERVAL TO CHECK")
-        print(intervalToCheck)
+        # print("INTERVAL TO CHECK")
+        # print(intervalToCheck)
         for dRange in discreteRanges:
             if self.doesIntervalOverlap(intervalToCheck, dRange):
                 rangesToUse.append(dRange)

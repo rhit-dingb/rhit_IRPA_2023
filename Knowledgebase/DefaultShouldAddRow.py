@@ -48,9 +48,12 @@ class DefaultShouldAddRowStrategy(ShouldAddRowInterface):
         for entityValue in uniqueEntityValuesFound:
             if entityValue in columns and row[entityValue] == 1:
                 temp_count = temp_count+1
+              
             # else:
             #     print("MIS MATCH AT", entityValue)
-
+        # print("MATCH")
+        # print(temp_count)
+        # print(len(uniqueEntities))
         if temp_count == len(uniqueEntities):
             # print("ACCEPT ROW")
             # print(row)

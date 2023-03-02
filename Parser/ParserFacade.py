@@ -42,7 +42,6 @@ class ParserFacade():
         for sectionFullName in sectionFullNames:
             # if not section in self.parsers.keys():
             #     continue
-          
             questionAnswers : List[QuestionAnswer] = self.dataLoader.getQuestionsAnswerForSection(sectionFullName)
             for questionAnswer in questionAnswers:
                 if questionAnswer.isMetaData: 
@@ -60,17 +59,17 @@ class ParserFacade():
             subSection = sectionAndSubSection[len(sectionAndSubSection)-1]
             numQuestionSet = self.setEntitiesForQuestionAndAnswer(questionAnswers, responses, index)
 
-            # parsedData = self.dataParser.parse(subSection, questionAnswers) 
-            # if section in sectionToData:
-            #     sectionToData[section].append(parsedData)
-            # else: 
-            #     sectionToData[section] = [parsedData]
-
+            parsedData = self.dataParser.parse(subSection, questionAnswers) 
             if section in sectionToData:
-                sectionToData[section][subSection] = questionAnswers
+                sectionToData[section].append(parsedData)
             else: 
-                sectionToData[section] = dict()
-                sectionToData[section][subSection] = questionAnswers
+                sectionToData[section] = [parsedData]
+
+            # if section in sectionToData:
+            #     sectionToData[section][subSection] = questionAnswers
+            # else: 
+            #     sectionToData[section] = dict()
+            #     sectionToData[section][subSection] = questionAnswers
 
             index = index + numQuestionSet
             # sparseMatrices.append(sparseMatrix)
