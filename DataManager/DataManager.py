@@ -1,5 +1,5 @@
 
-from typing import Dict, Tuple
+from typing import Dict, List, Tuple
 # from DataManager.YearDataSelector import YearlyDataSelector
 # from DataManager.YearDataSelectorByCohort import YearlyDataSelectorByCohort
 from Data_Ingestion.SparseMatrix import SparseMatrix
@@ -41,6 +41,22 @@ class DataManager():
     async def getDataByStartEndYearAndIntent(self, intent, start, end, exceptionToThrow) -> TopicData:
         raise Exception("This method should be override by a concrete class")
 
+
+    """
+    This function will get the most recent year of the data that is currently available. For example:
+    if there are 2019-2020 data and 2020-2021 data, it will return a tuple: (2020, 2021)
+    This function serves as the fallback. If the user didn't specify a year in their query, we will use the most recent year.
+    """
+    def getMostRecentYearRange(self) -> Tuple[str, str]:
+        raise Exception("This method should be override by a concrete class")
+    
+
+    def deleteData(self, dataName) -> bool:
+        pass
+
+
+    def getAllSubsectionForSection(self, section, filter=lambda x: x):
+        pass
 
     """
     Given intent and entities, this function will determine the specific sparse matrix to be searched by the knowledgebase's search algorithm
@@ -90,7 +106,7 @@ class DataManager():
     we can store a field in TopicData to indicate use which matrix as default in case of a tie.
 
     """
-    def determineBestMatchingMatrix(self, topicData : TopicData, entities : Dict, errorMessage : str) ->  SparseMatrix:
+    def determineBestMatchingMatrix(self, topicData : TopicData, entities : Dict, errorMessage : str) ->  List[SparseMatrix]:
         doesEntityMapToAnySubsections, sparseMatricesFound = topicData.doesEntityIncludeAnySubsections(entities)
         candidates = list(topicData.getSparseMatrices().values())
       
@@ -138,23 +154,16 @@ class DataManager():
 
         # decisionTreeSelector = DecisionTreeSelector()
         # decisionTreeSelector.selectBest(entityValues, candidates)
-        for candidate in maxMatch:
-            print(candidate.subSectionName)
-            
-
-        # print(maxMatch[0].subSectionName)
-
+       
         if len(maxMatch) == 0:
             raise NoDataFoundException(errorMessage, ExceptionTypes.NoSparseMatrixDataAvailableForGivenIntent)
-        
-        return maxMatch[0]
+        print("CANDIDATES") 
+        for candidate in maxMatch:
+            print(candidate.subSectionName)
+        # print("SELECTED MATRIX")
+        # print(maxMatch[0].subSectionName)
+        return maxMatch
 
 
 
-    """
-    This function will get the most recent year of the data that is currently available. For example:
-    if there are 2019-2020 data and 2020-2021 data, it will return a tuple: (2020, 2021)
-    This function serves as the fallback. If the user didn't specify a year in their query, we will use the most recent year.
-    """
-    def getMostRecentYearRange() -> Tuple[str, str]:
-        raise Exception("This method should be override by a concrete class")
+ 

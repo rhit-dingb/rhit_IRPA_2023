@@ -14,14 +14,16 @@ export function Navbar() {
   const history = useHistory();
 
     const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem(IS_LOGGED_IN_CONSTANT))
- 
+
     useEffect(() => {
-      console.log(isLoggedIn)
+      // console.log("IS LOGGED IN ")
+      // console.log(isLoggedIn)
       if (history.location.pathname == "/admin_login"){
         return 
       }
 
       if (!isLoggedIn) {
+      
         history.push('/');
       }
     }, [history]);
@@ -55,7 +57,7 @@ export function Navbar() {
               <Link to="/admin_login">Admin Login</Link>
             </a>}
 
-          {isLoggedIn && <div>  <a class="dropdown-item">
+          {isLoggedIn? <div><a class="dropdown-item">
               <Link to="/unanswered_questions">Unanswered Questions</Link>
             </a>
 
@@ -73,7 +75,7 @@ export function Navbar() {
 
             <a class="dropdown-item">
               <Link to="/report_issue">Report Issue</Link>
-            </a></div> }
+            </a></div> : null }
 
           </div>
         </div>

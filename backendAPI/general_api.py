@@ -12,6 +12,7 @@ import aiohttp
 import asyncio
 from datetime import datetime, date, timedelta
 
+
 sys.path.append('../')
 
 from backendAPI.DataType import DataType
@@ -33,9 +34,10 @@ from DataManager.constants import ANNUAL_DATA_REGEX_PATTERN, DEFINITION_DATA_REG
 from UnansweredQuestions.UnansweredQuestionAnswerEngine import UnansweredQuestionAnswerEngine
 
 from Parser.SparseMatrixDataParser import SparseMatrixDataParser
+from backendAPI.AuthenticationManager import AuthenticationManager
 
 
-
+authenticationManager = AuthenticationManager()
 mongoDbDataManager = MongoDataManager()
 rasaCommunicator = RasaCommunicator()
 client = MongoClient(MONGO_DB_CONNECTION_STRING)
@@ -106,17 +108,18 @@ async def parse_data(request : Request):
 
 
     if not outputName == "":
-        try:
-            jsonCdsLoader.loadData(excelData)
-            dataWriter = MongoDbNoChangeDataWriter(outputName)
-            dataWriter = MongoDBSparseMatrixDataWriter(outputName)
-            dataParser = SparseMatrixDataParser()
-            #dataWriter = MongoDbNoChangeDataWriter(outputName)
-            parserFacade = ParserFacade(dataLoader=jsonCdsLoader, dataWriter=dataWriter, dataParser=dataParser)
-            await parserFacade.parse()
-            return {"message": "Done", "uploadedAs": outputName}
-        except Exception:
-            raise HTTPException(status_code=500, detail="Something went wrong while parsing the input data")
+        # try:
+        jsonCdsLoader.loadData(excelData)
+      
+        dataWriter = MongoDBSparseMatrixDataWriter(outputName)
+
+        dataParser = SparseMatrixDataParser()
+        dataWriter = MongoDbNoChangeDataWriter(outputName)
+        parserFacade = ParserFacade(dataLoader=jsonCdsLoader, dataWriter=dataWriter, dataParser=dataParser)
+        await parserFacade.parse()
+        return {"message": "Done", "uploadedAs": outputName}
+        # except Exception:
+        #     raise HTTPException(status_code=500, detail="Something went wrong while parsing the input data")
 
     
 
@@ -298,3 +301,18 @@ async def handle_new_event(endDate: datetime = datetime.now(), startDate_short: 
 Test 1: DEFAULT VIEW
 GET request: http://127.0.0.1:8000/general_stats/
 """
+
+
+
+
+""""
+AUTHENTICATION API
+"""
+@app.post("/login")
+async def login(request: Request):
+    jsonData = await request.json()
+    username = jsonData["username"]
+    password = jsonData["password"]
+    loginSuccess = authenticationManager.login(username, password)
+    return {"loggedIn": loginSuccess}
+

@@ -21,6 +21,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {IS_LOGGED_IN_CONSTANT} from "../constants/constants"
 import { useHistory } from 'react-router-dom';
+import {CUSTOM_BACKEND_API_STRING} from "../constants/constants"
 
 function AdminLogin() {
     // const [userName, setUserName] = useState([])
@@ -40,12 +41,32 @@ function AdminLogin() {
         const username = data.get('username')
         const password = data.get('password')
         // check password and username.. I'll do it here for now.
-
-        if (username == "admin" && password =="admin123"){
-            localStorage.setItem(IS_LOGGED_IN_CONSTANT, true)
-            //redirect
-            history.push('/unanswered_questions');
-        }
+        let body = {username: username, password: password}
+        fetch(CUSTOM_BACKEND_API_STRING + '/login', {
+            method: 'POST',
+            body: JSON.stringify(body),
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "http://localhost:3000",
+              "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+              "Access-Control-Allow-Headers": "Content-Type"
+            },
+        }).then((response) => response.json()).then((data)=>{
+            let isLoggedIn = data["loggedIn"]
+            // console.log(data)
+            // console.log("IS LOGGED IN")
+            // console.log(isLoggedIn)
+            if (isLoggedIn) {
+                localStorage.setItem(IS_LOGGED_IN_CONSTANT, true)
+                //redirect
+                history.push('/unanswered_questions');
+            }
+        })
+        // if (username == "admin" && password =="admin123"){
+        //     localStorage.setItem(IS_LOGGED_IN_CONSTANT, true)
+        //     //redirect
+        //     history.push('/unanswered_questions');
+        // }
       
     }
 
