@@ -18,7 +18,7 @@ class UnansweredQuestionAnswerEngine:
     # Basepath: ./UnansweredQuestions, or ../UnansweredQuestions
     def __init__(self):
         self.modelToUse = None
-        self.mongoDBUnansweredQuestionConnector = MongoDBUnansweredQuestionConnector()
+        self.mongoDBUnansweredQuestionConnector = MongoDBUnansweredQuestionConnector(self)
         basePath = self.determinePath()
         self.corpus = Corpus(self.mongoDBUnansweredQuestionConnector, basePath +"/dictionaries/dictionary")
         self.model = Word2VecModel(self.corpus, basePath +"/savedModels/glove_vector_300")
@@ -41,7 +41,6 @@ class UnansweredQuestionAnswerEngine:
         #maybe train the model here
 
     def answerQuestion(self,question) -> List[str]:
-        return []
         answers, confidences = self.documentRetriever.findSimilarDocuments(query=question)
         answersToReturn = []
 

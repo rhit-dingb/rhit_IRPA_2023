@@ -62,7 +62,7 @@ class ActionGetAvailableOptions(Action):
     
         headerMessage = self.HEADER_MESSAGE_TEMPLATE.format(start_year = startYear, end_year = endYear)
         response = {"type": ResponseType.ACCORDION_LIST.value, "header": headerMessage, "data": filteredListOfOption}
-        print(response)
+     
         dispatcher.utter_message(json_message= response)
     
         if res:

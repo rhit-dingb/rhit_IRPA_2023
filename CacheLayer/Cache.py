@@ -7,9 +7,15 @@ from Data_Ingestion.TopicData import TopicData
 class Cache(DataManager):
     def __init__(self, dataSource : DataManager):
         self.dataSource  = dataSource
-        self.pool = redis.ConnectionPool(host='localhost', port=6379, db=0)
-        self.redis = redis.Redis(connection_pool=self.pool)
-
+        self.connected = True
+        self.pool = None
+        self.redis = None
+        try:
+            self.pool = redis.ConnectionPool(host='localhost', port=6379, db=0)
+            self.redis = redis.Redis(connection_pool=self.pool)
+        except Exception:
+            self.connected = False
+            
     
     async def getDataByStartEndYearAndIntent(self, intent, start, end, exceptionToThrow) -> TopicData:
         intent = intent.replace("_", " ")
@@ -19,10 +25,13 @@ class Cache(DataManager):
         does_exist = True
         topicData = None
         subsectionsForSection = self.dataSource.getAllSubsectionForSection(intent, start, end)
-    
-        for subsection in subsectionsForSection: 
-            dataKey = redisDataKeyFormat.format(intent=intent, startYear=start, endYear=end, subsection=subsection)
-            does_exist = does_exist and self.redis.exists(dataKey)
+
+        if self.connected:
+            for subsection in subsectionsForSection: 
+                dataKey = redisDataKeyFormat.format(intent=intent, startYear=start, endYear=end, subsection=subsection)
+                does_exist = does_exist and self.redis.exists(dataKey)
+        else:
+            does_exist = False
 
         if does_exist:
             topicData = TopicData(intent)
