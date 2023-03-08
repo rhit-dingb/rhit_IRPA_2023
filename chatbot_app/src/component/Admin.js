@@ -140,15 +140,15 @@ class QuestionAnswer extends React.Component {
           }}>{this.state.notificationMessage}</Alert>}
 
         <h5>Question</h5>
-        <div style={{textOverflow: "ellipsis", overflow: "scroll", marginBottom:50, "overflowX": "hidden"}} >
+        <div style={{textOverflow: "ellipsis", overflow: "scroll", marginBottom:50, overflowX: "hidden", maxHeight: 150}} >
           <h5 >{this.state.question}</h5>
         </div>
         <div id="warningText"></div>
         <div class="form-floating">
         <h5>Chatbot Answer</h5>
-        <div style={{textOverflow: "ellipsis", overflow: "scroll", marginBottom:50, "overflowX": "hidden"}} >
+        <div style={{textOverflow: "ellipsis",overflow: "scroll", marginBottom:50, overflowX: "hidden", maxHeight: 150}} >
           {this.state.chatbotAnswers? this.state.chatbotAnswers.map((elem)=>{
-            console.log(elem)
+            // console.log(elem)
             return <h5>{elem}</h5>
           })
           : <h5>No answer from chatbot</h5>}
