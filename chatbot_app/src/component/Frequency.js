@@ -1,7 +1,7 @@
 import { Navbar } from "./Navbar";
 import { Box, Card, List, Grid, InputLabel, MenuItem, Select, FormControl, ListItem, ListItemText } from "@mui/material";
 import { DataGrid } from '@mui/x-data-grid';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function Frequency() {
     const [range, setRange] = useState(0);
@@ -34,6 +34,11 @@ function Frequency() {
             width: 100
         }
     ];
+
+    useEffect(() => {
+        const current = new Date();
+        fetchStats('endDate='+current.toISOString()+'&startDate_short='+new Date(current.setMonth(current.getMonth() - 1)).toISOString());
+    }, []);
 
     const handleChangeRange = (event) => {
         setRange(event.target.value);
