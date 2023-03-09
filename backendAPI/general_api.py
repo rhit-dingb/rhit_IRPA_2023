@@ -54,6 +54,9 @@ app = FastAPI()
 #A list of allowed origins
 origins = [
     "http://localhost:3000",
+    "http://localhost",
+    "http://irpa-chatbot.csse.rose-hulman.edu:3000/"
+    
 ]
 
 app.add_middleware(
