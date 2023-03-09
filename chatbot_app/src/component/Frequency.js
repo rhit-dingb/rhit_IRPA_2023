@@ -41,10 +41,10 @@ function Frequency() {
         const current = new Date();
         const end = current.toISOString();
         if(event.target.value == 0){
-            const start = new Date(current.setMonth(current.getMonth() + 1)).toISOString();
+            const start = new Date(current.setMonth(current.getMonth() - 1)).toISOString();
             fetchStats('endDate='+end+'&startDate_short='+start);
         } else if(event.target.value == 1){
-            const start = new Date(current.setYear(current.getYear() + 1)).toISOString();
+            const start = new Date(current.setYear(current.getYear() - 1)).toISOString();
             fetchStats('endDate='+end+'&startDate_long='+start);
         } else if(event.target.value == 2){
             fetchStats('endDate='+end);
@@ -85,13 +85,6 @@ function Frequency() {
                         </Box>
                     </Grid>
                     <Grid item>
-                        {/* <List>
-                        {freqData.map((value) => (
-                            <ListItem key={value} disableGutters>
-                            <ListItemText primary={`Line item ${value}`} />
-                            </ListItem>
-                        ))}
-                        </List> */}
                         <Box sx={{ height: 520, width: '100%' }}>
                             <DataGrid columns={columns} rows={freqData}/>
                         </Box>
