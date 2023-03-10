@@ -1,8 +1,8 @@
 export const CUSTOM_BACKEND_API_STRING = process.env.NODE_ENV =="development"? "http://127.0.0.1:8000"  
-: "http://irpa-chatbot.csse.rose-hulman.edu:8000/"
+: "http://irpa-chatbot.csse.rose-hulman.edu:8000"
 
 export const RASA_API_STRING = process.env.NODE_ENV =="development"? "http://127.0.0.1:5005" 
-: "http://irpa-chatbot.csse.rose-hulman.edu:8000/"
+: "http://irpa-chatbot.csse.rose-hulman.edu:5005"
 
 console.log(CUSTOM_BACKEND_API_STRING)
 console.log(RASA_API_STRING)
