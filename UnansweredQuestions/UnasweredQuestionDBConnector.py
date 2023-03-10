@@ -17,7 +17,7 @@ class UnansweredQuestionDbConnector(ABC):
         pass
 
     @abstractmethod
-    def addNewUnansweredQuestion(question):
+    def addNewUnansweredQuestion(question, chatbotAnswers):
         pass
 
     

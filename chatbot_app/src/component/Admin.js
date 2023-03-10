@@ -16,6 +16,7 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Alert from '@mui/material/Alert';
+import { ListItem, List, Divider } from "@mui/material";
 
 class Question extends React.Component {
   //todo: this thing
@@ -34,7 +35,26 @@ class Question extends React.Component {
   }
 
   render() {
-    return <button key ={this.props.questionObject.content} style={{ height:30, maxWidth:250, margin:"auto", borderColor: this.props.questionObject.is_addressed ? 'white' : 'red' }} onClick={this.handleClick}><div style={{textOverflow: "ellipsis", overflow: "hidden", whiteSpace: "nowrap"}}>{this.props.questionObject.content}</div></button>;
+    //return <button key ={this.props.questionObject.content} style={{ height:30, maxWidth:250, margin:"auto", borderColor: this.props.questionObject.is_addressed ? 'white' : 'red' }} onClick={this.handleClick}><div style={{textOverflow: "ellipsis", overflow: "hidden", whiteSpace: "nowrap"}}>{this.props.questionObject.content}</div></button>;
+    return <div key ={this.props.questionObject.content} style={{ height:100, width:"100%", 
+      margin:"auto", 
+      border: "1px solid",
+      borderColor: this.props.questionObject.is_addressed ? 'black' : 'red',
+      overflow: "hidden",
+      height: 50,
+      padding:10,
+      backgroundColor: '#E7EBF0',
+      
+      }} onClick={this.handleClick}>
+            {/* <div style={{
+        height: 100,
+       
+        }}> */}
+        <p style={{ overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis", color:"black"}}>{this.props.questionObject.content}</p>
+      {/* </div> */}
+      {/* <Divider variant="inset" component="li" /> */}
+      </div> 
+      
   }
 }
 
@@ -140,15 +160,15 @@ class QuestionAnswer extends React.Component {
           }}>{this.state.notificationMessage}</Alert>}
 
         <h5>Question</h5>
-        <div style={{textOverflow: "ellipsis", overflow: "scroll", marginBottom:50, "overflowX": "hidden"}} >
+        <div style={{textOverflow: "ellipsis", overflow: "scroll", marginBottom:50, overflowX: "hidden", maxHeight: 150}} >
           <h5 >{this.state.question}</h5>
         </div>
         <div id="warningText"></div>
         <div class="form-floating">
         <h5>Chatbot Answer</h5>
-        <div style={{textOverflow: "ellipsis", overflow: "scroll", marginBottom:50, "overflowX": "hidden"}} >
+        <div style={{textOverflow: "ellipsis",overflow: "scroll", marginBottom:50, overflowX: "hidden", maxHeight: 150}} >
           {this.state.chatbotAnswers? this.state.chatbotAnswers.map((elem)=>{
-            console.log(elem)
+            // console.log(elem)
             return <h5>{elem}</h5>
           })
           : <h5>No answer from chatbot</h5>}
@@ -192,28 +212,6 @@ function Admin() {
   //todo: make a request to refresh the 
   const [questions, setQuestions] = useState([]);
   const [selectedQuestion, setSelectedQuestion] = useState(null)
-  // const getQuestions = () => {
-  //   fetch(`${CUSTOM_BACKEND_API_STRING}/questions`, {
-  //     method: 'GET'
-  //   })
-  //   .then(response => response.json())
-  //   .then(data => {
-  //     console.log("questions" + data);
-  //     return data;
-  //   });
-  // }
-  // useEffect(() => {
-  //   fetch(`${CUSTOM_BACKEND_API_STRING}/questions`, {
-  //     method: 'GET'
-  //   })
-  //   .then(response => response.json())
-  //   .then(data => {
-  //     console.log(data);
-  //     setQuestions(data);
-  //   });
-  //   // setQuestions(["1","2","3"]);
-  // }, []);
-  // console.log("GOT" + getQuestions().then((data) => {setQuestions(data)}));
   useEffect(() => {
     getQuestions()
     .then((data) => {
@@ -226,14 +224,23 @@ function Admin() {
     <div>
       <Navbar/>
       <div style={leftBox}>
-      <div class="dropdown">
-        <button style = {questionDropdown}  class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      {/* <div class="dropdown"> */}
+        {/* <button style = {questionDropdown}  class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           New Question
-        </button>
-        <div class="dropdown-menu" style={{ padding:5}} aria-labelledby="dropdownMenuButton">
-          {questions.map((question) => (<Question class="dropdown-menu" questionObject={question} updateFunc={(data)=>{setQuestions(data)}} setSelectedQuestion = {setSelectedQuestion} />))}
-        </div>
-      </div>
+        </button> */}
+        {/* <div class="dropdown-menu" style={{ padding:5}} aria-labelledby="dropdownMenuButton"> */}
+       
+        <List sx={{ width: '100%', maxWidth: 360 }}>
+        {questions.map((question) => (
+        <ListItem>
+        <Question class="dropdown-menu" questionObject={question} updateFunc={(data)=>{setQuestions(data)}} setSelectedQuestion = {setSelectedQuestion} />
+        </ListItem>
+        ))}
+        
+        </List>
+        
+        {/* </div> */}
+      {/* </div> */}
       </div>
       <div id="mainDiv" style={{ width: "80%", height: "80%", float: "right", padding: 40}}>
         {selectedQuestion}
@@ -255,8 +262,11 @@ const leftBox = {
   width: "20%",
   height: "42em",
   float: "left",
+  maxHeight: "42em",
   backgroundColor: "grey",
-  opacity: 0.5, 
+  overflow: "scroll",
+  overflowX: "hidden"
+  // opacity: 0.5, 
 }
 
 const questionDropdown = {

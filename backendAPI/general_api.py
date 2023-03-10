@@ -12,6 +12,7 @@ import aiohttp
 import asyncio
 from datetime import datetime, date, timedelta
 
+
 sys.path.append('../')
 
 from backendAPI.DataType import DataType
@@ -33,13 +34,19 @@ from DataManager.constants import ANNUAL_DATA_REGEX_PATTERN, DEFINITION_DATA_REG
 from UnansweredQuestions.UnansweredQuestionAnswerEngine import UnansweredQuestionAnswerEngine
 
 from Parser.SparseMatrixDataParser import SparseMatrixDataParser
+from backendAPI.AuthenticationManager import AuthenticationManager
+from UnansweredQuestions.MongoDBUnansweredQuestionConnector import MongoDBUnansweredQuestionConnector
+
+from UnansweredQuestions.UnasweredQuestionDBConnector import UnansweredQuestionDbConnector
 
 
 
+authenticationManager = AuthenticationManager()
 mongoDbDataManager = MongoDataManager()
 rasaCommunicator = RasaCommunicator()
 client = MongoClient(MONGO_DB_CONNECTION_STRING)
 unansweredQuestionAnswerEngine = UnansweredQuestionAnswerEngine()
+unansweredQuestionDbConnector : UnansweredQuestionDbConnector = MongoDBUnansweredQuestionConnector(unansweredQuestionAnswerEngine)
 
 
 app = FastAPI()
@@ -47,6 +54,9 @@ app = FastAPI()
 #A list of allowed origins
 origins = [
     "http://localhost:3000",
+    "http://localhost",
+    "http://irpa-chatbot.csse.rose-hulman.edu:3000/"
+    
 ]
 
 app.add_middleware(
@@ -108,10 +118,11 @@ async def parse_data(request : Request):
     if not outputName == "":
         try:
             jsonCdsLoader.loadData(excelData)
-            dataWriter = MongoDbNoChangeDataWriter(outputName)
+        
             dataWriter = MongoDBSparseMatrixDataWriter(outputName)
+
             dataParser = SparseMatrixDataParser()
-            #dataWriter = MongoDbNoChangeDataWriter(outputName)
+            # dataWriter = MongoDbNoChangeDataWriter(outputName)
             parserFacade = ParserFacade(dataLoader=jsonCdsLoader, dataWriter=dataWriter, dataParser=dataParser)
             await parserFacade.parse()
             return {"message": "Done", "uploadedAs": outputName}
@@ -182,27 +193,29 @@ async def get_selected_year(conversation_id : str):
 # General API for getting unanswered questions
 @app.get("/questions")
 async def get_unans_questions():
-    db = client.freq_question_db
-    questions_collection = db.unans_question
-    # unanswered_questions = list(questions_collection.find({'is_addressed': False}))
-    unanswered_questions = list(questions_collection.find())
-    print("DATA FOUND")
-    unanswered_questions = json.loads(json_util.dumps(unanswered_questions))
-    print(unanswered_questions)
+    # db = client.freq_question_db
+    # questions_collection = db.unans_question
+    # # unanswered_questions = list(questions_collection.find({'is_addressed': False}))
+    # unanswered_questions = list(questions_collection.find())
+    # print("DATA FOUND")
+    # unanswered_questions = json.loads(json_util.dumps(unanswered_questions))
+    # print(unanswered_questions)
+    unanswered_questions = unansweredQuestionDbConnector.getAllUnansweredQuestionAndAnswer()
     return unanswered_questions
 
 
 @app.put("/question_update/{id}")
 async def handle_post_answer(id: str, answer: str):
-    db = client.freq_question_db
-    questions_collection = db.unans_question
-    boo1 = questions_collection.update_one({'_id': ObjectId(id)}, {'$set': {'is_addressed': True}})
-    boo2 = questions_collection.update_one({'_id': ObjectId(id)}, {'$set': {'answer': answer}})
-    if boo1 and boo2:
-        unansweredQuestionAnswerEngine.update()
-        return {'message': 'update successfull'}
-    else:
-        return {'message': 'errors occurred while updating'}
+    # db = client.freq_question_db
+    # questions_collection = db.unans_question
+    # boo1 = questions_collection.update_one({'_id': ObjectId(id)}, {'$set': {'is_addressed': True}})
+    # boo2 = questions_collection.update_one({'_id': ObjectId(id)}, {'$set': {'answer': answer}})
+    # if boo1 and boo2:
+    #     unansweredQuestionAnswerEngine.update()
+    #     return {'message': 'update successfull'}
+    # else:
+    #     return {'message': 'errors occurred while updating'}
+    unansweredQuestionDbConnector.provideAnswerToUnansweredQuestion(id, answer)
 
 @app.delete("/question_delete/{id}")
 async def handle_delete_answer(id: str):
@@ -216,24 +229,28 @@ async def handle_delete_answer(id: str):
         return {'message': 'question maybe not found and issue occurred'}
 
 @app.post("/question_add")
-async def handle_add_question(request : Request):
-    jsonData = await request.json()
-    content = jsonData["content"]
-    chatbotAnswers = jsonData["chatbotAnswers"]
-    db = client.freq_question_db
-    questions_collection = db.unans_question
-    boo1 = questions_collection.insert_one({
-        "content": content,
-        "post_date": datetime.today(),
-        "is_addressed": False,
-        "chatbotAnswers": chatbotAnswers,
-        "answer": None})
-    if boo1:
-      
-        return {'message': 'question is successfull added'}
+async def handle_add_unanswered_question(request : Request):
+    # jsonData = await request.json()
+    # content = jsonData["content"]
+    # chatbotAnswers = jsonData["chatbotAnswers"]
+    # db = client.freq_question_db
+    # questions_collection = db.unans_question
+    # boo1 = questions_collection.insert_one({
+    #     "content": content,
+    #     "post_date": datetime.today(),
+    #     "is_addressed": False,
+    #     "chatbotAnswers": chatbotAnswers,
+    #     "answer": None})
+    # if boo1:
+    #     return {'message': 'question is successfull added'}
+    # else:
+    #     return {'message': 'errors occurred during question add'}
 
-    else:
-        return {'message': 'errors occurred during question add'}
+    jsonData = await request.json()
+    question = jsonData["content"]
+    chatbotAnswers = jsonData["chatbotAnswers"]
+    return unansweredQuestionDbConnector.addNewUnansweredQuestion(question, chatbotAnswers)
+
 
 #====================Below are the list of APIs for Freqency API==========================
 CURRENT_INTENTIONS = ['enrollment', 'admission', 'high_school_units', 'basis_for_selection']
@@ -270,7 +287,6 @@ async def handle_new_event(request: Request):
     else:
         boo2 = freq_collection.update_one({'question_asked': content}, {'$set': {'user_feedback': feedback}})
         if boo2:
-            print("hahahahah")
             return {'message': 'user feedback successfully updated'}
         else:
             return {'message': 'errors occurred while updating user stats'}
@@ -298,3 +314,18 @@ async def handle_new_event(endDate: datetime = datetime.now(), startDate_short: 
 Test 1: DEFAULT VIEW
 GET request: http://127.0.0.1:8000/general_stats/
 """
+
+
+
+
+""""
+AUTHENTICATION API
+"""
+@app.post("/login")
+async def login(request: Request):
+    jsonData = await request.json()
+    username = jsonData["username"]
+    password = jsonData["password"]
+    loginSuccess = authenticationManager.login(username, password)
+    return {"loggedIn": loginSuccess}
+

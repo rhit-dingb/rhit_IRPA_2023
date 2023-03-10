@@ -45,10 +45,10 @@ class SparseMatrixDataParser(DataParser):
         for questionAnswer in questionAnswersWithNoMetadata:
             # print(questionAnswer.entities)
             for entity in questionAnswer.entities:
-                if entity in everyUniqueEntity:
+                if entity.lower() in everyUniqueEntity:
                     continue
                 else:
-                    everyUniqueEntity.append(entity)
+                    everyUniqueEntity.append(entity.lower())
 
         for questionAnswer in questionAnswersWithNoMetadata:
             row = self.convertQuestionAnswerToRow(questionAnswer, everyUniqueEntity)
@@ -70,6 +70,9 @@ class SparseMatrixDataParser(DataParser):
         row = []
         row.append(questionAnswer.answer)
         entityFromRasaAfterParsingQuestion = questionAnswer.entities
+        # print(allEntities)
+        # print(entityFromRasaAfterParsingQuestion)
+
         for entity in allEntities:
             if entity in entityFromRasaAfterParsingQuestion:
                 row.append(1)

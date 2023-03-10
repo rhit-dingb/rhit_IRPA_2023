@@ -17,6 +17,12 @@ class TopicData():
 
     def getSparseMatrices(self) -> Dict[str, SparseMatrix]:
         return self.sparseMatrices
+    
+    def getSparseMatrix(self, key):
+        if key in self.sparseMatrices:
+            return self.sparseMatrices[key]
+        else:
+            return None
 
     def hasData(self) -> bool : 
         return not len(self.sparseMatrices.keys()) == 0

@@ -62,9 +62,9 @@ class ActionGetAvailableOptions(Action):
     
         headerMessage = self.HEADER_MESSAGE_TEMPLATE.format(start_year = startYear, end_year = endYear)
         response = {"type": ResponseType.ACCORDION_LIST.value, "header": headerMessage, "data": filteredListOfOption}
-
+     
         dispatcher.utter_message(json_message= response)
-        
+    
         if res:
             return [res]
         else:
@@ -138,11 +138,11 @@ class ActionQueryKnowledgebase(Action):
         entitiesExtracted = entitiesExtracted + numberEntities
         intent = tracker.latest_message["intent"]["name"]
 
-        # print("INTENT")
-        # print(intent)
-        # print(getEntityLabel(removeDuplicatedEntities(entitiesExtracted)))
-        # print(getEntityValueHelper(removeDuplicatedEntities(entitiesExtracted)))
-        # print(entitiesExtracted)
+        print("INTENT")
+        print(intent)
+        print(getEntityLabel(removeDuplicatedEntities(entitiesExtracted)))
+        print(getEntityValueHelper(removeDuplicatedEntities(entitiesExtracted)))
+        print(entitiesExtracted)
         
         setLastIntentSlotEvent = SlotSet(LAST_TOPIC_INTENT_SLOT_NAME ,intent )
         events.append(setLastIntentSlotEvent)
@@ -163,7 +163,7 @@ class ActionQueryKnowledgebase(Action):
         
         event = utterAllAnswers(answers, dispatcher) 
         events.append(event)       
-        
+
         # except Exception as e:
         #     if len(answers) <= 0:
         #         answers = ["Sorry, I couldn't find any answer to your question"]
