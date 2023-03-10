@@ -35,7 +35,7 @@ import asyncio
 class SparseMatrixKnowledgeBase(KnowledgeBase):
     def __init__(self, dataManager):
         self.dataManager : DataManager = dataManager
-        self.dataManager = Cache(self.dataManager)
+        # self.dataManager = Cache(self.dataManager)
         self.typeController = TypeController()
         self.templateConverter : TemplateConverter = TemplateConverter()
 
