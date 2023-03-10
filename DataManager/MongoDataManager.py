@@ -26,7 +26,7 @@ class MongoDataManager(DataManager):
     def __init__(self):
         super().__init__()
         self.mongoProcessor = MongoProcessor()
-        #self.mongoProcessor = ConvertToSparseMatrixDecorator(self.mongoProcessor)
+        self.mongoProcessor = ConvertToSparseMatrixDecorator(self.mongoProcessor)
         self.client = MongoClient(MONGO_DB_CONNECTION_STRING)
         self.rasaCommunicator = RasaCommunicator()
 
@@ -103,9 +103,6 @@ class MongoDataManager(DataManager):
                 for collection in collections:
                     if not filter(collection):
                         continue
-                    
-                    print("Okay")
-                    print(collection)
                     subsectionsData = db[collection].find({}, {DATABASE_SUBSECTION_FIELD_KEY :1})
                     for subsection in subsectionsData:
                       
@@ -189,8 +186,8 @@ class MongoDataManager(DataManager):
             if selectedDatabaseName == "":
                 raise NoDataFoundException(NO_DATA_AVAILABLE_FOR_GIVEN_INTENT_FORMAT.format(topic = intent, start= start, end=end), ExceptionTypes.NoSparseMatrixDataAvailableForGivenIntent)
         
-            # topicData = await self.mongoProcessor.getDataByDbNameAndIntent(self.client, intent, selectedDatabaseName)
-            topicData =  self.mongoProcessor.getSparseMatricesByDbNameAndIntent(self.client, intent, selectedDatabaseName)
+            topicData = await self.mongoProcessor.getDataByDbNameAndIntent(self.client, intent, selectedDatabaseName)
+            #topicData =  self.mongoProcessor.getSparseMatricesByDbNameAndIntent(self.client, intent, selectedDatabaseName)
             # print("TOPIC DATA")
             # print(topicData)
             # cursor = topicData.find()

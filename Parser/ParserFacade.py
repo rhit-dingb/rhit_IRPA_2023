@@ -59,21 +59,19 @@ class ParserFacade():
             subSection = sectionAndSubSection[len(sectionAndSubSection)-1]
             numQuestionSet = self.setEntitiesForQuestionAndAnswer(questionAnswers, responses, index)
 
-            parsedData = self.dataParser.parse(subSection, questionAnswers) 
-            if section in sectionToData:
-                sectionToData[section].append(parsedData)
-            else: 
-                sectionToData[section] = [parsedData]
-
+            # parsedData = self.dataParser.parse(subSection, questionAnswers) 
             # if section in sectionToData:
-            #     sectionToData[section][subSection] = questionAnswers
+            #     sectionToData[section].append(parsedData)
             # else: 
-            #     sectionToData[section] = dict()
-            #     sectionToData[section][subSection] = questionAnswers
+            #     sectionToData[section] = [parsedData]
+
+            if section in sectionToData:
+                sectionToData[section][subSection] = questionAnswers
+            else: 
+                sectionToData[section] = dict()
+                sectionToData[section][subSection] = questionAnswers
 
             index = index + numQuestionSet
-            # sparseMatrices.append(sparseMatrix)
-        # might want to refactor so it doesn't assume sparse matrix
         self.write(sectionToData)
         
  

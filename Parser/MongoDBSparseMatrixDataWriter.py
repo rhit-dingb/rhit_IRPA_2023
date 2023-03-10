@@ -30,10 +30,6 @@ class MongoDBSparseMatrixDataWriter(DataWriter):
         DATABASE_METADATA_FIELD_KEY: sparseMatrix.metadata}}, upsert=True)
 
 
-    # def writeSparseMatrices(self, sparseMatrices : List[SparseMatrix], sectionName : str) -> None:
-        
-    
-
     def write(self, sectionToSparseMatrices : Dict[str, List[SparseMatrix]]): 
         sectionsInserted = []
         for section in sectionToSparseMatrices:

@@ -53,6 +53,8 @@ function ChatbotResponse({recipientId, keyToUse, jsonResponse}) {
                     message = jsonResponse[CHATBOT_TEXT_MESSAGE_KEY ]
                 }
 
+                message = message.charAt(0).toUpperCase() + message.slice(1)
+
                 // console.log(jsonResponse)
                 // console.log("MESSAGE"+message)
                 return (message ? (<div key ={keyToUse}>
