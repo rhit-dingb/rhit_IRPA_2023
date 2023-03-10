@@ -55,7 +55,8 @@ app = FastAPI()
 origins = [
     "http://localhost:3000",
     "http://localhost",
-    "http://irpa-chatbot.csse.rose-hulman.edu:3000/"
+    "http://irpa-chatbot.csse.rose-hulman.edu:3000"
+
     
 ]
 
