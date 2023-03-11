@@ -84,7 +84,6 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         searchResults = []
     
         if isRangeAllowed and hasRangeEntity:
-            print("CALCULATING RANGE")
             rangeResultData : RangeResultData =  self.aggregateDiscreteRange(entitiesExtracted, sparseMatrixToSearch, isSumAllowed)
             filteredEntities = filterEntities(entitiesExtracted, [RANGE_ENTITY_LABEL, NUMBER_ENTITY_LABEL])
             searchResults : List[SearchResult] = rangeResultData.answers

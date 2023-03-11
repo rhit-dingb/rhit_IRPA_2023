@@ -73,17 +73,14 @@ class MongoDataManager(DataManager):
 
 
 
-    def getAllSubsectionForSection(self, section, startYear, endYear):
+    def getAllSubsectionForSection(self, section, startYear, endYear, filter = lambda x: True):
         subsectionForSection = []
         #might refactor this later
         definitionDatabaseNames = self.findDefinitionData()
         annualDatabaseNames = self.getAvailableDataForSpecificYearRange(startYear, endYear)
         databaseNames = annualDatabaseNames+ definitionDatabaseNames
-
         def filter(collection):
-         
             return collection == section
-        
         for databaseName in databaseNames:
            sectionToSubSection = self.getSectionAndSubsectionsForData(databaseName, filter=filter)
            if section in sectionToSubSection:
@@ -99,8 +96,8 @@ class MongoDataManager(DataManager):
         for databaseName in databases: 
             if dataName == databaseName:
                 db = self.client[databaseName]
-                collections = db.list_collection_names()
-                for collection in collections:
+                sections = self.getSections(dataName)
+                for collection in sections:
                     if not filter(collection):
                         continue
                     subsectionsData = db[collection].find({}, {DATABASE_SUBSECTION_FIELD_KEY :1})
@@ -139,24 +136,23 @@ class MongoDataManager(DataManager):
         databases = self.client.list_database_names()
         availableData = []
         # print(databases)
-        
         for database in databases: 
             didMatch = regex.match(database.lower())
             if didMatch:
                 availableData.append(database)
         
         return availableData
+    
+    def getAvailableDataForSpecificYearRange(self,startYear, endYear) -> List[str]:
+        patternYear = re.compile(".+"+str(startYear)+"."+str(endYear), re.IGNORECASE)
+        databasesAvailableForGivenYear = self.getAllAvailableData(patternYear)
+        return databasesAvailableForGivenYear
 
 
     def getSections(self, dataName):
         return self.client[dataName].list_collection_names()
 
-    def getAvailableDataForSpecificYearRange(self,startYear, endYear) -> List[str]:
-        patternYear = re.compile(".+"+str(startYear)+"."+str(endYear), re.IGNORECASE)
-        databasesAvailableForGivenYear = self.getAllAvailableData(patternYear)
-        return databasesAvailableForGivenYear
-    
-
+   
     
     """
     See documentation in DataManager.py
@@ -178,8 +174,9 @@ class MongoDataManager(DataManager):
 
             # We expect there to be only one definition data
             if selectedDatabaseName == "":
-                definitionSections = self.getSections(definitionDatabases[0])
+                
                 if len(definitionDatabases) > 0:
+                    definitionSections = self.getSections(definitionDatabases[0])
                     if intent in definitionSections:
                         selectedDatabaseName = definitionDatabases[0]
 

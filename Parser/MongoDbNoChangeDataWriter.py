@@ -19,9 +19,8 @@ class MongoDbNoChangeDataWriter(DataWriter):
 
 
     def write(self, sectionToQuestionAnswer : Dict[str, Dict[str, List[QuestionAnswer]]]):
-
-         
         sectionsInserted = []
+       
         for sectionKey in sectionToQuestionAnswer:
             dataForEachSubSection = sectionToQuestionAnswer[sectionKey]
             subsectionsInserted = []
@@ -41,18 +40,18 @@ class MongoDbNoChangeDataWriter(DataWriter):
                         DATABASE_SUBSECTION_FIELD_KEY : subsection,
                         DATABASE_METADATA_FIELD_KEY: metadata
                     }
-                } )
+                }, upsert=True )
                 subsectionsInserted.append(subsection)
                 
             query = { DATABASE_SUBSECTION_FIELD_KEY : { "$nin": subsectionsInserted } }
-            self.db[sectionKey].delete_many(query)
+            # self.db[sectionKey].delete_many(query)
             sectionsInserted.append(sectionKey)
 
         # duplicate code 
-        collections =  self.db.list_collection_names()
-        for collection in collections:
-            if not collection in sectionsInserted:
-                self.db[collection].drop()
+        # collections =  self.db.list_collection_names()
+        # for collection in collections:
+        #     if not collection in sectionsInserted:
+        #         self.db[collection].drop()
         
                 
 

@@ -49,7 +49,7 @@ class ParserFacade():
                 else:
                     questions.append(questionAnswer.getQuestion())
         
-        responses = await self.rasaCommunicator.parseMessagesAsync(questions)
+        # responses = await self.rasaCommunicator.parseMessagesAsync(questions)
         
         index = 0
         for sectionFullName in sectionFullNames:
@@ -57,7 +57,8 @@ class ParserFacade():
             sectionAndSubSection = sectionFullName.split("_")
             section = sectionAndSubSection[0]
             subSection = sectionAndSubSection[len(sectionAndSubSection)-1]
-            numQuestionSet = self.setEntitiesForQuestionAndAnswer(questionAnswers, responses, index)
+
+            # numQuestionSet = self.setEntitiesForQuestionAndAnswer(questionAnswers, responses, index)
 
             # parsedData = self.dataParser.parse(subSection, questionAnswers) 
             # if section in sectionToData:
@@ -71,7 +72,7 @@ class ParserFacade():
                 sectionToData[section] = dict()
                 sectionToData[section][subSection] = questionAnswers
 
-            index = index + numQuestionSet
+            # index = index + numQuestionSet
         self.write(sectionToData)
         
  
@@ -97,6 +98,7 @@ class ParserFacade():
 
 
     def write(self,sectionToData):
+        
         self.dataWriter.write(sectionToData)
 
         

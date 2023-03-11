@@ -38,15 +38,35 @@ from backendAPI.AuthenticationManager import AuthenticationManager
 from UnansweredQuestions.MongoDBUnansweredQuestionConnector import MongoDBUnansweredQuestionConnector
 
 from UnansweredQuestions.UnasweredQuestionDBConnector import UnansweredQuestionDbConnector
-
+from CacheLayer.Cache import Cache
+from CacheLayer.EventType import EventType
+from CacheLayer.CacheEventPublisher import CacheEventPublisher
+from CacheLayer.DataDeletionSubscriber import DataDeletionSubscriber
+from CacheLayer.DataUploadSubscriber import DataUploadSubscriber
+from CacheLayer.constants import SECTIONS_UPLOADED_KEY, START_YEAR_KEY, END_YEAR_KEY
+from backendAPI.helper import getStartAndEndYearFromDataName
 
 
 authenticationManager = AuthenticationManager()
 mongoDbDataManager = MongoDataManager()
+mongoDbDataManager = Cache(mongoDbDataManager)
 rasaCommunicator = RasaCommunicator()
 client = MongoClient(MONGO_DB_CONNECTION_STRING)
 unansweredQuestionAnswerEngine = UnansweredQuestionAnswerEngine()
 unansweredQuestionDbConnector : UnansweredQuestionDbConnector = MongoDBUnansweredQuestionConnector(unansweredQuestionAnswerEngine)
+cacheEventPublisher = CacheEventPublisher()
+dataDeletionSubscriber = DataDeletionSubscriber(EventType.DataDeletion, mongoDbDataManager)
+dataUploadSubscriber = DataUploadSubscriber(EventType.DataUploaded, mongoDbDataManager)
+cacheEventPublisher.subscribe(dataUploadSubscriber)
+cacheEventPublisher.subscribe(dataDeletionSubscriber)
+
+async def test():
+    await cacheEventPublisher.startObserver()
+
+
+print("OKAY")
+asyncio.create_task(cacheEventPublisher.startObserver()) 
+# loop.run_until_complete(test)
 
 
 app = FastAPI()
@@ -56,8 +76,6 @@ origins = [
     "http://localhost:3000",
     "http://localhost",
     "http://irpa-chatbot.csse.rose-hulman.edu:3000"
-
-    
 ]
 
 app.add_middleware(
@@ -114,17 +132,27 @@ async def parse_data(request : Request):
     outputName = ""
     if "dataName" in jsonData:
         outputName = jsonData["dataName"]
-
-
     if not outputName == "":
         # try:
         jsonCdsLoader.loadData(excelData)
-    
         # dataWriter = MongoDBSparseMatrixDataWriter(outputName)
         dataParser = SparseMatrixDataParser()
         dataWriter = MongoDbNoChangeDataWriter(outputName)
         parserFacade = ParserFacade(dataLoader=jsonCdsLoader, dataWriter=dataWriter, dataParser=dataParser)
         await parserFacade.parse()
+
+        startYear, endYear = getStartAndEndYearFromDataName(outputName)
+        # print(outputName)
+        print(startYear, endYear)
+        eventData = {SECTIONS_UPLOADED_KEY: [], START_YEAR_KEY: startYear, END_YEAR_KEY: endYear }
+        sectionFullNames = jsonCdsLoader.getAllSectionDataFullName()
+        for sectionFullName in sectionFullNames:
+            splitted = sectionFullName.split("_")
+            section = splitted[0]
+            if not section in eventData[SECTIONS_UPLOADED_KEY]:
+                eventData[SECTIONS_UPLOADED_KEY].append(section)
+       
+        await cacheEventPublisher.notify(EventType.DataUploaded, eventData)
         return {"message": "Done", "uploadedAs": outputName}
         # except Exception:
         #     raise HTTPException(status_code=500, detail="Something went wrong while parsing the input data")

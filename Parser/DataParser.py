@@ -7,7 +7,7 @@ from Parser.QuestionAnswer import QuestionAnswer
 from CustomEntityExtractor.NumberEntityExtractor import NumberEntityExtractor
 from actions.entititesHelper import removeLowConfidenceEntities
 
-class DataParser():
+class DataParser(ABC):
 
     def __init__(self):
         self.numberEntityExtractor = NumberEntityExtractor()
