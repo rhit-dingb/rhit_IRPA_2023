@@ -133,29 +133,29 @@ async def parse_data(request : Request):
     if "dataName" in jsonData:
         outputName = jsonData["dataName"]
     if not outputName == "":
-        # try:
-        jsonCdsLoader.loadData(excelData)
-        # dataWriter = MongoDBSparseMatrixDataWriter(outputName)
-        dataParser = SparseMatrixDataParser()
-        dataWriter = MongoDbNoChangeDataWriter(outputName)
-        parserFacade = ParserFacade(dataLoader=jsonCdsLoader, dataWriter=dataWriter, dataParser=dataParser)
-        await parserFacade.parse()
+        try:
+            jsonCdsLoader.loadData(excelData)
+            # dataWriter = MongoDBSparseMatrixDataWriter(outputName)
+            dataParser = SparseMatrixDataParser()
+            dataWriter = MongoDbNoChangeDataWriter(outputName)
+            parserFacade = ParserFacade(dataLoader=jsonCdsLoader, dataWriter=dataWriter, dataParser=dataParser)
+            await parserFacade.parse()
 
-        startYear, endYear = getStartAndEndYearFromDataName(outputName)
-        # print(outputName)
-        print(startYear, endYear)
-        eventData = {SECTIONS_UPLOADED_KEY: [], START_YEAR_KEY: startYear, END_YEAR_KEY: endYear }
-        sectionFullNames = jsonCdsLoader.getAllSectionDataFullName()
-        for sectionFullName in sectionFullNames:
-            splitted = sectionFullName.split("_")
-            section = splitted[0]
-            if not section in eventData[SECTIONS_UPLOADED_KEY]:
-                eventData[SECTIONS_UPLOADED_KEY].append(section)
-       
-        await cacheEventPublisher.notify(EventType.DataUploaded, eventData)
-        return {"message": "Done", "uploadedAs": outputName}
-        # except Exception:
-        #     raise HTTPException(status_code=500, detail="Something went wrong while parsing the input data")
+            startYear, endYear = getStartAndEndYearFromDataName(outputName)
+            # print(outputName)
+            print(startYear, endYear)
+            eventData = {SECTIONS_UPLOADED_KEY: [], START_YEAR_KEY: startYear, END_YEAR_KEY: endYear }
+            sectionFullNames = jsonCdsLoader.getAllSectionDataFullName()
+            for sectionFullName in sectionFullNames:
+                splitted = sectionFullName.split("_")
+                section = splitted[0]
+                if not section in eventData[SECTIONS_UPLOADED_KEY]:
+                    eventData[SECTIONS_UPLOADED_KEY].append(section)
+        
+            await cacheEventPublisher.notify(EventType.DataUploaded, eventData)
+            return {"message": "Done", "uploadedAs": outputName}
+        except Exception:
+            raise HTTPException(status_code=500, detail="Something went wrong while parsing the input data")
 
     
 
@@ -229,7 +229,7 @@ async def get_unans_questions():
     return unanswered_questions
 
 
-@app.get("/answer_unanswered_question")
+@app.get("/answer_unanswered_question/{question}")
 async def answer_unanswered_question(question: str):
     answers = unansweredQuestionAnswerEngine.answerQuestion(question)
     return {"answers": answers}

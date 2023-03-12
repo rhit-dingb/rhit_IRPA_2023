@@ -203,7 +203,8 @@ class ActionStoreAskedQuestion(Action):
         event = SlotSet(LAST_USER_QUESTION_ASKED, question)
         intent = tracker.latest_message["intent"]["name"]
         data = {"intent": intent, "feedback": "NO_FEEDBACK", "content": question}
-        response = requests.put("http://127.0.0.1:8000/question_asked/", json=data)
+        # response = requests.put("http://127.0.0.1:8000/question_asked/", json=data)
+        response = requests.put(BACKEND_API_URL+"/question_asked/", json=data)
 
         return [event]
 
@@ -223,7 +224,8 @@ class ActionStoreIsHelpfulStatistic(Action):
             update_intent = "HELPFUL"
         print(update_intent)
         data = {"intent": "UPDATE", "feedback": update_intent, "content": userAskedQuestion}
-        response = requests.put("http://127.0.0.1:8000/question_asked/", json=data)
+        #response = requests.put("http://127.0.0.1:8000/question_asked/", json=data)
+        response = requests.put(BACKEND_API_URL+"/question_asked/", json=data)
         # print(userAskedQuestion)
         return []
 
