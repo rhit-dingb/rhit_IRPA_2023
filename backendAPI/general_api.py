@@ -43,7 +43,8 @@ from CacheLayer.EventType import EventType
 from CacheLayer.CacheEventPublisher import CacheEventPublisher
 from CacheLayer.DataDeletionSubscriber import DataDeletionSubscriber
 from CacheLayer.DataUploadSubscriber import DataUploadSubscriber
-from CacheLayer.constants import SECTIONS_UPLOADED_KEY, START_YEAR_KEY, END_YEAR_KEY
+from CacheLayer.ModelChangeSubscriber import ModelChangeSubscriber
+from CacheLayer.constants import SECTIONS_UPLOADED_KEY, START_YEAR_KEY, END_YEAR_KEY, DATA_DELETED_KEY
 from backendAPI.helper import getStartAndEndYearFromDataName
 
 
@@ -57,11 +58,10 @@ unansweredQuestionDbConnector : UnansweredQuestionDbConnector = MongoDBUnanswere
 cacheEventPublisher = CacheEventPublisher()
 dataDeletionSubscriber = DataDeletionSubscriber(EventType.DataDeletion, mongoDbDataManager)
 dataUploadSubscriber = DataUploadSubscriber(EventType.DataUploaded, mongoDbDataManager)
+modelChangeSubscriber = ModelChangeSubscriber(EventType.ModelChange, mongoDbDataManager)
 cacheEventPublisher.subscribe(dataUploadSubscriber)
 cacheEventPublisher.subscribe(dataDeletionSubscriber)
-
-async def test():
-    await cacheEventPublisher.startObserver()
+cacheEventPublisher.subscribe(modelChangeSubscriber)
 
 
 print("OKAY")
@@ -172,12 +172,16 @@ async def get_section_subsection_for_data(request : Request):
 @app.post("/api/delete_data")
 async def delete_data(request : Request):
     jsonData = await request.json()
-    try:
-        toDelete = jsonData["dataName"]
-        didDelete = mongoDbDataManager.deleteData(toDelete)
-        return {"didDelete": didDelete}
-    except Exception:
-        raise HTTPException(status_code=500, detail="Deletion failed")
+    # try:
+    toDelete = jsonData["dataName"]
+    didDelete = mongoDbDataManager.deleteData(toDelete)
+    if didDelete:
+        eventData = {DATA_DELETED_KEY: toDelete}
+        await cacheEventPublisher.notify(EventType.DataDeletion,eventData )
+    print("DELETING DATA")
+    return {"didDelete": didDelete}
+    # except Exception:
+    #     raise HTTPException(status_code=500, detail="Deletion failed")
 
 
 @app.get("/api/get_years_available")
@@ -221,28 +225,17 @@ async def get_selected_year(conversation_id : str):
 # General API for getting unanswered questions
 @app.get("/questions")
 async def get_unans_questions():
-    # db = client.freq_question_db
-    # questions_collection = db.unans_question
-    # # unanswered_questions = list(questions_collection.find({'is_addressed': False}))
-    # unanswered_questions = list(questions_collection.find())
-    # print("DATA FOUND")
-    # unanswered_questions = json.loads(json_util.dumps(unanswered_questions))
-    # print(unanswered_questions)
     unanswered_questions = unansweredQuestionDbConnector.getAllUnansweredQuestionAndAnswer()
     return unanswered_questions
 
 
+@app.get("/answer_unanswered_question")
+async def answer_unanswered_question(question: str):
+    answers = unansweredQuestionAnswerEngine.answerQuestion(question)
+    return {"answers": answers}
+
 @app.put("/question_update/{id}")
 async def handle_post_answer(id: str, answer: str):
-    # db = client.freq_question_db
-    # questions_collection = db.unans_question
-    # boo1 = questions_collection.update_one({'_id': ObjectId(id)}, {'$set': {'is_addressed': True}})
-    # boo2 = questions_collection.update_one({'_id': ObjectId(id)}, {'$set': {'answer': answer}})
-    # if boo1 and boo2:
-    #     unansweredQuestionAnswerEngine.update()
-    #     return {'message': 'update successfull'}
-    # else:
-    #     return {'message': 'errors occurred while updating'}
     unansweredQuestionDbConnector.provideAnswerToUnansweredQuestion(id, answer)
 
 @app.delete("/question_delete/{id}")
@@ -342,8 +335,6 @@ async def handle_new_event(endDate: datetime = datetime.now(), startDate_short: 
 Test 1: DEFAULT VIEW
 GET request: http://127.0.0.1:8000/general_stats/
 """
-
-
 
 
 """"

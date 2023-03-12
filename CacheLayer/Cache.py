@@ -19,7 +19,11 @@ class Cache(DataManager):
         except Exception:
             self.connected = False
             
-            
+    def clearCache(self):
+        if self.connected:
+            print("DELETING ALL KEYS")
+            keys = self.redis.keys('*')
+            self.redis.delete(*keys)
     
     async def getDataByStartEndYearAndIntent(self, intent, start, end, exceptionToThrow) -> TopicData:
         intent = intent.replace("_", " ")
@@ -43,7 +47,7 @@ class Cache(DataManager):
            topicData = self.getDataFromCache(intent, start, end)
         else:
            print("CACHE MISS")
-           topicData = self.getDataAndPopulateCache(intent, start, end, exceptionToThrow)
+           topicData = await self.getDataAndPopulateCache(intent, start, end, exceptionToThrow)
                 
         return topicData
 
@@ -86,6 +90,8 @@ class Cache(DataManager):
                 self.connected = False
                 # print("Setting key failed")
 
+        return topicData
+
     def getAllAvailableData(self, regex : re.Pattern):
         return self.dataSource.getAllAvailableData(regex)
 
@@ -117,7 +123,7 @@ class Cache(DataManager):
                     self.connected = False
                     print("DELETING KEY Failed")
 
-        self.dataSource.deleteData(dataName)
+        return self.dataSource.deleteData(dataName)
 
 
     def getAllSubsectionForSection(self, section, startYear, endYear, filter=lambda x: True):
@@ -125,3 +131,5 @@ class Cache(DataManager):
     
     def getSectionAndSubsectionsForData(self, dataName, filter=lambda x: True):
         return self.dataSource.getSectionAndSubsectionsForData(dataName, filter)
+    
+

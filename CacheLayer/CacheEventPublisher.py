@@ -42,6 +42,6 @@ class CacheEventPublisher():
 
     async def notify(self, eventType : EventType, eventData : Dict[str, any]):
         for subscriber in self.subscribers:
-            print("NOIFYING OBSERVERS")
+
             if subscriber.isEventType(eventType):
                await subscriber.notify(eventData)
