@@ -24,7 +24,6 @@ STUDENT_ENROLLMENT_RESULT_ENTITY_GRADUATION_VALUE= "graduation"
 #Constant to capture graduation value supported by student_enrollment_result entity
 STUDENT_ENROLLMENT_RESULT_ENTITY_RETENTION_VALUE = "retention"
 
-
 #SLOT CONSTANTS
 YEAR_RANGE_SELECTED_SLOT_NAME = "yearRangeSelected"
 LAST_TOPIC_INTENT_SLOT_NAME = "lastTopicIntentAsked"
@@ -33,3 +32,8 @@ LAST_TOPIC_INTENT = "lastTopicIntentAsked"
 
 LAST_USER_QUESTION_ASKED = "lastUserQuestionAsked"
 LAST_ANSWERS_PROVIDED_SLOT_NAME = "lastAnswersProvided"
+
+
+
+#Backend API connection url
+BACKEND_API_URL = "http://127.0.0.1:8000"

@@ -38,15 +38,35 @@ from backendAPI.AuthenticationManager import AuthenticationManager
 from UnansweredQuestions.MongoDBUnansweredQuestionConnector import MongoDBUnansweredQuestionConnector
 
 from UnansweredQuestions.UnasweredQuestionDBConnector import UnansweredQuestionDbConnector
-
+from CacheLayer.Cache import Cache
+from CacheLayer.EventType import EventType
+from CacheLayer.CacheEventPublisher import CacheEventPublisher
+from CacheLayer.DataDeletionSubscriber import DataDeletionSubscriber
+from CacheLayer.DataUploadSubscriber import DataUploadSubscriber
+from CacheLayer.ModelChangeSubscriber import ModelChangeSubscriber
+from CacheLayer.constants import SECTIONS_UPLOADED_KEY, START_YEAR_KEY, END_YEAR_KEY, DATA_DELETED_KEY
+from backendAPI.helper import getStartAndEndYearFromDataName
 
 
 authenticationManager = AuthenticationManager()
 mongoDbDataManager = MongoDataManager()
+mongoDbDataManager = Cache(mongoDbDataManager)
 rasaCommunicator = RasaCommunicator()
 client = MongoClient(MONGO_DB_CONNECTION_STRING)
 unansweredQuestionAnswerEngine = UnansweredQuestionAnswerEngine()
 unansweredQuestionDbConnector : UnansweredQuestionDbConnector = MongoDBUnansweredQuestionConnector(unansweredQuestionAnswerEngine)
+cacheEventPublisher = CacheEventPublisher()
+dataDeletionSubscriber = DataDeletionSubscriber(EventType.DataDeletion, mongoDbDataManager)
+dataUploadSubscriber = DataUploadSubscriber(EventType.DataUploaded, mongoDbDataManager)
+modelChangeSubscriber = ModelChangeSubscriber(EventType.ModelChange, mongoDbDataManager)
+cacheEventPublisher.subscribe(dataUploadSubscriber)
+cacheEventPublisher.subscribe(dataDeletionSubscriber)
+cacheEventPublisher.subscribe(modelChangeSubscriber)
+
+
+print("OKAY")
+asyncio.create_task(cacheEventPublisher.startObserver()) 
+# loop.run_until_complete(test)
 
 
 app = FastAPI()
@@ -55,8 +75,7 @@ app = FastAPI()
 origins = [
     "http://localhost:3000",
     "http://localhost",
-    "http://irpa-chatbot.csse.rose-hulman.edu:3000/"
-    
+    "http://irpa-chatbot.csse.rose-hulman.edu:3000"
 ]
 
 app.add_middleware(
@@ -113,21 +132,30 @@ async def parse_data(request : Request):
     outputName = ""
     if "dataName" in jsonData:
         outputName = jsonData["dataName"]
-
-
     if not outputName == "":
-        try:
-            jsonCdsLoader.loadData(excelData)
-        
-            dataWriter = MongoDBSparseMatrixDataWriter(outputName)
+        # try:
+        jsonCdsLoader.loadData(excelData)
+        # dataWriter = MongoDBSparseMatrixDataWriter(outputName)
+        dataParser = SparseMatrixDataParser()
+        dataWriter = MongoDbNoChangeDataWriter(outputName)
+        parserFacade = ParserFacade(dataLoader=jsonCdsLoader, dataWriter=dataWriter, dataParser=dataParser)
+        await parserFacade.parse()
 
-            dataParser = SparseMatrixDataParser()
-            # dataWriter = MongoDbNoChangeDataWriter(outputName)
-            parserFacade = ParserFacade(dataLoader=jsonCdsLoader, dataWriter=dataWriter, dataParser=dataParser)
-            await parserFacade.parse()
-            return {"message": "Done", "uploadedAs": outputName}
-        except Exception:
-            raise HTTPException(status_code=500, detail="Something went wrong while parsing the input data")
+        startYear, endYear = getStartAndEndYearFromDataName(outputName)
+        # print(outputName)
+        print(startYear, endYear)
+        eventData = {SECTIONS_UPLOADED_KEY: [], START_YEAR_KEY: startYear, END_YEAR_KEY: endYear }
+        sectionFullNames = jsonCdsLoader.getAllSectionDataFullName()
+        for sectionFullName in sectionFullNames:
+            splitted = sectionFullName.split("_")
+            section = splitted[0]
+            if not section in eventData[SECTIONS_UPLOADED_KEY]:
+                eventData[SECTIONS_UPLOADED_KEY].append(section)
+       
+        await cacheEventPublisher.notify(EventType.DataUploaded, eventData)
+        return {"message": "Done", "uploadedAs": outputName}
+        # except Exception:
+        #     raise HTTPException(status_code=500, detail="Something went wrong while parsing the input data")
 
     
 
@@ -144,12 +172,16 @@ async def get_section_subsection_for_data(request : Request):
 @app.post("/api/delete_data")
 async def delete_data(request : Request):
     jsonData = await request.json()
-    try:
-        toDelete = jsonData["dataName"]
-        didDelete = mongoDbDataManager.deleteData(toDelete)
-        return {"didDelete": didDelete}
-    except Exception:
-        raise HTTPException(status_code=500, detail="Deletion failed")
+    # try:
+    toDelete = jsonData["dataName"]
+    didDelete = mongoDbDataManager.deleteData(toDelete)
+    if didDelete:
+        eventData = {DATA_DELETED_KEY: toDelete}
+        await cacheEventPublisher.notify(EventType.DataDeletion,eventData )
+    print("DELETING DATA")
+    return {"didDelete": didDelete}
+    # except Exception:
+    #     raise HTTPException(status_code=500, detail="Deletion failed")
 
 
 @app.get("/api/get_years_available")
@@ -193,28 +225,17 @@ async def get_selected_year(conversation_id : str):
 # General API for getting unanswered questions
 @app.get("/questions")
 async def get_unans_questions():
-    # db = client.freq_question_db
-    # questions_collection = db.unans_question
-    # # unanswered_questions = list(questions_collection.find({'is_addressed': False}))
-    # unanswered_questions = list(questions_collection.find())
-    # print("DATA FOUND")
-    # unanswered_questions = json.loads(json_util.dumps(unanswered_questions))
-    # print(unanswered_questions)
     unanswered_questions = unansweredQuestionDbConnector.getAllUnansweredQuestionAndAnswer()
     return unanswered_questions
 
 
+@app.get("/answer_unanswered_question")
+async def answer_unanswered_question(question: str):
+    answers = unansweredQuestionAnswerEngine.answerQuestion(question)
+    return {"answers": answers}
+
 @app.put("/question_update/{id}")
 async def handle_post_answer(id: str, answer: str):
-    # db = client.freq_question_db
-    # questions_collection = db.unans_question
-    # boo1 = questions_collection.update_one({'_id': ObjectId(id)}, {'$set': {'is_addressed': True}})
-    # boo2 = questions_collection.update_one({'_id': ObjectId(id)}, {'$set': {'answer': answer}})
-    # if boo1 and boo2:
-    #     unansweredQuestionAnswerEngine.update()
-    #     return {'message': 'update successfull'}
-    # else:
-    #     return {'message': 'errors occurred while updating'}
     unansweredQuestionDbConnector.provideAnswerToUnansweredQuestion(id, answer)
 
 @app.delete("/question_delete/{id}")
@@ -314,8 +335,6 @@ async def handle_new_event(endDate: datetime = datetime.now(), startDate_short: 
 Test 1: DEFAULT VIEW
 GET request: http://127.0.0.1:8000/general_stats/
 """
-
-
 
 
 """"

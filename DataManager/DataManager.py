@@ -11,16 +11,19 @@ from Exceptions.NoDataFoundException import NoDataFoundException
 from DataManager.DataSelection.TFIDFSelector import TFIDFSelector
 from Exceptions.ExceptionMessages import NO_DATA_EXIST_MESSAGE
 from DataManager.DataSelection.DecisionTreeSelector import DecisionTreeSelector
+import re
+from abc import ABC, abstractmethod
 """
 "Abstract" class to abstract sub classes responsible for retrieving sparse matrix to be searched
  given intent and entities containing year information.
  
 There probably will be two implementation of this class one is for excel and another one for database.
 """
-class DataManager():
+class DataManager(ABC):
     def __init__(self):
         pass
     
+    @abstractmethod
     def getAvailableOptions(self,startYear, endYear):
         pass
         # raise Exception("This method should be override by a concrete class")
@@ -38,8 +41,9 @@ class DataManager():
 
     return: a list of sparse matrices corresponding to the given intent. Each matrix is reprsented by pandas dataframe.
     """
+    @abstractmethod
     async def getDataByStartEndYearAndIntent(self, intent, start, end, exceptionToThrow) -> TopicData:
-        raise Exception("This method should be override by a concrete class")
+        pass
 
 
     """
@@ -47,15 +51,28 @@ class DataManager():
     if there are 2019-2020 data and 2020-2021 data, it will return a tuple: (2020, 2021)
     This function serves as the fallback. If the user didn't specify a year in their query, we will use the most recent year.
     """
+    @abstractmethod
     def getMostRecentYearRange(self) -> Tuple[str, str]:
-        raise Exception("This method should be override by a concrete class")
+        pass
     
-
+    @abstractmethod
     def deleteData(self, dataName) -> bool:
         pass
 
+    @abstractmethod
+    def getAllSubsectionForSection(self, section,startYear, endYear, filter=lambda x: x):
+        pass
 
-    def getAllSubsectionForSection(self, section, filter=lambda x: x):
+    @abstractmethod
+    def getSectionAndSubsectionsForData(self,dataName, filter=lambda x: True):
+        pass
+    
+    @abstractmethod
+    def  getAllAvailableData(self, regex : re.Pattern):
+        pass
+        
+    @abstractmethod
+    def getAllAvailableYearsSorted(self):
         pass
 
     """

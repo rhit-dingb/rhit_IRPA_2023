@@ -49,7 +49,7 @@ class ParserFacade():
                 else:
                     questions.append(questionAnswer.getQuestion())
         
-        responses = await self.rasaCommunicator.parseMessagesAsync(questions)
+        # responses = await self.rasaCommunicator.parseMessagesAsync(questions)
         
         index = 0
         for sectionFullName in sectionFullNames:
@@ -57,23 +57,22 @@ class ParserFacade():
             sectionAndSubSection = sectionFullName.split("_")
             section = sectionAndSubSection[0]
             subSection = sectionAndSubSection[len(sectionAndSubSection)-1]
-            numQuestionSet = self.setEntitiesForQuestionAndAnswer(questionAnswers, responses, index)
 
-            parsedData = self.dataParser.parse(subSection, questionAnswers) 
-            if section in sectionToData:
-                sectionToData[section].append(parsedData)
-            else: 
-                sectionToData[section] = [parsedData]
+            # numQuestionSet = self.setEntitiesForQuestionAndAnswer(questionAnswers, responses, index)
 
+            # parsedData = self.dataParser.parse(subSection, questionAnswers) 
             # if section in sectionToData:
-            #     sectionToData[section][subSection] = questionAnswers
+            #     sectionToData[section].append(parsedData)
             # else: 
-            #     sectionToData[section] = dict()
-            #     sectionToData[section][subSection] = questionAnswers
+            #     sectionToData[section] = [parsedData]
 
-            index = index + numQuestionSet
-            # sparseMatrices.append(sparseMatrix)
-        # might want to refactor so it doesn't assume sparse matrix
+            if section in sectionToData:
+                sectionToData[section][subSection] = questionAnswers
+            else: 
+                sectionToData[section] = dict()
+                sectionToData[section][subSection] = questionAnswers
+
+            # index = index + numQuestionSet
         self.write(sectionToData)
         
  
@@ -99,6 +98,7 @@ class ParserFacade():
 
 
     def write(self,sectionToData):
+        
         self.dataWriter.write(sectionToData)
 
         

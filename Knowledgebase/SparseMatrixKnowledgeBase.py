@@ -35,7 +35,7 @@ import asyncio
 class SparseMatrixKnowledgeBase(KnowledgeBase):
     def __init__(self, dataManager):
         self.dataManager : DataManager = dataManager
-        # self.dataManager = Cache(self.dataManager)
+     
         self.typeController = TypeController()
         self.templateConverter : TemplateConverter = TemplateConverter()
 
@@ -65,36 +65,39 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         sparseMatrixToSearch : SparseMatrix
         sparseMatricesToSearch = await self.determineMatrixToSearch(intent, entitiesExtracted, startYear, endYear)
         if sparseMatricesToSearch is None or len(sparseMatricesToSearch) == 0:
-                raise Exception("No valid sparse matrix found for given intent and entities", intent, entitiesExtracted)    
-        for sparseMatrixToSearch in sparseMatricesToSearch:
-            print(sparseMatrixToSearch.subSectionName)
-            isOperationAllowed = sparseMatrixToSearch.isAnyOperationAllowed()
-           
-            isRangeAllowed = sparseMatrixToSearch.isRangeOperationAllowed()
-            hasRangeEntity = findEntityHelper(entitiesExtracted, RANGE_ENTITY_LABEL)
-            isSumAllowed = sparseMatrixToSearch.isSumOperationAllowed()
+                raise Exception("No valid sparse matrix found for given intent and entities", intent, entitiesExtracted)
 
-            isPercentageAllowed = sparseMatrixToSearch.isPercentageOperationAllowed()
-            percentageEntityDetected = findEntityHelper(entitiesExtracted, AGGREGATION_ENTITY_PERCENTAGE_VALUE, by="value")
-            template = sparseMatrixToSearch.findTemplate()
-            searchResults = []
-        
-            if isRangeAllowed and hasRangeEntity:
-                print("CALCULATING RANGE")
-                rangeResultData : RangeResultData =  self.aggregateDiscreteRange(entitiesExtracted, sparseMatrixToSearch, isSumAllowed)
-                filteredEntities = filterEntities(entitiesExtracted, [RANGE_ENTITY_LABEL, NUMBER_ENTITY_LABEL])
-                searchResults : List[SearchResult] = rangeResultData.answers
-                for searchResult in searchResults:
-                    searchResult.addEntities(filteredEntities)
-            else:
-                searchResults : List[SearchResult] = sparseMatrixToSearch.searchOnSparseMatrix(entitiesExtracted, shouldAddRowStrategy, isSumAllowed)
-            if isPercentageAllowed and percentageEntityDetected:
-                percentages = await self.calculatePercentages(searchResults, sparseMatrixToSearch,  percentageEntityDetected)
-                # print("GOT VALUE ", percentages)
-                if not percentages == None and len(percentages) > 0:
-                    searchResults = percentages
-            await self.getAllEntityForRealQuestionFoundForAnswer(searchResults)
-            answers = answers + outputFunc(searchResults, intent,  template)
+        #Use the first sparse matrix.
+        # 
+        # for sparseMatrixToSearch in sparseMatricesToSearch:
+        sparseMatrixToSearch : SparseMatrix = sparseMatricesToSearch[0]
+        print(sparseMatrixToSearch.subSectionName)
+        isOperationAllowed = sparseMatrixToSearch.isAnyOperationAllowed()
+    
+        isRangeAllowed = sparseMatrixToSearch.isRangeOperationAllowed()
+        hasRangeEntity = findEntityHelper(entitiesExtracted, RANGE_ENTITY_LABEL)
+        isSumAllowed = sparseMatrixToSearch.isSumOperationAllowed()
+
+        isPercentageAllowed = sparseMatrixToSearch.isPercentageOperationAllowed()
+        percentageEntityDetected = findEntityHelper(entitiesExtracted, AGGREGATION_ENTITY_PERCENTAGE_VALUE, by="value")
+        template = sparseMatrixToSearch.findTemplate()
+        searchResults = []
+    
+        if isRangeAllowed and hasRangeEntity:
+            rangeResultData : RangeResultData =  self.aggregateDiscreteRange(entitiesExtracted, sparseMatrixToSearch, isSumAllowed)
+            filteredEntities = filterEntities(entitiesExtracted, [RANGE_ENTITY_LABEL, NUMBER_ENTITY_LABEL])
+            searchResults : List[SearchResult] = rangeResultData.answers
+            for searchResult in searchResults:
+                searchResult.addEntities(filteredEntities)
+        else:
+            searchResults : List[SearchResult] = sparseMatrixToSearch.searchOnSparseMatrix(entitiesExtracted, shouldAddRowStrategy, isSumAllowed)
+        if isPercentageAllowed and percentageEntityDetected:
+            percentages = await self.calculatePercentages(searchResults, sparseMatrixToSearch,  percentageEntityDetected)
+            # print("GOT VALUE ", percentages)
+            if not percentages == None and len(percentages) > 0:
+                searchResults = percentages
+        await self.getAllEntityForRealQuestionFoundForAnswer(searchResults)
+        answers = answers + outputFunc(searchResults, intent,  template)
 
         return answers
 
