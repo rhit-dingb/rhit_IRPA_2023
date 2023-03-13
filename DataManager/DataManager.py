@@ -24,7 +24,7 @@ class DataManager(ABC):
         pass
     
     @abstractmethod
-    def getAvailableOptions(self,startYear, endYear):
+    def getAvailableOptions(self,intent, startYear, endYear):
         pass
         # raise Exception("This method should be override by a concrete class")
 

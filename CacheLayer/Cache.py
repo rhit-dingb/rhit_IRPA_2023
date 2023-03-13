@@ -96,8 +96,8 @@ class Cache(DataManager):
         return self.dataSource.getAllAvailableData(regex)
 
 
-    def getAvailableOptions(self,startYear, endYear):
-        return self.dataSource.getAvailableOptions(startYear, endYear)
+    def getAvailableOptions(self, intent,startYear, endYear):
+        return self.dataSource.getAvailableOptions( intent, startYear, endYear)
 
     def getMostRecentYearRange(self) -> Tuple[str, str]:
         return self.dataSource.getMostRecentYearRange()

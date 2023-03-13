@@ -55,8 +55,10 @@ class MongoDBUnansweredQuestionConnector():
             "chatbotAnswers": chatbotAnswers,
             "answer": None})
         if boo1:
+            print("QUESTION ADDED SUCCESSFULLY")
             return {'message': 'question is successfull added'}
         else:
+            print("ERROR OCCURED DURING QUESTION ADD")
             return {'message': 'errors occurred during question add'}
 
     

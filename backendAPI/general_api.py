@@ -295,12 +295,13 @@ async def handle_new_event(request: Request):
     timeAsked: datetime = datetime.now()
     db = client.freq_question_db
     freq_collection = db.cds_frequency
-    if(len(list(freq_collection.find({"question_asked": content}))) == 0):
+    content = str(content)
+    if(len(list(freq_collection.find({"question_asked": content.lower()}))) == 0):
         boo1 = freq_collection.insert_one({
             "intent": intent,
             "user_feedback": feedback,
             "time_asked": timeAsked,
-            "question_asked": content})
+            "question_asked": content.lower()})
         if boo1:
             return {'message': 'data successfully inserted'}
         else:

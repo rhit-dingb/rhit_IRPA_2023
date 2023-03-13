@@ -11,9 +11,6 @@ STUDENT_LIFE_INTENT = "student_life"
 
 
 
-
-
-
 COHORT_BY_YEAR_ENTITY_LABEL = "cohort_by_year"
 STUDENT_ENROLLMENT_RESULT_ENTITY_LABEL = "student_enrollment_result"
 YEAR_ENTITY_LABEL = "year"
