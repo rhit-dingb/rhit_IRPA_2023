@@ -1,6 +1,6 @@
 
 import json
-from typing import Dict, List
+from typing import Dict, List, Tuple
 from DataManager.constants import DATABASE_PRENAME, MONGO_DB_CONNECTION_STRING
 from Parser.DataWriter import DataWriter
 from Data_Ingestion.SparseMatrix import SparseMatrix
@@ -18,14 +18,15 @@ class MongoDbNoChangeDataWriter(DataWriter):
        
 
 
-    def write(self, sectionToQuestionAnswer : Dict[str, Dict[str, List[QuestionAnswer]]]):
+    def write(self, sectionToQuestionAnswer : Dict[str, List[Tuple[str,  List[QuestionAnswer]]]]):
         sectionsInserted = []
        
         for sectionKey in sectionToQuestionAnswer:
             dataForEachSubSection = sectionToQuestionAnswer[sectionKey]
             subsectionsInserted = []
-            for subsection in dataForEachSubSection: 
-                subsectionQuestionAnswers = dataForEachSubSection[subsection]
+            for data in dataForEachSubSection: 
+                subsection, subsectionQuestionAnswers = data
+              
                 body = dict()
                 metadata = dict()
                 for questionAnswer in subsectionQuestionAnswers:

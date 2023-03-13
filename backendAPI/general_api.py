@@ -34,6 +34,7 @@ from DataManager.constants import ANNUAL_DATA_REGEX_PATTERN, DEFINITION_DATA_REG
 from UnansweredQuestions.UnansweredQuestionAnswerEngine import UnansweredQuestionAnswerEngine
 
 from Parser.SparseMatrixDataParser import SparseMatrixDataParser
+from Parser.NoChangeDataParser import NoChangeDataParser
 from backendAPI.AuthenticationManager import AuthenticationManager
 from UnansweredQuestions.MongoDBUnansweredQuestionConnector import MongoDBUnansweredQuestionConnector
 
@@ -47,10 +48,10 @@ from CacheLayer.ModelChangeSubscriber import ModelChangeSubscriber
 from CacheLayer.constants import SECTIONS_UPLOADED_KEY, START_YEAR_KEY, END_YEAR_KEY, DATA_DELETED_KEY
 from backendAPI.helper import getStartAndEndYearFromDataName
 
-
 authenticationManager = AuthenticationManager()
 mongoDbDataManager = MongoDataManager()
 mongoDbDataManager = Cache(mongoDbDataManager)
+
 rasaCommunicator = RasaCommunicator()
 client = MongoClient(MONGO_DB_CONNECTION_STRING)
 unansweredQuestionAnswerEngine = UnansweredQuestionAnswerEngine()
@@ -136,7 +137,8 @@ async def parse_data(request : Request):
         try:
             jsonCdsLoader.loadData(excelData)
             # dataWriter = MongoDBSparseMatrixDataWriter(outputName)
-            dataParser = SparseMatrixDataParser()
+            # dataParser = SparseMatrixDataParser()
+            dataParser = NoChangeDataParser()
             dataWriter = MongoDbNoChangeDataWriter(outputName)
             parserFacade = ParserFacade(dataLoader=jsonCdsLoader, dataWriter=dataWriter, dataParser=dataParser)
             await parserFacade.parse()
