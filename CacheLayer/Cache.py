@@ -9,13 +9,14 @@ import re
 class Cache(DataManager):
     def __init__(self, dataSource : DataManager):
         self.dataSource  = dataSource
-        self.connected = True
+        self.connected = False
         self.pool = None
         self.redis = None
         self.redisDataKeyFormat = "{intent}:{startYear}:{endYear}:{subsection}"
         try:
             self.pool = redis.ConnectionPool(host='localhost', port=6379, db=0)
             self.redis = redis.Redis(connection_pool=self.pool)
+            self.connected = True
         except Exception:
             self.connected = False
             
