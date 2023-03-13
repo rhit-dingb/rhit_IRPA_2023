@@ -171,6 +171,8 @@ class ActionQueryKnowledgebase(Action):
         defaultShouldAddRowStrategy = DefaultShouldAddRowStrategy()
         answers = await knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy,knowledgeBase.constructOutput,startYear, endYear )
         answerFromUnansweredQuestion = self.getAnswerForUnansweredQuestion(question)
+        print("ANSWER FROM UNANSWERED QUESTION")
+        print(answerFromUnansweredQuestion)
         # print("ANSWER FOUND")
         # print(answerFromUnansweredQuestion)
 
