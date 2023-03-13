@@ -42,7 +42,7 @@ class Cache(DataManager):
                     does_exist = does_exist and self.redis.exists(dataKey)
                 except Exception:
                     self.connected = False
-                    self.does_exist = False
+                    does_exist = False
                     break
         else:
             does_exist = False
