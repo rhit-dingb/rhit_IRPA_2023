@@ -47,15 +47,19 @@ class MongoDBUnansweredQuestionConnector():
             if question.lower() == questionInDB["content"].lower():
                 print("QUESTION ALREADY EXIST")
                 return  {'message': 'questionExist'}
-            
-        boo1 = self.questions_collection.insert_one({
+        
+        toAdd = {
             "content": question,
             "post_date": datetime.today(),
             "is_addressed": False,
             "chatbotAnswers": chatbotAnswers,
-            "answer": None})
+            "answer": None}
+        
+        boo1 = self.questions_collection.insert_one(toAdd)
+     
         if boo1:
             print("QUESTION ADDED SUCCESSFULLY")
+            print(toAdd)
             return {'message': 'question is successfull added'}
         else:
             print("ERROR OCCURED DURING QUESTION ADD")
