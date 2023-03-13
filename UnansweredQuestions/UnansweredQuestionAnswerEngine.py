@@ -46,7 +46,8 @@ class UnansweredQuestionAnswerEngine:
 
         # print("SEARCHING FOR QUESTION")
         # print(answersToReturn)
-        # print(confidences)
+        print(confidences)
+        print(answers)
         for answer, confidence in zip(answers, confidences):
             # print("CONFIDENCE")
             # print(confidence)
