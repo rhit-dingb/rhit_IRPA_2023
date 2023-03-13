@@ -36,7 +36,9 @@ class DocumentIndexRetriever(DocumentRetriever):
             documentSimilarities = self.index[transformedVectors[0]] 
         except:
             return ([],[])
-     
+        
+        print("DOC SIM")
+        print(documentSimilarities)
         for i, sim in enumerate(documentSimilarities):  
             doc = self.corpus.getDocumentByIndex(i)
             print(doc)
