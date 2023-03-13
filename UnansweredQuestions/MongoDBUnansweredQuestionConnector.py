@@ -16,12 +16,12 @@ class MongoDBUnansweredQuestionConnector():
         self.db = self.client.freq_question_db
         self.questions_collection =  self.db.unans_question
 
-    def getAllUnansweredQuestionAndAnswer(self, fieldsToGet= []):
-        fieldToGetBody = {}
-        for field in fieldsToGet:
-            fieldToGetBody[field] = 1
+    def getAllUnansweredQuestionAndAnswer(self):
+        # fieldToGetBody = {}
+        # for field in fieldsToGet:
+        #     fieldToGetBody[field] = 1
         # unanswered_questions = list(questions_collection.find({'is_addressed': False}))
-        unanswered_questions = list(self.questions_collection.find({}, fieldToGetBody))
+        unanswered_questions = list(self.questions_collection.find({}))
         unanswered_questions = json.loads(json_util.dumps(unanswered_questions))
         print("GETTING QUESTIOS")
         print(unanswered_questions)
@@ -43,7 +43,7 @@ class MongoDBUnansweredQuestionConnector():
             return {'message': 'errors occurred while updating'}
 
     def addNewUnansweredQuestion(self, question : str, chatbotAnswers : List[str]):
-        unansweredQuestions = self.getAllUnansweredQuestionAndAnswer(["content"])
+        unansweredQuestions = self.getAllUnansweredQuestionAndAnswer()
         for questionInDB in unansweredQuestions: 
        
             if question.lower() == questionInDB["content"].lower():
