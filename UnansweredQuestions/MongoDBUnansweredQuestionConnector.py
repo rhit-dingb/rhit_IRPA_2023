@@ -23,6 +23,8 @@ class MongoDBUnansweredQuestionConnector():
         # unanswered_questions = list(questions_collection.find({'is_addressed': False}))
         unanswered_questions = list(self.questions_collection.find({}, fieldToGetBody))
         unanswered_questions = json.loads(json_util.dumps(unanswered_questions))
+        print("GETTING QUESTIOS")
+        print(unanswered_questions)
         return unanswered_questions
 
 
