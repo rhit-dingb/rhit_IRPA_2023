@@ -9,16 +9,15 @@ import re
 class Cache(DataManager):
     def __init__(self, dataSource : DataManager):
         self.dataSource  = dataSource
-        self.connected = False
+        self.connected = True
         self.pool = None
         self.redis = None
         self.redisDataKeyFormat = "{intent}:{startYear}:{endYear}:{subsection}"
-        try:
-            self.pool = redis.ConnectionPool(host='localhost', port=6379, db=0)
-            self.redis = redis.Redis(connection_pool=self.pool)
-            self.connected = True
-        except Exception:
-            self.connected = False
+        # try:
+        self.pool = redis.ConnectionPool(host='localhost', port=6379, db=0)
+        self.redis = redis.Redis(connection_pool=self.pool)
+        # except Exception:
+        #     self.connected = False
             
     def clearCache(self):
         if self.connected:
@@ -39,7 +38,12 @@ class Cache(DataManager):
         if self.connected:
             for subsection in subsectionsForSection: 
                 dataKey = self.redisDataKeyFormat.format(intent=intent, startYear=start, endYear=end, subsection=subsection)
-                does_exist = does_exist and self.redis.exists(dataKey)
+                try:
+                    does_exist = does_exist and self.redis.exists(dataKey)
+                except Exception:
+                    self.connected = False
+                    self.does_exist = False
+                    break
         else:
             does_exist = False
 
