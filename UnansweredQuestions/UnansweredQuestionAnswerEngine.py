@@ -44,7 +44,7 @@ class UnansweredQuestionAnswerEngine:
         answers, confidences = self.documentRetriever.findSimilarDocuments(query=question)
         answersToReturn = []
 
-        # print("SEARCHING FOR QUESTION")
+        print("SEARCHING FOR QUESTION")
         # print(answersToReturn)
         print(confidences)
         print(answers)

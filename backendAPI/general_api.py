@@ -232,6 +232,8 @@ async def get_unans_questions():
 @app.get("/answer_unanswered_question/{question}")
 async def answer_unanswered_question(question: str):
     answers = unansweredQuestionAnswerEngine.answerQuestion(question)
+    print("GOT ANSWERS")
+    print(answers)
     return {"answers": answers}
 
 @app.put("/question_update/{id}")
@@ -251,22 +253,6 @@ async def handle_delete_answer(id: str):
 
 @app.post("/question_add")
 async def handle_add_unanswered_question(request : Request):
-    # jsonData = await request.json()
-    # content = jsonData["content"]
-    # chatbotAnswers = jsonData["chatbotAnswers"]
-    # db = client.freq_question_db
-    # questions_collection = db.unans_question
-    # boo1 = questions_collection.insert_one({
-    #     "content": content,
-    #     "post_date": datetime.today(),
-    #     "is_addressed": False,
-    #     "chatbotAnswers": chatbotAnswers,
-    #     "answer": None})
-    # if boo1:
-    #     return {'message': 'question is successfull added'}
-    # else:
-    #     return {'message': 'errors occurred during question add'}
-
     jsonData = await request.json()
     question = jsonData["content"]
     chatbotAnswers = jsonData["chatbotAnswers"]
