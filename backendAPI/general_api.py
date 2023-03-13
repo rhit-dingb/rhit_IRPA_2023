@@ -229,7 +229,7 @@ async def get_unans_questions():
     return unanswered_questions
 
 
-@app.get("/answer_unanswered_question/{question}")
+@app.get("/answer_unanswered_question")
 async def answer_unanswered_question(question: str):
     answers = unansweredQuestionAnswerEngine.answerQuestion(question)
     print("GOT ANSWERS")
