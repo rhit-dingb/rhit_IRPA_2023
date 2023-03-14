@@ -45,14 +45,14 @@ class MongoDbNoChangeDataWriter(DataWriter):
                 subsectionsInserted.append(subsection)
                 
             query = { DATABASE_SUBSECTION_FIELD_KEY : { "$nin": subsectionsInserted } }
-            # self.db[sectionKey].delete_many(query)
+            self.db[sectionKey].delete_many(query)
             sectionsInserted.append(sectionKey)
 
         # duplicate code 
-        # collections =  self.db.list_collection_names()
-        # for collection in collections:
-        #     if not collection in sectionsInserted:
-        #         self.db[collection].drop()
+        collections =  self.db.list_collection_names()
+        for collection in collections:
+            if not collection in sectionsInserted:
+                self.db[collection].drop()
         
                 
 

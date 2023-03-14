@@ -533,6 +533,7 @@ actions:
   - action_answer_not_helpful
   - action_store_asked_question
   - action_store_isHelpful_statistic
+  - action_nlu_fallback
   
   # - action_query_enrollment
   # - action_query_admission

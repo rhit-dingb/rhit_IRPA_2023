@@ -179,6 +179,11 @@ class SparseMatrix():
             return True
 
         return False
+    
+
+    def getDocumentationOfChange(self):
+       return self.findValueForMetadata(constants.DOCUMENTATION_OF_CHANGE_METADATA_KEY)
+
 
     def isThisOperationAllowed(self, operationLabel):
         answer = self.findValueForMetadata(operationLabel)

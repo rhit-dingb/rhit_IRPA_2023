@@ -1453,8 +1453,9 @@ nlu:
     - How many [nonresident]{"entity": "international_domestic", "value": "international"} students are [enrolled]{"entity":"action", "value": "enrolled"}? 
     - How many [hispanic]{"entity": "race"} students are [enrolled]{"entity":"action", "value": "enrolled"}? 
     - How many [african american]{"entity": "race"} students are [enrolled]{"entity":"action", "value": "enrolled"}?
-    - how many [black]{"entity": "race"} students are [enrolled]{"entity":"action", "value": "enrolled"}? 
-    - How many [white]{"entity": "race"} students are [enrolled]{"entity":"action", "value": "enrolled"}? 
+    - how many [black]{"entity": "race", "value":"caucasian"} students are [enrolled]{"entity":"action", "value": "enrolled"}? 
+    - How many [white]{"entity": "race", "value":"caucasian"} students are [enrolled]{"entity":"action", "value": "enrolled"}? 
+    - How many [caucasian]{"entity": "race", "value":"caucasian"} students 
     - How many [american indian]{"entity": "race"} students are [enrolled]{"entity":"action", "value": "enrolled"}?
     - How many [asian]{"entity": "race"} students are [enrolled]{"entity":"action", "value": "enrolled"}? 
     - How many [pacific islander]{"entity": "race"} students are [enrolled]{"entity":"action", "value": "enrolled"}? 
@@ -1664,11 +1665,12 @@ nlu:
   examples: |
     - asians
 
-- synonym: white
+- synonym: caucasian
   examples: |
     - caucasian
     - whites
     - caucasians
+    - white
     - european descent
 
 - synonym: american indian

@@ -71,6 +71,8 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         # 
         # for sparseMatrixToSearch in sparseMatricesToSearch:
         sparseMatrixToSearch : SparseMatrix = sparseMatricesToSearch[0]
+        print(len(sparseMatricesToSearch))
+        print("SELECTED")
         print(sparseMatrixToSearch.subSectionName)
         isOperationAllowed = sparseMatrixToSearch.isAnyOperationAllowed()
     
@@ -97,8 +99,13 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
             if not percentages == None and len(percentages) > 0:
                 searchResults = percentages
         await self.getAllEntityForRealQuestionFoundForAnswer(searchResults)
-        answers = answers + outputFunc(searchResults, intent,  template)
 
+        # also get the documentation of change 
+        documentationOfChange = sparseMatrixToSearch.getDocumentationOfChange()
+        answers = answers + outputFunc(searchResults, intent,  template) 
+        if len(answers) > 0 and not documentationOfChange == None:
+            answers.append(documentationOfChange)
+        
         return answers
 
 
@@ -215,7 +222,6 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
             elif askForLowerBound:
                 maxValue = float('inf')
                 minValue = min(numberValues)
-               
 
         elif len(numberEntities) == 0:
             minValue = float('-inf')
