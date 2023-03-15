@@ -128,7 +128,7 @@ async def parse_data(request : Request):
     jsonData = await request.json()
     # dataType = jsonData["type"]
     excelData = jsonData["data"]
-    # print(jsonData)
+    print(excelData)
     jsonCdsLoader = JsonDataLoader()
     outputName = ""
     if "dataName" in jsonData:
@@ -142,7 +142,7 @@ async def parse_data(request : Request):
             dataWriter = MongoDbNoChangeDataWriter(outputName)
             parserFacade = ParserFacade(dataLoader=jsonCdsLoader, dataWriter=dataWriter, dataParser=dataParser)
             await parserFacade.parse()
-
+ 
             startYear, endYear = getStartAndEndYearFromDataName(outputName)
             # print(outputName)
             print(startYear, endYear)

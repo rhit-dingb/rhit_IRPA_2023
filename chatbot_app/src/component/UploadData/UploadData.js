@@ -245,7 +245,8 @@ function UploadData() {
             }
 
             body["data"] = jsonData
-          
+            console.log("BODY")
+            console.log(JSON.stringify(jsonData))
             setIsUploading(true)
             const infoMessage = "File is uploading...."
             displayInfoMessage(infoMessage)
