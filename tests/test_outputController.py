@@ -13,7 +13,7 @@ from Knowledgebase.SearchResultType import SearchResultType
 from actions.constants import AGGREGATION_ENTITY_AVERAGE_VALUE, AGGREGATION_ENTITY_PERCENTAGE_VALUE, RANGE_LOWER_BOUND_VALUE, RANGE_UPPER_BOUND_VALUE, STUDENT_ENROLLMENT_RESULT_ENTITY_GRADUATION_VALUE
 
 
-class test_template_converter(unittest.TestCase):
+class test_output_controller(unittest.TestCase):
    def setUp(self):
        self.testTemplate_1 = "The (xor [aggregation] number) of students {who graduated in [range] [number] years and [range] [number] years} in the [initial_final] [year] cohort is <value>"
        self.testTemplate_2 = "(xor {Hello} [aggregation])"
@@ -54,7 +54,7 @@ class test_template_converter(unittest.TestCase):
 
 
       
-   def test_construct_output_for_template_1_should_return_correct_sentence(self):
+   def test_construct_output_for_complicated_template_should_return_correct_sentence(self):
        searchAnswers = ["5"]
        entitiesUsed = [[createEntityObjHelper("initial", entityLabel=INITIAL_COHORT_ENTITY_LABEL),
             createEntityObjHelper(RANGE_LOWER_BOUND_VALUE,
@@ -73,7 +73,7 @@ class test_template_converter(unittest.TestCase):
            "The number of students who graduated in more than 5 years and within 6 years in the initial 2014 cohort is 5"]
        checkAnswers(answers, sentences, self)
 
-   def test_construct_output_for_template_2(self):
+   def test_construct_output_for_simple_template(self):
        searchAnswers = ["5"]
 
        entitiesUsed = [[
@@ -87,7 +87,7 @@ class test_template_converter(unittest.TestCase):
        answers = ["Hello"]
        checkAnswers(answers, sentences, self)
 
-   def test_construct_output_for_bad_template(self):
+   def test_construct_output_for_bad_template_should_raise_error(self):
       searchAnswers = ["5"]
       entitiesUsed = [[
             createEntityObjHelper(
@@ -98,7 +98,7 @@ class test_template_converter(unittest.TestCase):
       self.assertRaises(Exception, self.templateConverter.constructOutput,
                         searchResults, self.badTemplate_3)
 
-   def test_construct_output_for_complicated_template(self):
+   def test_construct_output_for_complicated_template_2(self):
       searchAnswers = ["5"]
       entitiesUsed = [[
             createEntityObjHelper(

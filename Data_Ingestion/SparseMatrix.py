@@ -26,6 +26,10 @@ class SparseMatrix():
 
         self.metadata : Dict[str, str]= metadata
 
+
+    def setMetadata(self,metadata : Dict[str, str]):
+        self.metadata = metadata
+        
     def getColumn(self):
         return self.sparseMatrixDf.columns
 
@@ -235,8 +239,11 @@ class SparseMatrix():
                     entitiesUsed = usedEntities
 
                 newAnswer= sparseMatrixToSearchDf.loc[i,'Value']
-                castedValue, type = self.determineResultType(newAnswer)
-                question = self.questions[i]
+                castedValue, type = self.determineResultType(newAnswer) 
+                question = ""
+                if i < len(self.questions):
+                    question = self.questions[i]
+
                 newSearchResult : SearchResult = SearchResult(newAnswer, usedEntities, type, realQuestion= question )
                 if currentResultPointer == None: 
                     # searchResult : SearchResult = SearchResult(newAnswer, usedEntities, type, self.questions[i])

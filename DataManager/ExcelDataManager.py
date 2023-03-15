@@ -1,3 +1,4 @@
+import re
 from typing import Tuple
 from DataManager.DataManager import DataManager
 from Data_Ingestion.ExcelProcessor import ExcelProcessor
@@ -8,7 +9,7 @@ from Exceptions.NoDataFoundException import NoDataFoundException
 from Exceptions.NotEnoughInformationException import NotEnoughInformationException
 from Exceptions.ExceptionTypes import ExceptionTypes
 """
-DataManager subclass that can handle excel file as data resource.
+DataManager subclass that can handle excel file as data resource-- used for only testing purposes.
 """
 class ExcelDataManager(DataManager):
     def __init__(self, filePath, topicToParse =["enrollment"]):
@@ -19,7 +20,7 @@ class ExcelDataManager(DataManager):
     """
     See docuementation in DataManager.py
     """
-    def getSparseMatricesByStartEndYearAndIntent(self, intent, start, end, exceptionToThrow: Exception) -> TopicData:
+    async def getDataByStartEndYearAndIntent(self, intent, start, end, exceptionToThrow: Exception) -> TopicData:
         yearKey = start+"_"+end
      
         if not yearKey in self.excelProcessor.getData():
@@ -35,7 +36,6 @@ class ExcelDataManager(DataManager):
             
         topicData : TopicData = dataForEachTopic[intent]
 
-        
         if not topicData.hasData():
             raise NoDataFoundException(NO_DATA_AVAILABLE_FOR_GIVEN_INTENT_FORMAT.format(topic = intent.replace("_", " "), start= start, end=end), ExceptionTypes.NoSparseMatrixDataAvailableForGivenIntent)
         
@@ -57,3 +57,29 @@ class ExcelDataManager(DataManager):
 
         return (mostRecentYearRange[0], mostRecentYearRange[1])
 
+    
+    def getMetadata():
+        pass 
+
+    def deleteData(self, dataName) -> bool:
+        pass
+
+   
+    def getAllSubsectionForSection(self, section,startYear, endYear, filter=lambda x: x):
+        pass
+
+   
+    def getSectionAndSubsectionsForData(self,dataName, filter=lambda x: True):
+        pass
+    
+   
+    def  getAllAvailableData(self, regex : re.Pattern):
+        pass
+        
+    
+    def getAllAvailableYearsSorted(self):
+        pass
+
+
+    def getAvailableOptions(self):
+        pass

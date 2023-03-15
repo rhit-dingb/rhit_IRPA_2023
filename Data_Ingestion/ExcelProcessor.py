@@ -73,8 +73,28 @@ class ExcelProcessor():
                 subsectionName = topic_key_words[len(topic_key_words)-1]
                 print(subsectionName)
                 df = dataSourceConnector.parse(name)
+               
                 sparseMatrix = SparseMatrix(subsectionName, df)
+                metadata = self.getMetadata(sparseMatrix)
+                sparseMatrix.setMetadata(metadata)
                 topicData.addSparseMatrix(subsectionName, sparseMatrix)
                 
-        return topicData  
-                
+        return topicData
+    
+    def getMetadata(self,sparseMatrix : SparseMatrix):
+        # print(sparseMatrix.sparseMatrixDf)
+        isMetadata = False
+        metadata = dict()
+        for row in sparseMatrix:
+            # print( str(row["Value"]).lower() )
+            if str(row["Value"]).lower() == "metadata":
+                isMetadata = True
+                continue
+
+            if isMetadata:
+                secondColumnName = row.index[1]
+                rowValue = row["Value"]
+                metadata[rowValue] = row[secondColumnName]
+        # print("FOUND METADATA", metadata)
+        return metadata
+      

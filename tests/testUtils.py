@@ -1,5 +1,7 @@
 from typing import List
 
+from Knowledgebase.DataModels.SearchResult import SearchResult
+
 
 def checkAnswersMatch(assertion, dispatcher, expectedAnswer):
     answers = getAllAnswersFromDispatcher(dispatcher)
@@ -36,8 +38,15 @@ def getEntityValues(entities):
         res.append(entity["value"])
     return res
 
-def identityFunc(x, intent, entities, template):
-        return x
+def identityFunc(searchResults, intent, entities, template):
+        return searchResults
+
+
+def extractOutput(searchResults : List[SearchResult], intent,  template):
+        answers =[]
+        for res in searchResults:
+            answers.append(res.answer)
+        return answers
 
 def getAllAnswersFromDispatcher(dispatcher):
     answers = []
