@@ -128,7 +128,7 @@ async def parse_data(request : Request):
     jsonData = await request.json()
     # dataType = jsonData["type"]
     excelData = jsonData["data"]
-    print(excelData)
+  
     jsonCdsLoader = JsonDataLoader()
     outputName = ""
     if "dataName" in jsonData:
@@ -136,7 +136,7 @@ async def parse_data(request : Request):
     if not outputName == "":
         try:
             jsonCdsLoader.loadData(excelData)
-            # dataWriter = MongoDBSparseMatrixDataWriter(outputName)
+            # dataWriter = MongoDBSp arseMatrixDataWriter(outputName)
             # dataParser = SparseMatrixDataParser()
             dataParser = NoChangeDataParser()
             dataWriter = MongoDbNoChangeDataWriter(outputName)

@@ -102,6 +102,11 @@ nlu:
     - Student number
     - How many students?
     - number of students
+    - How many students do you have?
+    - How many students does your school have?
+    - How many [full time]{"entity": "enrollment_status", "value": "full-time"} students do you have?
+    - How many [part-time]{"entity": "enrollment_status", "value": "part-time"} students do you have?
+
     - How many [full time]{"entity": "enrollment_status", "value": "full-time"} [first time]{"entity": "is_first_time", "value": "first-time"} students are [enrolled]{"entity":"action", "value": "enrolled"}?
     - How many [full time]{"entity": "enrollment_status", "value": "full-time"} [first year]{"entity": "is_first_year", "value": "first-year"} students are [enrolled]{"entity":"action", "value": "enrolled"}?
     - How many [full time]{"entity": "enrollment_status", "value": "full-time"} [undergraduate]{"entity": "student_level", "value": "undergraduate"} students are [enrolled]{"entity":"action", "value": "enrolled"}?
@@ -1239,10 +1244,6 @@ nlu:
     - How many [non-freshman]{"entity": "undergraduate_grade_level", "value": "non-freshman"} [part-time]{"entity": "enrollment_status", "value": "part-time"} students are [enrolled]{"entity":"action", "value": "enrolled"}?
     - How many [non-freshman]{"entity": "undergraduate_grade_level", "value": "non-freshman"} [non-degree-seeking]{"entity": "degree-goal", "value": "non-degree-seeking"} students are [enrolled]{"entity":"action", "value": "enrolled"}?
     - How many [non-freshman]{"entity": "undergraduate_grade_level", "value": "non-freshman"} [non degree-seeking]{"entity": "degree-goal", "value": "non-degree-seeking"} students are [enrolled]{"entity":"action", "value": "enrolled"}?
-
-
-
-
 
     - How many [degree seeking]{"entity": "degree-goal", "value": "degree-seeking"} [first time]{"entity": "is_first_time", "value": "first-time"} students are [enrolled]{"entity":"action", "value": "enrolled"}?
     - How many [degree seeking]{"entity": "degree-goal", "value": "degree-seeking"} [first year]{"entity": "is_first_year", "value": "first-year"} students are [enrolled]{"entity":"action", "value": "enrolled"}?

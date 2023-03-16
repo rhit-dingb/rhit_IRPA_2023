@@ -54,5 +54,5 @@ class MongoDbNoChangeDataWriter(DataWriter):
             if not collection in sectionsInserted:
                 self.db[collection].drop()
         
-                
+        
 

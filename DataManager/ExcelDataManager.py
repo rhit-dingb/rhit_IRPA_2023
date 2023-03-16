@@ -58,8 +58,6 @@ class ExcelDataManager(DataManager):
         return (mostRecentYearRange[0], mostRecentYearRange[1])
 
     
-    def getMetadata():
-        pass 
 
     def deleteData(self, dataName) -> bool:
         pass
