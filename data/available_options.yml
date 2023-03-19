@@ -4,6 +4,7 @@ version: "3.1"
 nlu:
 - intent: get_available_options
   examples: |
+    - What are my available options?
     - What can I ask about for this section?
     - I want to know about the available options.
     - What can I ask about?

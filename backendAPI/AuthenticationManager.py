@@ -6,10 +6,15 @@ class AuthenticationManager:
         self.client = MongoClient(MONGO_DB_CONNECTION_STRING)
 
 
-    def login(self, username, password):
-        # hard code for now
-        if username == "admin" and password == "admin123":
-            return True
+    def getAdmins(self):
+        return ["chow", "zhengy6"]
+    
+    # def getAdmin(self, name):
+    #     return "ok"
+
+    def checkIsAdmin(self, username):
+        admins= self.getAdmins()
+        return username in admins
         
 
     

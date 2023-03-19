@@ -3,7 +3,7 @@ import React from "react";
 import { react, useEffect, useState, useRef } from "react";
 import { BiBot, BiUser } from "react-icons/bi";
 import * as XLSX from 'xlsx';
-import {CUSTOM_BACKEND_API_STRING, DataType} from "../../constants/constants"
+import {CUSTOM_BACKEND_API_STRING, DataType, TOKEN_KEY} from "../../constants/constants"
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -34,8 +34,9 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import Alert from '@mui/material/Alert';
+import { checkResponse } from "../../functions/functions";
 
-function UploadData() {
+function UploadData(props) {
   const uploadDataRef = useRef(null)
   const uploadDefinitionRef = useRef(null)
 
@@ -328,7 +329,6 @@ function UploadData() {
         setSectionAndSubSections([])
         //0th index is taken by definition
         setSelectedIndex(index)
-       
         fetchSectionSubsectionForData(dataName)
     }
 
@@ -355,22 +355,21 @@ function UploadData() {
         body: JSON.stringify(body),
         headers: {
           "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "http://localhost:3000",
-          "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-          "Access-Control-Allow-Headers": "Content-Type"
+          "Authorization": localStorage.getItem(TOKEN_KEY)
         },
       }).then((response)=>{
-          if(response.ok) {
+          const successCallback = (jsonData)=>{
             displaySuccessMessage("Deletion successful")
             console.log("UPDATE after delete")
             updateFunc()
           }
+
+          checkResponse(response, displayErrorMessage, successCallback, props.history)
+          
       }).catch((err)=>{
         displayErrorMessage(err)
       })
     }
-
-
 
 
     const createElementForSectionAndSubSection = ()=> {

@@ -10,7 +10,6 @@ intents:
   - cohort
   - admission
   - transfer_admission
-  # - high_school_units
   - basis_for_selection 
   - freshman_profile
   - academic_offering_and_policy
@@ -109,10 +108,10 @@ entities:
 - exemptions
 
 
-# - aid_status_pell
-# - aid_status_stafford
-# - not_modifier_pell
-# - not_modifier_stafford
+- aid_status_pell
+- aid_status_stafford
+- not_modifier_pell
+- not_modifier_stafford
 
 #Value: no aid
 - aid_status_none

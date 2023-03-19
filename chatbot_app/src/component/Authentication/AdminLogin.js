@@ -3,7 +3,7 @@ import React, { Component, useEffect, useState, useRef} from "react";
 import { render } from "react-dom";
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
-import {Navbar} from "./Navbar"
+import {Navbar} from "../Navbar"
 import FormLabel from '@mui/material/FormLabel';
 import FormControl from '@mui/material/FormControl';
 import Avatar from '@mui/material/Avatar';
@@ -19,55 +19,69 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import {IS_LOGGED_IN_CONSTANT} from "../constants/constants"
+import {IS_LOGGED_IN_CONSTANT, TOKEN_KEY} from "../../constants/constants"
 import { useHistory } from 'react-router-dom';
-import {CUSTOM_BACKEND_API_STRING} from "../constants/constants"
+import {CUSTOM_BACKEND_API_STRING} from "../../constants/constants"
+import rose_logo from "../../rose_logo.png"
+import RoseFire from "./rosefire.min.js"
 
-function AdminLogin() {
+function AdminLogin(props) {
     // const [userName, setUserName] = useState([])
     // const [] = useState("")
     const usernameRef = useRef()
     const passwordRef= useRef()
     const history = useHistory();
+
+
+    useEffect(() => {
+        if (history.location.state){
+            alert(history.location.state)
+        }
+       
+      }, []);
+
     const handleLogin = (e)=>{
         console.log(e)
         e.preventDefault()
-        const data = new FormData(e.currentTarget);
-        console.log({
-          username: data.get('username'),
-          password: data.get('password'),
-        });
+        console.log(RoseFire.Rosefire)
+        let token = "14d5e015-3535-4a1e-bafc-c7aa4ac41363"
+        // console.log(props.history)
+        // props.history.push({pathname:'/unanswered_questions', state: "key" })
+        // localStorage.setItem(IS_LOGGED_IN_CONSTANT, true)
 
-        const username = data.get('username')
-        const password = data.get('password')
-        // check password and username.. I'll do it here for now.
-        let body = {username: username, password: password}
-        fetch(CUSTOM_BACKEND_API_STRING + '/login', {
-            method: 'POST',
-            body: JSON.stringify(body),
-            headers: {
-              "Content-Type": "application/json",
-              "Access-Control-Allow-Origin": "http://localhost:3000",
-              "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-              "Access-Control-Allow-Headers": "Content-Type"
-            },
-        }).then((response) => response.json()).then((data)=>{
-            let isLoggedIn = data["loggedIn"]
-            // console.log(data)
-            // console.log("IS LOGGED IN")
-            // console.log(isLoggedIn)
-            if (isLoggedIn) {
-                localStorage.setItem(IS_LOGGED_IN_CONSTANT, true)
-                //redirect
-                history.push('/unanswered_questions');
+        RoseFire.Rosefire.signIn(token, (err, rfUser) => {
+			if (err) {
+			  console.log("Rosefire error!", err);
+			  return;
             }
-        })
-        // if (username == "admin" && password =="admin123"){
-        //     localStorage.setItem(IS_LOGGED_IN_CONSTANT, true)
-        //     //redirect
-        //     history.push('/unanswered_questions');
-        // }
-      
+            
+            let roseHulmanUsername = rfUser.username
+            console.log(rfUser)
+            const data = new FormData();
+            data.append("username", roseHulmanUsername)
+            data.append("password", "placeholder")
+            // let body= {"username": roseHulmanUsername, "password": "placeholder"}
+            fetch(CUSTOM_BACKEND_API_STRING + '/token', {
+            method: 'POST',
+            body: data,
+           
+            }).then((response) => {
+                if (!response.ok) {
+                    //display error message
+                    alert("Unauthorized Login")
+                }else{
+                    return response.json().then((data)=>{
+                      
+                        console.log(data)
+                        let token = data[TOKEN_KEY]
+                        localStorage.setItem(TOKEN_KEY, token)
+                        history.push({pathname:'/unanswered_questions' });
+                        
+                    })
+                }
+            })
+
+        }) 
     }
 
 
@@ -78,7 +92,9 @@ function AdminLogin() {
         {/* UI demo taken from 
         https://github.com/mui/material-ui/blob/v5.11.7/docs/data/material/getting-started/templates/sign-in/SignIn.js 
         */}
-        <Navbar/>
+
+
+        {/* <Navbar/>
         <Container component="main" maxWidth="xs">         
                 <Box
                 sx={{
@@ -127,9 +143,29 @@ function AdminLogin() {
                     </Button>
                 </Box>
                 </Box>
+            </Container> */}
+            <Container>
+         
+            <img style={roseLogoStyle} src={rose_logo} alt ="Rose-Hulman"/>
+            <button style={roseFireLoginButton} type="button" class="btn" onClick={handleLogin}>Sign in with Rosefire</button>
             </Container>
+
         </div>
     )
 }
 
+const roseLogoStyle ={
+    margin: "20px auto", display: "block", maxWidth: "350px"
+}
+
+const roseFireLoginButton = {
+ 
+    display: "block",
+    margin: "60px auto",
+    color: "white",
+    background: "#800000",
+    fontSize: "1.1em",
+    padding: "10px 30px",
+    borderRadius: "5px"
+}
 export default AdminLogin;

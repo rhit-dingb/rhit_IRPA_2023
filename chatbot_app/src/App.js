@@ -15,7 +15,7 @@ import Home from "./component/Home";
 import Admin from "./component/Admin";
 import ReportIssue from "./component/ReportIssue";
 import UploadData from "./component/UploadData/UploadData";
-import AdminLogin from "./component/AdminLogin";
+import AdminLogin from "./component/Authentication/AdminLogin";
 import Frequency from "./component/Frequency";
 // firebase.initializeApp({
 //   apiKey: "AIzaSyDWEnr4gUrMXGIGuSSUdkAgrO4CvHC-JO0",

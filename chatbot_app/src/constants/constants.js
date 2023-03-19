@@ -21,6 +21,7 @@ export const CHATBOT_CUSTOM_MESSAGE_KEY = "custom"
 export const GET_AVAILABLE_OPTIONS_MESSAGE = "What can I ask you about?"
 
 export const IS_LOGGED_IN_CONSTANT = "isLoggedIn"
+export const TOKEN_KEY = "access_token"
 
 export const ChatbotResponseType = {
 	NORMAL_MESSAGE: "normal message",

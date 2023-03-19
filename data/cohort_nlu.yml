@@ -1,14 +1,16 @@
 version: "3.1"
+
 nlu:
 - intent: cohort
   examples: |
-    - I want to know about 2015 cohort
     - What is the [initial](cohort_initial_final) 2014 cohort students?
+    - Of the [initial](cohort_initial_final) 2014 cohort, [foreign aid service of the federal government]{"entity":"exemptions", "value":"exemptions"}, or [official church missions]{"entity":"exemptions", "value":"exemptions"}?
     - What is the total [allowable exclusions]{"entity":"exemptions", "value":"exemptions"} of the 3564 cohort
-    - How many students [left]{"entity":"exemptions", "value":"exemptions"} the school due to some reason for the 2014 cohort?
-      
-    - How many students were [exemption]{"entity":"exemptions", "value":"exemptions"} for 8231 cohort?
-    - How many students [left]{"entity":"exemptions", "value":"exemptions"} the school due to some reason for the 2014 cohort?
+
+    - How many students [left]{"entity":"exemptions", "value":"exemptions"} the school due to some reason?
+     
+    - How many students were [exemption]{"entity":"exemptions", "value":"exemptions"} for cohort?
+    - How many students [left]{"entity":"exemptions", "value":"exemptions"} the school due to some reason for cohort?
     - How many students were [exempted]{"entity":"exemptions", "value":"exemptions"} for 2314 cohort?
 
     - What is the [exemptions]{"entity":"exemptions", "value":"exemptions"} for 2014 cohort?
@@ -16,23 +18,21 @@ nlu:
     - What is the five year graduation [rate]{"entity":"aggregation", "value":"percent"} for [2014](year)?
 
     - What is the [final](cohort_initial_final) 2014 cohort, after adjusting for [allowable exclusions]{"entity": "exemptions", "value":"exemptions"}
-    
+   
     - Of the [initial](cohort_initial_final) 2120 cohort, how many completed the program in four years or [less]{"entity": "range", "value": "within"}?
-    - Of the [initial](cohort_initial_final) 9208 cohort, how many completed the program in [more than]{"entity": "range", "value": "more than"} four years but in five years or [less]{"entity": "range", "value": "within"}? 
+    - Of the [initial](cohort_initial_final) 9208 cohort, how many completed the program in [more than]{"entity": "range", "value": "more than"} four years but in five years or [less]{"entity": "range", "value": "within"}?
     - Of the [initial](cohort_initial_final) 2013 cohort, how many completed the program in [more than]{"entity": "range", "value": "more than"} five years but in six years or [less]{"entity": "range", "value": "within"}?
 
-
-    - Of the [initial](cohort_initial_final) 4014 cohort, how many completed the program in [more than]{"entity": "range", "value": "more than"} four years but in five years or [less]{"entity": "range", "value": "within"} and are recipients of subsidized stafford [loan]{"entity":"other_aid", "value":"loan"} and did not receive a [pell grant]{"entity": "scholarship_grants", "value": "pell grant"}
-    - Of the [initial](cohort_initial_final) 4014 cohort, how many completed the program in four years or [more]{"entity": "range", "value": "more than"} but in five years or [less]{"entity": "range", "value": "within"} and are recipients of subsidized stafford [loan]{"entity":"other_aid", "value":"loan"} and did not receive a [pell grant]{"entity": "scholarship_grants", "value": "pell grant"}
-    - In 4014 cohort, how many completed the program in [at least]{"entity": "range", "value": "more than"} four years but in five years or [less]{"entity": "range", "value": "within"} and are recipients of subsidized stafford [loan]{"entity":"other_aid", "value":"loan"} and did not receive a [pell grant]{"entity": "scholarship_grants", "value": "pell grant"}
+    - Of the [initial](cohort_initial_final) 4014 cohort, how many completed the program in [more than]{"entity": "range", "value": "more than"} four years but in five years or [less]{"entity": "range", "value": "within"} and are [recipients of subsidized stafford loan and did not receive a pell grant]{"entity": "aid_status_stafford", "value": "stafford-loan"}
+    - Of the [initial](cohort_initial_final) 4014 cohort, how many completed the program in four years or [more]{"entity": "range", "value": "more than"} but in five years or [less]{"entity": "range", "value": "within"} and are [recipients of subsidized stafford loan and did not receive a pell grant]{"entity": "aid_status_stafford", "value": "stafford-loan"}
+    - In 4014 cohort, how many completed the program in [at least]{"entity": "range", "value": "more than"} four years but in five years or [less]{"entity": "range", "value": "within"} and are [recipients of subsidized stafford loan and did not receive a pell grant]{"entity": "aid_status_stafford", "value": "stafford-loan"}
 
     - What is the six year graduation [rate]{"entity": "aggregation", "value": "percent"} for students who are [recipients of a federal pell grant]{"entity": "aid_status_pell", "value": "pell-grant"} in the 2013 cohort?
-   
+    - what is the total number of students graduating [within]{"entity": "range", "value": "within"} six years for 2019 cohort who [did not receive either a pell grant or a subsidized stafford loan]{"entity":"aid_status_none", "value": "no-aid"}
 
     - What is the six year graduation [rate]{"entity": "aggregation", "value": "percent"} for the 2013 cohort?
     - What is the five year graduation [rate]{"entity": "aggregation", "value": "percent"} for the 2013 cohort?
     - What is the four year graduation [rate]{"entity": "aggregation", "value": "percent"} for the 2013 cohort?
-    
 
     # graduation time training
     - How many students graduated [within]{"entity": "range", "value": "within"} six years  for cohort of 2013 ?
@@ -41,81 +41,222 @@ nlu:
     - What is the graduation [rate]{"entity": "aggregation", "value": "percent"} for students who graduated [within]{"entity": "range", "value": "within"} five year in 2014 cohort?
     - How many students graduated [within]{"entity": "range", "value": "within"} five years  for 2014 cohort?
 
+
     - How many students graduated [within]{"entity": "range", "value": "within"} 6 years  for cohort of 2013 ?
     - How many students graduated [within]{"entity": "range", "value": "within"} 5 years  for 2055 cohort?
     - How many students graduated [within]{"entity": "range", "value": "within"} 4 years  for 2090 cohort?
     - I want to know students who graduated [within]{"entity": "range", "value": "within"} four year of 2014 cohort
-    
+   
     - graduation [rate]{"entity": "aggregation", "value": "percent"} for students who graduated in 5 years  of 2052 cohort
 
+
     - How many students graduated [more than]{"entity": "range", "value": "more than"} 5 years  and 6 years  or [less]{"entity":"range", "value":"within"} for the 2014 cohort?
+
 
     - How many students graduated in [no more than]{"entity": "range", "value": "within"} 5 years  and 6 years  or [less]{"entity":"range", "value":"within"} for the 2014 cohort?
     - How many students graduated in [no more than]{"entity": "range", "value": "within"} 4 years  
 
+
     - How many students graduated [more than]{"entity": "range", "value": "more than"} five years ?
     - How many students graduated [within]{"entity": "range", "value": "within"} five years  but in [more than]{"entity": "range", "value": "more than"} four years  for 2046 cohort?
- 
+    - How many students graduated in five year or [less]{"entity": "range", "value": "within"} for 2055 cohort who received [no aid]{"entity":"aid_status_none", "value": "no-aid"}
+
+
     - How many students graduated [between]{"entity": "range", "value": "between"} 5 years  and 6 years  for the 2014 cohort?
+
+
 
 
     - What is the graduation [rate]{"entity": "aggregation", "value": "percent"} for students who graduated in 5 years  and [more than]{"entity": "range", "value": "more than"} four year for the cohort of 2014?
 
+
     #Financial aid training data for cohorts.
 
-    - How many students in the 6590 cohort are recipients of subsidized [loan]{"entity":"other_aid", "value":"loan"} and did not receive federal [pell grant]{"entity": "scholarship_grants", "value": "pell grant"}?
-    
-    - How many students in the 2019 cohort are did not receive subsidized [loan]{"entity":"other_aid", "value":"loan"} and did not receive federal [pell grant]{"entity": "scholarship_grants", "value": "pell grant"}?
-    - How many students did not received [pell grant]{"entity": "scholarship_grants", "value": "pell grant"} but received subsidized stafford [loan]{"entity":"other_aid", "value":"loan"} for 2014 cohort?
-    - How many students in the 2019 cohort are did not receive subsidized [loan]{"entity":"other_aid", "value":"loan"} and did not receive federal [pell grant]{"entity": "scholarship_grants", "value": "pell grant"}?
-    - How many students in the 2019 cohort did not receive federal [pell grant]{"entity": "scholarship_grants", "value": "pell grant"} and did not receive subsidized stafford [loan]{"entity":"other_aid", "value":"loan"} for 2014 cohort?
-    
-    - How many students received [pell grant]{"entity": "scholarship_grants", "value": "pell grant"}
-    - How many students received subsidized stafford [loan]{"entity":"other_aid", "value":"loan"} for 2014 cohort?
-    - How many students are recipients of [pell-grant]{"entity": "scholarship_grants", "value": "pell grant"} for 2135 cohort?
 
-    # - Number of student who [didn't receive aid]{"entity": "aid_status_none", "value": "no-aid"}
-    # - Number of student who [didn't receive aid]{"entity": "aid_status_none", "value": "no-aid"}
-    # - How many students in 3532 cohort year [did not receive any aid]{"entity": "aid_status_none", "value": "no-aid"} at all?
-
-    - How many students in the [inital](cohort_initial_final) 2019 cohort recipient of federal [pell grant]{"entity": "scholarship_grants", "value": "pell grant"}
-
-    - How many students in the 2019 cohort are did not receive subsidized [loan]{"entity":"other_aid", "value":"loan"} and did not receive federal [pell grant]{"entity": "scholarship_grants", "value": "pell grant"}?
-    - How many students did not received [pell grant]{"entity": "scholarship_grants", "value": "pell grant"} but received subsidized stafford [loan]{"entity":"other_aid", "value":"loan"} for 2014 cohort?
-    - How many students in the 2019 cohort are [did not receive subsidized [loan]{"entity":"other_aid", "value":"loan"} and did not receive federal [pell grant]{"entity": "scholarship_grants", "value": "pell grant"}.
-    - How many students in the 2019 cohort did not receive federal [pell grant]{"entity": "scholarship_grants", "value": "pell grant"} and did not receive subsidized stafford [loan]{"entity":"other_aid", "value":"loan"}
-
-    - How many students received [pell grant]{"entity": "scholarship_grants", "value": "pell grant"}?
-    - How many students received subsidized stafford [loan]{"entity":"other_aid", "value":"loan"} for 2014 cohort?
-    - How many students are recipients of [pell grant]{"entity": "scholarship_grants", "value": "pell grant"}?
+    - How many students in the 6590 cohort are [recipients of subsidized loan and did not receive federal pell grant]{"entity": "aid_status_stafford", "value": "stafford-loan"}?
    
-    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort were recipients of a federal [pell grant]{"entity": "scholarship_grants", "value": "pell grant"}
-    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort were recipients of a [pell grant]{"entity": "scholarship_grants", "value": "pell grant"}
+    - How many students in the 2019 cohort are [did not receive subsidized loan and did not receive federal pell grant]{"entity": "aid_status_none", "value": "no-aid"}?
+    - How many students in the 6590 cohort are [recipients of subsidized loan and did not receive federal pell grant]{"entity": "aid_status_stafford", "value": "stafford-loan"}?
+    - How many students did not received pell grant but [received subsidized stafford loan]{"entity": "aid_status_stafford", "value": "stafford-loan"} for 2014 cohort?
+    - How many students in the 2019 cohort are [did not receive subsidized loan and did not receive federal pell grant]{"entity": "aid_status_none", "value": "no-aid"}?
+    - How many students in the 2019 cohort [did not receive federal pell grant and did not receive subsidized stafford loan]{"entity": "aid_status_none", "value": "no-aid"}?
+    - How many students in 3532 cohort year [did not receive any aid]{"entity": "aid_status_none", "value": "no-aid"} at all?
+    - How many students [received pell grant]{"entity": "aid_status_pell", "role": "pell", "value":"pell-grant"}?
+    - How many students [received subsidized stafford loan]{"entity": "aid_status_stafford", "value": "stafford-loan"} for 2014 cohort?
+    - How many students are [recipients of pell grant]{"entity": "aid_status_pell", "role": "pell", "value":"pell-grant"}? for [2135 cohort]?
+    - Number of student who [didn't receive aid]{"entity": "aid_status_none", "value": "no-aid"}
 
-    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort were recipients of a federal [pell-grant]{"entity": "scholarship_grants", "value": "pell grant"}
-    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort were recipients of a [pell grant]{"entity": "scholarship_grants", "value": "pell grant"}
-    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort were awarded federal [pell grant]{"entity": "scholarship_grants", "value": "pell grant"}
 
-    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort were recipients of a subsidized stafford [loan]{"entity":"other_aid", "value":"loan"}?
-    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort were recipients of a stafford [loan]{"entity":"other_aid", "value":"loan"}
-    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort received a subsidized stafford [loan]{"entity":"other_aid", "value":"loan"}
-    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort received a stafford [loan]{"entity":"other_aid", "value":"loan"}
-    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort were awarded a subsidized stafford [loan]{"entity":"other_aid", "value":"loan"}
-    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort were recipients of a subsidized stafford [loan]{"entity":"other_aid", "value":"loan"}
-    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort were recipients of a stafford [loan]{"entity":"other_aid", "value":"loan"}
-    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort received a subsidized stafford [loan]{"entity":"other_aid", "value":"loan"}
-    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort received a stafford [loan]{"entity":"other_aid", "value":"loan"}
+    - How many students in the [inital](cohort_initial_final) 2019 cohort [recipient of federal pell grant]{"entity": "aid_status_pell", "role": "pell", "value":"pell-grant"}
 
-    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort were not recipients of a federal [pell grant]{"entity": "scholarship_grants", "value": "pell grant"}
-    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort were not recipients of a [pell grant]{"entity": "scholarship_grants", "value": "pell grant"}
-    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort did not receive a federal [pell grant]{"entity": "scholarship_grants", "value": "pell grant"}
 
-    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort were not recipients of a subsidized stafford [loan]{"entity":"other_aid", "value":"loan"}
-    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort were not recipients of a stafford [loan]{"entity":"other_aid", "value":"loan"}
-    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort did not receive a subsidized stafford [loan]{"entity":"other_aid", "value":"loan"}
-    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort did not receive a stafford [loan]{"entity":"other_aid", "value":"loan"}
-    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort did not have a subsidized stafford [loan]{"entity":"other_aid", "value":"loan"}
-    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort did not have a stafford [loan]{"entity":"other_aid", "value":"loan"}
+    - How many students in the 2019 cohort are [did not receive subsidized loan and did not receive federal pell grant]{"entity": "aid_status_none", "value": "no-aid"}?
+    - How many students in the 6590 cohort are [recipients of subsidized loan and did not receive federal pell grant]{"entity": "aid_status_stafford", "value": "stafford-loan"}?
+    - How many students did not received pell grant but [received subsidized stafford loan]{"entity": "aid_status_stafford", "value": "stafford-loan"} for 2014 cohort?
+    - How many students in the 2019 cohort are [did not receive subsidized loan and did not receive federal pell grant]{"entity": "aid_status_none", "value": "no-aid"}?
+    - How many students in the 2019 cohort [did not receive federal pell grant and did not receive subsidized stafford loan]{"entity": "aid_status_none", "value": "no-aid"}?
+    - How many students in 3532 cohort year [did not receive any aid]{"entity": "aid_status_none", "value": "no-aid"} at all?
+    - How many students [received pell grant]{"entity": "aid_status_pell", "role": "pell", "value":"pell-grant"}?
+    - How many students [received subsidized stafford loan]{"entity": "aid_status_stafford", "value": "stafford-loan"} for 2014 cohort?
+    - How many students are [recipients of pell grant]{"entity": "aid_status_pell", "role": "pell", "value":"pell-grant"}? for [2135 cohort]?
+    - Number of student who [didn't receive aid]{"entity": "aid_status_none", "value": "no-aid"}
+
+
+    # - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort did not receive a
+
+
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort were [recipients of a federal pell grant]{"entity": "aid_status_pell", "value": "pell-grant"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort were [recipients of a pell grant]{"entity": "aid_status_pell", "value": "pell-grant"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort [received a federal pell grant]{"entity": "aid_status_pell", "value": "pell-grant"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort [received a pell grant]{"entity": "aid_status_pell", "value": "pell-grant"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort were [awarded a federal pell grant]{"entity": "aid_status_pell", "value": "pell-grant"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort were [awarded a pell grant]{"entity": "aid_status_pell", "value": "pell-grant"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort [got a federal pell grant]{"entity": "aid_status_pell", "value": "pell-grant"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort [got a pell grant]{"entity": "aid_status_pell", "value": "pell-grant"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort were [recipients of the federal pell grant]{"entity": "aid_status_pell", "value": "pell-grant"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort were [recipients of the pell grant]{"entity": "aid_status_pell", "value": "pell-grant"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort [received the federal pell grant]{"entity": "aid_status_pell", "value": "pell-grant"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort [received the pell grant]{"entity": "aid_status_pell", "value": "pell-grant"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort were [awarded the federal pell grant]{"entity": "aid_status_pell", "value": "pell-grant"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort were [awarded the pell grant]{"entity": "aid_status_pell", "value": "pell-grant"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort [got the federal pell grant]{"entity": "aid_status_pell", "value": "pell-grant"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort [got the pell grant]{"entity": "aid_status_pell", "value": "pell-grant"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort were [recipients of a federal pell grant]{"entity": "aid_status_pell", "value": "pell-grant"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort were [recipients of a pell grant]{"entity": "aid_status_pell", "value": "pell-grant"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort [received a federal pell grant]{"entity": "aid_status_pell", "value": "pell-grant"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort [received a pell grant]{"entity": "aid_status_pell", "value": "pell-grant"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort were [awarded a federal pell grant]{"entity": "aid_status_pell", "value": "pell-grant"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort were [awarded a pell grant]{"entity": "aid_status_pell", "value": "pell-grant"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort [got a federal pell grant]{"entity": "aid_status_pell", "value": "pell-grant"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort [got a pell grant]{"entity": "aid_status_pell", "value": "pell-grant"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort were [recipients of the federal pell grant]{"entity": "aid_status_pell", "value": "pell-grant"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort were [recipients of the pell grant]{"entity": "aid_status_pell", "value": "pell-grant"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort [received the federal pell grant]{"entity": "aid_status_pell", "value": "pell-grant"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort [received the pell grant]{"entity": "aid_status_pell", "value": "pell-grant"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort were [awarded the federal pell grant]{"entity": "aid_status_pell", "value": "pell-grant"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort were [awarded the pell grant]{"entity": "aid_status_pell", "value": "pell-grant"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort [got the federal pell grant]{"entity": "aid_status_pell", "value": "pell-grant"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort [got the pell grant]{"entity": "aid_status_pell", "value": "pell-grant"}
+
+
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort were [recipients of a subsidized stafford loan]{"entity": "aid_status_stafford", "value": "stafford-loan"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort were [recipients of a stafford loan]{"entity": "aid_status_stafford", "value": "stafford-loan"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort [received a subsidized stafford loan]{"entity": "aid_status_stafford", "value": "stafford-loan"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort [received a stafford loan]{"entity": "aid_status_stafford", "value": "stafford-loan"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort were [awarded a subsidized stafford loan]{"entity": "aid_status_stafford", "value": "stafford-loan"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort were [awarded a stafford loan]{"entity": "aid_status_stafford", "value": "stafford-loan"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort [got a subsidized stafford loan]{"entity": "aid_status_stafford", "value": "stafford-loan"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort [got a stafford loan]{"entity": "aid_status_stafford", "value": "stafford-loan"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort were [recipients of the subsidized stafford loan]{"entity": "aid_status_stafford", "value": "stafford-loan"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort were [recipients of the stafford loan]{"entity": "aid_status_stafford", "value": "stafford-loan"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort [received the subsidized stafford loan]{"entity": "aid_status_stafford", "value": "stafford-loan"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort [received the stafford loan]{"entity": "aid_status_stafford", "value": "stafford-loan"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort were [awarded the subsidized stafford loan]{"entity": "aid_status_stafford", "value": "stafford-loan"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort were [awarded the stafford loan]{"entity": "aid_status_stafford", "value": "stafford-loan"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort [got the subsidized stafford loan]{"entity": "aid_status_stafford", "value": "stafford-loan"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort [got the stafford loan]{"entity": "aid_status_stafford", "value": "stafford-loan"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort were [recipients of a subsidized stafford loan]{"entity": "aid_status_stafford", "value": "stafford-loan"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort were [recipients of a stafford loan]{"entity": "aid_status_stafford", "value": "stafford-loan"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort [received a subsidized stafford loan]{"entity": "aid_status_stafford", "value": "stafford-loan"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort [received a stafford loan]{"entity": "aid_status_stafford", "value": "stafford-loan"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort were [awarded a subsidized stafford loan]{"entity": "aid_status_stafford", "value": "stafford-loan"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort were [awarded a stafford loan]{"entity": "aid_status_stafford", "value": "stafford-loan"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort [got a subsidized stafford loan]{"entity": "aid_status_stafford", "value": "stafford-loan"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort [got a stafford loan]{"entity": "aid_status_stafford", "value": "stafford-loan"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort were [recipients of the subsidized stafford loan]{"entity": "aid_status_stafford", "value": "stafford-loan"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort were [recipients of the stafford loan]{"entity": "aid_status_stafford", "value": "stafford-loan"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort [received the subsidized stafford loan]{"entity": "aid_status_stafford", "value": "stafford-loan"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort [received the stafford loan]{"entity": "aid_status_stafford", "value": "stafford-loan"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort were [awarded the subsidized stafford loan]{"entity": "aid_status_stafford", "value": "stafford-loan"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort were [awarded the stafford loan]{"entity": "aid_status_stafford", "value": "stafford-loan"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort [got the subsidized stafford loan]{"entity": "aid_status_stafford", "value": "stafford-loan"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort [got the stafford loan]{"entity": "aid_status_stafford", "value": "stafford-loan"}
+
+
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort were [not recipients of a federal pell grant]{"entity": "not_modifier_pell", "value": "not-pell-grant"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort were [not recipients of a pell grant]{"entity": "not_modifier_pell", "value": "not-pell-grant"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort [did not receive a federal pell grant]{"entity": "not_modifier_pell", "value": "not-pell-grant"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort [did not receive a pell grant]{"entity": "not_modifier_pell", "value": "not-pell-grant"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort [did not have a federal pell grant]{"entity": "not_modifier_pell", "value": "not-pell-grant"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort [did not have a pell grant]{"entity": "not_modifier_pell", "value": "not-pell-grant"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort were [not awarded a federal pell grant]{"entity": "not_modifier_pell", "value": "not-pell-grant"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort were [not awarded a pell grant]{"entity": "not_modifier_pell", "value": "not-pell-grant"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort [did not get a federal pell grant]{"entity": "not_modifier_pell", "value": "not-pell-grant"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort [did not get a pell grant]{"entity": "not_modifier_pell", "value": "not-pell-grant"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort were [not recipients of the federal pell grant]{"entity": "not_modifier_pell", "value": "not-pell-grant"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort were [not recipients of the pell grant]{"entity": "not_modifier_pell", "value": "not-pell-grant"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort [did not receive the federal pell grant]{"entity": "not_modifier_pell", "value": "not-pell-grant"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort [did not receive the pell grant]{"entity": "not_modifier_pell", "value": "not-pell-grant"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort [did not have the federal pell grant]{"entity": "not_modifier_pell", "value": "not-pell-grant"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort [did not have the pell grant]{"entity": "not_modifier_pell", "value": "not-pell-grant"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort were [not awarded the federal pell grant]{"entity": "not_modifier_pell", "value": "not-pell-grant"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort were [not awarded the pell grant]{"entity": "not_modifier_pell", "value": "not-pell-grant"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort [did not get the federal pell grant]{"entity": "not_modifier_pell", "value": "not-pell-grant"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort [did not get the pell grant]{"entity": "not_modifier_pell", "value": "not-pell-grant"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort were [not recipients of a federal pell grant]{"entity": "not_modifier_pell", "value": "not-pell-grant"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort were [not recipients of a pell grant]{"entity": "not_modifier_pell", "value": "not-pell-grant"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort [did not receive a federal pell grant]{"entity": "not_modifier_pell", "value": "not-pell-grant"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort [did not receive a pell grant]{"entity": "not_modifier_pell", "value": "not-pell-grant"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort [did not have a federal pell grant]{"entity": "not_modifier_pell", "value": "not-pell-grant"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort [did not have a pell grant]{"entity": "not_modifier_pell", "value": "not-pell-grant"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort were [not awarded a federal pell grant]{"entity": "not_modifier_pell", "value": "not-pell-grant"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort were [not awarded a pell grant]{"entity": "not_modifier_pell", "value": "not-pell-grant"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort [did not get a federal pell grant]{"entity": "not_modifier_pell", "value": "not-pell-grant"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort [did not get a pell grant]{"entity": "not_modifier_pell", "value": "not-pell-grant"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort were [not recipients of the federal pell grant]{"entity": "not_modifier_pell", "value": "not-pell-grant"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort were [not recipients of the pell grant]{"entity": "not_modifier_pell", "value": "not-pell-grant"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort [did not receive the federal pell grant]{"entity": "not_modifier_pell", "value": "not-pell-grant"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort [did not receive the pell grant]{"entity": "not_modifier_pell", "value": "not-pell-grant"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort [did not have the federal pell grant]{"entity": "not_modifier_pell", "value": "not-pell-grant"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort [did not have the pell grant]{"entity": "not_modifier_pell", "value": "not-pell-grant"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort were [not awarded the federal pell grant]{"entity": "not_modifier_pell", "value": "not-pell-grant"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort were [not awarded the pell grant]{"entity": "not_modifier_pell", "value": "not-pell-grant"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort [did not get the federal pell grant]{"entity": "not_modifier_pell", "value": "not-pell-grant"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort [did not get the pell grant]{"entity": "not_modifier_pell", "value": "not-pell-grant"}
+
+
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort were [not recipients of a subsidized stafford loan]{"entity": "not_modifier_stafford", "value": "not-stafford-loan"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort were [not recipients of a stafford loan]{"entity": "not_modifier_stafford", "value": "not-stafford-loan"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort [did not receive a subsidized stafford loan]{"entity": "not_modifier_stafford", "value": "not-stafford-loan"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort [did not receive a stafford loan]{"entity": "not_modifier_stafford", "value": "not-stafford-loan"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort [did not have a subsidized stafford loan]{"entity": "not_modifier_stafford", "value": "not-stafford-loan"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort [did not have a stafford loan]{"entity": "not_modifier_stafford", "value": "not-stafford-loan"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort were [not awarded a subsidized stafford loan]{"entity": "not_modifier_stafford", "value": "not-stafford-loan"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort were [not awarded a stafford loan]{"entity": "not_modifier_stafford", "value": "not-stafford-loan"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort [did not get a subsidized stafford loan]{"entity": "not_modifier_stafford", "value": "not-stafford-loan"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort [did not get a stafford loan]{"entity": "not_modifier_stafford", "value": "not-stafford-loan"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort were [not recipients of the subsidized stafford loan]{"entity": "not_modifier_stafford", "value": "not-stafford-loan"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort were [not recipients of the stafford loan]{"entity": "not_modifier_stafford", "value": "not-stafford-loan"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort [did not receive the subsidized stafford loan]{"entity": "not_modifier_stafford", "value": "not-stafford-loan"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort [did not receive the stafford loan]{"entity": "not_modifier_stafford", "value": "not-stafford-loan"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort [did not have the subsidized stafford loan]{"entity": "not_modifier_stafford", "value": "not-stafford-loan"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort [did not have the stafford loan]{"entity": "not_modifier_stafford", "value": "not-stafford-loan"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort were [not awarded the subsidized stafford loan]{"entity": "not_modifier_stafford", "value": "not-stafford-loan"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort were [not awarded the stafford loan]{"entity": "not_modifier_stafford", "value": "not-stafford-loan"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort [did not get the subsidized stafford loan]{"entity": "not_modifier_stafford", "value": "not-stafford-loan"}
+    - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort [did not get the stafford loan]{"entity": "not_modifier_stafford", "value": "not-stafford-loan"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort were [not recipients of a subsidized stafford loan]{"entity": "not_modifier_stafford", "value": "not-stafford-loan"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort were [not recipients of a stafford loan]{"entity": "not_modifier_stafford", "value": "not-stafford-loan"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort [did not receive a subsidized stafford loan]{"entity": "not_modifier_stafford", "value": "not-stafford-loan"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort [did not receive a stafford loan]{"entity": "not_modifier_stafford", "value": "not-stafford-loan"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort [did not have a subsidized stafford loan]{"entity": "not_modifier_stafford", "value": "not-stafford-loan"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort [did not have a stafford loan]{"entity": "not_modifier_stafford", "value": "not-stafford-loan"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort were [not awarded a subsidized stafford loan]{"entity": "not_modifier_stafford", "value": "not-stafford-loan"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort were [not awarded a stafford loan]{"entity": "not_modifier_stafford", "value": "not-stafford-loan"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort [did not get a subsidized stafford loan]{"entity": "not_modifier_stafford", "value": "not-stafford-loan"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort [did not get a stafford loan]{"entity": "not_modifier_stafford", "value": "not-stafford-loan"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort were [not recipients of the subsidized stafford loan]{"entity": "not_modifier_stafford", "value": "not-stafford-loan"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort were [not recipients of the stafford loan]{"entity": "not_modifier_stafford", "value": "not-stafford-loan"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort [did not receive the subsidized stafford loan]{"entity": "not_modifier_stafford", "value": "not-stafford-loan"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort [did not receive the stafford loan]{"entity": "not_modifier_stafford", "value": "not-stafford-loan"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort [did not have the subsidized stafford loan]{"entity": "not_modifier_stafford", "value": "not-stafford-loan"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort [did not have the stafford loan]{"entity": "not_modifier_stafford", "value": "not-stafford-loan"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort were [not awarded the subsidized stafford loan]{"entity": "not_modifier_stafford", "value": "not-stafford-loan"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort were [not awarded the stafford loan]{"entity": "not_modifier_stafford", "value": "not-stafford-loan"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort [did not get the subsidized stafford loan]{"entity": "not_modifier_stafford", "value": "not-stafford-loan"}
+    - How many students in the [final]{"entity": "cohort_initial_final", "value": "final"} 2019 cohort [did not get the stafford loan]{"entity": "not_modifier_stafford", "value": "not-stafford-loan"}
+
+
     #Retention rate training data:
     - What is the [retention]{"entity":"student_enrollment_result", "value": "retention"} [rate]{"entity": "aggregation", "value": "percent"}{"entity": "retention-rate", "value": "retention-rate"} for 2019 cohort?
     - I want to know about the [retention]{"entity":"student_enrollment_result", "value": "retention"} [rate]{"entity": "aggregation", "value": "percent"}{"entity": "retention-rate", "value": "retention-rate"}
@@ -123,12 +264,6 @@ nlu:
     - What is the [rate]{"entity": "aggregation", "value": "percent"} of [retention]{"entity":"student_enrollment_result", "value": "retention"}{"entity": "retention-rate", "value": "retention-rate"} for 2021 academic year ?
 
 
-
-
-
-
-
-  
 - synonym: retention
   examples: |
     - retained

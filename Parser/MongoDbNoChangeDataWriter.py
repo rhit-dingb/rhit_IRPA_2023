@@ -11,8 +11,8 @@ from DataManager.constants import DATABASE_METADATA_FIELD_KEY
 from DataManager.constants import DATABASE_QUESTION_ANSWERS_KEY
 
 class MongoDbNoChangeDataWriter(DataWriter):
-    def __init__(self, outputName):
-        self.client = MongoClient(MONGO_DB_CONNECTION_STRING)
+    def __init__(self, outputName, client : MongoClient):
+        self.client = client
         self.databaseName = outputName
         self.db = self.client[self.databaseName]
        
@@ -20,7 +20,7 @@ class MongoDbNoChangeDataWriter(DataWriter):
 
     def write(self, sectionToQuestionAnswer : Dict[str, List[Tuple[str,  List[QuestionAnswer]]]]):
         sectionsInserted = []
-       
+        
         for sectionKey in sectionToQuestionAnswer:
             dataForEachSubSection = sectionToQuestionAnswer[sectionKey]
             subsectionsInserted = []
@@ -34,7 +34,7 @@ class MongoDbNoChangeDataWriter(DataWriter):
                        metadata[questionAnswer.getQuestion()] = questionAnswer.getAnswer()
                    else:
                         body[questionAnswer.getQuestion()] = questionAnswer.getAnswer()
-
+                print(sectionKey)
                 self.db[sectionKey].update_one({DATABASE_SUBSECTION_FIELD_KEY : subsection}, {
                     "$set": {
                         DATABASE_QUESTION_ANSWERS_KEY : body,

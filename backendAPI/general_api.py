@@ -13,6 +13,10 @@ import asyncio
 from datetime import datetime, date, timedelta
 
 
+
+
+
+
 sys.path.append('../')
 
 from backendAPI.DataType import DataType
@@ -46,7 +50,15 @@ from CacheLayer.DataDeletionSubscriber import DataDeletionSubscriber
 from CacheLayer.DataUploadSubscriber import DataUploadSubscriber
 from CacheLayer.ModelChangeSubscriber import ModelChangeSubscriber
 from CacheLayer.constants import SECTIONS_UPLOADED_KEY, START_YEAR_KEY, END_YEAR_KEY, DATA_DELETED_KEY
+from backendAPI.constants import AUTHORIZATION_HEADER_KEY
+
 from backendAPI.helper import getStartAndEndYearFromDataName
+from fastapi import Depends, FastAPI
+from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+from typing import Annotated
+from jose import JWTError, jwt
+
+
 
 authenticationManager = AuthenticationManager()
 mongoDbDataManager = MongoDataManager()
@@ -65,12 +77,13 @@ cacheEventPublisher.subscribe(dataDeletionSubscriber)
 cacheEventPublisher.subscribe(modelChangeSubscriber)
 
 
-print("OKAY")
+
 asyncio.create_task(cacheEventPublisher.startObserver()) 
 # loop.run_until_complete(test)
 
 
 app = FastAPI()
+
 
 #A list of allowed origins
 origins = [
@@ -86,6 +99,15 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+SECRET_KEY = "09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7"
+ALGORITHM = "HS256"
+ACCESS_TOKEN_EXPIRE_MINUTES = 45
+from fastapi import status
+
 
 @app.get("/")
 async def root():
@@ -124,7 +146,9 @@ Example Expected json body for cds data, for definitions, there is no yearFrom a
 """
 @app.post("/api/upload_data")
 async def parse_data(request : Request):
-    print("UPLOAD DATA")
+    token = getToken(request)
+    await verifyToken(token)
+
     jsonData = await request.json()
     # dataType = jsonData["type"]
     excelData = jsonData["data"]
@@ -137,9 +161,9 @@ async def parse_data(request : Request):
         try:
             jsonCdsLoader.loadData(excelData)
             # dataWriter = MongoDBSp arseMatrixDataWriter(outputName)
-            # dataParser = SparseMatrixDataParser()
+            # dataParser = SparseMatrixDataParser()c
             dataParser = NoChangeDataParser()
-            dataWriter = MongoDbNoChangeDataWriter(outputName)
+            dataWriter = MongoDbNoChangeDataWriter(outputName, client=client)
             parserFacade = ParserFacade(dataLoader=jsonCdsLoader, dataWriter=dataWriter, dataParser=dataParser)
             await parserFacade.parse()
  
@@ -174,16 +198,20 @@ async def get_section_subsection_for_data(request : Request):
 @app.post("/api/delete_data")
 async def delete_data(request : Request):
     jsonData = await request.json()
-    # try:
-    toDelete = jsonData["dataName"]
-    didDelete = mongoDbDataManager.deleteData(toDelete)
-    if didDelete:
-        eventData = {DATA_DELETED_KEY: toDelete}
-        await cacheEventPublisher.notify(EventType.DataDeletion,eventData )
-    print("DELETING DATA")
-    return {"didDelete": didDelete}
-    # except Exception:
-    #     raise HTTPException(status_code=500, detail="Deletion failed")
+
+    token : Annotated[str, Depends(oauth2_scheme)] = getToken(request)
+    await verifyToken(token)
+
+    try:
+        toDelete = jsonData["dataName"]
+        didDelete = mongoDbDataManager.deleteData(toDelete)
+        if didDelete:
+            eventData = {DATA_DELETED_KEY: toDelete}
+            await cacheEventPublisher.notify(EventType.DataDeletion,eventData )
+        print("DELETING DATA")
+        return {"didDelete": didDelete}
+    except Exception:
+        raise HTTPException(status_code=500, detail="Deletion failed")
 
 
 @app.get("/api/get_years_available")
@@ -234,16 +262,25 @@ async def get_unans_questions():
 @app.get("/answer_unanswered_question")
 async def answer_unanswered_question(question: str):
     answers = unansweredQuestionAnswerEngine.answerQuestion(question)
-    print("GOT ANSWERS")
-    print(answers)
     return {"answers": answers}
 
-@app.put("/question_update/{id}")
-async def handle_post_answer(id: str, answer: str):
-    unansweredQuestionDbConnector.provideAnswerToUnansweredQuestion(id, answer)
+@app.put("/question_update")
+async def handle_post_answer(request: Request):
+    token = getToken(request)
+    await verifyToken(token)
+    jsonData = await request.json()
+    answer = jsonData["answer"]
+    questionId = jsonData["id"]
+    unansweredQuestionDbConnector.provideAnswerToUnansweredQuestion(questionId, answer)
 
-@app.delete("/question_delete/{id}")
-async def handle_delete_answer(id: str):
+
+@app.delete("/question_delete")
+async def handle_delete_answer(request: Request):
+    token = getToken(request)
+    await verifyToken(token)
+
+    jsonData = await request.json()
+    id = jsonData["id"]
     db = client.freq_question_db
     questions_collection = db.unans_question
     boo1 = questions_collection.delete_one({'_id': ObjectId(id)})
@@ -258,7 +295,10 @@ async def handle_add_unanswered_question(request : Request):
     jsonData = await request.json()
     question = jsonData["content"]
     chatbotAnswers = jsonData["chatbotAnswers"]
+    
     return unansweredQuestionDbConnector.addNewUnansweredQuestion(question, chatbotAnswers)
+
+
 
 
 #====================Below are the list of APIs for Freqency API==========================
@@ -327,13 +367,94 @@ GET request: http://127.0.0.1:8000/general_stats/
 
 
 """"
-AUTHENTICATION API
+AUTHENTICATION API. Code reference from https://fastapi.tiangolo.com/tutorial/security/oauth2-jwt/
 """
-@app.post("/login")
-async def login(request: Request):
-    jsonData = await request.json()
-    username = jsonData["username"]
-    password = jsonData["password"]
-    loginSuccess = authenticationManager.login(username, password)
-    return {"loggedIn": loginSuccess}
 
+
+def create_access_token(data: dict, expires_delta: timedelta | None = None):
+    to_encode = data.copy()
+    if expires_delta:
+        expire = datetime.utcnow() + expires_delta
+    else:
+        expire = datetime.utcnow() + timedelta(minutes=15)
+    to_encode.update({"exp": expire})
+    encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+    return encoded_jwt
+
+# @app.post("/authenticate")
+# async def login(request: Request):
+#     jsonData = await request.json()
+#     username = jsonData["username"]
+  
+#     loginSuccess = authenticationManager.checkIsAdmin(username)
+#     return {"loggedIn": loginSuccess}
+
+
+@app.post("/token")
+async def authenticate(form_data: OAuth2PasswordRequestForm = Depends()):
+    username = form_data.username
+    isAdmin = authenticationManager.checkIsAdmin(username)
+    if not isAdmin:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Not an admin",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    
+    access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    access_token = create_access_token(
+        data={"sub": username}, expires_delta=access_token_expires
+    )
+    return {"access_token": access_token, "token_type": "bearer"}
+   
+
+
+
+# async def get_current_user(token: Annotated[str, Depends(oauth2_scheme)]):
+#     user = fake_decode_token(token)
+#     return user
+
+# @app.get("/users/me")
+# async def read_users_me(current_user: Annotated[str, Depends(get_current_user)]):
+#     return current_user
+
+@app.get("/items/")
+async def read_items(token: Annotated[str, Depends(oauth2_scheme)]):
+    return {"token": token}
+
+
+#decrypt the token and verify the validity of the token, return the admin's username
+async def verifyToken(token : Annotated[str, Depends(oauth2_scheme)]) -> str:
+    credentials_exception = HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail="Could not validate credentials",
+        headers={"WWW-Authenticate": "Bearer"},
+    )
+
+    try:
+        if token == None:
+            raise credentials_exception
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        username: str = payload.get("sub")
+        print("GOT USERNAME", username)
+        if username is None:
+            raise credentials_exception
+        user = authenticationManager.checkIsAdmin(username)
+        print("GOT USER", user)
+        if user == None:
+            raise credentials_exception
+        
+        return user
+    except JWTError:
+
+        raise credentials_exception
+
+
+
+# helper methods
+def getToken(request : Request):
+    if AUTHORIZATION_HEADER_KEY in request.headers:
+        return request.headers[AUTHORIZATION_HEADER_KEY]
+    else:
+        return None
+    
