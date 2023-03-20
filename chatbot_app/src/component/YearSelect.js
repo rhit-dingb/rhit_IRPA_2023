@@ -31,8 +31,8 @@ function YearSelect({ convId }) {
                 //If year is not available, set to most recent year
                 if (yearsAvailable && yearsAvailable.length > 0) {
                     let mostRecentYearRange = yearsAvailable[0]
-                    console.log("MOST RECENT RANGE")
-                    console.log(mostRecentYearRange)
+                    // console.log("MOST RECENT RANGE")
+                    // console.log(mostRecentYearRange)
                     setYearRange(mostRecentYearRange)
                 }
         }) 

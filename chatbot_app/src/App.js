@@ -17,6 +17,7 @@ import ReportIssue from "./component/ReportIssue";
 import UploadData from "./component/UploadData/UploadData";
 import AdminLogin from "./component/Authentication/AdminLogin";
 import Frequency from "./component/Frequency";
+import AdminList from "./component/Authentication/AdminList";
 // firebase.initializeApp({
 //   apiKey: "AIzaSyDWEnr4gUrMXGIGuSSUdkAgrO4CvHC-JO0",
 //   authDomain: "irpa-chabot.firebaseapp.com",
@@ -48,6 +49,9 @@ function App() {
 
 
           <Route path="/upload_data" component={UploadData} />
+
+
+          <Route path="/admin_list" component={AdminList} />
 
           {/* If any route mismatches the upper 
           route endpoints then, redirect triggers 

@@ -78,8 +78,14 @@ export function Navbar() {
             </a>
 
             <a class="dropdown-item">
-              <Link onClick={(e)=>{logOut(history)}} to="/admin_login">Logout </Link>
+              <Link  to="/admin_list">Admin List</Link>
             </a>
+
+            <a class="dropdown-item">
+              <Link onClick={(e)=>{logOut(history)}} to="/admin_login">Logout</Link>
+            </a>
+
+           
             </div> : null }
 
           </div>

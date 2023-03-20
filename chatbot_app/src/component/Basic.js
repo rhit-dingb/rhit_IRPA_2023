@@ -60,7 +60,7 @@ function Basic() {
 
   const rasaAPI = async function handleClick(conversationId, msg) {
     //chatData.push({sender : "user", sender_id : name, msg : msg});
-    console.log(chat);
+    // console.log(chat);
     await fetch(
       `${RASA_API_STRING}/webhooks/rest/webhook`,
       {

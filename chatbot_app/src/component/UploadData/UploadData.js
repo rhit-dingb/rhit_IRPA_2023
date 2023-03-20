@@ -129,7 +129,6 @@ function UploadData(props) {
         body: JSON.stringify(body),
         headers: {
           "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "http://localhost:3000",
           "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
           "Access-Control-Allow-Headers": "Content-Type"
         },
@@ -246,8 +245,7 @@ function UploadData(props) {
             }
 
             body["data"] = jsonData
-            console.log("BODY")
-            console.log(JSON.stringify(jsonData))
+
             setIsUploading(true)
             const infoMessage = "File is uploading...."
             displayInfoMessage(infoMessage)
@@ -257,33 +255,43 @@ function UploadData(props) {
                 body: JSON.stringify(body),
                 headers: {
                   "Content-Type": "application/json",
-                  "Access-Control-Allow-Origin": "http://localhost:3000",
                   "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-                  "Access-Control-Allow-Headers": "Content-Type"
+                  "Access-Control-Allow-Headers": "Content-Type", 
+                  "Authorization": localStorage.getItem(TOKEN_KEY)
                 },
               }).then((result_1) => {
-                  result_1.json().then((data) => {
-                    setIsUploading(false);
-                    let resultJson = data;
-                    if (!result_1.ok) {
-                      displayErrorMessage(resultJson["detail"])
-                    }else{
-                      let uploadedAs = ""
-                      if ("uploadedAs" in resultJson){
+                  setIsUploading(false);
+                  let successCallback = (stringifiedJson)=>{
+                    let resultJson = JSON.parse(stringifiedJson)
+                    let uploadedAs = ""
+                    if ("uploadedAs" in resultJson){
                         let fileName = resultJson["uploadedAs"]
                         uploadedAs = `as ${fileName}`
-                      }
-                      
-                      displaySuccessMessage(`File uploaded successfully ${uploadedAs}`)
-                      console.log("UPLOAD DONE")
                     }
+                    displaySuccessMessage(`File uploaded successfully ${uploadedAs}`)
+                    console.log("UPLOAD DONE")
+                  }
 
-                    resolve()
-                }).catch((err) =>{
-                      console.error(err);
-                      displayErrorMessage(err)
-                      reject()
-                  })
+                  checkResponse(result_1, displayErrorMessage,  successCallback, props.history)
+
+                  // result_1.json().then((data) => {
+                  //   setIsUploading(false);
+                  //   let resultJson = data;
+                  //   if (!result_1.ok) {
+                  //     displayErrorMessage(resultJson["detail"])
+                  //   }else{
+                  //     let uploadedAs = ""
+                  //     if ("uploadedAs" in resultJson){
+                  //       let fileName = resultJson["uploadedAs"]
+                  //       uploadedAs = `as ${fileName}`
+                  //     }
+                      
+                  //     displaySuccessMessage(`File uploaded successfully ${uploadedAs}`)
+                  //     console.log("UPLOAD DONE")
+                  //   }
+
+                  //  
+                  resolve()
                 }).catch((err) => {
                   console.log(err);
                   setIsUploading(false);
@@ -297,6 +305,7 @@ function UploadData(props) {
 
 
     const displayErrorMessage = (message)=>{
+      console.log(message)
       displayMessage(message, "error")
     }
 
@@ -364,10 +373,11 @@ function UploadData(props) {
             updateFunc()
           }
 
+          console.log("CHECK RESPONSE")
           checkResponse(response, displayErrorMessage, successCallback, props.history)
           
       }).catch((err)=>{
-        displayErrorMessage(err)
+        checkResponse(err)
       })
     }
 

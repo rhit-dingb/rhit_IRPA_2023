@@ -103,7 +103,6 @@ app.add_middleware(
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 SECRET_KEY = config('SECRET_KEY')
-print(SECRET_KEY)
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 45
 from fastapi import status
@@ -367,7 +366,6 @@ GET request: http://127.0.0.1:8000/general_stats/
 AUTHENTICATION API. Code reference from https://fastapi.tiangolo.com/tutorial/security/oauth2-jwt/
 """
 
-
 def create_access_token(data: dict, expires_delta: timedelta | None = None):
     to_encode = data.copy()
     if expires_delta:
@@ -413,9 +411,9 @@ async def authenticate(form_data: OAuth2PasswordRequestForm = Depends()):
 # async def read_users_me(current_user: Annotated[str, Depends(get_current_user)]):
 #     return current_user
 
-@app.get("/items/")
-async def read_items(token: Annotated[str, Depends(oauth2_scheme)]):
-    return {"token": token}
+# @app.get("/items/")
+# async def read_items(token: Annotated[str, Depends(oauth2_scheme)]):
+#     return {"token": token}
 
 
 #decrypt the token and verify the validity of the token, return the admin's username
@@ -444,6 +442,13 @@ async def verifyToken(token : Annotated[str, Depends(oauth2_scheme)]) -> str:
 
         raise credentials_exception
 
+
+@app.get("/admins")
+async def getAdmins(request : Request):
+    token = getToken(request)
+    verifyToken(token)
+    adminList = authenticationManager.getAdmins()
+    return adminList
 
 # helper methods
 def getToken(request : Request):

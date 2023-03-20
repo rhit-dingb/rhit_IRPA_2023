@@ -2,8 +2,9 @@ import { TOKEN_KEY } from "../constants/constants"
 
 export const checkResponse = (response, errorCallback, successCallback, history)=>{
     response.json().then(data=>{
+        console.log(data)
         if(!response.ok) {
-            // console.log(response)
+            
             if (response.status == 401) {
                 console.log("SESSION EXPIRED")
                 logOut(history)
@@ -14,6 +15,9 @@ export const checkResponse = (response, errorCallback, successCallback, history)
             }
           
         } else {
+            console.log("RESPONSE NOT OKAY")
+            console.log(response)
+            
            successCallback(JSON.stringify(data))
         }
     })

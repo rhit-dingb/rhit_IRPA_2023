@@ -98,13 +98,11 @@ class QuestionAnswer extends React.Component {
 
     e.preventDefault()
     var inputtedAnswer = document.getElementById("answerInput").value;
-    console.log("ANSWER")
-    // console.log(inputtedAnswer);
     if(inputtedAnswer.trim().length <= 0) {
       document.getElementById("warningText").innerHTML = "Please enter an answer";
     } else {
-      // console.log("question 1 submitted");
-      console.log(this.props.questionObj._id.$oid);
+     
+      //console.log(this.props.questionObj._id.$oid);
 
       let body = {
         "id": this.props.questionObj._id.$oid,
@@ -125,7 +123,7 @@ class QuestionAnswer extends React.Component {
           });
         }
         //might refactor this
-        console.log(this.props)
+       
         checkResponse(response, this.showFailedMessage, successCallback, this.props.history)
       })
     }
@@ -229,7 +227,7 @@ function getQuestions() {
     })
     .then(response => response.json())
     .then(data => {
-      console.log("questions" + data);
+     
       return data;
     });
     // setQuestions(["1","2","3"]);
@@ -237,7 +235,7 @@ function getQuestions() {
 }
 
 function Admin(props) {
-  console.log(props)
+ 
   //todo: make a request to refresh the 
   const [questions, setQuestions] = useState([]);
   const [selectedQuestion, setSelectedQuestion] = useState(null)

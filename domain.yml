@@ -108,13 +108,13 @@ entities:
 - exemptions
 
 
-- aid_status_pell
-- aid_status_stafford
-- not_modifier_pell
-- not_modifier_stafford
+# - aid_status_pell
+# - aid_status_stafford
+# - not_modifier_pell
+# - not_modifier_stafford
 
-#Value: no aid
-- aid_status_none
+# #Value: no aid
+# - aid_status_none
 
 
 
@@ -287,6 +287,9 @@ entities:
 #Captures aids other than self-help, and scholarship or grants.
 #Value: waiver,  loan
 - other_aid
+
+- no_aid
+
 
 #Captures Need or non need base aid
 - need_non_need_base_aid

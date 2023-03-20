@@ -88,16 +88,17 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         if isRangeAllowed and hasRangeEntity:
             rangeResultData : RangeResultData =  self.aggregateDiscreteRange(entitiesExtracted, sparseMatrixToSearch, isSumAllowed)
             filteredEntities = filterEntities(entitiesExtracted, [RANGE_ENTITY_LABEL, NUMBER_ENTITY_LABEL])
+        
             searchResults : List[SearchResult] = rangeResultData.answers
             for searchResult in searchResults:
+                print("FROM RANGE")
+                print(searchResult.entitiesUsed)
                 searchResult.addEntities(filteredEntities)
         else:
             searchResults : List[SearchResult] = sparseMatrixToSearch.searchOnSparseMatrix(entitiesExtracted, shouldAddRowStrategy, isSumAllowed)
         if isPercentageAllowed and percentageEntityDetected:
             percentages = await self.calculatePercentages(searchResults, sparseMatrixToSearch,  percentageEntityDetected)
-            # print("GOT VALUE ", percentages)
-            if not percentages == None and len(percentages) > 0:
-                searchResults = percentages
+            searchResults = percentages
         await self.getAllEntityForRealQuestionFoundForAnswer(searchResults)
 
         # also get the documentation of change 
@@ -131,38 +132,51 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
     
     # STILL WORK IN PROGRESS
     async def calculatePercentages(self, searchResults : List[SearchResult], sparseMatrix : SparseMatrix, percentageEntityDetected : Dict[str, str]) -> List[str]:
+       
+        print("CALCULATING PERCENTAGE")
         shouldAddRowStrategy = DefaultShouldAddRowStrategy()
         denominatorQuestion = sparseMatrix.findDenominatorQuestion()
         percentageSearchInSelf = sparseMatrix.shouldSearchInSelfForPercentage()
         async with aiohttp.ClientSession() as session:
             response = await self.rasaCommunicator.parseMessage(denominatorQuestion, session)
             entitiesFromDenominatorQuestion = response["entities"]
-
             percentages = []
             
+            print(len(searchResults))
+
+
             for searchResult in searchResults:
                 entitiesUsedForThisSearchResult = searchResult.getEntitiesUsed()
+                print("ENTITIES USED FOR THIS SEARCH RESULT")
+                print(entitiesUsedForThisSearchResult)
                 entitiesForDenominator = entitiesFromDenominatorQuestion
                 if percentageSearchInSelf:
                     entitiesForDenominator =  entitiesFromDenominatorQuestion + entitiesUsedForThisSearchResult
                 
+                # print(denominatorQuestion)
+                # print(entitiesForDenominator)
                 searchResults = sparseMatrix.searchOnSparseMatrix(entitiesForDenominator, shouldAddRowStrategy, True)
                 if len(searchResults) == 0:
                     return []
 
                 denominator = searchResults[0]
+                print("FOUND DENOMINATOR")
+                print(denominator)
                 # try:
                 numerator = float(searchResult.answer)
                 percentageCalc = numerator/float(denominator.answer)*100
                 percentage = round(percentageCalc, 1)
                 percentage = PERCENTAGE_FORMAT.format(value = percentage)
                 allEntityUsedAndPercentage = entitiesUsedForThisSearchResult + [percentageEntityDetected]
-             
+                # print(allEntityUsedAndPercentage)
+
+                
                 percentageSearchResult = SearchResult(percentage, allEntityUsedAndPercentage, SearchResultType.PERCENTAGE, searchResult.realQuestion)
                 percentages.append(percentageSearchResult)
                 # except:
                 #     continue
-
+            # for t in percentages:
+            #     print(t.entities)
             return percentages
         
 
@@ -259,14 +273,14 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         foundAnswers : List[SearchResult] = []
         rangeResultData = RangeResultData()
        
-        minRange = float('-inf')
-        maxRange = float('inf')
+        minRange = float('inf')
+        maxRange = float('-inf')
         for r in rangesToSumOver:
             entitiesToCheck = []
             fakeEntity = None
 
-            minRange = max(minRange, r[0])
-            maxRange = min(maxRange, r[1])
+            minRange = min(minRange, r[0])
+            maxRange = max(maxRange, r[1])
             if not r[0] == float('inf') and not r[0] == float('-inf')  :
                 fakeEntity = {
                         "entity": NUMBER_ENTITY_LABEL,
@@ -284,7 +298,6 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
             searchResults : List[SearchResult] = sparseMatrix.searchOnSparseMatrix(entitiesToCheck, shouldAddRowStrategy,isSumming)
             if len(searchResults) == 0:
                 continue
-
             # On each iteration, we expect to only get one answer from search
             searchResult = searchResults[0]
             if answerPointer == None:
@@ -297,8 +310,8 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         rangeToCreateEntityFor = rangesToSumOver
         if isSumming:
             rangeToCreateEntityFor = [[minRange, maxRange]]
+         
         rangeResultData.createFinalResultAndEntities(rangeToCreateEntityFor, foundAnswers)
-        # entitiesToUse = self.constructRangeEntityHelper(intention, numbersUsed)
         return rangeResultData
 
     

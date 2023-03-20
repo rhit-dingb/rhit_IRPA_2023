@@ -31,9 +31,11 @@ class RangeResultData():
                 intention = "lowerBound"
             else:
                 intention = "between"
-
-            entityValues =  getEntityValueHelper(searchResult.entitiesUsed)
-            finalEntities = self.constructRangeEntityHelper(intention, entityValues)
+            
+            # entityValues =  getEntityValueHelper(searchResult.entitiesUsed)
+            # print("ENTITY VALUES")
+            # print(entityValues)
+            finalEntities = self.constructRangeEntityHelper(intention, range)
             self.addResult(searchResult, finalEntities)
 
         # if isSumming:
@@ -56,6 +58,9 @@ class RangeResultData():
         entities = []
         minEntity = createEntityObj(min(numbersUsed), entityLabel=NUMBER_ENTITY_LABEL)
         maxEntity = createEntityObj(max(numbersUsed), entityLabel=NUMBER_ENTITY_LABEL)
+
+        print("MAX ENTITY", maxEntity)
+        print(numbersUsed)
         # print("INTENTION")
         # print(intention)
 

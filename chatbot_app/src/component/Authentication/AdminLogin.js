@@ -28,16 +28,12 @@ import RoseFire from "./rosefire.min.js"
 function AdminLogin(props) {
     // const [userName, setUserName] = useState([])
     // const [] = useState("")
-    const usernameRef = useRef()
-    const passwordRef= useRef()
+  
     const history = useHistory();
-
-
     useEffect(() => {
         if (history.location.state){
             alert(history.location.state)
         }
-       
       }, []);
 
     const handleLogin = (e)=>{
@@ -71,8 +67,7 @@ function AdminLogin(props) {
                     alert("Unauthorized Login")
                 }else{
                     return response.json().then((data)=>{
-                      
-                        console.log(data)
+                    
                         let token = data[TOKEN_KEY]
                         localStorage.setItem(TOKEN_KEY, token)
                         history.push({pathname:'/unanswered_questions' });

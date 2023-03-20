@@ -157,6 +157,8 @@ class SparseMatrix():
         return self.isThisOperationAllowed(constants.PERCENTAGE_ALLOWED_COLUMN_VALUE)
 
     def findDenominatorQuestion(self) -> str:
+        print(self.metadata)
+       
         denominatorQuestion = self.findValueForMetadata(constants.DENOMINATOR_QUESTION_COLUMN_VALUE)
         if denominatorQuestion == None:
             return ""
@@ -220,6 +222,7 @@ class SparseMatrix():
         searchResults = []
         currentResultPointer = None
         entitiesUsed= []
+        
         # get the underlying pandas dataframe from the internal data model
         sparseMatrixToSearchDf = self.getSparseMatrixDf()
         for i in range(sparseMatrixToSearchDf.shape[0]):
@@ -246,14 +249,12 @@ class SparseMatrix():
 
                 newSearchResult : SearchResult = SearchResult(newAnswer, usedEntities, type, realQuestion= question )
                 if currentResultPointer == None: 
-                    # searchResult : SearchResult = SearchResult(newAnswer, usedEntities, type, self.questions[i])
                     currentResultPointer = newSearchResult
-                    # currentResultPointer = str(currentResultPointer)
+                   
                     searchResults.append(currentResultPointer)
                 else:
                     # print("ADDING", newSearchResult.answer)
                     currentResultPointer = self.addSearchResult(currentResultPointer, newSearchResult, searchResults, isSumAllowed)
-
                 
         return searchResults
 
