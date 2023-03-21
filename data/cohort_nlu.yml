@@ -14,7 +14,7 @@ nlu:
     - What is the [exemptions]{"entity":"exemptions", "value":"exemptions"} for 2014 cohort?
 
 
-    - What is the five year graduation [rate]{"entity":"aggregation", "value":"percent"} for [2014](year)?
+    - What is the five year graduation [rate]{"entity":"aggregation", "value":"percent"}?
 
 
     - What is the [final](cohort_initial_final) 2014 cohort, after adjusting for [allowable exclusions]{"entity": "exemptions", "value":"exemptions"}

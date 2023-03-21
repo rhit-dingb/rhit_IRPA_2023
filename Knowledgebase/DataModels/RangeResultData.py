@@ -59,11 +59,6 @@ class RangeResultData():
         minEntity = createEntityObj(min(numbersUsed), entityLabel=NUMBER_ENTITY_LABEL)
         maxEntity = createEntityObj(max(numbersUsed), entityLabel=NUMBER_ENTITY_LABEL)
 
-        print("MAX ENTITY", maxEntity)
-        print(numbersUsed)
-        # print("INTENTION")
-        # print(intention)
-
         # print(entities)
         if intention == "upperBound":
             rangeEntityUpperBound =  createEntityObj("within", entityLabel=RANGE_ENTITY_LABEL)

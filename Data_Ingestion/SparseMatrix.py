@@ -165,7 +165,7 @@ class SparseMatrix():
         else:
             return denominatorQuestion
 
-    def searchInSelfForPercentage(self) -> bool:
+    def shouldSearchInSelfForPercentage(self) -> bool:
         searchInSelfForPercentage = self.findValueForMetadata(constants.PERCENTAGE_SEARCH_IN_SELF_COLUMN_VALUE)
         return self.checkIsEnabled(searchInSelfForPercentage)
     
@@ -215,8 +215,7 @@ class SparseMatrix():
         else:
             return None
 
-    def shouldSearchInSelfForPercentage(self):
-        return False
+  
     
     def searchOnSparseMatrix(self, entities, shouldAddRowStrategy, isSumAllowed):
         searchResults = []
@@ -225,6 +224,7 @@ class SparseMatrix():
         
         # get the underlying pandas dataframe from the internal data model
         sparseMatrixToSearchDf = self.getSparseMatrixDf()
+        
         for i in range(sparseMatrixToSearchDf.shape[0]):
             row = sparseMatrixToSearchDf.loc[i]
             if "total" in row.index and sparseMatrixToSearchDf.loc[i,"total"] == 1:
