@@ -1706,7 +1706,6 @@ nlu:
     - mixed race
 
 
-  
 
 
 
@@ -1714,6 +1713,7 @@ nlu:
   examples: |
     - I want to know about admission.
     - I want to know about admission data.
+    - What is Rose-Hulman's admission [policy]{"entity":"policy", "value":"policy"}??
     - How many student are [admitted]{"entity": "action", "value": "accepted"}
     - how many student are [accepted]{"entity": "action", "value": "accepted"}
     - How many [male]{"entity": "gender", "value": "male"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}  [applied]{"entity": "action", "value": "applied"} in Rose-Hulman?
@@ -1734,8 +1734,8 @@ nlu:
     - How many [male]{"entity": "gender", "value": "male"} [first-time]{"entity": "is_first_time", "value": "first-time"} [first-year]{"entity": "is_first_year", "value": "first-year"}  [admitted]{"entity": "action", "value": "accepted"} in Rose-Hulman?
     - How many [female]{"entity": "gender", "value": "female"} [first-time]{"entity": "is_first_time", "value": "first-time"} [first-year]{"entity": "is_first_year", "value": "first-year"}  [admitted]{"entity": "action", "value": "accepted"} in Rose-Hulman?
 
-    - Do you have policy of placing student on [waiting-list]{"entity":"waiting-list", "value": "waiting-list"}?
-    - Is there any [wait list]{"entity":"waiting-list", "value": "waiting-list"} policy
+    - Do you have [policy]{"entity":"policy", "value":"policy"} of placing student on [waiting-list]{"entity":"waiting-list", "value": "waiting-list"}?
+    - Is there any [wait list]{"entity":"waiting-list", "value": "waiting-list"} [policy]{"entity":"policy", "value":"policy"}
     - Is rose-hulman's [waitlist]{"entity":"waiting-list", "value": "waiting-list"} ranked?
     - What's the number of students did you offered a place on [waiting-list]{"entity":"waiting-list", "value": "waiting-list"}?
 
@@ -1766,8 +1766,8 @@ nlu:
     - What is the [notification]{"entity": "admission_decision_date" , "value": "notification"} [date]{"entity": "time" , "value": "date"} for [application]{"entity":"academic_process", "value":"application"}?
     - What is the [notification]{"entity": "admission_decision_date" , "value": "notification"} [date]{"entity": "time" , "value": "date"} to applicants of admission decision sent?
     
-    - What is the [reply]{"entity": "admission_decision_date" , "value": "reply"} policy for admitted applicants?
-    - What is the [reply]{"entity": "admission_decision_date" , "value": "reply"} policy?
+    - What is the [reply]{"entity": "admission_decision_date" , "value": "reply"} [policy]{"entity":"policy", "value":"policy"} for admitted applicants?
+    - What is the [reply]{"entity": "admission_decision_date" , "value": "reply"} [policy]{"entity":"policy", "value":"policy"}?
 
     - Dose your [institute]{"entity":"education_level", "value": "college"} allow students to [defer]{"entity": "defer", "value": "defer"} enrollment after admission?
   
@@ -1810,7 +1810,6 @@ nlu:
 
     - What is the [deadline]{"entity":"time", "value": "date"} for [housing]{"entity": "housing", "value": "housing"} deposit?
     
-
 
     - What should I take in [high school] for admission to rose-hulman?
     - total [units]{"entity": "academic_credit", "value": "unit"} [recommended]{"entity": "condition", "value":"recommend"}?
@@ -1981,11 +1980,11 @@ nlu:
     - apply online
     - online apply 
 
-- synonym: reply-policy
-  examples: |
-    - reply policy
-    - reply date
-    - reply day
+# - synonym: reply-[policy]{"entity":"policy", "value":"policy"}
+#   examples: |
+#     - reply
+#     - reply date
+#     - reply day
 
 
 - synonym: defer

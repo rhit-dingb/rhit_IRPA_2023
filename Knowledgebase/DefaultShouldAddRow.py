@@ -49,7 +49,7 @@ class DefaultShouldAddRowStrategy(ShouldAddRowInterface):
             if entityValue in columns and row[entityValue] == 1:
                 temp_count = temp_count+1
             else:
-                # print("MISMATCH AT", entityValue)
+                print("MISMATCH AT", entityValue)
                 continue
         # print("MATCH")
         # print(temp_count)

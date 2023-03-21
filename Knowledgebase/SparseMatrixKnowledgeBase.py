@@ -296,8 +296,8 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
                 }
                 entitiesToCheck.append(fakeEntity)
 
-            # print("ENTITIES TO CHECK")
-            # print(entitiesToCheck)
+            print("ENTITIES TO CHECK")
+            print(entitiesToCheck)
 
             searchResults : List[SearchResult] = sparseMatrix.searchOnSparseMatrix(entitiesToCheck, shouldAddRowStrategy,isSumming)
             if len(searchResults) == 0:

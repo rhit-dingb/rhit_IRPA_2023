@@ -137,7 +137,9 @@ nlu:
     - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort did not receive a stafford [loan]{"entity":"other_aid", "value":"loan"}
     - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort did not have a subsidized stafford [loan]{"entity":"other_aid", "value":"loan"}
     - How many students in the [initial]{"entity": "cohort_initial_final", "value": "initial"} 2019 cohort did not have a stafford [loan]{"entity":"other_aid", "value":"loan"}
- 
+
+    - How many students graduated within 6 years received neither a subsidized stafford [loan]{"entity":"other_aid", "value":"loan"} and neither a [pell grant]{"entity": "scholarship_grants", "value": "pell grant"}.
+
     #Retention rate training data:
     - What is the [retention]{"entity":"student_enrollment_result", "value": "retention"} [rate]{"entity": "aggregation", "value": "percent"}{"entity": "retention-rate", "value": "retention-rate"} for 2019 cohort?
     - I want to know about the [retention]{"entity":"student_enrollment_result", "value": "retention"} [rate]{"entity": "aggregation", "value": "percent"}{"entity": "retention-rate", "value": "retention-rate"}
