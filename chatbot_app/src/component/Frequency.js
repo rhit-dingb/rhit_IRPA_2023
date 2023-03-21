@@ -1,27 +1,35 @@
 import { Navbar } from "./Navbar";
-import { Box, Card, List, Grid, InputLabel, MenuItem, Select, FormControl, ListItem, ListItemText } from "@mui/material";
+import { Box, Card, List, Grid, InputLabel, MenuItem, Select, FormControl, ListItem, ListItemText, ButtonGroup, IconButton } from "@mui/material";
 import { DataGrid } from '@mui/x-data-grid';
 import { useState, useEffect } from "react";
 
 function Frequency() {
+    /*
+    range:
+        0: last month
+        1: last year
+        2: all time
+    */
     const [range, setRange] = useState(0);
+    /*
+    displayType:
+        0: list by intent
+        1: list by question
+        2: list all
+    */
+    const [displayType, setDisplayType] = useState(0);
     const [freqData, setFreqData] = useState([]);
 
-    const columns = [
+    const columnsListAll = [
         {
-            field: 'id',
-            headerName: 'ID',
-            width: 220
+            field: 'question',
+            headerName: 'Question Asked',
+            width: 400
         },
         {
             field: 'intent',
             headerName: 'Intent',
             width: 120
-        },
-        {
-            field: 'question',
-            headerName: 'Question Asked',
-            width: 300
         },
         {
             field: 'time',
@@ -31,9 +39,34 @@ function Frequency() {
         {
             field: 'feedback',
             headerName: 'Feedback',
-            width: 100
+            width: 200
         }
     ];
+    const columnsListByIntent = [
+        {
+            field: 'intent',
+            headerName: 'Intent',
+            width: 200
+        },
+        {
+            field: 'count',
+            headerName: 'Count',
+            width: 200
+        }
+    ];
+    const columnsListByQuestion = [
+        {
+            field: 'question',
+            headerName: 'Question',
+            width: 400
+        },
+        {
+            field: 'count',
+            headerName: 'Count',
+            width: 200
+        }
+    ];
+    var columns = columnsListAll;
 
     useEffect(() => {
         const current = new Date();
@@ -56,6 +89,10 @@ function Frequency() {
         }
     }
 
+    const handleChangeDisplayType = (event) => {
+        setDisplayType(event.target.value);
+    }
+
     const fetchStats = (apiParamStr) => {
         fetch('http://localhost:8000/general_stats/?' + apiParamStr)
             .then(res => res.json())
@@ -63,8 +100,8 @@ function Frequency() {
                 setFreqData(data.map(entry => {
                     return {
                         id: entry._id.$oid,
-                        intent: entry.intent,
                         question: entry.question_asked,
+                        intent: entry.intent,
                         time: entry.time_asked.$date,
                         feedback: entry.user_feedback
                     };
@@ -79,6 +116,14 @@ function Frequency() {
                 <Grid container direction="column" justifyContent="flex-start" alignItems="stretch">
                     <Grid item>
                         <Box sx={{ width: '100%', margin: "auto"}}>
+                            <FormControl>
+                                <InputLabel id="display-type-label">Display Type</InputLabel>
+                                <Select id="display-type" labelId="display-type-label" value={displayType} label="Display Type" onChange={handleChangeDisplayType}>
+                                    <MenuItem value={0}>List by Intent</MenuItem>
+                                    <MenuItem value={1}>List by Question</MenuItem>
+                                    <MenuItem value={2}>List All</MenuItem>
+                                </Select>
+                            </FormControl>
                             <FormControl>
                                 <InputLabel id="time-range-label">Time Range</InputLabel>
                                 <Select id="time-range" labelId="time-range-label" value={range} label="Time Range" onChange={handleChangeRange}>
