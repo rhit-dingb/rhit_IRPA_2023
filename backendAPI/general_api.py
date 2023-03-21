@@ -290,3 +290,26 @@ async def handle_new_event(endDate: datetime = datetime.now(), startDate_short: 
 Test 1: DEFAULT VIEW
 GET request: http://127.0.0.1:8000/general_stats/
 """
+
+@app.get("/feedback_stats/")
+async def success_rate(endDate: datetime = datetime.now(), startDate: datetime = (datetime.now() - timedelta(days=30))):
+    db = client.freq_question_db
+    freq_collection = db.cds_frequency
+    total_questions = freq_collection.count_documents({"time_asked": {"$gte": startDate, "$lte": endDate}})
+    successful_questions = freq_collection.count_documents({"time_asked": {"$gte": startDate, "$lte": endDate}, "helpful": True})
+    success_rate = successful_questions / total_questions * 100 if total_questions > 0 else 0
+    return {"success_rate": success_rate}
+
+@app.get("/intent_stats/")
+async def top_categories(endDate: datetime = datetime.now(), startDate: datetime = (datetime.now() - timedelta(days=30))):
+    db = client.freq_question_db
+    freq_collection = db.cds_frequency
+    pipeline = [
+        {"$match": {"time_asked": {"$gte": startDate, "$lte": endDate}}},
+        {"$group": {"_id": "$intent", "count": {"$sum": 1}}},
+        {"$sort": {"count": -1}}
+    ]
+    intent_stats = list(freq_collection.aggregate(pipeline))
+    intent_stats = json.loads(json_util.dumps(intent_stats))
+    return {"intent_stats": intent_stats}
+
