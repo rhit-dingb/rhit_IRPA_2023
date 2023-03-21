@@ -298,7 +298,7 @@ async def success_rate(endDate: datetime = datetime.now(), startDate: datetime =
     total_questions = freq_collection.count_documents({"time_asked": {"$gte": startDate, "$lte": endDate}})
     successful_questions = freq_collection.count_documents({"time_asked": {"$gte": startDate, "$lte": endDate}, "helpful": True})
     success_rate = successful_questions / total_questions * 100 if total_questions > 0 else 0
-    return {"success_rate": success_rate}
+    return {"total_questions": total_questions, "successful_questions": successful_questions, "success_rate": success_rate}
 
 @app.get("/intent_stats/")
 async def top_categories(endDate: datetime = datetime.now(), startDate: datetime = (datetime.now() - timedelta(days=30))):
