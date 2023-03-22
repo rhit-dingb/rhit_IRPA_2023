@@ -213,7 +213,7 @@ entities:
 #Values: less than(within), more than(greater than),  maximum, minimum,
 - range
 
-# Doctorate, Masters, Bachelors, Associates degree, and Unknown
+# Doctorate, Masters, Bachelors, Associates degree, Unknown, and Terminal
 - degree_level 
 
 
