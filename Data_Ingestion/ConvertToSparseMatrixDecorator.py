@@ -52,6 +52,7 @@ class ConvertToSparseMatrixDecorator():
             questionAnswers  = subsectionToQuestionAnswerDataModels[subsectionName]
             numQuestionParsed= self.parserFacade.setEntitiesForQuestionAndAnswer(questionAnswers, responses, index)
             sparseMatrix = self.sparseMatrixDataParser.parse(subsectionName, questionAnswers )
+           
             sparseMatrix.metadata = subsectionQnA.metadata
             topicData.addSparseMatrix(subsectionQnA.subSectionName, sparseMatrix)
             index = index + numQuestionParsed

@@ -18,7 +18,23 @@ class AuthenticationManager:
         print(admins)
         return admins
     
+
     
+    def getUserData(self, username):
+        data= self.db["user"].find_one({"username": username})
+       
+        if data:
+            result=  json.loads(json_util.dumps(data))
+          
+            return result
+        else:
+            return None
+        
+
+    def deleteUser(self, username):
+        self.db["user"].delete_one({"username": username})
+    
+
     # def getAdmin(self, name):
     #     return "ok"
 
@@ -30,5 +46,15 @@ class AuthenticationManager:
                 return True
         return  False
         
+
+    def checkIsRoot(self, username):
+        userData = self.getUserData(username)
+        if userData == None:
+            return False
+        else:
+            if userData["role"] == "root":
+                return True
+            else: 
+                return False
 
     

@@ -141,6 +141,7 @@ class DataManager(ABC):
         # print("ENTITY VALUES")
         # print(entityValues)
         for sparseMatrix in candidates:  
+            print(sparseMatrix.sparseMatrixDf)
             # print(sparseMatrix.subSectionName)              
             entitiesMatchCount : int  = sparseMatrix.determineEntityMatchToColumnCount(entityValues)
             if entitiesMatchCount>currMax:

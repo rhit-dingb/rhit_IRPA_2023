@@ -416,13 +416,16 @@ async def authenticate(form_data: OAuth2PasswordRequestForm = Depends()):
 #     return {"token": token}
 
 
-#decrypt the token and verify the validity of the token, return the admin's username
-async def verifyToken(token : Annotated[str, Depends(oauth2_scheme)]) -> str:
-    credentials_exception = HTTPException(
+
+credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Could not validate credentials",
         headers={"WWW-Authenticate": "Bearer"},
     )
+
+#decrypt the token and verify the validity of the token, return the admin's username
+async def verifyToken(token : Annotated[str, Depends(oauth2_scheme)]) -> str:
+   
 
     try:
         if token == None:
@@ -432,12 +435,11 @@ async def verifyToken(token : Annotated[str, Depends(oauth2_scheme)]) -> str:
         print("GOT USERNAME", username)
         if username is None:
             raise credentials_exception
-        user = authenticationManager.checkIsAdmin(username)
-        print("GOT USER", user)
-        if user == None:
+        isAdmin = authenticationManager.checkIsAdmin(username)
+        if isAdmin:
+            return username
+        else:
             raise credentials_exception
-        
-        return user
     except JWTError:
 
         raise credentials_exception
@@ -446,9 +448,33 @@ async def verifyToken(token : Annotated[str, Depends(oauth2_scheme)]) -> str:
 @app.get("/admins")
 async def getAdmins(request : Request):
     token = getToken(request)
-    verifyToken(token)
+    await verifyToken(token)
     adminList = authenticationManager.getAdmins()
     return adminList
+
+
+@app.delete("/delete_user")
+async def deleteUser(request : Request):
+    jsonData = await request.json()
+    username = jsonData["username"]
+    token = getToken(request)
+    username =await verifyToken(token)
+    isRoot = authenticationManager.checkIsRoot(username)
+    if isRoot:
+        authenticationManager.deleteUser(username)
+    return {}
+
+@app.get("/currentUser")
+async def getCurrentUser(request : Request):
+    token = getToken(request)
+    username = await verifyToken(token)
+    userData = authenticationManager.getUserData(username)
+    if userData == None:
+        raise credentials_exception
+    
+    else:
+        return userData
+
 
 # helper methods
 def getToken(request : Request):

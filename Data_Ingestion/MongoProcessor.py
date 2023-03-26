@@ -39,29 +39,15 @@ class MongoProcessor():
 
         return subsectionsQnAList
     
-                
-
 
  
     def getSparseMatricesByDbNameAndIntent(self, client, intent, dbName):
-        # yearToData = dict()
-
-        # for db_name in db.list_database_names():
-            # if(db_name != 'admin' and db_name != 'config' and db_name != 'local'):
         cur_db = client[dbName]
-        # data = dict()
-            #xl = pd.DataFrame.from_dict(cur_db) #convert current database to Panda DataFrame                            
-        # for topic in topicToParse:
+
         topicData = self.getAllSparseMatrixForTopic(intent, cur_db)
-            # get the year key. !!! Assume current standart is CDS_xxxx_xxxx
-            # yearKey = db_name[-9:-5]+"_"+db_name[-4:]
-                #print('yearkey is  ' + yearKey)
-        # yearToData[yearKey] = data
-
+    
         return topicData     
-   
-
-       
+          
 
     """ 
     Given a topic, this function will find all the sparse matrix for a topic. 

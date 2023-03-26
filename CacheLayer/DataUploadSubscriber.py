@@ -26,6 +26,7 @@ class DataUploadSubscriber(EventSubscriber):
             startYear = eventData[startYearKey]
             endYear = eventData[endYearKey]
         exceptionToThrow = NoDataFoundException(NO_DATA_FOUND_FOR_ACADEMIC_YEAR_ERROR_MESSAGE_FORMAT.format(start=startYear, end=endYear), ExceptionTypes.NoDataFoundForAcademicYearException)
+        print("REWRITING")
         for sectionUploaded in sectionsUploaded:
             #Repopulate cache
             await self.cache.getDataAndPopulateCache(sectionUploaded, startYear, endYear, exceptionToThrow)
