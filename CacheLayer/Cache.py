@@ -23,7 +23,8 @@ class Cache(DataManager):
         if self.connected:
             print("DELETING ALL KEYS")
             keys = self.redis.keys('*')
-            self.redis.delete(*keys)
+            if len(keys) > 0:
+                self.redis.delete(*keys)
     
     async def getDataByStartEndYearAndIntent(self, intent, start, end, exceptionToThrow) -> TopicData:
         intent = intent.replace("_", " ")
