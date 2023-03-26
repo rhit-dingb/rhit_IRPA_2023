@@ -15,8 +15,8 @@ export const checkResponse = (response, errorCallback, successCallback, history)
             }
           
         } else {
-            console.log("RESPONSE NOT OKAY")
-            console.log(response)
+            // console.log("RESPONSE NOT OKAY")
+            // console.log(response)
             
            successCallback(JSON.stringify(data))
         }

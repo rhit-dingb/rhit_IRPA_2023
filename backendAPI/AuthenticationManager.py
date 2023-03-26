@@ -3,13 +3,15 @@ from DataManager.constants import MONGO_DB_CONNECTION_STRING
 from backendAPI.constants import USERNAME_FIELD_KEY
 import json
 from bson import json_util
+from decouple import config
 
 class AuthenticationManager:
     def __init__(self):
         self.client = MongoClient(MONGO_DB_CONNECTION_STRING)
         self.db = self.client["UserInfo"]   
         # insert root user
-        self.db["user"].update_one({}, { "$set": { 'username': "chow", 'role': "root" } }, upsert=True)
+        rootUser = config('ROOT_USERNAME')
+        self.db["user"].update_one({"username":rootUser}, { "$set": { 'username': rootUser, 'role': "root" } }, upsert=True)
 
     def getAdmins(self):
         cursor = self.db["user"].find({ "$or" : [{"role": "admin"}, {"role": "root"}]})
@@ -18,6 +20,30 @@ class AuthenticationManager:
         print(admins)
         return admins
     
+    def addAdmin(self, currentUser, usernameToAdd):
+        isRoot = self.checkIsRoot(currentUser)
+        if isRoot:
+            self.addUser(usernameToAdd, "admin")
+
+    def transferRootAcess(self,transferFrom, transferTo) -> bool:
+        isRoot = self.checkIsRoot(transferFrom)
+        if not isRoot:
+            return False
+        
+        userData = self.getUserData(transferTo)
+        if not userData or not userData["role"] == "admin" :
+            return False
+
+        self.db["user"].update_one({"username":transferFrom}, { "$set": {  'role': "admin" } })
+        self.db["user"].update_one({"username":transferTo}, { "$set": {'role': "root" } }, upsert=True)
+        return True
+
+
+    def addUser(self, username, role):
+        userData = self.getUserData(username)
+        if userData == None:
+            print("INSERTING", username)
+            self.db["user"].insert_one({"username":username, "role": role})
 
     
     def getUserData(self, username):
@@ -31,12 +57,12 @@ class AuthenticationManager:
             return None
         
 
-    def deleteUser(self, username):
-        self.db["user"].delete_one({"username": username})
+    def deleteUser(self, currentUser, usernameToDelete):
+        # print("DELETING", username)
+        isRoot = self.checkIsRoot(currentUser)
+        if isRoot:
+            self.db["user"].delete_one({"username": usernameToDelete})
     
-
-    # def getAdmin(self, name):
-    #     return "ok"
 
     def checkIsAdmin(self, username):
         admins = self.getAdmins()

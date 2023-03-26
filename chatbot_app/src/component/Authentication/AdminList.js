@@ -28,6 +28,11 @@ function AdminList(props) {
     const [adminList, setAdminList] = useState([])
     const [currentUserData, setCurrentUserData] = useState({})
     const [showAddAdminForm, setShowAddAdminForm] = useState(false)
+    const [showTransferRootModal, setShowTransferRootModal] = useState(false)
+    const [selectedUser, setSelectedUser] = useState('');
+
+    const [inputValue, setInputValue] = useState('');
+
     const newAdminUsernameInputRef = useRef()
 
     useEffect(() => {
@@ -54,6 +59,7 @@ function AdminList(props) {
     
 
     const generateListElem = ()=>{
+        console.log("REGENERATING")
         return adminList.map((item, index)=>{
             return ( 
                 <TableRow
@@ -66,7 +72,8 @@ function AdminList(props) {
                 <TableCell align="center">{item.role}</TableCell>
                 {currentUserData.username != item.username
                     && <TableCell align="center">
-                        <Button disabled ={currentUserData.role=="root"? false: true} variant="outlined" color="error" onClick={(e)=>{deleteAdmin(item.username)}}>Delete User</Button>
+                         <Button sx={{marginRight:2}}  disabled ={currentUserData.role=="root" && item.role != "root" ? false: true} variant="outlined" color="info" onClick={(e)=>{setSelectedUser(item.username); setShowTransferRootModal(true)}}>Transfer Root</Button>
+                         <Button  disabled ={currentUserData.role=="root" && item.role != "root"  ? false: true} variant="outlined" color="error" onClick={(e)=>{deleteAdmin(item.username)}}>Delete User</Button>
                         </TableCell>
                 }
                 </TableRow>)
@@ -105,8 +112,67 @@ function AdminList(props) {
             }, props.history)
         })
     }
+
+    const createNewAdmin = ()=>{
+       if (inputValue === "" || inputValue === " "){
+            console.log("INVALID")
+            return 
+       } else {
+        
+            let body ={ "username": inputValue.toLowerCase()}
+            console.log("INPUT VALUE IS", inputValue)
+            return fetch(`${CUSTOM_BACKEND_API_STRING}/add_admin`, {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": localStorage.getItem(TOKEN_KEY)
+                },
+                body:JSON.stringify(body)
+            }).then((response) =>{
+                checkResponse(response, (stringifyData)=>{}, 
+                (stringifyData)=>{
+                    setShowAddAdminForm(false)
+                    setInputValue("")
+                    fetchAdminList()
+                }, props.history)
+            })
+       }
+      
+    }
+
+    const transferRootAccess = ()=>{
+        let transferFrom = currentUserData.username
+        let transferTo = selectedUser
+        if (!transferTo || !transferFrom) {
+            return
+        }
+        let body = {"transferFrom": transferFrom, "transferTo": transferTo}
+        return fetch(`${CUSTOM_BACKEND_API_STRING}/transfer_root_access`, {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": localStorage.getItem(TOKEN_KEY)
+            },
+            body:JSON.stringify(body)
+        }).then((response) =>{
+            checkResponse(response, (stringifyData)=>{}, 
+            (stringifyData)=>{
+                setShowTransferRootModal(false)
+                getCurrentUser(localStorage.getItem(TOKEN_KEY), props.history, (userData)=>{
+                    console.log(userData)
+                    setCurrentUserData(userData)
+                    fetchAdminList()
+                })
+
+               
+                
+            }, props.history)
+        })
+
+    }
       
 
+    //Style for popup modal
     const style = {
         position: 'absolute',
         top: '50%',
@@ -114,8 +180,8 @@ function AdminList(props) {
         transform: 'translate(-50%, -50%)',
         width: 400,
         bgcolor: 'background.paper',
-        border: '2px solid #000',
-        boxShadow: 24,
+        // border: '2px solid #000',
+        // boxShadow: 24,
         p: 4,
       };
 
@@ -131,7 +197,7 @@ function AdminList(props) {
             
             <Box sx={{ width: '80%', margin: "auto", padding:2, marginTop:"3%", backgroundColor: "#E7EBF0", minHeight: "80%", maxHeight: "80%", overflowY:"scroll",overflowX:"hidden" }}>
                 <h2>Administrator List</h2>
-                <TableContainer component={Paper} sx={{minHeight: "80%", }}>
+                <TableContainer component={Paper} sx={{minHeight: "80%",  overflowY:"scroll"}}>
                     <Table sx={{ minWidth: 650 }} aria-label="simple table">
                         <TableHead>
                         <TableRow>
@@ -161,14 +227,31 @@ function AdminList(props) {
                             {/* <Typography >
                             Rose-Hulman Username 
                             </Typography> */}
-                            <TextField id="filled-basic" label="Rose-Hulman Username" variant="filled" ref={newAdminUsernameInputRef} />
+                            <TextField onChange={(event)=>{setInputValue(event.target.value)}} value={inputValue} id="filled-basic" label="Rose-Hulman Username" variant="filled" ref={newAdminUsernameInputRef} />
                             <br/>
                             <br/>
 
-                            <Button variant="outlined" color="info" onClick={(e)=>{}} sx={{marginRight:2}}>Submit</Button>
+                            <Button variant="outlined" color="info" onClick={(e)=>{createNewAdmin()}} sx={{marginRight:2}}>Submit</Button>
                             <Button variant="outlined" color="error" onClick={(e)=>{setShowAddAdminForm(false)}}>Cancel</Button>
                         </Box>
                     </Modal>
+
+                    <Modal
+                        open={showTransferRootModal}
+                        onClose={()=>{}}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                    >
+                        <Box sx={style}>
+                            <Typography id="modal-modal-title"  sx={{fontSize:20}}>
+                               Are you sure you want to transfer root access to user {selectedUser}?
+                            </Typography>
+                            <br/>
+                            <Button variant="outlined" color="info" onClick={(e)=>{transferRootAccess()}} sx={{marginRight:2}}>Confirm</Button>
+                            <Button variant="outlined" color="error" onClick={(e)=>{setShowTransferRootModal(false); setSelectedUser("")}}>Cancel</Button>
+                        </Box>
+                    </Modal>
+
 
                     <br/>
                     <Button disabled ={currentUserData.role=="root"? false: true} variant="contained" color="info" onClick={(e)=>{setShowAddAdminForm(true)}}>Add Admin</Button>

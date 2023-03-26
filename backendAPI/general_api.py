@@ -403,19 +403,6 @@ async def authenticate(form_data: OAuth2PasswordRequestForm = Depends()):
     return {"access_token": access_token, "token_type": "bearer"}
    
 
-# async def get_current_user(token: Annotated[str, Depends(oauth2_scheme)]):
-#     user = fake_decode_token(token)
-#     return user
-
-# @app.get("/users/me")
-# async def read_users_me(current_user: Annotated[str, Depends(get_current_user)]):
-#     return current_user
-
-# @app.get("/items/")
-# async def read_items(token: Annotated[str, Depends(oauth2_scheme)]):
-#     return {"token": token}
-
-
 
 credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
@@ -425,14 +412,12 @@ credentials_exception = HTTPException(
 
 #decrypt the token and verify the validity of the token, return the admin's username
 async def verifyToken(token : Annotated[str, Depends(oauth2_scheme)]) -> str:
-   
-
     try:
         if token == None:
             raise credentials_exception
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         username: str = payload.get("sub")
-        print("GOT USERNAME", username)
+        # print("GOT USERNAME", username)
         if username is None:
             raise credentials_exception
         isAdmin = authenticationManager.checkIsAdmin(username)
@@ -453,15 +438,44 @@ async def getAdmins(request : Request):
     return adminList
 
 
+@app.post("/add_admin")
+async def addAdmin(request : Request):
+    jsonData = await request.json()
+    usernameToAdd = jsonData["username"]
+
+    token = getToken(request)
+    currentUser = await verifyToken(token)
+    authenticationManager.addAdmin(currentUser, usernameToAdd)
+    return {}
+
+
+@app.post("/transfer_root_access")
+async def addAdmin(request : Request):
+    jsonData = await request.json()
+    transferFrom = jsonData["transferFrom"]
+    transferTo = jsonData["transferTo"]
+    transferSuccess = authenticationManager.transferRootAcess(transferFrom, transferTo)
+    if not transferSuccess:
+         raise credentials_exception
+    else:
+        return {}
+
+    # token = getToken(request)
+    # currentUser = await verifyToken(token)
+    # isRoot = authenticationManager.checkIsRoot(currentUser)
+    # if isRoot:
+    #     authenticationManager.addAdmin(usernameToAdd)
+   
+
+
+
 @app.delete("/delete_user")
 async def deleteUser(request : Request):
     jsonData = await request.json()
-    username = jsonData["username"]
+    userToDelete = jsonData["username"]
     token = getToken(request)
-    username =await verifyToken(token)
-    isRoot = authenticationManager.checkIsRoot(username)
-    if isRoot:
-        authenticationManager.deleteUser(username)
+    currentUser =await verifyToken(token)
+    authenticationManager.deleteUser(currentUser, userToDelete)
     return {}
 
 @app.get("/currentUser")
