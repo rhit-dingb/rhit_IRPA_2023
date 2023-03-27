@@ -1,6 +1,6 @@
 
 from enum import Enum
-from typing import Dict, List
+from typing import Dict, List, Union
 from fastapi import FastAPI
 from pymongo import MongoClient
 from bson.objectid import ObjectId
@@ -366,7 +366,7 @@ GET request: http://127.0.0.1:8000/general_stats/
 AUTHENTICATION API. Code reference from https://fastapi.tiangolo.com/tutorial/security/oauth2-jwt/
 """
 
-def create_access_token(data: dict, expires_delta: timedelta | None = None):
+def create_access_token(data: dict, expires_delta: Union[timedelta, None] = None):
     to_encode = data.copy()
     if expires_delta:
         expire = datetime.utcnow() + expires_delta
