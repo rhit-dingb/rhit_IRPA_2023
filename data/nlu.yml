@@ -1453,8 +1453,8 @@ nlu:
 
     - How many [nonresident]{"entity": "international_domestic", "value": "international"} students are [enrolled]{"entity":"action", "value": "enrolled"}? 
     - How many [hispanic]{"entity": "race"} students are [enrolled]{"entity":"action", "value": "enrolled"}? 
-    - How many [african american]{"entity": "race"} students are [enrolled]{"entity":"action", "value": "enrolled"}?
-    - how many [black]{"entity": "race", "value":"caucasian"} students are [enrolled]{"entity":"action", "value": "enrolled"}? 
+    - How many [african american]{"entity": "race", "value":"african american"} students are [enrolled]{"entity":"action", "value": "enrolled"}?
+    - how many [black]{"entity": "race", "value":"african american"} students are [enrolled]{"entity":"action", "value": "enrolled"}? 
     - How many [white]{"entity": "race", "value":"caucasian"} students are [enrolled]{"entity":"action", "value": "enrolled"}? 
     - How many [caucasian]{"entity": "race", "value":"caucasian"} students 
     - How many [american indian]{"entity": "race"} students are [enrolled]{"entity":"action", "value": "enrolled"}?

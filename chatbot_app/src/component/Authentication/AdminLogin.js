@@ -23,7 +23,8 @@ import {IS_LOGGED_IN_CONSTANT, TOKEN_KEY} from "../../constants/constants"
 import { useHistory } from 'react-router-dom';
 import {CUSTOM_BACKEND_API_STRING} from "../../constants/constants"
 import rose_logo from "../../rose_logo.png"
-import RoseFire from "./rosefire.min.js"
+// import RoseFire from "./rosefire.min.js"
+import RoseFire from "rosefire"
 
 function AdminLogin(props) {
     // const [userName, setUserName] = useState([])
