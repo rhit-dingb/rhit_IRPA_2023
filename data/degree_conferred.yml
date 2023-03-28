@@ -16,15 +16,19 @@ nlu:
     - How many [social science]{"entity":"subject", "value": "social science"} degrees are [conferred]{"entity":"action", "value": "awarded"}?
     - What is the [percentage]{"entity":"aggregation", "value": "percent"} of degrees [conferred]{"entity":"action", "value": "awarded"}?
     - What is the [percentage]{"entity":"aggregation", "value": "percent"} of degrees [conferred]{"entity":"action", "value": "awarded"}?
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of [statistics]{"entity":"subject", "value": "statistic"} degree offered by rose?
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of degrees [awarded]{"entity":"action", "value": "awarded"}?
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of [statistics]{"entity":"subject", "value": "statistic"} degree offered?
 
     - How many [social science]{"entity":"subject", "value": "social science"} degrees are [handed out]{"entity":"action", "value": "awarded"}?
     - What [majors]{"entity":"major", "value": "major"} does rose-hulman offer?
     - What type of [majors]{"entity":"major", "value": "major"} does rose-hulman offer?
     - What kind of [majors]{"entity":"major", "value": "major"} does rose-hulman offer?
     - What kind of [disciplinary area]{"entity":"major", "value": "major"} does rose-hulman offer?
-    - What kind of [area]{"entity":"major", "value": "major"} of [discipline]{"entity":"major", "value": "major"} does rose-hulman offer?
-    - What kind of [discipline]{"entity":"major", "value": "major"} does rose-hulman offer?
+    - What kind of [area]{"entity":"major", "value": "major"} of [discipline]{"entity":"major", "value": "major"} is offered?
+    - What kind of [discipline]{"entity":"major", "value": "major"} does the school offer?
+  
+    - How many [bachelors]{"entity": "degree_level", "value": "bachelors"} degree are [awarded]{"entity":"action", "value": "awarded"} by your [institution]{"entity": "education_level", "value": "college"}?
+    - How many [masters]{"entity": "degree_level", "value": "masters"} degree are [awarded]{"entity":"action", "value": "awarded"} by your [institution]{"entity": "education_level", "value": "college"}?
 
 - synonym: major
   examples: |
