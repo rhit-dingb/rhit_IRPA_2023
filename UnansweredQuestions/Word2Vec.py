@@ -19,12 +19,13 @@ class Word2VecModel(Model):
         # glove_vectors = gensim.downloader.load('glove-twitter-25')
         # self.model = glove_vectors()
         # self.model = Word2Vec(["DOCUMENT"], vector_size=100, window=5, min_count=1, workers=4)
-        model = Word2Vec( min_count=1, window=5)
-        model.build_vocab([list(self.model.index_to_key)])
-        model.wv.vectors = self.model.vectors
-        model.train(documents, total_examples=len(documents), epochs=10)
-        self.saveModel(self.modelPath)
-        self.model = model 
+        return 
+        # model = Word2Vec( min_count=1, window=5)
+        # model.build_vocab([list(self.model.index_to_key)])
+        # model.wv.vectors = self.model.vectors
+        # model.train(documents, total_examples=len(documents), epochs=10)
+        # self.saveModel()
+        # self.model = model 
 
     def getNumFeatures(self):
         return len(self.model["test"])
@@ -50,7 +51,7 @@ class Word2VecModel(Model):
                 
        
 
-    def saveModel(path):
+    def saveModel(self):
         # might have to implement this part
         pass
     

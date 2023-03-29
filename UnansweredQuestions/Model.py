@@ -41,7 +41,7 @@ class Model(ABC):
         #     return []
 
     @abstractmethod
-    def _train(self, documents, update = False):
+    def _train(self, documents, update):
        pass
 
  
@@ -57,9 +57,10 @@ class Model(ABC):
     @abstractmethod
     def loadModel(self):
         pass
-
+    
+    @abstractmethod
     def saveModel(self):
-        self.model.save(self.modelPath)
+        pass
 
 
    

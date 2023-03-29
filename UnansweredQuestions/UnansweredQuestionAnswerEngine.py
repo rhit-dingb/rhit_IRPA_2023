@@ -10,8 +10,14 @@ from UnansweredQuestions.Doc2Vec import Doc2VecModel
 from UnansweredQuestions.DocumentIndexRetriever import DocumentIndexRetriever
 from UnansweredQuestions.TFIDFModel import TFIDFModel
 from UnansweredQuestions.Word2Vec import Word2VecModel
+from UnansweredQuestions.constants import DB_UNANSWERED_QUESTION_QUESTION_FIELD_KEY
+from UnansweredQuestions.constants import DB_UNANSWERED_QUESTION_ANSWER_FIELD_KEY
+
 import sys
 import os
+
+
+
    #self.model = TFIDFModel(self.corpus, "./savedModels/tfidf.tfidf")
 
 class UnansweredQuestionAnswerEngine:
@@ -37,8 +43,22 @@ class UnansweredQuestionAnswerEngine:
     def update(self):
         self.corpus.update()
         self.documentRetriever.update()
-        print("UPDATED")
+        # print("UPDATED")
         #maybe train the model here
+
+    def questionDeleted(self, questionDeletedId):
+        print("QUESTION DELETED")
+        self.update()
+
+    def questionAnswered(self, questionAnsweredId):
+        self.update()
+        print("QUESTION ANSWERED")
+        questionObj = self.mongoDBUnansweredQuestionConnector.getQuestionAnswerObjectById(questionAnsweredId)
+        questionAnswered = questionObj[DB_UNANSWERED_QUESTION_QUESTION_FIELD_KEY]
+        answer = questionObj[DB_UNANSWERED_QUESTION_ANSWER_FIELD_KEY]
+        self.model.trainModel([questionAnswered])
+
+
 
     def answerQuestion(self,question) -> List[str]:
         answers, confidences = self.documentRetriever.findSimilarDocuments(query=question)

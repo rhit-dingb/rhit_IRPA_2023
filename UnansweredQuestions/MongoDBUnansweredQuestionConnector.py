@@ -68,3 +68,5 @@ class MongoDBUnansweredQuestionConnector():
             return {'message': 'errors occurred during question add'}
 
     
+    def getQuestionAnswerObjectById(self, id):
+       return json.loads(json_util.dumps(self.questions_collection.find_one({'_id': ObjectId(id)})))

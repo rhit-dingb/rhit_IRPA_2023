@@ -271,6 +271,7 @@ async def handle_post_answer(request: Request):
     answer = jsonData["answer"]
     questionId = jsonData["id"]
     unansweredQuestionDbConnector.provideAnswerToUnansweredQuestion(questionId, answer)
+    unansweredQuestionAnswerEngine.questionAnswered(questionId)
 
 
 @app.delete("/question_delete")
@@ -284,7 +285,7 @@ async def handle_delete_answer(request: Request):
     questions_collection = db.unans_question
     boo1 = questions_collection.delete_one({'_id': ObjectId(id)})
     if boo1:
-        unansweredQuestionAnswerEngine.update()
+        unansweredQuestionAnswerEngine.questionDeleted(id)
         return {'message': 'question is successfull deleted'}
     else:
         return {'message': 'question maybe not found and issue occurred'}
