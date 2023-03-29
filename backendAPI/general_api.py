@@ -66,8 +66,9 @@ mongoDbDataManager = Cache(mongoDbDataManager)
 
 rasaCommunicator = RasaCommunicator()
 client = MongoClient(MONGO_DB_CONNECTION_STRING)
-unansweredQuestionAnswerEngine = UnansweredQuestionAnswerEngine()
-unansweredQuestionDbConnector : UnansweredQuestionDbConnector = MongoDBUnansweredQuestionConnector(unansweredQuestionAnswerEngine)
+unansweredQuestionDbConnector : UnansweredQuestionDbConnector = MongoDBUnansweredQuestionConnector()
+unansweredQuestionAnswerEngine = UnansweredQuestionAnswerEngine(unansweredQuestionDbConnector)
+
 cacheEventPublisher = CacheEventPublisher()
 dataDeletionSubscriber = DataDeletionSubscriber(EventType.DataDeletion, mongoDbDataManager)
 dataUploadSubscriber = DataUploadSubscriber(EventType.DataUploaded, mongoDbDataManager)

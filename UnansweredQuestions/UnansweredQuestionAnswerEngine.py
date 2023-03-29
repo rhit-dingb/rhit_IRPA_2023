@@ -12,9 +12,12 @@ from UnansweredQuestions.TFIDFModel import TFIDFModel
 from UnansweredQuestions.Word2Vec import Word2VecModel
 from UnansweredQuestions.constants import DB_UNANSWERED_QUESTION_QUESTION_FIELD_KEY
 from UnansweredQuestions.constants import DB_UNANSWERED_QUESTION_ANSWER_FIELD_KEY
+from UnansweredQuestions.UnasweredQuestionDBConnector import UnansweredQuestionDbConnector
+from UnansweredQuestions import Model
 
 import sys
 import os
+
 
 
 
@@ -22,16 +25,15 @@ import os
 
 class UnansweredQuestionAnswerEngine:
     # Basepath: ./UnansweredQuestions, or ../UnansweredQuestions
-    def __init__(self):
+    def __init__(self, databaseConnector : UnansweredQuestionDbConnector):
         self.modelToUse = None
-        self.mongoDBUnansweredQuestionConnector = MongoDBUnansweredQuestionConnector(self)
+        self.dbConnector = databaseConnector
         basePath = self.determinePath()
-        self.corpus = Corpus(self.mongoDBUnansweredQuestionConnector, basePath +"/dictionaries/dictionary")
-        self.model = Word2VecModel(self.corpus, basePath +"/savedModels/glove_vector_300")
-     
+        self.corpus = Corpus(self.dbConnector,  basePath +"/dictionaries/dictionary")
+        self.model : Model = Word2VecModel(self.corpus, basePath +"/savedModels/glove_vector_300")
         self.model.initializeModel()
         self.documentRetriever = DocumentIndexRetriever(self.corpus, self.model, basePath +"/indexes/unansweredQuestion.index")
-        self.documentRetriever.update()
+        self.update()
         self.confidenceThreshold = 0.9
        # self.documentRetriever= DocumentRetrieverByVector(self.corpus, self.wordToVecModel)
     def determinePath(self):
@@ -41,6 +43,7 @@ class UnansweredQuestionAnswerEngine:
         return unansweredQues_dir 
 
     def update(self):
+        print("UPDATE CALLED")
         self.corpus.update()
         self.documentRetriever.update()
         # print("UPDATED")
@@ -53,7 +56,7 @@ class UnansweredQuestionAnswerEngine:
     def questionAnswered(self, questionAnsweredId):
         self.update()
         print("QUESTION ANSWERED")
-        questionObj = self.mongoDBUnansweredQuestionConnector.getQuestionAnswerObjectById(questionAnsweredId)
+        questionObj = self.dbConnector.getQuestionAnswerObjectById(questionAnsweredId)
         questionAnswered = questionObj[DB_UNANSWERED_QUESTION_QUESTION_FIELD_KEY]
         answer = questionObj[DB_UNANSWERED_QUESTION_ANSWER_FIELD_KEY]
         self.model.trainModel([questionAnswered])

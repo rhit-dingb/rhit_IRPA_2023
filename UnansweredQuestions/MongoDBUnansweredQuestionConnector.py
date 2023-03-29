@@ -10,8 +10,7 @@ from UnansweredQuestions.constants import DB_UNANSWERED_QUESTION_DATE_FIELD_KEY
 
 
 class MongoDBUnansweredQuestionConnector():
-    def __init__(self, unansweredQuestionEngine):
-        self.unansweredQuestionEngine = unansweredQuestionEngine
+    def __init__(self):
         self.client = MongoClient(MONGO_DB_CONNECTION_STRING)
         self.db = self.client.freq_question_db
         self.questions_collection =  self.db.unans_question
@@ -37,7 +36,6 @@ class MongoDBUnansweredQuestionConnector():
         boo1 = self.questions_collection.update_one({'_id': ObjectId(id)}, {'$set': {'is_addressed': True}})
         boo2 = self.questions_collection.update_one({'_id': ObjectId(id)}, {'$set': {'answer': answer}})
         if boo1 and boo2:
-            self.unansweredQuestionEngine.update()
             return {'message': 'update successfull'}
         else:
             return {'message': 'errors occurred while updating'}
