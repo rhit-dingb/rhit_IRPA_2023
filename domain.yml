@@ -222,8 +222,7 @@ entities:
 
 #Different category/group of student described in student life section, which includes student from out of state, 
 # those who join fraternity, sorority, etc.
-# Values: out of state, fraternity, sorority, commute, 
-# transfer, exchange
+# Values: out of state, fraternity, sorority, greek, commute, transfer, exchange
 - category
 
 # Describe college relation. 

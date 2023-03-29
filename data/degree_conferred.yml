@@ -4,6 +4,8 @@ nlu:
 - intent: degree_conferred
   examples: |
     - I want to know about the degree [conferred]{"entity":"action", "value": "awarded"} information.
+    - degrees
+    - degree
     - How many [computer science]{"entity":"subject", "value": "computer science"} degrees are [conferred]{"entity":"action", "value": "awarded"}?
     - How many [engineering]{"entity":"subject", "value": "engineering"} degrees are [conferred]{"entity":"action", "value": "awarded"}?
     - How many [biological-sciences]{"entity":"subject", "value": "biological science"} degrees are [conferred]{"entity":"action", "value": "awarded"}?

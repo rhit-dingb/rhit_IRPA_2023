@@ -109,14 +109,11 @@ nlu:
 
     - What is the definition for [health]{"entity": "service_offered", "value": "health"} [service]{"entity": "organizational_term", "value": "service"} ?
 
-  
 
     - What is the definition of [independent study]{"entity": "program_offered", "value": "independent study"}?
 
     #Might wanna the entity label here
     - What is the definition of [in-state]{"entity":"financial_aid_type", "value": "state"} [tuition]{"entity": "money", "value": "cost"}?
-
-
 
     - What is the definition of [international]{"entity":"international_domestic", "value": "international"} student [group]{"entity": "organizational_term", "value": "group"}?
 
@@ -135,7 +132,6 @@ nlu:
     - What is the definition of [minority]{"entity": "race", "value": "minority"} student [center]{"entity": "organizational_term", "value": "center"}?
 
     - What is the definition of [model united nations]{"entity":"program_offered", "value": "model united nation"}?
-
 
 
     - What is the definition for on-campus [day care]{"entity":"service_offered", "value": "day care"}?

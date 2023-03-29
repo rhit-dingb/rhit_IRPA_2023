@@ -1802,7 +1802,7 @@ nlu:
 
     - Does [online]{"entity": "online", "value":"online" } [application]{"entity":"academic_process", "value":"application" } have [application]{"entity":"academic_process", "value":"application" } [fee]{"entity":"money", "value": "cost"} ?
     
-    - Can [online]{"entity": "online", "value":"online" } [application]{"entity":"academic_process", "value":"application" } [application]{"entity":"academic_process", "value":"application" } '[fee]{"entity":"money", "value": "cost"}  be [waived]{"entity": "other_aid", "value": "waiver"} ?
+    - Can [online]{"entity": "online", "value":"online" } [application]{"entity":"academic_process", "value":"application" } [application]{"entity":"academic_process", "value":"application" } [fee]{"entity":"money", "value": "cost"}  be [waived]{"entity": "other_aid", "value": "waiver"} ?
    
     - Yo, do have to pay [money]{"entity":"money", "value": "cost"} to apply on the [internet]{"entity": "online", "value":"online" }?
 

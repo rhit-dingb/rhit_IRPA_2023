@@ -3,6 +3,10 @@ nlu:
 - intent: student_life
   examples: |
     - tell me about student life 
+    - I want to know about [fraternities]{"entity": "category", "value": "fraternity"}
+    - I want to know about [sororities]{"entity": "category", "value": "sororities"}
+    - How many students participated in [greek]{"entity": "category", "value": "greek"} life?
+    - How many students participated in [greek]{"entity": "category", "value": "greek"} or [fraternity]{"entity": "category", "value": "fraternity"} group?
     - Does your school offer [air force](military_branch) [reserve Officers training corp]{"entity": "rotc", "value": "rotc"} ?
     - Does your school offer [air force](military_branch) [reserve Officers training corps]{"entity": "rotc", "value": "rotc"} ?
     - Does your school offer [air force](military_branch) [reserve officers's training Corps]{"entity": "rotc", "value": "rotc"} ?
@@ -101,8 +105,15 @@ nlu:
     - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [undergraduate](student_level) students who joined [sorority](category)
     - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [undergraduate](student_level) students who [commute](category) to school?
     - [Percentage]{"entity":"aggregation", "value": "percent"} of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [undergraduate](student_level) students who are [commuter]{"entity": "category", "value": "commute"}
-
+    
+    - How many [undergraduate]{"entity":"student_level", "value": "undergraduate"} student joined sororities
+    - How many students joined [sorority](category)?
+    - [sorority](category)?
+    - [fraternities]{"entity": "category", "value": "fraternity"}?
+    - [Greek]{"entity": "category", "value": "greek"} life?
+    - Number of [undergraduate]{"entity":"student_level", "value": "undergraduate"} students who joined [sororities]{"entity": "category", "value": "sorority"}
     - How many student live [on campus]{"entity": "category", "value": "on campus"}
+    
     - What is the number of students who live [on campus]{"entity": "category", "value": "on campus"}
     - What is the number of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who [commute](category)
     - What is the number of [full-time]{"entity":"enrollment_status", "value":"full-time"} and [part-time]{"entity":"enrollment_status", "value":"part-time"} [first year]{"entity": "is_first_year", "value": "first-year"} [first time]{"entity": "is_first_time", "value": "first-time"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students who are [commuter]{"entity": "category", "value": "commute"}

@@ -35,7 +35,8 @@ nlu:
     - What is the [other]{"entity":"other", "value": "other"} [cost]{"entity":"money", "value": "cost"} for student?
     - What is the [other]{"entity":"other", "value": "other"} [fee]{"entity":"money", "value": "cost"} for student?
     - Is there any [other]{"entity":"other", "value": "other"} [cost]{"entity":"money", "value": "cost"} for student?
-    - Is there any [other]{"entity":"other", "value": "other"}  [fee]{"entity":"money", "value": "cost"} for student?
+    - Is there any [other]{"entity":"other", "value": "other"} [fees]{"entity":"money", "value": "cost"} for student?
+    - Is there any [other]{"entity":"other", "value": "other"}  [fees]{"entity":"money", "value": "cost"} for student?
 
     - what is the number of [credits]{"entity":"academic_credit", "value": "credit"} that stduents can take for a [full-time]{"entity":"other", "enrollment_status": "full-time"} [tuition]{"entity":"money", "value": "cost"} ?
     - how many [credits]{"entity":"academic_credit", "value": "credit"} can student with [full-time]{"entity":"other", "enrollment_status": "full-time"} [tuition]{"entity":"money", "value": "cost"} take?
@@ -62,6 +63,12 @@ nlu:
 #     - resident
 #     - residents
 
+- synonym: cost
+  examples: |
+    - costs
+    - fees
+    - fee
+  
 
 - synonym: on campus
   examples: |
