@@ -72,9 +72,12 @@ class SparseMatrix():
     
     # #This function determines how many elements in the first array is in the second array.
     def determineMatchCountHelper(self, entities: List[str], columns: List[str]):
+        print("FOR", self.subSectionName)
+     
         entitiesMatchCount = 0
         for entity in entities:
             if entity in columns:
+                print("MATCHED", entity)
                 entitiesMatchCount = entitiesMatchCount + 1
         # print("ENTITY MATCH COUNT FOR")
         # print(self.subSectionName)
