@@ -1,10 +1,29 @@
-name: Python package
+name: Unit Test Workflow
 
 on: [push]
 
 #Define a job
 jobs:
-  build:
+  rasa-testing:
+    #Using github action for RASA from https://github.com/marketplace/actions/rasa-train-test-model-github-action
+    name: Rasa-testing
+    runs-on: ubuntu-latest
+    steps:
+      # Checks-out GitHub repository
+      # more: https://github.com/actions/checkout
+      - uses: actions/checkout@v2
+      # Run rasa train and rasa test
+      - name: Run rasa test
+        uses: RasaHQ/rasa-train-test-gha@main
+        with:
+          test_type: nlu
+          rasa_train: false
+          rasa_version: 3.2.8
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      
+
+  unit-test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
