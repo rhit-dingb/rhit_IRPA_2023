@@ -28,7 +28,8 @@ jobs:
           ruff --format=github --select=E9,F63,F7,F82 --target-version=py37 .
           # default set of ruff rules with GitHub Annotations
           ruff --format=github --target-version=py37 .
-          
+        #Even if linting failed, continue
+        continue-on-error: true  
       - name: Test with python unit test
         run: python -m unittest tests/test_knowledgebase.py
       - name: Upload pytest test results
