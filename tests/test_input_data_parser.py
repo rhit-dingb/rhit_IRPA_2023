@@ -17,7 +17,7 @@ from Parser.QuestionAnswer import QuestionAnswer
 
 class test_input_data_parser(unittest.TestCase):
     def setUp(self):
-        print(os.listdir("."))
+       
         f = open('./tests/testMaterials/parserData/JsonInputExcelData.json')
         self.data = json.load(f)
         f.close()

@@ -76,7 +76,7 @@ class Corpus:
         self.documents = self.documents + documents
         self.updateDictionary(preprocessedDocuments)
 
-    # #Probably replace this with database call.
+        
     def getDocumentByIndex(self, doc_position):
         index = 0
         for doc in self.retrieveDocumentFromDataSource():

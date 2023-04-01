@@ -106,7 +106,6 @@ nlu:
 
     - What is the definition for [geographical residence]{"entity": "non_academic_factor", "value": "geographical residence"} ?
 
-
     - What is the definition for [health]{"entity": "service_offered", "value": "health"} [service]{"entity": "organizational_term", "value": "service"} ?
 
 

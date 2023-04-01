@@ -7,6 +7,7 @@ function Message({response, successCallback, failedCallback, history}) {
 
     const successFunctionWrapper = (stringifiedJsonResponse)=>{
         setShowMessage(true)
+        setSeverity("")
         successCallback()
     }
 

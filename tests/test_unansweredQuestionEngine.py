@@ -58,12 +58,6 @@ class test_unansweredQuestionEngine(unittest.TestCase):
         mockModel.trainModel.assert_called_once()
 
 
-   
-        
-        
-
-
-
     
     def mockDbReturnValues(self, mockDb):
         mockDb.getAllUnansweredQuestionAndAnswers.return_value = self.testData
