@@ -1,7 +1,13 @@
 import { Navbar } from "./Navbar";
 import { Box, Card, List, Grid, InputLabel, MenuItem, Select, FormControl, ListItem, ListItemText, ButtonGroup, IconButton } from "@mui/material";
+import { Bar } from "react-chartjs-2";
 import { DataGrid } from '@mui/x-data-grid';
 import { useState, useEffect } from "react";
+
+export const data = {
+    test: true,
+
+}
 
 function Frequency() {
     /*
@@ -18,6 +24,8 @@ function Frequency() {
         2: list all
     */
     const [displayType, setDisplayType] = useState(0);
+    const [display, setDisplay] = useState();
+
     const [freqData, setFreqData] = useState([]);
 
     const columnsListAll = [
@@ -68,31 +76,6 @@ function Frequency() {
     ];
     var columns = columnsListAll;
 
-    useEffect(() => {
-        const current = new Date();
-        fetchStats('endDate='+current.toISOString()+'&startDate_short='+new Date(current.setMonth(current.getMonth() - 1)).toISOString());
-    }, []);
-
-    const handleChangeRange = (event) => {
-        setRange(event.target.value);
-        console.log(event.target.value);
-        const current = new Date();
-        const end = current.toISOString();
-        if(event.target.value == 0){
-            const start = new Date(current.setMonth(current.getMonth() - 1)).toISOString();
-            fetchStats('endDate='+end+'&startDate_short='+start);
-        } else if(event.target.value == 1){
-            const start = new Date(current.setYear(current.getYear() - 1)).toISOString();
-            fetchStats('endDate='+end+'&startDate_long='+start);
-        } else if(event.target.value == 2){
-            fetchStats('endDate='+end);
-        }
-    }
-
-    const handleChangeDisplayType = (event) => {
-        setDisplayType(event.target.value);
-    }
-
     const fetchStats = (apiParamStr) => {
         fetch('http://localhost:8000/general_stats/?' + apiParamStr)
             .then(res => res.json())
@@ -109,6 +92,55 @@ function Frequency() {
             });
     }
 
+    const testFreq = {
+        id: 1,
+        question: "test",
+        intent: "test",
+        time: new Date(),
+        feedback: "test"
+    }
+
+    const handleChangeDisplayType = (event) => {
+        setDisplayType(event.target.value);
+        updateDisplay(event.target.value);
+    }
+
+    useEffect(() => {
+        const current = new Date();
+        fetchStats('endDate='+current.toISOString()+'&startDate_short='+new Date(current.setMonth(current.getMonth() - 1)).toISOString());
+    }, []);
+
+    useEffect(() => {
+        updateDisplay(displayType);
+    }, [freqData, displayType]);
+
+    const updateDisplay = (type) => {
+        if(type == 0){
+            setDisplay(null);
+        } else if(type == 1){
+            console.log(freqData);
+            setDisplay(<DataGrid columns={columns} rows={freqData}/>);
+        } else {
+            setDisplay(null);
+        }
+    }
+
+    const handleChangeRange = (event) => {
+        setRange(event.target.value);
+        const current = new Date();
+        const end = current.toISOString();
+        if(event.target.value == 0){
+            const start = new Date(current.setMonth(current.getMonth() - 1)).toISOString();
+            fetchStats('endDate='+end+'&startDate_short='+start);
+        } else if(event.target.value == 1){
+            const start = new Date(current.setYear(current.getYear() - 1)).toISOString();
+            fetchStats('endDate='+end+'&startDate_long='+start);
+        } else if(event.target.value == 2){
+            fetchStats('endDate='+end);
+        }
+        // updateDisplay(displayType);
+    }
+
     return (
         <div>
             <Navbar/>
@@ -120,8 +152,7 @@ function Frequency() {
                                 <InputLabel id="display-type-label">Display Type</InputLabel>
                                 <Select id="display-type" labelId="display-type-label" value={displayType} label="Display Type" onChange={handleChangeDisplayType}>
                                     <MenuItem value={0}>List by Intent</MenuItem>
-                                    <MenuItem value={1}>List by Question</MenuItem>
-                                    <MenuItem value={2}>List All</MenuItem>
+                                    <MenuItem value={1}>List All</MenuItem>
                                 </Select>
                             </FormControl>
                             <FormControl>
@@ -135,8 +166,8 @@ function Frequency() {
                         </Box>
                     </Grid>
                     <Grid item>
-                        <Box sx={{ height: 520, width: '100%' }}>
-                            <DataGrid columns={columns} rows={freqData}/>
+                        <Box sx={{ height: 520, width: '100%'}}>
+                            {display}
                         </Box>
                     </Grid>
                 </Grid>
