@@ -1,6 +1,7 @@
 import { Navbar } from "./Navbar";
 import { Box, Card, List, Grid, InputLabel, MenuItem, Select, FormControl, ListItem, ListItemText, ButtonGroup, IconButton } from "@mui/material";
-import { Bar } from "react-chartjs-2";
+import { Bar, Pie } from "react-chartjs-2";
+import { Chart, ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement, Title } from "chart.js";
 import { DataGrid } from '@mui/x-data-grid';
 import { useState, useEffect } from "react";
 
@@ -27,6 +28,8 @@ function Frequency() {
     const [display, setDisplay] = useState();
 
     const [freqData, setFreqData] = useState([]);
+    const [feedbackData, setFeedbackData] = useState({});
+    const [intentData, setIntentData] = useState({});
 
     const columnsListAll = [
         {
@@ -50,33 +53,9 @@ function Frequency() {
             width: 200
         }
     ];
-    const columnsListByIntent = [
-        {
-            field: 'intent',
-            headerName: 'Intent',
-            width: 200
-        },
-        {
-            field: 'count',
-            headerName: 'Count',
-            width: 200
-        }
-    ];
-    const columnsListByQuestion = [
-        {
-            field: 'question',
-            headerName: 'Question',
-            width: 400
-        },
-        {
-            field: 'count',
-            headerName: 'Count',
-            width: 200
-        }
-    ];
     var columns = columnsListAll;
 
-    const fetchStats = (apiParamStr) => {
+    const fetchGeneralStats = (apiParamStr) => {
         fetch('http://localhost:8000/general_stats/?' + apiParamStr)
             .then(res => res.json())
             .then(data => {
@@ -92,13 +71,26 @@ function Frequency() {
             });
     }
 
-    const testFreq = {
-        id: 1,
-        question: "test",
-        intent: "test",
-        time: new Date(),
-        feedback: "test"
+    const fetchFeedbackStats = (apiParamStr) => {
+        fetch('http://localhost:8000/feedback_stats/?' + apiParamStr)
+            .then(res => res.json())
+            .then(data => {
+                setFeedbackData({
+                    success_rate: data.success_rate,
+                    successful_questions: data.successful_questions,
+                    total_questions: data.total_questions
+                });
+            });
     }
+
+    const fetchIntentStats = (apiParamStr) => {
+        fetch('http://localhost:8000/intent_stats/?' + apiParamStr)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+            });
+    }
+
 
     const handleChangeDisplayType = (event) => {
         setDisplayType(event.target.value);
@@ -107,18 +99,27 @@ function Frequency() {
 
     useEffect(() => {
         const current = new Date();
-        fetchStats('endDate='+current.toISOString()+'&startDate_short='+new Date(current.setMonth(current.getMonth() - 1)).toISOString());
+        const endDate = current.toISOString();
+        const startDate = new Date(current.setMonth(current.getMonth() - 1)).toISOString();
+        fetchGeneralStats('endDate='+endDate+'&startDate_short='+startDate);
+        fetchFeedbackStats('endDate='+endDate+'&startDate='+startDate);
+        fetchIntentStats('endDate='+endDate+'&startDate='+startDate);
     }, []);
 
     useEffect(() => {
         updateDisplay(displayType);
-    }, [freqData, displayType]);
+    }, [freqData, feedbackData, intentData, displayType]);
 
     const updateDisplay = (type) => {
         if(type == 0){
+            Chart.unregister(ArcElement, Tooltip, Legend);
+            Chart.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
             setDisplay(null);
         } else if(type == 1){
-            console.log(freqData);
+            Chart.unregister(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+            Chart.register(ArcElement, Tooltip, Legend);
+            setDisplay(null);
+        } else if(type == 2){
             setDisplay(<DataGrid columns={columns} rows={freqData}/>);
         } else {
             setDisplay(null);
@@ -129,14 +130,34 @@ function Frequency() {
         setRange(event.target.value);
         const current = new Date();
         const end = current.toISOString();
+        console.log(displayType);
         if(event.target.value == 0){
             const start = new Date(current.setMonth(current.getMonth() - 1)).toISOString();
-            fetchStats('endDate='+end+'&startDate_short='+start);
+            if(displayType == 0) {
+                fetchIntentStats('endDate='+end+'&startDate='+start);
+            } else if(displayType == 1) {
+                fetchFeedbackStats('endDate='+end+'&startDate='+start);
+            } else if(displayType == 2) {
+                fetchGeneralStats('endDate='+end+'&startDate_short='+start);
+            }
         } else if(event.target.value == 1){
             const start = new Date(current.setYear(current.getYear() - 1)).toISOString();
-            fetchStats('endDate='+end+'&startDate_long='+start);
+            if(displayType == 0) {
+                fetchIntentStats('endDate='+end+'&startDate='+start);
+            } else if(displayType == 1) {
+                fetchFeedbackStats('endDate='+end+'&startDate='+start);
+            } else if(displayType == 2) {
+                fetchGeneralStats('endDate='+end+'&startDate_short='+start);
+            }
         } else if(event.target.value == 2){
-            fetchStats('endDate='+end);
+            const start = new Date(0).toISOString();
+            if(displayType == 0) {
+                fetchIntentStats('endDate='+end+'&startDate='+start);
+            } else if(displayType == 1) {
+                fetchFeedbackStats('endDate='+end+'&startDate='+start);
+            } else if(displayType == 2) {
+                fetchGeneralStats('endDate='+end);
+            }
         }
         // updateDisplay(displayType);
     }
@@ -151,8 +172,9 @@ function Frequency() {
                             <FormControl>
                                 <InputLabel id="display-type-label">Display Type</InputLabel>
                                 <Select id="display-type" labelId="display-type-label" value={displayType} label="Display Type" onChange={handleChangeDisplayType}>
-                                    <MenuItem value={0}>List by Intent</MenuItem>
-                                    <MenuItem value={1}>List All</MenuItem>
+                                    <MenuItem value={0}>Intent Stats</MenuItem>
+                                    <MenuItem value={1}>Feedback Stats</MenuItem>
+                                    <MenuItem value={2}>List All</MenuItem>
                                 </Select>
                             </FormControl>
                             <FormControl>
