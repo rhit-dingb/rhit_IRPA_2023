@@ -1,7 +1,7 @@
 import { Navbar } from "./Navbar";
 import { Box, Card, List, Grid, InputLabel, MenuItem, Select, FormControl, ListItem, ListItemText, ButtonGroup, IconButton } from "@mui/material";
-import { Bar, Pie } from "react-chartjs-2";
-import { Chart, ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement, Title } from "chart.js";
+import { Bar } from "react-chartjs-2";
+import { Chart, Tooltip, Legend, CategoryScale, LinearScale, BarElement, Title } from "chart.js";
 import { DataGrid } from '@mui/x-data-grid';
 import { useState, useEffect } from "react";
 
@@ -29,7 +29,10 @@ function Frequency() {
 
     const [freqData, setFreqData] = useState([]);
     const [feedbackData, setFeedbackData] = useState({});
-    const [intentData, setIntentData] = useState({});
+    const [intentData, setIntentData] = useState([]);
+    const [intentLabels, setIntentLabels] = useState([]);
+
+    Chart.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
     const columnsListAll = [
         {
@@ -54,6 +57,30 @@ function Frequency() {
         }
     ];
     var columns = columnsListAll;
+
+    // const barData = {
+    //     intentLabels,
+    //     datasets: [
+    //       {
+    //         label: 'Dataset 1',
+    //         data: intentData,
+    //         backgroundColor: 'rgba(255, 99, 132, 0.5)',
+    //       }
+    //     ],
+    //   };
+
+    // const barOptions = {
+    //     responsive: true,
+    //     plugins: {
+    //       legend: {
+    //         position: 'top',
+    //       },
+    //       title: {
+    //         display: true,
+    //         text: 'Chart.js Bar Chart',
+    //       },
+    //     },
+    //   };
 
     const fetchGeneralStats = (apiParamStr) => {
         fetch('http://localhost:8000/general_stats/?' + apiParamStr)
@@ -87,7 +114,12 @@ function Frequency() {
         fetch('http://localhost:8000/intent_stats/?' + apiParamStr)
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                setIntentData(data.intent_stats.map(entry => {
+                    return entry.count;
+                }));
+                setIntentLabels(data.intent_stats.map(entry => {
+                    return entry._id;
+                }));
             });
     }
 
@@ -110,15 +142,44 @@ function Frequency() {
         updateDisplay(displayType);
     }, [freqData, feedbackData, intentData, displayType]);
 
+    const barOptions = {
+
+    };
+
+    const barData = {
+        
+    };
+
     const updateDisplay = (type) => {
         if(type == 0){
-            Chart.unregister(ArcElement, Tooltip, Legend);
-            Chart.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
-            setDisplay(null);
+            setDisplay(<Card>
+                
+            </Card>);
         } else if(type == 1){
-            Chart.unregister(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
-            Chart.register(ArcElement, Tooltip, Legend);
-            setDisplay(null);
+            setDisplay(<Card>
+                <Grid container>
+                    <Grid item>
+                        <Card>
+                            <div>
+                                # Successful Questions / Total Questions
+                            </div>
+                            <div>
+                                {feedbackData.successful_questions} / {feedbackData.total_questions}
+                            </div>
+                        </Card>
+                    </Grid>
+                    <Grid item>
+                        <Card>
+                            <div>
+                                Success Rate
+                            </div>
+                            <div>
+                                {feedbackData.success_rate}
+                            </div>
+                        </Card>
+                    </Grid>
+                </Grid>
+            </Card>);
         } else if(type == 2){
             setDisplay(<DataGrid columns={columns} rows={freqData}/>);
         } else {
