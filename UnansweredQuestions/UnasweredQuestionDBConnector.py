@@ -23,3 +23,7 @@ class UnansweredQuestionDbConnector(ABC):
     @abstractmethod
     def getQuestionAnswerObjectById(id):
         pass
+
+    @abstractmethod
+    def deleteUnansweredQuestion(id):
+       pass

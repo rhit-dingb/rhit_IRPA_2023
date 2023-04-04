@@ -282,10 +282,11 @@ async def handle_delete_answer(request: Request):
 
     jsonData = await request.json()
     id = jsonData["id"]
-    db = client.freq_question_db
-    questions_collection = db.unans_question
-    boo1 = questions_collection.delete_one({'_id': ObjectId(id)})
-    if boo1:
+    # db = client.freq_question_db
+    # questions_collection = db.unans_question
+    # boo1 = questions_collection.delete_one({'_id': ObjectId(id)})
+    deleteSuccess = unansweredQuestionDbConnector.deleteUnansweredQuestion(id)
+    if deleteSuccess:
         unansweredQuestionAnswerEngine.questionDeleted(id)
         return {'message': 'question is successfull deleted'}
     else:
@@ -296,7 +297,13 @@ async def handle_add_unanswered_question(request : Request):
     jsonData = await request.json()
     question = jsonData["content"]
     chatbotAnswers = jsonData["chatbotAnswers"]
-    return unansweredQuestionDbConnector.addNewUnansweredQuestion(question, chatbotAnswers)
+    success = unansweredQuestionDbConnector.addNewUnansweredQuestion(question, chatbotAnswers)
+    if success:
+        print("QUESTION ADDED SUCCESSFULLY")
+        return {'message': 'question is successfull added'}
+    else:
+        print("ERROR OCCURED DURING QUESTION ADD")
+        return {'message': 'errors occurred during question add'}
 
 
 #====================Below are the list of APIs for Freqency API==========================
