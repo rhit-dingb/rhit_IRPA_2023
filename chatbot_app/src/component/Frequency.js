@@ -1,7 +1,8 @@
 import { Navbar } from "./Navbar";
 import { Box, Card, List, Grid, InputLabel, MenuItem, Select, FormControl, ListItem, ListItemText, ButtonGroup, IconButton } from "@mui/material";
-import { Bar } from "react-chartjs-2";
-import { Chart, Tooltip, Legend, CategoryScale, LinearScale, BarElement, Title } from "chart.js";
+// import { Bar } from "react-chartjs-2";
+// import { Chart, Tooltip, Legend, CategoryScale, LinearScale, BarElement, Title } from "chart.js";
+import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { DataGrid } from '@mui/x-data-grid';
 import { useState, useEffect } from "react";
 
@@ -30,9 +31,8 @@ function Frequency() {
     const [freqData, setFreqData] = useState([]);
     const [feedbackData, setFeedbackData] = useState({});
     const [intentData, setIntentData] = useState([]);
-    const [intentLabels, setIntentLabels] = useState([]);
 
-    Chart.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+    // Chart.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
     const columnsListAll = [
         {
@@ -115,10 +115,10 @@ function Frequency() {
             .then(res => res.json())
             .then(data => {
                 setIntentData(data.intent_stats.map(entry => {
-                    return entry.count;
-                }));
-                setIntentLabels(data.intent_stats.map(entry => {
-                    return entry._id;
+                    return {
+                        _id: entry._id,
+                        count: entry.count
+                    };
                 }));
             });
     }
@@ -126,6 +126,7 @@ function Frequency() {
 
     const handleChangeDisplayType = (event) => {
         setDisplayType(event.target.value);
+        console.log(range);
         updateDisplay(event.target.value);
     }
 
@@ -136,25 +137,41 @@ function Frequency() {
         fetchGeneralStats('endDate='+endDate+'&startDate_short='+startDate);
         fetchFeedbackStats('endDate='+endDate+'&startDate='+startDate);
         fetchIntentStats('endDate='+endDate+'&startDate='+startDate);
+        updateDisplay(0);
     }, []);
 
     useEffect(() => {
         updateDisplay(displayType);
-    }, [freqData, feedbackData, intentData, displayType]);
+    }, [freqData, feedbackData, intentData]);
 
-    const barOptions = {
-
-    };
-
-    const barData = {
-        
-    };
+    useEffect(() => {
+        fetchDataBasedOnInput(range);
+    }, [displayType]);
 
     const updateDisplay = (type) => {
         if(type == 0){
-            setDisplay(<Card>
-                
-            </Card>);
+            setDisplay(
+                <Card>
+                    <BarChart
+                    width={500}
+                    height={500}
+                    data={intentData}
+                    margin={{
+                        top: 5,
+                        right: 30,
+                        left: 20,
+                        bottom: 5,
+                    }}
+                    >
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="_id" />
+                        <YAxis allowDecimals={false}/>
+                        <Tooltip />
+                        <Legend />
+                        <Bar dataKey="count" fill="#800000" />
+                    </BarChart>
+                </Card>
+            );
         } else if(type == 1){
             setDisplay(<Card>
                 <Grid container>
@@ -189,10 +206,14 @@ function Frequency() {
 
     const handleChangeRange = (event) => {
         setRange(event.target.value);
+        fetchDataBasedOnInput(event.target.value);
+        // updateDisplay(displayType);
+    }
+
+    const fetchDataBasedOnInput = (timeInput) => {
         const current = new Date();
         const end = current.toISOString();
-        console.log(displayType);
-        if(event.target.value == 0){
+        if(timeInput == 0){
             const start = new Date(current.setMonth(current.getMonth() - 1)).toISOString();
             if(displayType == 0) {
                 fetchIntentStats('endDate='+end+'&startDate='+start);
@@ -201,7 +222,7 @@ function Frequency() {
             } else if(displayType == 2) {
                 fetchGeneralStats('endDate='+end+'&startDate_short='+start);
             }
-        } else if(event.target.value == 1){
+        } else if(timeInput == 1){
             const start = new Date(current.setYear(current.getYear() - 1)).toISOString();
             if(displayType == 0) {
                 fetchIntentStats('endDate='+end+'&startDate='+start);
@@ -210,7 +231,7 @@ function Frequency() {
             } else if(displayType == 2) {
                 fetchGeneralStats('endDate='+end+'&startDate_short='+start);
             }
-        } else if(event.target.value == 2){
+        } else if(timeInput == 2){
             const start = new Date(0).toISOString();
             if(displayType == 0) {
                 fetchIntentStats('endDate='+end+'&startDate='+start);
@@ -220,7 +241,6 @@ function Frequency() {
                 fetchGeneralStats('endDate='+end);
             }
         }
-        // updateDisplay(displayType);
     }
 
     return (
