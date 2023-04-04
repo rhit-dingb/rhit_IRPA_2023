@@ -1,13 +1,8 @@
 import { Navbar } from "./Navbar";
-import { Box, Card, List, Grid, InputLabel, MenuItem, Select, FormControl, ListItem, ListItemText, ButtonGroup, IconButton } from "@mui/material";
-import { Bar } from "react-chartjs-2";
+import { Box, Card, Grid, InputLabel, MenuItem, Select, FormControl } from "@mui/material";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 import { DataGrid } from '@mui/x-data-grid';
 import { useState, useEffect } from "react";
-
-export const data = {
-    test: true,
-
-}
 
 function Frequency() {
     /*
@@ -27,6 +22,8 @@ function Frequency() {
     const [display, setDisplay] = useState();
 
     const [freqData, setFreqData] = useState([]);
+    const [feedbackData, setFeedbackData] = useState({});
+    const [intentData, setIntentData] = useState([]);
 
     const columnsListAll = [
         {
@@ -50,33 +47,9 @@ function Frequency() {
             width: 200
         }
     ];
-    const columnsListByIntent = [
-        {
-            field: 'intent',
-            headerName: 'Intent',
-            width: 200
-        },
-        {
-            field: 'count',
-            headerName: 'Count',
-            width: 200
-        }
-    ];
-    const columnsListByQuestion = [
-        {
-            field: 'question',
-            headerName: 'Question',
-            width: 400
-        },
-        {
-            field: 'count',
-            headerName: 'Count',
-            width: 200
-        }
-    ];
     var columns = columnsListAll;
 
-    const fetchStats = (apiParamStr) => {
+    const fetchGeneralStats = (apiParamStr) => {
         fetch('http://localhost:8000/general_stats/?' + apiParamStr)
             .then(res => res.json())
             .then(data => {
@@ -92,13 +65,31 @@ function Frequency() {
             });
     }
 
-    const testFreq = {
-        id: 1,
-        question: "test",
-        intent: "test",
-        time: new Date(),
-        feedback: "test"
+    const fetchFeedbackStats = (apiParamStr) => {
+        fetch('http://localhost:8000/feedback_stats/?' + apiParamStr)
+            .then(res => res.json())
+            .then(data => {
+                setFeedbackData({
+                    success_rate: data.success_rate,
+                    successful_questions: data.successful_questions,
+                    total_questions: data.total_questions
+                });
+            });
     }
+
+    const fetchIntentStats = (apiParamStr) => {
+        fetch('http://localhost:8000/intent_stats/?' + apiParamStr)
+            .then(res => res.json())
+            .then(data => {
+                setIntentData(data.intent_stats.map(entry => {
+                    return {
+                        _id: entry._id,
+                        count: entry.count
+                    };
+                }));
+            });
+    }
+
 
     const handleChangeDisplayType = (event) => {
         setDisplayType(event.target.value);
@@ -107,52 +98,146 @@ function Frequency() {
 
     useEffect(() => {
         const current = new Date();
-        fetchStats('endDate='+current.toISOString()+'&startDate_short='+new Date(current.setMonth(current.getMonth() - 1)).toISOString());
+        const endDate = current.toISOString();
+        const startDate = new Date(current.setMonth(current.getMonth() - 1)).toISOString();
+        fetchGeneralStats('endDate='+endDate+'&startDate_short='+startDate);
+        fetchFeedbackStats('endDate='+endDate+'&startDate='+startDate);
+        fetchIntentStats('endDate='+endDate+'&startDate='+startDate);
+        updateDisplay(0);
     }, []);
 
     useEffect(() => {
         updateDisplay(displayType);
-    }, [freqData, displayType]);
+    }, [freqData, feedbackData, intentData]);
+
+    useEffect(() => {
+        fetchDataBasedOnInput(range);
+    }, [displayType]);
 
     const updateDisplay = (type) => {
         if(type == 0){
-            setDisplay(null);
+            setDisplay(
+                <Card sx={{padding: 2}}>
+                    <Grid container justifyContent={"center"}>
+                        <Grid item>
+                            <BarChart
+                            width={800}
+                            height={500}
+                            data={intentData}
+                            margin={{
+                                top: 5,
+                                right: 30,
+                                left: 20,
+                                bottom: 5,
+                            }}
+                            >
+                                <CartesianGrid strokeDasharray="3 3" />
+                                <XAxis dataKey="_id" />
+                                <YAxis allowDecimals={false}/>
+                                <Tooltip />
+                                <Bar dataKey="count" fill="#800000" maxBarSize={60}/>
+                            </BarChart>
+                        </Grid>
+                    </Grid>
+                </Card>
+            );
         } else if(type == 1){
-            console.log(freqData);
+            setDisplay(
+                <Card sx={{padding: 2}}>
+                    <Grid container justifyContent={"center"} spacing={4} height={300}>
+                        <Grid item xs={4}>
+                            <Card sx={{height: "100%", paddingTop: 1}}>
+                                <Grid container direction={"column"} height={"100%"}>
+                                    <Grid item xs={4}>
+                                        <div style={feedbackTextStyle}>
+                                            # Successful Questions / Total Questions
+                                        </div>
+                                    </Grid>
+                                    <Grid item xs={2}>
+                                        <div style={feedbackStatsTextStyle}>
+                                            {feedbackData.successful_questions} / {feedbackData.total_questions}
+                                        </div>
+                                    </Grid>
+                                </Grid>
+                            </Card>
+                        </Grid>
+                        <Grid item xs={4}>
+                            <Card sx={{height: "100%", paddingTop: 1}}>
+                            <Grid container direction={"column"} height={"100%"}>
+                                    <Grid item xs={4}>
+                                        <div style={feedbackTextStyle}>
+                                            Success Rate
+                                        </div>
+                                    </Grid>
+                                    <Grid item xs={2}>
+                                        <div style={feedbackStatsTextStyle}>
+                                            {feedbackData.success_rate}%
+                                        </div>
+                                    </Grid>
+                                </Grid>
+                            </Card>
+                        </Grid>
+                    </Grid>
+                </Card>
+            );
+        } else if(type == 2){
             setDisplay(<DataGrid columns={columns} rows={freqData}/>);
         } else {
-            setDisplay(null);
+            setDisplay(<Card>Display type not supported</Card>);
         }
     }
 
     const handleChangeRange = (event) => {
         setRange(event.target.value);
+        fetchDataBasedOnInput(event.target.value);
+    }
+
+    const fetchDataBasedOnInput = (timeInput) => {
         const current = new Date();
         const end = current.toISOString();
-        if(event.target.value == 0){
+        if(timeInput == 0){
             const start = new Date(current.setMonth(current.getMonth() - 1)).toISOString();
-            fetchStats('endDate='+end+'&startDate_short='+start);
-        } else if(event.target.value == 1){
+            if(displayType == 0) {
+                fetchIntentStats('endDate='+end+'&startDate='+start);
+            } else if(displayType == 1) {
+                fetchFeedbackStats('endDate='+end+'&startDate='+start);
+            } else if(displayType == 2) {
+                fetchGeneralStats('endDate='+end+'&startDate_short='+start);
+            }
+        } else if(timeInput == 1){
             const start = new Date(current.setYear(current.getYear() - 1)).toISOString();
-            fetchStats('endDate='+end+'&startDate_long='+start);
-        } else if(event.target.value == 2){
-            fetchStats('endDate='+end);
+            if(displayType == 0) {
+                fetchIntentStats('endDate='+end+'&startDate='+start);
+            } else if(displayType == 1) {
+                fetchFeedbackStats('endDate='+end+'&startDate='+start);
+            } else if(displayType == 2) {
+                fetchGeneralStats('endDate='+end+'&startDate_short='+start);
+            }
+        } else if(timeInput == 2){
+            const start = new Date(0).toISOString();
+            if(displayType == 0) {
+                fetchIntentStats('endDate='+end+'&startDate='+start);
+            } else if(displayType == 1) {
+                fetchFeedbackStats('endDate='+end+'&startDate='+start);
+            } else if(displayType == 2) {
+                fetchGeneralStats('endDate='+end);
+            }
         }
-        // updateDisplay(displayType);
     }
 
     return (
         <div>
             <Navbar/>
             <Box sx={{ width: '90%', margin: "auto", marginTop:"3%"}}>
-                <Grid container direction="column" justifyContent="flex-start" alignItems="stretch">
+                <Grid container direction="column" alignItems="stretch">
                     <Grid item>
                         <Box sx={{ width: '100%', margin: "auto"}}>
                             <FormControl>
                                 <InputLabel id="display-type-label">Display Type</InputLabel>
                                 <Select id="display-type" labelId="display-type-label" value={displayType} label="Display Type" onChange={handleChangeDisplayType}>
-                                    <MenuItem value={0}>List by Intent</MenuItem>
-                                    <MenuItem value={1}>List All</MenuItem>
+                                    <MenuItem value={0}>Intent Stats</MenuItem>
+                                    <MenuItem value={1}>Feedback Stats</MenuItem>
+                                    <MenuItem value={2}>List All</MenuItem>
                                 </Select>
                             </FormControl>
                             <FormControl>
@@ -166,7 +251,7 @@ function Frequency() {
                         </Box>
                     </Grid>
                     <Grid item>
-                        <Box sx={{ height: 520, width: '100%'}}>
+                        <Box sx={{ height: 520, width: '100%', marginTop: 2}}>
                             {display}
                         </Box>
                     </Grid>
@@ -175,4 +260,13 @@ function Frequency() {
         </div>
     )
 }
+
+const feedbackTextStyle = {
+    fontSize: 22
+};
+
+const feedbackStatsTextStyle = {
+    fontSize: 42
+};
+
 export default Frequency
