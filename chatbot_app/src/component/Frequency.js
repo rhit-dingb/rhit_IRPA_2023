@@ -1,8 +1,6 @@
 import { Navbar } from "./Navbar";
-import { Box, Card, List, Grid, InputLabel, MenuItem, Select, FormControl, ListItem, ListItemText, ButtonGroup, IconButton } from "@mui/material";
-// import { Bar } from "react-chartjs-2";
-// import { Chart, Tooltip, Legend, CategoryScale, LinearScale, BarElement, Title } from "chart.js";
-import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { Box, Card, Grid, InputLabel, MenuItem, Select, FormControl } from "@mui/material";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 import { DataGrid } from '@mui/x-data-grid';
 import { useState, useEffect } from "react";
 
