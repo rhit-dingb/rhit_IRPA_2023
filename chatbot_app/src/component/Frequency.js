@@ -6,11 +6,6 @@ import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Resp
 import { DataGrid } from '@mui/x-data-grid';
 import { useState, useEffect } from "react";
 
-export const data = {
-    test: true,
-
-}
-
 function Frequency() {
     /*
     range:
@@ -31,8 +26,6 @@ function Frequency() {
     const [freqData, setFreqData] = useState([]);
     const [feedbackData, setFeedbackData] = useState({});
     const [intentData, setIntentData] = useState([]);
-
-    // Chart.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
     const columnsListAll = [
         {
@@ -57,30 +50,6 @@ function Frequency() {
         }
     ];
     var columns = columnsListAll;
-
-    // const barData = {
-    //     intentLabels,
-    //     datasets: [
-    //       {
-    //         label: 'Dataset 1',
-    //         data: intentData,
-    //         backgroundColor: 'rgba(255, 99, 132, 0.5)',
-    //       }
-    //     ],
-    //   };
-
-    // const barOptions = {
-    //     responsive: true,
-    //     plugins: {
-    //       legend: {
-    //         position: 'top',
-    //       },
-    //       title: {
-    //         display: true,
-    //         text: 'Chart.js Bar Chart',
-    //       },
-    //     },
-    //   };
 
     const fetchGeneralStats = (apiParamStr) => {
         fetch('http://localhost:8000/general_stats/?' + apiParamStr)
@@ -126,7 +95,6 @@ function Frequency() {
 
     const handleChangeDisplayType = (event) => {
         setDisplayType(event.target.value);
-        console.log(range);
         updateDisplay(event.target.value);
     }
 
@@ -151,63 +119,79 @@ function Frequency() {
     const updateDisplay = (type) => {
         if(type == 0){
             setDisplay(
-                <Card>
-                    <BarChart
-                    width={500}
-                    height={500}
-                    data={intentData}
-                    margin={{
-                        top: 5,
-                        right: 30,
-                        left: 20,
-                        bottom: 5,
-                    }}
-                    >
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="_id" />
-                        <YAxis allowDecimals={false}/>
-                        <Tooltip />
-                        <Legend />
-                        <Bar dataKey="count" fill="#800000" />
-                    </BarChart>
+                <Card sx={{padding: 2}}>
+                    <Grid container justifyContent={"center"}>
+                        <Grid item>
+                            <BarChart
+                            width={800}
+                            height={500}
+                            data={intentData}
+                            margin={{
+                                top: 5,
+                                right: 30,
+                                left: 20,
+                                bottom: 5,
+                            }}
+                            >
+                                <CartesianGrid strokeDasharray="3 3" />
+                                <XAxis dataKey="_id" />
+                                <YAxis allowDecimals={false}/>
+                                <Tooltip />
+                                <Bar dataKey="count" fill="#800000" maxBarSize={60}/>
+                            </BarChart>
+                        </Grid>
+                    </Grid>
                 </Card>
             );
         } else if(type == 1){
-            setDisplay(<Card>
-                <Grid container>
-                    <Grid item>
-                        <Card>
-                            <div>
-                                # Successful Questions / Total Questions
-                            </div>
-                            <div>
-                                {feedbackData.successful_questions} / {feedbackData.total_questions}
-                            </div>
-                        </Card>
+            setDisplay(
+                <Card sx={{padding: 2}}>
+                    <Grid container justifyContent={"center"} spacing={4} height={300}>
+                        <Grid item xs={4}>
+                            <Card sx={{height: "100%", paddingTop: 1}}>
+                                <Grid container direction={"column"} height={"100%"}>
+                                    <Grid item xs={4}>
+                                        <div style={feedbackTextStyle}>
+                                            # Successful Questions / Total Questions
+                                        </div>
+                                    </Grid>
+                                    <Grid item xs={2}>
+                                        <div style={feedbackStatsTextStyle}>
+                                            {feedbackData.successful_questions} / {feedbackData.total_questions}
+                                        </div>
+                                    </Grid>
+                                </Grid>
+                            </Card>
+                        </Grid>
+                        <Grid item xs={4}>
+                            <Card sx={{height: "100%", paddingTop: 1}}>
+                            <Grid container direction={"column"} height={"100%"}>
+                                    <Grid item xs={4}>
+                                        <div style={feedbackTextStyle}>
+                                            Success Rate
+                                        </div>
+                                    </Grid>
+                                    <Grid item xs={2}>
+                                        <div style={feedbackStatsTextStyle}>
+                                            {feedbackData.success_rate}%
+                                        </div>
+                                    </Grid>
+                                </Grid>
+                            </Card>
+                        </Grid>
                     </Grid>
-                    <Grid item>
-                        <Card>
-                            <div>
-                                Success Rate
-                            </div>
-                            <div>
-                                {feedbackData.success_rate}
-                            </div>
-                        </Card>
-                    </Grid>
-                </Grid>
-            </Card>);
+                </Card>
+            );
         } else if(type == 2){
             setDisplay(<DataGrid columns={columns} rows={freqData}/>);
         } else {
-            setDisplay(null);
+            setDisplay(<Card>Display type not supported</Card>);
         }
     }
 
     const handleChangeRange = (event) => {
         setRange(event.target.value);
         fetchDataBasedOnInput(event.target.value);
-        // updateDisplay(displayType);
     }
 
     const fetchDataBasedOnInput = (timeInput) => {
@@ -247,7 +231,7 @@ function Frequency() {
         <div>
             <Navbar/>
             <Box sx={{ width: '90%', margin: "auto", marginTop:"3%"}}>
-                <Grid container direction="column" justifyContent="flex-start" alignItems="stretch">
+                <Grid container direction="column" alignItems="stretch">
                     <Grid item>
                         <Box sx={{ width: '100%', margin: "auto"}}>
                             <FormControl>
@@ -269,7 +253,7 @@ function Frequency() {
                         </Box>
                     </Grid>
                     <Grid item>
-                        <Box sx={{ height: 520, width: '100%'}}>
+                        <Box sx={{ height: 520, width: '100%', marginTop: 2}}>
                             {display}
                         </Box>
                     </Grid>
@@ -278,4 +262,13 @@ function Frequency() {
         </div>
     )
 }
+
+const feedbackTextStyle = {
+    fontSize: 22
+};
+
+const feedbackStatsTextStyle = {
+    fontSize: 42
+};
+
 export default Frequency
