@@ -7,21 +7,23 @@ import "bootstrap/js/dist/dropdown";
 import { Link } from "react-router-dom";
 
 import React, { Component, useEffect, useState, useRef} from "react";
-import {IS_LOGGED_IN_CONSTANT} from "../constants/constants"
+import {IS_LOGGED_IN_CONSTANT, TOKEN_KEY} from "../constants/constants"
 import { useHistory } from 'react-router-dom';
+import { logOut } from "../functions/functions";
 
 export function Navbar() {
-  const history = useHistory();
+    const history = useHistory();
 
-    const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem(IS_LOGGED_IN_CONSTANT))
- 
+    const [token, setToken] = useState(localStorage.getItem(TOKEN_KEY))
+
     useEffect(() => {
-      console.log(isLoggedIn)
+      // console.log("IS LOGGED IN ")
+      // console.log(token)
       if (history.location.pathname == "/admin_login"){
         return 
       }
 
-      if (!isLoggedIn) {
+      if (!token) {
         history.push('/');
       }
     }, [history]);
@@ -50,12 +52,12 @@ export function Navbar() {
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
-          {!isLoggedIn && 
+          {!token && 
             <a class="dropdown-item">
               <Link to="/admin_login">Admin Login</Link>
             </a>}
 
-          {isLoggedIn && <div>  <a class="dropdown-item">
+          {token? <div><a class="dropdown-item">
               <Link to="/unanswered_questions">Unanswered Questions</Link>
             </a>
 
@@ -73,7 +75,18 @@ export function Navbar() {
 
             <a class="dropdown-item">
               <Link to="/report_issue">Report Issue</Link>
-            </a></div> }
+            </a>
+
+            <a class="dropdown-item">
+              <Link  to="/admin_list">Admin List</Link>
+            </a>
+
+            <a class="dropdown-item">
+              <Link onClick={(e)=>{logOut(history)}} to="/admin_login">Logout</Link>
+            </a>
+
+           
+            </div> : null }
 
           </div>
         </div>

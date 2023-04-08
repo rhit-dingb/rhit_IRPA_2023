@@ -8,25 +8,32 @@ stories:
   - intent: mood_great
   - action: utter_happy
 
-- story: sad path 1
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - intent: affirm
-  - action: utter_happy
+# - story: sad path 1
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
+#   - intent: mood_unhappy
+#   - action: utter_cheer_up
+#   - action: utter_did_that_help
+#   - intent: affirm
+#   - action: utter_happy
 
-- story: sad path 2
+# - story: sad path 2
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
+#   - intent: mood_unhappy
+#   - action: utter_cheer_up
+#   - action: utter_did_that_help
+#   - intent: deny
+#   - action: utter_goodbye
+
+
+# Handle fall backs
+- story: Ask the user to rephrase whenever they send a message with low NLU confidence
   steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - intent: deny
-  - action: utter_goodbye
+  - intent: nlu_fallback
+  - action: action_nlu_fallback
 
 #Story for change year
 - story: change_year_run_set_year_action
@@ -89,7 +96,6 @@ stories:
     - action: action_store_asked_question
     - action: utter_ask_answer_helpful
     - intent: deny
-    # - action: utter_sorry_question_not_helpful
     - action: action_answer_not_helpful
     - action: action_store_isHelpful_statistic
     - action: action_get_available_options
@@ -159,155 +165,4 @@ stories:
   - action: action_ask_more_question
   - intent: deny
   - action: utter_no_more_question
-
-
-# - story: ask_about_financial_aid_helpful
-#   steps:
-#     - intent: financial_aid
-#     - action: action_query_knowledgebase
-#     - action: utter_ask_answer_helpful
-#     - intent: affirm
-#     - checkpoint: ask_feedback
-
-# - story: ask_about_financial_aid_not_helpful
-#   steps:
-#     - intent: financial_aid
-#     - action: action_query_knowledgebase
-#     - action: utter_ask_answer_helpful
-#     - intent: deny
-#     - action: utter_sorry_question_not_helpful
-#     - action: action_get_available_options
-
-
-
-
-# - story: ask_about_student_life_helpful
-#   steps:
-#     - intent: student_life
-#     - action: action_query_knowledgebase
-#     - action: utter_ask_answer_helpful
-#     - intent: affirm
-#     - checkpoint: ask_feedback
-
-# - story: ask_about_student_life_not_helpful
-#   steps:
-#     - intent: student_life
-#     - action: action_query_knowledgebase
-#     - action: utter_ask_answer_helpful
-#     - intent: deny
-#     - action: utter_sorry_question_not_helpful
-#     - action: action_get_available_options
-
-
-
-# - story: ask_about_transfer_admission_helpful
-#   steps:
-#     - intent: transfer_admission
-#     - action: action_query_knowledgebase
-#     - action: utter_ask_answer_helpful
-#     - intent: affirm
-#     - checkpoint: ask_feedback
-
-# - story: ask_about_transfer_admission_not_helpful
-#   steps:
-#     - intent: transfer_admission
-#     - action: action_query_knowledgebase
-    
-#     - action: utter_ask_answer_helpful
-#     - intent: deny
-#     - action: utter_sorry_question_not_helpful
-#     - action: action_get_available_options
-
-
-
-# - story: ask_about_freshman_profile_helpful
-#   steps:
-#     - intent: freshman_profile
-#     - action: action_query_knowledgebase
-#     - action: utter_ask_answer_helpful
-#     - intent: affirm
-#     - checkpoint: ask_feedback
-
-
-# - story: ask_about_freshman_profile_not_helpful
-#   steps:
-#     - intent: freshman_profile
-#     - action: action_query_knowledgebase
-#     - action: utter_ask_answer_helpful
-#     - intent: deny
-#     - action: utter_sorry_question_not_helpful
-#     - action: action_get_available_options
-
-
-# - story: ask_about_basis_for_selection_helpful
-#   steps:
-#     - intent: basis_for_selection
-#     - action: action_query_knowledgebase
-#     - action: utter_ask_answer_helpful
-#     - intent: affirm
-#     - checkpoint: ask_feedback
-
-
-# - story: ask_about_basis_for_selection_not_helpful
-#   steps:
-#     - intent: basis_for_selection
-#     - action: action_query_knowledgebase
-#     - action: utter_ask_answer_helpful
-#     - intent: deny
-#     - action: utter_sorry_question_not_helpful
-#     - action: action_get_available_options
-
-
-# - story: ask_about_high_school_units_helpful
-#   steps:
-#     - intent: high_school_units
-#     - action: action_query_knowledgebase
-#     - action: utter_ask_answer_helpful
-#     - intent: affirm
-#     - checkpoint: ask_feedback
-
-# - story: ask_about_high_school_units_not_helpful
-#   steps:
-#     - intent: high_school_units
-#     - action: action_query_knowledgebase
-#     - action: utter_ask_answer_helpful
-#     - intent: deny
-#     - action: utter_sorry_question_not_helpful
-#     - action: action_get_available_options
-
-# - story: ask_about_enrollment_and_answer_helpful
-#   steps: 
-#     - intent: enrollment 
-#     - action: action_query_knowledgebase
-#     - action: utter_ask_answer_helpful
-#     - intent: affirm
-#     - checkpoint: ask_feedback
-    
-# - story: ask_about_admission_and_answer_helpful
-#   steps: 
-#     - intent: admission 
-#     - action: action_query_admission
-#     - action: utter_ask_answer_helpful
-#     - intent: affirm
-#     - checkpoint: ask_feedback
-
-
-# - story: ask_about_enrollment_and_answer_not_helpful
-#   steps: 
-#     - intent: enrollment 
-#     - action: action_query_knowledgebase
-#     - action: utter_ask_answer_helpful
-#     - intent: deny
-#     - action: utter_sorry_question_not_helpful
-#     - action: action_get_available_options
-
-
-# - story: ask_about_admission_and_answer_not_helpful
-#   steps: 
-#     - intent: admission 
-#     - action: action_query_admission
-#     - action: utter_ask_answer_helpful
-#     - intent: deny
-#     - action: utter_sorry_question_not_helpful
-
 

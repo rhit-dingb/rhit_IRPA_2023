@@ -78,6 +78,10 @@ nlu:
     - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who have have a [bachelor's]{"entity": "degree_level", "value": "bachelors"} degree
     - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who have have a [doctorate](degree_level) degree
     - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who have have a [doctors]{"entity": "degree_level", "value": "doctorate"} degree
+    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who have have a [doctorates]{"entity": "degree_level", "value": "doctorate"} degree
+    - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who have have a [phd]{"entity": "degree_level", "value": "doctorate"} degree
+    - What is the total number of [full-time](enrollment_status) [faculties]{"entity": "people", "value": "faculty"} who have have a [terminal]{"entity": "degree_level", "value": "terminal"} degree
+    - What is the total number of [full-time](enrollment_status) [faculties]{"entity": "people", "value": "faculty"} whose [highest]{"entity": "range", "value": "maximum"} degree is a [terminal]{"entity": "degree_level", "value": "terminal"} degree
     - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who have have a [master](degree_level) degree
     - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} who have have a [masters]{"entity": "degree_level", "value": "master"} degree
     - What is the total number of [full-time](enrollment_status) [prof]{"entity": "people", "value": "faculty"} whose [highest]{"entity": "range", "value": "maximum"} degree is [unknown]{"entity": "degree_level", "value":"unknown"}

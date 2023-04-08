@@ -132,6 +132,9 @@ class TemplateConverter():
         expressions = self.parseTemplate(template)
         
         for searchResult in searchResults:
+        #    print("CONSTRUCTING TEMPLATE FOR")
+        #    print(searchResult.answer)
+        #    print(searchResult.entitiesForRealQuestion)
            #Because EntityExpression remove an entity from the list when it uses that entity's value, I make a copy to keep the original in case we use it.
            entitiesCopy = searchResult.entitiesUsed.copy()
            realAnswerEntitiesCopy = searchResult.entitiesForRealQuestion.copy()

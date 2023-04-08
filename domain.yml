@@ -10,7 +10,6 @@ intents:
   - cohort
   - admission
   - transfer_admission
-  # - high_school_units
   - basis_for_selection 
   - freshman_profile
   - academic_offering_and_policy
@@ -96,6 +95,7 @@ entities:
 
 - policy
 
+
 # used for something like: Initial 2015 cohort of first-time, fulltime, bachelor's (or equivalent) degreeseeking undergraduate students
 # and also something like: Final 2015 cohort, after adjusting for allowable exclusions
 - cohort_initial_final
@@ -108,14 +108,15 @@ entities:
 - exemptions
 
 
-#- recipients_of_federal_pell_grant
-#- recipients_of_a_subsidized_stafford_loan_who_did_not_receive_a_pell_grant 
-#- students_who_did_not_receive_either_a_pell_grant_or_a_subsidized_stafford_loan
-- aid_status_pell
-- aid_status_stafford
-- not_modifier_pell
-- not_modifier_stafford
-- aid_status_none
+# - aid_status_pell
+# - aid_status_stafford
+# - not_modifier_pell
+# - not_modifier_stafford
+
+# #Value: no aid
+# - aid_status_none
+
+
 
 #year to query the dataset.
 - year
@@ -143,7 +144,7 @@ entities:
 - standarized_test
 
 # Test percentile: 25th, 50th, 75th
-- test_percentile
+- percentile
 
 
 #Component for sat and act test such as 
@@ -212,7 +213,7 @@ entities:
 #Values: less than(within), more than(greater than),  maximum, minimum,
 - range
 
-# Doctorate, Masters, Bachelors, Associates degree, and Unknown
+# Doctorate, Masters, Bachelors, Associates degree, Unknown, and Terminal
 - degree_level 
 
 
@@ -221,8 +222,7 @@ entities:
 
 #Different category/group of student described in student life section, which includes student from out of state, 
 # those who join fraternity, sorority, etc.
-# Values: out of state, fraternity, sorority, commute, 
-# transfer, exchange
+# Values: out of state, fraternity, sorority, greek, commute, transfer, exchange
 - category
 
 # Describe college relation. 
@@ -262,9 +262,6 @@ entities:
 - defer
 
 
-# #Captures the word "year"
-# - year
-
 # Captures numerical value include decimals. For number that are formatted as words like "four", I wrote code for a custom extractor.
 #NOTE: currently, this is not labelled in training data, I use a custom entity extractor.
 - number
@@ -279,7 +276,7 @@ entities:
 - financial_aid_type
 
 #Captures scholarship, grants itself.
-#Value: scholarship, grants.
+#Value: scholarship, grants, pell grant.
 - scholarship_grants
 
 #Captures aids that are classified as self help, also include word self-help itself.
@@ -289,6 +286,9 @@ entities:
 #Captures aids other than self-help, and scholarship or grants.
 #Value: waiver,  loan
 - other_aid
+
+- no_aid
+
 
 #Captures Need or non need base aid
 - need_non_need_base_aid
@@ -326,10 +326,6 @@ entities:
 - size
 
 ##ENTITIES FOR DEFINITIONS
-
-# #Definition. Captures the word definition
-#   - definition
-
 
 #Program offered at school
 # Value: college-preparatory, accelerated, research, professional practice, cross-registration, double major, dual enrollment, cooperative, cooperative education, 
@@ -538,6 +534,7 @@ actions:
   - action_answer_not_helpful
   - action_store_asked_question
   - action_store_isHelpful_statistic
+  - action_nlu_fallback
   
   # - action_query_enrollment
   # - action_query_admission

@@ -58,15 +58,7 @@ nlu:
 #     - personal statement or essay
 #     - personal statement/essays
 
-# I purposely left out recommendation because recommendation goes into the academic factor entity, interpreted as recommendation letter
-- lookup: condition 
-  examples: | 
-    - recommended
-    - recommend
-    - required
-    - require 
-    - requirement
-    - must 
+
 
 - synonym: recommend
   examples: | 

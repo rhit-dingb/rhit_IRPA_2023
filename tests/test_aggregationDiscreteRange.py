@@ -27,7 +27,6 @@ class test_aggregate_discrete_range(unittest.TestCase):
         self.topicToParse =  [ACT_SCORE_INTENT]
         self.knowledgeBase = SparseMatrixKnowledgeBase(
             ExcelDataManager("./tests/testMaterials/testForDiscreteRange/", self.topicToParse))
-        knowledgeBaseInAction.setYear(2020)
         self.defaultShouldAddRowStrategy = DefaultShouldAddRowStrategy()
         self.knowledgeBase.constructOutput = identityFunc
         

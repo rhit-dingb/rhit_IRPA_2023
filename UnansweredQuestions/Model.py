@@ -33,6 +33,7 @@ class Model(ABC):
         self.trained = True
 
     def fitOnDocuments(self, documents):
+    
         return self._fit(documents)
         # if self.trained:
         #     return self._fit(documents)
@@ -40,7 +41,7 @@ class Model(ABC):
         #     return []
 
     @abstractmethod
-    def _train(self, documents, update = False):
+    def _train(self, documents, update):
        pass
 
  
@@ -56,9 +57,10 @@ class Model(ABC):
     @abstractmethod
     def loadModel(self):
         pass
-
+    
+    @abstractmethod
     def saveModel(self):
-        self.model.save(self.modelPath)
+        pass
 
 
    

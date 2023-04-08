@@ -31,16 +31,20 @@ class DocumentIndexRetriever(DocumentRetriever):
             print("RETURN")
             return ([], [])
 
-        # try:
-        documentSimilarities = self.index[transformedVectors[0]] 
+        documentSimilarities = []
+        try:
+            documentSimilarities = self.index[transformedVectors[0]] 
+        except:
+            return ([],[])
+        
+        print("DOC SIM")
+        print(documentSimilarities)
         for i, sim in enumerate(documentSimilarities):  
             doc = self.corpus.getDocumentByIndex(i)
             print(doc)
             print(sim)
     
         return self.getTopDocs(documentSimilarities, self.topN)
-        # except:
-        #     return ([],[])
      
        
     

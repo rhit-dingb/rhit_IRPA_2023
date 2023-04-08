@@ -76,7 +76,7 @@ class Corpus:
         self.documents = self.documents + documents
         self.updateDictionary(preprocessedDocuments)
 
-    # #Probably replace this with database call.
+        
     def getDocumentByIndex(self, doc_position):
         index = 0
         for doc in self.retrieveDocumentFromDataSource():
@@ -95,13 +95,13 @@ class Corpus:
        
 
     def retrieveDoc(self):
+        print("RETRIEVING DOCUMENTS")
         cursor = self.dataSourceConnector.getAnsweredQuestionSortedByDate()
         for doc in cursor:
             yield doc
 
     def retrieveDocumentFromDataSource(self):
         # Probably replace this with a database call.
-        print("DOC")
         for doc in self.retrieveDoc():
             print(doc["content"])
             yield doc["content"]

@@ -1,0 +1,3020 @@
+{
+    "General Info": [
+        {
+            "Question": "What is Rose-Hulman's mailing address?",
+            "Answer": "Rose-Hulman's mailing address is 5500 Wabash Ave, Terre Haute, IN 47803",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is Rose-Hulman main phone number?",
+            "Answer": "Rose-Hulman's main phone number is (812) 877-1511",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is Rose-Hulman’s www home page address / website?",
+            "Answer": "Rose-Hulman's website is www.rose-hulman.edu",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is Rose-Hulman admissions phone number?",
+            "Answer": "Rose-Hulman's admissions number is (812) 877-8213",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is Rose-Hulman admissions toll free phone number?",
+            "Answer": "Rose-Hulman's admissions toll free phone number is 800-248-7448",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is Rose-Hulman admissions office mailing address?",
+            "Answer": "Rose-Hulman's admission office mailing address is: Admissions Office, Rose-Hulman Institute of Technology\r\n5500 Wabash Ave, Terre Haute, IN 47803",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is Rose-Hulman’s admission fax number?",
+            "Answer": "Rose-Hulman's fax number is (812) 877-8941",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is Rose-Hulman’s admission email address?",
+            "Answer": "Rose-Hulman admissions email address is admissions@rose-hulman.edu",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the url for Rose-Hulman’s online application?",
+            "Answer": "The url for Rose-Hulman's online application is: https://www.commonapp.org/explore/rose-hulman-institute-technology",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the source of institutional control for Rose-Hulman. Is the institution a private or public college?",
+            "Answer": "Rose-Hulman is a private college",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "Is Rose-Hulman a coeducational college, men’s college or women’s college?",
+            "Answer": "Rose-Hulman is a coeducational college",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What academic year calendar does Rose-Hulman use? Is it quarter, semester, trimester, continuous, 4-1-4, or does it differ by program?",
+            "Answer": "Rose-Hulman uses quarter system.",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What degrees are offered by Rose-Hulman?",
+            "Answer": "Rose-Hulman offers bachelors and masters degree",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "Metadata",
+            "Answer": "X"
+        },
+        {
+            "Question": "About",
+            "Answer": "General information about Rose-Hulman, such as phone number, website, college type, degrees offered, academic calendar system."
+        },
+        {
+            "Question": "Operation-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Sum-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Range-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Percentage-Allowed?",
+            "Answer": "No"
+        }
+    ],
+    "Enrollment_General": [
+        {
+            "Question": "How many male full-time undergraduate degree-seeking first-time freshmen students are enrolled?",
+            "Answer": 387
+        },
+        {
+            "Question": "How many female full-time undergraduate degree-seeking first-time freshmen students are enrolled?",
+            "Answer": 143
+        },
+        {
+            "Question": "How many male part-time undergraduate degree-seeking first-time freshmen students are enrolled?",
+            "Answer": 1
+        },
+        {
+            "Question": "How many female part-time undergraduate degree-seeking first-time freshmen students are enrolled?",
+            "Answer": 0
+        },
+        {
+            "Question": "How many male full-time undergraduate non-first-time freshman first-year students are enrolled?",
+            "Answer": 9
+        },
+        {
+            "Question": "How many female full-time undergraduate non-first-time freshman first-year students are enrolled?",
+            "Answer": 2
+        },
+        {
+            "Question": "How many male part-time undergraduate non-first-time freshman first-year students are enrolled?",
+            "Answer": 0
+        },
+        {
+            "Question": "How many female part-time undergraduate non-first-time freshman first-year students are enrolled?",
+            "Answer": 0
+        },
+        {
+            "Question": "How many male full-time undergraduate degree-seeking non-freshmen students are enrolled?",
+            "Answer": 1082
+        },
+        {
+            "Question": "How many female full-time undergraduate degree-seeking non-freshmen students are enrolled?",
+            "Answer": 329
+        },
+        {
+            "Question": "How many male part-time undergraduate degree-seeking non-freshmen student are enrolled?",
+            "Answer": 15
+        },
+        {
+            "Question": "How many female part-time undergraduate degree-seeking non-freshmen student are enrolled?",
+            "Answer": 1
+        },
+        {
+            "Question": "How many male full-time undergraduate non-degree-seeking students are enrolled?",
+            "Answer": 0
+        },
+        {
+            "Question": "How many female full-time undergraduate non-degree-seeking students are enrolled?",
+            "Answer": 0
+        },
+        {
+            "Question": "How many male part-time undergraduate non-degree-seeking students are enrolled?",
+            "Answer": 2
+        },
+        {
+            "Question": "How many female part-time undergraduate non-degree-seeking students are enrolled?",
+            "Answer": 1
+        },
+        {
+            "Question": "How many male full-time graduate degree-seeking first-time students are enrolled?",
+            "Answer": 3
+        },
+        {
+            "Question": "How many female full-time graduate degree-seeking first-time students are enrolled?",
+            "Answer": 0
+        },
+        {
+            "Question": "How many male part-time graduate degree-seeking first-time students are enrolled?",
+            "Answer": 2
+        },
+        {
+            "Question": "How many female part-time graduate degree-seeking first-time students are enrolled?",
+            "Answer": 1
+        },
+        {
+            "Question": "How many male full-time graduate degree-seeking non-first-time students are enrolled?",
+            "Answer": 6
+        },
+        {
+            "Question": "How many female full-time graduate degree-seeking non-first-time students are enrolled?",
+            "Answer": 1
+        },
+        {
+            "Question": "How many male part-time graduate degree-seeking non-first-time students are enrolled?",
+            "Answer": 5
+        },
+        {
+            "Question": "How many female part-time graduate degree-seeking non-first-time students are enrolled?",
+            "Answer": 0
+        },
+        {
+            "Question": "How many male full-time graduate non-degree-seeking students are enrolled?",
+            "Answer": 0
+        },
+        {
+            "Question": "How many female full-time graduate non-degree-seeking students are enrolled?",
+            "Answer": 0
+        },
+        {
+            "Question": "How many male part-time graduate non-degree-seeking students are enrolled?",
+            "Answer": 0
+        },
+        {
+            "Question": "How many female part-time graduate non-degree-seeking students are enrolled?",
+            "Answer": 0
+        },
+        {
+            "Question": "Metadata",
+            "Answer": "X"
+        },
+        {
+            "Question": "About",
+            "Answer": "Number of students enrolled. This can vary from male or female students, undergraduate or graduate, degree-seeking or non-degree-seeking, full-time and part-time, first-year or non-first-year, and first-time and non-first-time, and freshman and non-freshman and combinations of these variations."
+        },
+        {
+            "Question": "Template",
+            "Answer": "The number of [gender] [is_first_time] [is_first_year] [undergraduate_grade_level] [enrollment_status] [degree-goal] [student_level] students enrolled is <value>"
+        },
+        {
+            "Question": "Operation-Allowed?",
+            "Answer": "Yes"
+        },
+        {
+            "Question": "Sum-Allowed?",
+            "Answer": "Yes"
+        },
+        {
+            "Question": "Range-Allowed?",
+            "Answer": "Yes"
+        },
+        {
+            "Question": "Percentage-Allowed?",
+            "Answer": "No"
+        }
+    ],
+    "Enrollment_Race Undergraduate": [
+        {
+            "Question": "How many degree-seeking undergraduate nonresident aliens students are enrolled?",
+            "Answer": 226
+        },
+        {
+            "Question": "How many degree-seeking undergraduate hispanics students are enrolled?",
+            "Answer": 104
+        },
+        {
+            "Question": "How many degree-seeking undergraduate african americans students are enrolled?",
+            "Answer": 93
+        },
+        {
+            "Question": "How many degree-seeking undergraduate caucasian students are enrolled?",
+            "Answer": 1295
+        },
+        {
+            "Question": "How many degree-seeking undergraduate american indians students are enrolled?",
+            "Answer": 3
+        },
+        {
+            "Question": "How many degree-seeking undergraduate asians students are enrolled?",
+            "Answer": 127
+        },
+        {
+            "Question": "How many degree-seeking undergraduate pacific islanders students are enrolled?",
+            "Answer": 0
+        },
+        {
+            "Question": "How many degree-seeking undergraduate students of two or more races are enrolled?",
+            "Answer": 99
+        },
+        {
+            "Question": "How many degree-seeking undergraduate students of unknown race are enrolled?",
+            "Answer": 22
+        },
+        {
+            "Question": "Metadata",
+            "Answer": "X"
+        },
+        {
+            "Question": "About",
+            "Answer": "The number of undergraduate degree-seeking students enrolled by race and nonresident-alien(immigration status). This includes students enrolled who are either Hispanics, African American, Caucasian, or Pacific Islander, have two or more races or whose race is unknown."
+        },
+        {
+            "Question": "Template",
+            "Answer": "The  (xor [*percent] number) of degree-seeking undergraduate students enrolled    (xor {of [^*unknown] race} (xor {who are [^race]} {nonresidence alien})) is  <value>"
+        },
+        {
+            "Question": "Operation-Allowed?",
+            "Answer": "Yes"
+        },
+        {
+            "Question": "Sum-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Range-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Percentage-Allowed?",
+            "Answer": "Yes"
+        },
+        {
+            "Question": "Denominator-Question",
+            "Answer": "How many degree-seeking undergraduate students are enrolled?"
+        }
+    ],
+    "Enrollment_Race First time year": [
+        {
+            "Question": "How many degree-seeking first-time first-year nonresident aliens students are enrolled?",
+            "Answer": 36
+        },
+        {
+            "Question": "How many degree-seeking first-time first-year hispanics students are enrolled?",
+            "Answer": 34
+        },
+        {
+            "Question": "How many degree-seeking first-time first-year african americans students are enrolled?",
+            "Answer": 31
+        },
+        {
+            "Question": "How many degree-seeking first-time first-year white students are enrolled?",
+            "Answer": 356
+        },
+        {
+            "Question": "How many degree-seeking first-time first-year american indians students are enrolled?",
+            "Answer": 1
+        },
+        {
+            "Question": "How many degree-seeking first-time first-year asians students are enrolled?",
+            "Answer": 36
+        },
+        {
+            "Question": "How many degree-seeking first-time first-year pacific islanders students are enrolled?",
+            "Answer": 0
+        },
+        {
+            "Question": "How many degree-seeking first-time first-year students of two or more races are enrolled?",
+            "Answer": 31
+        },
+        {
+            "Question": "How many degree-seeking first-time first-year students of unknown race are enrolled?",
+            "Answer": 6
+        },
+        {
+            "Question": "Metadata",
+            "Answer": "X"
+        },
+        {
+            "Question": "About",
+            "Answer": "Enrollment by race and nonresident-alien(immigration status) for first-time first-year students."
+        },
+        {
+            "Question": "Template",
+            "Answer": "The (xor [*percent] number) of degree-seeking first-time first-year students enrolled (xor {of [^*unknown] race} (xor {who are [^race]} {nonresidence alien})) is <value>"
+        },
+        {
+            "Question": "Operation-Allowed?",
+            "Answer": "Yes"
+        },
+        {
+            "Question": "Sum-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Range-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Percentage-Allowed?",
+            "Answer": "Yes"
+        },
+        {
+            "Question": "Denominator-Question",
+            "Answer": "How many degree-seeking first-time first-year students are enrolled?"
+        }
+    ],
+    "Cohort_2014": [
+        {
+            "Question": "How many students in the initial cohort were recipients of a Federal Pell Grant?",
+            "Answer": "83"
+        },
+        {
+            "Question": "How many of those students in the initial cohort were recipients of a Subsidized Stafford Loan but not a Pell Grant?",
+            "Answer": "199"
+        },
+        {
+            "Question": "How many of those students in the initial cohort did not receive either a Pell Grant or a subsidized Stafford Loan?",
+            "Answer": "300"
+        },
+        {
+            "Question": "How many exempted student were recipients of a Federal Pell Grant?",
+            "Answer": "0"
+        },
+        {
+            "Question": "How many of exempted students were recipients of a Subsidized Stafford Loan but not did not receive a Pell Grant?",
+            "Answer": "0"
+        },
+        {
+            "Question": "How many of exempted students did not receive a Pell Grant or a subsidized Stafford Loan?",
+            "Answer": "1"
+        },
+        {
+            "Question": "How many students in the final cohort were recipients of a Federal Pell Grant?",
+            "Answer": "83"
+        },
+        {
+            "Question": "How many students in the final cohort were recipients of a Subsidized Stafford Loan but not a Pell Grant?",
+            "Answer": "199"
+        },
+        {
+            "Question": "How many students in the final cohort did not receive a Pell Grant or a subsidized Stafford Loan?",
+            "Answer": "299"
+        },
+        {
+            "Question": "How many students in the initial cohort completed the program within four years and were recipients of a Federal Pell Grant?",
+            "Answer": "61"
+        },
+        {
+            "Question": "How many students in the initial cohort who completed the program within four years were recipients of a Subsidized Stafford Loan but not a Pell Grant?",
+            "Answer": "144"
+        },
+        {
+            "Question": "How many students in the initial cohort who completed the program within four years but did not receive a Pell Grant or a subsidized Stafford Loan?",
+            "Answer": "220"
+        },
+        {
+            "Question": "How many students  in the initial cohort who completed the program in between four and five years were recipients of a Federal Pell Grant?",
+            "Answer": "7"
+        },
+        {
+            "Question": "How many students  in the initial cohort who completed the program in between four and five years were recipients of a Subsidized Stafford Loan but not a Pell Grant?",
+            "Answer": "9"
+        },
+        {
+            "Question": "How many students in the initial cohort who completed the program in between four and five years did not receive a Pell Grant or a subsidized Stafford Loan?",
+            "Answer": "33"
+        },
+        {
+            "Question": "How many students who completed the program between five and six years were recipients of a Federal Pell Grant?",
+            "Answer": "1"
+        },
+        {
+            "Question": "How many students who completed the program between five and six years were recipients of a Subsidized Stafford Loan but not a Pell Grant?",
+            "Answer": "5"
+        },
+        {
+            "Question": "How many students who completed the program between five and six years did not receive a Pell Grant or a subsidized Stafford Loan?",
+            "Answer": "3"
+        },
+        {
+            "Question": "Metadata",
+            "Answer": "X"
+        },
+        {
+            "Question": "About",
+            "Answer": "The cohort of students who enrolled at Rose-Hulman in 2014, and graduated within four, five, or six year and graduation rate for those years. You can also ask all of the things paired with financial aid in terms of student who received pell-grant, student who received stafford loan but not pell grant and student who received neither."
+        },
+        {
+            "Question": "Template",
+            "Answer": "The (xor [*percent] number) of students {who graduated (xor {[^range] [^number] years and [^number] years} {[^range] [^number] years})} in the [^initial_final] 2014 cohort is <value>"
+        },
+        {
+            "Question": "Operation-Allowed?",
+            "Answer": "Yes"
+        },
+        {
+            "Question": "Sum-Allowed?",
+            "Answer": "Yes"
+        },
+        {
+            "Question": "Range-Allowed?",
+            "Answer": "Yes"
+        },
+        {
+            "Question": "Percentage-Allowed?",
+            "Answer": "Yes"
+        },
+        {
+            "Question": "Denominator-Question"
+        }
+    ],
+    "Cohort_Retention 2019": [
+        {
+            "Question": "What is the retention rate for 2019 cohort?",
+            "Answer": "The retention rate for 2019 cohort is 89.7% (445/496)",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "Metadata",
+            "Answer": "X"
+        },
+        {
+            "Question": "About",
+            "Answer": "The retention rate of full-time bachelor’s (or equivalent) degree-seeking undergraduate students who entered Rose-Hulman as\r\nfreshmen in Fall 2019"
+        }
+    ],
+    "Admission_Applied": [
+        {
+            "Question": "Total first-time, first-year (freshman) male students who applied?",
+            "Answer": 3338
+        },
+        {
+            "Question": "Total first-time, first-year (freshman) female students who applied",
+            "Answer": 1038
+        },
+        {
+            "Question": "Metadata",
+            "Answer": "x"
+        },
+        {
+            "Question": "About",
+            "Answer": "The number of first-time first-year freshman students who applied by gender"
+        },
+        {
+            "Question": "Template",
+            "Answer": "The number of first-time, first-year [gender] freshmen who applied to Rose-Hulman is <value> "
+        },
+        {
+            "Question": "Operation-Allowed?",
+            "Answer": "Yes"
+        },
+        {
+            "Question": "Sum-Allowed?",
+            "Answer": "Yes"
+        },
+        {
+            "Question": "Range-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Percentage-Allowed?",
+            "Answer": "No"
+        }
+    ],
+    "Admission_Admitted": [
+        {
+            "Question": "What is the total first-time, first-year (freshman) male students  who were admitted",
+            "Answer": 2502
+        },
+        {
+            "Question": "What is the total first-time, first-year (freshman)  female students who were admitted",
+            "Answer": 851
+        },
+        {
+            "Question": "Metadata",
+            "Answer": "x"
+        },
+        {
+            "Question": "About",
+            "Answer": "The number of first-time first-year freshman students who who were admitted by gender"
+        },
+        {
+            "Question": "Template",
+            "Answer": "The number of first-time, first-year [gender] freshmen who were admitted to Rose-Hulman is <value> "
+        },
+        {
+            "Question": "Operation-Allowed?",
+            "Answer": "Yes"
+        },
+        {
+            "Question": "Sum-Allowed?",
+            "Answer": "Yes"
+        },
+        {
+            "Question": "Range-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Percentage-Allowed?",
+            "Answer": "No"
+        }
+    ],
+    "Admission_Enrolled": [
+        {
+            "Question": "Total full-time, first-time, first-year (freshman) male students who enrolled",
+            "Answer": 401
+        },
+        {
+            "Question": "Total part-time, first-time, first-year (freshman) male students who enrolled",
+            "Answer": 1
+        },
+        {
+            "Question": "Total full-time, first-time, first-year (freshman) female students who enrolled",
+            "Answer": 145
+        },
+        {
+            "Question": "Total part-time, first-time, first-year (freshman) female students who enrolled",
+            "Answer": 0
+        },
+        {
+            "Question": "Metadata",
+            "Answer": "x"
+        },
+        {
+            "Question": "About",
+            "Answer": "The number of first-time first-year freshman students who enrolled by gender"
+        },
+        {
+            "Question": "Template",
+            "Answer": "The number of [enrollment_status] first-time, first-year [gender] freshman who enrolled at Rose-Hulman is <value> "
+        },
+        {
+            "Question": "Operation-Allowed?",
+            "Answer": "Yes"
+        },
+        {
+            "Question": "Sum-Allowed?",
+            "Answer": "Yes"
+        },
+        {
+            "Question": "Range-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Percentage-Allowed?",
+            "Answer": "No"
+        }
+    ],
+    "Admission_Waitlist": [
+        {
+            "Question": "Do you have a policy of placing students on a waiting list?",
+            "Answer": "Rose-Hulman have a policy of placing student on the waiting list. The number of qualified applicants offered a place on waiting list is 119, the number of accepting a place on the waiting list is 43, the number of wait-listed students admitted 14",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "Is your waiting list ranked?",
+            "Answer": "Rose-Hulman's waitlist is not ranked",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is your high school completion requirement for degree-seeking entering students?",
+            "Answer": "High school diploma is required and GED is not accepted",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "Does your institution require or recommend a general college-preparatory program for degree-seeking students?",
+            "Answer": "A general college-preparatory program for degree-seeking students is required",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "Metadata",
+            "Answer": "x"
+        },
+        {
+            "Question": "About",
+            "Answer": "Admission policies and requirement including waitlist policies, high school completion requirement, and requirement/recommendation for college-prepartory program "
+        }
+    ],
+    "Admission_High School Required": [
+        {
+            "Question": "How many English units are required for admission?",
+            "Answer": 4,
+            "Complete Sentence?": "No"
+        },
+        {
+            "Question": "How many Mathematics units are required for admission?",
+            "Answer": 4,
+            "Complete Sentence?": "No"
+        },
+        {
+            "Question": "How many science units are required for admission?",
+            "Answer": 3,
+            "Complete Sentence?": "No"
+        },
+        {
+            "Question": "Of the previous units, how many lab units required for admission?",
+            "Answer": 3,
+            "Complete Sentence?": "No"
+        },
+        {
+            "Question": "How many foreign language units are required for admission?",
+            "Answer": 0,
+            "Complete Sentence?": "No"
+        },
+        {
+            "Question": "How many social studies units are required for admission?",
+            "Answer": 2,
+            "Complete Sentence?": "No"
+        },
+        {
+            "Question": "How many history units are required for admission?",
+            "Answer": 0,
+            "Complete Sentence?": "No"
+        },
+        {
+            "Question": "How many academic elective units are required for admission?",
+            "Answer": 0,
+            "Complete Sentence?": "No"
+        },
+        {
+            "Question": "How many computer science units are required for admission?",
+            "Answer": 0,
+            "Complete Sentence?": "No"
+        },
+        {
+            "Question": "How many visual/performing art units are required for admission?",
+            "Answer": 0,
+            "Complete Sentence?": "No"
+        },
+        {
+            "Question": "What other units are required for admission? (please specify)",
+            "Answer": "No other additional units are required for admission",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "Metadata",
+            "Answer": "X"
+        },
+        {
+            "Question": "About",
+            "Answer": "High school units for various subjects required for admission to Rose-Hulman"
+        },
+        {
+            "Question": "Template",
+            "Answer": "The number of [^subject] units required to be taken by students during high school for admission to Rose-Hulman  is <value>"
+        },
+        {
+            "Question": "Operation-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Sum-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Range-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Percentage-Allowed?",
+            "Answer": "No"
+        }
+    ],
+    "Admission_High School Recommend": [
+        {
+            "Question": "How many English units are recommended for admission?",
+            "Answer": 0,
+            "Complete Sentence?": "No"
+        },
+        {
+            "Question": "How many Mathematics units are recommended for admission?",
+            "Answer": 5,
+            "Complete Sentence?": "No"
+        },
+        {
+            "Question": "How many science units are recommended for admission?",
+            "Answer": 4,
+            "Complete Sentence?": "No"
+        },
+        {
+            "Question": "Of previous units, how many lab units are recommended for admission?",
+            "Answer": 0,
+            "Complete Sentence?": "No"
+        },
+        {
+            "Question": "How many foreign language units are recommended for admission?",
+            "Answer": 0,
+            "Complete Sentence?": "No"
+        },
+        {
+            "Question": "How many social studies units are recommended for admission?",
+            "Answer": 0,
+            "Complete Sentence?": "No"
+        },
+        {
+            "Question": "How many history units are recommended for admission?",
+            "Answer": 0,
+            "Complete Sentence?": "No"
+        },
+        {
+            "Question": "How many academic elective units are recommended for admission?",
+            "Answer": 4,
+            "Complete Sentence?": "No"
+        },
+        {
+            "Question": "How many computer science units are recommended for admission?",
+            "Answer": 0,
+            "Complete Sentence?": "No"
+        },
+        {
+            "Question": "How many visual/performing art units are recommended for admission?",
+            "Answer": 0,
+            "Complete Sentence?": "No"
+        },
+        {
+            "Question": "What other units are recommended for admission? (please specify)",
+            "Answer": "No other additional units are recommended for admission",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "Metadata",
+            "Answer": "X"
+        },
+        {
+            "Question": "About",
+            "Answer": "High school units for various subjects recommended for admission to Rose-Hulman"
+        },
+        {
+            "Question": "Template",
+            "Answer": "The number of [^subject] units recommended to be taken by students during high school for admission to Rose-Hulman  is <value>"
+        },
+        {
+            "Question": "Operation-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Sum-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Range-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Percentage-Allowed?",
+            "Answer": "No"
+        }
+    ],
+    "Admission_Policies": [
+        {
+            "Question": "Does Rose-Hulman have an application fee, if so how much?",
+            "Answer": "Rose-Hulman have an application fee of 60 dollars",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "Can application fee be waived for applicants with financial need?",
+            "Answer": "Application can be waived for applicants with financial need",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "Is there an application fee for online applicants?",
+            "Answer": "The application fee for online applicants is the same as the normal application fee of 60 dollars.",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "When is the application closing date and priority date for admissions?",
+            "Answer": "Application closing and priority date for admissions is februrary 1st for regular decision and November 1st for early action",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "Are students accepted for terms other than the fall?",
+            "Answer": "Students can be accepted for terms other than the fall with special permission.",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "When are notification of admission decisions to students sent?",
+            "Answer": "Admission decision for early decision is sent by December 15th. Regular decision is sent by March 15th.",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the reply policy for applicants ",
+            "Answer": "Applicants must reply to admission decision by May 1. The deadline for housing deposit is not available. ",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "Does rose-hulman allow students to postpone enrollment after admission?",
+            "Answer": "Students can postpone their enrollment after admission",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "Does rose-hulman allow early admission of high school students?",
+            "Answer": "Rose-Hulman does not allow high school students to enroll as full-time, first-time,\r\nfirst-year (freshman) students one year or more before high school graduation",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is Rose-Hulman’s early decision policy?",
+            "Answer": "Rose-Hulman does not allow early decision",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is Rose-Hulman’s early action policy?",
+            "Answer": "Rose-Hulman does have early action. The early action closing date is November 1st and early action notification date is December 15th. Students can still apply to other early action programs after applying for early action at Rose-Hulman.",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "Metadata",
+            "Answer": "X"
+        },
+        {
+            "Question": "About",
+            "Answer": "Rose-Hulman's admission policies, including application fee, waiver, early action and early decision policy, postpone enrollment policy and early admission of high school students is allowed"
+        }
+    ],
+    "Basis For Selection": [
+        {
+            "Question": "What is the importance of the rigor of secondary school records in admission decisions?",
+            "Answer": "Rigor of secondary school record is very important in admission decisions"
+        },
+        {
+            "Question": "What is the importance of class rank in admission decisions?",
+            "Answer": "Class rank is important in admission decisions "
+        },
+        {
+            "Question": "What is the importance of academic gpa in admission decisions?",
+            "Answer": "Academic gpa is very important  in admission decisions."
+        },
+        {
+            "Question": "What is the importance of standardized test scores in admission decisions?",
+            "Answer": "Standardized test score is not as important but considered in admission decisions"
+        },
+        {
+            "Question": "What is the importance of application essays in admission decisions?",
+            "Answer": "Application essay is considered in admission decisions."
+        },
+        {
+            "Question": "What is the importance of recommendation in admission decisions?",
+            "Answer": "Recommendation letters is important in admission decisions."
+        },
+        {
+            "Question": "What is the importance of interviews in admission decisions?",
+            "Answer": "Interviews are considered in admission decisions"
+        },
+        {
+            "Question": "What is the importance of extracurricular activities in admission decisions",
+            "Answer": "Extracirricular activities are considered in admission decisions"
+        },
+        {
+            "Question": "What is the importance of talent/ability in admission decisions?",
+            "Answer": "Talent/ability of the applicant is considered in admission decisions"
+        },
+        {
+            "Question": "What is the importance of character/personal qualities in admission decisions?",
+            "Answer": "Character or personal qualities is considered in admission decisions"
+        },
+        {
+            "Question": "What is the importance of being a first generation student in admission decisions?",
+            "Answer": "The applicant being a first generation student is considered in admission decisions"
+        },
+        {
+            "Question": "What is the importance of alumni/ae relation in admission decisions",
+            "Answer": "Alumni/ae relation is considered in admission decisions."
+        },
+        {
+            "Question": "What is the importance of geographical residence in admission decisions?",
+            "Answer": "Geographical residence is considered in admission decisions."
+        },
+        {
+            "Question": "What is the importance of state residency in admission decisions?",
+            "Answer": "State residency is not considered in admission decisions."
+        },
+        {
+            "Question": "What is the importance of religious affiliation/commitment in admission decisions?",
+            "Answer": "Religious affiliation and commitment is not considerd in admission decisions."
+        },
+        {
+            "Question": "What is the importance of racial/ethnic status in admission decisions?",
+            "Answer": "Racial/ethnic status is considered in admission decisions."
+        },
+        {
+            "Question": "What is the importance of volunteer work in admission decisions?",
+            "Answer": "Volunteer work is considered in admission decisions"
+        },
+        {
+            "Question": "What is the importance of work experience in admission decisions?",
+            "Answer": "Work experience is considered in admission decisions."
+        },
+        {
+            "Question": "What is the importance of the level of applicant’s interest in admission decisions?",
+            "Answer": "The level of applicant's interest is considered in admission decisions."
+        },
+        {
+            "Question": "Metadata",
+            "Answer": "X"
+        },
+        {
+            "Question": "About",
+            "Answer": "The importance of different factors in admission decisions which includes rigor of secondary school records, class rank, gpa, standardized test scores, recommendation letter, interview, extracirricular activities, talent/ability, character/personal qualities, first generation student, alumni relation, geographic residence, religious affiliation/commitment, racial/ethnic status, volunteer work, work experience, level of applicant's interest."
+        },
+        {
+            "Question": "Template",
+            "Answer": "(xor [academic_factor] [non_academic_factor]) is <value> in Rose-Hulman admission decisions "
+        }
+    ],
+    "SAT ACT Policy": [
+        {
+            "Question": "Does Rose-Hulman make use of ACT and SAT or ACT and SAT subject test in admission decisions for first-time first-year degree-seeking applicants? If yes, please state how the tests will be used.",
+            "Answer": "ACT and SAT scores are considered in admission decisions if submitted. ACT and SAT scores without essay component are accepted."
+        },
+        {
+            "Question": "Does Rose-Hulman use ACT or SAT test scores for academic advising?",
+            "Answer": "Rose-Hulman does not use SAT or ACT test scores for academic advising."
+        },
+        {
+            "Question": "What date by which SAT or ACT scores must be received for fall term admission?",
+            "Answer": "The latest date by which SAT and ACT score must be received for fall term admission is February 1st"
+        },
+        {
+            "Question": "What are Rose-Hulman's SAT and ACT test policies – Are tests recommended for some students, or if tests are not required to be submitted for some students or are they optional?",
+            "Answer": "Test scores are optional this year due to COVID-19"
+        },
+        {
+            "Question": "Does Rose-Hulman use the following tests for placement : SAT, ACT, SAT subject test, AP test, CLEP test, and institutional exam?",
+            "Answer": "Rose-Hulman uses AP and institutional exams for placement."
+        },
+        {
+            "Question": "Metadata",
+            "Answer": "X"
+        },
+        {
+            "Question": "About",
+            "Answer": "Rose-Hulman's SAT and ACT policies. If Rose-Hulman makes use of ACT and SAT or ACT and SAT subject test in admission decisions for first-time first-year degree-seeking applicants. If Rose-Hulman uses ACT or SAT test scores for academic advising. The latest date SAT and ACT scores must be received for fall term admission. ACT and SAT test policies -  if tests are optional are not. The tests Rose-Hulman uses for placement."
+        }
+    ],
+    "Freshman Profile_SAT comp range": [
+        {
+            "Question": "What is the percentage of freshman students with sat score in the 1400-1600 range for sat composite",
+            "Answer": "39.7%"
+        },
+        {
+            "Question": "What is the percentage of freshman students with sat score in the 1200-1399 range for sat composite",
+            "Answer": "50%"
+        },
+        {
+            "Question": "What is the percentage of freshman students with sat score in the 1000-1199 range for sat composite    ",
+            "Answer": "10.3%"
+        },
+        {
+            "Question": "What is the percentage of freshman students with sat score in the 800-999 range for sat composite",
+            "Answer": "0%"
+        },
+        {
+            "Question": "What is the percentage of freshman students with sat score in the 600-799 range for sat composite",
+            "Answer": "0%"
+        },
+        {
+            "Question": "What is the percentage of freshman students with sat score in the 400-599 range for sat composite",
+            "Answer": "0%"
+        },
+        {
+            "Question": "Metadata",
+            "Answer": "X"
+        },
+        {
+            "Question": "About",
+            "Answer": "Percentage of freshman students with sat composite score within a certain number or more than that number. For example: percentage of freshman student with sat composite score less than or more than 1500(or any arbitrary value)"
+        },
+        {
+            "Question": "Template",
+            "Answer": "The percentage of freshman students with sat composite score (xor {between [^number] and [^number]} {[^range] [^number]}) is <value> "
+        },
+        {
+            "Question": "Operation-Allowed?",
+            "Answer": "Yes"
+        },
+        {
+            "Question": "Sum-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Range-Allowed?",
+            "Answer": "Yes"
+        },
+        {
+            "Question": "Percentage-Allowed?",
+            "Answer": "No"
+        }
+    ],
+    "Freshman Profile_SAT sub range ": [
+        {
+            "Question": "What is the percentage of freshman students with sat score in the 700-800 range for sat evidence-based reading and writing",
+            "Answer": "27.1%"
+        },
+        {
+            "Question": "What is the percentage of freshman students with sat score in the 700-800 range for sat math",
+            "Answer": "54%"
+        },
+        {
+            "Question": "What is the percentage of freshman students with sat score in the 600-699 range for sat evidence-based reading and writing",
+            "Answer": "54%"
+        },
+        {
+            "Question": "What is the percentage of freshman students with sat score in the 600-699 range for sat math",
+            "Answer": "38.3%"
+        },
+        {
+            "Question": "What is the percentage of freshman students with sat score in the 500-599 range for sat evidence-based reading and writing",
+            "Answer": "18.9%"
+        },
+        {
+            "Question": "What is the percentage of freshman students with sat score in the 500-599 range for sat math",
+            "Answer": "7.7%"
+        },
+        {
+            "Question": "What is the percentage of freshman students with sat score in the 400-499 range for sat evidence-based reading and writing",
+            "Answer": "0%"
+        },
+        {
+            "Question": "What is the percentage of freshman students with sat score in the 400-499 range for sat math",
+            "Answer": "0%"
+        },
+        {
+            "Question": "What is the percentage of freshman students with sat score in the 300-399 range for sat evidence-based reading and writing",
+            "Answer": "0%"
+        },
+        {
+            "Question": "What is the percentage of freshman students with sat score in the 300-399 range for sat math",
+            "Answer": "0%"
+        },
+        {
+            "Question": "What is the percentage of freshman students with sat score in the 200-299 range for sat evidence-based reading and writing",
+            "Answer": "0%"
+        },
+        {
+            "Question": "What is the percentage of freshman students with sat score in the 200-299 range for sat math",
+            "Answer": "0%"
+        },
+        {
+            "Question": "Metadata",
+            "Answer": "X"
+        },
+        {
+            "Question": "About",
+            "Answer": "Percentage of freshman students who has sat math, or evidence-based reading and writing scores within a certain number or more than that number"
+        },
+        {
+            "Question": "Template",
+            "Answer": "The percentage of freshman students with sat (xor [^test_component] [^subject]) score (xor {between [^number] and [^number]} {[^range] [^number]}) is <value> "
+        },
+        {
+            "Question": "Operation-Allowed?",
+            "Answer": "Yes"
+        },
+        {
+            "Question": "Sum-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Range-Allowed?",
+            "Answer": "Yes"
+        },
+        {
+            "Question": "Percentage-Allowed?",
+            "Answer": "No"
+        }
+    ],
+    "Freshman Profile_ACT comp range": [
+        {
+            "Question": "What is the percentage of freshman students with act score in the range 30-36 for act composite",
+            "Answer": "63.2%"
+        },
+        {
+            "Question": "What is the percentage of freshman students with act score in the range 24-29 for act composite",
+            "Answer": "30.7%"
+        },
+        {
+            "Question": "What is the percentage of freshman students with act score in the range 18-23 for act composite",
+            "Answer": "6.1%"
+        },
+        {
+            "Question": "What is the percentage of freshman students with act score in the range 12-17 for act composite",
+            "Answer": "0%"
+        },
+        {
+            "Question": "What is the percentage of freshman students with act score in the range 6-11 for act composite",
+            "Answer": "0%"
+        },
+        {
+            "Question": "What is the percentage of freshman students with act composite score below 6",
+            "Answer": "0%"
+        },
+        {
+            "Question": "Metadata",
+            "Answer": "X"
+        },
+        {
+            "Question": "About",
+            "Answer": "Percentage of freshman students who has sat composite scores within a certain number or more than that number. "
+        },
+        {
+            "Question": "Template",
+            "Answer": "The percentage of freshman students with act composite score (xor {between [^number] and [^number]} {[^range] [^number]}) is <value> "
+        },
+        {
+            "Question": "Operation-Allowed?",
+            "Answer": "Yes"
+        },
+        {
+            "Question": "Sum-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Range-Allowed?",
+            "Answer": "Yes"
+        },
+        {
+            "Question": "Percentage-Allowed?",
+            "Answer": "No"
+        }
+    ],
+    "Freshman Profile_ACT sub range": [
+        {
+            "Question": "What is the percentage of freshman students with act score in the range 30-36 for act english",
+            "Answer": "60.1%"
+        },
+        {
+            "Question": "What is the percentage of freshman students with act score in the range 30-36 for act math",
+            "Answer": "61.5%"
+        },
+        {
+            "Question": "What is the percentage of freshman students with act score in the range 24-29 for act english",
+            "Answer": "29.1%"
+        },
+        {
+            "Question": "What is the percentage of freshman students with act score in the range 24-29 for act math",
+            "Answer": "37.5%"
+        },
+        {
+            "Question": "What is the percentage of freshman students with act score in the range 18-23 for act english",
+            "Answer": "10.1%"
+        },
+        {
+            "Question": "What is the percentage of freshman students with act score in the range 18-23 for act math",
+            "Answer": "1.0%"
+        },
+        {
+            "Question": "What is the percentage of freshman students with act score in the range 12-17 for act english",
+            "Answer": "0.7%"
+        },
+        {
+            "Question": "What is the percentage of freshman students with act score in the range 12-17 for act math",
+            "Answer": "0%"
+        },
+        {
+            "Question": "What is the percentage of freshman students with act score in the range 6-11 for act english",
+            "Answer": "0%"
+        },
+        {
+            "Question": "What is the percentage of freshman students with act score in the range 6-11 for act math",
+            "Answer": "0%"
+        },
+        {
+            "Question": "What is the percentage of freshman students with act score in the range below 6 for act english",
+            "Answer": "0%"
+        },
+        {
+            "Question": "What is the percentage of freshman students with act score below 6 for act math",
+            "Answer": "0%"
+        },
+        {
+            "Question": "Metadata",
+            "Answer": "X"
+        },
+        {
+            "Question": "About",
+            "Answer": "Percentage of freshman students who has act math, or english scores within a certain number or more than that number"
+        },
+        {
+            "Question": "Template",
+            "Answer": "The percentage of freshman students with act (xor [test_component] [subject]) score (xor {between [^number] and [^number]} {[^range] [^number]}) is <value> "
+        },
+        {
+            "Question": "Operation-Allowed?",
+            "Answer": "Yes",
+            "__EMPTY_1": " "
+        },
+        {
+            "Question": "Sum-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Range-Allowed?",
+            "Answer": "Yes"
+        },
+        {
+            "Question": "Percentage-Allowed?",
+            "Answer": "No"
+        }
+    ],
+    "Freshman Profile_Submit": [
+        {
+            "Question": "What is the percent of freshman students submitting SAT",
+            "Answer": "65.9%"
+        },
+        {
+            "Question": "What is the percent of freshman students submitting ACT",
+            "Answer": "55.7%"
+        },
+        {
+            "Question": "How many freshman student submitted ACT",
+            "Answer": 350
+        },
+        {
+            "Question": "How many freshman student submitted SAT",
+            "Answer": "296"
+        },
+        {
+            "Question": "Metadata",
+            "Answer": "X"
+        },
+        {
+            "Question": "About",
+            "Answer": "Percentage or number of students who submitted ACT or SAT"
+        },
+        {
+            "Question": "Template",
+            "Answer": "The (xor number [^*percentage]) of freshman students who submitted [standarized_test] score is <value>"
+        },
+        {
+            "Question": "Operation-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Sum-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Range-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Percentage-Allowed?",
+            "Answer": "No"
+        }
+    ],
+    "Freshman Profile_Percentile": [
+        {
+            "Question": "What is the 25th percentile score for SAT composite for incoming freshman",
+            "Answer": 1270
+        },
+        {
+            "Question": "What is the 25th percentile score for SAT evidence-based reading and writing for incoming freshman",
+            "Answer": 610
+        },
+        {
+            "Question": "What is the 25th percentile score for SAT math for incoming freshman",
+            "Answer": 650
+        },
+        {
+            "Question": "What is the 25th percentile score for SAT essay for incoming freshman",
+            "Answer": "n/a"
+        },
+        {
+            "Question": "What is the 50th percentile score for SAT composite for incoming freshman",
+            "Answer": 1355
+        },
+        {
+            "Question": "What is the 50th percentile score for SAT evidence-based reading and writing for incoming freshman",
+            "Answer": 650
+        },
+        {
+            "Question": "What is the 50th percentile score for SAT math for incoming freshman",
+            "Answer": 700
+        },
+        {
+            "Question": "What is the 50th percentile score for SAT essay for incoming freshman ",
+            "Answer": "n/a"
+        },
+        {
+            "Question": "What is the 75th percentile score for SAT composite for incoming freshman",
+            "Answer": 1440
+        },
+        {
+            "Question": "What is the 75th percentile score for  SAT evidence-based reading and writing for incoming freshman",
+            "Answer": 700
+        },
+        {
+            "Question": "What is the 75th percentile score for SAT math for incoming freshman",
+            "Answer": 760
+        },
+        {
+            "Question": "What is the 75th percentile score for SAT essay for incoming freshman",
+            "Answer": 1352
+        },
+        {
+            "Question": "What is the mean score for SAT composite for incoming freshman",
+            "Answer": 1352
+        },
+        {
+            "Question": "What is the mean score for SAT evidence-based reading and writing for incoming freshman",
+            "Answer": 652
+        },
+        {
+            "Question": "What is the mean score for SAT math for incoming freshman",
+            "Answer": 700
+        },
+        {
+            "Question": "What is the mean score for SAT essay for incoming freshman",
+            "Answer": "n/a"
+        },
+        {
+            "Question": "What is the 25th percentile score for ACT composite for incoming freshman",
+            "Answer": 27
+        },
+        {
+            "Question": "What is the 25th percentile score for ACT math for incoming freshman",
+            "Answer": "28"
+        },
+        {
+            "Question": "What is the 25th percentile score for ACT english for incoming freshman",
+            "Answer": 26
+        },
+        {
+            "Question": "What is the 25th percentile score for ACT writing for incoming freshman",
+            "Answer": " n/a"
+        },
+        {
+            "Question": "What is the 50th percentile score for ACT composite for incoming freshman",
+            "Answer": 31
+        },
+        {
+            "Question": "What is the 50th percentile score for ACT math for incoming freshman",
+            "Answer": 31
+        },
+        {
+            "Question": "What is the 50th percentile score for ACT english for incoming freshman",
+            "Answer": 31.5
+        },
+        {
+            "Question": "What is the 50th percentile score for ACT writing for incoming freshman",
+            "Answer": "n/a"
+        },
+        {
+            "Question": "What is the 75th percentile score for ACT composite for incoming freshman",
+            "Answer": 33
+        },
+        {
+            "Question": "What is the 75th percentile score for ACT math for incoming freshman",
+            "Answer": 34
+        },
+        {
+            "Question": "What is the 75th percentile score for ACT english for incoming freshman",
+            "Answer": 35
+        },
+        {
+            "Question": "What is the 75th percentile score for ACT writing for incoming freshman",
+            "Answer": "n/a"
+        },
+        {
+            "Question": "What is the mean score for ACT composite for incoming freshman",
+            "Answer": 30
+        },
+        {
+            "Question": "What is the mean score for ACT english for incoming freshman",
+            "Answer": 30
+        },
+        {
+            "Question": "What is the mean score for ACT math for incoming freshman",
+            "Answer": 30
+        },
+        {
+            "Question": "What is the mean score for ACT writing for incoming freshman",
+            "Answer": "n/a"
+        },
+        {
+            "Question": "Metadata",
+            "Answer": "X"
+        },
+        {
+            "Question": "About",
+            "Answer": "The 25th, 50th, 75th percentile score and also mean score for ACT compsite, math, and english, or for SAT composite math, and evidence-based reading and writing. "
+        },
+        {
+            "Question": "Template",
+            "Answer": "The (xor [^aggregation] [^percentile])  [^standarized_test] [^test_component] score for incoming freshmen is <value>"
+        },
+        {
+            "Question": "Operation-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Sum-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Range-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Percentage-Allowed?",
+            "Answer": "No"
+        }
+    ],
+    "Freshman Profile_GPA": [
+        {
+            "Question": "What is the percentage of freshman students with gpa within 4.00?",
+            "Answer": "60.1% (303/504)",
+            "Complete Sentence?": "No"
+        },
+        {
+            "Question": "What is the percentage of freshman students with gpa between 3.75 and 3.99?",
+            "Answer": "22.6% (114/504)",
+            "Complete Sentence?": "No"
+        },
+        {
+            "Question": "What is the percentage of freshman students with gpa between 3.50 and 3.74?",
+            "Answer": "11.5% (58/504)",
+            "Complete Sentence?": "No"
+        },
+        {
+            "Question": "What is the percentage of freshman students with gpa between 3.25 and 3.49?",
+            "Answer": "4.4% (22/504)",
+            "Complete Sentence?": "No"
+        },
+        {
+            "Question": "What is the percentage of freshman students with gpa between 3.00 and 3.24?",
+            "Answer": "1.2% (6/504)",
+            "Complete Sentence?": "No"
+        },
+        {
+            "Question": "What is the percentage of freshman students with gpa between 2.50 and 2.99?",
+            "Answer": "0.2% (1/504)",
+            "Complete Sentence?": "No"
+        },
+        {
+            "Question": "What is the percentage of freshman students with gpa between 2.00 and 2.49?",
+            "Answer": "0%",
+            "Complete Sentence?": "No"
+        },
+        {
+            "Question": "What is the percentage of freshman students with gpa between 1.00 and 1.99?",
+            "Answer": "0%",
+            "Complete Sentence?": "No"
+        },
+        {
+            "Question": "What is the percentage of freshman students with gpa between below 1.00?",
+            "Answer": "0%",
+            "Complete Sentence?": "No"
+        },
+        {
+            "Question": "What is the average high school gpa for freshman students who submitted gpa?",
+            "Answer": " The average high school gpa for freshman student who submitted gpa is 4.02",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "  What is the percentage of freshman students who submitted gpa?",
+            "Answer": "The percentage of freshman students who submitted gpa is 94.9 % (504/531)",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "Metadata",
+            "Answer": "X"
+        },
+        {
+            "Question": "About",
+            "Answer": "The percentage of students with gpa within a certain number of more than that number, or both."
+        },
+        {
+            "Question": "Template",
+            "Answer": "The percentage of freshman students with gpa (xor {[^range] [^number] and [^number]} {[^range] [^number]}) is <value>"
+        },
+        {
+            "Question": "Operation-Allowed?",
+            "Answer": "Yes"
+        },
+        {
+            "Question": "Sum-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Range-Allowed?",
+            "Answer": "Yes"
+        },
+        {
+            "Question": "Percentage-Allowed?",
+            "Answer": "No"
+        }
+    ],
+    "Freshman Profile_Class Rank": [
+        {
+            "Question": "What is the percentage of freshman students in the top tenth of their high school graduating class?",
+            "Answer": "66%"
+        },
+        {
+            "Question": "What is the percentage of freshman students in the top quarter of their high school graduating class?",
+            "Answer": "91%"
+        },
+        {
+            "Question": "What is the percentage of freshman students in the top half of their high school graduating class?",
+            "Answer": "99%"
+        },
+        {
+            "Question": "What is the percentage of freshman students in the bottom half of their high school graduating class?",
+            "Answer": "1%"
+        },
+        {
+            "Question": "What is the percentage of freshman students in the bottom quarter of their high school graduating class?",
+            "Answer": "0%"
+        },
+        {
+            "Question": "What is the percentage of freshman students who submitted high school class rank?",
+            "Answer": "46%"
+        },
+        {
+            "Question": "Metadata",
+            "Answer": "X"
+        },
+        {
+            "Question": "About",
+            "Answer": "The percentage of freshman who graduated in the top tenth, top quarter, bottom half or bottom quarter of their high school graduating class  and the percentage of students who submitted their class rank.  "
+        },
+        {
+            "Question": "Template",
+            "Answer": "The percentage of freshman students in the [class_rank] of their high school graduating class is <value>?"
+        },
+        {
+            "Question": "Operation-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Sum-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Range-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Percentage-Allowed?",
+            "Answer": "No"
+        }
+    ],
+    "Transfer Admission_Statistic": [
+        {
+            "Question": "How many male transfer students/applicants students applied?",
+            "Answer": 59
+        },
+        {
+            "Question": "How many male transfer students/applicants are admitted",
+            "Answer": 30
+        },
+        {
+            "Question": "How many male transfer students//applicants are enrolled?",
+            "Answer": 9
+        },
+        {
+            "Question": "How many female transfer students applied?",
+            "Answer": 23
+        },
+        {
+            "Question": "How many female transfer students are admitted",
+            "Answer": 13
+        },
+        {
+            "Question": "How many female transfer students are enrolled?",
+            "Answer": 2
+        },
+        {
+            "Question": "Metadata",
+            "Answer": "X"
+        },
+        {
+            "Question": "About",
+            "Answer": "Number of transfer students applied, admitted and enrolled in general or by gender"
+        },
+        {
+            "Question": "Template",
+            "Answer": "The number of [gender] transfer applicants that are [^action] is <value>"
+        },
+        {
+            "Question": "Operation-Allowed?",
+            "Answer": "Yes"
+        },
+        {
+            "Question": "Sum-Allowed?",
+            "Answer": "Yes"
+        },
+        {
+            "Question": "Range-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Percentage-Allowed?",
+            "Answer": "No"
+        }
+    ],
+    "Transfer Admission_General": [
+        {
+            "Question": "Does Rose-Hulman enroll transfer students",
+            "Answer": "Rose-Hulman does enroll transfer students",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "May transfer students earn advanced standing credit by transferring credits earned from course work completed at other colleges/universities?",
+            "Answer": "Students may earn advanced standing credit by transferring credit earned from course work completed at other college/university",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "At which term may transfer applicants enroll",
+            "Answer": "Transfer students may enroll during the fall term."
+        },
+        {
+            "Question": "Does a transfer applicant need to have minimum number of credits completed or else they must apply as an entering freshman? If so what is the minimum credit and the unit of measure?",
+            "Answer": "Transfer students do not need to have minimum number of credit completed",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "Does Rose-Hulman require high school transcript to apply for transfer applicants?",
+            "Answer": "High school transcript is recommended of some for transfer applicants.",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "Does Rose-Hulman require college transcript for transfer applicants?",
+            "Answer": "College transcript is required for transfer applicants",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "Does Rose-Hulman require essay to apply for transfer applicants?",
+            "Answer": "Essays or personal statement is required for transfer applicants.",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "Does Rose-Hulman require interview  for transfer applicants?",
+            "Answer": "Interview is recommended of some to apply for transfer applicants",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "Does Rose-Hulman require standardized test score for transfer applicants?",
+            "Answer": "Standarized test score is not required",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "Does Rose-Hulman require a statement of good standing for transfer applicants?",
+            "Answer": "Statement of good standing from prior institutions is recommended of all transfer applicants.",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the minimum high school grade point average required for transfer applicants?",
+            "Answer": "There is no minimum high school gpa requirement for transfer applicants",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the minimum college grade point average required for transfer applicants?",
+            "Answer": "The minimum gpa required of transfer applicants is 3.0",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "When does Rose-Hulman review transfer student applications?",
+            "Answer": "Rose-Hulman review transfer applications on a rolling basis (year round).",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "Does an open admission policy apply to transfer students?",
+            "Answer": "No, open admission policy does not apply to students",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "Are there any additional requirements for transfer students?",
+            "Answer": "Students must have a semester of calculus, as well as calculus-based physics and chemistry. ",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the lowest grade earn for any course that maybe transferred for credit",
+            "Answer": "The lowest grade earned from any course that may be transferred for credit is C or 2.0",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the maximum number of credit that maybe transferred from a 2-year institution",
+            "Answer": "The maximum number of credit that maybe tranferred from a 2 year institution is 90 credits",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the maximum number of credit that maybe transferred from a 4-year institution",
+            "Answer": "The maximum number of credit that maybe tranferred from a 4 year institution is 90 credits",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the minimum number of credits that transfer students must complete to earn a associates degree",
+            "Answer": "Rose-Hulman does not offer associate degree",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the minimum number of credits that transfer students must complete to earn a bachelor degree",
+            "Answer": "The maximum number of credits tranfer student must complete to earn bachelor degree is 45 credits",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "Are there any additional transfer credit policies?",
+            "Answer": "Credits to be transferred are reviewed by each department and the final decision to award credit is up to the appropriate department chairs.",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "Metadata",
+            "Answer": "X"
+        },
+        {
+            "Question": "About",
+            "Answer": "Various transfer applicants requirements, such as what materials and gpa are required for transfer applicants, and the minimum/maximum credit that transfer students must complete to earn a bachelors degree."
+        },
+        {
+            "Question": "Operation-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Sum-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Range-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Percentage-Allowed?",
+            "Answer": "No"
+        }
+    ],
+    "Academic Offering and Policy": [
+        {
+            "Question": "What special study programs are offered at Rose-Hulman?",
+            "Answer": "The special study programs offered at Rose-Hulman includes the following: Accelerated program, Cooperative education program, Cross-registration, Double major, Dual enrollment, English as Second Language(ESL), Exchange student program (domestic) , Independent study, and Study abroad",
+            "Complete Sentence": "Yes"
+        },
+        {
+            "Question": "What are the areas in which students are required to complete some coursework prior to graduation?",
+            "Answer": "The areas in which all or most students are requried to complete some course work prior to graduation are the following: computer literacy, English(including composition), Humanities, Mathematics, Sciences(biological or physical) and Social science",
+            "Complete Sentence": "Yes"
+        },
+        {
+            "Question": "Metadata",
+            "Answer": "X"
+        },
+        {
+            "Question": "About",
+            "Answer": "Special study programs offered at Rose-Hulman, and disciplinary areas students are required to complete coursework in"
+        },
+        {
+            "Question": "Operation-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Sum-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Range-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Percentage-Allowed?",
+            "Answer": "No"
+        }
+    ],
+    "Student Life_CategoryFreshman": [
+        {
+            "Question": "What is the percentage of full-time and part-time first year first time freshman students who are out of state?",
+            "Answer": "The percentage of full-time and part-time first-year, first-time freshman students who are out of state is 70.7%",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the percentage of full-time and part-time first year first time students who joined fraternities?",
+            "Answer": "The percentage of full-time and part-time first year first time freshman students who joined fraternities is 32.5%",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the percentage of full-time and part-time first year first time freshman students who joined sororities?",
+            "Answer": "The percentage of full-time and part-time first-year, first-time freshman students who joined sororities is 29.1%",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the percentage of full-time and part-time first year first time freshman students who live in college owned, operated, or affiliated housing?",
+            "Answer": "93.0%",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the percentage of full-time and part-time first year first time freshman students who live off campus or commute?",
+            "Answer": "7.0%",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the percentage of full-time and part-time first year first time freshman students who are age 25 and older?",
+            "Answer": "0.2%",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the average age of only full-time first year first time freshman students?",
+            "Answer": "The average age of full-time freshman students is 18.1",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the average age of both full-time and part-time first year first time freshman students",
+            "Answer": "The average age of all (full-time and part-time) freshman students is 18.1",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "Metadata",
+            "Answer": "X"
+        },
+        {
+            "Question": "About",
+            "Answer": "Percentage of full-time and part-time first-year freshman students who are from out of state, who joined fraternities, or sororities, live in college-owned housing, live off campus, or are 25 years or older. The average age of full-time and part-time freshman students"
+        },
+        {
+            "Question": "Operation-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Sum-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Range-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Percentage-Allowed?",
+            "Answer": "No"
+        }
+    ],
+    "Student Life_CategoryUndergrad": [
+        {
+            "Question": "What is the percentage of full-time and part-time undergraduate students who are out of state?",
+            "Answer": "The percentage of full-time and part-time first-year, first-time freshman students who are out of state is 66.1%"
+        },
+        {
+            "Question": "What is the percentage of full-time and part-time undergraduate students who joined fraternities?",
+            "Answer": "The percentage of full-time and part-time undergraduate students who joined fraternity is 22.9%"
+        },
+        {
+            "Question": "What is the percentage of full-time and part-time undergraduate students who joined sororities",
+            "Answer": "The percentage of full-time and part-time undergraduate students who join sororities is 35.5%"
+        },
+        {
+            "Question": "What is the percentage of full-time and part-time undergraduate students who live in college owned, operated, or affiliated housing?",
+            "Answer": "57.8%"
+        },
+        {
+            "Question": "What is the percentage of full-time and part-time undergraduate students who live off campus or commute?",
+            "Answer": "42.2%"
+        },
+        {
+            "Question": "What is percentage of full-time and part-time undergraduate students who are age 25 and older",
+            "Answer": "0.4%"
+        },
+        {
+            "Question": "What is the average age of only full-time undergraduate students?",
+            "Answer": "The average age of full-time undergraduate student is 19.7"
+        },
+        {
+            "Question": "What is the average age of both full-time and part-time undergraduate students",
+            "Answer": "The average age of all (full-time and part-time) undergraduate students is 18.1"
+        },
+        {
+            "Question": "Metadata",
+            "Answer": "X"
+        },
+        {
+            "Question": "About",
+            "Answer": "Percentage of full-time and part-time undergraduates who are from out of state, who joined fraternities, or sororities, live in college-owned housing, live off campus, or are 25 years or older. The average age of full-time and part-time undergraduate "
+        },
+        {
+            "Question": "Operation-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Sum-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Range-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Percentage-Allowed?",
+            "Answer": "No"
+        }
+    ],
+    "Student Life_Offered": [
+        {
+            "Question": "What extracurricular activities does Rose-Hulman offer?",
+            "Answer": "The activities that Rose-Hulman offers include the following: campus ministries, choral groups, concert bands, dance, drama/theater, international student organizations, jazz band, music ensembles, musical theater, pep band, radio station, student governement, student newspaper, and symphony orchestra",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "Does Rose-Hulman offer army rotc ?",
+            "Answer": "Army ROTC is offerd on campus",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "Does Rose-Hulman offer naval rotc ?",
+            "Answer": "Naval ROTC is not offered at Rose-Hulman",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "Does Rose-Hulman offer air force rotc ?",
+            "Answer": "Air Force ROTC is offered on campus",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What type of college owned, operated, or affiliated housing is available at Rose-Hulman?",
+            "Answer": "The type of college-owned, -operated, or -affiliated housing available include the following: coed dorms, men's dorms, apartment for single students, fraternity/sorority housing, and theme housing",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "Metadata",
+            "Answer": "X"
+        },
+        {
+            "Question": "About",
+            "Answer": "The extracurricular activities or clubs Rose-Hulman offers, the different types of rotc offered at Rose-Hulman and the type of college owned/affiliated housing available at Rose-Hulman"
+        },
+        {
+            "Question": "Operation-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Sum-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Range-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Percentage-Allowed?",
+            "Answer": "No"
+        }
+    ],
+    "Annual Expense_General": [
+        {
+            "Question": "What is the URL of your institution's Net price calculator?",
+            "Answer": "The Url of Rose-Hulman institution's net price calculator is : https://prod11gbss8.rose-hulman.edu/BanSS/RHIT_NPCALC.P_Index",
+            "__EMPTY": "yes "
+        },
+        {
+            "Question": "What is the approximate date that the final tuition fee cost or cost of attendance for this year will be available",
+            "Answer": "The approximate date that the final cost of attendance for this year will be available is April 1st.",
+            "__EMPTY": "yes "
+        },
+        {
+            "Question": "What is the Rose-Hulman's tuition for first-year students?",
+            "Answer": "Rose-Hulman's tuition for first-year students is $49,479",
+            "__EMPTY": "yes "
+        },
+        {
+            "Question": "What is Rose-Hulman's tuition for undergraduate students?",
+            "Answer": "Rose-Hulman's tuition for undergraduate students is $49,479 ",
+            "__EMPTY": "yes "
+        },
+        {
+            "Question": "What is the required fee for first-year or undergraduate students?",
+            "Answer": "The cost of required for for undergraduate students is $1,035",
+            "__EMPTY": "yes "
+        },
+        {
+            "Question": "What is the Room and board fee for first-year or undergraduate students?",
+            "Answer": "The room and board fee for first-year undergraduate students is $15,690",
+            "__EMPTY": "yes "
+        },
+        {
+            "Question": "What is the Room fee only for first-year or undergraduate students?",
+            "Answer": "The room fee for first-year and undergraduate students is $9,441",
+            "__EMPTY": "yes "
+        },
+        {
+            "Question": "What is the board fee only for first-year or undergraduate students?",
+            "Answer": "The board fee for first-year and undergraduate students is $6,249",
+            "__EMPTY": "yes "
+        },
+        {
+            "Question": "Is there any other fee cost for first-year or undergraduate students?",
+            "Answer": "Other fee cost for undergraduate student includes: Freshman Laptop $2,400 (First Fall Term for freshman only)",
+            "__EMPTY": "yes "
+        },
+        {
+            "Question": "Metadata",
+            "Answer": "X"
+        },
+        {
+            "Question": "About",
+            "Answer": "Cost of undergraduate tuition, room, and board, book and supplies, for undergraduate or freshman. Cost for freshman laptop. The url to Rose-Hulman's net price calculator."
+        }
+    ],
+    "Annual Expense_CommuterResident": [
+        {
+            "Question": "What is the cost of book and supplies for residents or students who live on campus?",
+            "Answer": "The estimated cost of book and supplies for students who live on campus is $1500",
+            "__EMPTY": "yes "
+        },
+        {
+            "Question": "What is the cost of book and supplies for Commuters?",
+            "Answer": "The estimated cost of book and supplies for commuters is $1500",
+            "__EMPTY": "yes "
+        },
+        {
+            "Question": "What is the cost of room only for Commuters?",
+            "Answer": "For commuters not living at home, the room cost is estimated to be  $9,441, for commuter living at home, there is no estimated room cost.",
+            "__EMPTY": "yes "
+        },
+        {
+            "Question": "What is the cost of board only for Commuters?",
+            "Answer": "For commuters living at home, the cost for board it is estimated to be $900, and for commuters not living at home, it is estimated to be $6,249",
+            "__EMPTY": "yes "
+        },
+        {
+            "Question": "how much is other miscellanous cost for residents, or students who live on campus",
+            "Answer": "Other estimated miscellaneous cost for students who live on campus is $1,557",
+            "__EMPTY": "yes "
+        },
+        {
+            "Question": "What is the estimated amount of other miscellaneous costs for commuters? ",
+            "Answer": "The estimated amount of miscellanous cost for students who live off campus is $1,557",
+            "__EMPTY": "yes "
+        },
+        {
+            "Question": "How much does a credit cost?",
+            "Answer": "A per-credit-hour charges $1,444",
+            "__EMPTY": "yes "
+        },
+        {
+            "Question": "Metadata",
+            "Answer": "X"
+        },
+        {
+            "Question": "About",
+            "Answer": "The estimated cost of books and supplies, or miscellaneous costs for residents (students who live on campus) or commuters. The estimated cost for room and board for commuters. Also includes per credit hour cost. "
+        }
+    ],
+    "Annual Expense_Policy": [
+        {
+            "Question": "What is the number of credits a student can take for the stated full-time tuition",
+            "Answer": "The number of credits a student can take for the stated full tuition is from 12 to 18",
+            "__EMPTY": "yes "
+        },
+        {
+            "Question": "Does tuition and fee change by year of study?",
+            "Answer": "Tuition and fee does not change by year of study",
+            "__EMPTY": "yes "
+        },
+        {
+            "Question": "Do tuition and fees changes by undergraduate instructional program?",
+            "Answer": "Tuition and fee do not change by the undergraduate instructional program.",
+            "__EMPTY": "yes "
+        },
+        {
+            "Question": "Metadata",
+            "Answer": "X"
+        },
+        {
+            "Question": "About",
+            "Answer": "Number of credit a student can take for full time tuition. If tuition change by year of study or undergraduate instructional program"
+        }
+    ],
+    "Financial Aid_Type": [
+        {
+            "Question": "what is your institution’s policy regarding institutional scholarship and grant aid for undergraduate degree-seeking nonresident\r\naliens?",
+            "Answer": "Institutional non-need-based scholarship or grant aid is available. There are 220 undergraduate degree-seeking nonresident took aid. Average dollar amount is 7,453 dollars, the amount is  1,647,183 dollars",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What forms nonresident alien first-year financial aid applicants must fill out and submit for financial aid?",
+            "Answer": "First-year financial aid applicants who are Nonresident Aliens must submit International Student’s Certification of Finances",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What forms domestic first-year financial aid applicants must fill out and submit for financial aid?",
+            "Answer": "The financial aid forms domestic first-year (freshman) financial aid applicants must submit is FAFSA",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "what is the priority date for filling out and submitting required financial-aid forms for first-year students?",
+            "Answer": "Priority date for filing required financial aid forms: March 10. ",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "Is there any deadline for first year students filing out and submitting required financial-aid forms",
+            "Answer": "There is no deadline for filing the required financial-aid form for first-year students. (Applications are processed on a rolling basis)",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "what is the notification date for first-year students apply for financial-aid ?",
+            "Answer": "Students notified on or about (date): January 15 (early action) - March 15 (regular decision). Students notified on a rolling basis: No",
+            "Complete Sentence?": "yes"
+        },
+        {
+            "Question": "what is the reply date for first-year students?",
+            "Answer": "Students must reply by May 1 after receiving their financial aid award letter.",
+            "Complete Sentence?": "yes"
+        },
+        {
+            "Question": "What kinds of financial-aid loan is avaliable to undergraduate students?",
+            "Answer": "The type of financial-aid loan available to undergraduate students include: Direct Subsidized Stafford Loans, Direct Unsubsidized Stafford Loans, Direct PLUS Loans, and Federal Perkins Loans",
+            "Complete Sentence?": "yes"
+        },
+        {
+            "Question": "What kinds of financial-aid scholarship or grants is avaliable to undergraduate students?",
+            "Answer": "Financial aid scholarship or grants available to undergraduate students include the following: Federal Pell, SEOG, State scholarships/grants, Private scholarships, College/university scholarship or grant aid from institutional funds",
+            "Complete Sentence?": "yes"
+        },
+        {
+            "Question": "Please list all critieria used in awarding institutional aid.",
+            "Answer": "The criteria used in awarding institutional aid include the following: Academics(Non-need, need-based), ROTC (Non-need), Minority Status(Non-need, Need-based), State/District residency(Need-Based)",
+            "Complete Sentence?": "yes"
+        },
+        {
+            "Question": "Metadata",
+            "Answer": "X"
+        },
+        {
+            "Question": "About",
+            "Answer": "Rose-Hulman's policy regarding institutional scholarship and grant aid for undergraduate degree-seeking nonresident\r\naliens. Financial aid forms required to be submitted by domestic or non-resident alien financial aid applicants. Deadline for financial applications. Priority date, Reply date and notification date for financial aid. The type of financial aid loan and scholarship or grants available to undergraduate students. The criteria used in awarding institutional aid."
+        }
+    ],
+    "Financial Aid_Awarded": [
+        {
+            "Question": "Which needs-analysis methodology does your institution use in awarding institutional aid?",
+            "Answer": "Rose-Hulman uses federal methology in awarding institutional aid.",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the amount of need-based federal scholarship or grants awarded to students?",
+            "Answer": "$1355304",
+            "Complete Sentence?": "No"
+        },
+        {
+            "Question": "What is the amount of non-need-based federal scholarship or grants awarded to students?",
+            "Answer": "$0",
+            "Complete Sentence?": "No"
+        },
+        {
+            "Question": "What is the amount of need-based state scholarship or grants awarded to students?",
+            "Answer": "$856068",
+            "Complete Sentence?": "No"
+        },
+        {
+            "Question": "What is the amount of non-need-based state scholarship or grants awarded to students?",
+            "Answer": "$8748",
+            "Complete Sentence?": "No"
+        },
+        {
+            "Question": "What is the amount of need-based institutional scholarship or grants awarded to students?",
+            "Answer": "$34630806",
+            "Complete Sentence?": "No"
+        },
+        {
+            "Question": "What is the amount of non-need-based institutional scholarship or grants awarded to students?",
+            "Answer": "$13098841",
+            "Complete Sentence?": "No"
+        },
+        {
+            "Question": "What is the amount of need-based scholarship or grants from external sources awarded to students?",
+            "Answer": "$0",
+            "Complete Sentence?": "No"
+        },
+        {
+            "Question": "What is the amount of non-need-based scholarship or grants from external sources awarded to students?",
+            "Answer": "$738685",
+            "Complete Sentence?": "No"
+        },
+        {
+            "Question": "What is the amount of need-based self-help student loan awarded to students?",
+            "Answer": "The amount of non-need-based student loan borrowed by undergraduate students is $10691241.",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the amount of non-need-based self-help student loan awarded to students?",
+            "Answer": "The amount of need-need-based student loan borrowed by undergraduate students is $1,250,122.",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the amount of need-based self-help federal work study awarded to students?",
+            "Answer": "$771042",
+            "Complete Sentence?": "No"
+        },
+        {
+            "Question": "What is the amount of non-need-based self-help federal work study awarded to students?",
+            "Answer": "$0",
+            "Complete Sentence?": "No"
+        },
+        {
+            "Question": "What is the amount of need-based state and other self-help work study awarded to students?",
+            "Answer": "$0",
+            "Complete Sentence?": "No"
+        },
+        {
+            "Question": "What is the amount of non-need-based state and other self-help work study awarded to students?",
+            "Answer": "$0",
+            "Complete Sentence?": "No"
+        },
+        {
+            "Question": "What is the amount of need-based parent loans awarded to students?",
+            "Answer": "The amount of need-based parent loan awarded to students is $4938549.",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the amount of non-need-based parent loans awarded to students?",
+            "Answer": "The amount of non-need-based parent loan awarded to students is $375919.",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the amount of need-based tuition waiver aid awarded to students?",
+            "Answer": "n/a",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the amount of non-need-based tuition waiver aid awarded to students?",
+            "Answer": "n/a",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the amount of need-based athletic award awarded to students?",
+            "Answer": "n/a",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the amount of non-based athletic award awarded to students?",
+            "Answer": "n/a",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "Metadata",
+            "Answer": "X"
+        },
+        {
+            "Question": "About",
+            "Answer": "Amount of non-need-based or need-based federal, state, or institutional scholarships or grants, awarded to students. The amount of need-based or non-need-based state or federal self-help work study awarded to students. The amount of need-based or non-need-based athletic awards, parent loan, tuition waiver awarded to students."
+        },
+        {
+            "Question": "Template",
+            "Answer": "The amount of [^need_non_need_base_aid] (xor [self-help_aid] {[^financial_aid_type] scholarship or grants} {tuition [^*waiver]})  awarded to students is <value>"
+        },
+        {
+            "Question": "Operation-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Sum-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Range-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Percentage-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Documentation-Of-Change",
+            "Answer": "Aid related to CARES Act or unique to the COVID-19 pandemic are not included in financial aid calculations."
+        }
+    ],
+    "Financial Aid_Awarded Freshman": [
+        {
+            "Question": "What is the number of degree-seeking first-time full-time freshman students who applied for need-based financial aid",
+            "Answer": "The number of degree-seeking full-time full-time freshman students who applied for need-based financial aid is 466",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the number of  degree-seeking first-time full-time freshman students that applied for need-based financial aid and were determined to have financial need",
+            "Answer": "The number of degree-seeking first-time full-time freshman students that applied for need-based aid and were determined to have financial need is 360",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the number of degree-seeking first-time full-time freshman students who were determined to have financial need and were awarded any financial aid.",
+            "Answer": " The number of degree-seeking first-time full-time freshman students who were determined to have financial need and were awarded any financial aid is 360",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the number of degree-seeking first-time full-time freshman students who were awarded any need-based scholarship or grant aid?",
+            "Answer": "The number of degree-seeking first-time full-time freshman students who were awarded any need-based scholarship or grant aid is 357",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the number of degree-seeking first-time full-time freshman students who were awarded any need-based self-help aid",
+            "Answer": "The number of degree-seeking first-time full-time freshman students who were awarded any need-based self-help aid is 236",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the number of degree-seeking first-time full-time freshman students who were awarded any non-need-based scholarship or grant aid",
+            "Answer": "The number of degree-seeking first-time full-time freshman students who were awarded any non-need-based scholarship or grant aid is 168",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the number of degree-seeking first-time full-time freshman students whose financial need was fully met ",
+            "Answer": "The number of degree-seeking first-time full-time freshman students whose financial need was fully met is 124",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "On average, what is the percentage of financial need that was met for degree-seeking first-time full-time freshman students who were awarded any need-based aid?",
+            "Answer": "On average, the percentage of financial need that was met for degree-seeking first-time full-time freshman who were awarded any need-based aid is 73.5%",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the average financial aid package for degree-seeking first-time full-time freshman students who were awarded any financial aid?",
+            "Answer": "The average financial aid package for degree-seeking first time full-time freshman students who were awarded any financial aid is $39903",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the average amount of need-based scholarship or grant awarded to degree-seeking first-time full-time freshman students?",
+            "Answer": "The average amount  of need-based scholarship or grant awarded to degree-seeking first-time full-time freshman is $38185",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the average need-based self-help awarded to degree-seeking first-time full-time freshman students ?",
+            "Answer": "The average need-based self-help awarded to degree-seeking first-time full-time freshman students is $3840",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the average need-based loan awarded to degree-seeking first-time full-time freshman students who were awarded any need-based self-help aid?",
+            "Answer": "The average need-based loan awarded to degree-seeing first-time full-time freshman students who were awarded any need-based self-help aid is $3327",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the number of degree-seeking first-time full-time freshman students who had no financial need and who were awarded institutional non-need-based scholarship or grant aid?",
+            "Answer": "The number of degree-seeking first-time full-time freshman students who had no financial need and who were awarded institutional non-need-based scholarship or grant aid is 170",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the average amount of institutional non-need-based scholarship and grant aid awarded to degree-seeking full-time freshman students who had no financial need and who were awarded institutional non-need-based scholarship or grant aid?",
+            "Answer": "The average amount of institutional non-need-based scholarship and grant aid awarded to degree-seeking full-time freshman students who had no financial need and who were awarded institutional non-need-based scholarship or grant aid is $21,671.",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the number of degree-seeking first-time full-time freshman students who were awarded an institutional non-need-based athletic scholarship or grant?",
+            "Answer": "There is no available information on the number of degree-seeking first-time full-time freshman students who were awarded an institutional non-need-based athletic scholarship or grant.",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the average amount of institutional non-need-based athletic scholarship and grant to degree-seeking first-time full-time freshman students?",
+            "Answer": "There is no available information on the average amount of institutional non-need-based athletic scholarship and grant aid awarded to degree-seeking first-time full-time freshman students.",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "Metadata",
+            "Answer": "X"
+        },
+        {
+            "Question": "About",
+            "Answer": "Various statistics on financial aid, including the number of degree-seeking, full-time freshman students who applied for need-based financial aid. The number of freshmen who were determined to have financial aid. The number of freshmen who were awarded any need-based or non-need-based scholarship or grants and need-based self-help aid. The number of freshmen whose financial need was fully met. The average amount of financial aid package, need-based scholarships or grants, need-based self-help, or loans, awarded to freshman students. The average amount of non-need-based institutional scholarships or grants awarded o freshman students who had no financial need. The number of freshman students who were awarded a non-needed-based institutional athletic scholarship or grant and the average amount of such aid awarded. All information is for full-time freshman students."
+        },
+        {
+            "Question": "Operation-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Sum-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Range-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Percentage-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Documentation-Of-Change",
+            "Answer": "Aid related to CARES Act or unique to the COVID-19 pandemic are not included in financial aid calculations."
+        }
+    ],
+    "Financial Aid_Awarded Undergrad": [
+        {
+            "Question": "What is the number of degree-seeking full-time undergraduate students who applied for need-based financial aid",
+            "Answer": "The number of degree-seeking full-time undergraduate students who applied for need-based financial aid is 1,394.",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the number of degree-seeking full-time undergraduate students that applied for need-based financial aid and were determined to have financial need",
+            "Answer": "Out of the total number of students who applied for need-based financial aid, 1,151 were determined to have financial need.",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the number of degree-seeking full-time undergraduate students who were determined to have financial need and were awarded any financial aid.",
+            "Answer": "Among those who had financial need, 1,150 were awarded some form of financial aid.",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the number of degree-seeking full-time undergraduate students who were awarded any need-based scholarship or grant aid?",
+            "Answer": "The number of degree-seeking full-time undergraduate students who were awarded any need-based scholarship or grant aid is 1,144.",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the number of degree-seeking full-time undergraduate students who were awarded any need-based self-help aid",
+            "Answer": "A total of 829 degree-seeking full-time undergraduate students were awarded any need-based self-help aid.",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the number of degree-seeking full-time undergraduate students who were awarded any non-need-based scholarship or grant aid",
+            "Answer": "The number of degree-seeking full-time undergraduate students who were awarded any non-need-based scholarship or grant aid is 1,009.",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the number of degree-seeking full-time undergraduate students whose financial need was fully met ",
+            "Answer": "284 degree-seeking full-time undergraduate students had their financial need fully met.",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "On average, what is the percentage of financial need that was met for degree-seeking full-time undergraduate students who were awarded any need-based aid?",
+            "Answer": "On average, the percentage of financial need that was met for degree-seeking full-time undergraduate students who were awarded any need-based aid is 65.9%.",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the average financial aid package for degree-seeking full-time undergraduate students who were awarded any financial aid?",
+            "Answer": "The average financial aid package for degree-seeking full-time undergraduate students who were awarded any financial aid is $35,451.",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the average need-based scholarship or grant awarded to degree-seeking full-time undergraduate students?",
+            "Answer": "The average need-based scholarship or grant awarded to degree-seeking full-time undergraduate students is $33,608.",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the average need-based self-help awarded to degree-seeking full-time undergraduate students ?",
+            "Answer": "Degree-seeking full-time undergraduate students who were awarded any need-based self-help aid received an average of $4,679.",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the average need-based loan for students who were awarded any need-based self-help aid?",
+            "Answer": "Among those who were awarded any need-based self-help aid, the average need-based loan amount was $4,351.",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the number of degree-seeking full-time undergraduate students who had no financial need and who were awarded institutional non-need-based scholarship or grant aid?",
+            "Answer": "The number of degree-seeking full-time undergraduate students who had no financial need and were awarded institutional non-need-based scholarship or grant aid is 794.",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the average amount of institutional non-need-based scholarship and grant aid award to degree-seeking full-time students who had no financial need and who were awarded institutional non-need-based scholarship or grant aid?",
+            "Answer": "The average amount of institutional non-need-based scholarship and grant aid awarded to degree-seeking full-time students who had no financial need and who were awarded institutional non-need-based scholarship or grant aid is $16,643.",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the number of degree-seeking full-time undergraduate students who were awarded an institutional non-need-based athletic scholarship or grant?",
+            "Answer": "There is no available information on the number of degree-seeking full-time undergraduate students who were awarded an institutional non-need-based athletic scholarship or grant, or the average amount of such aid.",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the average amount of institutional non-need-based athletic scholarship and grant to degree-seeking full-time undergraduate students?",
+            "Answer": "N/A",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "Metadata",
+            "Answer": "X"
+        },
+        {
+            "Question": "About",
+            "Answer": "Same as the previous description, but for full-time degree-seeking undergraduate students."
+        },
+        {
+            "Question": "Operation-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Sum-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Range-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Percentage-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Documentation-Of-Change",
+            "Answer": "Aid related to CARES Act or unique to the COVID-19 pandemic are not included in financial aid calculations."
+        }
+    ],
+    "Financial Aid_Awarded Part-Time": [
+        {
+            "Question": "What is the number of degree-seeking part-time undergraduate students who applied for need-based financial aid",
+            "Answer": "There were 6 degree-seeking part-time undergraduate students who applied for need-based financial aid.",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the number of degree-seeking part-time undergraduate students that applied for need-based financial aid and were determined to have financial need",
+            "Answer": "Out of the degree-seeking part-time undergraduate students who applied for need-based financial aid, 5 were determined to have financial need.",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the number of degree-seeking part-time undergraduate students who were determined to have financial need and were awarded any financial aid.",
+            "Answer": "Among the degree-seeking part-time undergraduate students who were determined to have financial need, 5 were awarded some form of financial aid.",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the number of degree-seeking part-time undergraduate students who were awarded any need-based scholarship or grant aid?",
+            "Answer": "A total of 5 degree-seeking part-time undergraduate students were awarded need-based scholarship or grant aid.",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the number of degree-seeking part-time undergraduate students who were awarded any need-based self-help aid",
+            "Answer": "Only 2 degree-seeking part-time undergraduate students were awarded need-based self-help aid.",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the number of degree-seeking part-time undergraduate students who were awarded any non-need-based scholarship or grant aid",
+            "Answer": "The number of degree-seeking part-time undergraduate students whose financial need was fully met was 1.",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the number of degree-seeking part-time undergraduate students whose financial need was fully met ",
+            "Answer": "On average, 64.7% of financial need was met for degree-seeking part-time undergraduate students who were awarded any need-based aid.",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "On average, what is the percentage of financial need that was met for degree-seeking part-time undergraduate students who were awarded any need-based aid?",
+            "Answer": "The average financial aid package awarded to degree-seeking part-time undergraduate students who were awarded any financial aid was $26732.",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the average financial aid package for degree-seeking part-time undergraduate students who were awarded any financial aid?",
+            "Answer": "The average need-based scholarship or grant awarded to degree-seeking part-time undergraduate students was $24932.",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the average need-based scholarship or grant awarded to degree-seeking part-time undergraduate students?",
+            "Answer": "The average need-based self-help awarded to degree-seeking part-time undergraduate students was $4500.",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the average need-based self-help awarded to degree-seeking part-time undergraduate students ?",
+            "Answer": "The average need-based loan awarded to students who were awarded any need-based self-help aid was $4500.",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the average need-based loan of students who were awarded any need-based self-help aid?",
+            "Answer": "A total of 10 degree-seeking part-time undergraduate students who had no financial need were awarded institutional non-need-based scholarship or grant aid.",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the number of degree-seeking part-time undergraduate students who had no financial need and who were awarded institutional non-need-based scholarship or grant aid?",
+            "Answer": "The average amount of institutional non-need-based scholarship and grant aid awarded to degree-seeking part-time students who had no financial need was $14293.",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the average amount of institutional non-need-based scholarship and grant aid award to degree-seeking part-time students who had no financial need and who were awarded institutional non-need-based scholarship or grant aid?",
+            "Answer": "There is no information available regarding the number of degree-seeking part-time undergraduate students who were awarded an institutional non-need-based athletic scholarship or grant.",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the number of degree-seeking part-time undergraduate students who were awarded an institutional non-need-based athletic scholarship or grant?",
+            "Answer": "There is no information available regarding the average amount of institutional non-need-based athletic scholarship and grant awarded to degree-seeking part-time undergraduate students.",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the average amount of institutional non-need-based athletic scholarship and grants awarded to degree-seeking part-time undergraduate students?",
+            "Answer": "There is no available information on the average amount of institutional non-need-based athletic scholarships and grants awarded to degree-seeking part-time undergraduate students.",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "Metadata",
+            "Answer": "X"
+        },
+        {
+            "Question": "About",
+            "Answer": "Same as the previous description, but for part-time degree-seeking undergraduate students."
+        },
+        {
+            "Question": "Operation-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Sum-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Range-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Percentage-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Documentation-Of-Change",
+            "Answer": "Aid related to CARES Act or unique to the COVID-19 pandemic are not included in financial aid calculations."
+        }
+    ],
+    "Faculty And Class Size_Gender": [
+        {
+            "Question": "What is the total number of full-time instructional faculty who are women?",
+            "Answer": 50
+        },
+        {
+            "Question": "What is the total number of part-time instructional faculty who are women?",
+            "Answer": 4
+        },
+        {
+            "Question": "What is the total number of full-time instructional faculty who are men?",
+            "Answer": 137
+        },
+        {
+            "Question": "What is the total number of part-time instructional faculty who are men?",
+            "Answer": 1
+        },
+        {
+            "Question": "Metadata",
+            "Answer": "X"
+        },
+        {
+            "Question": "About",
+            "Answer": "The total number of full-time instructional faculty in general, or by gender"
+        },
+        {
+            "Question": "Template",
+            "Answer": "The total number of [enrollment_status] instructional faculty {who are [gender]} is <value>"
+        },
+        {
+            "Question": "Operation-Allowed?",
+            "Answer": "Yes"
+        },
+        {
+            "Question": "Sum-Allowed?",
+            "Answer": "Yes"
+        },
+        {
+            "Question": "Range-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Percentage-Allowed?",
+            "Answer": "No"
+        }
+    ],
+    "Faculty And Class Size_Degree": [
+        {
+            "Question": "What is the total number of full-time instructional faculty who have a doctorate degree?",
+            "Answer": 182
+        },
+        {
+            "Question": "What is the total number of part-time instructional faculty who have a doctorate degree?",
+            "Answer": 4
+        },
+        {
+            "Question": "What is the total number of full-time instructional faculty whose highest degree is a masters ",
+            "Answer": 3
+        },
+        {
+            "Question": "What is the total number of part-time instructional faculty whose highest degree is a masters",
+            "Answer": 0
+        },
+        {
+            "Question": "What is the total number of full-time instructional faculty whose highest degree is a bachelors ",
+            "Answer": 2
+        },
+        {
+            "Question": "What is the total number of part-time instructional faculty whose highest degree is a bachelor",
+            "Answer": 1
+        },
+        {
+            "Question": "What is the total number of full-time instructional faculty whose highest degree is unknown",
+            "Answer": 0
+        },
+        {
+            "Question": "What is the total number of part-time instructional faculty whose highest degree is unknown",
+            "Answer": 0
+        },
+        {
+            "Question": "Metadata",
+            "Answer": "X"
+        },
+        {
+            "Question": "About",
+            "Answer": "The total number of full-time or part-time(or both) instructional faculty whose highest degree is a doctorate, or master's or bachelor, or whose highest degree is unknown. "
+        },
+        {
+            "Question": "Template",
+            "Answer": "The total number of [enrollment_status] instructional faculty who have a [degree_level] degree is <value>"
+        },
+        {
+            "Question": "Operation-Allowed?",
+            "Answer": "Yes"
+        },
+        {
+            "Question": "Sum-Allowed?",
+            "Answer": "Yes"
+        },
+        {
+            "Question": "Range-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Percentage-Allowed?",
+            "Answer": "No"
+        }
+    ],
+    "Faculty And Class Size_Ra": [
+        {
+            "Question": "What is the total number of full-time instructional faculty who are members of minority groups?",
+            "Answer": 33
+        },
+        {
+            "Question": "What is the total number of part-time instructional faculty who are members of minority groups?",
+            "Answer": 0
+        },
+        {
+            "Question": "What is the total number of full-time instructional faculty who are nonresident aliens?",
+            "Answer": 8
+        },
+        {
+            "Question": "What is the total number of part-time instructional faculty who are nonresident aliens?",
+            "Answer": 1
+        },
+        {
+            "Question": "Metadata",
+            "Answer": "X"
+        },
+        {
+            "Question": "About",
+            "Answer": "the total number of full-time or part-time(or both) instructional faculty who are members of minority groups, or nonresident aliens."
+        },
+        {
+            "Question": "Template",
+            "Answer": "The total number of [^enrollment_status] instructional faculty who are (xor {member of [*minority] group} {nonresident alien})   is <value>"
+        },
+        {
+            "Question": "Operation-Allowed?",
+            "Answer": "Yes"
+        },
+        {
+            "Question": "Sum-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Range-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Percentage-Allowed?",
+            "Answer": "No"
+        }
+    ],
+    "Faculty And Class Size_Other": [
+        {
+            "Question": "What is the total number of full-time and part-time instructional faculty in stand-alone graduate/professional programs in which instructional faculty teach virtually only graduate level students",
+            "Answer": "There are no full-time or part-time faculty in stand-alone\r\ngraduate/professional programs in which faculty teach virtually only graduate-level\r\nstudents at Rose-Hulman",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "What is the student to faculty ratio at Rose-Hulman?",
+            "Answer": "The student to faculty ratio at Rose-Hulman is 10 to 1",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "Metadata",
+            "Answer": "X",
+            "Complete Sentence?": "Yes"
+        },
+        {
+            "Question": "About",
+            "Answer": "The total number of full-time and part-time instructional faculty in stand-alone graduate/professional programs in which faculty teach only graduate level students."
+        },
+        {
+            "Question": "Operation-Allowed?",
+            "Answer": "Yes"
+        },
+        {
+            "Question": "Sum-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Range-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Percentage-Allowed?",
+            "Answer": "No"
+        }
+    ],
+    "Faculty And Class Size_Section": [
+        {
+            "Question": "What is the average class size at Rose-Hulman?",
+            "Answer": "The average class size from CDS at Rose-Hulman Is 16"
+        },
+        {
+            "Question": "What is the number of class sections with 2 - 9 students?",
+            "Answer": 76
+        },
+        {
+            "Question": "What is the number of class sections with 10 - 19 students?",
+            "Answer": 216
+        },
+        {
+            "Question": "What is the number of class sections with 20 - 29 students?",
+            "Answer": 129
+        },
+        {
+            "Question": "What is the number of class sections with 30 - 39 students?",
+            "Answer": 9
+        },
+        {
+            "Question": "What is the number of class sections with 40 - 49 students?",
+            "Answer": 1
+        },
+        {
+            "Question": "What is the number of class sections with 50 - 99 students?",
+            "Answer": 0
+        },
+        {
+            "Question": "What is the number of class sections with 100 or more students?",
+            "Answer": 0
+        },
+        {
+            "Question": "Metadata",
+            "Answer": "X"
+        },
+        {
+            "Question": "About",
+            "Answer": "The average class size at Rose-Hulman. The number of class sections with a number of students more than or within a arbitrary number or in a arbitrary range"
+        },
+        {
+            "Question": "Template",
+            "Answer": "From CDS, the number of class sections with number of students (xor {between [^number] and [^number]} {[^range] [^number]}) is <value>  "
+        },
+        {
+            "Question": "Operation-Allowed?",
+            "Answer": "Yes"
+        },
+        {
+            "Question": "Sum-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Range-Allowed?",
+            "Answer": "Yes"
+        },
+        {
+            "Question": "Percentage-Allowed?",
+            "Answer": "No"
+        }
+    ],
+    "Faculty And Class Size_Subsec": [
+        {
+            "Question": "What is the number of class subsections with 2 - 9 students?",
+            "Answer": 8
+        },
+        {
+            "Question": "What is the number of class subsections with 10 - 19 students?",
+            "Answer": 33
+        },
+        {
+            "Question": "What is the number of class subsections with 20 - 29 students?",
+            "Answer": 31
+        },
+        {
+            "Question": "What is the number of class subsections with 30 - 39 students?",
+            "Answer": 2
+        },
+        {
+            "Question": "What is the number of class subsections with 40 - 49 students?",
+            "Answer": 0
+        },
+        {
+            "Question": "What is the number of class subsections with 50 - 99 students?",
+            "Answer": 0
+        },
+        {
+            "Question": "What is the number of class subsections with 100 or more students?",
+            "Answer": 0
+        },
+        {
+            "Question": "Metadata",
+            "Answer": "X"
+        },
+        {
+            "Question": "About",
+            "Answer": "Number of class subsections with a number of students within an arbitrary number or more than that number or in an arbitrary range."
+        },
+        {
+            "Question": "Template",
+            "Answer": "The number of class subsections with number of students (xor {between [^number] and [^number]} {[^range] [^number]}) is <value> "
+        },
+        {
+            "Question": "Operation-Allowed?",
+            "Answer": "Yes"
+        },
+        {
+            "Question": "Sum-Allowed?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Range-Allowed?",
+            "Answer": "Yes"
+        },
+        {
+            "Question": "Percentage-Allowed?",
+            "Answer": "No"
+        }
+    ],
+    "Degree Conferred": [
+        {
+            "Question": "How many Computer and information degrees are conferred?",
+            "Answer": "15.7% bachelor's degrees conferred are Computer and information science",
+            "Complete Sentence?": "yes"
+        },
+        {
+            "Question": "How many Engineering degrees are conferred?",
+            "Answer": "73.1% bachelor's degrees conferred are Engineering",
+            "Complete Sentence?": "yes"
+        },
+        {
+            "Question": "How many Biological/life sciences degrees are conferred?",
+            "Answer": "2.2% bachelor's degrees conferred are  Biological/life sciences.",
+            "Complete Sentence?": "yes"
+        },
+        {
+            "Question": "How many Mathematics and statistics degrees are conferred?",
+            "Answer": "5.2% bachelor's degrees conferred are Mathematics and statistics.",
+            "Complete Sentence?": "yes"
+        },
+        {
+            "Question": "How many Interdisciplinary studies degrees are conferred?",
+            "Answer": " 0.7% bachelor's degrees conferred are Interdisciplinary studies.",
+            "Complete Sentence?": "yes"
+        },
+        {
+            "Question": "How many Physical sciences degrees are conferred?",
+            "Answer": "3.0% bachelor's degrees conferred are Physical sciences",
+            "Complete Sentence?": "yes"
+        },
+        {
+            "Question": "How many Social sciences degrees are conferred?",
+            "Answer": "0.2% bachelor's degrees conferred are Social sciences",
+            "Complete Sentence?": "yes"
+        },
+        {
+            "Question": "What majors does Rose-Hulman award?",
+            "Answer": "Rose-Hulman offers degree in  Computer science,  engineering degrees, biological/life sciences,  physical sciences and social sciences",
+            "Complete Sentence?": "yes"
+        },
+        {
+            "Question": "Metadata",
+            "Answer": "X"
+        },
+        {
+            "Question": "About",
+            "Answer": "Majors offered by Rose-Hulman. The percentage of degrees conferred/awarded for the following disciplinary areas: engineering, biological/life sciences, mathematics and statistics, interdisciplinary studies, physical sciences, and social sciences. "
+        }
+    ]
+}

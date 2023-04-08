@@ -21,13 +21,18 @@ class RasaCommunicator():
         async with session.post(self.connectionString+"model/"+"parse", headers ={ "Content-Type": "application/json" }, data = body) as response:
                 return await response.json()
 
-  
+
+    async def parseMessagesAsync(self, messages):
+        tasks = []
+        async with aiohttp.ClientSession() as session:
+            for message in messages:
+                task = asyncio.create_task(self.parseMessage(message, session=session))
+                tasks.append(task)
+
+            responses = await asyncio.gather(*tasks)
+            return responses
 
 
-        # print(body)
-        # #post('https://httpbin.org/post', data={'key': 'value'})
-        # r = requests.post(self.connectionString+"model/"+"parse", json=body)
-        # return r.json()
         
     # http://localhost:5005/conversations/{conversation_id}/trigger_intent
     async def injectIntent(self, intent, entities, session, convId):

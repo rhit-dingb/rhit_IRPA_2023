@@ -3,7 +3,7 @@ import React from "react";
 import { react, useEffect, useState, useRef } from "react";
 import { BiBot, BiUser } from "react-icons/bi";
 import * as XLSX from 'xlsx';
-import {CUSTOM_BACKEND_API_STRING, DataType} from "../../constants/constants"
+import {CUSTOM_BACKEND_API_STRING, DataType, TOKEN_KEY} from "../../constants/constants"
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -34,8 +34,9 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import Alert from '@mui/material/Alert';
+import { checkResponse } from "../../functions/functions";
 
-function UploadData() {
+function UploadData(props) {
   const uploadDataRef = useRef(null)
   const uploadDefinitionRef = useRef(null)
 
@@ -128,7 +129,6 @@ function UploadData() {
         body: JSON.stringify(body),
         headers: {
           "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "http://localhost:3000",
           "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
           "Access-Control-Allow-Headers": "Content-Type"
         },
@@ -245,7 +245,7 @@ function UploadData() {
             }
 
             body["data"] = jsonData
-          
+
             setIsUploading(true)
             const infoMessage = "File is uploading...."
             displayInfoMessage(infoMessage)
@@ -255,33 +255,43 @@ function UploadData() {
                 body: JSON.stringify(body),
                 headers: {
                   "Content-Type": "application/json",
-                  "Access-Control-Allow-Origin": "http://localhost:3000",
                   "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-                  "Access-Control-Allow-Headers": "Content-Type"
+                  "Access-Control-Allow-Headers": "Content-Type", 
+                  "Authorization": localStorage.getItem(TOKEN_KEY)
                 },
               }).then((result_1) => {
-                  result_1.json().then((data) => {
-                    setIsUploading(false);
-                    let resultJson = data;
-                    if (!result_1.ok) {
-                      displayErrorMessage(resultJson["detail"])
-                    }else{
-                      let uploadedAs = ""
-                      if ("uploadedAs" in resultJson){
+                  setIsUploading(false);
+                  let successCallback = (stringifiedJson)=>{
+                    let resultJson = JSON.parse(stringifiedJson)
+                    let uploadedAs = ""
+                    if ("uploadedAs" in resultJson){
                         let fileName = resultJson["uploadedAs"]
                         uploadedAs = `as ${fileName}`
-                      }
-                      
-                      displaySuccessMessage(`File uploaded successfully ${uploadedAs}`)
-                      console.log("UPLOAD DONE")
                     }
+                    displaySuccessMessage(`File uploaded successfully ${uploadedAs}`)
+                    console.log("UPLOAD DONE")
+                  }
 
-                    resolve()
-                }).catch((err) =>{
-                      console.error(err);
-                      displayErrorMessage(err)
-                      reject()
-                  })
+                  checkResponse(result_1, displayErrorMessage,  successCallback, props.history)
+
+                  // result_1.json().then((data) => {
+                  //   setIsUploading(false);
+                  //   let resultJson = data;
+                  //   if (!result_1.ok) {
+                  //     displayErrorMessage(resultJson["detail"])
+                  //   }else{
+                  //     let uploadedAs = ""
+                  //     if ("uploadedAs" in resultJson){
+                  //       let fileName = resultJson["uploadedAs"]
+                  //       uploadedAs = `as ${fileName}`
+                  //     }
+                      
+                  //     displaySuccessMessage(`File uploaded successfully ${uploadedAs}`)
+                  //     console.log("UPLOAD DONE")
+                  //   }
+
+                  //  
+                  resolve()
                 }).catch((err) => {
                   console.log(err);
                   setIsUploading(false);
@@ -295,6 +305,7 @@ function UploadData() {
 
 
     const displayErrorMessage = (message)=>{
+      console.log(message)
       displayMessage(message, "error")
     }
 
@@ -327,7 +338,6 @@ function UploadData() {
         setSectionAndSubSections([])
         //0th index is taken by definition
         setSelectedIndex(index)
-       
         fetchSectionSubsectionForData(dataName)
     }
 
@@ -354,22 +364,22 @@ function UploadData() {
         body: JSON.stringify(body),
         headers: {
           "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "http://localhost:3000",
-          "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-          "Access-Control-Allow-Headers": "Content-Type"
+          "Authorization": localStorage.getItem(TOKEN_KEY)
         },
       }).then((response)=>{
-          if(response.ok) {
+          const successCallback = (jsonData)=>{
             displaySuccessMessage("Deletion successful")
             console.log("UPDATE after delete")
             updateFunc()
           }
+
+          console.log("CHECK RESPONSE")
+          checkResponse(response, displayErrorMessage, successCallback, props.history)
+          
       }).catch((err)=>{
-        displayErrorMessage(err)
+        checkResponse(err)
       })
     }
-
-
 
 
     const createElementForSectionAndSubSection = ()=> {

@@ -61,18 +61,22 @@ function Basic() {
 
   const rasaAPI = async function handleClick(conversationId, msg) {
     //chatData.push({sender : "user", sender_id : name, msg : msg});
-    console.log(chat);
-    await fetch(`${RASA_API_STRING}/webhooks/rest/webhook`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        charset: "UTF-8",
-      },
-      credentials: "same-origin",
-      mode: "cors",
-      body: JSON.stringify({ sender: conversationId, message: msg }),
-    })
+
+    // console.log(chat);
+    await fetch(
+      `${RASA_API_STRING}/webhooks/rest/webhook`,
+      {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          charset: "UTF-8",
+        },
+        credentials: "same-origin",
+        mode: "cors",
+        body: JSON.stringify({ sender: conversationId, message: msg }),
+      }
+    )
       .then((response) => response.json())
       .then((response) => {
         if (response) {

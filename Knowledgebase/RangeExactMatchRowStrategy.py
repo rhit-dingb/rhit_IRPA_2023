@@ -6,6 +6,7 @@
 from DataManager.constants import NUMBER_ENTITY_LABEL
 from Knowledgebase.ShouldAddRowInterface import ShouldAddRowInterface
 from actions.entititesHelper import findMultipleSameEntitiesHelper, removeDuplicatedEntities
+from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
 
 
 
@@ -13,6 +14,7 @@ from actions.entititesHelper import findMultipleSameEntitiesHelper, removeDuplic
 class RangeExactMatchRowStrategy(ShouldAddRowInterface):
     def __init__(self):
         super().__init__()
+        self.defaultShouldAddRow = DefaultShouldAddRowStrategy()
 
         
     def determineShouldAddRow(self, row, entities, sparseMatrix):
@@ -20,8 +22,7 @@ class RangeExactMatchRowStrategy(ShouldAddRowInterface):
         rangeFound  = sparseMatrix.findRangeForRow(row)
         rangeFound = list(filter(lambda x : not (x == None or x == float('-inf') or x == float('inf')), rangeFound ))
         rangeEntityValueProvided = []
-
-        matchCount = 0
+        # matchCount = 0
         for entity in entities:
             try:
                 entityValue = entity["value"]
@@ -32,14 +33,16 @@ class RangeExactMatchRowStrategy(ShouldAddRowInterface):
             except Exception:
                 continue
 
-        for valueFound in rangeFound:
-            for rangeProvided in rangeEntityValueProvided:
-                if valueFound == rangeProvided:
-                    matchCount = matchCount + 1
-                    continue
+        # for valueFound in rangeFound:
+        #     for rangeProvided in rangeEntityValueProvided:
+        #         if valueFound == rangeProvided:
+        #             matchCount = matchCount + 1
+        #             continue
 
-        if matchCount == len(rangeEntityValueProvided) and len(rangeFound) == len(rangeEntityValueProvided):
-
+        entitiesUsed = self.defaultShouldAddRow.determineShouldAddRow(row, entities, sparseMatrix)
+        print(row)
+        print(len(entitiesUsed))
+        if len(entitiesUsed) > 0 and len(rangeFound) == len(rangeEntityValueProvided):
             return entities
         else:
             return []

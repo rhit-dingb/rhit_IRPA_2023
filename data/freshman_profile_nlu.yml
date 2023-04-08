@@ -16,48 +16,48 @@ nlu:
     - What is the [percent]{"entity":"aggregation", "value": "percent"} of students [submitting]{"entity": "action", "value":  "submitted"} [ACT]{"entity":"standarized_test", "value": "act"} scores
     - What is the [percent]{"entity":"aggregation", "value": "percent"} of students [submitting]{"entity": "action", "value":  "submitted"} [SAT]{"entity":"standarized_test", "value": "sat"} scores
 
-    - What is the [25th percentile]{"entity":"test_percentile", "value": "25th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [composite](test_component)
-    - What is the [25th percentile]{"entity":"test_percentile", "value": "25th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [essay]{"entity": "test_component", "value": "essay" }
-    - What is the [25th percentile]{"entity":"test_percentile", "value": "25th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [reading](test_component) and writing(test_component)
-    - What is the [25th percentile]{"entity":"test_percentile", "value": "25th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [written]{"entity": "test_component", "value": "writing"} part
+    - What is the [25th percentile]{"entity":"percentile", "value": "25th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [composite](test_component)
+    - What is the [25th percentile]{"entity":"percentile", "value": "25th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [essay]{"entity": "test_component", "value": "essay" }
+    - What is the [25th percentile]{"entity":"percentile", "value": "25th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [reading](test_component) and writing(test_component)
+    - What is the [25th percentile]{"entity":"percentile", "value": "25th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [written]{"entity": "test_component", "value": "writing"} part
 
-    - What is the [25th percentile]{"entity":"test_percentile", "value": "25th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [composite](test_component)
-    - What is the [25th percentile]{"entity":"test_percentile", "value": "25th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [essay]{"entity": "test_component", "value": "essay" } 
-    - What is the [25th percentile]{"entity":"test_percentile", "value": "25th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [reading](test_component) and [writing](test_component) part
+    - What is the [25th percentile]{"entity":"percentile", "value": "25th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [composite](test_component)
+    - What is the [25th percentile]{"entity":"percentile", "value": "25th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [essay]{"entity": "test_component", "value": "essay" } 
+    - What is the [25th percentile]{"entity":"percentile", "value": "25th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [reading](test_component) and [writing](test_component) part
 
-    - What is the [25th percentile]{"entity":"test_percentile", "value": "25th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} evidence-based [writing](test_component) and [reading](test_component)
-    - What is the [25th percentile]{"entity":"test_percentile", "value": "25th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} evidence based [reading]{"entity": "test_component", "value": "reading"} and [written]{"entity": "test_component", "value": "writing"} part
+    - What is the [25th percentile]{"entity":"percentile", "value": "25th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} evidence-based [writing](test_component) and [reading](test_component)
+    - What is the [25th percentile]{"entity":"percentile", "value": "25th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} evidence based [reading]{"entity": "test_component", "value": "reading"} and [written]{"entity": "test_component", "value": "writing"} part
 
 
-    - What is the [50th percentile]{"entity":"test_percentile", "value": "50th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [composite](test_component)
-    - What is the [50th percentile]{"entity":"test_percentile", "value": "50th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [essay]{"entity": "test_component", "value": "essay" } 
+    - What is the [50th percentile]{"entity":"percentile", "value": "50th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [composite](test_component)
+    - What is the [50th percentile]{"entity":"percentile", "value": "50th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [essay]{"entity": "test_component", "value": "essay" } 
 
-    - What is the [50th percentile]{"entity":"test_percentile", "value": "50th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [english]{"entity":"test_component", "value": "english"} section
-    - What is the [50th percentile]{"entity":"test_percentile", "value": "50th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [math]{"entity": "test_component", "value": "math"}  section
+    - What is the [50th percentile]{"entity":"percentile", "value": "50th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [english]{"entity":"test_component", "value": "english"} section
+    - What is the [50th percentile]{"entity":"percentile", "value": "50th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [math]{"entity": "test_component", "value": "math"}  section
     
-    - What is the [50th percentile]{"entity":"test_percentile", "value": "50th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [english]{"entity":"test_component", "value": "english"} section
-    - What is the [50th percentile]{"entity":"test_percentile", "value": "50th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [math]{"entity": "test_component", "value": "math"}  section
+    - What is the [50th percentile]{"entity":"percentile", "value": "50th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [english]{"entity":"test_component", "value": "english"} section
+    - What is the [50th percentile]{"entity":"percentile", "value": "50th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [math]{"entity": "test_component", "value": "math"}  section
 
-    - What is the [50th percentile]{"entity":"test_percentile", "value": "50th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [writing](test_component)
-    - What is the [50th percentile]{"entity":"test_percentile", "value": "50th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [written]{"entity": "test_component", "value": "writing"}
+    - What is the [50th percentile]{"entity":"percentile", "value": "50th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [writing](test_component)
+    - What is the [50th percentile]{"entity":"percentile", "value": "50th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [written]{"entity": "test_component", "value": "writing"}
 
-    - What is the [50th percentile]{"entity":"test_percentile", "value": "50th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [composite](test_component)
-    - What is the [50th percentile]{"entity":"test_percentile", "value": "50th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [essay]{"entity": "test_component", "value": "essay" }
-    - What is the [50th percentile]{"entity":"test_percentile", "value": "50th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [reading](test_component) and [writing](test_component)
-    - What is the [50th percentile]{"entity":"test_percentile", "value": "50th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [reading](test_component) and [writing](test_component) section
-    - What is the [50th percentile]{"entity":"test_percentile", "value": "50th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [written]{"entity": "test_component", "value": "writing"} and [read]{"entity": "test_component", "value": "reading"} part
+    - What is the [50th percentile]{"entity":"percentile", "value": "50th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [composite](test_component)
+    - What is the [50th percentile]{"entity":"percentile", "value": "50th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [essay]{"entity": "test_component", "value": "essay" }
+    - What is the [50th percentile]{"entity":"percentile", "value": "50th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [reading](test_component) and [writing](test_component)
+    - What is the [50th percentile]{"entity":"percentile", "value": "50th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [reading](test_component) and [writing](test_component) section
+    - What is the [50th percentile]{"entity":"percentile", "value": "50th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [written]{"entity": "test_component", "value": "writing"} and [read]{"entity": "test_component", "value": "reading"} part
 
-    - What is the [75th percentile]{"entity":"test_percentile", "value": "75th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [composite](test_component)
-    - What is the [75th percentile]{"entity":"test_percentile", "value": "75th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [essay]{"entity": "test_component", "value": "essay" }
-    - What is the [75th percentile]{"entity":"test_percentile", "value": "75th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [written]{"entity": "test_component", "value": "writing"} part
-    - What is the [75th percentile]{"entity":"test_percentile", "value": "75th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [writing](test_component)
-    - What is the [75th percentile]{"entity":"test_percentile", "value": "75th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [written]{"entity": "test_component", "value": "writing"}
+    - What is the [75th percentile]{"entity":"percentile", "value": "75th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [composite](test_component)
+    - What is the [75th percentile]{"entity":"percentile", "value": "75th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [essay]{"entity": "test_component", "value": "essay" }
+    - What is the [75th percentile]{"entity":"percentile", "value": "75th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [written]{"entity": "test_component", "value": "writing"} part
+    - What is the [75th percentile]{"entity":"percentile", "value": "75th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [writing](test_component)
+    - What is the [75th percentile]{"entity":"percentile", "value": "75th percentile"} score for [ACT]{"entity":"standarized_test", "value": "act"} [written]{"entity": "test_component", "value": "writing"}
 
-    - What is the [75th percentile]{"entity":"test_percentile", "value": "75th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [composite](test_component)
-    - What is the [75th percentile]{"entity":"test_percentile", "value": "75th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [essay]{"entity": "test_component", "value": "essay" } component
-    - What is the [75th percentile]{"entity":"test_percentile", "value": "75th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} evidence-based [reading](test_component) and [writing](test_component)
-    - What is the [75th percentile]{"entity":"test_percentile", "value": "75th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [writing](test_component) portion and [reading](test_component) component
-    - What is the [75th percentile]{"entity":"test_percentile", "value": "75th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} evidence-based [written]{"entity": "test_component", "value": "writing"} and evidence-based [reading](test_component)
+    - What is the [75th percentile]{"entity":"percentile", "value": "75th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [composite](test_component)
+    - What is the [75th percentile]{"entity":"percentile", "value": "75th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [essay]{"entity": "test_component", "value": "essay" } component
+    - What is the [75th percentile]{"entity":"percentile", "value": "75th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} evidence-based [reading](test_component) and [writing](test_component)
+    - What is the [75th percentile]{"entity":"percentile", "value": "75th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [writing](test_component) portion and [reading](test_component) component
+    - What is the [75th percentile]{"entity":"percentile", "value": "75th percentile"} score for [SAT]{"entity":"standarized_test", "value": "sat"} evidence-based [written]{"entity": "test_component", "value": "writing"} and evidence-based [reading](test_component)
 
     - What is the [average]{"entity": "aggregation", "value": "average"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [composite](test_component)
     - What is the [average]{"entity": "aggregation", "value": "average"} score for [ACT]{"entity":"standarized_test", "value": "act"} [composite](test_component)
@@ -96,6 +96,9 @@ nlu:
     - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the [range]{"entity":"range", "value":"between"} 17-12 for [essay]{"entity": "test_component", "value": "essay" } section
     - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the [range]{"entity":"range", "value":"between"} 17-12 for [reading](test_component)
     - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the [range]{"entity":"range", "value":"between"} 17-12 for [writing](test_component) portion
+
+    - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the [over]{"entity":"range", "value":"more than"} 17 for [writing](test_component) portion
+
     - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the [range]{"entity":"range", "value":"between"} 17-12 for [written]{"entity": "test_component", "value": "writing"}
     - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the [range]{"entity":"range", "value":"between"} 18 [to]{"entity":"range", "value":"between"} 23 for [composite](test_component)
     - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the [range]{"entity":"range", "value":"between"} 18 [to]{"entity":"range", "value":"between"} 23 for [essay]{"entity": "test_component", "value": "essay" }
@@ -425,66 +428,66 @@ nlu:
     
 
 
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 3.75 - 3.99
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 4.0
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between under 1.0
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between under 1
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 1.00-1.99
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 3.0 - 3.24
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 3.50 and 3.74
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 3.75 - 3.99
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 4.0
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} [under]{"entity": "range", "value": "within"} 1.0
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} [under]{"entity": "range", "value": "within"} 1
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 1.00-1.99
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 3.0 - 3.24
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 3.50 and 3.74
     - What is the [average]{"entity":"aggregation", "value": "average"} [high school]{"entity": "education_level", "value": "high school"} [gpa]{"entity":"academic_factor", "value": "gpa"} for incoming [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} who [submitted]{"entity": "action", "value":  "submitted"} [gpa]{"entity":"academic_factor", "value": "gpa"}
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 1-1.99
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 1-1.99
     - [percentage]{"entity":"aggregation", "value": "percent"} of students who are [submitting]{"entity": "action", "value":  "submitted"} [gpa]{"entity":"academic_factor", "value": "gpa"}
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 3.25-3.49
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 3.75 and 3.99
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 3.5 [to]{"entity":"range", "value":"between"} 3.74
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 3.25-3.49
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 3.75 and 3.99
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 3.5 [to]{"entity":"range", "value":"between"} 3.74
     - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students in the [bottom half](class_rank) of their [high school]{"entity": "education_level", "value": "high school"} graduating class?
     - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students in the [bottom quarter](class_rank) of their [high school]{"entity": "education_level", "value": "high school"} graduating class?
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 1.0 and 1.99
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 3.00 - 3.24
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 3.0 [to]{"entity":"range", "value":"between"} 3.24
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 1.0 [to]{"entity":"range", "value":"between"} 1.99
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 3.0 and 3.24
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [below]{"entity": "range", "value": "within"}  1.00
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 3.00 and 3.24
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 3.25 [to]{"entity":"range", "value":"between"} 3.49
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 1.00 - 1.99
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 3-3.24
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 1.00 [to]{"entity":"range", "value":"between"} 1.99
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 3.50-3.74
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 4.00
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 3.00 [to]{"entity":"range", "value":"between"} 3.24
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [below]{"entity": "range", "value": "within"}  1
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 3.5 and 3.74
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [less than]{"entity": "range", "value": "within"}  1.0
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 3 [to]{"entity":"range", "value":"between"} 3.24
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 3.75-3.99
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 1.0 and 1.99
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 3.00 - 3.24
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 3.0 [to]{"entity":"range", "value":"between"} 3.24
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 1.0 [to]{"entity":"range", "value":"between"} 1.99
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 3.0 and 3.24
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} [below]{"entity": "range", "value": "within"}  1.00
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 3.00 and 3.24
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 3.25 [to]{"entity":"range", "value":"between"} 3.49
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 1.00 - 1.99
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 3-3.24
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 1.00 [to]{"entity":"range", "value":"between"} 1.99
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 3.50-3.74
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 4.00
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 3.00 [to]{"entity":"range", "value":"between"} 3.24
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} [below]{"entity": "range", "value": "within"}  1
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 3.5 and 3.74
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} [less than]{"entity": "range", "value": "within"}  1.0
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 3 [to]{"entity":"range", "value":"between"} 3.24
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 3.75-3.99
     - [percentage]{"entity":"aggregation", "value": "percent"} of students who [submitted]{"entity": "action", "value":  "submitted"} [gpa]{"entity":"academic_factor", "value": "gpa"}
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 3 and 3.24
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 3.25 - 3.49
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 3 and 3.24
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 3.25 - 3.49
     - [percentage]{"entity":"aggregation", "value": "percent"} of total first-time, first-year (freshman) students who [submitted]{"entity": "action", "value":  "submitted"} [high school]{"entity": "education_level", "value": "high school"} [class rank]{"entity":"academic_factor", "value": "class rank"}
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 1.0 - 1.99
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 1 and 1.99
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 1.0 - 1.99
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 1 and 1.99
     - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students in the [top quarter](class_rank) of their [high school]{"entity": "education_level", "value": "high school"} graduating class?
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 1.00 and 1.99
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 1.0-1.99
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 3.25 and 3.49
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [less than]{"entity": "range", "value": "within"}  1
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 3.50 [to]{"entity":"range", "value":"between"} 3.74
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 3.5-3.74
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 1.00 and 1.99
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 1.0-1.99
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 3.25 and 3.49
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} [less than]{"entity": "range", "value": "within"}  1
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 3.50 [to]{"entity":"range", "value":"between"} 3.74
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 3.5-3.74
     - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students in the [top tenth](class_rank) of their [high school]{"entity": "education_level", "value": "high school"} graduating class?
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 1 [to]{"entity":"range", "value":"between"} 1.99
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 3.75 [to]{"entity":"range", "value":"between"} 3.99
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 1 - 1.99
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 4
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 3.5 - 3.74
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 2.50 and 2.99
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 3.50 - 3.74
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 2.50 [to]{"entity":"range", "value":"between"} 2.99
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 1 [to]{"entity":"range", "value":"between"} 1.99
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 3.75 [to]{"entity":"range", "value":"between"} 3.99
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 1 - 1.99
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 4
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 3.5 - 3.74
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 2.50 and 2.99
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 3.50 - 3.74
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 2.50 [to]{"entity":"range", "value":"between"} 2.99
     - [percentage]{"entity":"aggregation", "value": "percent"} of total first-time, first-year (freshman) students who [submit]{"entity": "action", "value":  "submitted"} [high school]{"entity": "education_level", "value": "high school"} [class rank]{"entity":"academic_factor", "value": "class rank"}
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [below]{"entity": "range", "value": "within"}  1.0
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 2.50-2.99
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 2.50 - 2.99
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} [below]{"entity": "range", "value": "within"}  1.0
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 2.50-2.99
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 2.50 - 2.99
     - [percentage]{"entity":"aggregation", "value": "percent"} of students who [submit]{"entity": "action", "value":  "submitted"} [gpa]{"entity":"academic_factor", "value": "gpa"}
     - [percentage]{"entity":"aggregation", "value": "percent"} of total first-time, first-year (freshman) students who are [submitting]{"entity": "action", "value":  "submitted"} [high school]{"entity": "education_level", "value": "high school"} [class rank]{"entity":"academic_factor", "value": "class rank"}
     - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students in the [top half](class_rank) of their [high school]{"entity": "education_level", "value": "high school"} graduating class?
@@ -496,68 +499,69 @@ nlu:
     - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students in the [top half](class_rank) of their [high school]{"entity": "education_level", "value": "high school"} graduating class?
     - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students in the [top quarter](class_rank) of their [high school]{"entity": "education_level", "value": "high school"} graduating class?
     - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students in the [top tenth](class_rank) of their [high school]{"entity": "education_level", "value": "high school"} graduating class?
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 1 - 1.99
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 1 and 1.99
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 1 [to]{"entity":"range", "value":"between"} 1.99
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 1-1.99
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 1.0 - 1.99
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 1.0 and 1.99
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 1.0 [to]{"entity":"range", "value":"between"} 1.99
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 1.0-1.99
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 1.00 - 1.99
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 1.00 and 1.99
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 1.00 [to]{"entity":"range", "value":"between"} 1.99
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 1.00-1.99
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 2 - 2.49
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 2 and 2.49
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 2-2.49
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 2.0 - 2.49
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 2.0 and 2.49
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 2.0 [to]{"entity":"range", "value":"between"} 2.49
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 2.0-2.49
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 2.00 - 2.49
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 2.00 and 2.49
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 2.00 [to]{"entity":"range", "value":"between"} 2.49
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 2.00-2.49
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 2.50 - 2.99
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 2.50 and 2.99
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 2.50 [to]{"entity":"range", "value":"between"} 2.99
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 2.50-2.99
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 3 and 3.24
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 3 [to]{"entity":"range", "value":"between"} 3.24
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 3-3.24
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 3.0 - 3.24
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 3.0 and 3.24
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 3.0 [to]{"entity":"range", "value":"between"} 3.24
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 3.00 - 3.24
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 3.00 and 3.24
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 3.00 [to]{"entity":"range", "value":"between"} 3.24
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 3.25 - 3.49
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 3.25 and 3.49
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 3.25 [to]{"entity":"range", "value":"between"} 3.49
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 3.25-3.49
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 3.5 - 3.74
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 3.5 and 3.74
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 3.5 [to]{"entity":"range", "value":"between"} 3.74
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 3.5-3.74
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 3.50 - 3.74
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 3.50 and 3.74
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 3.50 [to]{"entity":"range", "value":"between"} 3.74
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 3.50-3.74
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 3.75 - 3.99
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 3.75 and 3.99
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 3.75 [to]{"entity":"range", "value":"between"} 3.99
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 3.75-3.99
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 4
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 4.0
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between 4.00
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [below]{"entity": "range", "value": "within"}  1
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [below]{"entity": "range", "value": "within"}  1.0
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [below]{"entity": "range", "value": "within"}  1.00
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [less than]{"entity": "range", "value": "within"}  1
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between [less than]{"entity": "range", "value": "within"}  1.0
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between under 1
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} between under 1.0
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 1 - 1.99
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 1 and 1.99
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 1 [to]{"entity":"range", "value":"between"} 1.99
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 1-1.99
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 1.0 - 1.99
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 1.0 and 1.99
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 1.0 [to]{"entity":"range", "value":"between"} 1.99
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 1.0-1.99
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 1.00 - 1.99
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 1.00 and 1.99
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 1.00 [to]{"entity":"range", "value":"between"} 1.99
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 1.00-1.99
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 2 - 2.49
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 2 and 2.49
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 2-2.49
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 2.0 - 2.49
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 2.0 and 2.49
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 2.0 [to]{"entity":"range", "value":"between"} 2.49
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 2.0-2.49
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 2.00 - 2.49
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 2.00 and 2.49
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 2.00 [to]{"entity":"range", "value":"between"} 2.49
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 2.00-2.49
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 2.50 - 2.99
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 2.50 and 2.99
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 2.50 [to]{"entity":"range", "value":"between"} 2.99
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 2.50-2.99
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 3 and 3.24
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 3 [to]{"entity":"range", "value":"between"} 3.24
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 3-3.24
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 3.0 - 3.24
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 3.0 and 3.24
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 3.0 [to]{"entity":"range", "value":"between"} 3.24
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 3.00 - 3.24
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 3.00 and 3.24
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 3.00 [to]{"entity":"range", "value":"between"} 3.24
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 3.25 - 3.49
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 3.25 and 3.49
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 3.25 [to]{"entity":"range", "value":"between"} 3.49
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 3.25-3.49
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 3.5 - 3.74
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 3.5 and 3.74
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 3.5 [to]{"entity":"range", "value":"between"} 3.74
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 3.5-3.74
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 3.50 - 3.74
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 3.50 and 3.74
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 3.50 [to]{"entity":"range", "value":"between"} 3.74
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 3.50-3.74
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 3.75 - 3.99
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 3.75 and 3.99
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 3.75 [to]{"entity":"range", "value":"between"} 3.99
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 3.75-3.99
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 4
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 4.0
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} 4.00
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} [below]{"entity": "range", "value": "within"}  1
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} [below]{"entity": "range", "value": "within"}  1.0
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} [below]{"entity": "range", "value": "within"}  1.00
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} [less than]{"entity": "range", "value": "within"}  1
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} [less than]{"entity": "range", "value": "within"}  1.0
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} [under]{"entity": "range", "value": "within"} 1
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [between]{"entity": "range", "value": "between"} [under]{"entity": "range", "value": "within"} 1.0
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of students with [gpa]{"entity":"academic_factor", "value": "gpa"} [over]{"entity": "range", "value": "more than"} 1.0
     
     - [percentage]{"entity":"aggregation", "value": "percent"} of students who are [submitting]{"entity": "action", "value":  "submitted"} [gpa]{"entity":"academic_factor", "value": "gpa"}
     - [percentage]{"entity":"aggregation", "value": "percent"} of students who [submit]{"entity": "action", "value":  "submitted"} [gpa]{"entity":"academic_factor", "value": "gpa"}
@@ -579,7 +583,7 @@ nlu:
     - act
 
 
-- lookup: test_percentile
+- lookup: percentile
   examples: |
     - 15th percentile
     - 25th percentile
