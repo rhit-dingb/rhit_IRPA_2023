@@ -356,19 +356,45 @@ PUT request: http://127.0.0.1:8000/question_asked/?intent=ADMISSION&feedback=NOT
 """
 
 @app.get("/general_stats/")
-async def handle_new_event(endDate: datetime = datetime.now(), startDate_short: datetime = (datetime.now() - timedelta(days=30)), startDate_long: datetime = (datetime.now() - timedelta(days=365))):
+async def handle_new_event(endDate: datetime = datetime.now(), startDate_short: datetime = None, startDate_long: datetime = None):
     db = client.freq_question_db
     freq_collection = db.cds_frequency
-    short_stats = list(freq_collection.find({"time_asked": {"$gte": startDate_short, "$lte": endDate}}))
-    long_stats = list(freq_collection.find({"time_asked": {"$gte": startDate_long, "$lte": endDate}}))
-    short_stats = json.loads(json_util.dumps(short_stats))
-    long_stats = json.loads(json_util.dumps(long_stats))
-    return short_stats
+    if startDate_short is None and startDate_long is None:
+        startDate = datetime.min
+    elif startDate_short is None:
+        startDate = startDate_long
+    else:
+        startDate = startDate_short
+    stats = list(freq_collection.find({"time_asked": {"$gte": startDate, "$lte": endDate}}))
+    stats = json.loads(json_util.dumps(stats))
+    return stats
 
 """
 Test 1: DEFAULT VIEW
 GET request: http://127.0.0.1:8000/general_stats/
 """
+
+@app.get("/feedback_stats/")
+async def success_rate(endDate: datetime = datetime.now(), startDate: datetime = (datetime.now() - timedelta(days=30))):
+    db = client.freq_question_db
+    freq_collection = db.cds_frequency
+    total_questions = freq_collection.count_documents({"time_asked": {"$gte": startDate, "$lte": endDate}})
+    successful_questions = freq_collection.count_documents({"time_asked": {"$gte": startDate, "$lte": endDate}, "helpful": True})
+    success_rate = successful_questions / total_questions * 100 if total_questions > 0 else 0
+    return {"total_questions": total_questions, "successful_questions": successful_questions, "success_rate": success_rate}
+
+@app.get("/intent_stats/")
+async def top_categories(endDate: datetime = datetime.now(), startDate: datetime = (datetime.now() - timedelta(days=30))):
+    db = client.freq_question_db
+    freq_collection = db.cds_frequency
+    pipeline = [
+        {"$match": {"time_asked": {"$gte": startDate, "$lte": endDate}}},
+        {"$group": {"_id": "$intent", "count": {"$sum": 1}}},
+        {"$sort": {"count": -1}}
+    ]
+    intent_stats = list(freq_collection.aggregate(pipeline))
+    intent_stats = json.loads(json_util.dumps(intent_stats))
+    return {"intent_stats": intent_stats}
 
 
 """"
@@ -505,4 +531,3 @@ def getToken(request : Request):
         return request.headers[AUTHORIZATION_HEADER_KEY]
     else:
         return None
-    
