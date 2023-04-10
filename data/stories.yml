@@ -69,6 +69,7 @@ stories:
       - intent: transfer_admission
       - intent: freshman_profile
       - intent: basis_for_selection
+      - intent: cohort
       - intent: nlu_fallback
     - action: action_query_knowledgebase
     - action: action_store_asked_question
@@ -128,28 +129,28 @@ stories:
 
 
 
-- story: ask_about_cohort_answer_helpful
-  steps: 
-    - intent: cohort
-    - action: action_query_cohort
-    - action: action_store_asked_question
-    - action: utter_ask_answer_helpful
-    - intent: affirm
-    - action: action_store_isHelpful_statistic
-    - checkpoint: ask_feedback
+# - story: ask_about_cohort_answer_helpful
+#   steps: 
+#     - intent: cohort
+#     - action: action_query_cohort
+#     - action: action_store_asked_question
+#     - action: utter_ask_answer_helpful
+#     - intent: affirm
+#     - action: action_store_isHelpful_statistic
+#     - checkpoint: ask_feedback
 
 
-- story: ask_about_cohort_answer_not_helpful
-  steps: 
-    - intent: cohort
-    - action: action_query_cohort
-    - action: action_store_asked_question
-    - action: utter_ask_answer_helpful
-    - intent: deny
-    # - action: utter_sorry_question_not_helpful
-    - action: action_answer_not_helpful
-    - action: action_store_isHelpful_statistic
-    - action: action_get_available_options
+# - story: ask_about_cohort_answer_not_helpful
+#   steps: 
+#     - intent: cohort
+#     - action: action_query_cohort
+#     - action: action_store_asked_question
+#     - action: utter_ask_answer_helpful
+#     - intent: deny
+#     # - action: utter_sorry_question_not_helpful
+#     - action: action_answer_not_helpful
+#     - action: action_store_isHelpful_statistic
+#     - action: action_get_available_options
 
 
 - story: ask_more_question

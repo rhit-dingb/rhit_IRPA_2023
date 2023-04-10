@@ -7,6 +7,7 @@ from abc import ABC, abstractmethod
 
 from Data_Ingestion.SparseMatrix import SparseMatrix
 from Knowledgebase.DataModels.ChatbotAnswer import ChatbotAnswer
+from Knowledgebase.DataModels.MultiFeedbackLabel import MultiFeedbackLabel
 
 
 class KnowledgeBase(ABC) :
@@ -32,12 +33,15 @@ class KnowledgeBase(ABC) :
         pass
 
 
-    # @abstractmethod
-    # def train(self, ):
-    #     pass
+    @abstractmethod
+    def train(self, trainingLabels : List[MultiFeedbackLabel]):
+        pass
     
-    # @abstractmethod
-    # def dataUploaded(self):
-    #     pass
+    @abstractmethod
+    def dataUploaded(self):
+        pass
 
+    @abstractmethod
+    def dataDeleted(self):
+        pass
     

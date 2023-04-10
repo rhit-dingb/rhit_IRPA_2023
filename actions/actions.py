@@ -44,7 +44,11 @@ from Knowledgebase.Knowledgebase import KnowledgeBase
 from Knowledgebase.QuestionAnswerKnowledgebase.QuestionAnswerKnowledgebase import QuestionAnswerKnowledgeBase
 from Knowledgebase.QuestionAnswerKnowledgebase.FAQKnowledgebase import FAQKnowledgeBase
 from Knowledgebase.DataModels.ChatbotAnswer import ChatbotAnswer
- 
+from Knowledgebase.DataModels.FeedbackLabel import FeedbackLabel, FeedbackType
+from Knowledgebase.DataModels.MultiFeedbackLabel import MultiFeedbackLabel
+
+
+
 
 try:
     nltk.find('corpora/wordnet')
@@ -283,6 +287,7 @@ class ActionSetYear(Action):
     
     def run(self, dispatcher, tracker, domain):
         # print("YEAR CHANGED")
+        
         entitiesExtracted = tracker.latest_message["entities"]
         yearRange = []
         # Assume there are only two entities, the start year and end year
@@ -292,29 +297,78 @@ class ActionSetYear(Action):
         return [res]
 
 
-class ActionNluFallback(Action):
-    def name(self) -> Text:
-        return "action_nlu_fallback"
+# class ActionNluFallback(Action):
+#     def name(self) -> Text:
+#         return "action_nlu_fallback"
     
-    def run(self, dispatcher, tracker, domain):
-        question = tracker.latest_message["text"]
-        answers = getAnswerForUnansweredQuestion(question)
-        answers = checkIfAnswerFound(question, answers)
-        utterAllAnswers(answers, dispatcher)
+#     def run(self, dispatcher, tracker, domain):
+#         question = tracker.latest_message["text"]
+#         answers = getAnswerForUnansweredQuestion(question)
+#         answers = checkIfAnswerFound(question, answers)
+#         utterAllAnswers(answers, dispatcher)
 
 
 
-class ActionQueryCohort(Action):
+
+class ActionEventOccured(Action):
     def __init__(self) -> None:
         super().__init__()
+        self.EVENT_TYPE_KEY = "eventType"
 
     def name(self) -> Text:
-        return "action_query_cohort"
+        return "action_event_occured"
+    
+    def run(self, dispatcher, tracker, domain):
+        entities = tracker.latest_message["entities"]
+        eventTypeEntity = findEntityHelper(entities, self.EVENT_TYPE_KEY)
 
-    async def run(self, dispatcher, tracker, domain):
-      actionQueryKnowledgebase =  ActionQueryKnowledgebase()
-      await actionQueryKnowledgebase.run(dispatcher, tracker, domain)
+        if eventTypeEntity == None:
+            return []
+        
+        eventType = eventTypeEntity["value"]
+        """
+        The feedback labels object looks like:
+        {'entity': 'feedback', 'value': [ {'_id': {'$oid': '641b6117a799c3a9b43f72c1'},
+        'content': 'How many faculty do you have at rose-hulman', 
+        'post_date': {'$date': '2023-03-22T16:12:07.973Z'}, 
+        'is_addressed': True, 
+        'chatbotAnswers': [{answer:'the total number of instructional faculty is 192', source:"QuestionAnswerKnowledge", metadata:{}, feedback:"" }], 
+        'answer': 'the total number of instructional faculty is 200'}} ] 
+        """
 
+        trainingLabels : List[MultiFeedbackLabel] = []
+        if eventType == "train":
+            feedbackEntity= findEntityHelper(entities, "feedback")
+            feedbackLabelsDict = feedbackEntity["value"]
+            # convert to data model
+            for data in feedbackLabelsDict:
+                query = data["content"]
+                feedbackLabels = []
+                for chatbotAnswer in data["chatbotAnswers"]:
+                    source = data["source"]
+                    metadata = data["metadata"]
+                    feedback = data["feedback"]
+                    if feedback == None or feedback == "":
+                        continue
+                    if feedback == FeedbackType.CORRECT.value:
+                        feedback = FeedbackType.CORRECT
+                    elif feedback == FeedbackType.INCORRECT.value:
+                        feedback = FeedbackType.INCORRECT
+                    else: 
+                        continue
+                    feedbackLabel = FeedbackLabel(query = query, source = source, metadata = metadata, feedback = feedback)
+                    feedbackLabels.append(feedbackLabel)
+
+                multiLabelFeedback = MultiFeedbackLabel(query=query,feedbackLabels= feedbackLabels)
+                trainingLabels.append(multiLabelFeedback)
+
+        for knowledgebase in knowledgebaseEnsemble:
+            knowledgebase.train(trainingLabels)
+
+        return [{"event": "action", "name": "action_event_occured", "eventType":eventType}]
+             
+            
+    
 
 
 # Helper functions
@@ -344,7 +398,7 @@ def utterAllAnswers(answers : List[ChatbotAnswer], dispatcher):
   
     answersInDict = []
     for answer in answers:
-        answerDict = answer.__dict__
+        answerDict = answer.as_dict()
         answerDict["text"] = answerDict["answer"]
         print("JSON MESSAGE",  {"answers": answerDict})
         answersInDict.append(answerDict)
@@ -365,3 +419,5 @@ def getAnswerForUnansweredQuestion(question):
             return answers
         else:
             return []
+        
+

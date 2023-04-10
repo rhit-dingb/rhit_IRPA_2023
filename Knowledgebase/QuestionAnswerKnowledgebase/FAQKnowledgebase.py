@@ -19,6 +19,7 @@ import pandas as pd
 
 from Data_Ingestion.constants import TEMPLATE_LABEL
 from Knowledgebase.DataModels.ChatbotAnswer import ChatbotAnswer
+from Knowledgebase.DataModels.MultiFeedbackLabel import MultiFeedbackLabel
 
 class  FAQKnowledgeBase(KnowledgeBase):
     def __init__(self, dataManager):
@@ -27,7 +28,7 @@ class  FAQKnowledgeBase(KnowledgeBase):
         self.reader = None
         self.pipeline = None
         self.retriever = None
-        self.dataFetcher = DataFetcher()
+        # self.dataFetcher = DataFetcher()
         self.trainedModelPath = "TrainedModels\EmbeddingRetriever"
         self.source = "FAQKnowledgebase"
 
@@ -151,30 +152,31 @@ class  FAQKnowledgeBase(KnowledgeBase):
          # create qa pipeline
         print("SEARCH FOR ANSWER")
         result = self.pipeline.run(query = question, params= {
-            "Retriever": {"top_k": 5},
+           
             "filters": {
-            "startYear": str(startYear),
-            "endYear": str(endYear)
-        }
+                "startYear": str(startYear),
+                "endYear": str(endYear)
+            }
         }
         
         )
 
        
-
         answers : List[Answer] = result["answers"]
       
         chatbotAnswers : List[ChatbotAnswer]= []
         for answer in answers:
+            metadata=dict()
+            metadata["context"] =answer.context
+            metadata["offsets_in_context"] = answer.offsets_in_context
+            metadata["document_ids"]= answer.document_ids
             #answerStrings.append(answer.answer)
-            chatbotAnswer = ChatbotAnswer(answer = answer.answer, source=self.source)
+            chatbotAnswer = ChatbotAnswer(answer = answer.answer, source=self.source, metadata=metadata)
             chatbotAnswers.append(chatbotAnswer)
 
         return chatbotAnswers
     
 
-
- 
     def aggregateDiscreteRange(self, entities, dataModel, isSumming):
         raise NotImplementedError()
 
@@ -183,53 +185,14 @@ class  FAQKnowledgeBase(KnowledgeBase):
         raise NotImplementedError()
 
 
-
-
-
-
-from pymongo import MongoClient
-from haystack import Document
-import pandas as pd
-class DataFetcher():
-    def __init__(self):
-        MONGO_DB_CONNECTION_STRING = "mongodb://localhost:27017"
-        self.client = MongoClient(MONGO_DB_CONNECTION_STRING)
-        self.db = self.client["CDS_2020_2021"]
-        
-
-    def getDocuments(self):
-        documents = {collection:[] for collection in self.db.list_collection_names()}
-        for collection in self.db.list_collection_names():
-            collect = self.db[collection]
-            cursor = collect.find({})
-            for data in cursor:
-                questionAnswers = data["questionAnswers"]
-                for questionAnswer in questionAnswers:
-                    documents[collection].append( Document(
-                    content= questionAnswers[questionAnswer],
-                    meta={'name': questionAnswer}
-                    ))
-        return documents
-
-
-    def getQuestionAnswers(self):
-        sectionToDf = {collection:[] for collection in self.db.list_collection_names()}
-        for collection in self.db.list_collection_names():
-            collect = self.db[collection]
-            cursor = collect.find({})
-            for data in cursor:
-                questionAnswers = data["questionAnswers"]
-                data = [[key, questionAnswers[key]] for key in questionAnswers]
-
-
-                df = pd.DataFrame(data= data, columns=["question", "answer"])
-               
-                sectionToDf[collection].append(df)
-        print(sectionToDf)
-        return sectionToDf
-# class QuestionAnswer():
-#     def __init__(self, question, answer) -> None:
-#         self.question = question
-#         self.answer = answer
+    def train(self, trainingLabels : List[MultiFeedbackLabel]):
+        pass
     
-    
+    def dataUploaded(self):
+        pass
+
+    def dataDeleted(self):
+        pass  
+
+
+

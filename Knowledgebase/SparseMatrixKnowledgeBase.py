@@ -338,4 +338,12 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         return rangeResultData
 
     
+  
+    def train(self):
+        pass
+    
+    def dataUploaded(self):
+        pass
 
+    def dataDeleted(self):
+        pass

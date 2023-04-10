@@ -466,7 +466,7 @@ async def addAdmin(request : Request):
 
 
 @app.post("/transfer_root_access")
-async def addAdmin(request : Request):
+async def transferRootAccess(request : Request):
     jsonData = await request.json()
     transferFrom = jsonData["transferFrom"]
     transferTo = jsonData["transferTo"]
@@ -512,4 +512,38 @@ def getToken(request : Request):
         return request.headers[AUTHORIZATION_HEADER_KEY]
     else:
         return None
+    
+
+#  id: str
+# query: str
+# document: Document
+# is_correct_answer: bool
+# is_correct_document: bool
+# origin: Literal["user-feedback", "gold-label"]
+# answer: Optional[Answer] = None
+# pipeline_id: Optional[str] = None
+# created_at: Optional[str] = None
+# updated_at: Optional[str] = None
+# meta: Optional[dict] = None
+
+
+@app.post("/train_knowledgebase")
+async def trainKnowledgebase(request : Request):
+    """
+    request body: {"ids":[""]}
+    """
+    requestJson = await request.json()
+    ids = requestJson["ids"]
+    entities ={"eventType":"train", "feedback":[]}
+    for id in ids:
+        questionObj = unansweredQuestionDbConnector.getQuestionAnswerObjectById(id)
+        entities["feedback"].append(questionObj)
+        conversationId = "random"
+    # try:
+    async with aiohttp.ClientSession() as session:
+        response = await rasaCommunicator.injectIntent("event_occured", entities, session, conversationId)
+        print(response)
+        return {"message": "success"}
+    # except Exception:
+    #     raise HTTPException(status_code=500, detail="change failed")
     

@@ -47,20 +47,15 @@ class MongoDBUnansweredQuestionConnector():
             if question.lower() == questionInDB["content"].lower():
                 print("QUESTION ALREADY EXIST")
                 return  {'message': 'questionExist'}
-        
-
-        # answerString = []
-
-        # for chatbotAnswer in chatbotAnswers:
-        #     answerString.append(chatbotAnswer["answer"])
-
 
         toAdd = {
             "content": question,
             "post_date": datetime.today(),
             "is_addressed": False,
             "chatbotAnswers": chatbotAnswers,
-            "answer": None}
+            "answer": None,
+            "feedback": None
+            }
         
         boo1 = self.questions_collection.insert_one(toAdd)
      

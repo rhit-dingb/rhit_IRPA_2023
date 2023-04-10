@@ -13,6 +13,7 @@ import asyncio
 
 from Data_Ingestion.constants import TEMPLATE_LABEL
 from Knowledgebase.DataModels.ChatbotAnswer import ChatbotAnswer
+from Knowledgebase.DataModels.MultiFeedbackLabel import MultiFeedbackLabel
 
 
 class QuestionAnswerKnowledgeBase(KnowledgeBase):
@@ -95,8 +96,8 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
     async def searchForAnswer(self, question, intent, entitiesExtracted,startYear, endYear):
         
         result = self.pipeline.run(query = question, params= {
-            # "Retriever": {"top_k": 10}, 
-             
+            "Retriever": {"top_k": 10}, 
+            "Reader": {"top_k": 4},
             "filters": {
             "startYear": startYear,
             "endYear": endYear
@@ -105,8 +106,14 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
 
         answers : List[Answer] = result["answers"]
         chatbotAnswers : List[ChatbotAnswer]= []
+       
         for answer in answers:
-            chatbotAnswer = ChatbotAnswer(answer = answer.context, source=self.source)
+            metadata=dict()
+            metadata["context"] =answer.context
+            metadata["offsets_in_document"] = answer.offsets_in_context
+            metadata["document_ids"]= answer.document_ids
+            metadata["actual answer"] = answer.answer
+            chatbotAnswer = ChatbotAnswer(answer = answer.context, source=self.source, metadata= metadata)
             chatbotAnswers.append(chatbotAnswer)
 
         return chatbotAnswers
@@ -123,7 +130,14 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
         raise NotImplementedError()
 
 
-  
+    def train(self, trainingLabels : List[MultiFeedbackLabel]):
+        pass
+    
+    def dataUploaded(self):
+        pass
+
+    def dataDeleted(self):
+        pass  
 
 
 
