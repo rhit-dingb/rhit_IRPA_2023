@@ -53,16 +53,17 @@ function ChatbotResponse({recipientId, keyToUse, jsonResponse}) {
                 } else{
                     message = jsonResponse[CHATBOT_TEXT_MESSAGE_KEY ]
                 }
-
-                message = message.charAt(0).toUpperCase() + message.slice(1)
+                
+                let answer = message
+                answer = answer.charAt(0).toUpperCase() + message.slice(1)
 
                 // console.log(jsonResponse)
                 // console.log("MESSAGE"+message)
                 
-                return (message ? (<div key ={keyToUse}>
+                return (answer ? (<div key ={keyToUse}>
                     <div className="msgalignstart">
                         <BiBot className="botIcon" />
-                        <h5 className="botmsg">{message}</h5>
+                        <h5 className="botmsg">{answer}</h5>
                     </div> 
                 </div>) : null) 
         }

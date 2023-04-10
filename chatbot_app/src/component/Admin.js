@@ -194,7 +194,7 @@ class QuestionAnswer extends React.Component {
         <div style={{textOverflow: "ellipsis",overflow: "scroll", marginBottom:50, overflowX: "hidden", maxHeight: 150}} >
           {this.state.chatbotAnswers? this.state.chatbotAnswers.map((elem)=>{
             // console.log(elem)
-            return <h5>{elem}</h5>
+            return <h5>{elem.answer}</h5>
           })
           : <h5>No answer from chatbot</h5>}
         </div>

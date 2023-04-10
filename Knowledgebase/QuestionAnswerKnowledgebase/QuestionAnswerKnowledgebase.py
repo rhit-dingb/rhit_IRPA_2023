@@ -106,7 +106,7 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
         answers : List[Answer] = result["answers"]
         chatbotAnswers : List[ChatbotAnswer]= []
         for answer in answers:
-            chatbotAnswer = ChatbotAnswer(answer = answer.answer, source=self.source)
+            chatbotAnswer = ChatbotAnswer(answer = answer.context, source=self.source)
             chatbotAnswers.append(chatbotAnswer)
 
         return chatbotAnswers

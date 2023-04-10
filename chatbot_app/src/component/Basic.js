@@ -83,6 +83,9 @@ function Basic() {
           console.log("RESPONSE RECEIVED")
           console.log(response)
           let messages = []
+
+
+
           for (let r of response) {
               const recipient_id = r["recipient_id"];
               //Expect the backend return the following json
@@ -96,7 +99,8 @@ function Basic() {
             
               messages.push(response_temp)
           }
-          
+
+        
           setbotTyping(false);
 
           setChat((chat) => [...chat, ... messages]);

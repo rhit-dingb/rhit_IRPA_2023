@@ -1,4 +1,4 @@
-from typing import List
+from typing import Dict, List
 from pymongo import MongoClient
 from DataManager.constants import MONGO_DB_CONNECTION_STRING
 import json
@@ -40,7 +40,7 @@ class MongoDBUnansweredQuestionConnector():
         else:
             return {'message': 'errors occurred while updating'}
 
-    def addNewUnansweredQuestion(self, question : str, chatbotAnswers : List[str]):
+    def addNewUnansweredQuestion(self, question : str, chatbotAnswers : List[Dict[str, any]]):
         unansweredQuestions = self.getAllUnansweredQuestionAndAnswer()
         for questionInDB in unansweredQuestions: 
        
@@ -48,6 +48,13 @@ class MongoDBUnansweredQuestionConnector():
                 print("QUESTION ALREADY EXIST")
                 return  {'message': 'questionExist'}
         
+
+        # answerString = []
+
+        # for chatbotAnswer in chatbotAnswers:
+        #     answerString.append(chatbotAnswer["answer"])
+
+
         toAdd = {
             "content": question,
             "post_date": datetime.today(),

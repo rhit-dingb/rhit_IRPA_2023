@@ -303,7 +303,7 @@ async def handle_delete_answer(request: Request):
 async def handle_add_unanswered_question(request : Request):
     jsonData = await request.json()
     question = jsonData["content"]
-    chatbotAnswers = jsonData["chatbotAnswers"]
+    chatbotAnswers : List[Dict[str, any]] = jsonData["chatbotAnswers"]
     success = unansweredQuestionDbConnector.addNewUnansweredQuestion(question, chatbotAnswers)
     if success:
         print("QUESTION ADDED SUCCESSFULLY")

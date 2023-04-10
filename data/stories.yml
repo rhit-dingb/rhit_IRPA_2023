@@ -30,10 +30,10 @@ stories:
 
 
 # Handle fall backs
-- story: Ask the user to rephrase whenever they send a message with low NLU confidence
-  steps:
-  - intent: nlu_fallback
-  - action: action_nlu_fallback
+# - story: Ask the user to rephrase whenever they send a message with low NLU confidence
+#   steps:
+#   - intent: nlu_fallback
+#   - action: action_nlu_fallback
 
 #Story for change year
 - story: change_year_run_set_year_action
@@ -69,6 +69,7 @@ stories:
       - intent: transfer_admission
       - intent: freshman_profile
       - intent: basis_for_selection
+      - intent: nlu_fallback
     - action: action_query_knowledgebase
     - action: action_store_asked_question
     - action: utter_ask_answer_helpful

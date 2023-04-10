@@ -24,7 +24,7 @@ from OutputController import output
 
 from actions.constants import  BACKEND_API_URL, LAST_ANSWERS_PROVIDED_SLOT_NAME, YEAR_RANGE_SELECTED_SLOT_NAME, AGGREGATION_ENTITY_PERCENTAGE_VALUE, ANY_AID_COLUMN_NAME, NO_AID_COLUMN_NAME, PELL_GRANT_COLUMN_NAME, RANGE_BETWEEN_VALUE, RANGE_UPPER_BOUND_VALUE, STAFFORD_LOAN_COLUMN_NAME, STUDENT_ENROLLMENT_RESULT_ENTITY_GRADUATION_VALUE
 from actions.entititesHelper import changeEntityValue, changeEntityValueByRole, copyEntities, createEntityObj, filterEntities, findEntityHelper, findMultipleSameEntitiesHelper, getEntityLabel, getEntityValueHelper, removeDuplicatedEntities
-from typing import List, Text
+from typing import Dict, List, Text
 from DataManager.MongoDataManager import MongoDataManager
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
@@ -137,10 +137,9 @@ class ActionAnswerNotHelpful(Action):
     def run(self, dispatcher, tracker, domain):
         dispatcher.utter_message("I am sorry my answer is not helpful. I will be updated by the administator to answer this question better!")
         userAskedQuestion = tracker.get_slot(LAST_USER_QUESTION_ASKED)
-        answersProvidedByChatbot = tracker.get_slot(LAST_ANSWERS_PROVIDED_SLOT_NAME)
-        
-        # print("ANSWER PROVIDED")
-        # print(answersProvidedByChatbot)
+        # This is the chatbotAnswer data model.
+        answersProvidedByChatbot : List[Dict[str, any]]= tracker.get_slot(LAST_ANSWERS_PROVIDED_SLOT_NAME)
+    
         if answersProvidedByChatbot == None:
             answersProvidedByChatbot = []
         if not userAskedQuestion == None:
@@ -321,7 +320,7 @@ class ActionQueryCohort(Action):
 # Helper functions
 def checkIfAnswerFound(question, answers):
     if len(answers) <= 0:
-        answers = ["Sorry, I couldn't find any answer to your question"]
+        answers = [ChatbotAnswer("Sorry, I couldn't find any answer to your question", source="")]
         addUnansweredQuestion(question, answers)
     
     return answers
@@ -341,13 +340,17 @@ def getYearRangeInSlot(tracker):
     return (startYear, endYear, res)
 
 
-def utterAllAnswers(answers, dispatcher):
-    # json_str = json.dumps(json_message)
+def utterAllAnswers(answers : List[ChatbotAnswer], dispatcher):
+  
+    answersInDict = []
     for answer in answers:
-        print("JSON MESSAGE",  json_message={"answers": answer.__dict__})
-        dispatcher.utter_message( json_message={"answers": answer.__dict__} )
+        answerDict = answer.__dict__
+        answerDict["text"] = answerDict["answer"]
+        print("JSON MESSAGE",  {"answers": answerDict})
+        answersInDict.append(answerDict)
+        dispatcher.utter_message( json_message= answerDict)
 
-    return SlotSet(LAST_ANSWERS_PROVIDED_SLOT_NAME, answers)
+    return SlotSet(LAST_ANSWERS_PROVIDED_SLOT_NAME, answersInDict)
 
 def addUnansweredQuestion(question, chatbotAnswers): 
     data = {"content": question, "chatbotAnswers":chatbotAnswers}
