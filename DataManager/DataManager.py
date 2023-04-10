@@ -42,7 +42,7 @@ class DataManager(ABC):
     return: a list of sparse matrices corresponding to the given intent. Each matrix is reprsented by pandas dataframe.
     """
     @abstractmethod
-    async def getDataByStartEndYearAndIntent(self, intent, start, end, exceptionToThrow) -> TopicData:
+    async def getDataByStartEndYearAndIntent(self, intent, start, end, exceptionToThrow):
         pass
 
 
@@ -74,6 +74,17 @@ class DataManager(ABC):
     @abstractmethod
     def getAllAvailableYearsSorted(self):
         pass
+
+    @abstractmethod
+    def getAvailableDataForSpecificYearRange(self, startYear, endYear):
+        pass
+
+
+    @abstractmethod
+    def getSections(self, dataName):
+        pass
+
+
 
     """
     Given intent and entities, this function will determine the specific sparse matrix to be searched by the knowledgebase's search algorithm

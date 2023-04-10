@@ -6,6 +6,7 @@
 
 
 import asyncio
+import json
 import requests
 from CacheLayer.Cache import Cache
 
@@ -23,15 +24,27 @@ from OutputController import output
 
 from actions.constants import  BACKEND_API_URL, LAST_ANSWERS_PROVIDED_SLOT_NAME, YEAR_RANGE_SELECTED_SLOT_NAME, AGGREGATION_ENTITY_PERCENTAGE_VALUE, ANY_AID_COLUMN_NAME, NO_AID_COLUMN_NAME, PELL_GRANT_COLUMN_NAME, RANGE_BETWEEN_VALUE, RANGE_UPPER_BOUND_VALUE, STAFFORD_LOAN_COLUMN_NAME, STUDENT_ENROLLMENT_RESULT_ENTITY_GRADUATION_VALUE
 from actions.entititesHelper import changeEntityValue, changeEntityValueByRole, copyEntities, createEntityObj, filterEntities, findEntityHelper, findMultipleSameEntitiesHelper, getEntityLabel, getEntityValueHelper, removeDuplicatedEntities
-from typing import Text
+from typing import List, Text
 from DataManager.MongoDataManager import MongoDataManager
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet
 from actions.ResponseType import ResponseType
 from actions.constants import LAST_TOPIC_INTENT_SLOT_NAME, LAST_USER_QUESTION_ASKED
+
+from Data_Ingestion.ConvertToSparseMatrixDecorator import ConvertToSparseMatrixDecorator
+from Data_Ingestion.MongoProcessor import MongoProcessor
+# from Knowledgebase.QuestionAnswerKnowledgebase.QuestionAnswerKnowledgebase import QuestionAnswerKnowledgeBase
+from Data_Ingestion.ConvertToDocumentDecorator import ConvertToDocumentDecorator
+
 # import backendAPI.general_api  as API 
 import nltk
+
+from Knowledgebase.Knowledgebase import KnowledgeBase
+from Knowledgebase.QuestionAnswerKnowledgebase.QuestionAnswerKnowledgebase import QuestionAnswerKnowledgeBase
+from Knowledgebase.QuestionAnswerKnowledgebase.FAQKnowledgebase import FAQKnowledgeBase
+from Knowledgebase.DataModels.ChatbotAnswer import ChatbotAnswer
+ 
 
 try:
     nltk.find('corpora/wordnet')
@@ -44,11 +57,37 @@ except Exception:
     nltk.download('omw-1.4')
 
 # ExcelDataManager("./CDSData", [ENROLLMENT_INTENT, COHORT_INTENT, ADMISSION_INTENT, HIGH_SCHOOL_UNITS_INTENT, BASIS_FOR_SELECTION_INTENT, FRESHMAN_PROFILE_INTENT, TRANSFER_ADMISSION_INTENT, STUDENT_LIFE_INTENT])
-mongoDataManager = MongoDataManager()
-mongoDataManager = Cache(mongoDataManager)
-knowledgeBase = SparseMatrixKnowledgeBase(mongoDataManager)
+
 numberEntityExtractor = NumberEntityExtractor()
 
+mongoProcessor = MongoProcessor()
+mongoProcessor = ConvertToSparseMatrixDecorator(mongoProcessor)
+mongoDataManager = MongoDataManager(mongoProcessor)
+
+mongoDataManager = Cache(mongoDataManager)
+sparseMatrixKnowledgeBase = SparseMatrixKnowledgeBase(mongoDataManager)
+
+
+mongoProcessor = MongoProcessor()
+mongoProcessor = ConvertToDocumentDecorator(mongoProcessor)
+mongoDataManager = MongoDataManager(mongoProcessor)
+qaKnowledgebase = QuestionAnswerKnowledgeBase(mongoDataManager)
+asyncio.run(qaKnowledgebase.initialize())
+
+
+mongoProcessor = MongoProcessor()
+mongoProcessor = ConvertToDocumentDecorator(mongoProcessor)
+mongoDataManager = MongoDataManager(mongoProcessor)
+faqKnowledgebase = FAQKnowledgeBase(mongoDataManager)
+asyncio.run(faqKnowledgebase.initialize())
+
+# mongoProcessor = MongoProcessor()
+# mongoProcessor = ConvertToDocumentDecorator(mongoProcessor)
+# mongoDataManager = MongoDataManager(mongoProcessor)
+# qaKnowledgebase = GenerativeKnowledgeBase(mongoDataManager)
+
+
+knowledgebaseEnsemble : List[KnowledgeBase] = [qaKnowledgebase]
 
 class ActionGetAvailableOptions(Action):
     def __init__(self) -> None:
@@ -152,13 +191,22 @@ class ActionQueryKnowledgebase(Action):
         setLastIntentSlotEvent = SlotSet(LAST_TOPIC_INTENT_SLOT_NAME ,intent )
         events.append(setLastIntentSlotEvent)
 
-        answers = []
+        answers : List[ChatbotAnswer] = []
       
         # try:
-        defaultShouldAddRowStrategy = DefaultShouldAddRowStrategy()
-        answers = await knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy,knowledgeBase.constructOutput,startYear, endYear )
+        for knowledgebase in knowledgebaseEnsemble:
+            answers = answers + await knowledgebase.searchForAnswer(question, intent, entitiesExtracted, startYear, endYear)
+            # divider = ["-------------------------"]
+            
+            # if len(answers)>0:
+            #     break
+        
         answerFromUnansweredQuestion = getAnswerForUnansweredQuestion(question)
         answers = answers + answerFromUnansweredQuestion
+
+      
+        # answers = list(set(answers))
+        print("ANSWERS", answers)
         # if len(answers) <= 0:
         #     answers = ["Sorry, I couldn't find any answer to your question"]
         #     addUnansweredQuestion(question, answers)
@@ -296,7 +344,8 @@ def getYearRangeInSlot(tracker):
 def utterAllAnswers(answers, dispatcher):
     # json_str = json.dumps(json_message)
     for answer in answers:
-        dispatcher.utter_message( json_message={"text":answer} )
+        print("JSON MESSAGE",  json_message={"answers": answer.__dict__})
+        dispatcher.utter_message( json_message={"answers": answer.__dict__} )
 
     return SlotSet(LAST_ANSWERS_PROVIDED_SLOT_NAME, answers)
 
@@ -305,7 +354,7 @@ def addUnansweredQuestion(question, chatbotAnswers):
     response = requests.post("http://127.0.0.1:8000/question_add/", json=data )
 
 def getAnswerForUnansweredQuestion(question):
-        response = requests.get(BACKEND_API_URL+"/answer_unanswered_question", params={"question":question})
+        response = requests.get(BACKEND_API_URL+"/answer_unanswered_question", params={"question": question})
         jsonData = response.json()
         answersKey = "answers"
         if answersKey in jsonData:

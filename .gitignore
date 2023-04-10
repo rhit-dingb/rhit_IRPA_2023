@@ -34,4 +34,6 @@ yarn-error.log*
 
 #Unanswered question models
 UnansweredQuestions/savedModels
-UnansweredQuestions/savedModels
+
+Knowledgebase/QuestionAnswerKnowledgebase/TrainedModels
+**/TrainedModels/

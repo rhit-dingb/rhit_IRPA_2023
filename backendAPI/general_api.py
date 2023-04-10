@@ -17,6 +17,8 @@ from datetime import datetime, date, timedelta
 
 
 
+
+
 sys.path.append('../')
 
 from backendAPI.DataType import DataType
@@ -59,9 +61,14 @@ from typing import Annotated
 from jose import JWTError, jwt
 import os
 from decouple import config
+from Data_Ingestion.MongoProcessor import MongoProcessor
+from Data_Ingestion.ConvertToSparseMatrixDecorator import ConvertToSparseMatrixDecorator
 
 authenticationManager = AuthenticationManager()
-mongoDbDataManager = MongoDataManager()
+
+mongoProcessor = MongoProcessor()
+mongoProcessor = ConvertToSparseMatrixDecorator(mongoProcessor)
+mongoDbDataManager = MongoDataManager(mongoProcessor=mongoProcessor)
 mongoDbDataManager = Cache(mongoDbDataManager)
 
 rasaCommunicator = RasaCommunicator()
@@ -158,7 +165,7 @@ async def parse_data(request : Request):
     if "dataName" in jsonData:
         outputName = jsonData["dataName"]
     if not outputName == "":
-        try:
+        # try:
             jsonCdsLoader.loadData(excelData)
             # dataWriter = MongoDBSp arseMatrixDataWriter(outputName)
             # dataParser = SparseMatrixDataParser()c
@@ -180,8 +187,8 @@ async def parse_data(request : Request):
         
             await cacheEventPublisher.notify(EventType.DataUploaded, eventData)
             return {"message": "Done", "uploadedAs": outputName}
-        except Exception:
-            raise HTTPException(status_code=500, detail="Something went wrong while parsing the input data")
+        # except Exception:
+        #     raise HTTPException(status_code=500, detail="Something went wrong while parsing the input data")
 
     
 
@@ -282,10 +289,11 @@ async def handle_delete_answer(request: Request):
 
     jsonData = await request.json()
     id = jsonData["id"]
-    db = client.freq_question_db
-    questions_collection = db.unans_question
-    boo1 = questions_collection.delete_one({'_id': ObjectId(id)})
-    if boo1:
+    # db = client.freq_question_db
+    # questions_collection = db.unans_question
+    # boo1 = questions_collection.delete_one({'_id': ObjectId(id)})
+    deleteSuccess = unansweredQuestionDbConnector.deleteUnansweredQuestion(id)
+    if deleteSuccess:
         unansweredQuestionAnswerEngine.questionDeleted(id)
         return {'message': 'question is successfull deleted'}
     else:
@@ -296,7 +304,13 @@ async def handle_add_unanswered_question(request : Request):
     jsonData = await request.json()
     question = jsonData["content"]
     chatbotAnswers = jsonData["chatbotAnswers"]
-    return unansweredQuestionDbConnector.addNewUnansweredQuestion(question, chatbotAnswers)
+    success = unansweredQuestionDbConnector.addNewUnansweredQuestion(question, chatbotAnswers)
+    if success:
+        print("QUESTION ADDED SUCCESSFULLY")
+        return {'message': 'question is successfull added'}
+    else:
+        print("ERROR OCCURED DURING QUESTION ADD")
+        return {'message': 'errors occurred during question add'}
 
 
 #====================Below are the list of APIs for Freqency API==========================

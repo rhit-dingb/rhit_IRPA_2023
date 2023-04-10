@@ -21,6 +21,15 @@ jobs:
           rasa_version: 3.2.8
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
+      # The 'actions/upload-artifact' action to upload files
+      # More: https://github.com/actions/upload-artifact
+      - uses: actions/upload-artifact@v2
+        with:
+          name: rasa-demo-cfg
+          path: |
+            results
+            reports
+
       
 
   unit-test:

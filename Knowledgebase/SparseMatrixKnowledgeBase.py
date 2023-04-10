@@ -28,6 +28,7 @@ from actions.entititesHelper import removeDuplicatedEntities
 from CustomEntityExtractor.NumberEntityExtractor import NumberEntityExtractor
 from Knowledgebase.FuzzyShouldAddRowStrategy import FuzzyShouldAddRowStrategy
 from CacheLayer.Cache import Cache
+from Knowledgebase.DataModels.ChatbotAnswer import ChatbotAnswer
 from tests.testUtils import createEntityObjHelper
 import aiohttp
 import asyncio
@@ -41,6 +42,8 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
 
         self.rasaCommunicator = RasaCommunicator()
         self.numberEntityExtractor = NumberEntityExtractor()
+
+        self.source = "SparseMatrixKnowledgebase"
 
     
 
@@ -59,8 +62,9 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
     Throws: exception when given year or intent for the data is not found or when exception encountered when parsing year entity values
 
     """
-    async def searchForAnswer(self, intent, entitiesExtracted, shouldAddRowStrategy, outputFunc, startYear, endYear):
+    async def searchForAnswer(self, question, intent, entitiesExtracted, startYear, endYear):
         # print("BEGAN SEARCHING")
+        shouldAddRowStrategy = DefaultShouldAddRowStrategy()
         answers = []
         sparseMatrixToSearch : SparseMatrix
         sparseMatricesToSearch = await self.determineMatrixToSearch(intent, entitiesExtracted, startYear, endYear)
@@ -78,6 +82,10 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         print("SELECTED")
         print(sparseMatrixToSearch.subSectionName)
         isOperationAllowed = sparseMatrixToSearch.isAnyOperationAllowed()
+        template = sparseMatrixToSearch.findTemplate()
+
+        if(not isOperationAllowed or template == ""):
+            return []
     
         isRangeAllowed = sparseMatrixToSearch.isRangeOperationAllowed()
         hasRangeEntity = findEntityHelper(entitiesExtracted, RANGE_ENTITY_LABEL) 
@@ -86,7 +94,8 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         isPercentageAllowed = sparseMatrixToSearch.isPercentageOperationAllowed()
         
         percentageEntityDetected = findEntityHelper(entitiesExtracted, AGGREGATION_ENTITY_PERCENTAGE_VALUE, by="value")
-        template = sparseMatrixToSearch.findTemplate()
+       
+        
         searchResults = []
     
         if isRangeAllowed and hasRangeEntity:
@@ -107,7 +116,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
 
         # also get the documentation of change 
         documentationOfChange = sparseMatrixToSearch.getDocumentationOfChange()
-        answers = answers + outputFunc(searchResults, intent,  template) 
+        answers = answers + self.constructOutput(searchResults, intent,  template) 
         if len(answers) > 0 and not documentationOfChange == None:
             answers.append(documentationOfChange)
         
@@ -203,7 +212,16 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
             else:
                 constructSentenceFor.append(result)
        sentences = self.templateConverter.constructOutput(constructSentenceFor, template)
-       return sentences + stringSentence
+
+       allAnswers = sentences + stringSentence
+     
+       chatbotAnswers : List[ChatbotAnswer]
+       for answer in allAnswers:
+           chatbotAnswer = ChatbotAnswer(answer=answer, source = self.source)
+           chatbotAnswers.append(chatbotAnswer)
+        
+       return chatbotAnswers
+        
        
   
     def findRange(self, entitiesFound, maxBound, minBound, sparseMatrix : SparseMatrix):

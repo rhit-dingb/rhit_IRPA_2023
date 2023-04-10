@@ -16,13 +16,6 @@ from Data_Ingestion.SubsectionQnA import SubsectionQnA
 class MongoProcessor():
     def __init__(self):
         pass
-        # self.data : dict[str, dict[str, TopicData]] = []
-        #print(self.data['2020_2021']["high_school_units"].sparseMatrices)
-        
-    # def getData(self) -> TopicData:
-    #     return self.data
-
-
 
     async def getDataByDbNameAndIntent(self, client, intent, dbName) -> List[SubsectionQnA]:
         cur_db = client[dbName]

@@ -57,14 +57,13 @@ class MongoDBUnansweredQuestionConnector():
         
         boo1 = self.questions_collection.insert_one(toAdd)
      
-        if boo1:
-            print("QUESTION ADDED SUCCESSFULLY")
-            print(toAdd)
-            return {'message': 'question is successfull added'}
-        else:
-            print("ERROR OCCURED DURING QUESTION ADD")
-            return {'message': 'errors occurred during question add'}
+        return boo1
 
     
     def getQuestionAnswerObjectById(self, id):
        return json.loads(json_util.dumps(self.questions_collection.find_one({'_id': ObjectId(id)})))
+    
+
+    def deleteUnansweredQuestion(self,id):
+        deleteSuccess = self.questions_collection.delete_one({'_id': ObjectId(id)})
+        return deleteSuccess

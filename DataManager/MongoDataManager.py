@@ -23,10 +23,11 @@ from Data_Ingestion.SubsectionQnA import SubsectionQnA
 MongoDataManager subclass that can handle connections with MongoDB data
 """
 class MongoDataManager(DataManager):
-    def __init__(self):
+    def __init__(self, mongoProcessor):
         super().__init__()
-        self.mongoProcessor = MongoProcessor()
-        self.mongoProcessor = ConvertToSparseMatrixDecorator(self.mongoProcessor)
+        # self.mongoProcessor = MongoProcessor()
+        # self.mongoProcessor = ConvertToSparseMatrixDecorator(self.mongoProcessor)
+        self.mongoProcessor : MongoProcessor = mongoProcessor
         self.client = MongoClient(MONGO_DB_CONNECTION_STRING)
         self.rasaCommunicator = RasaCommunicator()
 
@@ -152,8 +153,6 @@ class MongoDataManager(DataManager):
     def getSections(self, dataName):
         return self.client[dataName].list_collection_names()
 
-   
-    
     """
     See documentation in DataManager.py
     """
@@ -183,14 +182,14 @@ class MongoDataManager(DataManager):
             if selectedDatabaseName == "":
                 raise NoDataFoundException(NO_DATA_AVAILABLE_FOR_GIVEN_INTENT_FORMAT.format(topic = intent, start= start, end=end), ExceptionTypes.NoSparseMatrixDataAvailableForGivenIntent)
         
-            topicData = await self.mongoProcessor.getDataByDbNameAndIntent(self.client, intent, selectedDatabaseName)
+            convertedDataModel = await self.mongoProcessor.getDataByDbNameAndIntent(self.client, intent, selectedDatabaseName)
             #topicData =  self.mongoProcessor.getSparseMatricesByDbNameAndIntent(self.client, intent, selectedDatabaseName)
             # print("TOPIC DATA")
             # print(topicData)
             # cursor = topicData.find()
             # for doc in cursor:
             #     print(doc)           
-            return topicData
+            return convertedDataModel
 
     """
     See documentation in DataManager.py

@@ -41,6 +41,7 @@ function ChatbotResponse({recipientId, keyToUse, jsonResponse}) {
 
     const parseToUI = (jsonResponse) => {
         // console.log(type)
+        console.log(jsonResponse)
         switch(type) {
             case ChatbotResponseType.ACCORDION_LIST:
               return (<AccordionList jsonResponse = {responseData}/>)
@@ -57,6 +58,7 @@ function ChatbotResponse({recipientId, keyToUse, jsonResponse}) {
 
                 // console.log(jsonResponse)
                 // console.log("MESSAGE"+message)
+                
                 return (message ? (<div key ={keyToUse}>
                     <div className="msgalignstart">
                         <BiBot className="botIcon" />
