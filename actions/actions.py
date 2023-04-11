@@ -72,11 +72,11 @@ mongoDataManager = Cache(mongoDataManager)
 sparseMatrixKnowledgeBase = SparseMatrixKnowledgeBase(mongoDataManager)
 
 
-mongoProcessor = MongoProcessor()
-mongoProcessor = ConvertToDocumentDecorator(mongoProcessor)
-mongoDataManager = MongoDataManager(mongoProcessor)
-qaKnowledgebase = QuestionAnswerKnowledgeBase(mongoDataManager)
-asyncio.run(qaKnowledgebase.initialize())
+# mongoProcessor = MongoProcessor()
+# mongoProcessor = ConvertToDocumentDecorator(mongoProcessor)
+# mongoDataManager = MongoDataManager(mongoProcessor)
+# qaKnowledgebase = QuestionAnswerKnowledgeBase(mongoDataManager)
+# asyncio.run(qaKnowledgebase.initialize())
 
 
 mongoProcessor = MongoProcessor()
@@ -91,7 +91,7 @@ asyncio.run(faqKnowledgebase.initialize())
 # qaKnowledgebase = GenerativeKnowledgeBase(mongoDataManager)
 
 
-knowledgebaseEnsemble : List[KnowledgeBase] = [qaKnowledgebase]
+knowledgebaseEnsemble : List[KnowledgeBase] = [faqKnowledgebase]
 
 class ActionGetAvailableOptions(Action):
     def __init__(self) -> None:
@@ -143,7 +143,10 @@ class ActionAnswerNotHelpful(Action):
         userAskedQuestion = tracker.get_slot(LAST_USER_QUESTION_ASKED)
         # This is the chatbotAnswer data model.
         answersProvidedByChatbot : List[Dict[str, any]]= tracker.get_slot(LAST_ANSWERS_PROVIDED_SLOT_NAME)
-    
+
+        for answer in answersProvidedByChatbot:
+            answer["feedback"] = ""
+
         if answersProvidedByChatbot == None:
             answersProvidedByChatbot = []
         if not userAskedQuestion == None:
@@ -345,9 +348,10 @@ class ActionEventOccured(Action):
                 query = data["content"]
                 feedbackLabels = []
                 for chatbotAnswer in data["chatbotAnswers"]:
-                    source = data["source"]
-                    metadata = data["metadata"]
-                    feedback = data["feedback"]
+                    source = chatbotAnswer["source"]
+                    metadata = chatbotAnswer["metadata"]
+                    feedback = chatbotAnswer["feedback"]
+                    answer = chatbotAnswer["answer"]
                     if feedback == None or feedback == "":
                         continue
                     if feedback == FeedbackType.CORRECT.value:
@@ -356,7 +360,7 @@ class ActionEventOccured(Action):
                         feedback = FeedbackType.INCORRECT
                     else: 
                         continue
-                    feedbackLabel = FeedbackLabel(query = query, source = source, metadata = metadata, feedback = feedback)
+                    feedbackLabel = FeedbackLabel(query = query, source = source, metadata = metadata, feedback = feedback, answerProvided=answer)
                     feedbackLabels.append(feedbackLabel)
 
                 multiLabelFeedback = MultiFeedbackLabel(query=query,feedbackLabels= feedbackLabels)

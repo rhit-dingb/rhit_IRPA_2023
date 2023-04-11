@@ -4,7 +4,6 @@ from Knowledgebase.Knowledgebase import KnowledgeBase
 from haystack.document_stores import InMemoryDocumentStore
 from haystack.pipelines import ExtractiveQAPipeline,  FAQPipeline, DocumentSearchPipeline
 from haystack.pipelines import GenerativeQAPipeline
-from haystack.utils import print_answers
 
 from haystack.nodes import RAGenerator, DensePassageRetriever, EmbeddingRetriever
 
@@ -20,17 +19,22 @@ import pandas as pd
 from Data_Ingestion.constants import TEMPLATE_LABEL
 from Knowledgebase.DataModels.ChatbotAnswer import ChatbotAnswer
 from Knowledgebase.DataModels.MultiFeedbackLabel import MultiFeedbackLabel
+import Knowledgebase.QuestionAnswerKnowledgebase.utils as utils
+from Knowledgebase.QuestionAnswerKnowledgebase.Training.Trainer import Trainer
 
 class  FAQKnowledgeBase(KnowledgeBase):
     def __init__(self, dataManager):
         self.dataManager : DataManager = dataManager
-        self.documentStore =  InMemoryDocumentStore(embedding_dim=384)
+        self.documentStore =  InMemoryDocumentStore( embedding_dim=768)
         self.reader = None
         self.pipeline = None
         self.retriever = None
         # self.dataFetcher = DataFetcher()
-        self.trainedModelPath = "TrainedModels\EmbeddingRetriever"
+        self.trainedModelPath = "TrainedModels\FAQModel"
         self.source = "FAQKnowledgebase"
+        dirname = os.path.dirname(__file__)
+        self.fullModelPath = os.path.join(dirname, self.trainedModelPath)   
+        self.trainer = Trainer()
 
 
     def loadStartingModel(self, pathToSave):
@@ -39,17 +43,16 @@ class  FAQKnowledgeBase(KnowledgeBase):
             document_store=self.documentStore,
             embedding_model="sentence-transformers/multi-qa-mpnet-base-dot-v1",
             use_gpu=True,
-           
         )
+
         self.retriever.save(pathToSave)
         print("AFter SAVE")
         print(self.retriever)
 
 
     async def initialize(self):
-        dirname = os.path.dirname(__file__)
-        fullPath = os.path.join(dirname, self.trainedModelPath)   
-        dir = os.listdir(fullPath)
+        
+        dir = os.listdir(self.fullModelPath)
         print(len(dir))
         if len(dir) == 0:
             print("OKAY")
@@ -57,18 +60,20 @@ class  FAQKnowledgeBase(KnowledgeBase):
                 document_store=self.documentStore,
                 embedding_model="sentence-transformers/multi-qa-mpnet-base-dot-v1",
                 use_gpu=True,
-               
             )    
-            self.retriever.save(fullPath)
+            self.retriever.save(self.fullModelPath)
 
             #self.loadStartingModel(fullPath)
         else:
             print("LOAD ALREADY SAVED MODEL")
             self.retriever = EmbeddingRetriever(
             document_store=self.documentStore,
-            embedding_model=fullPath,
+            embedding_model=self.fullModelPath,
             use_gpu=True,
             )
+            
+            print(self.retriever.model_format)
+            print(self.retriever)
 
         availableYears = self.dataManager.getAllAvailableYearsSorted()
         await self.writeDocToDocumentStore(availableYears)
@@ -119,10 +124,7 @@ class  FAQKnowledgeBase(KnowledgeBase):
         df["question"] = df["question"].apply(lambda x: x.strip())
         questions = list(df["question"].values)
         df["embedding"] = self.retriever.embed_queries(queries=questions).tolist()
-        print(df["embedding"])
         df = df.rename(columns={"question": "content"})
-        print(df.head())
-
         if(len(documents)>0):
         # add rest of metadata
             for key in documents[0].meta:
@@ -139,44 +141,43 @@ class  FAQKnowledgeBase(KnowledgeBase):
     def loadStartingModel(self, pathToSave):
         pass
 
-
     def getAvailableOptions(self, intent, entities, startYear, endYear):
         raise NotImplementedError()
 
-    #  params={
-    #     "retriever": {"top_k": 10}, 
-    #     "reader": {"top_k": 5}
-    # }
    
     async def searchForAnswer(self, question, intent, entitiesExtracted,startYear, endYear):
          # create qa pipeline
         print("SEARCH FOR ANSWER")
         result = self.pipeline.run(query = question, params= {
-           
+          
+            "Retriever": {"top_k": 3}, 
+            
             "filters": {
                 "startYear": str(startYear),
                 "endYear": str(endYear)
             }
         }
         
-        )
-
-       
+        )   
         answers : List[Answer] = result["answers"]
-      
+        print("THE RESULT")
+        print(result)
         chatbotAnswers : List[ChatbotAnswer]= []
         for answer in answers:
+            document : Document= utils.findDocumentWithId(answer.document_ids[0], result["documents"])
             metadata=dict()
             metadata["context"] =answer.context
             metadata["offsets_in_context"] = answer.offsets_in_context
             metadata["document_ids"]= answer.document_ids
+            metadata["document_content"] = document.content
             #answerStrings.append(answer.answer)
             chatbotAnswer = ChatbotAnswer(answer = answer.answer, source=self.source, metadata=metadata)
             chatbotAnswers.append(chatbotAnswer)
 
         return chatbotAnswers
     
-
+    
+        
     def aggregateDiscreteRange(self, entities, dataModel, isSumming):
         raise NotImplementedError()
 
@@ -186,7 +187,14 @@ class  FAQKnowledgeBase(KnowledgeBase):
 
 
     def train(self, trainingLabels : List[MultiFeedbackLabel]):
-        pass
+        self.trainer.trainDataForEmbeddingRetriever(trainingLabels, retriever = self.retriever, saveDirectory= self.fullModelPath, documentStore = self.documentStore, source=self.source)
+        self.documentStore.update_embeddings(self.retriever)
+        # reload model.
+        # self.retriever = EmbeddingRetriever(
+        #     document_store=self.documentStore,
+        #     embedding_model=self.fullModelPath,
+        #     use_gpu=True,
+        # )
     
     def dataUploaded(self):
         pass

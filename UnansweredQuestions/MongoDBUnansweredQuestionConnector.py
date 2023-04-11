@@ -54,7 +54,7 @@ class MongoDBUnansweredQuestionConnector():
             "is_addressed": False,
             "chatbotAnswers": chatbotAnswers,
             "answer": None,
-            "feedback": None
+            
             }
         
         boo1 = self.questions_collection.insert_one(toAdd)

@@ -10,11 +10,11 @@ from Data_Ingestion.constants import OPERATION_ALLOWED_COLUMN_VALUE
 from Data_Ingestion.constants import VALUE_FOR_ALLOW
 import os
 import asyncio
-
+from haystack import Document, Label, Answer
 from Data_Ingestion.constants import TEMPLATE_LABEL
 from Knowledgebase.DataModels.ChatbotAnswer import ChatbotAnswer
 from Knowledgebase.DataModels.MultiFeedbackLabel import MultiFeedbackLabel
-
+import Knowledgebase.QuestionAnswerKnowledgebase.utils as utils
 
 class QuestionAnswerKnowledgeBase(KnowledgeBase):
     def __init__(self, dataManager):
@@ -108,11 +108,13 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
         chatbotAnswers : List[ChatbotAnswer]= []
        
         for answer in answers:
+            document : Document= utils.findDocumentWithId(answer.document_ids[0], result["documents"])
             metadata=dict()
             metadata["context"] =answer.context
             metadata["offsets_in_document"] = answer.offsets_in_context
             metadata["document_ids"]= answer.document_ids
             metadata["actual answer"] = answer.answer
+            metadata["document_content"] = document.content
             chatbotAnswer = ChatbotAnswer(answer = answer.context, source=self.source, metadata= metadata)
             chatbotAnswers.append(chatbotAnswer)
 
