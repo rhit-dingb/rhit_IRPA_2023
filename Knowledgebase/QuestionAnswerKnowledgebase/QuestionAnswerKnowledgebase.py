@@ -19,7 +19,7 @@ import Knowledgebase.QuestionAnswerKnowledgebase.utils as utils
 class QuestionAnswerKnowledgeBase(KnowledgeBase):
     def __init__(self, dataManager):
         self.dataManager : DataManager = dataManager
-        self.documentStore =  InMemoryDocumentStore()
+        self.documentStore =  utils.determineDocumentStore()
         self.trainedModelPath = "TrainedModels\QAModel"
         self.startingModel = "deepset/roberta-base-squad2"
         self.retriever = EmbeddingRetriever(
@@ -28,19 +28,23 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
         )
         self.yearToDocumentStore = dict()
         self.source = "QuestionAnswerKnowledgebase"
+        dirname = os.path.dirname(__file__)
+        self.fullModelPath = os.path.join(dirname, self.trainedModelPath)   
         self.reader = None
         self.pipeline = None
 
 
     async def initialize(self):
-        dirname = os.path.dirname(__file__)
-        fullPath = os.path.join(dirname, self.trainedModelPath)   
-        print("FULL PATH", fullPath)
-        dir = os.listdir(fullPath)
+        if not os.path.exists(self.fullModelPath):
+            os.makedirs(self.fullModelPath)
+
+        # dirname = os.path.dirname(__file__)
+        # fullPath = os.path.join(dirname, self.trainedModelPath)   
+        dir = os.listdir(self.fullModelPath)
         if len(dir) == 0:
-            self.loadStartingModel(fullPath)
+            self.loadStartingModel(self.fullModelPath)
         else:
-            self.reader = FARMReader(model_name_or_path=fullPath, use_gpu=True, context_window_size=1000)
+            self.reader = FARMReader(model_name_or_path=self.fullModelPath, use_gpu=True, context_window_size=1000)
 
         availableYears = self.dataManager.getAllAvailableYearsSorted()
         await self.writeDocToDocumentStore(availableYears)
@@ -97,7 +101,7 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
         
         result = self.pipeline.run(query = question, params= {
             "Retriever": {"top_k": 10}, 
-            "Reader": {"top_k": 4},
+            "Reader": {"top_k": 5},
             "filters": {
             "startYear": startYear,
             "endYear": endYear

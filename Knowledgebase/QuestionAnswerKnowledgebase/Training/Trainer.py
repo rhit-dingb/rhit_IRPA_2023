@@ -11,12 +11,8 @@ class Trainer:
         self.trainingDataCreator = TrainingDataCreator()
         # Download the model 
         questionAnswerPair = [{"question":"What is my name", "document": "Travis Zheng"}]
-        self.questions_producer = QuestionGenerator(model_name_or_path="doc2query/msmarco-t5-base-v1", 
-                                         max_length=64, 
-                                         split_length=128, 
-                                         batch_size=32,
-                                         num_queries_per_doc=3)
-        labelGenerator = PseudoLabelGenerator(question_producer=self.questions_producer, retriever=BM25Retriever())
+        
+        labelGenerator = PseudoLabelGenerator(question_producer=questionAnswerPair, retriever=BM25Retriever())
     
 
     
@@ -40,11 +36,12 @@ class Trainer:
 
 class TrainingDataCreator:
     def __init__(self):
-        self.questions_producer = QuestionGenerator(model_name_or_path="doc2query/msmarco-t5-base-v1", 
-                                         max_length=64, 
-                                         split_length=128, 
-                                         batch_size=32,
-                                         num_queries_per_doc=3)
+        # self.questions_producer = QuestionGenerator(model_name_or_path="doc2query/msmarco-t5-base-v1", 
+        #                                  max_length=64, 
+        #                                  split_length=128, 
+        #                                  batch_size=32,
+        #                                  num_queries_per_doc=3)
+        pass
 
 
 
@@ -80,19 +77,19 @@ class TrainingDataCreator:
                     pos_docs.append(content)
                     questionToPositiveDocument.append({"question": feedbackLabel.query, "document":content})
                 elif feedbackLabel.feedback == FeedbackType.INCORRECT:
-                    neg_docs.append(feedbackLabel.metadata["document_content"])
+                    neg_docs.append(content)
 
                 questionDocumentPair.append({"question":feedbackLabel.query, "document":feedbackLabel.answerProvided})
 
-                # print("THIS IS THE training data")
+               
                 print(feedbackLabel.__dict__)
 
-        # print("THIS IS THE PAIR")
-        # print(questionAnswerPair) 
+        print("THIS IS THE PAIR")
+        print(questionDocumentPair) 
         
        
         # I will use this create score margins rather than auto generate labels.
-        labelGenerator = PseudoLabelGenerator(question_producer=self.questions_producer, retriever=retriever)
+        labelGenerator = PseudoLabelGenerator(question_producer=questionDocumentPair, retriever=retriever)
         # labelGenerator.generate_questions()
 
 
@@ -100,19 +97,24 @@ class TrainingDataCreator:
         # Generate every possible combination of pos_doc and negative_doc:
         for trainingLabel in trainingLabels:
             for pos_doc in pos_docs:
-                for neg_doc in neg_docs:
-                    data = {"question": trainingLabel.query, "pos_doc":pos_doc, "neg_doc": neg_doc}
-                    dataToGetScoreMarginFor.append(data)
+                # for neg_doc in neg_docs:
+                #     data = {"question": trainingLabel.query, "pos_doc":pos_doc, "neg_doc": neg_doc}
+                #     dataToGetScoreMarginFor.append(data)
+
+                data = {"question": trainingLabel.query, "pos_doc": pos_doc}
+                dataToGetScoreMarginFor.append(data)
 
         # dataMined= labelGenerator.mine_negatives(questionToPositiveDocument)
         # dataMined, pipe_id  = labelGenerator.run([Document(content=trainingLabel.query) for trainingLabel in trainingLabels])
-        dataMined, pipe_id = labelGenerator.run(documentStore.get_all_documents(filters={"startYear":"2020", "endYear":"2021"}))
+        # dataMined, pipe_id = labelGenerator.run(documentStore.get_all_documents(filters={"startYear":"2020", "endYear":"2021"}))
         # print("DATA MINED")
         # print(dataMined)
-        dataToGetScoreMarginFor = dataToGetScoreMarginFor
-        embeddingRetrieverTrainingData = labelGenerator.generate_margin_scores(dataToGetScoreMarginFor)
 
-        embeddingRetrieverTrainingData = embeddingRetrieverTrainingData+dataMined["gpl_labels"]
+        # dataToGetScoreMarginFor = dataToGetScoreMarginFor
+        # embeddingRetrieverTrainingData = labelGenerator.generate_margin_scores(dataToGetScoreMarginFor)
+
+        # embeddingRetrieverTrainingData = embeddingRetrieverTrainingData+dataMined["gpl_labels"]
+        embeddingRetrieverTrainingData = dataToGetScoreMarginFor
         print("EMBEDDING TRAINING DATA")
         print(embeddingRetrieverTrainingData)
         return embeddingRetrieverTrainingData

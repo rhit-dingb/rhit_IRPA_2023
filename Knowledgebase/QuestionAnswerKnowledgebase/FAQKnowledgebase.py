@@ -1,11 +1,11 @@
 from typing import Dict, List, Tuple
 from Knowledgebase.Knowledgebase import KnowledgeBase
 # from haystack.nodes import EmbeddingRetriever
-from haystack.document_stores import InMemoryDocumentStore
-from haystack.pipelines import ExtractiveQAPipeline,  FAQPipeline, DocumentSearchPipeline
-from haystack.pipelines import GenerativeQAPipeline
+from haystack.document_stores import InMemoryDocumentStore, ElasticsearchDocumentStore
+from haystack.pipelines import  FAQPipeline, DocumentSearchPipeline
 
-from haystack.nodes import RAGenerator, DensePassageRetriever, EmbeddingRetriever
+
+from haystack.nodes import  EmbeddingRetriever
 
 from haystack.nodes import FARMReader
 from haystack import Document, Label, Answer
@@ -21,11 +21,12 @@ from Knowledgebase.DataModels.ChatbotAnswer import ChatbotAnswer
 from Knowledgebase.DataModels.MultiFeedbackLabel import MultiFeedbackLabel
 import Knowledgebase.QuestionAnswerKnowledgebase.utils as utils
 from Knowledgebase.QuestionAnswerKnowledgebase.Training.Trainer import Trainer
+from decouple import config
 
 class  FAQKnowledgeBase(KnowledgeBase):
     def __init__(self, dataManager):
         self.dataManager : DataManager = dataManager
-        self.documentStore =  InMemoryDocumentStore( embedding_dim=768)
+        self.documentStore = utils.determineDocumentStore()
         self.reader = None
         self.pipeline = None
         self.retriever = None
@@ -45,17 +46,18 @@ class  FAQKnowledgeBase(KnowledgeBase):
             use_gpu=True,
         )
 
-        self.retriever.save(pathToSave)
+        # self.retriever.save(pathToSave)
         print("AFter SAVE")
         print(self.retriever)
 
 
     async def initialize(self):
+        if not os.path.exists(self.fullModelPath):
+            os.makedirs(self.fullModelPath)
+
         
         dir = os.listdir(self.fullModelPath)
-        print(len(dir))
         if len(dir) == 0:
-            print("OKAY")
             self.retriever = EmbeddingRetriever(
                 document_store=self.documentStore,
                 embedding_model="sentence-transformers/multi-qa-mpnet-base-dot-v1",
@@ -94,6 +96,7 @@ class  FAQKnowledgeBase(KnowledgeBase):
                         documents = []
                         documentList = subsectionToDocument[key]
                         for document in documentList:
+                           
                             metaData = document.meta.copy()
                             metaData["startYear"] = str(startYear)
                             metaData['endYear'] = str(endYear)
@@ -111,7 +114,8 @@ class  FAQKnowledgeBase(KnowledgeBase):
                         
                         docs_to_index = df.to_dict(orient="records")
                         self.documentStore.write_documents(docs_to_index)
-                        
+        print("ALL DOCS")
+        print(self.documentStore.get_all_documents())
         self.documentStore.update_embeddings(self.retriever)
       
 
@@ -150,7 +154,7 @@ class  FAQKnowledgeBase(KnowledgeBase):
         print("SEARCH FOR ANSWER")
         result = self.pipeline.run(query = question, params= {
           
-            "Retriever": {"top_k": 3}, 
+            "Retriever": {"top_k": 5}, 
             
             "filters": {
                 "startYear": str(startYear),
@@ -165,6 +169,7 @@ class  FAQKnowledgeBase(KnowledgeBase):
         chatbotAnswers : List[ChatbotAnswer]= []
         for answer in answers:
             document : Document= utils.findDocumentWithId(answer.document_ids[0], result["documents"])
+            
             metadata=dict()
             metadata["context"] =answer.context
             metadata["offsets_in_context"] = answer.offsets_in_context
@@ -186,15 +191,19 @@ class  FAQKnowledgeBase(KnowledgeBase):
         raise NotImplementedError()
 
 
-    def train(self, trainingLabels : List[MultiFeedbackLabel]):
+    async def train(self, trainingLabels : List[MultiFeedbackLabel]):
         self.trainer.trainDataForEmbeddingRetriever(trainingLabels, retriever = self.retriever, saveDirectory= self.fullModelPath, documentStore = self.documentStore, source=self.source)
-        self.documentStore.update_embeddings(self.retriever)
+        availableYears = self.dataManager.getAllAvailableYearsSorted()       
+
         # reload model.
-        # self.retriever = EmbeddingRetriever(
-        #     document_store=self.documentStore,
-        #     embedding_model=self.fullModelPath,
-        #     use_gpu=True,
-        # )
+        self.retriever = EmbeddingRetriever(
+            document_store=self.documentStore,
+            embedding_model=self.fullModelPath,
+            use_gpu=True,
+        )
+        # await self.writeDocToDocumentStore(availableYears)
+        
+        self.documentStore.update_embeddings(self.retriever)
     
     def dataUploaded(self):
         pass

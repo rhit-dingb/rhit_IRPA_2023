@@ -72,11 +72,11 @@ mongoDataManager = Cache(mongoDataManager)
 sparseMatrixKnowledgeBase = SparseMatrixKnowledgeBase(mongoDataManager)
 
 
-# mongoProcessor = MongoProcessor()
-# mongoProcessor = ConvertToDocumentDecorator(mongoProcessor)
-# mongoDataManager = MongoDataManager(mongoProcessor)
-# qaKnowledgebase = QuestionAnswerKnowledgeBase(mongoDataManager)
-# asyncio.run(qaKnowledgebase.initialize())
+mongoProcessor = MongoProcessor()
+mongoProcessor = ConvertToDocumentDecorator(mongoProcessor)
+mongoDataManager = MongoDataManager(mongoProcessor)
+qaKnowledgebase = QuestionAnswerKnowledgeBase(mongoDataManager)
+asyncio.run(qaKnowledgebase.initialize())
 
 
 mongoProcessor = MongoProcessor()
@@ -91,7 +91,7 @@ asyncio.run(faqKnowledgebase.initialize())
 # qaKnowledgebase = GenerativeKnowledgeBase(mongoDataManager)
 
 
-knowledgebaseEnsemble : List[KnowledgeBase] = [faqKnowledgebase]
+knowledgebaseEnsemble : List[KnowledgeBase] = [sparseMatrixKnowledgeBase, faqKnowledgebase, qaKnowledgebase]
 
 class ActionGetAvailableOptions(Action):
     def __init__(self) -> None:
@@ -321,7 +321,7 @@ class ActionEventOccured(Action):
     def name(self) -> Text:
         return "action_event_occured"
     
-    def run(self, dispatcher, tracker, domain):
+    async def run(self, dispatcher, tracker, domain):
         entities = tracker.latest_message["entities"]
         eventTypeEntity = findEntityHelper(entities, self.EVENT_TYPE_KEY)
 
@@ -367,7 +367,7 @@ class ActionEventOccured(Action):
                 trainingLabels.append(multiLabelFeedback)
 
         for knowledgebase in knowledgebaseEnsemble:
-            knowledgebase.train(trainingLabels)
+            await knowledgebase.train(trainingLabels)
 
         return [{"event": "action", "name": "action_event_occured", "eventType":eventType}]
              
