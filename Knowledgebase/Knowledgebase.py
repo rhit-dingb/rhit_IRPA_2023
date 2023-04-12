@@ -38,10 +38,10 @@ class KnowledgeBase(ABC) :
         pass
     
     @abstractmethod
-    def dataUploaded(self):
+    def dataUploaded(self, dataName):
         pass
 
     @abstractmethod
-    def dataDeleted(self):
+    def dataDeleted(self, dataName ):
         pass
     

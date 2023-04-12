@@ -3,6 +3,27 @@
         {
             "paragraphs": [
                 {
+                    "context": "statement of good standing from prior institutions is recommended of all transfer applicants.",
+                    "id": "787d9dc7da9e3286f78af68611507c99",
+                    "qas": [
+                        {
+                            "answers": [
+                                {
+                                    "answer_start": 0,
+                                    "text": "statement of good standing from prior institutions is recommended of all transfer applicants."
+                                }
+                            ],
+                            "id": "5584b4dd-d8e0-11ed-96a2-24ee9a197afc",
+                            "is_impossible": false,
+                            "question": "What do I need for my transfer application?"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "paragraphs": [
+                {
                     "context": "high school transcript is recommended of some for transfer applicants.",
                     "id": "3da3b68a261a31130cf853225d2ee29",
                     "qas": [
@@ -13,9 +34,9 @@
                                     "text": "high school transcript is recommended of some for transfer applicants."
                                 }
                             ],
-                            "id": "17858087-d8cf-11ed-b038-24ee9a197afc",
+                            "id": "5584b4de-d8e0-11ed-b1ed-24ee9a197afc",
                             "is_impossible": false,
-                            "question": "What do I need on my transfer application?"
+                            "question": "What do I need for my transfer application?"
                         }
                     ]
                 }
@@ -34,51 +55,9 @@
                                     "text": "college transcript is required for transfer applicants"
                                 }
                             ],
-                            "id": "17859b6c-d8cf-11ed-98f5-24ee9a197afc",
+                            "id": "5584b4df-d8e0-11ed-a3d5-24ee9a197afc",
                             "is_impossible": false,
-                            "question": "What do I need on my transfer application?"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "paragraphs": [
-                {
-                    "context": "essays or personal statement is required for transfer applicants.",
-                    "id": "d3ec4c12fe7546275347c3965cf7578",
-                    "qas": [
-                        {
-                            "answers": [
-                                {
-                                    "answer_start": 0,
-                                    "text": "essays or personal statement is required for transfer applicants."
-                                }
-                            ],
-                            "id": "17859e36-d8cf-11ed-b69e-24ee9a197afc",
-                            "is_impossible": false,
-                            "question": "What do I need on my transfer application?"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "paragraphs": [
-                {
-                    "context": "statement of good standing from prior institutions is recommended of all transfer applicants.",
-                    "id": "787d9dc7da9e3286f78af68611507c99",
-                    "qas": [
-                        {
-                            "answers": [
-                                {
-                                    "answer_start": 0,
-                                    "text": "statement of good standing from prior institutions is recommended of all transfer applicants."
-                                }
-                            ],
-                            "id": "17859e37-d8cf-11ed-b910-24ee9a197afc",
-                            "is_impossible": false,
-                            "question": "What do I need on my transfer application?"
+                            "question": "What do I need for my transfer application?"
                         }
                     ]
                 }
@@ -97,9 +76,9 @@
                                     "text": "interview is recommended of some to apply for transfer applicants"
                                 }
                             ],
-                            "id": "17859e38-d8cf-11ed-bd05-24ee9a197afc",
+                            "id": "5584b4e0-d8e0-11ed-b895-24ee9a197afc",
                             "is_impossible": false,
-                            "question": "What do I need on my transfer application?"
+                            "question": "What do I need for my transfer application?"
                         }
                     ]
                 }
@@ -108,35 +87,19 @@
         {
             "paragraphs": [
                 {
-                    "context": "the minimum gpa required of transfer applicants is 3.0",
-                    "id": "b1e7627355aae51809d6d2fd42e9868d",
+                    "context": "essays or personal statement is required for transfer applicants.",
+                    "id": "d3ec4c12fe7546275347c3965cf7578",
                     "qas": [
                         {
                             "answers": [
                                 {
-                                    "answer_start": 51,
-                                    "text": "the minimum gpa required of transfer applicants is 3.0"
+                                    "answer_start": 0,
+                                    "text": "essays or personal statement is required for transfer applicants."
                                 }
                             ],
-                            "id": "17859e39-d8cf-11ed-b57c-24ee9a197afc",
+                            "id": "5584b4e1-d8e0-11ed-b7fb-24ee9a197afc",
                             "is_impossible": false,
-                            "question": "What do I need on my transfer application?"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "paragraphs": [
-                {
-                    "context": "first-year financial aid applicants who are nonresident aliens must submit international student’s certification of finances",
-                    "id": "eb00989e05cb36993a7a10b5da63e234",
-                    "qas": [
-                        {
-                            "answers": [],
-                            "id": "17859e3a-d8cf-11ed-9ad1-24ee9a197afc",
-                            "is_impossible": true,
-                            "question": "What do I need on my transfer application?"
+                            "question": "What do I need for my transfer application?"
                         }
                     ]
                 }
@@ -151,13 +114,55 @@
                         {
                             "answers": [
                                 {
-                                    "answer_start": 12,
+                                    "answer_start": 0,
                                     "text": "there is no minimum high school gpa requirement for transfer applicants"
                                 }
                             ],
-                            "id": "17859e3b-d8cf-11ed-a272-24ee9a197afc",
+                            "id": "5584b4e2-d8e0-11ed-9a02-24ee9a197afc",
                             "is_impossible": false,
-                            "question": "What do I need on my transfer application?"
+                            "question": "What do I need for my transfer application?"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "paragraphs": [
+                {
+                    "context": "the minimum gpa required of transfer applicants is 3.0",
+                    "id": "b1e7627355aae51809d6d2fd42e9868d",
+                    "qas": [
+                        {
+                            "answers": [
+                                {
+                                    "answer_start": 0,
+                                    "text": "the minimum gpa required of transfer applicants is 3.0"
+                                }
+                            ],
+                            "id": "5584b4e3-d8e0-11ed-be53-24ee9a197afc",
+                            "is_impossible": false,
+                            "question": "What do I need for my transfer application?"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "paragraphs": [
+                {
+                    "context": "credits to be transferred are reviewed by each department and the final decision to award credit is up to the appropriate department chairs.",
+                    "id": "ff58cfa2a00b538d1c44b9cfa44ce486",
+                    "qas": [
+                        {
+                            "answers": [
+                                {
+                                    "answer_start": 0,
+                                    "text": "credits to be transferred are reviewed by each department and the final decision to award credit is up to the appropriate department chairs."
+                                }
+                            ],
+                            "id": "5584b4e4-d8e0-11ed-a7b8-24ee9a197afc",
+                            "is_impossible": false,
+                            "question": "What do I need for my transfer application?"
                         }
                     ]
                 }
@@ -172,13 +177,13 @@
                         {
                             "answers": [
                                 {
-                                    "answer_start": 38,
+                                    "answer_start": 0,
                                     "text": "transfer students do not need to have minimum number of credit completed"
                                 }
                             ],
-                            "id": "17859e3c-d8cf-11ed-afd7-24ee9a197afc",
+                            "id": "5584b4e5-d8e0-11ed-aff7-24ee9a197afc",
                             "is_impossible": false,
-                            "question": "What do I need on my transfer application?"
+                            "question": "What do I need for my transfer application?"
                         }
                     ]
                 }
@@ -187,14 +192,14 @@
         {
             "paragraphs": [
                 {
-                    "context": "rose-hulman review transfer applications on a rolling basis (year round).",
-                    "id": "d9cba85437696b43ef3e8f67766e104e",
+                    "context": "the financial aid forms domestic first-year (freshman) financial aid applicants must submit is fafsa",
+                    "id": "51eb91f9a7a491a8275b88f38bd42aba",
                     "qas": [
                         {
                             "answers": [],
-                            "id": "17859e3d-d8cf-11ed-af04-24ee9a197afc",
+                            "id": "5584b4e6-d8e0-11ed-89e4-24ee9a197afc",
                             "is_impossible": true,
-                            "question": "What do I need on my transfer application?"
+                            "question": "What do I need for my transfer application?"
                         }
                     ]
                 }

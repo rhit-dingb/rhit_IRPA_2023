@@ -85,13 +85,9 @@ asyncio.run(qaKnowledgebase.initialize())
 # faqKnowledgebase = FAQKnowledgeBase(mongoDataManager)
 # asyncio.run(faqKnowledgebase.initialize())
 
-# mongoProcessor = MongoProcessor()
-# mongoProcessor = ConvertToDocumentDecorator(mongoProcessor)
-# mongoDataManager = MongoDataManager(mongoProcessor)
-# qaKnowledgebase = GenerativeKnowledgeBase(mongoDataManager)
 
 
-knowledgebaseEnsemble : List[KnowledgeBase] = [sparseMatrixKnowledgeBase, qaKnowledgebase]
+knowledgebaseEnsemble : List[KnowledgeBase] = [sparseMatrixKnowledgeBase,  qaKnowledgebase]
 
 class ActionGetAvailableOptions(Action):
     def __init__(self) -> None:
@@ -311,8 +307,6 @@ class ActionSetYear(Action):
 #         utterAllAnswers(answers, dispatcher)
 
 
-
-
 class ActionEventOccured(Action):
     def __init__(self) -> None:
         super().__init__()
@@ -372,7 +366,6 @@ class ActionEventOccured(Action):
         return [{"event": "action", "name": "action_event_occured", "eventType":eventType}]
              
             
-    
 
 
 # Helper functions

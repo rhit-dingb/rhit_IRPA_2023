@@ -343,8 +343,8 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
     def train(self, trainingLabels : List[MultiFeedbackLabel]):
         pass
     
-    def dataUploaded(self):
+    def dataUploaded(self, dataName ):
         pass
 
-    def dataDeleted(self):
+    def dataDeleted(self, dataName):
         pass

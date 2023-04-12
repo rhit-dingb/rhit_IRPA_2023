@@ -27,8 +27,9 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
         self.startingRetriever = "sentence-transformers/multi-qa-mpnet-base-dot-v1"
 
 
-        self.trainedReaderPath = "TrainedModels\QAModel\ReaderModel"
-        self.trainedRetrieverPath = "TrainedModels\QAModel\RetrieverModel"
+        self.trainedReaderPath = "TrainedModels\QAReader"
+
+        self.trainedRetrieverPath = "TrainedModels\QARetriever"
 
 
         self.yearToDocumentStore = dict()
@@ -50,6 +51,13 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
         if not os.path.exists(self.fullRetrieverPath):
             os.makedirs(self.fullRetrieverPath)
 
+
+        dir = os.listdir(self.fullRetrieverPath)
+        if len(dir) == 0:
+            self.loadRetriever(self.startingRetriever, self.fullRetrieverPath)
+        else:
+            self.loadRetriever(self.fullRetrieverPath, self.fullRetrieverPath, save=False)
+
         # dirname = os.path.dirname(__file__)
         # fullPath = os.path.join(dirname, self.trainedModelPath)   
         dir = os.listdir(self.fullReaderPath)
@@ -58,11 +66,7 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
         else:
             self.loadReader(self.fullReaderPath, self.fullReaderPath, save=False)
 
-        dir = os.listdir(self.fullRetrieverPath)
-        if len(dir) == 0:
-            self.loadRetriever(self.startingRetriever, self.fullRetrieverPath)
-        else:
-            self.loadReader(self.fullRetrieverPath, self.fullRetrieverPath, save=False)
+      
 
 
         availableYears = self.dataManager.getAllAvailableYearsSorted()
@@ -72,7 +76,7 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
 
     def loadReader(self, loadPath, pathToSave, save=True):
         self.reader = FARMReader(model_name_or_path=loadPath, use_gpu=True, context_window_size=1000)
-        if(save):
+        if save:
             self.reader.save(pathToSave)
         self.reader = FARMReader(model_name_or_path=loadPath, use_gpu=True, context_window_size=1000)
         print("LOADED READER", self.reader)
@@ -81,8 +85,9 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
         self.retriever = EmbeddingRetriever(
             embedding_model= loadPath,
             document_store=self.documentStore
+           
         )
-        if (save):
+        if save:
             self.retriever.save(pathToSave)
 
 
@@ -173,9 +178,9 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
 
 
     def train(self, trainingLabels : List[MultiFeedbackLabel]):
-        self.trainer.trainDataForEmbeddingRetriever(trainingLabels, )
-        self.trainer.trainDataForModelWithSQUAD(trainingLabels=trainingLabels, model=self.reader, saveDirectory= self.fullModelPath, source=self.source)
-        # self.documentStore.update_embeddings()
+        self.trainer.trainDataForEmbeddingRetriever(trainingLabels, self.retriever, saveDirectory=self.fullRetrieverPath,documentStore= self.documentStore, source=self.source )
+        self.trainer.trainDataForModelWithSQUAD(trainingLabels=trainingLabels, model=self.reader, saveDirectory= self.fullReaderPath, source=self.source)
+        self.documentStore.update_embeddings()
     
     def dataUploaded(self):
         pass

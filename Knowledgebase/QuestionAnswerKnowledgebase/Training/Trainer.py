@@ -189,9 +189,9 @@ class TrainingDataCreator:
         # Generate every possible combination of pos_doc and negative_doc:
         for trainingLabel in trainingLabels:
             for pos_doc in pos_docs:
-                # for neg_doc in neg_docs:
-                #     data = {"question": trainingLabel.query, "pos_doc":pos_doc, "neg_doc": neg_doc}
-                #     dataToGetScoreMarginFor.append(data)
+                for neg_doc in neg_docs:
+                    data = {"question": trainingLabel.query, "pos_doc":pos_doc, "neg_doc": neg_doc}
+                    dataToGetScoreMarginFor.append(data)
 
                 data = {"question": trainingLabel.query, "pos_doc": pos_doc}
                 dataToGetScoreMarginFor.append(data)

@@ -154,7 +154,7 @@ class  FAQKnowledgeBase(KnowledgeBase):
         print("SEARCH FOR ANSWER")
         result = self.pipeline.run(query = question, params= {
           
-            "Retriever": {"top_k": 5}, 
+            "Retriever": {"top_k": 10}, 
             
             "filters": {
                 "startYear": str(startYear),
@@ -165,9 +165,10 @@ class  FAQKnowledgeBase(KnowledgeBase):
         )   
         answers : List[Answer] = result["answers"]
         print("THE RESULT")
-        print(result)
+    
         chatbotAnswers : List[ChatbotAnswer]= []
         for answer in answers:
+            print(answer.answer, ":", answer.score)
             document : Document= utils.findDocumentWithId(answer.document_ids[0], result["documents"])
             
             metadata=dict()
