@@ -79,11 +79,11 @@ qaKnowledgebase = QuestionAnswerKnowledgeBase(mongoDataManager)
 asyncio.run(qaKnowledgebase.initialize())
 
 
-mongoProcessor = MongoProcessor()
-mongoProcessor = ConvertToDocumentDecorator(mongoProcessor)
-mongoDataManager = MongoDataManager(mongoProcessor)
-faqKnowledgebase = FAQKnowledgeBase(mongoDataManager)
-asyncio.run(faqKnowledgebase.initialize())
+# mongoProcessor = MongoProcessor()
+# mongoProcessor = ConvertToDocumentDecorator(mongoProcessor)
+# mongoDataManager = MongoDataManager(mongoProcessor)
+# faqKnowledgebase = FAQKnowledgeBase(mongoDataManager)
+# asyncio.run(faqKnowledgebase.initialize())
 
 # mongoProcessor = MongoProcessor()
 # mongoProcessor = ConvertToDocumentDecorator(mongoProcessor)
@@ -91,7 +91,7 @@ asyncio.run(faqKnowledgebase.initialize())
 # qaKnowledgebase = GenerativeKnowledgeBase(mongoDataManager)
 
 
-knowledgebaseEnsemble : List[KnowledgeBase] = [sparseMatrixKnowledgeBase, faqKnowledgebase, qaKnowledgebase]
+knowledgebaseEnsemble : List[KnowledgeBase] = [sparseMatrixKnowledgeBase, qaKnowledgebase]
 
 class ActionGetAvailableOptions(Action):
     def __init__(self) -> None:
@@ -367,7 +367,7 @@ class ActionEventOccured(Action):
                 trainingLabels.append(multiLabelFeedback)
 
         for knowledgebase in knowledgebaseEnsemble:
-            await knowledgebase.train(trainingLabels)
+            knowledgebase.train(trainingLabels)
 
         return [{"event": "action", "name": "action_event_occured", "eventType":eventType}]
              
@@ -404,7 +404,7 @@ def utterAllAnswers(answers : List[ChatbotAnswer], dispatcher):
     for answer in answers:
         answerDict = answer.as_dict()
         answerDict["text"] = answerDict["answer"]
-        print("JSON MESSAGE",  {"answers": answerDict})
+        # print("JSON MESSAGE",  {"answers": answerDict})
         answersInDict.append(answerDict)
         dispatcher.utter_message( json_message= answerDict)
 

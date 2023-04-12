@@ -11,7 +11,7 @@ def findDocumentWithId(id: str, documents : List[Document]) -> Document:
         return None
 
 
-def determineDocumentStore(self):
+def determineDocumentStore():
     environment = config('ENVIRONMENT')
     if environment == "development":
          return InMemoryDocumentStore()

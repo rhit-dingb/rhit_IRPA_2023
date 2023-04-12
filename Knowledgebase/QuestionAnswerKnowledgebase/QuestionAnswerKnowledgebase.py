@@ -15,40 +15,76 @@ from Data_Ingestion.constants import TEMPLATE_LABEL
 from Knowledgebase.DataModels.ChatbotAnswer import ChatbotAnswer
 from Knowledgebase.DataModels.MultiFeedbackLabel import MultiFeedbackLabel
 import Knowledgebase.QuestionAnswerKnowledgebase.utils as utils
+from Knowledgebase.QuestionAnswerKnowledgebase.Training.Trainer import Trainer
 
 class QuestionAnswerKnowledgeBase(KnowledgeBase):
     def __init__(self, dataManager):
         self.dataManager : DataManager = dataManager
         self.documentStore =  utils.determineDocumentStore()
-        self.trainedModelPath = "TrainedModels\QAModel"
-        self.startingModel = "deepset/roberta-base-squad2"
-        self.retriever = EmbeddingRetriever(
-            embedding_model="sentence-transformers/multi-qa-mpnet-base-dot-v1",
-            document_store=self.documentStore
-        )
+
+        
+        self.startingReader = "deepset/roberta-base-squad2"
+        self.startingRetriever = "sentence-transformers/multi-qa-mpnet-base-dot-v1"
+
+
+        self.trainedReaderPath = "TrainedModels\QAModel\ReaderModel"
+        self.trainedRetrieverPath = "TrainedModels\QAModel\RetrieverModel"
+
+
         self.yearToDocumentStore = dict()
         self.source = "QuestionAnswerKnowledgebase"
         dirname = os.path.dirname(__file__)
-        self.fullModelPath = os.path.join(dirname, self.trainedModelPath)   
+        self.fullReaderPath = os.path.join(dirname, self.trainedReaderPath)   
+        self.fullRetrieverPath = os.path.join(dirname, self.trainedRetrieverPath)  
+
+        self.retriever = None
         self.reader = None
         self.pipeline = None
+        self.trainer = Trainer()
 
 
     async def initialize(self):
-        if not os.path.exists(self.fullModelPath):
-            os.makedirs(self.fullModelPath)
+        if not os.path.exists(self.fullReaderPath):
+            os.makedirs(self.fullReaderPath)
+
+        if not os.path.exists(self.fullRetrieverPath):
+            os.makedirs(self.fullRetrieverPath)
 
         # dirname = os.path.dirname(__file__)
         # fullPath = os.path.join(dirname, self.trainedModelPath)   
-        dir = os.listdir(self.fullModelPath)
+        dir = os.listdir(self.fullReaderPath)
         if len(dir) == 0:
-            self.loadStartingModel(self.fullModelPath)
+            self.loadReader(self.startingReader, self.fullReaderPath)
         else:
-            self.reader = FARMReader(model_name_or_path=self.fullModelPath, use_gpu=True, context_window_size=1000)
+            self.loadReader(self.fullReaderPath, self.fullReaderPath, save=False)
+
+        dir = os.listdir(self.fullRetrieverPath)
+        if len(dir) == 0:
+            self.loadRetriever(self.startingRetriever, self.fullRetrieverPath)
+        else:
+            self.loadReader(self.fullRetrieverPath, self.fullRetrieverPath, save=False)
+
 
         availableYears = self.dataManager.getAllAvailableYearsSorted()
         await self.writeDocToDocumentStore(availableYears)
         self.pipeline = ExtractiveQAPipeline(self.reader, self.retriever)
+
+
+    def loadReader(self, loadPath, pathToSave, save=True):
+        self.reader = FARMReader(model_name_or_path=loadPath, use_gpu=True, context_window_size=1000)
+        if(save):
+            self.reader.save(pathToSave)
+        self.reader = FARMReader(model_name_or_path=loadPath, use_gpu=True, context_window_size=1000)
+        print("LOADED READER", self.reader)
+       
+    def loadRetriever(self, loadPath, pathToSave, save=True):
+        self.retriever = EmbeddingRetriever(
+            embedding_model= loadPath,
+            document_store=self.documentStore
+        )
+        if (save):
+            self.retriever.save(pathToSave)
+
 
 
     async def writeDocToDocumentStore(self, years: List[Tuple[str, str]]):
@@ -79,17 +115,12 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
                         
                             documents.append(newDoc)
 
-                        print("ADDED", len(documents), "FOR", key)
+                        # print("ADDED", len(documents), "FOR", key)
                         self.documentStore.write_documents(documents)
         self.documentStore.update_embeddings(self.retriever)
 
 
 
-    def loadStartingModel(self, pathToSave):
-        self.reader = FARMReader(model_name_or_path=self.startingModel, use_gpu=True, context_window_size=1000)
-        self.reader.save(pathToSave)
-        self.reader = FARMReader(model_name_or_path=self.trainedModelPath, use_gpu=True, context_window_size=1000)
-        print("LOADED READER", self.reader)
 
 
     def getAvailableOptions(self, intent, entities, startYear, endYear):
@@ -100,15 +131,20 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
     async def searchForAnswer(self, question, intent, entitiesExtracted,startYear, endYear):
         
         result = self.pipeline.run(query = question, params= {
-            "Retriever": {"top_k": 10}, 
-            "Reader": {"top_k": 5},
+            "Retriever": {"top_k": 20}, 
+            "Reader": {"top_k": 10},
             "filters": {
             "startYear": startYear,
             "endYear": endYear
              }
         })
 
+       
         answers : List[Answer] = result["answers"]
+        print("THE RESULT")
+        for answer in answers:
+            print(answer.answer, ":", answer.context, ":", answer.score)
+          
         chatbotAnswers : List[ChatbotAnswer]= []
        
         for answer in answers:
@@ -137,7 +173,9 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
 
 
     def train(self, trainingLabels : List[MultiFeedbackLabel]):
-        pass
+        self.trainer.trainDataForEmbeddingRetriever(trainingLabels, )
+        self.trainer.trainDataForModelWithSQUAD(trainingLabels=trainingLabels, model=self.reader, saveDirectory= self.fullModelPath, source=self.source)
+        # self.documentStore.update_embeddings()
     
     def dataUploaded(self):
         pass

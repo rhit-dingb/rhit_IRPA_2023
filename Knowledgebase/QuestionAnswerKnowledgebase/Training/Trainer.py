@@ -1,10 +1,15 @@
+import json
 from typing import Any, Dict, List
 from haystack import Label, Document
 from Knowledgebase.DataModels.MultiFeedbackLabel import MultiFeedbackLabel
-from haystack.nodes import  EmbeddingRetriever, BM25Retriever, BaseRetriever
+from haystack.nodes import  EmbeddingRetriever, BM25Retriever, BaseRetriever, FARMReader
 from haystack.nodes.question_generator import QuestionGenerator
 from Knowledgebase.DataModels.FeedbackLabel import FeedbackType
 from haystack.nodes.label_generator import PseudoLabelGenerator
+import uuid
+import logging
+
+
 
 class Trainer:
     def __init__(self):
@@ -16,23 +21,45 @@ class Trainer:
     
 
     
-    def trainDataForEmbeddingRetriever(self,  trainingLabels : List[MultiFeedbackLabel], retriever : EmbeddingRetriever, saveDirectory : str ,documentStore, source : str = None):
-        filteredTrainingData = []
+    def trainDataForEmbeddingRetriever(self,  trainingLabels : List[MultiFeedbackLabel], retriever : EmbeddingRetriever, saveDirectory : str ,documentStore, source : str):
+        filteredTrainingLabel = []
         if not source == None: 
-            for container in trainingLabels:
+            filteredTrainingLabel = self.filterTrainingLabelForSource(trainingLabels, source)
+
+        trainingData = self.trainingDataCreator.createTrainingDataForEmbeddingRetriever(filteredTrainingLabel, retriever, documentStore)
+        print("USE THIS AS TRAINING DATA", trainingData)
+        retriever.train(training_data=trainingData, n_epochs = 1, num_workers=2, train_loss="mnrl")
+        retriever.save(saveDirectory)
+        return True
+    
+    def trainDataForModelWithSQUAD(self,  trainingLabels : List[MultiFeedbackLabel], model : FARMReader, saveDirectory : str, source : str ):
+        filteredTrainingLabel = []
+        if not source == None:
+            filteredTrainingLabel = self.filterTrainingLabelForSource(trainingLabels, source)
+        
+        trainingDataFileName = "SQUADTrainingData"
+        self.trainingDataCreator.createSQUADTrainingDataSet(filteredTrainingLabel, trainingDataFileName)
+        model.train(data_dir="./",
+             train_filename=trainingDataFileName ,use_gpu=True,
+             n_epochs=1,
+             save_dir=saveDirectory)
+        
+
+    
+    def filterTrainingLabelForSource(self, trainingLabels : List[MultiFeedbackLabel], source : str):
+        filteredTrainingLabel = []
+        for container in trainingLabels:
                 fitleredFeedbackLabels = []
                 for singleFeedbackLabel in container.feedbackLabels:
                     if singleFeedbackLabel.source == source:
                         fitleredFeedbackLabels.append(singleFeedbackLabel)
 
                 newMultiFeedbackLabel = MultiFeedbackLabel(container.query, fitleredFeedbackLabels)
-                filteredTrainingData.append(newMultiFeedbackLabel)
+                filteredTrainingLabel.append(newMultiFeedbackLabel)
 
-        trainingData = self.trainingDataCreator.createTrainingDataForEmbeddingRetriever(filteredTrainingData, retriever, documentStore)
-        print("USE THIS AS TRAINING DATA", trainingData)
-        retriever.train(training_data=trainingData, n_epochs = 1, num_workers=2, train_loss="mnrl")
-        retriever.save(saveDirectory)
-        return True
+        return filteredTrainingLabel
+
+
 
 class TrainingDataCreator:
     def __init__(self):
@@ -41,7 +68,72 @@ class TrainingDataCreator:
         #                                  split_length=128, 
         #                                  batch_size=32,
         #                                  num_queries_per_doc=3)
-        pass
+        self.logger = logging.getLogger(__name__)
+
+
+    def createSQUADTrainingDataSet(self, trainingLabels : List[MultiFeedbackLabel], trainingDataFileName: str) -> str:
+        export_data = []
+        for trainingLabelContainer in trainingLabels:
+            questionText = trainingLabelContainer.query
+            for feedbackLabel in trainingLabelContainer.feedbackLabels:
+                answer_text = feedbackLabel.answerProvided
+                context = feedbackLabel.metadata["document_content"]
+                offset_start_in_document = 0
+                # offset_start_in_document = feedbackLabel.metadata["offsets_in_document"][0]["start"]
+                answer_start = offset_start_in_document
+                squad_label: Dict[str, Any]
+                documentId = feedbackLabel.metadata["document_ids"][0]
+                if feedbackLabel.feedback == FeedbackType.INCORRECT:
+                    squad_label = {
+                        "paragraphs": [
+                            {
+                                "context": context,
+                                "id": documentId,
+                                "qas": [{"question": feedbackLabel.query, "id": str(uuid.uuid1()), "is_impossible": True, "answers": []}],
+                            }
+                        ]
+                    }
+                elif feedbackLabel.feedback == FeedbackType.CORRECT: 
+                    squad_label = {
+                    "paragraphs": [
+                        {
+                            "context": context,
+                            "id": documentId,
+                            "qas": [
+                                {
+                                    "question": feedbackLabel.  query,
+                                    "id": str(uuid.uuid1()),
+                                    "is_impossible": False,
+                                    "answers": [{"text": answer_text, "answer_start": answer_start}],
+                                }
+                            ],
+                        }
+                        ]
+                    }
+
+                    # quality check 
+                    # start = squad_label["paragraphs"][0]["qas"][0]["answers"][0]["answer_start"]
+                    # answer = squad_label["paragraphs"][0]["qas"][0]["answers"][0]["text"]
+                    # context = squad_label["paragraphs"][0]["context"]
+                    # if not context[start : start + len(answer)] == answer:
+                    #     self.logger.error(
+                    #             "Skipping invalid squad label as string via offsets ('%s') does not match answer string ('%s') ",
+                    #             context[start : start + len(answer)],
+                    #             answer,
+                    # )
+
+                # else:
+                #     continue
+
+                  
+                export_data.append(squad_label)
+           
+            export = {"data": export_data}
+            with open(trainingDataFileName, "w", encoding="utf8") as f:
+                json.dump(export, f, ensure_ascii=False, sort_keys=True, indent=4)
+
+            return export
+
 
 
 

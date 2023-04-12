@@ -29,6 +29,7 @@ from CustomEntityExtractor.NumberEntityExtractor import NumberEntityExtractor
 from Knowledgebase.FuzzyShouldAddRowStrategy import FuzzyShouldAddRowStrategy
 from CacheLayer.Cache import Cache
 from Knowledgebase.DataModels.ChatbotAnswer import ChatbotAnswer
+from Knowledgebase.DataModels.MultiFeedbackLabel import MultiFeedbackLabel
 from tests.testUtils import createEntityObjHelper
 import aiohttp
 import asyncio
@@ -339,7 +340,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
 
     
   
-    def train(self):
+    def train(self, trainingLabels : List[MultiFeedbackLabel]):
         pass
     
     def dataUploaded(self):

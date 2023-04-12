@@ -63,7 +63,7 @@ class  FAQKnowledgeBase(KnowledgeBase):
                 embedding_model="sentence-transformers/multi-qa-mpnet-base-dot-v1",
                 use_gpu=True,
             )    
-            self.retriever.save(self.fullModelPath)
+            # self.retriever.save(self.fullModelPath)
 
             #self.loadStartingModel(fullPath)
         else:
@@ -191,7 +191,7 @@ class  FAQKnowledgeBase(KnowledgeBase):
         raise NotImplementedError()
 
 
-    async def train(self, trainingLabels : List[MultiFeedbackLabel]):
+    def train(self, trainingLabels : List[MultiFeedbackLabel]):
         self.trainer.trainDataForEmbeddingRetriever(trainingLabels, retriever = self.retriever, saveDirectory= self.fullModelPath, documentStore = self.documentStore, source=self.source)
         availableYears = self.dataManager.getAllAvailableYearsSorted()       
 
