@@ -81,4 +81,4 @@ async def writeDocToDocumentStoreWithDataName(dataNameDicts : List[Dict[str,str]
                 processed_docs = process_doc_func(documents)
                 print("WRITING", dataName, "Subsection", key )
                 documentStore.write_documents(processed_docs)
-
+    

@@ -9,7 +9,7 @@ import asyncio
 import json
 import requests
 from CacheLayer.Cache import Cache
-
+from enum import Enum
 
 
 from CustomEntityExtractor.NumberEntityExtractor import NumberEntityExtractor
@@ -307,6 +307,7 @@ class ActionSetYear(Action):
 #         utterAllAnswers(answers, dispatcher)
 
 
+
 class ActionEventOccured(Action):
     def __init__(self) -> None:
         super().__init__()
@@ -323,6 +324,50 @@ class ActionEventOccured(Action):
             return []
         
         eventType = eventTypeEntity["value"]
+        trainingLabels : List[MultiFeedbackLabel] = []
+
+        # determine what event to fire
+        if eventType == "train":
+            return self.handleTrainKnowledgebase(trainingLabels, entities, eventType)
+
+        elif eventType == "dataUploaded":
+            return await self.handleDataUpload(entities, eventType)
+        
+        elif eventType =="dataDeleted":
+            return self.handleDataDelete(entities, eventType)
+        
+        return []
+
+
+    async def handleDataUpload(self, entities, eventType):
+        print(entities)
+        dataNameEntity = findEntityHelper(entities, "dataName")
+        startYearEntity = findEntityHelper(entities, "startYear")
+        endYearEntity = findEntityHelper(entities, "endYear")
+
+        startYear = None
+        endYear = None
+        if not startYearEntity == None and not endYearEntity == None:
+            startYear = startYearEntity["value"]
+            endYear = endYearEntity["value"]
+        dataName = dataNameEntity["value"]
+
+        for knowledgebase in knowledgebaseEnsemble:
+           await knowledgebase.dataUploaded(dataName, startYear, endYear)
+
+        return []
+
+    def handleDataDelete(self, entities, eventType):
+        dataNameEntity = findEntityHelper(entities, "dataName")
+        dataName = dataNameEntity["value"]
+        for knowledgebase in knowledgebaseEnsemble:
+            knowledgebase.dataDeleted(dataName)
+
+        return []
+
+
+        
+    def handleTrainKnowledgebase(self, trainingLabels, entities, eventType):
         """
         The feedback labels object looks like:
         {'entity': 'feedback', 'value': [ {'_id': {'$oid': '641b6117a799c3a9b43f72c1'},
@@ -332,40 +377,38 @@ class ActionEventOccured(Action):
         'chatbotAnswers': [{answer:'the total number of instructional faculty is 192', source:"QuestionAnswerKnowledge", metadata:{}, feedback:"" }], 
         'answer': 'the total number of instructional faculty is 200'}} ] 
         """
+        feedbackEntity= findEntityHelper(entities, "feedback")
+        feedbackLabelsDict = feedbackEntity["value"]
+        # convert to data model
+        for data in feedbackLabelsDict:
+            query = data["content"]
+            feedbackLabels = []
+            for chatbotAnswer in data["chatbotAnswers"]:
+                source = chatbotAnswer["source"]
+                metadata = chatbotAnswer["metadata"]
+                feedback = chatbotAnswer["feedback"]
+                answer = chatbotAnswer["answer"]
+                if feedback == None or feedback == "":
+                    continue
+                if feedback == FeedbackType.CORRECT.value:
+                    feedback = FeedbackType.CORRECT
+                elif feedback == FeedbackType.INCORRECT.value:
+                    feedback = FeedbackType.INCORRECT
+                else: 
+                    continue
+                feedbackLabel = FeedbackLabel(query = query, source = source, metadata = metadata, feedback = feedback, answerProvided=answer)
+                feedbackLabels.append(feedbackLabel)
 
-        trainingLabels : List[MultiFeedbackLabel] = []
-        if eventType == "train":
-            feedbackEntity= findEntityHelper(entities, "feedback")
-            feedbackLabelsDict = feedbackEntity["value"]
-            # convert to data model
-            for data in feedbackLabelsDict:
-                query = data["content"]
-                feedbackLabels = []
-                for chatbotAnswer in data["chatbotAnswers"]:
-                    source = chatbotAnswer["source"]
-                    metadata = chatbotAnswer["metadata"]
-                    feedback = chatbotAnswer["feedback"]
-                    answer = chatbotAnswer["answer"]
-                    if feedback == None or feedback == "":
-                        continue
-                    if feedback == FeedbackType.CORRECT.value:
-                        feedback = FeedbackType.CORRECT
-                    elif feedback == FeedbackType.INCORRECT.value:
-                        feedback = FeedbackType.INCORRECT
-                    else: 
-                        continue
-                    feedbackLabel = FeedbackLabel(query = query, source = source, metadata = metadata, feedback = feedback, answerProvided=answer)
-                    feedbackLabels.append(feedbackLabel)
-
-                multiLabelFeedback = MultiFeedbackLabel(query=query,feedbackLabels= feedbackLabels)
-                trainingLabels.append(multiLabelFeedback)
+            multiLabelFeedback = MultiFeedbackLabel(query=query,feedbackLabels= feedbackLabels)
+            trainingLabels.append(multiLabelFeedback)
 
         for knowledgebase in knowledgebaseEnsemble:
             knowledgebase.train(trainingLabels)
 
-        return [{"event": "action", "name": "action_event_occured", "eventType":eventType}]
-             
-            
+        return [{"event": "action", "name": "action_event_occured", "eventType": eventType}]
+
+
+
 
 
 # Helper functions

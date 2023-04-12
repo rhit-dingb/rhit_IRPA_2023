@@ -97,6 +97,11 @@ class Cache(DataManager):
         # print(topicData.sparseMatrices.keys())
         # print("_________________")
         subsectionsForSection = self.getAllSubsectionForSection(section, startYear, endYear)
+
+        if startYear == None or endYear == None:
+            startYear = ""
+            endYear = ""
+            
         for subsection in subsectionsForSection: 
             dataKey = self.redisDataKeyFormat.format(intent=section, startYear=startYear, endYear=endYear, subsection=subsection)
             #lets assume the data is always sparse matrix for now.

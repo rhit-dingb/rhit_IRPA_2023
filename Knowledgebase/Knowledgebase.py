@@ -38,7 +38,7 @@ class KnowledgeBase(ABC) :
         pass
     
     @abstractmethod
-    def dataUploaded(self, dataName):
+    async def dataUploaded(self, dataName):
         pass
 
     @abstractmethod

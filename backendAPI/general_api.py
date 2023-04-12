@@ -18,7 +18,6 @@ from datetime import datetime, date, timedelta
 
 
 
-
 sys.path.append('../')
 
 from backendAPI.DataType import DataType
@@ -63,6 +62,9 @@ import os
 from decouple import config
 from Data_Ingestion.MongoProcessor import MongoProcessor
 from Data_Ingestion.ConvertToSparseMatrixDecorator import ConvertToSparseMatrixDecorator
+
+from backendAPI.constants import EVENT_OCCURED_KEY
+
 
 authenticationManager = AuthenticationManager()
 
@@ -184,8 +186,19 @@ async def parse_data(request : Request):
                 section = splitted[0]
                 if not section in eventData[SECTIONS_UPLOADED_KEY]:
                     eventData[SECTIONS_UPLOADED_KEY].append(section)
-        
+
+
+            entities ={"eventType":"dataUploaded", "dataName":outputName}
+            if startYear and endYear:
+                entities["startYear"] = startYear
+                entities["endYear"]  = endYear
+
+            async with aiohttp.ClientSession() as session:
+                response = await rasaCommunicator.injectIntent(EVENT_OCCURED_KEY, entities, session, "random")
+                print(response)
+    
             await cacheEventPublisher.notify(EventType.DataUploaded, eventData)
+            
             return {"message": "Done", "uploadedAs": outputName}
         # except Exception:
         #     raise HTTPException(status_code=500, detail="Something went wrong while parsing the input data")
@@ -215,7 +228,12 @@ async def delete_data(request : Request):
         if didDelete:
             eventData = {DATA_DELETED_KEY: toDelete}
             await cacheEventPublisher.notify(EventType.DataDeletion,eventData )
-        print("DELETING DATA")
+        
+        entities ={"eventType":"dataDeleted", "dataName": toDelete}
+        async with aiohttp.ClientSession() as session:
+            response = await rasaCommunicator.injectIntent(EVENT_OCCURED_KEY, entities, session, "random")
+            
+
         return {"didDelete": didDelete}
     except Exception:
         raise HTTPException(status_code=500, detail="Deletion failed")
@@ -541,9 +559,10 @@ async def trainKnowledgebase(request : Request):
         conversationId = "random"
     # try:
     async with aiohttp.ClientSession() as session:
-        response = await rasaCommunicator.injectIntent("event_occured", entities, session, conversationId)
+        response = await rasaCommunicator.injectIntent(EVENT_OCCURED_KEY, entities, session, conversationId)
         print(response)
-        return {"message": "success"}
+    
+    return {"message": "success"}
     # except Exception:
     #     raise HTTPException(status_code=500, detail="change failed")
     

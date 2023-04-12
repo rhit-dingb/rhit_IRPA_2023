@@ -177,11 +177,20 @@ class  FAQKnowledgeBase(KnowledgeBase):
         
         self.documentStore.update_embeddings(self.retriever)
     
-    def dataUploaded(self, dataName, startYear = None, endYear = None):
-        pass
+    async def dataUploaded(self, dataName, startYear = None, endYear = None):
+        self.documentStore.delete_documents(filters={"dataName": dataName})
+        dataDict = {"dataName": dataName}
+        if not startYear == None and not endYear == None:
+            dataDict["startYear"] = startYear
+            dataDict["endYear"] = endYear
+        await utils.writeDocToDocumentStoreWithDataName([dataDict], self.dataManager, self.documentStore, self.convertToDf )
+        self.documentStore.update_embeddings(self.retriever)
 
     def dataDeleted(self, dataName):
-        pass
-
+        print("DELETE DOCUMENT")
+        self.documentStore.delete_documents(filters={"dataName": dataName})
+        print("________")
+        print(self.documentStore.get_all_documents(filters={"dataName":dataName}))
+        # self.documentStore.update_embeddings(self.retriever)
 
 

@@ -1,7 +1,7 @@
 def getStartAndEndYearFromDataName(dataName):
     dataNameToken = dataName.split("_")
-    startYear = ""
-    endYear = ""
+    startYear = None
+    endYear = None
     if len(dataNameToken) >= 3:
         startYear = dataNameToken[1]
         endYear = dataNameToken[2]

@@ -96,7 +96,7 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
         availableYears = self.dataManager.getAllAvailableYearsSorted()
         yearAgnosticData = self.dataManager.findAllYearAngosticDataName()
         await utils.writeDocToDocumentStore(availableYears, yearAgnosticData,self.dataManager, self.documentStore, lambda x : x)
-        self.documentStore.update_embeddings(self.retriever)
+        
 
 
 
@@ -154,17 +154,19 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
         self.trainer.trainDataForModelWithSQUAD(trainingLabels=trainingLabels, model=self.reader, saveDirectory= self.fullReaderPath, source=self.source)
         self.documentStore.update_embeddings()
     
-    def dataUploaded(self, dataName, startYear = None, endYear = None):
-        self.documentStore.delete_all_documents(filters={"dataName": dataName})
+    async def dataUploaded(self, dataName, startYear = None, endYear = None):
+        self.documentStore.delete_documents(filters={"dataName": dataName})
         dataDict = {"dataName": dataName}
         if not startYear == None and not endYear == None:
             dataDict["startYear"] = startYear
             dataDict["endYear"] = endYear
-        utils.writeDocToDocumentStoreWithDataName([dataDict], self.dataManager, self.documentStore, lambda x: x )
-
+        await utils.writeDocToDocumentStoreWithDataName([dataDict], self.dataManager, self.documentStore, lambda x: x )
+        self.documentStore.update_embeddings(self.retriever)
 
     def dataDeleted(self, dataName):
-        self.documentStore.delete_all_documents(filters={"dataName": dataName})
-
-
+        print("DELETE DOCUMENT")
+        self.documentStore.delete_documents(filters={"dataName": dataName})
+        print("________")
+        print(self.documentStore.get_all_documents(filters={"dataName":dataName}))
+        # self.documentStore.update_embeddings(self.retriever)
 
