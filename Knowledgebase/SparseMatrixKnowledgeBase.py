@@ -216,7 +216,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
 
        allAnswers = sentences + stringSentence
      
-       chatbotAnswers : List[ChatbotAnswer]
+       chatbotAnswers : List[ChatbotAnswer] = []
        for answer in allAnswers:
            chatbotAnswer = ChatbotAnswer(answer=answer, source = self.source)
            chatbotAnswers.append(chatbotAnswer)

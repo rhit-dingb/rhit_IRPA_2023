@@ -26,9 +26,9 @@ class ConvertToSparseMatrixDecorator():
         self.parserFacade : ParserFacade = ParserFacade(None, None, None)
 
 
-    async def getDataByDbNameAndIntent(self, client, intent, dbName) -> TopicData:
-        topicData = TopicData(intent)
-        subsectionQnAList : List[SubsectionQnA] = await self.decorated.getDataByDbNameAndIntent(client, intent, dbName)
+    async def getDataByDbNameAndSection(self, client, section, dbName) -> TopicData:
+        topicData = TopicData(section)
+        subsectionQnAList : List[SubsectionQnA] = await self.decorated.getDataByDbNameAndSection(client, section, dbName)
         questionsToParse = []
         subsectionToQuestionAnswerDataModels = dict()
         for subsectionQnA in subsectionQnAList:

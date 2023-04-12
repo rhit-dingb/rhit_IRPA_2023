@@ -77,45 +77,15 @@ class  FAQKnowledgeBase(KnowledgeBase):
             print(self.retriever.model_format)
             print(self.retriever)
 
-        availableYears = self.dataManager.getAllAvailableYearsSorted()
-        await self.writeDocToDocumentStore(availableYears)
+        await self.writeDocToDocumentStore()
         self.pipeline = FAQPipeline(retriever=self.retriever)
       
 
 
-    async def writeDocToDocumentStore(self, years: List[Tuple[str, str]]):
-        self.documentStore.delete_documents()
-        for startYear, endYear in years:
-           availableDataName = self.dataManager.getAvailableDataForSpecificYearRange(startYear, endYear)
-           for dataName in availableDataName:
-               sections = self.dataManager.getSections(dataName)
-               for section in sections:
-                    subsectionToDocument : Dict[str, Document] = await self.dataManager.getDataByStartEndYearAndIntent(section, startYear, endYear, Exception()) 
-                    
-                    for key in subsectionToDocument:
-                        documents = []
-                        documentList = subsectionToDocument[key]
-                        for document in documentList:
-                           
-                            metaData = document.meta.copy()
-                            metaData["startYear"] = str(startYear)
-                            metaData['endYear'] = str(endYear)
-                            newDoc =  Document(id_hash_keys=["content", "meta"], content = document.content,meta=metaData )
-                            if (OPERATION_ALLOWED_COLUMN_VALUE in newDoc.meta) and newDoc.meta[OPERATION_ALLOWED_COLUMN_VALUE] == VALUE_FOR_ALLOW:
-                                continue
-
-                            if TEMPLATE_LABEL in document.meta:
-                                continue
-                            
-                            documents.append(newDoc)
-                       
-
-                        df= self.convertToDf(documents)
-                        
-                        docs_to_index = df.to_dict(orient="records")
-                        self.documentStore.write_documents(docs_to_index)
-        print("ALL DOCS")
-        print(self.documentStore.get_all_documents())
+    async def writeDocToDocumentStore(self):
+        availableYears = self.dataManager.getAllAvailableYearsSorted()
+        yearAgnosticData = self.dataManager.findAllYearAngosticDataName()
+        await utils.writeDocToDocumentStore(availableYears, yearAgnosticData,self.dataManager, self.documentStore, self.convertToDf)
         self.documentStore.update_embeddings(self.retriever)
       
 
@@ -137,8 +107,8 @@ class  FAQKnowledgeBase(KnowledgeBase):
         #Add id
         ids = [document.id for document in documents]
         df["id"] = ids
-            
-        return df
+        docs_to_index = df.to_dict(orient="records")
+        return docs_to_index
     
             
 
@@ -176,6 +146,7 @@ class  FAQKnowledgeBase(KnowledgeBase):
             metadata["offsets_in_context"] = answer.offsets_in_context
             metadata["document_ids"]= answer.document_ids
             metadata["document_content"] = document.content
+           
             #answerStrings.append(answer.answer)
             chatbotAnswer = ChatbotAnswer(answer = answer.answer, source=self.source, metadata=metadata)
             chatbotAnswers.append(chatbotAnswer)
@@ -194,7 +165,7 @@ class  FAQKnowledgeBase(KnowledgeBase):
 
     def train(self, trainingLabels : List[MultiFeedbackLabel]):
         self.trainer.trainDataForEmbeddingRetriever(trainingLabels, retriever = self.retriever, saveDirectory= self.fullModelPath, documentStore = self.documentStore, source=self.source)
-        availableYears = self.dataManager.getAllAvailableYearsSorted()       
+      
 
         # reload model.
         self.retriever = EmbeddingRetriever(
@@ -206,11 +177,11 @@ class  FAQKnowledgeBase(KnowledgeBase):
         
         self.documentStore.update_embeddings(self.retriever)
     
-    def dataUploaded(self):
-        pass
+    def dataUploaded(self, dataName):
+        self.documentStore.delete_all_documents
 
-    def dataDeleted(self):
-        pass  
+    def dataDeleted(self, dataName):
+        pass
 
 
 

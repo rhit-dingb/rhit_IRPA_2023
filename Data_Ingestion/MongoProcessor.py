@@ -17,11 +17,11 @@ class MongoProcessor():
     def __init__(self):
         pass
 
-    async def getDataByDbNameAndIntent(self, client, intent, dbName) -> List[SubsectionQnA]:
+    async def getDataByDbNameAndSection(self, client, section, dbName) -> List[SubsectionQnA]:
         cur_db = client[dbName]
         subsectionsQnAList = []
         for name in cur_db.list_collection_names():
-            if intent == name:
+            if section == name:
                 cursor = cur_db[name].find({})
                 for data in cursor:
                     subsection = data.get(DATABASE_SPARSE_MATRIX_SUBSECTION_KEY)

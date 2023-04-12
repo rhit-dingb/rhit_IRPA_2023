@@ -10,8 +10,8 @@ class ConvertToDocumentDecorator():
         self.decorated : MongoProcessor = decorated 
 
 
-    async def getDataByDbNameAndIntent(self, client, intent, dbName) -> Dict[str, Document]:
-        subsectionQnAList : List[SubsectionQnA] = await self.decorated.getDataByDbNameAndIntent(client, intent, dbName)
+    async def getDataByDbNameAndSection(self, client,section, dbName) -> Dict[str, Document]:
+        subsectionQnAList : List[SubsectionQnA] = await self.decorated.getDataByDbNameAndSection(client, section, dbName)
         subsectionToDocument : Dict[str, Document] = {subsectionQnA.subSectionName: [] for subsectionQnA in subsectionQnAList }
         for subsectionQnA in subsectionQnAList :
                

@@ -93,38 +93,10 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
 
 
     async def writeDocToDocumentStore(self, years: List[Tuple[str, str]]):
-        self.documentStore.delete_documents()
-        for startYear, endYear in years:
-           availableDataName = self.dataManager.getAvailableDataForSpecificYearRange(startYear, endYear)
-           for dataName in availableDataName:
-               sections = self.dataManager.getSections(dataName)
-               for section in sections:
-                    subsectionToDocument : Dict[str, Document] = await self.dataManager.getDataByStartEndYearAndIntent(section, startYear, endYear, Exception()) 
-                    
-                    for key in subsectionToDocument:
-                        documents = []
-                        documentList = subsectionToDocument[key]
-                        for document in documentList:
-                          
-                            metaData = document.meta.copy()
-                            metaData["startYear"] = str(startYear)
-                            metaData['endYear'] = str(endYear)
-                            newDoc =  Document(id_hash_keys=["content", "meta"], content = document.content,meta=metaData )
-                            #print(document.meta)
-                            if (OPERATION_ALLOWED_COLUMN_VALUE in document.meta) and document.meta[OPERATION_ALLOWED_COLUMN_VALUE] == VALUE_FOR_ALLOW:
-                                print("DISALLOWING", key )
-                                continue
-
-                            if TEMPLATE_LABEL in document.meta:
-                                continue
-                        
-                            documents.append(newDoc)
-
-                        # print("ADDED", len(documents), "FOR", key)
-                        self.documentStore.write_documents(documents)
+        availableYears = self.dataManager.getAllAvailableYearsSorted()
+        yearAgnosticData = self.dataManager.findAllYearAngosticDataName()
+        await utils.writeDocToDocumentStore(availableYears, yearAgnosticData,self.dataManager, self.documentStore, lambda x : x)
         self.documentStore.update_embeddings(self.retriever)
-
-
 
 
 
@@ -182,10 +154,10 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
         self.trainer.trainDataForModelWithSQUAD(trainingLabels=trainingLabels, model=self.reader, saveDirectory= self.fullReaderPath, source=self.source)
         self.documentStore.update_embeddings()
     
-    def dataUploaded(self):
+    def dataUploaded(self, dataName):
         pass
 
-    def dataDeleted(self):
+    def dataDeleted(self, dataName):
         pass  
 
 

@@ -30,19 +30,26 @@ class Cache(DataManager):
                 self.connected = False
 
     
-    async def getDataByStartEndYearAndIntent(self, intent, start, end, exceptionToThrow) -> TopicData:
-        intent = intent.replace("_", " ")
-        if intent == "definition":
-            start = ""
-            end =  ""
+    async def getDataBySection(self, section, exceptionToThrow, startYear = None, endYear =None ) -> TopicData:
+        section = section.replace("_", " ")
+    
+        # if section == "definition":
+        #     startYear = ""
+        #     endYear =  ""
+
+        # if startYear == None:
+        #     startYear = ""
+        
+        # if endYear == None:
+        #     endYear == ""
     
         does_exist = True
         topicData = None
-        subsectionsForSection = self.dataSource.getAllSubsectionForSection(intent, start, end)
+        subsectionsForSection = self.dataSource.getAllSubsectionForSection(section, startYear, endYear)
 
         if self.connected:
             for subsection in subsectionsForSection: 
-                dataKey = self.redisDataKeyFormat.format(intent=intent, startYear=start, endYear=end, subsection=subsection)
+                dataKey = self.redisDataKeyFormat.format(intent=section, startYear=startYear, endYear=endYear, subsection=subsection)
                 try:
                     does_exist = does_exist and self.redis.exists(dataKey)
                 except Exception:
@@ -54,19 +61,28 @@ class Cache(DataManager):
 
         if does_exist:
            print("CACHE HIT")
-           topicData = self.getDataFromCache(intent, start, end)
+           topicData = self.getDataFromCache(section, startYear, endYear)
         else:
            print("CACHE MISS")
-           topicData = await self.getDataAndPopulateCache(intent, start, end, exceptionToThrow)
+           topicData = await self.getDataAndPopulateCache(section,exceptionToThrow, startYear, endYear)
                 
         return topicData
 
 
-    def getDataFromCache(self, section, startYear, endYear):
+    def getDataFromCache(self, section, startYear = None, endYear= None):
 
         topicData = TopicData(section)
         subsectionsForSection = self.getAllSubsectionForSection(section, startYear, endYear)
+
+        
+        if startYear == None:
+            startYear = ""
+
+        if endYear == None:
+            endYear = ""
+
         for subsection in subsectionsForSection: 
+            
             dataKey = self.redisDataKeyFormat.format(intent=section, startYear=startYear, endYear=endYear, subsection=subsection)
             data=self.redis.get(dataKey)
             #lets assume the data is always sparse matrix for now.
@@ -75,8 +91,8 @@ class Cache(DataManager):
         return topicData
 
 
-    async def getDataAndPopulateCache(self, section, startYear, endYear, exceptionToThrow):
-        topicData : TopicData = await self.dataSource.getDataByStartEndYearAndIntent(section, startYear, endYear, exceptionToThrow)
+    async def getDataAndPopulateCache(self, section, exceptionToThrow, startYear = None, endYear = None, ):
+        topicData : TopicData = await self.dataSource.getDataBySection(section,exceptionToThrow,startYear, endYear)
         # print(intent)
         # print(topicData.sparseMatrices.keys())
         # print("_________________")
@@ -145,7 +161,10 @@ class Cache(DataManager):
     def getAvailableDataForSpecificYearRange(self, startYear, endYear):
         return self.dataSource.getAvailableDataForSpecificYearRange(startYear, endYear)
 
-
   
     def getSections(self, dataName):
         return self.dataSource.getSections(dataName)
+    
+
+    def findAllYearAngosticDataName(self):
+        return self.dataSource.findAllYearAngosticDataName()
