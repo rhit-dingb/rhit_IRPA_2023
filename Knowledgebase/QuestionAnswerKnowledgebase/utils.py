@@ -37,14 +37,9 @@ async def writeDocToDocumentStore(years: List[Tuple[str, str]], yearAgnosticData
         dataNamesDicts.append({"dataName":dataName})
 
     await writeDocToDocumentStoreWithDataName(dataNamesDicts, dataManager, documentStore, process_doc_func)
-        
     
-    dataNamesDicts = dataNamesDicts + yearAgnosticDataName
-    writeDocToDocumentStoreWithDataName(dataNamesDicts, dataManager, documentStore, process_doc_func=process_doc_func)
 
 async def writeDocToDocumentStoreWithDataName(dataNameDicts : List[Dict[str,str]], dataManager : DataManager, documentStore : BaseDocumentStore, process_doc_func):
- 
-    documentStore.delete_documents()
     for dataNameDict in dataNameDicts:
         dataName = dataNameDict["dataName"]
         startYear = None
@@ -58,7 +53,7 @@ async def writeDocToDocumentStoreWithDataName(dataNameDicts : List[Dict[str,str]
         sections = dataManager.getSections(dataName)
        
         for section in sections:
-            print("CHECKING", dataNameDict, section)
+          
             subsectionToDocument = dict()
             try:
                 subsectionToDocument : Dict[str, List[Document]] = await dataManager.getDataBySection(section,Exception(), startYear, endYear) 
@@ -84,5 +79,6 @@ async def writeDocToDocumentStoreWithDataName(dataNameDicts : List[Dict[str,str]
                     
                     documents.append(newDoc)
                 processed_docs = process_doc_func(documents)
+                print("WRITING", dataName, "Subsection", key )
                 documentStore.write_documents(processed_docs)
 

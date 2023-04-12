@@ -177,8 +177,8 @@ class  FAQKnowledgeBase(KnowledgeBase):
         
         self.documentStore.update_embeddings(self.retriever)
     
-    def dataUploaded(self, dataName):
-        self.documentStore.delete_all_documents
+    def dataUploaded(self, dataName, startYear = None, endYear = None):
+        pass
 
     def dataDeleted(self, dataName):
         pass

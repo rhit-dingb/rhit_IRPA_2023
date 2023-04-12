@@ -105,7 +105,7 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
 
 
    
-    async def searchForAnswer(self, question, intent, entitiesExtracted,startYear, endYear):
+    async def searchForAnswer(self, question, intent, entitiesExtracted, startYear, endYear):
         
         result = self.pipeline.run(query = question, params= {
             "Retriever": {"top_k": 20}, 
@@ -154,11 +154,17 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
         self.trainer.trainDataForModelWithSQUAD(trainingLabels=trainingLabels, model=self.reader, saveDirectory= self.fullReaderPath, source=self.source)
         self.documentStore.update_embeddings()
     
-    def dataUploaded(self, dataName):
-        pass
+    def dataUploaded(self, dataName, startYear = None, endYear = None):
+        self.documentStore.delete_all_documents(filters={"dataName": dataName})
+        dataDict = {"dataName": dataName}
+        if not startYear == None and not endYear == None:
+            dataDict["startYear"] = startYear
+            dataDict["endYear"] = endYear
+        utils.writeDocToDocumentStoreWithDataName([dataDict], self.dataManager, self.documentStore, lambda x: x )
+
 
     def dataDeleted(self, dataName):
-        pass  
+        self.documentStore.delete_all_documents(filters={"dataName": dataName})
 
 
 
