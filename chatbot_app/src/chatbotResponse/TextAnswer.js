@@ -12,11 +12,16 @@ import {CUSTOM_BACKEND_API_STRING, TOKEN_KEY} from "../constants/constants"
 export function TextAnswer({isAdmin, questionId, answer, feedback}) {
     // console.log(questionId)
     // console.log(answer)
-    const [currentFeedback, setCurrentFeedback] = useState(feedback)
+
+    const [currentFeedback, setCurrentFeedback] = useState(null)
  
     useEffect(() => {
-        
-    }, []);
+        setCurrentFeedback(feedback)
+        // console.log("_____________________________")
+        // console.log(answer)
+        // console.log(feedback)
+        // console.log("_____________________________")
+    }, [feedback]);
 
 
     const sendFeedback= (feedback)=>{
@@ -47,8 +52,8 @@ export function TextAnswer({isAdmin, questionId, answer, feedback}) {
             {isAdmin &&(<div>
             <p>
             <span style={{marginRight:20}}>{answer}</span>
-            <IconButton isize="small" onClick={(e)=>{sendFeedback("correct")}}><ThumbUpAltOutlinedIcon fontSize="small" color={currentFeedback=="correct"? "primary" :""} /></IconButton>
-            <IconButton size="small" onClick={(e)=>{sendFeedback("incorrect")}}>  <ThumbDownOutlinedIcon fontSize="small" color={currentFeedback=="incorrect"? "primary" :""}/></IconButton>
+            <IconButton isize="small" onClick={(e)=>{sendFeedback("correct")}}><ThumbUpAltOutlinedIcon fontSize="small" color={currentFeedback==="correct"? "primary" :""} /></IconButton>
+            <IconButton size="small" onClick={(e)=>{sendFeedback("incorrect")}}>  <ThumbDownOutlinedIcon fontSize="small" color={currentFeedback==="incorrect"? "primary" :""}/></IconButton>
             </p>
             <Divider/>
             </div>)}

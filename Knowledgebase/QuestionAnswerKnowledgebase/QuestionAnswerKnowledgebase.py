@@ -41,6 +41,7 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
         self.retriever = None
         self.reader = None
         self.pipeline = None
+        self.scoreThreshold = 0.1
         self.trainer = Trainer()
 
 
@@ -123,6 +124,8 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
         chatbotAnswers : List[ChatbotAnswer]= []
        
         for answer in answers:
+            if answer.score < 0.1:
+                continue
             document : Document= utils.findDocumentWithId(answer.document_ids[0], result["documents"])
             metadata=dict()
             metadata["context"] =answer.context

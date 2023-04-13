@@ -256,6 +256,7 @@ class QuestionAnswer extends React.Component {
             // console.log(elem)
             // return <h5>{elem.answer}</h5>
             // console.log(elem)
+          
             return <TextAnswer questionId={this.props.questionObj._id.$oid} answer={elem.answer} feedback ={elem.feedback} isAdmin={true}/>
           })
           : <h5>No answer from chatbot</h5>}
