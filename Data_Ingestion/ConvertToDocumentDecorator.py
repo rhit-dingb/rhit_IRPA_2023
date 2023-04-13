@@ -17,6 +17,7 @@ class ConvertToDocumentDecorator():
                
                 for questionAnswer in subsectionQnA.questionAnswers:
                    # print("CONTENT", subsectionQnA.questionAnswers[questionAnswer] )
+                   
                     subsectionQnA.metadata["query"] = questionAnswer
                     subsectionQnA.metadata["subsection"] = subsectionQnA.subSectionName
                     document = Document( id_hash_keys=["content", "meta"], content= subsectionQnA.questionAnswers[questionAnswer],

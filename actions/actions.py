@@ -197,11 +197,11 @@ class ActionQueryKnowledgebase(Action):
       
        
         for knowledgebase in knowledgebaseEnsemble:
-            try:
+            # try:
                 newAnswers = await knowledgebase.searchForAnswer(question, intent, entitiesExtracted, startYear, endYear)
                 answers = answers + newAnswers
-            except Exception as e:
-                continue
+            # except Exception as e:
+            #     continue
             
             # divider = ["-------------------------"]
             
@@ -212,7 +212,7 @@ class ActionQueryKnowledgebase(Action):
         answers = answers + answerFromUnansweredQuestion
         print("ANSWERS", answers)
         if len(answers) <= 0:
-            answers = ["Sorry, I couldn't find any answer to your question"]
+            answers = [ChatbotAnswer("Sorry, I couldn't find any answer to your question", source="")]
             addUnansweredQuestion(question, answers)
 
         answers = checkIfAnswerFound(question, answers)
@@ -438,7 +438,8 @@ def getYearRangeInSlot(tracker):
 
 
 def utterAllAnswers(answers : List[ChatbotAnswer], dispatcher):
-  
+    print("ALL ANSWERS")
+    print(answers)
     answersInDict = []
     for answer in answers:
         answerDict = answer.as_dict()

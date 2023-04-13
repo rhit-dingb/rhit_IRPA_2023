@@ -20,12 +20,16 @@ class Trainer:
          #labelGenerator = PseudoLabelGenerator(question_producer=questionAnswerPair, retriever=BM25Retriever())
     
 
-    def trainDataForEmbeddingRetriever(self,  trainingLabels : List[MultiFeedbackLabel], retriever : EmbeddingRetriever, saveDirectory : str ,documentStore, source : str):
+    def trainDataForEmbeddingRetriever(self,  trainingLabels : List[MultiFeedbackLabel], retriever : EmbeddingRetriever, saveDirectory : str ,documentStore, source : str, useQuestion):
+        """
+        :param useQuestion: whether to use question or the answer for training.
+        """
+        
         filteredTrainingLabel = []
         if not source == None: 
             filteredTrainingLabel = self.filterTrainingLabelForSource(trainingLabels, source)
 
-        trainingData = self.trainingDataCreator.createTrainingDataForEmbeddingRetriever(filteredTrainingLabel, retriever, documentStore)
+        trainingData = self.trainingDataCreator.createTrainingDataForEmbeddingRetriever(filteredTrainingLabel, retriever, documentStore, useQuestion)
         print("USE THIS AS TRAINING DATA", trainingData)
         retriever.train(training_data=trainingData, n_epochs = 1, num_workers=2, train_loss="mnrl")
         retriever.save(saveDirectory)
@@ -76,7 +80,7 @@ class TrainingDataCreator:
             questionText = trainingLabelContainer.query
             for feedbackLabel in trainingLabelContainer.feedbackLabels:
                 answer_text = feedbackLabel.answerProvided
-                context = feedbackLabel.metadata["document_content"]
+                context = feedbackLabel.metadata["context"]
                 offset_start_in_document = 0
                 # offset_start_in_document = feedbackLabel.metadata["offsets_in_document"][0]["start"]
                 answer_start = offset_start_in_document
@@ -136,7 +140,7 @@ class TrainingDataCreator:
 
 
 
-    def createTrainingDataForEmbeddingRetriever(self, trainingLabels : List[MultiFeedbackLabel], retriever : EmbeddingRetriever, documentStore) -> List[Dict[str, Any]]:
+    def createTrainingDataForEmbeddingRetriever(self, trainingLabels : List[MultiFeedbackLabel], retriever : EmbeddingRetriever, documentStore, useQuestion : bool) -> List[Dict[str, Any]]:
         """
         Tutorial to how to train the embedding retriever: https://colab.research.google.com/drive/1Tz9GSzre7JfvXDDKe7sCnO0FMuDViMnN?usp=sharing#scrollTo=ad4b870e
         The training data for embedding retriever looks like:
@@ -163,7 +167,12 @@ class TrainingDataCreator:
             pos_docs = []
             neg_docs= []
             for feedbackLabel in trainingLabel.feedbackLabels:
-                content = feedbackLabel.metadata["document_content"]
+                content = ""
+                if useQuestion:
+                    content = feedbackLabel.metadata["document_question"]
+                else:
+                    content = feedbackLabel.metadata["document_content"]
+                    
                 if feedbackLabel.feedback == FeedbackType.CORRECT:
                     pos_docs.append(content)
                     questionToPositiveDocument.append({"question": feedbackLabel.query, "document":content})

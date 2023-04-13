@@ -92,6 +92,7 @@ class  FAQKnowledgeBase(KnowledgeBase):
     def convertToDf(self,documents : List[Document]):
 
         data = [[doc.meta["query"], doc.content] for doc in documents]
+      
         df = pd.DataFrame(data= data, columns=["question", "answer"])
         df.fillna(value="", inplace=True)
         
@@ -101,9 +102,14 @@ class  FAQKnowledgeBase(KnowledgeBase):
         df = df.rename(columns={"question": "content"})
         if(len(documents)>0):
         # add rest of metadata
-            for key in documents[0].meta:
-                df[key] = [documents[0].meta[key]] * len(documents)
-        
+            allMetadata = dict()
+            for doc in documents:
+                for key in doc.meta:
+                    if not key in allMetadata:
+                        allMetadata[key] = []
+                    allMetadata[key].append(doc.meta[key])
+            for key in allMetadata:
+                df[key] = allMetadata[key]
         #Add id
         ids = [document.id for document in documents]
         df["id"] = ids
@@ -146,7 +152,7 @@ class  FAQKnowledgeBase(KnowledgeBase):
             metadata["offsets_in_context"] = answer.offsets_in_context
             metadata["document_ids"]= answer.document_ids
             metadata["document_content"] = document.content
-           
+            metadata["document_question"] = document.meta["query"]
             #answerStrings.append(answer.answer)
             chatbotAnswer = ChatbotAnswer(answer = answer.answer, source=self.source, metadata=metadata)
             chatbotAnswers.append(chatbotAnswer)
@@ -165,7 +171,7 @@ class  FAQKnowledgeBase(KnowledgeBase):
 
     def train(self, trainingLabels : List[MultiFeedbackLabel]) -> bool:
         # try:
-            self.trainer.trainDataForEmbeddingRetriever(trainingLabels, retriever = self.retriever, saveDirectory= self.fullModelPath, documentStore = self.documentStore, source=self.source)
+            self.trainer.trainDataForEmbeddingRetriever(trainingLabels, retriever = self.retriever, saveDirectory= self.fullModelPath, documentStore = self.documentStore, source=self.source, useQuestion=True)
             # reload model.
             self.retriever = EmbeddingRetriever(
                 document_store=self.documentStore,
