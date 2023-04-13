@@ -66,9 +66,7 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
         else:
             self.loadReader(self.fullReaderPath, self.fullReaderPath, save=False)
 
-      
-
-
+    
         availableYears = self.dataManager.getAllAvailableYearsSorted()
         await self.writeDocToDocumentStore(availableYears)
         self.pipeline = ExtractiveQAPipeline(self.reader, self.retriever)
@@ -96,7 +94,7 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
         availableYears = self.dataManager.getAllAvailableYearsSorted()
         yearAgnosticData = self.dataManager.findAllYearAngosticDataName()
         await utils.writeDocToDocumentStore(availableYears, yearAgnosticData,self.dataManager, self.documentStore, lambda x : x)
-        
+        self.documentStore.update_embeddings(self.retriever)
 
 
 
@@ -150,9 +148,14 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
 
 
     def train(self, trainingLabels : List[MultiFeedbackLabel]):
-        self.trainer.trainDataForEmbeddingRetriever(trainingLabels, self.retriever, saveDirectory=self.fullRetrieverPath,documentStore= self.documentStore, source=self.source )
-        self.trainer.trainDataForModelWithSQUAD(trainingLabels=trainingLabels, model=self.reader, saveDirectory= self.fullReaderPath, source=self.source)
-        self.documentStore.update_embeddings()
+        try:
+            self.trainer.trainDataForEmbeddingRetriever(trainingLabels, self.retriever, saveDirectory=self.fullRetrieverPath,documentStore= self.documentStore, source=self.source )
+            self.trainer.trainDataForModelWithSQUAD(trainingLabels=trainingLabels, model=self.reader, saveDirectory= self.fullReaderPath, source=self.source)
+            self.documentStore.update_embeddings(self.retriever)
+            return True
+        except Exception:
+            return False
+        
     
     async def dataUploaded(self, dataName, startYear = None, endYear = None):
         self.documentStore.delete_documents(filters={"dataName": dataName})

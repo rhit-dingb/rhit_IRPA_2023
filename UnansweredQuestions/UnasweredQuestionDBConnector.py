@@ -27,3 +27,7 @@ class UnansweredQuestionDbConnector(ABC):
     @abstractmethod
     def deleteUnansweredQuestion(id):
        pass
+
+    @abstractmethod
+    def updateFeedbackForAnswer(self, questionId, chatbotAnswer, feedback):
+        pass

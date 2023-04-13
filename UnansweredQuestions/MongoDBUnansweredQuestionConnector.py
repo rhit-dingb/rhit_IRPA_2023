@@ -54,14 +54,28 @@ class MongoDBUnansweredQuestionConnector():
             "is_addressed": False,
             "chatbotAnswers": chatbotAnswers,
             "answer": None,
-            
             }
         
         boo1 = self.questions_collection.insert_one(toAdd)
      
         return boo1
 
-    
+    def updateFeedbackForAnswer(self, questionId, chatbotAnswer, feedback):
+     
+        filter = {'_id': ObjectId(questionId), "chatbotAnswers":{"$elemMatch": {"answer":chatbotAnswer } }}
+        data = self.questions_collection.find_one(filter)
+        print(json.loads(json_util.dumps(data)))
+        toUpdate = {"$set": {"chatbotAnswers.$.feedback": feedback}}
+        result = self.questions_collection.update_one(filter, toUpdate)
+        print("RESULT")
+        print(result)
+        modifiedCount = result.modified_count
+        if modifiedCount == 1:
+            return True
+        else:
+            return False
+        
+
     def getQuestionAnswerObjectById(self, id):
        return json.loads(json_util.dumps(self.questions_collection.find_one({'_id': ObjectId(id)})))
     

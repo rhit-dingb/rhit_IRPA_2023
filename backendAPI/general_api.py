@@ -167,7 +167,7 @@ async def parse_data(request : Request):
     if "dataName" in jsonData:
         outputName = jsonData["dataName"]
     if not outputName == "":
-        # try:
+        try:
             jsonCdsLoader.loadData(excelData)
             # dataWriter = MongoDBSp arseMatrixDataWriter(outputName)
             # dataParser = SparseMatrixDataParser()c
@@ -200,8 +200,8 @@ async def parse_data(request : Request):
             await cacheEventPublisher.notify(EventType.DataUploaded, eventData)
             
             return {"message": "Done", "uploadedAs": outputName}
-        # except Exception:
-        #     raise HTTPException(status_code=500, detail="Something went wrong while parsing the input data")
+        except Exception:
+            raise HTTPException(status_code=500, detail="Something went wrong while parsing the input data")
 
     
 
@@ -261,6 +261,8 @@ async def change_selected_year(request : Request):
     except Exception:
         raise HTTPException(status_code=500, detail="change failed")
 
+
+
 @app.get("/api/get_selected_year/{conversation_id}")
 async def get_selected_year(conversation_id : str):
     async with aiohttp.ClientSession() as session:
@@ -277,12 +279,16 @@ async def get_selected_year(conversation_id : str):
             return {"selectedYear":[startYear, endYear] }
 
 
-# General API for getting unanswered questions
+# ==================================API for getting unanswered questions===============================================
 @app.get("/questions")
 async def get_unans_questions():
     unanswered_questions = unansweredQuestionDbConnector.getAllUnansweredQuestionAndAnswer()
     return unanswered_questions
 
+@app.get("/questions/{question_id}")
+async def get_question_by_id(question_id : str):
+    questionObj = unansweredQuestionDbConnector.getQuestionAnswerObjectById(question_id)
+    return questionObj
 
 @app.get("/answer_unanswered_question")
 async def answer_unanswered_question(question: str):
@@ -329,6 +335,24 @@ async def handle_add_unanswered_question(request : Request):
     else:
         print("ERROR OCCURED DURING QUESTION ADD")
         return {'message': 'errors occurred during question add'}
+
+
+# This can either be administrator or user, so we need to the isAdministrator field to determine
+@app.put("/update_answer_feedback")
+async def update_answer_feedback(request : Request):
+    request = await request.json()
+    isAdministrator = request["isAdmin"]
+    feedback = request["feedback"]
+    questionId = request["questionId"]
+    chatbotAnswer = request["chatbotAnswer"]
+    # if not isAdministrator:
+    #     # otherwise it is user
+    #     pass
+    
+    result = unansweredQuestionDbConnector.updateFeedbackForAnswer(questionId=questionId, chatbotAnswer=chatbotAnswer, feedback=feedback)
+    return {"success": result}
+
+
 
 
 #====================Below are the list of APIs for Freqency API==========================
@@ -532,17 +556,6 @@ def getToken(request : Request):
         return None
     
 
-#  id: str
-# query: str
-# document: Document
-# is_correct_answer: bool
-# is_correct_document: bool
-# origin: Literal["user-feedback", "gold-label"]
-# answer: Optional[Answer] = None
-# pipeline_id: Optional[str] = None
-# created_at: Optional[str] = None
-# updated_at: Optional[str] = None
-# meta: Optional[dict] = None
 
 
 @app.post("/train_knowledgebase")
@@ -557,12 +570,12 @@ async def trainKnowledgebase(request : Request):
         questionObj = unansweredQuestionDbConnector.getQuestionAnswerObjectById(id)
         entities["feedback"].append(questionObj)
         conversationId = "random"
-    # try:
-    async with aiohttp.ClientSession() as session:
-        response = await rasaCommunicator.injectIntent(EVENT_OCCURED_KEY, entities, session, conversationId)
-        print(response)
-    
-    return {"message": "success"}
-    # except Exception:
-    #     raise HTTPException(status_code=500, detail="change failed")
+    try:
+        async with aiohttp.ClientSession() as session:
+            response = await rasaCommunicator.injectIntent(EVENT_OCCURED_KEY, entities, session, conversationId)
+            print(response)
+        
+        return {"success":True}
+    except Exception:
+        raise HTTPException(status_code=500, detail="change failed")
     

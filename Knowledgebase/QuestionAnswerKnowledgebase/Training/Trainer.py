@@ -17,10 +17,9 @@ class Trainer:
         # Download the model 
         questionAnswerPair = [{"question":"What is my name", "document": "Travis Zheng"}]
         
-        labelGenerator = PseudoLabelGenerator(question_producer=questionAnswerPair, retriever=BM25Retriever())
+         #labelGenerator = PseudoLabelGenerator(question_producer=questionAnswerPair, retriever=BM25Retriever())
     
 
-    
     def trainDataForEmbeddingRetriever(self,  trainingLabels : List[MultiFeedbackLabel], retriever : EmbeddingRetriever, saveDirectory : str ,documentStore, source : str):
         filteredTrainingLabel = []
         if not source == None: 
@@ -181,7 +180,7 @@ class TrainingDataCreator:
         
        
         # I will use this create score margins rather than auto generate labels.
-        labelGenerator = PseudoLabelGenerator(question_producer=questionDocumentPair, retriever=retriever)
+        #labelGenerator = PseudoLabelGenerator(question_producer=questionDocumentPair, retriever=retriever)
         # labelGenerator.generate_questions()
 
 
@@ -189,12 +188,24 @@ class TrainingDataCreator:
         # Generate every possible combination of pos_doc and negative_doc:
         for trainingLabel in trainingLabels:
             for pos_doc in pos_docs:
-                for neg_doc in neg_docs:
-                    data = {"question": trainingLabel.query, "pos_doc":pos_doc, "neg_doc": neg_doc}
+                if len(neg_docs) == 0:
+                    data = {"question": trainingLabel.query, "pos_doc": pos_doc}
+                    dataToGetScoreMarginFor.append(data)
+                else:
+                    for neg_doc in neg_docs:
+                        data = {"question": trainingLabel.query, "pos_doc":pos_doc, "neg_doc": neg_doc}
+                        dataToGetScoreMarginFor.append(data)
+                    data = {"question": trainingLabel.query, "pos_doc": pos_doc}
                     dataToGetScoreMarginFor.append(data)
 
-                data = {"question": trainingLabel.query, "pos_doc": pos_doc}
-                dataToGetScoreMarginFor.append(data)
+
+            # if len(pos_docs) == 0:
+            #     for neg_doc in neg_docs:
+            #         data = {"question": trainingLabel.query, "neg_doc":neg_docs}
+            #         dataToGetScoreMarginFor.append(data)
+
+                # data = {"question": trainingLabel.query, "pos_doc": pos_doc}
+                # dataToGetScoreMarginFor.append(data)
 
         # dataMined= labelGenerator.mine_negatives(questionToPositiveDocument)
         # dataMined, pipe_id  = labelGenerator.run([Document(content=trainingLabel.query) for trainingLabel in trainingLabels])

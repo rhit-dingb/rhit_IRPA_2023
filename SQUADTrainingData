@@ -3,203 +3,72 @@
         {
             "paragraphs": [
                 {
-                    "context": "statement of good standing from prior institutions is recommended of all transfer applicants.",
-                    "id": "787d9dc7da9e3286f78af68611507c99",
-                    "qas": [
-                        {
-                            "answers": [
-                                {
-                                    "answer_start": 0,
-                                    "text": "statement of good standing from prior institutions is recommended of all transfer applicants."
-                                }
-                            ],
-                            "id": "5584b4dd-d8e0-11ed-96a2-24ee9a197afc",
-                            "is_impossible": false,
-                            "question": "What do I need for my transfer application?"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "paragraphs": [
-                {
-                    "context": "high school transcript is recommended of some for transfer applicants.",
-                    "id": "3da3b68a261a31130cf853225d2ee29",
-                    "qas": [
-                        {
-                            "answers": [
-                                {
-                                    "answer_start": 0,
-                                    "text": "high school transcript is recommended of some for transfer applicants."
-                                }
-                            ],
-                            "id": "5584b4de-d8e0-11ed-b1ed-24ee9a197afc",
-                            "is_impossible": false,
-                            "question": "What do I need for my transfer application?"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "paragraphs": [
-                {
-                    "context": "college transcript is required for transfer applicants",
-                    "id": "8c75338daaa4d15e47433c6a6f6abb4e",
-                    "qas": [
-                        {
-                            "answers": [
-                                {
-                                    "answer_start": 0,
-                                    "text": "college transcript is required for transfer applicants"
-                                }
-                            ],
-                            "id": "5584b4df-d8e0-11ed-a3d5-24ee9a197afc",
-                            "is_impossible": false,
-                            "question": "What do I need for my transfer application?"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "paragraphs": [
-                {
-                    "context": "interview is recommended of some to apply for transfer applicants",
-                    "id": "601ae1302474a396140232759f3e320f",
-                    "qas": [
-                        {
-                            "answers": [
-                                {
-                                    "answer_start": 0,
-                                    "text": "interview is recommended of some to apply for transfer applicants"
-                                }
-                            ],
-                            "id": "5584b4e0-d8e0-11ed-b895-24ee9a197afc",
-                            "is_impossible": false,
-                            "question": "What do I need for my transfer application?"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "paragraphs": [
-                {
-                    "context": "essays or personal statement is required for transfer applicants.",
-                    "id": "d3ec4c12fe7546275347c3965cf7578",
-                    "qas": [
-                        {
-                            "answers": [
-                                {
-                                    "answer_start": 0,
-                                    "text": "essays or personal statement is required for transfer applicants."
-                                }
-                            ],
-                            "id": "5584b4e1-d8e0-11ed-b7fb-24ee9a197afc",
-                            "is_impossible": false,
-                            "question": "What do I need for my transfer application?"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "paragraphs": [
-                {
-                    "context": "there is no minimum high school gpa requirement for transfer applicants",
-                    "id": "82841e0254b0e0bf471a2688f284c3ec",
-                    "qas": [
-                        {
-                            "answers": [
-                                {
-                                    "answer_start": 0,
-                                    "text": "there is no minimum high school gpa requirement for transfer applicants"
-                                }
-                            ],
-                            "id": "5584b4e2-d8e0-11ed-9a02-24ee9a197afc",
-                            "is_impossible": false,
-                            "question": "What do I need for my transfer application?"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "paragraphs": [
-                {
-                    "context": "the minimum gpa required of transfer applicants is 3.0",
-                    "id": "b1e7627355aae51809d6d2fd42e9868d",
-                    "qas": [
-                        {
-                            "answers": [
-                                {
-                                    "answer_start": 0,
-                                    "text": "the minimum gpa required of transfer applicants is 3.0"
-                                }
-                            ],
-                            "id": "5584b4e3-d8e0-11ed-be53-24ee9a197afc",
-                            "is_impossible": false,
-                            "question": "What do I need for my transfer application?"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "paragraphs": [
-                {
-                    "context": "credits to be transferred are reviewed by each department and the final decision to award credit is up to the appropriate department chairs.",
-                    "id": "ff58cfa2a00b538d1c44b9cfa44ce486",
-                    "qas": [
-                        {
-                            "answers": [
-                                {
-                                    "answer_start": 0,
-                                    "text": "credits to be transferred are reviewed by each department and the final decision to award credit is up to the appropriate department chairs."
-                                }
-                            ],
-                            "id": "5584b4e4-d8e0-11ed-a7b8-24ee9a197afc",
-                            "is_impossible": false,
-                            "question": "What do I need for my transfer application?"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "paragraphs": [
-                {
-                    "context": "transfer students do not need to have minimum number of credit completed",
-                    "id": "c12afe095e370b2da0e0820b8c506f66",
-                    "qas": [
-                        {
-                            "answers": [
-                                {
-                                    "answer_start": 0,
-                                    "text": "transfer students do not need to have minimum number of credit completed"
-                                }
-                            ],
-                            "id": "5584b4e5-d8e0-11ed-aff7-24ee9a197afc",
-                            "is_impossible": false,
-                            "question": "What do I need for my transfer application?"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "paragraphs": [
-                {
-                    "context": "the financial aid forms domestic first-year (freshman) financial aid applicants must submit is fafsa",
-                    "id": "51eb91f9a7a491a8275b88f38bd42aba",
+                    "context": "The average financial aid package for degree-seeking full-time undergraduate students who were awarded any financial aid is $35,451.",
+                    "id": "bd46153a6b6f0be672957efd6fc032a1",
                     "qas": [
                         {
                             "answers": [],
-                            "id": "5584b4e6-d8e0-11ed-89e4-24ee9a197afc",
+                            "id": "10c1167c-d9ad-11ed-9b12-24ee9a197afc",
                             "is_impossible": true,
-                            "question": "What do I need for my transfer application?"
+                            "question": "What do I need for financial aid?"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "paragraphs": [
+                {
+                    "context": "The financial aid forms domestic first-year (freshman) financial aid applicants must submit is FAFSA",
+                    "id": "d28bec3cfe1e65c1cc4ec9887286f3f6",
+                    "qas": [
+                        {
+                            "answers": [
+                                {
+                                    "answer_start": 0,
+                                    "text": "The financial aid forms domestic first-year (freshman) financial aid applicants must submit is FAFSA"
+                                }
+                            ],
+                            "id": "10c1167d-d9ad-11ed-ac94-24ee9a197afc",
+                            "is_impossible": false,
+                            "question": "What do I need for financial aid?"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "paragraphs": [
+                {
+                    "context": "First-year financial aid applicants who are Nonresident Aliens must submit International Student’s Certification of Finances",
+                    "id": "2b459cc4c95fce7dca9f23f00c4c4222",
+                    "qas": [
+                        {
+                            "answers": [
+                                {
+                                    "answer_start": 0,
+                                    "text": "First-year financial aid applicants who are Nonresident Aliens must submit International Student’s Certification of Finances"
+                                }
+                            ],
+                            "id": "10c1167e-d9ad-11ed-bd44-24ee9a197afc",
+                            "is_impossible": false,
+                            "question": "What do I need for financial aid?"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "paragraphs": [
+                {
+                    "context": "On average, 64.7% of financial need was met for degree-seeking part-time undergraduate students who were awarded any need-based aid.",
+                    "id": "5e34c572106a0142f947ea5aa5be5d63",
+                    "qas": [
+                        {
+                            "answers": [],
+                            "id": "10c1167f-d9ad-11ed-aec0-24ee9a197afc",
+                            "is_impossible": true,
+                            "question": "What do I need for financial aid?"
                         }
                     ]
                 }

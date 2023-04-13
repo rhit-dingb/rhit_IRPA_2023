@@ -79,15 +79,15 @@ qaKnowledgebase = QuestionAnswerKnowledgeBase(mongoDataManager)
 asyncio.run(qaKnowledgebase.initialize())
 
 
-# mongoProcessor = MongoProcessor()
-# mongoProcessor = ConvertToDocumentDecorator(mongoProcessor)
-# mongoDataManager = MongoDataManager(mongoProcessor)
-# faqKnowledgebase = FAQKnowledgeBase(mongoDataManager)
-# asyncio.run(faqKnowledgebase.initialize())
+mongoProcessor = MongoProcessor()
+mongoProcessor = ConvertToDocumentDecorator(mongoProcessor)
+mongoDataManager = MongoDataManager(mongoProcessor)
+faqKnowledgebase = FAQKnowledgeBase(mongoDataManager)
+asyncio.run(faqKnowledgebase.initialize())
 
 
 
-knowledgebaseEnsemble : List[KnowledgeBase] = [sparseMatrixKnowledgeBase,  qaKnowledgebase]
+knowledgebaseEnsemble : List[KnowledgeBase] = [sparseMatrixKnowledgeBase,  faqKnowledgebase]
 
 class ActionGetAvailableOptions(Action):
     def __init__(self) -> None:
@@ -195,9 +195,14 @@ class ActionQueryKnowledgebase(Action):
 
         answers : List[ChatbotAnswer] = []
       
-        # try:
+       
         for knowledgebase in knowledgebaseEnsemble:
-            answers = answers + await knowledgebase.searchForAnswer(question, intent, entitiesExtracted, startYear, endYear)
+            try:
+                newAnswers = await knowledgebase.searchForAnswer(question, intent, entitiesExtracted, startYear, endYear)
+                answers = answers + newAnswers
+            except Exception as e:
+                continue
+            
             # divider = ["-------------------------"]
             
             # if len(answers)>0:
@@ -205,13 +210,11 @@ class ActionQueryKnowledgebase(Action):
         
         answerFromUnansweredQuestion = getAnswerForUnansweredQuestion(question)
         answers = answers + answerFromUnansweredQuestion
-
-      
-        # answers = list(set(answers))
         print("ANSWERS", answers)
-        # if len(answers) <= 0:
-        #     answers = ["Sorry, I couldn't find any answer to your question"]
-        #     addUnansweredQuestion(question, answers)
+        if len(answers) <= 0:
+            answers = ["Sorry, I couldn't find any answer to your question"]
+            addUnansweredQuestion(question, answers)
+
         answers = checkIfAnswerFound(question, answers)
         event = utterAllAnswers(answers, dispatcher) 
         events.append(event)       
@@ -456,7 +459,13 @@ def getAnswerForUnansweredQuestion(question):
         answersKey = "answers"
         if answersKey in jsonData:
             answers = jsonData["answers"]
-            return answers
+            chatbotAnswers = []
+            for answer in answers:
+                chatbotAnswer = ChatbotAnswer(question= question, answer= answer, source="unansweredQuestionEngine")
+                chatbotAnswers.append(chatbotAnswer)
+        
+            return chatbotAnswers
+           
         else:
             return []
         

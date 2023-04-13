@@ -163,19 +163,22 @@ class  FAQKnowledgeBase(KnowledgeBase):
         raise NotImplementedError()
 
 
-    def train(self, trainingLabels : List[MultiFeedbackLabel]):
-        self.trainer.trainDataForEmbeddingRetriever(trainingLabels, retriever = self.retriever, saveDirectory= self.fullModelPath, documentStore = self.documentStore, source=self.source)
-      
-
-        # reload model.
-        self.retriever = EmbeddingRetriever(
-            document_store=self.documentStore,
-            embedding_model=self.fullModelPath,
-            use_gpu=True,
-        )
-        # await self.writeDocToDocumentStore(availableYears)
-        
-        self.documentStore.update_embeddings(self.retriever)
+    def train(self, trainingLabels : List[MultiFeedbackLabel]) -> bool:
+        # try:
+            self.trainer.trainDataForEmbeddingRetriever(trainingLabels, retriever = self.retriever, saveDirectory= self.fullModelPath, documentStore = self.documentStore, source=self.source)
+            # reload model.
+            self.retriever = EmbeddingRetriever(
+                document_store=self.documentStore,
+                embedding_model=self.fullModelPath,
+                use_gpu=True,
+            )
+            # await self.writeDocToDocumentStore(availableYears)
+            
+            self.documentStore.update_embeddings(self.retriever)
+            return True
+        # except Exception:
+        #     return False
+            
     
     async def dataUploaded(self, dataName, startYear = None, endYear = None):
         self.documentStore.delete_documents(filters={"dataName": dataName})

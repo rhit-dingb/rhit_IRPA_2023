@@ -34,7 +34,7 @@ class KnowledgeBase(ABC) :
 
 
     @abstractmethod
-    def train(self, trainingLabels : List[MultiFeedbackLabel]):
+    def train(self, trainingLabels : List[MultiFeedbackLabel])-> bool:
         pass
     
     @abstractmethod
