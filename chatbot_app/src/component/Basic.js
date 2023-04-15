@@ -27,7 +27,7 @@ function Basic() {
       let body = { }
      
       body[CHATBOT_TEXT_MESSAGE_KEY] =  "Hi! I am a chatbot for the IPRA office, I can help you answer various questions related to Rose-Hulman."
-      const request_temp = { sender: "bot", sender_id: "test", jsonData:  [body] }
+      const request_temp = { sender: "bot", sender_id: "test", jsonData:  body}
       setbotTyping(true)
       setChat([...chat, ...[request_temp]])
       rasaAPI(conversationId, GET_AVAILABLE_OPTIONS_MESSAGE)
@@ -85,30 +85,30 @@ function Basic() {
           // console.log("_____________________________--")
           let messages = []
           
-          const response_temp = {
-            sender: "bot",
-            // recipient_id: "user"
-            jsonData: response
-          }
+          // const response_temp = {
+          //   sender: "bot",
+          //   // recipient_id: "user"
+          //   jsonData: response
+          // }
 
-          console.log(response_temp)
-          messages.push(response_temp)
+          // console.log(response_temp)
+          // messages.push(response_temp)
 
-          // for (let r of response) {
-          //     const recipient_id = r["recipient_id"];
-          //     //Expect the backend return the following json
-          //     // {custom:{text:"", ...other stuff }}
-          //     // console.log(r)
-          //     const response_temp = {
-          //       sender: "bot",
-          //       recipient_id: recipient_id,
-          //       jsonData: r,
-          //     };
+          for (let r of response) {
+              const recipient_id = r["recipient_id"];
+              //Expect the backend return the following json
+              // {custom:{text:"", ...other stuff }}
+              // console.log(r)
+              const response_temp = {
+                sender: "bot",
+                recipient_id: recipient_id,
+                jsonData: r,
+              };
 
              
           //     console.log(response_temp)
-          //    messages.push(response_temp)
-          // }
+              messages.push(response_temp)
+          }
 
 
         
@@ -187,7 +187,7 @@ function Basic() {
                   <div key={key}>
                     {user.sender === "bot" ? (
                       
-                      <ChatbotResponse recipientId = {user.recipient_id} keyToUse ={key} jsonResponse = {user.jsonData}/>
+                      <ChatbotResponse keyToUse ={key} jsonResponse = {user.jsonData} setChatbotTyping={setbotTyping}/>
                     ) : (
                       <div className="msgalignend">
                         <h5 className="usermsg">{user.msg}</h5>

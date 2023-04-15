@@ -68,7 +68,7 @@ export function TextAnswer({isAdmin, questionId, answer, feedback, source}) {
     return ( 
         <div>
             {isAdmin &&(<div>
-            <Stack justifyContent={"center"} spacing={2} direction="row" >
+            <Stack key={answer} justifyContent={"center"} spacing={2} direction="row" >
                 <p>
                     {answer} 
                 </p>
@@ -80,17 +80,19 @@ export function TextAnswer({isAdmin, questionId, answer, feedback, source}) {
 
             {!isAdmin &&
             (
-                <div className="msgalignstart">
+                <div key={answer} className="msgalignstart">
                
                 <BiBot className="botIcon" />
-                    <Stack className="botmsg" spacing={2} direction="row" >
-                        <h5 >{answer} </h5>
+                    <Stack className="botmsg"  direction="row" >
+                        <h5 style={{textAlign:"left"}} >{answer} </h5>
                         <div>
                       
                         {/* {renderThumbsUpAndDown()} */}
                        
                         </div>
                     </Stack>
+
+                    
                 </div> 
             )
             }
