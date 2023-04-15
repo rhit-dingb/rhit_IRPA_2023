@@ -125,16 +125,21 @@ class  FAQKnowledgeBase(KnowledgeBase):
         raise NotImplementedError()
 
    
-    async def searchForAnswer(self, question, intent, entitiesExtracted,startYear, endYear):
+    async def searchForAnswer(self, question, intent, entitiesExtracted,startYear, endYear) -> Tuple[List[ChatbotAnswer], bool] :
          # create qa pipeline
         print("SEARCH FOR ANSWER")
         result = self.pipeline.run(query = question, params= {
           
             "Retriever": {"top_k": 10}, 
-            
-            "filters": {
-                "startYear": str(startYear),
-                "endYear": str(endYear)
+             "filters": {
+                "$or": {
+                    "$and": {
+                        "startYear": startYear,
+                        "endYear": endYear
+                        },
+                        
+                    "isYearAgnostic": True
+                }
             }
         }
         
@@ -157,7 +162,7 @@ class  FAQKnowledgeBase(KnowledgeBase):
             chatbotAnswer = ChatbotAnswer(answer = answer.answer, source=self.source, metadata=metadata)
             chatbotAnswers.append(chatbotAnswer)
 
-        return chatbotAnswers
+        return (chatbotAnswers, True)
     
     
         

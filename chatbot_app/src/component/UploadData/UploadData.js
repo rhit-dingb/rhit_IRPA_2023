@@ -56,8 +56,6 @@ function UploadData(props) {
   const [notificationBannerColor, setNotificationColor ] = useState("error")
   const [isUploading, setIsUploading] = useState(false)
 
- 
-
 
   useEffect(() => {
     fetchAnnualData()

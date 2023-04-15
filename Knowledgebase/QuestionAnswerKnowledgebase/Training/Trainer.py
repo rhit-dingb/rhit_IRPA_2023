@@ -31,6 +31,8 @@ class Trainer:
 
         trainingData = self.trainingDataCreator.createTrainingDataForEmbeddingRetriever(filteredTrainingLabel, retriever, documentStore, useQuestion)
         print("USE THIS AS TRAINING DATA", trainingData)
+        if len(trainingData) == 0:
+            return True
         retriever.train(training_data=trainingData, n_epochs = 1, num_workers=2, train_loss="mnrl")
         retriever.save(saveDirectory)
         return True
@@ -78,6 +80,9 @@ class TrainingDataCreator:
         export_data = []
         for trainingLabelContainer in trainingLabels:
             questionText = trainingLabelContainer.query
+
+            posAnsConcat = ""
+            negAnsConcat = ""
             for feedbackLabel in trainingLabelContainer.feedbackLabels:
                 answer_text = feedbackLabel.answerProvided
                 context = feedbackLabel.metadata["context"]
@@ -96,7 +101,12 @@ class TrainingDataCreator:
                             }
                         ]
                     }
+                    export_data.append(squad_label)
+                    negAnsConcat = negAnsConcat +" "+feedbackLabel.answerProvided
+
                 elif feedbackLabel.feedback == FeedbackType.CORRECT: 
+
+                    posAnsConcat = posAnsConcat +" "+ feedbackLabel.answerProvided
                     squad_label = {
                     "paragraphs": [
                         {
@@ -114,6 +124,8 @@ class TrainingDataCreator:
                         ]
                     }
 
+                    export_data.append(squad_label)
+
                     # quality check 
                     # start = squad_label["paragraphs"][0]["qas"][0]["answers"][0]["answer_start"]
                     # answer = squad_label["paragraphs"][0]["qas"][0]["answers"][0]["text"]
@@ -129,8 +141,27 @@ class TrainingDataCreator:
                 #     continue
 
                   
-                export_data.append(squad_label)
-           
+                
+            # handle positive data
+            # answer_start = 0
+            # squad_label = {
+            #         "paragraphs": [
+            #             {
+            #                 "context": posAnsConcat+negAnsConcat,
+            #                 "id": str(uuid.uuid1()),
+            #                 "qas": [
+            #                     {
+            #                         "question": feedbackLabel.query,
+            #                         "id": str(uuid.uuid1()),
+            #                         "is_impossible": False,
+            #                         "answers": [{"text": posAnsConcat, "answer_start": answer_start}],
+            #                     }
+            #                 ],
+            #             }
+            #         ]
+            # }
+
+            # export_data.append(squad_label)
             export = {"data": export_data}
             with open(trainingDataFileName, "w", encoding="utf8") as f:
                 json.dump(export, f, ensure_ascii=False, sort_keys=True, indent=4)
@@ -172,7 +203,7 @@ class TrainingDataCreator:
                     content = feedbackLabel.metadata["document_question"]
                 else:
                     content = feedbackLabel.metadata["document_content"]
-                    
+
                 if feedbackLabel.feedback == FeedbackType.CORRECT:
                     pos_docs.append(content)
                     questionToPositiveDocument.append({"question": feedbackLabel.query, "document":content})

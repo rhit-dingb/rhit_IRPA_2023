@@ -5,32 +5,32 @@ version: "3.1"
 nlu:
 - intent: general_info
   examples: |
-    - Tell me about Rose-Hulman
-    - What is Rose-Hulman's mailing [address]{"entity":"way_of_contact", "value": "address"}?
+    - Tell me about your school
+    - What is your school's mailing [address]{"entity":"way_of_contact", "value": "address"}?
     - What [type](type) of [college]{"entity": "education_level", "value": "college"} is rose?
-    - [where]{"entity":"way_of_contact", "value": "address"} is rose-hulman?
-    - [where]{"entity":"way_of_contact", "value": "address"} is Rose-Hulman [located]{"entity":"way_of_contact", "value": "address"}?
-    - What is Rose-Hulman admissions [phone]{"entity":"way_of_contact", "value": "phone"} [number]{"entity":"way_of_contact", "value": "phone"} ?
-    - What is Rose-Hulman admissions [phone]{"entity":"way_of_contact", "value": "phone"} ?
-    - What is Rose-Hulman admissions [phone]{"entity":"way_of_contact", "value": "phone"} ?
-    - What is Rose-Hulman admissions [number]{"entity":"way_of_contact", "value": "phone"} ?
-    - What is Rose-Hulman admissions [fax]{"entity":"way_of_contact", "value": "fax"} [number]{"entity":"way_of_contact", "value": "phone"}? 
+    - [where]{"entity":"way_of_contact", "value": "address"} is your school?
+    - [where]{"entity":"way_of_contact", "value": "address"} is your school [located]{"entity":"way_of_contact", "value": "address"}?
+    - What is your school admissions [phone]{"entity":"way_of_contact", "value": "phone"} [number]{"entity":"way_of_contact", "value": "phone"} ?
+    - What is your school admissions [phone]{"entity":"way_of_contact", "value": "phone"} ?
+    - What is your school admissions [phone]{"entity":"way_of_contact", "value": "phone"} ?
+    - What is your school admissions [number]{"entity":"way_of_contact", "value": "phone"} ?
+    - What is your school admissions [fax]{"entity":"way_of_contact", "value": "fax"} [number]{"entity":"way_of_contact", "value": "phone"}? 
 
-    - What is Rose-Hulman's www home page [address]{"entity":"way_of_contact", "value": "address"} / [website]{"entity":"way_of_contact", "value": "website"}?
-    - What is Rose-Hulman admissions toll free [number]{"entity":"way_of_contact", "value": "number"}?
-    - What is Rose-Hulman admissions office mailing [address]{"entity":"way_of_contact", "value": "address"}?
+    - What is your school's www home page [address]{"entity":"way_of_contact", "value": "address"} / [website]{"entity":"way_of_contact", "value": "website"}?
+    - What is your school admissions toll free [number]{"entity":"way_of_contact", "value": "number"}?
+    - What is your school admissions office mailing [address]{"entity":"way_of_contact", "value": "address"}?
 
-    - What is Rose-Hulman's [email address]{"entity": "way_of_contact", "value":"email"} ?
-    - What is Rose-Hulman's [email]{"entity": "way_of_contact", "value":"email"} ?
-    - What is the [website]{"entity":"way_of_contact", "value": "website"} for Rose-Hulman's [online]{"entity": "online"} [application]{"entity":"academic_process", "value": "application"}?
-    - What is the source of [institutional control]{"entity": "access_level", "value": "institutional control"} for Rose-Hulman.
-    - Is the Rose-Hulman a [private]{"entity": "access_level", "value": "private"} or [public]{"entity": "access_level", "value": "public"} [college]{"entity": "education_level", "value": "college"}?
-    - Is Rose-Hulman a [coeducational]{"entity": "gender", "value": "coeducational"} [college]{"entity": "education_level", "value": "college"}, [men's]{"entity": "gender", "value": "male"} college or [women's]{"entity": "gender", "value": "female"} [college]{"entity": "education_level", "value": "college"}?
-    - What [academic year calendar]{"entity": "calendar_system", "value": "calendar system"} does Rose-Hulman use? 
-    - What [calendar system]{"entity": "calendar_system", "value": "calendar system"} does Rose-Hulman use? 
-    - What [calendar]{"entity": "calendar_system", "value": "calendar system"} does Rose-Hulman use? 
-    - Does Rose-hulman use [quarter]{"entity": "calendar_system", "value": "quarter"}, [semester]{"entity": "calendar_system", "value": "semester"}, [trimester]{"entity": "calendar_system", "value": "trimester"}, [continuous]{"entity": "calendar_system", "value": "continuous basis"}, [4-1-4]{"entity": "calendar_system", "value": "4-1-4"}, or does it [differ by program]{"entity": "calendar_system", "value": "differ by program"}?
-    - What [degrees]{"entity": "academic_credential", "value":"degree"} are offered by Rose-Hulman?
-    - does rose-hulman offer [bachelors]{"entity": "degree_level", "value": "bachelors"} [degree]{"entity": "academic_credential", "value":"degree"}?
-    - does rose-hulman offer any [graduate]{"entity": "student_level", "value": "graduate"} [degree]{"entity": "academic_credential", "value":"degree"}?
-    - does rose-hulman offer [masters]{"entity": "degree_level", "value": "master"} [degree]{"entity": "academic_credential", "value":"degree"}?
+    - What is your school's [email address]{"entity": "way_of_contact", "value":"email"} ?
+    - What is your school's [email]{"entity": "way_of_contact", "value":"email"} ?
+    - What is the [website]{"entity":"way_of_contact", "value": "website"} for your school's [online]{"entity": "online"} [application]{"entity":"academic_process", "value": "application"}?
+    - What is the source of [institutional control]{"entity": "access_level", "value": "institutional control"} for your school.
+    - Is the your school a [private]{"entity": "access_level", "value": "private"} or [public]{"entity": "access_level", "value": "public"} [college]{"entity": "education_level", "value": "college"}?
+    - Is your school a [coeducational]{"entity": "gender", "value": "coeducational"} [college]{"entity": "education_level", "value": "college"}, [men's]{"entity": "gender", "value": "male"} college or [women's]{"entity": "gender", "value": "female"} [college]{"entity": "education_level", "value": "college"}?
+    - What [academic year calendar]{"entity": "calendar_system", "value": "calendar system"} does your school use? 
+    - What [calendar system]{"entity": "calendar_system", "value": "calendar system"} does your school use? 
+    - What [calendar]{"entity": "calendar_system", "value": "calendar system"} does your school use? 
+    - Does your school use [quarter]{"entity": "calendar_system", "value": "quarter"}, [semester]{"entity": "calendar_system", "value": "semester"}, [trimester]{"entity": "calendar_system", "value": "trimester"}, [continuous]{"entity": "calendar_system", "value": "continuous basis"}, [4-1-4]{"entity": "calendar_system", "value": "4-1-4"}, or does it [differ by program]{"entity": "calendar_system", "value": "differ by program"}?
+    - What [degrees]{"entity": "academic_credential", "value":"degree"} are offered by your school?
+    - does your school offer [bachelors]{"entity": "degree_level", "value": "bachelors"} [degree]{"entity": "academic_credential", "value":"degree"}?
+    - does your school offer any [graduate]{"entity": "student_level", "value": "graduate"} [degree]{"entity": "academic_credential", "value":"degree"}?
+    - does your school offer [masters]{"entity": "degree_level", "value": "master"} [degree]{"entity": "academic_credential", "value":"degree"}?

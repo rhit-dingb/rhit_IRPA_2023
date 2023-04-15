@@ -197,11 +197,15 @@ class ActionQueryKnowledgebase(Action):
       
        
         for knowledgebase in knowledgebaseEnsemble:
-            # try:
-                newAnswers = await knowledgebase.searchForAnswer(question, intent, entitiesExtracted, startYear, endYear)
+            try:
+                print(knowledgebase.source)
+                print("__________________________")
+                newAnswers, shouldContinue = await knowledgebase.searchForAnswer(question, intent, entitiesExtracted, startYear, endYear)
                 answers = answers + newAnswers
-            # except Exception as e:
-            #     continue
+                if not shouldContinue:
+                    break
+            except Exception as e:
+                continue
             
             # divider = ["-------------------------"]
             
@@ -209,11 +213,16 @@ class ActionQueryKnowledgebase(Action):
             #     break
         
         answerFromUnansweredQuestion = getAnswerForUnansweredQuestion(question)
-        answers = answers + answerFromUnansweredQuestion
-        print("ANSWERS", answers)
-        if len(answers) <= 0:
+        for answer in answerFromUnansweredQuestion:
+            answers.insert(0, answer)
+
+        # print(list(dict.fromkeys(answers)))
+
+        # print("ANSWERS", answers)
+        if len(answers) == 0:
             answers = [ChatbotAnswer("Sorry, I couldn't find any answer to your question", source="")]
-            addUnansweredQuestion(question, answers)
+            answersAsDict = [answers[0].as_dict()]
+            addUnansweredQuestion(question, answersAsDict)
 
         answers = checkIfAnswerFound(question, answers)
         event = utterAllAnswers(answers, dispatcher) 
@@ -450,7 +459,10 @@ def utterAllAnswers(answers : List[ChatbotAnswer], dispatcher):
 
     return SlotSet(LAST_ANSWERS_PROVIDED_SLOT_NAME, answersInDict)
 
-def addUnansweredQuestion(question, chatbotAnswers): 
+def addUnansweredQuestion(question, chatbotAnswers : Dict[str, any]): 
+    
+    # for ans in chatbotAnswers:
+    #     chatbotAnswersDict.append(ans.as_dict())
     data = {"content": question, "chatbotAnswers":chatbotAnswers}
     response = requests.post("http://127.0.0.1:8000/question_add/", json=data )
 

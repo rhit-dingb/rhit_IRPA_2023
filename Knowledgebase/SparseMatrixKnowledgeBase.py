@@ -63,7 +63,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
     Throws: exception when given year or intent for the data is not found or when exception encountered when parsing year entity values
 
     """
-    async def searchForAnswer(self, question, intent, entitiesExtracted, startYear, endYear):
+    async def searchForAnswer(self, question, intent, entitiesExtracted, startYear, endYear) ->Tuple[List[ChatbotAnswer], bool]:
         # print("BEGAN SEARCHING")
         shouldAddRowStrategy = DefaultShouldAddRowStrategy()
         answers = []
@@ -86,7 +86,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         template = sparseMatrixToSearch.findTemplate()
 
         if(not isOperationAllowed or template == ""):
-            return []
+            return ([], True)
     
         isRangeAllowed = sparseMatrixToSearch.isRangeOperationAllowed()
         hasRangeEntity = findEntityHelper(entitiesExtracted, RANGE_ENTITY_LABEL) 
@@ -118,10 +118,14 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         # also get the documentation of change 
         documentationOfChange = sparseMatrixToSearch.getDocumentationOfChange()
         answers = answers + self.constructOutput(searchResults, intent,  template) 
-        if len(answers) > 0 and not documentationOfChange == None:
-            answers.append(documentationOfChange)
-        
-        return answers
+
+        shouldContinue = True
+        if len(answers) > 0:
+            shouldContinue = False
+            if not documentationOfChange == None:
+                answers.append(documentationOfChange)
+            
+        return (answers, shouldContinue)
 
 
     async def getAllEntityForRealQuestionFoundForAnswer(self, searchResults : List[SearchResult]):

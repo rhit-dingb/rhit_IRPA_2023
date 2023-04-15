@@ -10,3 +10,6 @@ class MultiFeedbackLabel():
     def __init__(self, query, feedbackLabels : List[FeedbackLabel]):
         self.query = query
         self.feedbackLabels = feedbackLabels
+
+
+    

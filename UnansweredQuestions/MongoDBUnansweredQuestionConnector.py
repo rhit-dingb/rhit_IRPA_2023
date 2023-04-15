@@ -40,13 +40,17 @@ class MongoDBUnansweredQuestionConnector():
         else:
             return {'message': 'errors occurred while updating'}
 
+  
     def addNewUnansweredQuestion(self, question : str, chatbotAnswers : List[Dict[str, any]]):
-        unansweredQuestions = self.getAllUnansweredQuestionAndAnswer()
-        for questionInDB in unansweredQuestions: 
+        """
+        Add new unanswered question to the mongodb database, if the unanswered question exist, replace it.
+        """  
+        # unansweredQuestions = self.getAllUnansweredQuestionAndAnswer()
+        # for questionInDB in unansweredQuestions: 
        
-            if question.lower() == questionInDB["content"].lower():
-                print("QUESTION ALREADY EXIST")
-                return  {'message': 'questionExist'}
+        #     if question.lower() == questionInDB["content"].lower():
+        #         print("QUESTION ALREADY EXIST")
+        #         return  {'message': 'questionExist'}
 
         toAdd = {
             "content": question,
@@ -56,8 +60,8 @@ class MongoDBUnansweredQuestionConnector():
             "answer": None,
             }
         
-        boo1 = self.questions_collection.insert_one(toAdd)
-     
+        boo1 = self.questions_collection.replace_one({"content":question}, toAdd, upsert=True)
+        print(boo1)
         return boo1
 
     def updateFeedbackForAnswer(self, questionId, chatbotAnswer, feedback):

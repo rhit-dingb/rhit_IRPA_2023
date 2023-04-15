@@ -343,12 +343,14 @@ async def update_answer_feedback(request : Request):
     request = await request.json()
     isAdministrator = request["isAdmin"]
     feedback = request["feedback"]
-    questionId = request["questionId"]
     chatbotAnswer = request["chatbotAnswer"]
-    # if not isAdministrator:
-    #     # otherwise it is user
-    #     pass
     
+    # if not isAdministrator:
+    #     # otherwise it is user and if they put down vote button, then save to database.
+    #     if feedback == "incorrect":
+
+    # else:
+    questionId = request["questionId"]
     result = unansweredQuestionDbConnector.updateFeedbackForAnswer(questionId=questionId, chatbotAnswer=chatbotAnswer, feedback=feedback)
     return {"success": result}
 

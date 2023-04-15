@@ -68,6 +68,9 @@ async def writeDocToDocumentStoreWithDataName(dataNameDicts : List[Dict[str,str]
                     if startYear and endYear:
                         metaData["startYear"] = str(startYear)
                         metaData['endYear'] = str(endYear)
+                        metaData["isYearAgnostic"] = False
+                    else: 
+                        metaData["isYearAgnostic"] = True
 
                     metaData["dataName"] = dataName
                     newDoc =  Document(id_hash_keys=["content", "meta"], content = document.content,meta=metaData )

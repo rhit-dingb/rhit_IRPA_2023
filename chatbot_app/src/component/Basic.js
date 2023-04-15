@@ -80,25 +80,27 @@ function Basic() {
         if (response) {
           
           // const temp = response[0];
-          console.log("RESPONSE RECEIVED")
+          // console.log("RESPONSE RECEIVED")
           console.log(response)
+          // console.log("_____________________________--")
           let messages = []
-
-
 
           for (let r of response) {
               const recipient_id = r["recipient_id"];
               //Expect the backend return the following json
               // {custom:{text:"", ...other stuff }}
+              // console.log(r)
               const response_temp = {
                 sender: "bot",
                 recipient_id: recipient_id,
-                jsonData: r
+                jsonData: r,
               };
 
-            
+             
+              console.log(response_temp)
               messages.push(response_temp)
           }
+
 
         
           setbotTyping(false);
@@ -140,7 +142,8 @@ function Basic() {
   const styleBody = {
     paddingTop: "10px",
     height: "32rem",
-    overflowY: "a",
+    overflowY: "scroll",
+     //overflowAnchor: "none",
     overflowX: "hidden",
   };
 
@@ -153,7 +156,8 @@ function Basic() {
       sx={{
         margin: "auto",
         width: "95%",
-        height: "88%"
+        height: "88%", 
+       
       }}>
         <div className="row justify-content-center">
           <div className="card" style={styleChatbotBody}>
@@ -169,7 +173,7 @@ function Basic() {
 
             {/*  */}
             <div className="cardBody" id="messageArea" style={styleBody}>
-              <Box>
+              <Box >
                 {chat.map((user, key) => (
                   <div key={key}>
                     {user.sender === "bot" ? (

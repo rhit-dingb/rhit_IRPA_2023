@@ -84,10 +84,10 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
 
 
     def loadReader(self, loadPath, pathToSave, save=True):
-        self.reader = FARMReader(model_name_or_path=loadPath, use_gpu=True, context_window_size=1000, confidence_threshold=self.scoreThreshold)
+        self.reader = FARMReader(model_name_or_path=loadPath, use_gpu=True, context_window_size=1000)
         if save:
             self.reader.save(pathToSave)
-        self.reader = FARMReader(model_name_or_path=loadPath, use_gpu=True, context_window_size=1000)
+        self.reader = FARMReader(model_name_or_path=loadPath, use_gpu=True, context_window_size=1000 )
         print("LOADED READER", self.reader)
        
     def loadRetriever(self, loadPath, pathToSave, save=True):
@@ -108,21 +108,25 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
         self.documentStore.update_embeddings(self.retriever)
 
 
-
     def getAvailableOptions(self, intent, entities, startYear, endYear):
         raise NotImplementedError()
 
-
    
-    async def searchForAnswer(self, question, intent, entitiesExtracted, startYear, endYear):
+    async def searchForAnswer(self, question, intent, entitiesExtracted, startYear, endYear) -> Tuple[List[ChatbotAnswer], bool]:
         
         result = self.pipeline.run(query = question, params= {
             "Retriever": {"top_k": 20}, 
             "Reader": {"top_k": 10},
             "filters": {
-            "startYear": startYear,
-            "endYear": endYear
-             }
+                "$or": {
+                    "$and": {
+                        "startYear": startYear,
+                        "endYear": endYear
+                        },
+
+                    "isYearAgnostic": True
+                }
+            }
              
         })
 
@@ -135,22 +139,41 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
         chatbotAnswers : List[ChatbotAnswer]= []
        
         for answer in answers:
-            # if answer.score < 0.1:
-            #     continue
-            document : Document= utils.findDocumentWithId(answer.document_ids[0], result["documents"])
-            metadata=dict()
-            metadata["context"] =answer.context
-            metadata["offsets_in_document"] = answer.offsets_in_context
-            metadata["document_ids"]= answer.document_ids
-            metadata["actual answer"] = answer.answer
-            metadata["document_content"] = document.content
-            metadata["document_question"] = document.meta["query"]
-            print("DOC META")
-            print(document.meta)
-            chatbotAnswer = ChatbotAnswer(answer = document.content, source=self.source, metadata= metadata)
+            if answer.score < 0.1:
+                continue
+            
+            chatbotAnswer = self.constructAnswer(answer, result)
             chatbotAnswers.append(chatbotAnswer)
 
-        return chatbotAnswers
+        if len(chatbotAnswers) == 0:
+            chatbotAnswers = self.getBackupAnswer(answers, result)
+
+        return (chatbotAnswers, True)
+    
+    def constructAnswer(self, answer : Answer, result):
+        document : Document= utils.findDocumentWithId(answer.document_ids[0], result["documents"])
+        metadata=dict()
+        metadata["context"] =answer.context
+        metadata["offsets_in_document"] = answer.offsets_in_context
+        metadata["document_ids"]= answer.document_ids
+        metadata["actual answer"] = answer.answer
+        metadata["document_content"] = document.content
+        metadata["document_question"] = document.meta["query"]
+        # print("DOC META")
+        # print(document.meta)
+        chatbotAnswer = ChatbotAnswer(answer = document.content, source=self.source, metadata= metadata)
+        return chatbotAnswer
+        # chatbotAnswers.append(chatbotAnswer)
+    
+
+    def getBackupAnswer(self, answers : List[Answer], result):
+        backupAnswers = []
+        for answer in answers:
+            chatbotAnswer = self.constructAnswer(answer, result)
+            backupAnswers.append(chatbotAnswer)
+        return backupAnswers
+    
+
     
     def convertToDf(self,documents : List[Document]):
 
@@ -175,8 +198,6 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
                 df[key] = allMetadata[key]
             
                   
-                       
-        
         #Add id
         ids = [document.id for document in documents]
         df["id"] = ids
@@ -184,16 +205,15 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
         return docs_to_index
     
     
-    # def provideFeedback(self):
-    #     self.documentStore.write_labels
+
 
  
-    def aggregateDiscreteRange(self, entities, dataModel, isSumming):
-        raise NotImplementedError()
+    # def aggregateDiscreteRange(self, entities, dataModel, isSumming):
+    #     raise NotImplementedError()
 
 
-    def calculatePercentages(self, searchResults, entitiesForEachResult, dataModel,):
-        raise NotImplementedError()
+    # def calculatePercentages(self, searchResults, entitiesForEachResult, dataModel,):
+    #     raise NotImplementedError()
 
 
     def train(self, trainingLabels : List[MultiFeedbackLabel]):
@@ -212,7 +232,7 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
         if not startYear == None and not endYear == None:
             dataDict["startYear"] = startYear
             dataDict["endYear"] = endYear
-        await utils.writeDocToDocumentStoreWithDataName([dataDict], self.dataManager, self.documentStore, lambda x: x )
+        await utils.writeDocToDocumentStoreWithDataName([dataDict], self.dataManager, self.documentStore, self.convertToDf )
         self.documentStore.update_embeddings(self.retriever)
 
     def dataDeleted(self, dataName):
@@ -235,7 +255,6 @@ class QuestionToAnswer(BaseComponent):
     
         newDocuments = []
         for document in documents:
-           
             newDocument = Document(content= document.meta["answer"], id=document.id, meta = document.meta)
             newDocuments.append(newDocument)
             print(document.meta)

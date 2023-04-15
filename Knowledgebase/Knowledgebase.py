@@ -22,15 +22,15 @@ class KnowledgeBase(ABC) :
     def searchForAnswer(self, question, intent, entitiesExtracted, startYear, endYear) -> List[ChatbotAnswer]:
         pass 
 
-    # this function will aggregate number given a range, using the generator to create column name for those rows and 
-    # sum up the value for those rows
-    @abstractmethod
-    def aggregateDiscreteRange(self, entities, dataModel, isSumming):
-        pass
+    # # this function will aggregate number given a range, using the generator to create column name for those rows and 
+    # # sum up the value for those rows
+    # @abstractmethod
+    # def aggregateDiscreteRange(self, entities, dataModel, isSumming):
+    #     pass
 
-    @abstractmethod
-    def calculatePercentages(self, searchResults, entitiesForEachResult, dataModel):
-        pass
+    # @abstractmethod
+    # def calculatePercentages(self, searchResults, entitiesForEachResult, dataModel):
+    #     pass
 
 
     @abstractmethod

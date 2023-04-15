@@ -163,7 +163,7 @@ class MongoDataManager(DataManager):
         return self.client[dataName].list_collection_names()
 
 
-    async def getDataBySection(self, section, exceptionToThrow: Exception,  startYear= None, endYear = None,):
+    async def getDataBySection(self, section, exceptionToThrow: Exception,  startYear= None, endYear = None):
             section =  section.replace("_", " ")
             selectedDatabaseName = ""
             databaseNames = []
