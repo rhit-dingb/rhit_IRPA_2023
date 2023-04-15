@@ -33,6 +33,8 @@ export function AccordionList({jsonResponse}) {
         if ("data" in jsonResponse){
             data = jsonResponse["data"]
         }
+
+     
     }
 
     validateData()

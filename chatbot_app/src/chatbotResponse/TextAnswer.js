@@ -17,7 +17,10 @@ export function TextAnswer({isAdmin, questionId, answer, feedback, source}) {
  
     useEffect(() => {
         setCurrentFeedback(feedback)
-    
+        // console.log("_____________________________")
+        // console.log(answer)
+        // console.log(feedback)
+        // console.log("_____________________________")
     }, [feedback]);
 
 

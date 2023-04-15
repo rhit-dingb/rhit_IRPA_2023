@@ -7,7 +7,7 @@ nlu:
   examples: |
     - Tell me about your school
     - What is your school's mailing [address]{"entity":"way_of_contact", "value": "address"}?
-    - What [type](type) of [college]{"entity": "education_level", "value": "college"} is rose?
+    - What [type](type) of [college]{"entity": "education_level", "value": "college"} ?
     - [where]{"entity":"way_of_contact", "value": "address"} is your school?
     - [where]{"entity":"way_of_contact", "value": "address"} is your school [located]{"entity":"way_of_contact", "value": "address"}?
     - What is your school admissions [phone]{"entity":"way_of_contact", "value": "phone"} [number]{"entity":"way_of_contact", "value": "phone"} ?
