@@ -72,11 +72,11 @@ mongoDataManager = Cache(mongoDataManager)
 sparseMatrixKnowledgeBase = SparseMatrixKnowledgeBase(mongoDataManager)
 
 
-mongoProcessor = MongoProcessor()
-mongoProcessor = ConvertToDocumentDecorator(mongoProcessor)
-mongoDataManager = MongoDataManager(mongoProcessor)
-qaKnowledgebase = QuestionAnswerKnowledgeBase(mongoDataManager)
-asyncio.run(qaKnowledgebase.initialize())
+# mongoProcessor = MongoProcessor()
+# mongoProcessor = ConvertToDocumentDecorator(mongoProcessor)
+# mongoDataManager = MongoDataManager(mongoProcessor)
+# qaKnowledgebase = QuestionAnswerKnowledgeBase(mongoDataManager)
+# asyncio.run(qaKnowledgebase.initialize())
 
 
 # mongoProcessor = MongoProcessor()
@@ -87,7 +87,7 @@ asyncio.run(qaKnowledgebase.initialize())
 
 
 
-knowledgebaseEnsemble : List[KnowledgeBase] = [sparseMatrixKnowledgeBase, qaKnowledgebase]
+knowledgebaseEnsemble : List[KnowledgeBase] = [sparseMatrixKnowledgeBase]
 
 class ActionGetAvailableOptions(Action):
     def __init__(self) -> None:

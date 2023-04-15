@@ -46,7 +46,7 @@ class Trainer:
         self.trainingDataCreator.createSQUADTrainingDataSet(filteredTrainingLabel, trainingDataFileName)
         model.train(data_dir="./",
              train_filename=trainingDataFileName ,use_gpu=True,
-             n_epochs=1,
+             n_epochs=2,
              save_dir=saveDirectory)
         
 

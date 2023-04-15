@@ -85,7 +85,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         isOperationAllowed = sparseMatrixToSearch.isAnyOperationAllowed()
         template = sparseMatrixToSearch.findTemplate()
 
-        if(not isOperationAllowed or template == ""):
+        if(not isOperationAllowed and template == ""):
             return ([], True)
     
         isRangeAllowed = sparseMatrixToSearch.isRangeOperationAllowed()
@@ -108,6 +108,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
              
                 searchResult.addEntities(filteredEntities)
         else:
+            print("REGULAR SEARCH")
             searchResults : List[SearchResult] = sparseMatrixToSearch.searchOnSparseMatrix(entitiesExtracted, shouldAddRowStrategy, isSumAllowed)
         
         if isPercentageAllowed and percentageEntityDetected:
