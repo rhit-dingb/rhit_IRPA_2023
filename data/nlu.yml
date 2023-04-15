@@ -103,6 +103,8 @@ nlu:
     - How many students?
     - number of students
     - How many students do you have?
+    - [male]{"entity": "gender", "value": "male"} to [female]{"entity": "gender", "value": "female"} [ratio]{"entity":"aggregation", "value":"percent"}?
+    - 
     - How many students does your school have?
     - How many [full time]{"entity": "enrollment_status", "value": "full-time"} students do you have?
     - How many [part-time]{"entity": "enrollment_status", "value": "part-time"} students do you have?

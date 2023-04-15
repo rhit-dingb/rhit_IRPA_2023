@@ -474,7 +474,7 @@ def getAnswerForUnansweredQuestion(question):
             answers = jsonData["answers"]
             chatbotAnswers = []
             for answer in answers:
-                chatbotAnswer = ChatbotAnswer(question= question, answer= answer, source="unansweredQuestionEngine")
+                chatbotAnswer = ChatbotAnswer( answer= answer, source="unansweredQuestionEngine")
                 chatbotAnswers.append(chatbotAnswer)
         
             return chatbotAnswers

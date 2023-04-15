@@ -40,7 +40,7 @@ class Question extends React.Component {
     return <div key ={this.props.questionObject.content} style={{ height:100, width:"100%", 
       margin:"auto", 
       border: "1px solid",
-      borderColor: this.props.questionObject.is_addressed ? 'black' : 'red',
+      borderColor: this.props.questionObject.is_addressed || this.props.questionObject.trained? 'black' : 'red',
       overflow: "hidden",
       height: 50,
       padding:10,
@@ -206,6 +206,10 @@ class QuestionAnswer extends React.Component {
               
               }))
               this.showSuccessMessage("Training Done!")
+            }).then(()=>{
+              getQuestions().then((data) => {
+                this.props.updateFunc(data)
+              });
             })
 
           //}          

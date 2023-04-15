@@ -388,7 +388,7 @@ async def handle_new_event(request: Request):
             "question_asked": content.lower()})
         if boo1:
             return {'message': 'data successfully inserted'}
-        else:
+        else:\
             return {'message': 'errors occurred'}
     else:
         boo2 = freq_collection.update_one({'question_asked': content}, {'$set': {'user_feedback': feedback}})
@@ -577,6 +577,7 @@ async def trainKnowledgebase(request : Request):
             response = await rasaCommunicator.injectIntent(EVENT_OCCURED_KEY, entities, session, conversationId)
             print(response)
         
+        unansweredQuestionDbConnector.updateTrainedStatus(id, True)
         return {"success":True}
     except Exception:
         raise HTTPException(status_code=500, detail="change failed")

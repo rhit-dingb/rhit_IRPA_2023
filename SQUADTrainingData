@@ -1,25 +1,3 @@
 {
-    "data": [
-        {
-            "paragraphs": [
-                {
-                    "context": "Rose-Hulman uses quarter system.",
-                    "id": "6902b228db707ee1040a7776c5983012",
-                    "qas": [
-                        {
-                            "answers": [
-                                {
-                                    "answer_start": 0,
-                                    "text": "Rose-Hulman uses quarter system."
-                                }
-                            ],
-                            "id": "550a6c1f-db30-11ed-9d36-24ee9a197afc",
-                            "is_impossible": false,
-                            "question": "What academic calendar system does rose use?"
-                        }
-                    ]
-                }
-            ]
-        }
-    ]
+    "data": []
 }
