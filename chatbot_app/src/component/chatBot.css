@@ -60,6 +60,7 @@
   display: flex;
   justify-content: flex-start;
   min-height: 5px;
+  margin-bottom: 10px;
 }
 
 .botmsg {
@@ -72,7 +73,7 @@
   padding-top: 6px;
   padding-bottom: 10px;
   border-radius: 25px;
-  max-width: 25rem;
+  max-width: 30rem;
 }
 
 .usermsg {

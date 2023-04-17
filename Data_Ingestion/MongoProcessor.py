@@ -16,19 +16,12 @@ from Data_Ingestion.SubsectionQnA import SubsectionQnA
 class MongoProcessor():
     def __init__(self):
         pass
-        # self.data : dict[str, dict[str, TopicData]] = []
-        #print(self.data['2020_2021']["high_school_units"].sparseMatrices)
-        
-    # def getData(self) -> TopicData:
-    #     return self.data
 
-
-
-    async def getDataByDbNameAndIntent(self, client, intent, dbName) -> List[SubsectionQnA]:
+    async def getDataByDbNameAndSection(self, client, section, dbName) -> List[SubsectionQnA]:
         cur_db = client[dbName]
         subsectionsQnAList = []
         for name in cur_db.list_collection_names():
-            if intent == name:
+            if section == name:
                 cursor = cur_db[name].find({})
                 for data in cursor:
                     subsection = data.get(DATABASE_SPARSE_MATRIX_SUBSECTION_KEY)

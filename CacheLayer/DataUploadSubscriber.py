@@ -20,8 +20,8 @@ class DataUploadSubscriber(EventSubscriber):
         endYearKey = END_YEAR_KEY 
         # if subsectionsUploadedKey in eventData:
         sectionsUploaded = eventData[sectionsUploadedKey]
-        startYear = ""
-        endYear = ""
+        startYear = None 
+        endYear = None
         if startYearKey in eventData and endYearKey in eventData:
             startYear = eventData[startYearKey]
             endYear = eventData[endYearKey]
@@ -29,4 +29,4 @@ class DataUploadSubscriber(EventSubscriber):
         print("REWRITING")
         for sectionUploaded in sectionsUploaded:
             #Repopulate cache
-            await self.cache.getDataAndPopulateCache(sectionUploaded, startYear, endYear, exceptionToThrow)
+            await self.cache.getDataAndPopulateCache(sectionUploaded,  exceptionToThrow,startYear, endYear)

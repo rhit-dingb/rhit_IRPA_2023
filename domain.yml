@@ -21,11 +21,13 @@ intents:
   - definition
   - annual_expense
   - degree_conferred
-
   - change_year
   - get_year
-
   - get_available_options 
+
+
+  - event_occured
+
 
   - mood_great
   - mood_unhappy
@@ -529,12 +531,11 @@ actions:
   - action_get_available_options
   - action_ask_more_question
 
-  - action_query_cohort
-
   - action_answer_not_helpful
   - action_store_asked_question
   - action_store_isHelpful_statistic
   - action_nlu_fallback
+  - action_event_occured
   
   # - action_query_enrollment
   # - action_query_admission

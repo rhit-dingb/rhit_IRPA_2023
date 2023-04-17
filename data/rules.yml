@@ -12,3 +12,10 @@ rules:
   steps:
   - intent: bot_challenge
   - action: utter_iamabot
+
+
+- rule: Sent event occured to action server
+  steps: 
+  - intent: event_occured
+  - action: action_event_occured
+  

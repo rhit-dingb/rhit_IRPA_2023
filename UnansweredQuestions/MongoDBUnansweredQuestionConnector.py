@@ -1,4 +1,4 @@
-from typing import List
+from typing import Dict, List
 from pymongo import MongoClient
 from DataManager.constants import MONGO_DB_CONNECTION_STRING
 import json
@@ -20,15 +20,20 @@ class MongoDBUnansweredQuestionConnector():
         # for field in fieldsToGet:
         #     fieldToGetBody[field] = 1
         # unanswered_questions = list(questions_collection.find({'is_addressed': False}))
-        unanswered_questions = list(self.questions_collection.find({}))
+        orderToUse = pymongo.DESCENDING
+        unanswered_questions = list(self.questions_collection.find({}).sort([(DB_UNANSWERED_QUESTION_DATE_FIELD_KEY, orderToUse), ("_id", pymongo.ASCENDING)]))
         unanswered_questions = json.loads(json_util.dumps(unanswered_questions))
         # print("GETTING QUESTIOS")
         # print(unanswered_questions)
         return unanswered_questions
 
 
-    def getAnsweredQuestionSortedByDate(self):
-        unanswered_questions = self.questions_collection.find({'is_addressed': True}).sort([(DB_UNANSWERED_QUESTION_DATE_FIELD_KEY, pymongo.ASCENDING), ("_id", pymongo.ASCENDING)])
+    def getAnsweredQuestionSortedByDate(self, order="ASCENDING"):
+        orderToUse = pymongo.ASCENDING
+        if (order=="DESCENDING"):
+            orderToUse = pymongo.DESCENDING
+
+        unanswered_questions = self.questions_collection.find({'is_addressed': True}).sort([(DB_UNANSWERED_QUESTION_DATE_FIELD_KEY, orderToUse), ("_id", pymongo.ASCENDING)])
         return unanswered_questions
 
 
@@ -40,26 +45,52 @@ class MongoDBUnansweredQuestionConnector():
         else:
             return {'message': 'errors occurred while updating'}
 
-    def addNewUnansweredQuestion(self, question : str, chatbotAnswers : List[str]):
-        unansweredQuestions = self.getAllUnansweredQuestionAndAnswer()
-        for questionInDB in unansweredQuestions: 
+  
+    def addNewUnansweredQuestion(self, question : str, chatbotAnswers : List[Dict[str, any]]):
+        """
+        Add new unanswered question to the mongodb database, if the unanswered question exist, replace it.
+        """  
+        # unansweredQuestions = self.getAllUnansweredQuestionAndAnswer()
+        # for questionInDB in unansweredQuestions: 
        
-            if question.lower() == questionInDB["content"].lower():
-                print("QUESTION ALREADY EXIST")
-                return  {'message': 'questionExist'}
-        
+        #     if question.lower() == questionInDB["content"].lower():
+        #         print("QUESTION ALREADY EXIST")
+        #         return  {'message': 'questionExist'}
+
         toAdd = {
             "content": question,
             "post_date": datetime.today(),
             "is_addressed": False,
             "chatbotAnswers": chatbotAnswers,
-            "answer": None}
+            "answer": None,
+            "trained": False
+            }
         
-        boo1 = self.questions_collection.insert_one(toAdd)
-     
+        boo1 = self.questions_collection.replace_one({"content":question}, toAdd, upsert=True)
+        print(boo1)
         return boo1
 
+    def updateFeedbackForAnswer(self, questionId, chatbotAnswer, feedback):
+     
+        filter = {'_id': ObjectId(questionId), "chatbotAnswers":{"$elemMatch": {"answer":chatbotAnswer } }}
+        # data = self.questions_collection.find_one(filter)
+        # print(json.loads(json_util.dumps(data)))
+        toUpdate = {"$set": {"chatbotAnswers.$.feedback": feedback}}
+        result = self.questions_collection.update_one(filter, toUpdate)
+        print("RESULT")
+        print(result)
+        modifiedCount = result.modified_count
+        if modifiedCount == 1:
+            return True
+        else:
+            return False
     
+    def updateTrainedStatus(self, questionId: str, status : bool):
+            filter = {'_id': ObjectId(questionId)}
+            toUpdate ={"$set": {"trained": status}}
+            result = self.questions_collection.update_one(filter, toUpdate)
+
+
     def getQuestionAnswerObjectById(self, id):
        return json.loads(json_util.dumps(self.questions_collection.find_one({'_id': ObjectId(id)})))
     

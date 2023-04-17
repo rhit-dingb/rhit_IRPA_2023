@@ -7,17 +7,17 @@ import "bootstrap/js/dist/dropdown";
 import { Link } from "react-router-dom";
 import {CUSTOM_BACKEND_API_STRING, TOKEN_KEY} from "../constants/constants"
 import { Navbar } from "./Navbar";
-
+import Stack from '@mui/material/Stack';
 
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import Alert from '@mui/material/Alert';
 import { ListItem, List, Divider } from "@mui/material";
 import { checkResponse } from "../functions/functions";
+import {ChatbotAnswer, TextAnswer} from "../chatbotResponse/TextAnswer"
 
 class Question extends React.Component {
   //todo: this thing
@@ -40,7 +40,7 @@ class Question extends React.Component {
     return <div key ={this.props.questionObject.content} style={{ height:100, width:"100%", 
       margin:"auto", 
       border: "1px solid",
-      borderColor: this.props.questionObject.is_addressed ? 'black' : 'red',
+      borderColor: this.props.questionObject.is_addressed || this.props.questionObject.trained? 'black' : 'red',
       overflow: "hidden",
       height: 50,
       padding:10,
@@ -65,6 +65,7 @@ class QuestionAnswer extends React.Component {
     // This binding is necessary to make `this` work in the callback
     this.handleClick = this.handleClick.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleTrain = this.handleTrain.bind(this)
     this.showSuccessMessage = this.showSuccessMessage.bind(this)
    
     this.state = {
@@ -73,8 +74,8 @@ class QuestionAnswer extends React.Component {
       notificationMessage: "",
       showNotificationMessage: false,
       alertSeverity: "success",
-      chatbotAnswers: props.questionObj.chatbotAnswers
-
+      chatbotAnswers: props.questionObj.chatbotAnswers,
+      isTrainButtonDisabled : false
     }
   }
 
@@ -86,13 +87,13 @@ class QuestionAnswer extends React.Component {
          chatbotAnswers: nextProps.questionObj.chatbotAnswers,
          notificationMessage: "",
          showNotificationMessage: false,
-         alertSeverity: "success"
+         alertSeverity: "success", 
+         isTrainButtonDisabled: false
       });
     }
   }
   
   
-
   handleClick(e) {
     //make api call here
 
@@ -169,6 +170,69 @@ class QuestionAnswer extends React.Component {
     })
   }
 
+  handleTrain(e){
+    e.preventDefault()
+
+    let currentQuesId =this.props.questionObj._id.$oid
+    fetch(`${CUSTOM_BACKEND_API_STRING}/questions/${currentQuesId}`, {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+    }
+    ).then(response =>{ 
+      response.json().then((data)=>{
+          let chatbotAnswers = data.chatbotAnswers
+          let count = 0
+          // for(let answer of chatbotAnswers){
+          //   console.log(answer.feedback)
+          //   if (answer.feedback != "" && answer.feedback != null) {
+          //       count = count+1
+          //   }
+          // }
+
+          // if (count<chatbotAnswers.length){
+          //   this.showFailedMessage("Cannot start training for this question, not all answer are labelled")
+          //   return
+          // }else{
+            // Start the training!!!
+            this.showSuccessMessage("Training begin.....")
+            console.log("START TRAINING")
+            this.setState(prevState => ({
+              isTrainButtonDisabled: true
+            }))
+            this.sendTrainRequest([currentQuesId]).then((data)=>{
+              console.log(data)
+              this.setState(prevState => ({
+                isTrainButtonDisabled: false
+              
+              }))
+              this.showSuccessMessage("Training Done!")
+            }).then(()=>{
+              getQuestions().then((data) => {
+                this.props.updateFunc(data)
+              });
+            })
+
+          //}          
+      })
+    })
+  }
+
+  // Take in a list of question ids whose labelled answer will be used for training.
+  sendTrainRequest(questionIds){
+    let body = {"ids":questionIds}
+    return fetch(`${CUSTOM_BACKEND_API_STRING}/train_knowledgebase`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json',
+      "Authorization": localStorage.getItem(TOKEN_KEY)
+      },
+      body:JSON.stringify(body)
+    }).then((response)=>{
+       return response.json()
+    })
+
+
+  }
+
 
 
   render() {
@@ -184,17 +248,20 @@ class QuestionAnswer extends React.Component {
           
           }}>{this.state.notificationMessage}</Alert>}
 
-        <h5>Question</h5>
+        <h5>Question: </h5>
         <div style={{textOverflow: "ellipsis", overflow: "scroll", marginBottom:50, overflowX: "hidden", maxHeight: 150}} >
           <h5 >{this.state.question}</h5>
         </div>
         
         <div class="form-floating">
-        <h5>Chatbot Answer</h5>
+        <h5>Chatbot Answers:</h5>
         <div style={{textOverflow: "ellipsis",overflow: "scroll", marginBottom:50, overflowX: "hidden", maxHeight: 150}} >
           {this.state.chatbotAnswers? this.state.chatbotAnswers.map((elem)=>{
             // console.log(elem)
-            return <h5>{elem}</h5>
+            // return <h5>{elem.answer}</h5>
+            // console.log(elem)
+            
+            return <TextAnswer questionId={this.props.questionObj._id.$oid} answer={elem.answer} feedback ={elem.feedback} isAdmin={true} source={elem.source}/>
           })
           : <h5>No answer from chatbot</h5>}
         </div>
@@ -206,12 +273,21 @@ class QuestionAnswer extends React.Component {
         
       </div>
         {/* <input id="answerInput" type="text" placeholder="Enter answer text"></input> */}
-        <button onClick={this.handleClick}>
-          {"Submit"}
-        </button>
-        <button onClick={this.handleDelete}>
+      
+        <Stack direction="row" spacing={2} justifyContent="center"
+>
+        <Button variant="contained"  onClick={this.handleClick}>
+          {"Submit Answer"}
+        </Button>
+        <Button variant="contained" color="error" onClick={this.handleDelete}>
           {"Delete Question"}
-        </button>
+        </Button>
+
+        <Button variant="contained" onClick={this.handleTrain} disabled={this.state.isTrainButtonDisabled}>
+          {"Train Instead"}
+        </Button>
+        </Stack>
+
 
       </CardContent>
     
@@ -231,7 +307,6 @@ function getQuestions() {
       return data;
     });
     // setQuestions(["1","2","3"]);
-  
 }
 
 function Admin(props) {

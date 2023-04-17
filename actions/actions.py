@@ -6,9 +6,10 @@
 
 
 import asyncio
+import json
 import requests
 from CacheLayer.Cache import Cache
-
+from enum import Enum
 
 
 from CustomEntityExtractor.NumberEntityExtractor import NumberEntityExtractor
@@ -23,15 +24,31 @@ from OutputController import output
 
 from actions.constants import  BACKEND_API_URL, LAST_ANSWERS_PROVIDED_SLOT_NAME, YEAR_RANGE_SELECTED_SLOT_NAME, AGGREGATION_ENTITY_PERCENTAGE_VALUE, ANY_AID_COLUMN_NAME, NO_AID_COLUMN_NAME, PELL_GRANT_COLUMN_NAME, RANGE_BETWEEN_VALUE, RANGE_UPPER_BOUND_VALUE, STAFFORD_LOAN_COLUMN_NAME, STUDENT_ENROLLMENT_RESULT_ENTITY_GRADUATION_VALUE
 from actions.entititesHelper import changeEntityValue, changeEntityValueByRole, copyEntities, createEntityObj, filterEntities, findEntityHelper, findMultipleSameEntitiesHelper, getEntityLabel, getEntityValueHelper, removeDuplicatedEntities
-from typing import Text
+from typing import Dict, List, Text
 from DataManager.MongoDataManager import MongoDataManager
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet
 from actions.ResponseType import ResponseType
 from actions.constants import LAST_TOPIC_INTENT_SLOT_NAME, LAST_USER_QUESTION_ASKED
+
+from Data_Ingestion.ConvertToSparseMatrixDecorator import ConvertToSparseMatrixDecorator
+from Data_Ingestion.MongoProcessor import MongoProcessor
+# from Knowledgebase.QuestionAnswerKnowledgebase.QuestionAnswerKnowledgebase import QuestionAnswerKnowledgeBase
+from Data_Ingestion.ConvertToDocumentDecorator import ConvertToDocumentDecorator
+
 # import backendAPI.general_api  as API 
 import nltk
+
+from Knowledgebase.Knowledgebase import KnowledgeBase
+from Knowledgebase.QuestionAnswerKnowledgebase.QuestionAnswerKnowledgebase import QuestionAnswerKnowledgeBase
+from Knowledgebase.QuestionAnswerKnowledgebase.FAQKnowledgebase import FAQKnowledgeBase
+from Knowledgebase.DataModels.ChatbotAnswer import ChatbotAnswer
+from Knowledgebase.DataModels.FeedbackLabel import FeedbackLabel, FeedbackType
+from Knowledgebase.DataModels.MultiFeedbackLabel import MultiFeedbackLabel
+
+
+
 
 try:
     nltk.find('corpora/wordnet')
@@ -44,11 +61,33 @@ except Exception:
     nltk.download('omw-1.4')
 
 # ExcelDataManager("./CDSData", [ENROLLMENT_INTENT, COHORT_INTENT, ADMISSION_INTENT, HIGH_SCHOOL_UNITS_INTENT, BASIS_FOR_SELECTION_INTENT, FRESHMAN_PROFILE_INTENT, TRANSFER_ADMISSION_INTENT, STUDENT_LIFE_INTENT])
-mongoDataManager = MongoDataManager()
-mongoDataManager = Cache(mongoDataManager)
-knowledgeBase = SparseMatrixKnowledgeBase(mongoDataManager)
+
 numberEntityExtractor = NumberEntityExtractor()
 
+mongoProcessor = MongoProcessor()
+mongoProcessor = ConvertToSparseMatrixDecorator(mongoProcessor)
+mongoDataManager = MongoDataManager(mongoProcessor)
+
+mongoDataManager = Cache(mongoDataManager)
+sparseMatrixKnowledgeBase = SparseMatrixKnowledgeBase(mongoDataManager)
+
+
+# mongoProcessor = MongoProcessor()
+# mongoProcessor = ConvertToDocumentDecorator(mongoProcessor)
+# mongoDataManager = MongoDataManager(mongoProcessor)
+# qaKnowledgebase = QuestionAnswerKnowledgeBase(mongoDataManager)
+# asyncio.run(qaKnowledgebase.initialize())
+
+
+# mongoProcessor = MongoProcessor()
+# mongoProcessor = ConvertToDocumentDecorator(mongoProcessor)
+# mongoDataManager = MongoDataManager(mongoProcessor)
+# faqKnowledgebase = FAQKnowledgeBase(mongoDataManager)
+# asyncio.run(faqKnowledgebase.initialize())
+
+
+
+knowledgebaseEnsemble : List[KnowledgeBase] = [sparseMatrixKnowledgeBase]
 
 class ActionGetAvailableOptions(Action):
     def __init__(self) -> None:
@@ -98,10 +137,12 @@ class ActionAnswerNotHelpful(Action):
     def run(self, dispatcher, tracker, domain):
         dispatcher.utter_message("I am sorry my answer is not helpful. I will be updated by the administator to answer this question better!")
         userAskedQuestion = tracker.get_slot(LAST_USER_QUESTION_ASKED)
-        answersProvidedByChatbot = tracker.get_slot(LAST_ANSWERS_PROVIDED_SLOT_NAME)
-        
-        # print("ANSWER PROVIDED")
-        # print(answersProvidedByChatbot)
+        # This is the chatbotAnswer data model.
+        answersProvidedByChatbot : List[Dict[str, any]]= tracker.get_slot(LAST_ANSWERS_PROVIDED_SLOT_NAME)
+
+        for answer in answersProvidedByChatbot:
+            answer["feedback"] = ""
+
         if answersProvidedByChatbot == None:
             answersProvidedByChatbot = []
         if not userAskedQuestion == None:
@@ -152,16 +193,37 @@ class ActionQueryKnowledgebase(Action):
         setLastIntentSlotEvent = SlotSet(LAST_TOPIC_INTENT_SLOT_NAME ,intent )
         events.append(setLastIntentSlotEvent)
 
-        answers = []
+        answers : List[ChatbotAnswer] = []
       
-        # try:
-        defaultShouldAddRowStrategy = DefaultShouldAddRowStrategy()
-        answers = await knowledgeBase.searchForAnswer(intent, entitiesExtracted, defaultShouldAddRowStrategy,knowledgeBase.constructOutput,startYear, endYear )
+       
+        for knowledgebase in knowledgebaseEnsemble:
+            try:
+                print(knowledgebase.source)
+                print("__________________________")
+                newAnswers, shouldContinue = await knowledgebase.searchForAnswer(question, intent, entitiesExtracted, startYear, endYear)
+                answers = answers + newAnswers
+                if not shouldContinue:
+                    break
+            except Exception as e:
+                continue
+            
+            # divider = ["-------------------------"]
+            
+            # if len(answers)>0:
+            #     break
+        
         answerFromUnansweredQuestion = getAnswerForUnansweredQuestion(question)
-        answers = answers + answerFromUnansweredQuestion
-        # if len(answers) <= 0:
-        #     answers = ["Sorry, I couldn't find any answer to your question"]
-        #     addUnansweredQuestion(question, answers)
+        for answer in answerFromUnansweredQuestion:
+            answers.insert(0, answer)
+
+        # print(list(dict.fromkeys(answers)))
+
+        # print("ANSWERS", answers)
+        if len(answers) == 0:
+            answers = [ChatbotAnswer("Sorry, I couldn't find any answer to your question", source="")]
+            answersAsDict = [answers[0].as_dict()]
+            addUnansweredQuestion(question, answersAsDict)
+
         answers = checkIfAnswerFound(question, answers)
         event = utterAllAnswers(answers, dispatcher) 
         events.append(event)       
@@ -236,6 +298,7 @@ class ActionSetYear(Action):
     
     def run(self, dispatcher, tracker, domain):
         # print("YEAR CHANGED")
+        
         entitiesExtracted = tracker.latest_message["entities"]
         yearRange = []
         # Assume there are only two entities, the start year and end year
@@ -245,35 +308,125 @@ class ActionSetYear(Action):
         return [res]
 
 
-class ActionNluFallback(Action):
-    def name(self) -> Text:
-        return "action_nlu_fallback"
+# class ActionNluFallback(Action):
+#     def name(self) -> Text:
+#         return "action_nlu_fallback"
     
-    def run(self, dispatcher, tracker, domain):
-        question = tracker.latest_message["text"]
-        answers = getAnswerForUnansweredQuestion(question)
-        answers = checkIfAnswerFound(question, answers)
-        utterAllAnswers(answers, dispatcher)
+#     def run(self, dispatcher, tracker, domain):
+#         question = tracker.latest_message["text"]
+#         answers = getAnswerForUnansweredQuestion(question)
+#         answers = checkIfAnswerFound(question, answers)
+#         utterAllAnswers(answers, dispatcher)
 
 
 
-class ActionQueryCohort(Action):
+class ActionEventOccured(Action):
     def __init__(self) -> None:
         super().__init__()
+        self.EVENT_TYPE_KEY = "eventType"
 
     def name(self) -> Text:
-        return "action_query_cohort"
-
+        return "action_event_occured"
+    
     async def run(self, dispatcher, tracker, domain):
-      actionQueryKnowledgebase =  ActionQueryKnowledgebase()
-      await actionQueryKnowledgebase.run(dispatcher, tracker, domain)
+        entities = tracker.latest_message["entities"]
+        eventTypeEntity = findEntityHelper(entities, self.EVENT_TYPE_KEY)
+
+        if eventTypeEntity == None:
+            return []
+        
+        eventType = eventTypeEntity["value"]
+        trainingLabels : List[MultiFeedbackLabel] = []
+
+        # determine what event to fire
+        if eventType == "train":
+            return self.handleTrainKnowledgebase(trainingLabels, entities, eventType)
+
+        elif eventType == "dataUploaded":
+            return await self.handleDataUpload(entities, eventType)
+        
+        elif eventType =="dataDeleted":
+            return self.handleDataDelete(entities, eventType)
+        
+        return []
+
+
+    async def handleDataUpload(self, entities, eventType):
+        print(entities)
+        dataNameEntity = findEntityHelper(entities, "dataName")
+        startYearEntity = findEntityHelper(entities, "startYear")
+        endYearEntity = findEntityHelper(entities, "endYear")
+
+        startYear = None
+        endYear = None
+        if not startYearEntity == None and not endYearEntity == None:
+            startYear = startYearEntity["value"]
+            endYear = endYearEntity["value"]
+        dataName = dataNameEntity["value"]
+
+        for knowledgebase in knowledgebaseEnsemble:
+           await knowledgebase.dataUploaded(dataName, startYear, endYear)
+
+        return []
+
+    def handleDataDelete(self, entities, eventType):
+        dataNameEntity = findEntityHelper(entities, "dataName")
+        dataName = dataNameEntity["value"]
+        for knowledgebase in knowledgebaseEnsemble:
+            knowledgebase.dataDeleted(dataName)
+
+        return []
+
+
+        
+    def handleTrainKnowledgebase(self, trainingLabels, entities, eventType):
+        """
+        The feedback labels object looks like:
+        {'entity': 'feedback', 'value': [ {'_id': {'$oid': '641b6117a799c3a9b43f72c1'},
+        'content': 'How many faculty do you have at rose-hulman', 
+        'post_date': {'$date': '2023-03-22T16:12:07.973Z'}, 
+        'is_addressed': True, 
+        'chatbotAnswers': [{answer:'the total number of instructional faculty is 192', source:"QuestionAnswerKnowledge", metadata:{}, feedback:"" }], 
+        'answer': 'the total number of instructional faculty is 200'}} ] 
+        """
+        feedbackEntity= findEntityHelper(entities, "feedback")
+        feedbackLabelsDict = feedbackEntity["value"]
+        # convert to data model
+        for data in feedbackLabelsDict:
+            query = data["content"]
+            feedbackLabels = []
+            for chatbotAnswer in data["chatbotAnswers"]:
+                source = chatbotAnswer["source"]
+                metadata = chatbotAnswer["metadata"]
+                feedback = chatbotAnswer["feedback"]
+                answer = chatbotAnswer["answer"]
+                if feedback == None or feedback == "":
+                    continue
+                if feedback == FeedbackType.CORRECT.value:
+                    feedback = FeedbackType.CORRECT
+                elif feedback == FeedbackType.INCORRECT.value:
+                    feedback = FeedbackType.INCORRECT
+                else: 
+                    continue
+                feedbackLabel = FeedbackLabel(query = query, source = source, metadata = metadata, feedback = feedback, answerProvided=answer)
+                feedbackLabels.append(feedbackLabel)
+
+            multiLabelFeedback = MultiFeedbackLabel(query=query,feedbackLabels= feedbackLabels)
+            trainingLabels.append(multiLabelFeedback)
+
+        for knowledgebase in knowledgebaseEnsemble:
+            knowledgebase.train(trainingLabels)
+
+        return [{"event": "action", "name": "action_event_occured", "eventType": eventType}]
+
+
 
 
 
 # Helper functions
 def checkIfAnswerFound(question, answers):
     if len(answers) <= 0:
-        answers = ["Sorry, I couldn't find any answer to your question"]
+        answers = [ChatbotAnswer("Sorry, I couldn't find any answer to your question", source="")]
         addUnansweredQuestion(question, answers)
     
     return answers
@@ -293,23 +446,40 @@ def getYearRangeInSlot(tracker):
     return (startYear, endYear, res)
 
 
-def utterAllAnswers(answers, dispatcher):
-    # json_str = json.dumps(json_message)
+def utterAllAnswers(answers : List[ChatbotAnswer], dispatcher):
+    print("ALL ANSWERS")
+    print(answers)
+    answersInDict = []
     for answer in answers:
-        dispatcher.utter_message( json_message={"text":answer} )
+        answerDict = answer.as_dict()
+        answerDict["text"] = answerDict["answer"]
+        # print("JSON MESSAGE",  {"answers": answerDict})
+        answersInDict.append(answerDict)
+        dispatcher.utter_message( json_message= answerDict)
 
-    return SlotSet(LAST_ANSWERS_PROVIDED_SLOT_NAME, answers)
+    return SlotSet(LAST_ANSWERS_PROVIDED_SLOT_NAME, answersInDict)
 
-def addUnansweredQuestion(question, chatbotAnswers): 
+def addUnansweredQuestion(question, chatbotAnswers : Dict[str, any]): 
+    
+    # for ans in chatbotAnswers:
+    #     chatbotAnswersDict.append(ans.as_dict())
     data = {"content": question, "chatbotAnswers":chatbotAnswers}
     response = requests.post("http://127.0.0.1:8000/question_add/", json=data )
 
 def getAnswerForUnansweredQuestion(question):
-        response = requests.get(BACKEND_API_URL+"/answer_unanswered_question", params={"question":question})
+        response = requests.get(BACKEND_API_URL+"/answer_unanswered_question", params={"question": question})
         jsonData = response.json()
         answersKey = "answers"
         if answersKey in jsonData:
             answers = jsonData["answers"]
-            return answers
+            chatbotAnswers = []
+            for answer in answers:
+                chatbotAnswer = ChatbotAnswer( answer= answer, source="unansweredQuestionEngine")
+                chatbotAnswers.append(chatbotAnswer)
+        
+            return chatbotAnswers
+           
         else:
             return []
+        
+

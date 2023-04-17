@@ -30,10 +30,10 @@ stories:
 
 
 # Handle fall backs
-- story: Ask the user to rephrase whenever they send a message with low NLU confidence
-  steps:
-  - intent: nlu_fallback
-  - action: action_nlu_fallback
+# - story: Ask the user to rephrase whenever they send a message with low NLU confidence
+#   steps:
+#   - intent: nlu_fallback
+#   - action: action_nlu_fallback
 
 #Story for change year
 - story: change_year_run_set_year_action
@@ -69,6 +69,8 @@ stories:
       - intent: transfer_admission
       - intent: freshman_profile
       - intent: basis_for_selection
+      - intent: cohort
+      - intent: nlu_fallback
     - action: action_query_knowledgebase
     - action: action_store_asked_question
     - action: utter_ask_answer_helpful
@@ -127,28 +129,28 @@ stories:
 
 
 
-- story: ask_about_cohort_answer_helpful
-  steps: 
-    - intent: cohort
-    - action: action_query_cohort
-    - action: action_store_asked_question
-    - action: utter_ask_answer_helpful
-    - intent: affirm
-    - action: action_store_isHelpful_statistic
-    - checkpoint: ask_feedback
+# - story: ask_about_cohort_answer_helpful
+#   steps: 
+#     - intent: cohort
+#     - action: action_query_cohort
+#     - action: action_store_asked_question
+#     - action: utter_ask_answer_helpful
+#     - intent: affirm
+#     - action: action_store_isHelpful_statistic
+#     - checkpoint: ask_feedback
 
 
-- story: ask_about_cohort_answer_not_helpful
-  steps: 
-    - intent: cohort
-    - action: action_query_cohort
-    - action: action_store_asked_question
-    - action: utter_ask_answer_helpful
-    - intent: deny
-    # - action: utter_sorry_question_not_helpful
-    - action: action_answer_not_helpful
-    - action: action_store_isHelpful_statistic
-    - action: action_get_available_options
+# - story: ask_about_cohort_answer_not_helpful
+#   steps: 
+#     - intent: cohort
+#     - action: action_query_cohort
+#     - action: action_store_asked_question
+#     - action: utter_ask_answer_helpful
+#     - intent: deny
+#     # - action: utter_sorry_question_not_helpful
+#     - action: action_answer_not_helpful
+#     - action: action_store_isHelpful_statistic
+#     - action: action_get_available_options
 
 
 - story: ask_more_question

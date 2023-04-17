@@ -3,7 +3,7 @@ from typing import List
 class QuestionAnswer():
     def __init__(self, question : str, answer : str, entities, isMetaData):
        self.question : str = str(question).lower()
-       self.answer : str = str(answer).lower()
+       self.answer : str = str(answer)
        self.entities : List[str] = entities
        self.isMetaData = isMetaData
        

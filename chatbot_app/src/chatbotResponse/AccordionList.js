@@ -26,13 +26,15 @@ export function AccordionList({jsonResponse}) {
 
     const validateData = () =>{
        
-        if ("header" in jsonResponse) {
+        if (jsonResponse["header"]) {
             header = jsonResponse["header"]
         }
 
-        if ("data" in jsonResponse){
+        if (jsonResponse["data"]){
             data = jsonResponse["data"]
         }
+
+     
     }
 
     validateData()
@@ -90,7 +92,7 @@ export function AccordionList({jsonResponse}) {
     }
 
     return (
-    <div className="msgalignstart">
+    <div key={jsonResponse} className="msgalignstart">
         <BiBot className="botIcon" />
         <div  className="botmsg" style={{maxWidth:800, marginBottom:"1%"}}>
         <h5>{header} </h5>

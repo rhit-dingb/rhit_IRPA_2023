@@ -17,6 +17,7 @@ from datetime import datetime, date, timedelta
 
 
 
+
 sys.path.append('../')
 
 from backendAPI.DataType import DataType
@@ -59,9 +60,17 @@ from typing import Annotated
 from jose import JWTError, jwt
 import os
 from decouple import config
+from Data_Ingestion.MongoProcessor import MongoProcessor
+from Data_Ingestion.ConvertToSparseMatrixDecorator import ConvertToSparseMatrixDecorator
+
+from backendAPI.constants import EVENT_OCCURED_KEY
+
 
 authenticationManager = AuthenticationManager()
-mongoDbDataManager = MongoDataManager()
+
+mongoProcessor = MongoProcessor()
+mongoProcessor = ConvertToSparseMatrixDecorator(mongoProcessor)
+mongoDbDataManager = MongoDataManager(mongoProcessor=mongoProcessor)
 mongoDbDataManager = Cache(mongoDbDataManager)
 
 rasaCommunicator = RasaCommunicator()
@@ -105,7 +114,7 @@ app.add_middleware(
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 SECRET_KEY = config('SECRET_KEY')
 ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 45
+ACCESS_TOKEN_EXPIRE_MINUTES = 60
 from fastapi import status
 
 
@@ -177,8 +186,19 @@ async def parse_data(request : Request):
                 section = splitted[0]
                 if not section in eventData[SECTIONS_UPLOADED_KEY]:
                     eventData[SECTIONS_UPLOADED_KEY].append(section)
-        
+
+
+            entities ={"eventType":"dataUploaded", "dataName":outputName}
+            if startYear and endYear:
+                entities["startYear"] = startYear
+                entities["endYear"]  = endYear
+
+            async with aiohttp.ClientSession() as session:
+                response = await rasaCommunicator.injectIntent(EVENT_OCCURED_KEY, entities, session, "random")
+                print(response)
+    
             await cacheEventPublisher.notify(EventType.DataUploaded, eventData)
+            
             return {"message": "Done", "uploadedAs": outputName}
         except Exception:
             raise HTTPException(status_code=500, detail="Something went wrong while parsing the input data")
@@ -208,7 +228,12 @@ async def delete_data(request : Request):
         if didDelete:
             eventData = {DATA_DELETED_KEY: toDelete}
             await cacheEventPublisher.notify(EventType.DataDeletion,eventData )
-        print("DELETING DATA")
+        
+        entities ={"eventType":"dataDeleted", "dataName": toDelete}
+        async with aiohttp.ClientSession() as session:
+            response = await rasaCommunicator.injectIntent(EVENT_OCCURED_KEY, entities, session, "random")
+            
+
         return {"didDelete": didDelete}
     except Exception:
         raise HTTPException(status_code=500, detail="Deletion failed")
@@ -236,6 +261,8 @@ async def change_selected_year(request : Request):
     except Exception:
         raise HTTPException(status_code=500, detail="change failed")
 
+
+
 @app.get("/api/get_selected_year/{conversation_id}")
 async def get_selected_year(conversation_id : str):
     async with aiohttp.ClientSession() as session:
@@ -252,12 +279,16 @@ async def get_selected_year(conversation_id : str):
             return {"selectedYear":[startYear, endYear] }
 
 
-# General API for getting unanswered questions
+# ==================================API for getting unanswered questions===============================================
 @app.get("/questions")
 async def get_unans_questions():
     unanswered_questions = unansweredQuestionDbConnector.getAllUnansweredQuestionAndAnswer()
     return unanswered_questions
 
+@app.get("/questions/{question_id}")
+async def get_question_by_id(question_id : str):
+    questionObj = unansweredQuestionDbConnector.getQuestionAnswerObjectById(question_id)
+    return questionObj
 
 @app.get("/answer_unanswered_question")
 async def answer_unanswered_question(question: str):
@@ -296,7 +327,7 @@ async def handle_delete_answer(request: Request):
 async def handle_add_unanswered_question(request : Request):
     jsonData = await request.json()
     question = jsonData["content"]
-    chatbotAnswers = jsonData["chatbotAnswers"]
+    chatbotAnswers : List[Dict[str, any]] = jsonData["chatbotAnswers"]
     success = unansweredQuestionDbConnector.addNewUnansweredQuestion(question, chatbotAnswers)
     if success:
         print("QUESTION ADDED SUCCESSFULLY")
@@ -304,6 +335,26 @@ async def handle_add_unanswered_question(request : Request):
     else:
         print("ERROR OCCURED DURING QUESTION ADD")
         return {'message': 'errors occurred during question add'}
+
+
+# This can either be administrator or user, so we need to the isAdministrator field to determine
+@app.put("/update_answer_feedback")
+async def update_answer_feedback(request : Request):
+    request = await request.json()
+    isAdministrator = request["isAdmin"]
+    feedback = request["feedback"]
+    chatbotAnswer = request["chatbotAnswer"]
+    
+    # if not isAdministrator:
+    #     # otherwise it is user and if they put down vote button, then save to database.
+    #     if feedback == "incorrect":
+
+    # else:
+    questionId = request["questionId"]
+    result = unansweredQuestionDbConnector.updateFeedbackForAnswer(questionId=questionId, chatbotAnswer=chatbotAnswer, feedback=feedback)
+    return {"success": result}
+
+
 
 
 #====================Below are the list of APIs for Freqency API==========================
@@ -337,7 +388,7 @@ async def handle_new_event(request: Request):
             "question_asked": content.lower()})
         if boo1:
             return {'message': 'data successfully inserted'}
-        else:
+        else:\
             return {'message': 'errors occurred'}
     else:
         boo2 = freq_collection.update_one({'question_asked': content}, {'$set': {'user_feedback': feedback}})
@@ -485,7 +536,7 @@ async def addAdmin(request : Request):
 
 
 @app.post("/transfer_root_access")
-async def addAdmin(request : Request):
+async def transferRootAccess(request : Request):
     jsonData = await request.json()
     transferFrom = jsonData["transferFrom"]
     transferTo = jsonData["transferTo"]
@@ -531,3 +582,29 @@ def getToken(request : Request):
         return request.headers[AUTHORIZATION_HEADER_KEY]
     else:
         return None
+    
+
+
+
+@app.post("/train_knowledgebase")
+async def trainKnowledgebase(request : Request):
+    """
+    request body: {"ids":[""]}
+    """
+    requestJson = await request.json()
+    ids = requestJson["ids"]
+    entities ={"eventType":"train", "feedback":[]}
+    for id in ids:
+        questionObj = unansweredQuestionDbConnector.getQuestionAnswerObjectById(id)
+        entities["feedback"].append(questionObj)
+        conversationId = "random"
+    try:
+        async with aiohttp.ClientSession() as session:
+            response = await rasaCommunicator.injectIntent(EVENT_OCCURED_KEY, entities, session, conversationId)
+            print(response)
+        
+        unansweredQuestionDbConnector.updateTrainedStatus(id, True)
+        return {"success":True}
+    except Exception:
+        raise HTTPException(status_code=500, detail="change failed")
+    
