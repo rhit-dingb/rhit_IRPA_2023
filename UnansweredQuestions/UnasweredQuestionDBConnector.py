@@ -39,3 +39,4 @@ class UnansweredQuestionDbConnector(ABC):
     @abstractmethod
     def updateTrainedStatus(self, questionId: str, status : bool):
         pass
+      

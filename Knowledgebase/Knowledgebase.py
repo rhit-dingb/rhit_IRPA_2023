@@ -1,6 +1,6 @@
 # This is be a interface that will be implemented by concrete classes.
 from copy import deepcopy
-from typing import List
+from typing import List, Tuple
 from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
 
 from abc import ABC, abstractmethod
@@ -19,7 +19,7 @@ class KnowledgeBase(ABC) :
         pass
     
     @abstractmethod
-    def searchForAnswer(self, question, intent, entitiesExtracted, startYear, endYear) -> List[ChatbotAnswer]:
+    def searchForAnswer(self, question, intent, entitiesExtracted, startYear, endYear) -> Tuple[List[ChatbotAnswer], bool]:
         pass 
 
     # # this function will aggregate number given a range, using the generator to create column name for those rows and 
