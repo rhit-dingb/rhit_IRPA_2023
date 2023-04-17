@@ -72,11 +72,11 @@ mongoDataManager = Cache(mongoDataManager)
 sparseMatrixKnowledgeBase = SparseMatrixKnowledgeBase(mongoDataManager)
 
 
-# mongoProcessor = MongoProcessor()
-# mongoProcessor = ConvertToDocumentDecorator(mongoProcessor)
-# mongoDataManager = MongoDataManager(mongoProcessor)
-# qaKnowledgebase = QuestionAnswerKnowledgeBase(mongoDataManager)
-# asyncio.run(qaKnowledgebase.initialize())
+mongoProcessor = MongoProcessor()
+mongoProcessor = ConvertToDocumentDecorator(mongoProcessor)
+mongoDataManager = MongoDataManager(mongoProcessor)
+qaKnowledgebase = QuestionAnswerKnowledgeBase(mongoDataManager)
+asyncio.run(qaKnowledgebase.initialize())
 
 
 # mongoProcessor = MongoProcessor()
