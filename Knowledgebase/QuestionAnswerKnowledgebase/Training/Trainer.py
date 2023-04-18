@@ -48,7 +48,7 @@ class Trainer:
             print("NO TRAINING DATA AFTER FILTER")
             return True
         
-        print(filteredTrainingLabel.__dict__)
+        
         trainingDataFileName = "SQUADTrainingData"
         self.trainingDataCreator.createSQUADTrainingDataSet(filteredTrainingLabel, trainingDataFileName)
         model.train(data_dir="./",
@@ -69,9 +69,11 @@ class Trainer:
                     if singleFeedbackLabel.source == source:
                        
                         fitleredFeedbackLabels.append(singleFeedbackLabel)
+                        print("ADDING", singleFeedbackLabel.answerProvided)
 
-                if len(filteredTrainingLabel) > 0:
+                if len(fitleredFeedbackLabels) > 0:
                     newMultiFeedbackLabel = MultiFeedbackLabel(container.query, fitleredFeedbackLabels)
+              
                     filteredTrainingLabel.append(newMultiFeedbackLabel)
 
         return filteredTrainingLabel
