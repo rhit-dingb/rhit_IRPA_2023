@@ -25,7 +25,7 @@ class Trainer:
         :param useQuestion: whether to use question or the answer for training.
         """
         
-        filteredTrainingLabel = []
+        filteredTrainingLabel = trainingLabels
         if not source == None: 
             filteredTrainingLabel = self.filterTrainingLabelForSource(trainingLabels, source)
 
@@ -38,10 +38,17 @@ class Trainer:
         return True
     
     def trainDataForModelWithSQUAD(self,  trainingLabels : List[MultiFeedbackLabel], model : FARMReader, saveDirectory : str, source : str ):
-        filteredTrainingLabel = []
+        filteredTrainingLabel = trainingLabels
         if not source == None:
+            print(source)
             filteredTrainingLabel = self.filterTrainingLabelForSource(trainingLabels, source)
         
+        print("USING THiS AS SQUAD DATA", filteredTrainingLabel)
+        if len(filteredTrainingLabel) == 0:
+            print("NO TRAINING DATA AFTER FILTER")
+            return True
+        
+        print(filteredTrainingLabel.__dict__)
         trainingDataFileName = "SQUADTrainingData"
         self.trainingDataCreator.createSQUADTrainingDataSet(filteredTrainingLabel, trainingDataFileName)
         model.train(data_dir="./",
@@ -56,11 +63,16 @@ class Trainer:
         for container in trainingLabels:
                 fitleredFeedbackLabels = []
                 for singleFeedbackLabel in container.feedbackLabels:
+                    # print("FEEDBACK SOURCE VS CURRENT SOURCE")
+                    # print(singleFeedbackLabel.source)
+                    # print(source)
                     if singleFeedbackLabel.source == source:
+                       
                         fitleredFeedbackLabels.append(singleFeedbackLabel)
 
-                newMultiFeedbackLabel = MultiFeedbackLabel(container.query, fitleredFeedbackLabels)
-                filteredTrainingLabel.append(newMultiFeedbackLabel)
+                if len(filteredTrainingLabel) > 0:
+                    newMultiFeedbackLabel = MultiFeedbackLabel(container.query, fitleredFeedbackLabels)
+                    filteredTrainingLabel.append(newMultiFeedbackLabel)
 
         return filteredTrainingLabel
 

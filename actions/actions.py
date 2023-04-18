@@ -42,13 +42,17 @@ import nltk
 
 from Knowledgebase.Knowledgebase import KnowledgeBase
 from Knowledgebase.QuestionAnswerKnowledgebase.QuestionAnswerKnowledgebase import QuestionAnswerKnowledgeBase
-from Knowledgebase.QuestionAnswerKnowledgebase.FAQKnowledgebase import FAQKnowledgeBase
 from Knowledgebase.DataModels.ChatbotAnswer import ChatbotAnswer
 from Knowledgebase.DataModels.FeedbackLabel import FeedbackLabel, FeedbackType
 from Knowledgebase.DataModels.MultiFeedbackLabel import MultiFeedbackLabel
 
 
-
+import os
+try:
+    os.environ["TOKENIZERS_PARALLELISM"] = "false"
+except Exception:
+    print("FAILED TO SET TOKENIZER PARALLELISM TO FALSE")
+    pass 
 
 try:
     nltk.find('corpora/wordnet')
@@ -78,12 +82,6 @@ mongoDataManager = MongoDataManager(mongoProcessor)
 qaKnowledgebase = QuestionAnswerKnowledgeBase(mongoDataManager)
 asyncio.run(qaKnowledgebase.initialize())
 
-
-# mongoProcessor = MongoProcessor()
-# mongoProcessor = ConvertToDocumentDecorator(mongoProcessor)
-# mongoDataManager = MongoDataManager(mongoProcessor)
-# faqKnowledgebase = FAQKnowledgeBase(mongoDataManager)
-# asyncio.run(faqKnowledgebase.initialize())
 
 
 
@@ -324,6 +322,7 @@ class ActionEventOccured(Action):
     def __init__(self) -> None:
         super().__init__()
         self.EVENT_TYPE_KEY = "eventType"
+        self.trained = 0
 
     def name(self) -> Text:
         return "action_event_occured"
@@ -376,9 +375,15 @@ class ActionEventOccured(Action):
             knowledgebase.dataDeleted(dataName)
 
         return []
+    
+    def trainCallBack(self, success : bool):
+        self.trained = self.trained + 1
+        if self.trained == len(knowledgebaseEnsemble):
+            # After all knowledgebase has finished training, send finished training request
+            response = requests.post("http://127.0.0.1:8000/training_done")
 
 
-        
+
     def handleTrainKnowledgebase(self, trainingLabels, entities, eventType):
         """
         The feedback labels object looks like:
@@ -389,6 +394,7 @@ class ActionEventOccured(Action):
         'chatbotAnswers': [{answer:'the total number of instructional faculty is 192', source:"QuestionAnswerKnowledge", metadata:{}, feedback:"" }], 
         'answer': 'the total number of instructional faculty is 200'}} ] 
         """
+        self.trained = 0
         feedbackEntity= findEntityHelper(entities, "feedback")
         feedbackLabelsDict = feedbackEntity["value"]
         # convert to data model
@@ -415,11 +421,9 @@ class ActionEventOccured(Action):
             trainingLabels.append(multiLabelFeedback)
 
         for knowledgebase in knowledgebaseEnsemble:
-            knowledgebase.train(trainingLabels)
+            knowledgebase.train(trainingLabels, self.trainCallBack)
 
         return [{"event": "action", "name": "action_event_occured", "eventType": eventType}]
-
-
 
 
 

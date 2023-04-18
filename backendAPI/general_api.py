@@ -585,9 +585,32 @@ def getToken(request : Request):
     
 
 
+from fastapi import BackgroundTasks
+isTraining = False
+
+async def sendTrainSignal(questionId, entities, conversationId):
+    async with aiohttp.ClientSession() as session:
+        global isTraining
+        isTraining = True
+        response = await rasaCommunicator.injectIntent(EVENT_OCCURED_KEY, entities, session, conversationId)
+        print(response)
+        unansweredQuestionDbConnector.updateTrainedStatus(questionId, True)
+        
+
+# This will be called by the rasa action server to tell the server training is done.
+@app.post("/training_done")
+async def trainingDone():
+    global isTraining
+    print("TRAINING DONE")
+    isTraining = False
+    
+@app.get("/training_status")
+async def getTrainingStatus():
+    global isTraining
+    return {"isTraining": isTraining}
 
 @app.post("/train_knowledgebase")
-async def trainKnowledgebase(request : Request):
+async def trainKnowledgebase(request : Request, background_tasks: BackgroundTasks):
     """
     request body: {"ids":[""]}
     """
@@ -598,13 +621,16 @@ async def trainKnowledgebase(request : Request):
         questionObj = unansweredQuestionDbConnector.getQuestionAnswerObjectById(id)
         entities["feedback"].append(questionObj)
         conversationId = "random"
-    try:
-        async with aiohttp.ClientSession() as session:
-            response = await rasaCommunicator.injectIntent(EVENT_OCCURED_KEY, entities, session, conversationId)
-            print(response)
-        
-        unansweredQuestionDbConnector.updateTrainedStatus(id, True)
-        return {"success":True}
-    except Exception:
-        raise HTTPException(status_code=500, detail="change failed")
+        try:
+            # async with aiohttp.ClientSession() as session:
+            #     response = await rasaCommunicator.injectIntent(EVENT_OCCURED_KEY, entities, session, conversationId)
+            #     print(response)
+            
+            # unansweredQuestionDbConnector.updateTrainedStatus(id, True)
+            # return {"success":True}
+            background_tasks.add_task(sendTrainSignal,id, entities, conversationId)
+            
+            return {"success": True}
+        except Exception:
+            raise HTTPException(status_code=500, detail="change failed")
     

@@ -345,8 +345,9 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
 
     
   
-    def train(self, trainingLabels : List[MultiFeedbackLabel]):
-        pass
+    def train(self, trainingLabels : List[MultiFeedbackLabel], callback) -> bool:
+        callback(True)
+        return True
     
     async def dataUploaded(self, dataName, startYear = None, endYear = None ):
         pass
