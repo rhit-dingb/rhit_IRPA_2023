@@ -9,7 +9,9 @@ from haystack.nodes.label_generator import PseudoLabelGenerator
 import uuid
 import logging
 
-
+import torch
+print("GPU AVAILABLE?")
+print(torch.cuda.is_available())
 
 class Trainer:
     def __init__(self):
@@ -51,9 +53,10 @@ class Trainer:
         
         trainingDataFileName = "SQUADTrainingData"
         self.trainingDataCreator.createSQUADTrainingDataSet(filteredTrainingLabel, trainingDataFileName)
+        
         model.train(data_dir="./",
              train_filename=trainingDataFileName ,use_gpu=True,
-             n_epochs=2,
+             n_epochs=1,
              save_dir=saveDirectory)
         
 

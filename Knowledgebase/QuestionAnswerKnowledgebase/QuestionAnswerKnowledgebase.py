@@ -76,7 +76,7 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
 
     
         availableYears = self.dataManager.getAllAvailableYearsSorted()
-        await self.writeDocToDocumentStore(availableYears)
+        await self.writeDocToDocumentStore(availableYears, delete=True)
         # self.pipeline = ExtractiveQAPipeline(self.reader, self.retriever)
         self.pipeline = Pipeline()
         self.pipeline.add_node(component=self.retriever, name="Retriever", inputs=["Query"])
@@ -104,9 +104,12 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
 
 
 
-    async def writeDocToDocumentStore(self, years: List[Tuple[str, str]]):
+    async def writeDocToDocumentStore(self, years: List[Tuple[str, str]], delete=False):
+        if (delete== True):
+            self.documentStore.delete_documents()
         availableYears = self.dataManager.getAllAvailableYearsSorted()
         yearAgnosticData = self.dataManager.findAllYearAngosticDataName()
+
         await utils.writeDocToDocumentStore(availableYears, yearAgnosticData,self.dataManager, self.documentStore, self.convertToDf)
         self.documentStore.update_embeddings(self.retriever)
 
