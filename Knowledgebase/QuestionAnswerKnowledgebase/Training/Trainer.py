@@ -70,7 +70,7 @@ class Trainer:
                        
                         fitleredFeedbackLabels.append(singleFeedbackLabel)
 
-                if len(filteredTrainingLabel) > 0:
+                if len(fitleredFeedbackLabels) > 0:
                     newMultiFeedbackLabel = MultiFeedbackLabel(container.query, fitleredFeedbackLabels)
                     filteredTrainingLabel.append(newMultiFeedbackLabel)
 
