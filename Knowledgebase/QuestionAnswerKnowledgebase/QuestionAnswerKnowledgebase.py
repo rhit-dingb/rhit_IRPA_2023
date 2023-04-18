@@ -1,3 +1,5 @@
+import random
+import threading
 from typing import Dict, List, Tuple
 from Knowledgebase.Knowledgebase import KnowledgeBase
 from haystack.nodes import EmbeddingRetriever
@@ -44,8 +46,10 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
         self.pipeline = None
         self.scoreThreshold = 0.1
         self.trainer = Trainer()
-
         self.middleMan =  QuestionToAnswer()
+        self.isTraining = False
+        self.trainThread : threading.Thread = None
+        self.trainingCallback = None
 
 
     async def initialize(self):
@@ -94,7 +98,6 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
         self.retriever = EmbeddingRetriever(
             embedding_model= loadPath,
             document_store=self.documentStore
-           
         )
         if save:
             self.retriever.save(pathToSave)
@@ -115,8 +118,8 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
     async def searchForAnswer(self, question, intent, entitiesExtracted, startYear, endYear) -> Tuple[List[ChatbotAnswer], bool]:
         
         result = self.pipeline.run(query = question, params= {
-            "Retriever": {"top_k": 20}, 
-            "Reader": {"top_k": 10},
+            "Retriever": {"top_k": 15}, 
+            "Reader": {"top_k": 5},
             "filters": {
                 "$or": {
                     "$and": {
@@ -206,25 +209,32 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
     
     
 
+    def train(self, trainingLabels : List[MultiFeedbackLabel], callback):
+        if self.isTraining and not self.trainThread == None:
+            if self.trainThread.is_alive():
+                print("TRAINING THREAD IS ALIVE")
+                return False        
 
- 
-    # def aggregateDiscreteRange(self, entities, dataModel, isSumming):
-    #     raise NotImplementedError()
-
-
-    # def calculatePercentages(self, searchResults, entitiesForEachResult, dataModel,):
-    #     raise NotImplementedError()
-
-
-    def train(self, trainingLabels : List[MultiFeedbackLabel]):
-        try:
-            self.trainer.trainDataForEmbeddingRetriever(trainingLabels, self.retriever, saveDirectory=self.fullRetrieverPath,documentStore= self.documentStore, source=self.source, useQuestion=True )
-            self.trainer.trainDataForModelWithSQUAD(trainingLabels=trainingLabels, model=self.reader, saveDirectory= self.fullReaderPath, source=self.source)
-            self.documentStore.update_embeddings(self.retriever)
-            return True
-        except Exception:
-            return False
+        # try:
+            # self.trainer.trainDataForEmbeddingRetriever(trainingLabels, self.retriever, saveDirectory=self.fullRetrieverPath,documentStore= self.documentStore, source=self.source, useQuestion=True )
+            # self.trainer.trainDataForModelWithSQUAD(trainingLabels=trainingLabels, model=self.reader, saveDirectory= self.fullReaderPath, source=self.source)
+        trainingThread = TrainingThread("trainingThread"+str(random.random()), "traingThread", trainingLabels, self.trainer,self)
+        trainingThread.start()
+        self.trainThread = trainingThread
+        self.trainingCallback = callback
+        print("TRAINING STARTED")
+        return True
+        # except Exception:
+        #     return False
         
+    def doneTraining(self, isSuccess):
+        print("TRAINING DONE")
+        self.isTraining = False
+        self.trainThread = None
+        self.documentStore.update_embeddings(self.retriever)
+        self.trainingCallback(isSuccess)
+        self.trainingCallback = None
+      
     
     async def dataUploaded(self, dataName, startYear = None, endYear = None):
         self.documentStore.delete_documents(filters={"dataName": dataName})
@@ -283,4 +293,23 @@ class QuestionToAnswer(BaseComponent):
            
         return output, "output_1"
 
-            
+
+
+
+class TrainingThread (threading.Thread):
+   def __init__(self, threadID, name, trainingLabels : List[MultiFeedbackLabel],trainer : Trainer, knowledgebase : QuestionAnswerKnowledgeBase):
+      threading.Thread.__init__(self)
+      self.threadID = threadID
+      self.name = name
+      self.trainingLabels = trainingLabels
+      self.trainer : Trainer = trainer
+      self.knowledgebase = knowledgebase
+
+   def run(self):
+        try:
+            self.trainer.trainDataForEmbeddingRetriever(self.trainingLabels, self.knowledgebase.retriever, saveDirectory=self.knowledgebase.fullRetrieverPath,documentStore= self.knowledgebase.documentStore, source=self.knowledgebase.source, useQuestion=True )
+            self.trainer.trainDataForModelWithSQUAD(trainingLabels=self.trainingLabels, model=self.knowledgebase.reader, saveDirectory= self.knowledgebase.fullReaderPath, source=self.knowledgebase.source)
+            print("OKAY DONE")
+            self.knowledgebase.doneTraining(True)
+        except Exception:
+            self.knowledgebase.doneTraining(False)

@@ -19,6 +19,9 @@ import { ListItem, List, Divider } from "@mui/material";
 import { checkResponse } from "../functions/functions";
 import {ChatbotAnswer, TextAnswer} from "../chatbotResponse/TextAnswer"
 
+import CircularProgress from '@mui/material/CircularProgress';
+import { green } from '@mui/material/colors';
+
 class Question extends React.Component {
   //todo: this thing
   constructor(props) {
@@ -65,8 +68,9 @@ class QuestionAnswer extends React.Component {
     // This binding is necessary to make `this` work in the callback
     this.handleClick = this.handleClick.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
-    this.handleTrain = this.handleTrain.bind(this)
-    this.showSuccessMessage = this.showSuccessMessage.bind(this)
+    this.handleTrain = this.handleTrain.bind(this);
+    this.getTrainStatus = this.getTrainStatus.bind(this);
+    this.showSuccessMessage = this.showSuccessMessage.bind(this);
    
     this.state = {
       question:props.questionObj.content,
@@ -75,11 +79,22 @@ class QuestionAnswer extends React.Component {
       showNotificationMessage: false,
       alertSeverity: "success",
       chatbotAnswers: props.questionObj.chatbotAnswers,
-      isTrainButtonDisabled : false
+      isTrainButtonDisabled : false, 
+      intervalId : null
+  
     }
   }
 
   componentWillReceiveProps(nextProps) {
+    if (this.state.intervalId){
+      clearInterval(this.state.intervalId)
+      console.log("CLEAR INTERVAL")
+      this.setState(prevState => ({
+        
+        intervalId: null
+      }))
+    }
+
     if (nextProps.questionObj !== this.props.questionObj) {
       this.setState({
          question : nextProps.questionObj.content, 
@@ -89,8 +104,65 @@ class QuestionAnswer extends React.Component {
          showNotificationMessage: false,
          alertSeverity: "success", 
          isTrainButtonDisabled: false
+        
       });
     }
+  }
+
+  componentDidMount(){
+    console.log("COMPONENT MOUNTED")
+    this.getTrainStatus()
+  }
+
+
+  componentWillUnmount(){
+  
+    if (this.state.intervalId){
+      clearInterval(this.state.intervalId)
+      console.log("CLEAR INTERVAL")
+      this.setState(prevState => ({
+        
+        intervalId: null
+      }))
+    }
+  }
+
+
+  getTrainStatus(){
+    fetch(`${CUSTOM_BACKEND_API_STRING}/training_status`, {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json'}
+    }).then((response)=>{
+      response.json().then((data)=>{
+        let status = data["isTraining"]
+        if (status == false){
+          if (this.state.isTrainButtonDisabled) {
+            this.showSuccessMessage("Training complete!")
+          } 
+          this.setState(prevState => ({
+            isTrainButtonDisabled : false
+            
+          }));
+          if(this.state.intervalId) {
+            clearInterval(this.state.intervalId)
+            this.setState(prevState => ({
+              intervalId : null
+            }));
+
+
+
+          }
+
+        } else if(status == true){
+          this.setState(prevState => ({
+            isTrainButtonDisabled : true
+          }));
+
+         
+        }
+      
+      })
+    })
   }
   
   
@@ -194,24 +266,29 @@ class QuestionAnswer extends React.Component {
           //   return
           // }else{
             // Start the training!!!
-            this.showSuccessMessage("Training begin.....")
-            console.log("START TRAINING")
+
             this.setState(prevState => ({
               isTrainButtonDisabled: true
             }))
             this.sendTrainRequest([currentQuesId]).then((data)=>{
               console.log(data)
-              this.setState(prevState => ({
-                isTrainButtonDisabled: false
+              // this.setState(prevState => ({
+              //   isTrainButtonDisabled: false
               
-              }))
-              this.showSuccessMessage("Training Done!")
-            }).then(()=>{
-              getQuestions().then((data) => {
-                this.props.updateFunc(data)
-              });
-            })
+              // }))
+              this.showSuccessMessage("Training Signal Sent")
+              let id= setInterval(this.getTrainStatus, 500)
 
+              this.setState(prevState => ({
+                intervalId: id
+              }))
+             
+            }).then(()=>{
+              // getQuestions().then((data) => {
+              //   this.props.updateFunc(data)
+              // });
+              this.getTrainStatus()
+            })
           //}          
       })
     })
@@ -284,6 +361,19 @@ class QuestionAnswer extends React.Component {
         </Button>
 
         <Button variant="contained" onClick={this.handleTrain} disabled={this.state.isTrainButtonDisabled}>
+        {this.state.isTrainButtonDisabled && (
+                    <CircularProgress
+                      size={24}
+                      sx={{
+                        color: green[500],
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        marginTop: '-12px',
+                        marginLeft: '-12px',
+                      }}
+                    />
+            )}
           {"Train Instead"}
         </Button>
         </Stack>
@@ -314,6 +404,8 @@ function Admin(props) {
   //todo: make a request to refresh the 
   const [questions, setQuestions] = useState([]);
   const [selectedQuestion, setSelectedQuestion] = useState(null)
+  const [isTraining, setIsTraining] = useState(false)
+
   useEffect(() => {
     getQuestions()
     .then((data) => {
