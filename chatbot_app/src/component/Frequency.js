@@ -3,6 +3,7 @@ import { Box, Card, Grid, InputLabel, MenuItem, Select, FormControl } from "@mui
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 import { DataGrid } from '@mui/x-data-grid';
 import { useState, useEffect } from "react";
+import { CUSTOM_BACKEND_API_STRING } from "../constants/constants";
 
 function Frequency() {
     /*
@@ -50,7 +51,7 @@ function Frequency() {
     var columns = columnsListAll;
 
     const fetchGeneralStats = (apiParamStr) => {
-        fetch('http://localhost:8000/general_stats/?' + apiParamStr)
+        fetch(`${CUSTOM_BACKEND_API_STRING}/general_stats/?` + apiParamStr)
             .then(res => res.json())
             .then(data => {
                 setFreqData(data.map(entry => {
@@ -66,7 +67,7 @@ function Frequency() {
     }
 
     const fetchFeedbackStats = (apiParamStr) => {
-        fetch('http://localhost:8000/feedback_stats/?' + apiParamStr)
+        fetch(`${CUSTOM_BACKEND_API_STRING}/feedback_stats/?` + apiParamStr)
             .then(res => res.json())
             .then(data => {
                 setFeedbackData({
@@ -78,7 +79,7 @@ function Frequency() {
     }
 
     const fetchIntentStats = (apiParamStr) => {
-        fetch('http://localhost:8000/intent_stats/?' + apiParamStr)
+        fetch(`${CUSTOM_BACKEND_API_STRING}/intent_stats/?` + apiParamStr)
             .then(res => res.json())
             .then(data => {
                 setIntentData(data.intent_stats.map(entry => {
