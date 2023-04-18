@@ -430,7 +430,7 @@ async def success_rate(endDate: datetime = datetime.now(), startDate: datetime =
     db = client.freq_question_db
     freq_collection = db.cds_frequency
     total_questions = freq_collection.count_documents({"time_asked": {"$gte": startDate, "$lte": endDate}})
-    successful_questions = freq_collection.count_documents({"time_asked": {"$gte": startDate, "$lte": endDate}, "helpful": True})
+    successful_questions = freq_collection.count_documents({"time_asked": {"$gte": startDate, "$lte": endDate}, "user_feedback": {"$in": [ "HELPFUL", "NO_FEEDBACK" ] }})
     success_rate = successful_questions / total_questions * 100 if total_questions > 0 else 0
     return {"total_questions": total_questions, "successful_questions": successful_questions, "success_rate": success_rate}
 
