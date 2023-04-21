@@ -2,6 +2,7 @@ version: "3.1"
 nlu:
 - intent: financial_aid
   examples: |
+    - What do I [need]{"entity":"condition", "value":"need"} for [financial aid]{"entity": "financial_aid_term", "value": "financial aid"}?
     - Which needs-analysis [methodology]{"entity": "methodology", "value": "methodology"} does your [institution]{"entity": "education_level", "value": "college" } use in awarding [institutional]{"entity": "financial_aid_type", "value": "institutional" } aid?
     - How much [need base]{"entity": "need_non_need_base_aid", "value": "need-based"} [college]{"entity": "financial_aid_type", "value": "institutional" } [scholarship]{"entity": "scholarship_grants", "value": "scholarship"} and [grants]{"entity": "scholarship_grants", "value": "grant"} was [awarded]{"entity": "action", "value": "awarded" } to [undergraduate]{"entity": "student_level", "value": "undergraduate" } students
     - How much [need base]{"entity": "need_non_need_base_aid", "value": "need-based"} [college]{"entity": "financial_aid_type", "value": "institutional" } [scholarship]{"entity": "scholarship_grants", "value": "scholarship"} or [grants]{"entity": "scholarship_grants", "value": "grant"} was [awarded]{"entity": "action", "value": "awarded" } to [undergraduate]{"entity": "student_level", "value": "undergraduate" } students
@@ -90,6 +91,7 @@ nlu:
     - How much [non need base]{"entity": "need_non_need_base_aid", "value": "non-need-based"} [college]{"entity": "financial_aid_type", "value": "institutional" } [scholarship]{"entity": "scholarship_grants", "value": "scholarship"} and [grants]{"entity": "scholarship_grants", "value": "grant"} was [awarded]{"entity": "action", "value": "awarded" } to [undergraduate]{"entity": "student_level", "value": "undergraduate" } students
     - How much [non need base]{"entity": "need_non_need_base_aid", "value": "non-need-based"} [college]{"entity": "financial_aid_type", "value": "institutional" } [scholarship]{"entity": "scholarship_grants", "value": "scholarship"} or [grants]{"entity": "scholarship_grants", "value": "grant"} was [awarded]{"entity": "action", "value": "awarded" } to [undergraduate]{"entity": "student_level", "value": "undergraduate" } students
     - How much [non need base]{"entity": "need_non_need_base_aid", "value": "non-need-based"} [college]{"entity": "financial_aid_type", "value": "institutional" } [scholarship]{"entity": "scholarship_grants", "value": "scholarship"} / [grants]{"entity": "scholarship_grants", "value": "grant"} was [awarded]{"entity": "action", "value": "awarded" } to [undergraduate]{"entity": "student_level", "value": "undergraduate" } students
+  
     - How much [non need base]{"entity": "need_non_need_base_aid", "value": "non-need-based"} [institutional]{"entity": "financial_aid_type", "value": "institutional" } [scholarship]{"entity": "scholarship_grants", "value": "scholarship"} and [grants]{"entity": "scholarship_grants", "value": "grant"} was [awarded]{"entity": "action", "value": "awarded" } to [undergraduate]{"entity": "student_level", "value": "undergraduate" } students
     - How much [non need base]{"entity": "need_non_need_base_aid", "value": "non-need-based"} [institutional]{"entity": "financial_aid_type", "value": "institutional" } [scholarship]{"entity": "scholarship_grants", "value": "scholarship"} or [grants]{"entity": "scholarship_grants", "value": "grant"} was [awarded]{"entity": "action", "value": "awarded" } to [undergraduate]{"entity": "student_level", "value": "undergraduate" } students
     - How much [non need base]{"entity": "need_non_need_base_aid", "value": "non-need-based"} [institutional]{"entity": "financial_aid_type", "value": "institutional" } [scholarship]{"entity": "scholarship_grants", "value": "scholarship"} / [grants]{"entity": "scholarship_grants", "value": "grant"} was [awarded]{"entity": "action", "value": "awarded" } to [undergraduate]{"entity": "student_level", "value": "undergraduate" } students
@@ -329,8 +331,12 @@ nlu:
     - What is the number of student who were [awarded]{"entity": "action", "value": "awarded" } any [need based]{"entity": "need_non_need_base_aid", "value": "need-based" } [scholarship]{"entity": "scholarship_grants", "value": "scholarship"} or [grants]{"entity": "scholarship_grants", "value": "grant"}
     - What is the number of student who were [awarded]{"entity": "action", "value": "awarded" } any [need based]{"entity": "need_non_need_base_aid", "value": "need-based" } [scholarship]{"entity": "scholarship_grants", "value": "scholarship"} / [grants]{"entity": "scholarship_grants", "value": "grant"}
     - What is the number of student who were [awarded]{"entity": "action", "value": "awarded" } any [need based]{"entity": "need_non_need_base_aid", "value": "need-based" } [self help]{"entity": "self-help_aid", "value": "self-help" } aid
-    - What is the number of student who were [awarded]{"entity": "action", "value": "awarded" } any [need based]{"entity": "need_non_need_base_aid", "value": "need-based" } [self-help]{"entity": "self-help_aid", "value": "self-help" } aid
+    
+    
+    - What is the number of student who were [awarded]{"entity": "action", "value": "awarded"} any [need based]{"entity": "need_non_need_base_aid", "value": "need-based" } [self-help]{"entity": "self-help_aid", "value": "self-help" } aid
     - What is the number of student who were [determined]{"entity": "action", "value": "determined" } to have [financial need]{"entity": "financial_aid_term", "value": "financial need"}
+    - How many students [received]{"entity": "action", "value": "awarded"} [need based]{"entity": "need_non_need_base_aid", "value": "need-based" } [self-help]{"entity": "self-help_aid", "value": "self-help" } aid
+    - number of student [receiving]{"entity": "action", "value": "awarded"} who were [given]{"entity": "action", "value": "awarded"} any [need based]{"entity": "need_non_need_base_aid", "value": "need-based" } [self-help]{"entity": "self-help_aid", "value": "self-help" } aid
     - What is the number of student who were [given]{"entity": "action", "value": "awarded" } any [financial aid]{"entity": "financial_aid_term", "value": "financial aid"}
     - What is the number of student who were [given]{"entity": "action", "value": "awarded" } any [need based]{"entity": "need_non_need_base_aid", "value": "need-based" } [scholarship]{"entity": "scholarship_grants", "value": "scholarship"} and [grants]{"entity": "scholarship_grants", "value": "grant"}
     - What is the number of student who were [given]{"entity": "action", "value": "awarded" } any [need based]{"entity": "need_non_need_base_aid", "value": "need-based" } [scholarship]{"entity": "scholarship_grants", "value": "scholarship"} or [grants]{"entity": "scholarship_grants", "value": "grant"}
@@ -373,28 +379,29 @@ nlu:
     - What is the [average]{"entity":"aggregation", "value": "average"} total [money]{"entity":"money", "value": "cost"} [owed]{"entity":"action", "value": "borrowed"} by each [undergraduate]{"entity": "student_level", "value": "undergraduate"} student from a [private]{"entity": "access_level", "value": "private"} [loan](other_aid) from a [bank]{"entity": "loan_lender", "value": "bank"} or [lender]{"entity": "loan_lender", "value": "lender"}
 
 
-    - What is your institution's policy [policy]{"entity":"policy", "value": "policy"} regarding institutional  [scholarship]{"entity": "scholarship_grants", "value": "scholarship"} and [grants]{"entity": "scholarship_grants", "value": "grant"} aid for [undergraduate]{"entity": "student_level", "value": "undergraduate" } [degree-seeking]{"entity": "degree-goal", "value": "degree-seeking" } nonresident aliens?
+    # policy
+    - What is your [institution]{"entity": "education_level", "value": "college"} [scholarship]{"entity": "scholarship_grants", "value": "scholarship"} and [grants]{"entity": "scholarship_grants", "value": "grant"} aid for [undergraduate]{"entity": "student_level", "value": "undergraduate" } [degree-seeking]{"entity": "degree-goal", "value": "degree-seeking" } [nonresident]{"entity": "international_domestic", "value": "international"} [aliens]{"entity":"citizen_non_citizen", "value": "non-citizen"}?
+
+    - what is your [institution's]{"entity": "education_level", "value": "college"} policy regarding [institutional]{"entity": "financial_aid_type", "value": "institutional" } [scholarship]{"entity": "scholarship_grants", "value": "scholarship"} and [grants]{"entity": "scholarship_grants", "value": "grant"} aid for [undergraduate]{"entity": "student_level", "value": "undergraduate" } [degree-seeking]{"entity": "degree-goal", "value": "degree-seeking" } [nonresident]{"entity": "international_domestic", "value": "international"} [aliens]{"entity":"citizen_non_citizen", "value": "non-citizen"}?
     
-    - What  [financial-aid]{"entity":"financial_aid_term", "value": "financial aid"}  [forms]{"entity":"form", "value": "forms"} that [international]{"entity":"international_domestic", "value": "international"}  [first-year]{"entity":"is_first_year", "value": "first-year"} students must submit?
+    - What  [financial-aid]{"entity":"financial_aid_term", "value": "financial aid"}  [form]{"entity":"form", "value": "form"} that [international]{"entity":"international_domestic", "value": "international"}  [first-year]{"entity":"is_first_year", "value": "first-year"} students [must]{"entity":"condition","value":"require"} submit?
+    
+    - What  [financial-aid]{"entity":"financial_aid_term", "value": "financial aid"}  [forms]{"entity":"form", "value": "form"} that [domestic]{"entity":"international_domestic", "value": "domestic"} [first-year]{"entity":"is_first_year", "value": "first-year"} students [must]{"entity":"condition","value":"require"} submit?
 
-
-    - What  [financial-aid]{"entity":"financial_aid_term", "value": "financial aid"}  [forms]{"entity":"form", "value": "forms"} that [domestic]{"entity":"international_domestic", "value": "domestic"} [first-year]{"entity":"is_first_year", "value": "first-year"} students must submit?
-
-    - what if the Priority daye for filling required [financial-aid]{"entity":"financial_aid_term", "value": "financial aid"} [forms]{"entity":"form", "value": "forms"} for [first-year]{"entity":"is_first_year", "value": "first-year"} students ?
+    - what is the [priority]{"entity": "admission_decision_date", "value": "closing"} [day] for filling [required]{"entity": "condition", "value": "require"} [financial-aid]{"entity":"financial_aid_term", "value": "financial aid"} [forms]{"entity":"form", "value": "form"} for [first-year]{"entity":"is_first_year", "value": "first-year"} students ?
 
     - Is there any [deadline]{"entity":"deadline", "value": "deadline"} for [first-year]{"entity":"is_first_year", "value": "first-year"} students?
 
-    - what is the [notification]{"entity":"admission_decision_date", "value": "notification"} date for [first-year]{"entity":"is_first_year", "value": "first-year"} students apply for [financial-aid]{"entity":"financial_aid_term", "value": "financial aid"} ?
+    - what is the [notification]{"entity":"admission_decision_date", "value": "notification"} [date]{"entity": "time" , "value": "date"} for [first-year]{"entity":"is_first_year", "value": "first-year"} students apply for [financial-aid]{"entity":"financial_aid_term", "value": "financial aid"} ?
 
-    - what is the [reply]{"entity":"admission_decision_date", "value": "reply"} date for [first-year]{"entity":"is_first_year", "value": "first-year"} students?
+    - what is the [reply]{"entity":"admission_decision_date", "value": "reply"} [date]{"entity": "time" , "value": "date"} for [first-year]{"entity":"is_first_year", "value": "first-year"} students?
 
     - What kinds of [financial-aid]{"entity":"financial_aid_term", "value": "financial aid"} [loan](other_aid) is avaliable to [undergraduate]{"entity": "student_level", "value": "undergraduate" } students?
     
     - What kinds of [financial-aid]{"entity":"financial_aid_term", "value": "financial aid"}  [scholarship]{"entity": "scholarship_grants", "value": "scholarship"} or [grants]{"entity": "scholarship_grants", "value": "grant"} is avaliable to [undergraduate]{"entity": "student_level", "value": "undergraduate" } students?
 
-    - Please list all the awarding [institutional]{"entity": "financial_aid_type", "value": "institutional" } aid.
 
-
+    
 
 
 - lookup: scholarship_grant
@@ -405,6 +412,7 @@ nlu:
     - state
     - external
     - athletic 
+
 - synonym: first-year
   examples: |
     - first-year
@@ -525,3 +533,7 @@ nlu:
   examples: |
     - self-help
     - self help
+
+- synonym: form
+  examples: |
+    - forms

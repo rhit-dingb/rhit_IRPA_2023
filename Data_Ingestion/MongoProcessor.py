@@ -1,4 +1,5 @@
 
+from typing import List
 import pandas as pd
 from Data_Ingestion.SparseMatrix import SparseMatrix
 from Data_Ingestion.TopicData import TopicData
@@ -8,44 +9,41 @@ from Exceptions.ExceptionTypes import ExceptionTypes
 from Exceptions.NoDataFoundException import NoDataFoundException
 from DataManager.constants import QUESTION_COLUMN_KEY
 from DataManager.constants import DATABASE_METADATA_FIELD_KEY
+from DataManager.constants import DATABASE_QUESTION_ANSWERS_KEY
+from Data_Ingestion.SubsectionQnA import SubsectionQnA
 
 
 class MongoProcessor():
     def __init__(self):
         pass
-        # self.data : dict[str, dict[str, TopicData]] = []
-        #print(self.data['2020_2021']["high_school_units"].sparseMatrices)
-        
-    # def getData(self) -> TopicData:
-    #     return self.data
 
-    """ 
-    
-    """ 
-    def getSparseMatricesByDbNameAndIntent(self, client, intent, dbName):
-        # yearToData = dict()
-
-        # for db_name in db.list_database_names():
-            # if(db_name != 'admin' and db_name != 'config' and db_name != 'local'):
+    async def getDataByDbNameAndSection(self, client, section, dbName) -> List[SubsectionQnA]:
         cur_db = client[dbName]
-        # data = dict()
-            #xl = pd.DataFrame.from_dict(cur_db) #convert current database to Panda DataFrame                            
-        # for topic in topicToParse:
+        subsectionsQnAList = []
+        for name in cur_db.list_collection_names():
+            if section == name:
+                cursor = cur_db[name].find({})
+                for data in cursor:
+                    subsection = data.get(DATABASE_SPARSE_MATRIX_SUBSECTION_KEY)
+                    questionAnswer = data.get(DATABASE_QUESTION_ANSWERS_KEY)
+                    metadata = data.get(DATABASE_METADATA_FIELD_KEY)
+                    subsectionQnA = SubsectionQnA(subsection, questionAnswer, metadata)
+                    subsectionsQnAList.append(subsectionQnA)
+
+        return subsectionsQnAList
+    
+
+ 
+    def getSparseMatricesByDbNameAndIntent(self, client, intent, dbName):
+        cur_db = client[dbName]
+
         topicData = self.getAllSparseMatrixForTopic(intent, cur_db)
-            # get the year key. !!! Assume current standart is CDS_xxxx_xxxx
-            # yearKey = db_name[-9:-5]+"_"+db_name[-4:]
-                #print('yearkey is  ' + yearKey)
-        # yearToData[yearKey] = data
-
+    
         return topicData     
-   
-
-       
+          
 
     """ 
-    Given a topic, this function will find all the sparse matrix for a topic. Currently it is getting it from excel file, but 
-    we can swap out for database easily.
-
+    Given a topic, this function will find all the sparse matrix for a topic. 
     PARAMETERS: 
     
     topic: the topic to get the sparse matrix for
@@ -89,6 +87,6 @@ class MongoProcessor():
 
                 return topicData  
 
-        # If nothing found, return empty topic data        
-        return topicData
+    #     # If nothing found, return empty topic data        
+    #     return topicData
                 

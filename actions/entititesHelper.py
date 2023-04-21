@@ -92,3 +92,16 @@ def createEntityObj(entityValue, entityLabel="none",  entityRole=None):
 
         return res
 
+
+
+def removeLowConfidenceEntities(entities):
+    confidenceThreshold = 0.5
+    entityConfidenceKey = "confidence_entity"
+    highConfidenceEntities = []
+    for entity in entities:
+        if entityConfidenceKey in entity.keys():
+            if entity[entityConfidenceKey] >= confidenceThreshold:
+                highConfidenceEntities.append(entity)
+            else: 
+                highConfidenceEntities.append(entity)
+    return highConfidenceEntities

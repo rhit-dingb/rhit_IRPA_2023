@@ -12,7 +12,7 @@ class DataLoader(ABC):
     def loadData(self, data): 
         pass
 
-    #Get all section that "we need to parse into sparse matrix, including sub sections 
+   
     def getAllSectionDataFullName(self) -> List[str] :
         return self.sectionFullNameToQuestionAnswers.keys()
     

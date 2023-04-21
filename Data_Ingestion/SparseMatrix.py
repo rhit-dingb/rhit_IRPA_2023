@@ -26,6 +26,10 @@ class SparseMatrix():
 
         self.metadata : Dict[str, str]= metadata
 
+
+    def setMetadata(self,metadata : Dict[str, str]):
+        self.metadata = metadata
+        
     def getColumn(self):
         return self.sparseMatrixDf.columns
 
@@ -68,9 +72,12 @@ class SparseMatrix():
     
     # #This function determines how many elements in the first array is in the second array.
     def determineMatchCountHelper(self, entities: List[str], columns: List[str]):
+        print("FOR", self.subSectionName)
+     
         entitiesMatchCount = 0
         for entity in entities:
             if entity in columns:
+                print("MATCHED", entity)
                 entitiesMatchCount = entitiesMatchCount + 1
         # print("ENTITY MATCH COUNT FOR")
         # print(self.subSectionName)
@@ -153,13 +160,15 @@ class SparseMatrix():
         return self.isThisOperationAllowed(constants.PERCENTAGE_ALLOWED_COLUMN_VALUE)
 
     def findDenominatorQuestion(self) -> str:
+        print(self.metadata)
+       
         denominatorQuestion = self.findValueForMetadata(constants.DENOMINATOR_QUESTION_COLUMN_VALUE)
         if denominatorQuestion == None:
             return ""
         else:
             return denominatorQuestion
 
-    def searchInSelfForPercentage(self) -> bool:
+    def shouldSearchInSelfForPercentage(self) -> bool:
         searchInSelfForPercentage = self.findValueForMetadata(constants.PERCENTAGE_SEARCH_IN_SELF_COLUMN_VALUE)
         return self.checkIsEnabled(searchInSelfForPercentage)
     
@@ -179,6 +188,11 @@ class SparseMatrix():
             return True
 
         return False
+    
+
+    def getDocumentationOfChange(self):
+       return self.findValueForMetadata(constants.DOCUMENTATION_OF_CHANGE_METADATA_KEY)
+
 
     def isThisOperationAllowed(self, operationLabel):
         answer = self.findValueForMetadata(operationLabel)
@@ -204,15 +218,16 @@ class SparseMatrix():
         else:
             return None
 
-    def shouldSearchInSelfForPercentage(self):
-        return False
+  
     
     def searchOnSparseMatrix(self, entities, shouldAddRowStrategy, isSumAllowed):
         searchResults = []
         currentResultPointer = None
         entitiesUsed= []
+        
         # get the underlying pandas dataframe from the internal data model
         sparseMatrixToSearchDf = self.getSparseMatrixDf()
+        
         for i in range(sparseMatrixToSearchDf.shape[0]):
             row = sparseMatrixToSearchDf.loc[i]
             if "total" in row.index and sparseMatrixToSearchDf.loc[i,"total"] == 1:
@@ -230,18 +245,19 @@ class SparseMatrix():
                     entitiesUsed = usedEntities
 
                 newAnswer= sparseMatrixToSearchDf.loc[i,'Value']
-                castedValue, type = self.determineResultType(newAnswer)
-                question = self.questions[i]
+                castedValue, type = self.determineResultType(newAnswer) 
+                question = ""
+                if i < len(self.questions):
+                    question = self.questions[i]
+
                 newSearchResult : SearchResult = SearchResult(newAnswer, usedEntities, type, realQuestion= question )
                 if currentResultPointer == None: 
-                    # searchResult : SearchResult = SearchResult(newAnswer, usedEntities, type, self.questions[i])
                     currentResultPointer = newSearchResult
-                    # currentResultPointer = str(currentResultPointer)
+                   
                     searchResults.append(currentResultPointer)
                 else:
                     # print("ADDING", newSearchResult.answer)
                     currentResultPointer = self.addSearchResult(currentResultPointer, newSearchResult, searchResults, isSumAllowed)
-
                 
         return searchResults
 

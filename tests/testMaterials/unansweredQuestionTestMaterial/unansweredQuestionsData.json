@@ -1,0 +1,30 @@
+[
+  {
+     "_id":{
+        "$oid":"6414c04b3e718f04f2ea308f"
+     },
+     "content":"What is the admission trend?",
+     "post_date":{
+        "$date":"1679067147943"
+     },
+     "is_addressed":true,
+     "chatbotAnswers":[
+        "Sorry, I couldn't find any answer to your question"
+     ],
+     "answer":"Increased by 20% each year."
+  },
+  {
+     "_id":{
+        "$oid":"641b6117a799c3a9b43f72c1"
+     },
+     "content":"How many faculty do you have at rose-hulman",
+     "post_date":{
+        "$date":"1679501527973"
+     },
+     "is_addressed":false ,
+     "chatbotAnswers":[
+        "the total number of instructional faculty is 192"
+     ],
+     "answer":""
+  }
+]

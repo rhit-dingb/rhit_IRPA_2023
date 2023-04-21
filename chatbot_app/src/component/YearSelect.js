@@ -25,14 +25,11 @@ function YearSelect({ convId }) {
 
     useEffect(() => {
         getAvailableYears().then((yearsAvailable)=>{
-                // console.log(yearsAvailable)
-                // //console.log(yearsList)
-                // console.log(yearsAvailable)
+              
                 //If year is not available, set to most recent year
                 if (yearsAvailable && yearsAvailable.length > 0) {
                     let mostRecentYearRange = yearsAvailable[0]
-                    console.log("MOST RECENT RANGE")
-                    console.log(mostRecentYearRange)
+                 
                     setYearRange(mostRecentYearRange)
                 }
         }) 
@@ -44,7 +41,7 @@ function YearSelect({ convId }) {
             method: 'GET'
         }).then((result)=>{
             return result.json().then((data)=>{
-                console.log(data)
+              
                 let yearsAvailable = data["data"]
                 setYearsList(yearsAvailable)
             
@@ -52,7 +49,7 @@ function YearSelect({ convId }) {
                
             })
         }).catch((err)=>{
-            console.log(err)
+            // console.log(err)
         })
     }   
 
@@ -61,13 +58,13 @@ function YearSelect({ convId }) {
             method: 'GET'
         }).then((result)=>{
             return result.json().then((data)=>{
-                console.log(data)
+                
                 let selectedYearRange = data["selectedYear"]
              
                 return selectedYearRange
             })
         }).catch((err)=>{
-            console.log(err)
+            // console.log(err)
         })
     }
 
@@ -78,7 +75,7 @@ function YearSelect({ convId }) {
 
         let body = {"conversationId": convId, "startYear": currYearRange[0], "endYear": currYearRange[1]} 
         body = JSON.stringify(body)
-        console.log(body)
+    
         fetch(CUSTOM_BACKEND_API_STRING + "/api/change_year", {
             method: 'POST',
             body: body,

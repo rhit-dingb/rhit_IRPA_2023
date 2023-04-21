@@ -1,5 +1,6 @@
 from typing import Dict, List, Tuple
 from DataManager.DataManager import DataManager
+from Data_Ingestion.ConvertToSparseMatrixDecorator import ConvertToSparseMatrixDecorator
 from Data_Ingestion.MongoProcessor import MongoProcessor
 from Data_Ingestion.SparseMatrix import SparseMatrix
 from Data_Ingestion.TopicData import TopicData
@@ -16,21 +17,37 @@ from DataManager.constants import ANNUAL_DATA_REGEX_PATTERN
 from DataManager.constants import DEFINITION_DATA_REGEX_PATTERN
 from DataManager.constants import DATABASE_METADATA_FIELD_KEY
 from Data_Ingestion.constants import ABOUT_METADATA_KEY
+from Parser.RasaCommunicator import RasaCommunicator
+from Data_Ingestion.SubsectionQnA import SubsectionQnA
 """
 MongoDataManager subclass that can handle connections with MongoDB data
 """
 class MongoDataManager(DataManager):
-    def __init__(self):
+    def __init__(self, mongoProcessor):
         super().__init__()
-        self.mongoProcessor = MongoProcessor()
+        # self.mongoProcessor = MongoProcessor()
+        # self.mongoProcessor = ConvertToSparseMatrixDecorator(self.mongoProcessor)
+        self.mongoProcessor : MongoProcessor = mongoProcessor
         self.client = MongoClient(MONGO_DB_CONNECTION_STRING)
+        self.rasaCommunicator = RasaCommunicator()
 
-    def getAvailableOptions(self, intent, startYear, endYear):
-        availableOptions = dict() 
+
+    def findDefinitionData(self):
         patternDefinition = re.compile(DEFINITION_DATA_REGEX_PATTERN, re.IGNORECASE)
         definitionDatabasesNames = self.getAllAvailableData(patternDefinition)
+        return definitionDatabasesNames
+    
+     
+    def findAllYearAngosticDataName(self):
+        # only find defintion for now, but probably later wil change
+        return self.findDefinitionData()
+       
+    def getAvailableOptions(self, intent, startYear, endYear):
+        availableOptions = dict() 
+        definitionDatabaseNames = self.findDefinitionData()
         annualDatabaseNames = self.getAvailableDataForSpecificYearRange(startYear, endYear)
-        databaseNames = annualDatabaseNames+ definitionDatabasesNames
+        databaseNames = annualDatabaseNames+ definitionDatabaseNames
+
         for databaseName in databaseNames:
             if databaseName in self.client.list_database_names():
                 db = self.client[databaseName]
@@ -48,7 +65,6 @@ class MongoDataManager(DataManager):
                         if ABOUT_METADATA_KEY in metadata:
                             aboutDescription = metadata[ABOUT_METADATA_KEY]
                             availableOptions[collection].append(aboutDescription)
-
         if intent == None:
             intent = ""
                                 
@@ -60,26 +76,51 @@ class MongoDataManager(DataManager):
             return newDict
 
         return availableOptions
-                # print(list(cursor))
 
 
-    def getSectionAndSubsectionsForData(self, dataName) -> Dict[str, List[str]] :
+
+    def getAllSubsectionForSection(self, section, startYear = None, endYear = None, filter = lambda x: True):
+        subsectionForSection = []
+        dataNames = []
+        #might refactor this later
+        if startYear == None or endYear == None:
+            dataNames = self.findDefinitionData()
+        else:
+            dataNames = self.getAvailableDataForSpecificYearRange(startYear, endYear)
+
+        
+        def filter(collection):
+            return collection == section
+        for databaseName in dataNames:
+           sectionToSubSection = self.getSectionAndSubsectionsForData(databaseName, filter=filter)
+           if section in sectionToSubSection:
+               subsectionForSection = subsectionForSection+sectionToSubSection[section]
+
+        return subsectionForSection
+
+
+
+    def getSectionAndSubsectionsForData(self, dataName, filter=lambda x: True) -> Dict[str, List[str]] :
         sectionToSubections = dict()
         databases = self.client.list_database_names()
         for databaseName in databases: 
             if dataName == databaseName:
                 db = self.client[databaseName]
-                collections = db.list_collection_names()
-                for collection in collections:
+                sections = self.getSections(dataName)
+                for collection in sections:
+                    if not filter(collection):
+                        continue
                     subsectionsData = db[collection].find({}, {DATABASE_SUBSECTION_FIELD_KEY :1})
                     for subsection in subsectionsData:
+                      
+                        if not DATABASE_SUBSECTION_FIELD_KEY in subsection:
+                            continue
                         subSectionName = subsection[DATABASE_SUBSECTION_FIELD_KEY]
-
                         if collection in sectionToSubections:
                             sectionToSubections[collection].append(subSectionName)
                         else:
                             sectionToSubections[collection] = [subSectionName]
-
+                            
         # sort the keys and array
         keys = list(sectionToSubections.keys())
         keys.sort()
@@ -91,6 +132,8 @@ class MongoDataManager(DataManager):
             sortedDict[key] = subsections
 
         return sortedDict
+    
+
 
     def deleteData(self, dataName) -> bool:
         if dataName in self.client.list_database_names():
@@ -103,62 +146,48 @@ class MongoDataManager(DataManager):
         databases = self.client.list_database_names()
         availableData = []
         # print(databases)
-        
         for database in databases: 
             didMatch = regex.match(database.lower())
             if didMatch:
                 availableData.append(database)
         
         return availableData
+    
+    def getAvailableDataForSpecificYearRange(self,startYear, endYear) -> List[str]:
+        patternYear = re.compile(".+"+str(startYear)+"."+str(endYear), re.IGNORECASE)
+        databasesAvailableForGivenYear = self.getAllAvailableData(patternYear)
+        return databasesAvailableForGivenYear
 
 
     def getSections(self, dataName):
         return self.client[dataName].list_collection_names()
 
-    def getAvailableDataForSpecificYearRange(self,startYear, endYear) -> List[str]:
-        patternYear = re.compile(".+"+str(startYear)+"."+str(endYear), re.IGNORECASE)
-        databasesAvailableForGivenYear = self.getAllAvailableData(patternYear)
-        return databasesAvailableForGivenYear
-    
-    """
-    See documentation in DataManager.py
-    """
-    def getSparseMatricesByStartEndYearAndIntent(self, intent, start, end, exceptionToThrow: Exception) -> TopicData:
-            # cdsDatabase = CDS_DATABASE_NAME_TEMPLATE.format(start_year= start, end_year = end)
-            # if not cdsDatabase in self.client.list_database_names():
-            #     raise exceptionToThrow
-            patternDefinition = re.compile(DEFINITION_DATA_REGEX_PATTERN)    
-            # patternYear = re.compile(".+"+str(start)+"."+str(end), re.IGNORECASE)
-            definitionDatabases = self.getAllAvailableData(patternDefinition)
-            databasesAvailableForGivenYear = self.getAvailableDataForSpecificYearRange(start, end)
-            
-            if len(databasesAvailableForGivenYear) == 0:
-                raise exceptionToThrow
 
-            intent = intent.replace("_", " ")
+    async def getDataBySection(self, section, exceptionToThrow: Exception,  startYear= None, endYear = None):
+            section =  section.replace("_", " ")
             selectedDatabaseName = ""
-            for databaseName in databasesAvailableForGivenYear:
-                sections = self.getSections(databaseName)
-                if intent in sections:
-                    selectedDatabaseName = databaseName
+            databaseNames = []
+            if startYear == None or endYear == None:
+                databaseNames = self.findAllYearAngosticDataName()
+                if len(databaseNames) == 0:
+                    raise exceptionToThrow
+                
+            else: 
+                databaseNames = self.getAvailableDataForSpecificYearRange(startYear, endYear)
+                if len(databaseNames) == 0:
+                    raise exceptionToThrow
 
-            # We expect there to be only one definition data
-            if selectedDatabaseName == "":
-                definitionSections = self.getSections(definitionDatabases[0])
-                if len(definitionDatabases) > 0:
-                    if intent in definitionSections:
-                        selectedDatabaseName = definitionDatabases[0]
+
+            for databaseName in databaseNames:
+                    sections = self.getSections(databaseName)
+                    if section in sections:
+                        selectedDatabaseName = databaseName
 
             if selectedDatabaseName == "":
-                raise NoDataFoundException(NO_DATA_AVAILABLE_FOR_GIVEN_INTENT_FORMAT.format(topic = intent, start= start, end=end), ExceptionTypes.NoSparseMatrixDataAvailableForGivenIntent)
-        
-            topicData = self.mongoProcessor.getSparseMatricesByDbNameAndIntent(self.client, intent, selectedDatabaseName)
-            # print("TOPIC DATA")
-            # print(topicData)
-            # cursor = topicData.find()
-            # for doc in cursor:
-            #     print(doc)           
-            return topicData
+                raise NoDataFoundException(NO_DATA_AVAILABLE_FOR_GIVEN_INTENT_FORMAT.format(topic = section, start= startYear, end=endYear), ExceptionTypes.NoSparseMatrixDataAvailableForGivenIntent)
+            
+            convertedDataModel = await self.mongoProcessor.getDataByDbNameAndSection(self.client, section, selectedDatabaseName)     
+            return convertedDataModel
 
     """
     See documentation in DataManager.py

@@ -4,27 +4,38 @@ nlu:
 - intent: degree_conferred
   examples: |
     - I want to know about the degree [conferred]{"entity":"action", "value": "awarded"} information.
+    - degrees
+    - degree
+    - degrees [awarded]{"entity":"action", "value": "awarded"}?
     - How many [computer science]{"entity":"subject", "value": "computer science"} degrees are [conferred]{"entity":"action", "value": "awarded"}?
+    - How many [computer and information science]{"entity":"subject", "value": "computer science"} degrees are [conferred]{"entity":"action", "value": "awarded"}?
+    - How many [software engineering]{"entity":"subject", "value": "computer science"} degrees are [conferred]{"entity":"action", "value": "awarded"}?
     - How many [engineering]{"entity":"subject", "value": "engineering"} degrees are [conferred]{"entity":"action", "value": "awarded"}?
     - How many [biological-sciences]{"entity":"subject", "value": "biological science"} degrees are [conferred]{"entity":"action", "value": "awarded"}?
     - How many [biological sciences]{"entity":"subject", "value": "biological science"} degrees are [granted]{"entity":"action", "value": "awarded"}?
     - How many [biological sciences]{"entity":"subject", "value": "biological science"} degrees are [given]{"entity":"action", "value": "awarded"}?
+     - How many [biology]{"entity":"subject", "value": "biological science"} degrees are [given]{"entity":"action", "value": "awarded"}?
     - How many [mathematics]{"entity":"subject", "value": "mathematic"} degrees are [conferred]{"entity":"action", "value": "awarded"}?
     - How many [mathematics]{"entity":"subject", "value": "mathematic"} and [statistics]{"entity":"subject", "value": "statistic"} degrees are [conferred]{"entity":"action", "value": "awarded"}?
     - How many [interdisciplinary-studies]{"entity":"subject", "value": "interdisciplinary-studies"} degrees are [conferred]{"entity":"action", "value": "awarded"}?
     - How many [physical science]{"entity":"subject", "value": "physical science"} degrees are [conferred]{"entity":"action", "value": "awarded"}?
+    - How many [physics]{"entity":"subject", "value": "physical science"} degrees are [conferred]{"entity":"action", "value": "awarded"}?
     - How many [social science]{"entity":"subject", "value": "social science"} degrees are [conferred]{"entity":"action", "value": "awarded"}?
     - What is the [percentage]{"entity":"aggregation", "value": "percent"} of degrees [conferred]{"entity":"action", "value": "awarded"}?
     - What is the [percentage]{"entity":"aggregation", "value": "percent"} of degrees [conferred]{"entity":"action", "value": "awarded"}?
-    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of [statistics]{"entity":"subject", "value": "statistic"} degree offered by rose?
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of degrees [awarded]{"entity":"action", "value": "awarded"}?
+    - What is the [percentage]{"entity":"aggregation", "value": "percent"} of [statistics]{"entity":"subject", "value": "statistic"} degree offered?
 
     - How many [social science]{"entity":"subject", "value": "social science"} degrees are [handed out]{"entity":"action", "value": "awarded"}?
     - What [majors]{"entity":"major", "value": "major"} does rose-hulman offer?
     - What type of [majors]{"entity":"major", "value": "major"} does rose-hulman offer?
     - What kind of [majors]{"entity":"major", "value": "major"} does rose-hulman offer?
     - What kind of [disciplinary area]{"entity":"major", "value": "major"} does rose-hulman offer?
-    - What kind of [area]{"entity":"major", "value": "major"} of [discipline]{"entity":"major", "value": "major"} does rose-hulman offer?
-    - What kind of [discipline]{"entity":"major", "value": "major"} does rose-hulman offer?
+    - What kind of [area]{"entity":"major", "value": "major"} of [discipline]{"entity":"major", "value": "major"} is offered?
+    - What kind of [discipline]{"entity":"major", "value": "major"} does the school offer?
+  
+    - How many [bachelors]{"entity": "degree_level", "value": "bachelors"} degree are [awarded]{"entity":"action", "value": "awarded"} by your [institution]{"entity": "education_level", "value": "college"}?
+    - How many [masters]{"entity": "degree_level", "value": "masters"} degree are [awarded]{"entity":"action", "value": "awarded"} by your [institution]{"entity": "education_level", "value": "college"}?
 
 - synonym: major
   examples: |
@@ -38,6 +49,7 @@ nlu:
     - computer science
     - computer science
     - computer and information science
+    - software engineering
 
 - synonym: biological science
   examples: |
@@ -49,6 +61,7 @@ nlu:
     - bio
     - Biological/Life Sciences
     - life science
+    - biology
 
 - synonym: statistic
   examples: |

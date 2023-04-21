@@ -50,40 +50,41 @@ nlu:
     - don't like that
     - no way
     - not really
+    - this response was not helpful
 
-- intent: mood_great
-  examples: |
-    - perfect
-    - great
-    - amazing
-    - feeling like a king
-    - wonderful
-    - I am feeling very good
-    - I am great
-    - I am amazing
-    - I am going to save the world
-    - super stoked
-    - extremely good
-    - so so perfect
-    - so good
-    - so perfect
+# - intent: mood_great
+#   examples: |
+#     - perfect
+#     - great
+#     - amazing
+#     - feeling like a king
+#     - wonderful
+#     - I am feeling very good
+#     - I am great
+#     - I am amazing
+#     - I am going to save the world
+#     - super stoked
+#     - extremely good
+#     - so so perfect
+#     - so good
+#     - so perfect
 
-- intent: mood_unhappy
-  examples: |
-    - my day was horrible
-    - I am sad
-    - I don't feel very well
-    - I am disappointed
-    - super sad
-    - I'm so sad
-    - sad
-    - very sad
-    - unhappy
-    - not good
-    - not very good
-    - extremly sad
-    - so saad
-    - so sad
+# - intent: mood_unhappy
+#   examples: |
+#     - my day was horrible
+#     - I am sad
+#     - I don't feel very well
+#     - I am disappointed
+#     - super sad
+#     - I'm so sad
+#     - sad
+#     - very sad
+#     - unhappy
+#     - not good
+#     - not very good
+#     - extremly sad
+#     - so saad
+#     - so sad
 
 - intent: bot_challenge
   examples: |
@@ -101,6 +102,13 @@ nlu:
     - Student number
     - How many students?
     - number of students
+    - How many students do you have?
+    - [male]{"entity": "gender", "value": "male"} to [female]{"entity": "gender", "value": "female"} [ratio]{"entity":"aggregation", "value":"percent"}?
+    - 
+    - How many students does your school have?
+    - How many [full time]{"entity": "enrollment_status", "value": "full-time"} students do you have?
+    - How many [part-time]{"entity": "enrollment_status", "value": "part-time"} students do you have?
+    - How many [first-time]{"entity": "is_first_time", "value": "first-time"} [first-year]{"entity": "is_first_year", "value": "first-year"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students are there?
     - How many [full time]{"entity": "enrollment_status", "value": "full-time"} [first time]{"entity": "is_first_time", "value": "first-time"} students are [enrolled]{"entity":"action", "value": "enrolled"}?
     - How many [full time]{"entity": "enrollment_status", "value": "full-time"} [first year]{"entity": "is_first_year", "value": "first-year"} students are [enrolled]{"entity":"action", "value": "enrolled"}?
     - How many [full time]{"entity": "enrollment_status", "value": "full-time"} [undergraduate]{"entity": "student_level", "value": "undergraduate"} students are [enrolled]{"entity":"action", "value": "enrolled"}?
@@ -1239,10 +1247,6 @@ nlu:
     - How many [non-freshman]{"entity": "undergraduate_grade_level", "value": "non-freshman"} [non-degree-seeking]{"entity": "degree-goal", "value": "non-degree-seeking"} students are [enrolled]{"entity":"action", "value": "enrolled"}?
     - How many [non-freshman]{"entity": "undergraduate_grade_level", "value": "non-freshman"} [non degree-seeking]{"entity": "degree-goal", "value": "non-degree-seeking"} students are [enrolled]{"entity":"action", "value": "enrolled"}?
 
-
-
-
-
     - How many [degree seeking]{"entity": "degree-goal", "value": "degree-seeking"} [first time]{"entity": "is_first_time", "value": "first-time"} students are [enrolled]{"entity":"action", "value": "enrolled"}?
     - How many [degree seeking]{"entity": "degree-goal", "value": "degree-seeking"} [first year]{"entity": "is_first_year", "value": "first-year"} students are [enrolled]{"entity":"action", "value": "enrolled"}?
     - How many [degree seeking]{"entity": "degree-goal", "value": "degree-seeking"} [undergraduate]{"entity": "student_level", "value": "undergraduate"} students are [enrolled]{"entity":"action", "value": "enrolled"}?
@@ -1451,9 +1455,10 @@ nlu:
 
     - How many [nonresident]{"entity": "international_domestic", "value": "international"} students are [enrolled]{"entity":"action", "value": "enrolled"}? 
     - How many [hispanic]{"entity": "race"} students are [enrolled]{"entity":"action", "value": "enrolled"}? 
-    - How many [african american]{"entity": "race"} students are [enrolled]{"entity":"action", "value": "enrolled"}?
-    - how many [black]{"entity": "race"} students are [enrolled]{"entity":"action", "value": "enrolled"}? 
-    - How many [white]{"entity": "race"} students are [enrolled]{"entity":"action", "value": "enrolled"}? 
+    - How many [african american]{"entity": "race", "value":"african american"} students are [enrolled]{"entity":"action", "value": "enrolled"}?
+    - how many [black]{"entity": "race", "value":"african american"} students are [enrolled]{"entity":"action", "value": "enrolled"}? 
+    - How many [white]{"entity": "race", "value":"caucasian"} students are [enrolled]{"entity":"action", "value": "enrolled"}? 
+    - How many [caucasian]{"entity": "race", "value":"caucasian"} students 
     - How many [american indian]{"entity": "race"} students are [enrolled]{"entity":"action", "value": "enrolled"}?
     - How many [asian]{"entity": "race"} students are [enrolled]{"entity":"action", "value": "enrolled"}? 
     - How many [pacific islander]{"entity": "race"} students are [enrolled]{"entity":"action", "value": "enrolled"}? 
@@ -1663,11 +1668,12 @@ nlu:
   examples: |
     - asians
 
-- synonym: white
+- synonym: caucasian
   examples: |
     - caucasian
     - whites
     - caucasians
+    - white
     - european descent
 
 - synonym: american indian
@@ -1702,7 +1708,6 @@ nlu:
     - mixed race
 
 
-  
 
 
 
@@ -1710,6 +1715,7 @@ nlu:
   examples: |
     - I want to know about admission.
     - I want to know about admission data.
+    - What is Rose-Hulman's admission [policy]{"entity":"policy", "value":"policy"}??
     - How many student are [admitted]{"entity": "action", "value": "accepted"}
     - how many student are [accepted]{"entity": "action", "value": "accepted"}
     - How many [male]{"entity": "gender", "value": "male"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}  [applied]{"entity": "action", "value": "applied"} in Rose-Hulman?
@@ -1730,8 +1736,8 @@ nlu:
     - How many [male]{"entity": "gender", "value": "male"} [first-time]{"entity": "is_first_time", "value": "first-time"} [first-year]{"entity": "is_first_year", "value": "first-year"}  [admitted]{"entity": "action", "value": "accepted"} in Rose-Hulman?
     - How many [female]{"entity": "gender", "value": "female"} [first-time]{"entity": "is_first_time", "value": "first-time"} [first-year]{"entity": "is_first_year", "value": "first-year"}  [admitted]{"entity": "action", "value": "accepted"} in Rose-Hulman?
 
-    - Do you have policy of placing student on [waiting-list]{"entity":"waiting-list", "value": "waiting-list"}?
-    - Is there any [wait list]{"entity":"waiting-list", "value": "waiting-list"} policy
+    - Do you have [policy]{"entity":"policy", "value":"policy"} of placing student on [waiting-list]{"entity":"waiting-list", "value": "waiting-list"}?
+    - Is there any [wait list]{"entity":"waiting-list", "value": "waiting-list"} [policy]{"entity":"policy", "value":"policy"}
     - Is rose-hulman's [waitlist]{"entity":"waiting-list", "value": "waiting-list"} ranked?
     - What's the number of students did you offered a place on [waiting-list]{"entity":"waiting-list", "value": "waiting-list"}?
 
@@ -1762,8 +1768,8 @@ nlu:
     - What is the [notification]{"entity": "admission_decision_date" , "value": "notification"} [date]{"entity": "time" , "value": "date"} for [application]{"entity":"academic_process", "value":"application"}?
     - What is the [notification]{"entity": "admission_decision_date" , "value": "notification"} [date]{"entity": "time" , "value": "date"} to applicants of admission decision sent?
     
-    - What is the [reply]{"entity": "admission_decision_date" , "value": "reply"} policy for admitted applicants?
-    - What is the [reply]{"entity": "admission_decision_date" , "value": "reply"} policy?
+    - What is the [reply]{"entity": "admission_decision_date" , "value": "reply"} [policy]{"entity":"policy", "value":"policy"} for admitted applicants?
+    - What is the [reply]{"entity": "admission_decision_date" , "value": "reply"} [policy]{"entity":"policy", "value":"policy"}?
 
     - Dose your [institute]{"entity":"education_level", "value": "college"} allow students to [defer]{"entity": "defer", "value": "defer"} enrollment after admission?
   
@@ -1798,7 +1804,7 @@ nlu:
 
     - Does [online]{"entity": "online", "value":"online" } [application]{"entity":"academic_process", "value":"application" } have [application]{"entity":"academic_process", "value":"application" } [fee]{"entity":"money", "value": "cost"} ?
     
-    - Can [online]{"entity": "online", "value":"online" } [application]{"entity":"academic_process", "value":"application" } [application]{"entity":"academic_process", "value":"application" } '[fee]{"entity":"money", "value": "cost"}  be [waived]{"entity": "other_aid", "value": "waiver"} ?
+    - Can [online]{"entity": "online", "value":"online" } [application]{"entity":"academic_process", "value":"application" } [application]{"entity":"academic_process", "value":"application" } [fee]{"entity":"money", "value": "cost"}  be [waived]{"entity": "other_aid", "value": "waiver"} ?
    
     - Yo, do have to pay [money]{"entity":"money", "value": "cost"} to apply on the [internet]{"entity": "online", "value":"online" }?
 
@@ -1806,7 +1812,6 @@ nlu:
 
     - What is the [deadline]{"entity":"time", "value": "date"} for [housing]{"entity": "housing", "value": "housing"} deposit?
     
-
 
     - What should I take in [high school] for admission to rose-hulman?
     - total [units]{"entity": "academic_credit", "value": "unit"} [recommended]{"entity": "condition", "value":"recommend"}?
@@ -1819,7 +1824,7 @@ nlu:
 
     - How many [unit]{"entity": "academic_credit", "value": "unit"} are [required]{"entity": "condition", "value": "require"} for [english]{"entity": "subject", "value": "english"} for admission at this school?
     - How many [unit]{"entity": "academic_credit", "value": "unit"} are [recommended]{"entity": "condition", "value": "recommend"} for [math]{"entity": "subject", "value": "mathematic"} for admission?
-    - what is the [unit]{"entity": "academic_credit", "value": "unit"} [required]{"entity": "condition", "value": "required"} for [science]{"entity": "subject", "value": "science"} to get into this school?
+    - what is the [unit]{"entity": "academic_credit", "value": "unit"} [required]{"entity": "condition", "value": "require"} for [science]{"entity": "subject", "value": "science"} to get into this school?
     - what is the [unit]{"entity": "academic_credit", "value": "unit"} [recommended]{"entity": "condition", "value": "recommend"} for [science]{"entity": "subject", "value": "science"} I should take during high-school for admission into this school?
     
     - How many [unit]{"entity": "academic_credit", "value": "unit"} are [required]{"entity": "condition", "value": "require"} for [mathematic]{"entity": "subject", "value": "mathematic"}
@@ -1977,11 +1982,11 @@ nlu:
     - apply online
     - online apply 
 
-- synonym: reply-policy
-  examples: |
-    - reply policy
-    - reply date
-    - reply day
+# - synonym: reply-[policy]{"entity":"policy", "value":"policy"}
+#   examples: |
+#     - reply
+#     - reply date
+#     - reply day
 
 
 - synonym: defer

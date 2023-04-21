@@ -1,5 +1,5 @@
 
-from typing import Dict, Tuple
+from typing import Dict, List, Tuple
 # from DataManager.YearDataSelector import YearlyDataSelector
 # from DataManager.YearDataSelectorByCohort import YearlyDataSelectorByCohort
 from Data_Ingestion.SparseMatrix import SparseMatrix
@@ -11,35 +11,86 @@ from Exceptions.NoDataFoundException import NoDataFoundException
 from DataManager.DataSelection.TFIDFSelector import TFIDFSelector
 from Exceptions.ExceptionMessages import NO_DATA_EXIST_MESSAGE
 from DataManager.DataSelection.DecisionTreeSelector import DecisionTreeSelector
+import re
+from abc import ABC, abstractmethod
 """
 "Abstract" class to abstract sub classes responsible for retrieving sparse matrix to be searched
  given intent and entities containing year information.
  
 There probably will be two implementation of this class one is for excel and another one for database.
 """
-class DataManager():
+class DataManager(ABC):
     def __init__(self):
         pass
     
-    def getAvailableOptions(self,startYear, endYear):
+    @abstractmethod
+    def getAvailableOptions(self,intent, startYear, endYear):
         pass
         # raise Exception("This method should be override by a concrete class")
 
+
+    @abstractmethod
+    async def getDataBySection(self, section, exceptionToThrow, startYear = None, endYear = None ):
+        """
+            This is an abstract method.
+            Given intent, start year and end year(i.e. 2020, 2021) of CDS data, it will look in the CDS data according to the year and 
+            inside the CDS year, retreive the list of sparse matrices of the topic represented by the given intent.
+
+            intent: intent of the user interpreted by rasa
+            start: start year of the cds data we want
+            end: end year of the cds data we want.
+
+            exceptionToThrow: the exception to throw if no data is found for the given year
+
+            return: a list of sparse matrices corresponding to the given intent. Each matrix is reprsented by pandas dataframe.
+        """  
+        pass
+
+
+
     """
-    This is an abstract method.
-    Given intent, start year and end year(i.e. 2020, 2021) of CDS data, it will look in the CDS data according to the year and 
-    inside the CDS year, retreive the list of sparse matrices of the topic represented by the given intent.
-
-    intent: intent of the user interpreted by rasa
-    start: start year of the cds data we want
-    end: end year of the cds data we want.
-
-    exceptionToThrow: the exception to throw if no data is found for the given year
-
-    return: a list of sparse matrices corresponding to the given intent. Each matrix is reprsented by pandas dataframe.
+    This function will get the most recent year of the data that is currently available. For example:
+    if there are 2019-2020 data and 2020-2021 data, it will return a tuple: (2020, 2021)
+    This function serves as the fallback. If the user didn't specify a year in their query, we will use the most recent year.
     """
-    def getSparseMatricesByStartEndYearAndIntent(self, intent, start, end, exceptionToThrow) -> TopicData:
-        raise Exception("This method should be override by a concrete class")
+    @abstractmethod
+    def getMostRecentYearRange(self) -> Tuple[str, str]:
+        pass
+    
+    @abstractmethod
+    def deleteData(self, dataName) -> bool:
+        pass
+
+    @abstractmethod
+    def getAllSubsectionForSection(self, section, startYear=None, endYear=None, filter=lambda x: x):
+        pass
+
+    @abstractmethod
+    def getSectionAndSubsectionsForData(self,dataName, filter=lambda x: True):
+        pass
+    
+    @abstractmethod
+    def getAllAvailableData(self, regex : re.Pattern):
+        pass
+        
+
+    @abstractmethod 
+    def findAllYearAngosticDataName(self):
+        pass 
+
+    @abstractmethod
+    def getAllAvailableYearsSorted(self):
+        pass
+
+    @abstractmethod
+    def getAvailableDataForSpecificYearRange(self, startYear, endYear):
+        pass
+
+
+    @abstractmethod
+    def getSections(self, dataName):
+        pass
+
 
 
     """
@@ -49,19 +100,33 @@ class DataManager():
     entities: list entities extracted by rasa. Each element in the list is a python dictionary. For example:
     {'entity': 'year', 'start': 58, 'end': 62, 'confidence_entity': 0.997698962688446, 'role': 'to', 'confidence_role': 0.7497242093086243, 'value': '2022', 'extractor': 'DIETClassifier'}
 
-    return: a tuple of three elements, the first elem is the selected sparse matrix to search, the second elem is the start year and the third is the end year. 
-    The year values is the what year CDS data was used.
+    """ 
+    async def determineMatrixToSearch(self, intent, entities, startYear : str, endYear : str) -> SparseMatrix:
+        section = intent.replace("_", " ")
+        # if startYear == None or endYear == None:
+        #     raise NoDataFoundException(NO_DATA_EXIST_MESSAGE, ExceptionTypes.NoDataFoundAtAll)
+        
 
-    """
-    def determineMatrixToSearch(self, intent, entities, startYear : str, endYear : str) -> Tuple[SparseMatrix, str, str]: 
-        if startYear == None or endYear == None:
-            raise NoDataFoundException(NO_DATA_EXIST_MESSAGE, ExceptionTypes.NoDataFoundAtAll)
+        isYearAgnostic = False
+        yearAgnosticDataName = self.findAllYearAngosticDataName()
+        for dataName in yearAgnosticDataName:
+            sections = self.getSections(dataName)
+            if intent in sections:
+                isYearAgnostic = True
+                break
+
+
         startYear = str(startYear)
         endYear = str(endYear)
         exceptionToThrow = NoDataFoundException(NO_DATA_FOUND_FOR_ACADEMIC_YEAR_ERROR_MESSAGE_FORMAT.format(start=startYear, end=endYear), ExceptionTypes.NoDataFoundForAcademicYearException)
-        sparseMatrices = self.getSparseMatricesByStartEndYearAndIntent(intent, startYear, endYear, exceptionToThrow)
-        intentWithNoUnderScore = intent.replace("_", " ")
-        errorMessage = NO_DATA_AVAILABLE_FOR_GIVEN_INTENT_FORMAT.format(topic = intentWithNoUnderScore, start= str(startYear), end = str(endYear))
+        
+        sparseMatrices = []
+        if isYearAgnostic:
+            sparseMatrices = await self.getDataBySection(section, exceptionToThrow)
+        else:
+            sparseMatrices = await self.getDataBySection(section, exceptionToThrow, startYear, endYear)
+            
+        errorMessage = NO_DATA_AVAILABLE_FOR_GIVEN_INTENT_FORMAT.format(topic = section, start= str(startYear), end = str(endYear))
         selectedSparseMatrix = self.determineBestMatchingMatrix(sparseMatrices, entities, errorMessage)     
         return selectedSparseMatrix
        
@@ -86,20 +151,18 @@ class DataManager():
 
     However, if the user specify something like degree-seeking which is a column on both race and general enrollment matrix,
     we would want to use the genereal enrollment matrix but there will be a tie. So in this case, we use the first matrix for tie,
-    which will be general enrollment. In the future, if this problem is encountered and we would want to use another matrix for tie,
-    we can store a field in TopicData to indicate use which matrix as default in case of a tie.
+    which will be general enrollment.
+   
 
     """
-    def determineBestMatchingMatrix(self, topicData : TopicData, entities : Dict, errorMessage : str) ->  SparseMatrix:
+    def determineBestMatchingMatrix(self, topicData : TopicData, entities : Dict, errorMessage : str) ->  List[SparseMatrix]:
         doesEntityMapToAnySubsections, sparseMatricesFound = topicData.doesEntityIncludeAnySubsections(entities)
         candidates = list(topicData.getSparseMatrices().values())
       
         if doesEntityMapToAnySubsections:
             candidates = sparseMatricesFound
             
-        # for candidate in candidates:
-        #     print(candidate.subSectionName)
-            
+     
         maxMatch = []
         currMax = 0
         entityValues = []
@@ -110,6 +173,7 @@ class DataManager():
         # print("ENTITY VALUES")
         # print(entityValues)
         for sparseMatrix in candidates:  
+            print(sparseMatrix.sparseMatrixDf)
             # print(sparseMatrix.subSectionName)              
             entitiesMatchCount : int  = sparseMatrix.determineEntityMatchToColumnCount(entityValues)
             if entitiesMatchCount>currMax:
@@ -140,19 +204,16 @@ class DataManager():
 
         # decisionTreeSelector = DecisionTreeSelector()
         # decisionTreeSelector.selectBest(entityValues, candidates)
-        print(maxMatch[0].subSectionName)
-
+       
         if len(maxMatch) == 0:
             raise NoDataFoundException(errorMessage, ExceptionTypes.NoSparseMatrixDataAvailableForGivenIntent)
-        
-        return maxMatch[0]
+        print("CANDIDATES") 
+        for candidate in maxMatch:
+            print(candidate.subSectionName)
+        # print("SELECTED MATRIX")
+        # print(maxMatch[0].subSectionName)
+        return maxMatch
 
 
 
-    """
-    This function will get the most recent year of the data that is currently available. For example:
-    if there are 2019-2020 data and 2020-2021 data, it will return a tuple: (2020, 2021)
-    This function serves as the fallback. If the user didn't specify a year in their query, we will use the most recent year.
-    """
-    def getMostRecentYearRange() -> Tuple[str, str]:
-        raise Exception("This method should be override by a concrete class")
+ 

@@ -4,6 +4,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { BiBot, BiUser } from "react-icons/bi";
 import { AccordionList } from "./AccordionList"
+import { TextAnswer } from "./TextAnswer";
 
 
 function ChatbotResponse({recipientId, keyToUse, jsonResponse}) {
@@ -20,7 +21,7 @@ function ChatbotResponse({recipientId, keyToUse, jsonResponse}) {
         if (CHATBOT_CUSTOM_MESSAGE_KEY in jsonResponse){
             let customData = jsonResponse[CHATBOT_CUSTOM_MESSAGE_KEY]
             if(RESPONSE_TYPE_KEY in customData) {
-                let responseType = customData[RESPONSE_TYPE_KEY ]
+                let responseType = customData[RESPONSE_TYPE_KEY]
                 responseData = customData
                 switch(responseType) {
                     case "accordion list":
@@ -41,26 +42,36 @@ function ChatbotResponse({recipientId, keyToUse, jsonResponse}) {
 
     const parseToUI = (jsonResponse) => {
         // console.log(type)
+        // console.log(jsonResponse)
         switch(type) {
             case ChatbotResponseType.ACCORDION_LIST:
               return (<AccordionList jsonResponse = {responseData}/>)
             default:
                 let message = null
+                let source = null
                 if("custom" in jsonResponse){
                     let customData = jsonResponse["custom"]
                     message = customData[CHATBOT_TEXT_MESSAGE_KEY ]
+                    source = customData["source"]
                 } else{
                     message = jsonResponse[CHATBOT_TEXT_MESSAGE_KEY ]
                 }
+                
+                let answer = message
+                answer = answer.charAt(0).toUpperCase() + message.slice(1)
 
                 // console.log(jsonResponse)
                 // console.log("MESSAGE"+message)
-                return (message ? (<div key ={keyToUse}>
-                    <div className="msgalignstart">
-                        <BiBot className="botIcon" />
-                        <h5 className="botmsg">{message}</h5>
-                    </div> 
-                </div>) : null) 
+                
+                // return (answer ? (<div key ={keyToUse}>
+                //     <div className="msgalignstart">
+                //         <BiBot className="botIcon" />
+                //         <h5 className="botmsg">{answer}</h5>
+                //     </div> 
+                // </div>) : null) 
+               
+               
+                return  (<TextAnswer isAdmin={false} answer={answer} questionId={null} feedback={null} source={source} />)
         }
     }
 

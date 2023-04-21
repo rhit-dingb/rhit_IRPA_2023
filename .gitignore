@@ -1,7 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
+# .env
 .rasa/
-models/
+# models/
 **/__pycache__/
 
 node_modules/
@@ -10,7 +10,6 @@ __pycache__/
 
 .idea/
 .vscode/
-
 # dependencies
 chatbot_app/node_modules
 chatbot_app/.pnp
@@ -35,4 +34,6 @@ yarn-error.log*
 
 #Unanswered question models
 UnansweredQuestions/savedModels
-UnansweredQuestions/savedModels
+
+Knowledgebase/QuestionAnswerKnowledgebase/TrainedModels
+**/TrainedModels/
