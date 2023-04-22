@@ -199,7 +199,7 @@ class DataManager(ABC):
         # print("ENTITY VALUES")
         # print(entityValues)
         for sparseMatrix in candidates:  
-            print(sparseMatrix.sparseMatrixDf)
+            # print(sparseMatrix.sparseMatrixDf)
             # print(sparseMatrix.subSectionName)              
             entitiesMatchCount : int  = sparseMatrix.determineEntityMatchToColumnCount(entityValues)
             if entitiesMatchCount>currMax:
@@ -233,9 +233,10 @@ class DataManager(ABC):
        
         if len(maxMatch) == 0:
             raise NoDataFoundException(errorMessage, ExceptionTypes.NoSparseMatrixDataAvailableForGivenIntent)
-        print("CANDIDATES") 
-        for candidate in maxMatch:
-            print(candidate.subSectionName)
+        # print("CANDIDATES") 
+        # for candidate in maxMatch:
+        #     print(candidate.subSectionName)
+        
         # print("SELECTED MATRIX")
         # print(maxMatch[0].subSectionName)
         return maxMatch

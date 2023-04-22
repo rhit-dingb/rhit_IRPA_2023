@@ -58,8 +58,10 @@ jobs:
           ruff --format=github --target-version=py37 .
         #Even if linting failed, continue
         continue-on-error: true  
-      - name: Test with python unit test
+      - name: Test knowledgebase
         run: python -m unittest tests/test_knowledgebase.py
+      - name: Test knowledgebase aggregate discrete range
+        run: python -m unittest tests/test_aggregationDiscreteRange.py
       - name: Upload pytest test results
         uses: actions/upload-artifact@v3
         with:

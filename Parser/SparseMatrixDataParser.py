@@ -57,6 +57,7 @@ class SparseMatrixDataParser(DataParser):
         columns = ["Value"]
         columns = columns + everyUniqueEntity
         sparseMatrixDataFrame = pd.DataFrame(columns=columns, data = matrixData)
+        # sparseMatrixDataFrame = sparseMatrixDataFrame.astype(str)
         questions = []
 
         for qa in questionAnswersWithNoMetadata:

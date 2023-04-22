@@ -31,6 +31,7 @@ class ExcelProcessor():
 
             data = dict()
             xl = pd.ExcelFile(path+"/"+fileName)
+         
             for topic in topicToParse:
                 data[topic] = self.getAllSparseMatrixForTopic(topic, xl)
 
@@ -73,7 +74,9 @@ class ExcelProcessor():
                 subsectionName = topic_key_words[len(topic_key_words)-1]
                 print(subsectionName)
                 df = dataSourceConnector.parse(name)
-               
+                print("DF")
+                columnAsString = [str(col) for col in df.columns]
+                df.columns = columnAsString
                 sparseMatrix = SparseMatrix(subsectionName, df)
                 metadata = self.getMetadata(sparseMatrix)
                 sparseMatrix.setMetadata(metadata)
@@ -86,15 +89,19 @@ class ExcelProcessor():
         isMetadata = False
         metadata = dict()
         for row in sparseMatrix:
-            # print( str(row["Value"]).lower() )
+           
             if str(row["Value"]).lower() == "metadata":
                 isMetadata = True
                 continue
-
+            
+            
             if isMetadata:
+                print("PARSINg METADATA")
                 secondColumnName = row.index[1]
                 rowValue = row["Value"]
+                if str(rowValue) == "nan":
+                    continue
                 metadata[rowValue] = row[secondColumnName]
-        # print("FOUND METADATA", metadata)
+        print("FOUND METADATA", metadata)
         return metadata
       

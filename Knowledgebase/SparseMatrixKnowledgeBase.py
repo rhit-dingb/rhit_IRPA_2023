@@ -30,7 +30,6 @@ from Knowledgebase.FuzzyShouldAddRowStrategy import FuzzyShouldAddRowStrategy
 from CacheLayer.Cache import Cache
 from Knowledgebase.DataModels.ChatbotAnswer import ChatbotAnswer
 from Knowledgebase.DataModels.MultiFeedbackLabel import MultiFeedbackLabel
-from tests.testUtils import createEntityObjHelper
 import aiohttp
 import asyncio
 
@@ -78,10 +77,11 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         # 
         # for sparseMatrixToSearch in sparseMatricesToSearch:
         sparseMatrixToSearch : SparseMatrix = sparseMatricesToSearch[0]
-        print(sparseMatrixToSearch.sparseMatrixDf)
-        print(len(sparseMatricesToSearch))
-        print("SELECTED")
-        print(sparseMatrixToSearch.subSectionName)
+        # print(sparseMatrixToSearch.sparseMatrixDf)
+        # print(len(sparseMatricesToSearch))
+        # print("SELECTED")
+        # print(sparseMatrixToSearch.subSectionName)
+
         isOperationAllowed = sparseMatrixToSearch.isAnyOperationAllowed()
         template = sparseMatrixToSearch.findTemplate()
 
@@ -222,7 +222,8 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
             if searchResults is None or len(searchResults) == 0: 
                     return []
             if template == "" or template == "nan":
-                    return list(map(lambda x: x.answer , searchResults))
+                print("NO Template")
+                return list(map(lambda x: x.answer , searchResults))
 
             constructSentenceFor = []
             stringSentence = []

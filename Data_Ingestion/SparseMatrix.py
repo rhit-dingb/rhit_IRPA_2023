@@ -25,7 +25,9 @@ class SparseMatrix():
             self.questions = questions
 
         self.metadata : Dict[str, str]= metadata
-
+        print(self.subSectionName)
+        print("MY METADATA IS", self.metadata)
+        
 
     def setMetadata(self,metadata : Dict[str, str]):
         self.metadata = metadata
