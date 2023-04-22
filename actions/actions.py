@@ -18,8 +18,7 @@ from DataManager.constants import  COHORT_BY_YEAR_ENTITY_LABEL, COHORT_INTENT, E
 from Exceptions.ExceptionTypes import ExceptionTypes
 from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
 
-from Knowledgebase.IgnoreRowPiece import IgnoreRowPiece
-from Knowledgebase.QuestionAnswerKnowledgebase.GenerativeQuestionAnswerKnowledgebase import GenerativeQuestionAnswerKnowledgebase
+
 from Knowledgebase.SparseMatrixKnowledgeBase import SparseMatrixKnowledgeBase
 from OutputController import output
 
@@ -77,23 +76,16 @@ mongoDataManager = Cache(mongoDataManager)
 sparseMatrixKnowledgeBase = SparseMatrixKnowledgeBase(mongoDataManager)
 
 
-# mongoProcessor = MongoProcessor()
-# mongoProcessor = ConvertToDocumentDecorator(mongoProcessor)
-# mongoDataManager = MongoDataManager(mongoProcessor)
-# qaKnowledgebase = QuestionAnswerKnowledgeBase(mongoDataManager)
-# asyncio.run(qaKnowledgebase.initialize())
+mongoProcessor = MongoProcessor()
+mongoProcessor = ConvertToDocumentDecorator(mongoProcessor)
+mongoDataManager = MongoDataManager(mongoProcessor)
+qaKnowledgebase = QuestionAnswerKnowledgeBase(mongoDataManager)
+asyncio.run(qaKnowledgebase.initialize())
 
 
 
-# mongoProcessor = MongoProcessor()
-# mongoProcessor = ConvertToDocumentDecorator(mongoProcessor)
-# mongoDataManager = MongoDataManager(mongoProcessor)
-# gKnowledgebase = GenerativeQuestionAnswerKnowledgebase(mongoDataManager)
-# asyncio.run(gKnowledgebase.initialize())
 
-
-
-knowledgebaseEnsemble : List[KnowledgeBase] = [sparseMatrixKnowledgeBase]
+knowledgebaseEnsemble : List[KnowledgeBase] = [sparseMatrixKnowledgeBase, qaKnowledgebase]
 
 class ActionGetAvailableOptions(Action):
     def __init__(self) -> None:

@@ -20,7 +20,7 @@ def findDocumentWithId(id: str, documents : List[Document]) -> Document:
 def determineDocumentStore():
     environment = config('ENVIRONMENT')
     if environment == "development":
-         return InMemoryDocumentStore(embedding_dim=128)
+         return InMemoryDocumentStore()
     elif environment == "production":
          return ElasticsearchDocumentStore()
     
