@@ -42,10 +42,11 @@ def identityFunc(searchResults, intent, entities, template):
         return searchResults
 
 
-def extractOutput(searchResults : List[SearchResult], intent,  template):
+def extractOutput(searchResults : List[SearchResult], intent,  template, complete_sentence):
         answers =[]
         for res in searchResults:
             answers.append(res.answer)
+            print("THE ANSWER IS", res.answer)
         return answers
 
 def getAllAnswersFromDispatcher(dispatcher):

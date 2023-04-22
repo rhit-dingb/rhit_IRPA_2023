@@ -78,8 +78,7 @@ class MongoDataManager(DataManager):
         return availableOptions
 
 
-
-    def getAllSubsectionForSection(self, section, startYear = None, endYear = None, filter = lambda x: True):
+    def getAllSubsectionForSection(self, section, startYear = None, endYear = None):
         subsectionForSection = []
         dataNames = []
         #might refactor this later
@@ -91,6 +90,7 @@ class MongoDataManager(DataManager):
         
         def filter(collection):
             return collection == section
+        
         for databaseName in dataNames:
            sectionToSubSection = self.getSectionAndSubsectionsForData(databaseName, filter=filter)
            if section in sectionToSubSection:
