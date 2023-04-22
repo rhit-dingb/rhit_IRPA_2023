@@ -277,7 +277,7 @@ class QuestionAnswer extends React.Component {
               
               // }))
               this.showSuccessMessage("Training Signal Sent")
-              let id= setInterval(this.getTrainStatus, 500)
+              let id= setInterval(this.getTrainStatus, 1000)
 
               this.setState(prevState => ({
                 intervalId: id

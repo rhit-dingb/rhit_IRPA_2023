@@ -63,7 +63,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
     Throws: exception when given year or intent for the data is not found or when exception encountered when parsing year entity values
 
     """
-    async def searchForAnswer(self, question, intent, entitiesExtracted, startYear, endYear) ->Tuple[List[ChatbotAnswer], bool]:
+    async def searchForAnswer(self, question, intent, entitiesExtracted, startYear, endYear, completeSentence=True) ->Tuple[List[ChatbotAnswer], bool]:
         # print("BEGAN SEARCHING")
         shouldAddRowStrategy = DefaultShouldAddRowStrategy()
         answers = []
@@ -110,22 +110,26 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         else:
             print("REGULAR SEARCH")
             searchResults : List[SearchResult] = sparseMatrixToSearch.searchOnSparseMatrix(entitiesExtracted, shouldAddRowStrategy, isSumAllowed)
-        
+
+
         if isPercentageAllowed and percentageEntityDetected:
-            percentages = await self.calculatePercentages(searchResults, sparseMatrixToSearch,  percentageEntityDetected)
+            percentages = await self.calculatePercentages(searchResults, sparseMatrixToSearch,  percentageEntityDetected, startYear, endYear)
+            print("GOT PERCENTAGE", percentages)
             searchResults = percentages
+
         await self.getAllEntityForRealQuestionFoundForAnswer(searchResults)
 
         # also get the documentation of change 
         documentationOfChange = sparseMatrixToSearch.getDocumentationOfChange()
-        answers = answers + self.constructOutput(searchResults, intent,  template) 
+        answers = answers + self.constructOutput(searchResults, intent,  template, completeSentence) 
 
         shouldContinue = True
         if len(answers) > 0:
             shouldContinue = False
             if not documentationOfChange == None:
                 answers.append(documentationOfChange)
-            
+        
+        print("OKAY I AM GONNA RETURN", answers)
         return (answers, shouldContinue)
 
 
@@ -150,36 +154,47 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         
     
     # STILL WORK IN PROGRESS
-    async def calculatePercentages(self, searchResults : List[SearchResult], sparseMatrix : SparseMatrix, percentageEntityDetected : Dict[str, str]) -> List[str]:
-       
+    async def calculatePercentages(self, searchResults : List[SearchResult], sparseMatrix : SparseMatrix, percentageEntityDetected : Dict[str, str], startYear, endYear) -> List[str]:
         print("CALCULATING PERCENTAGE")
-        shouldAddRowStrategy = DefaultShouldAddRowStrategy()
         denominatorQuestion = sparseMatrix.findDenominatorQuestion()
         percentageSearchInSelf = sparseMatrix.shouldSearchInSelfForPercentage()
+        response = {}
         async with aiohttp.ClientSession() as session:
             response = await self.rasaCommunicator.parseMessage(denominatorQuestion, session)
-            entitiesFromDenominatorQuestion = response["entities"]
-            percentages = []
-            for searchResult in searchResults:
-                print("NUMERATOR")
-                print(searchResult.answer)
-                entitiesUsedForThisSearchResult = searchResult.getEntitiesUsed()
-                entitiesForDenominator = entitiesFromDenominatorQuestion
-                # if percentageSearchInSelf:
-                #     searchResultEntities =  filterEntities(entitiesUsedForThisSearchResult, [RANGE_ENTITY_LABEL])
-                #     entitiesForDenominator =  entitiesFromDenominatorQuestion + searchResultEntities
-                #     print(entitiesForDenominator)
-                #     print("________________________-")
+     
+        entitiesFromDenominatorQuestion = response["entities"]
+        intentObj = response["intent"]
+        intent = intentObj["name"]
+        percentages = []
+        print("GIVEN SEARCH RESULTS")
+        print(searchResults)
+        for searchResult in searchResults:
+            print("NUMERATOR")
+            print(searchResult.answer)
+            entitiesUsedForThisSearchResult = searchResult.getEntitiesUsed()
+            entitiesForDenominator = entitiesFromDenominatorQuestion
+            if percentageSearchInSelf:
+                searchResultEntities =  filterEntities(entitiesUsedForThisSearchResult, [RANGE_ENTITY_LABEL])
+                entitiesForDenominator =  entitiesFromDenominatorQuestion + searchResultEntities
+                
 
-                searchResults = sparseMatrix.searchOnSparseMatrix(entitiesForDenominator, shouldAddRowStrategy, True)
-                if len(searchResults) == 0:
-                    return []
-                denominator = searchResults[0]
+            print(entitiesForDenominator)
+            print(intent)
 
-                print("NUMERATOR")
-                print(denominator.answer)
+            chatbotAnswers, shouldContinue = await self.searchForAnswer(denominatorQuestion, intent, entitiesForDenominator,startYear, endYear, completeSentence=False )
+            
+         
+            print("DENOMINATOR")
+            print(chatbotAnswers)
+            # if len(chatbotAnswers) == 0:
+            #     continue
+            
+            print("DENOMINATOR VALUE")
+            denominator = chatbotAnswers[0]
+            print(denominator.answer)
+            
 
-                # try:
+            try:
                 numerator = float(searchResult.answer)
                 percentageCalc = numerator/float(denominator.answer)*100
                 percentage = round(percentageCalc, 1)
@@ -187,11 +202,12 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
                 allEntityUsedAndPercentage = entitiesUsedForThisSearchResult + [percentageEntityDetected]
                 percentageSearchResult = SearchResult(percentage, allEntityUsedAndPercentage, SearchResultType.PERCENTAGE, searchResult.realQuestion)
                 percentages.append(percentageSearchResult)
-                # except:
-                #     continue
-            # for t in percentages:
-            #     print(t.entities)
-            return percentages
+            except Exception as e:
+                print("EXCEPTION OCCURED WHILE CALCULATING PERCENTAGE", e.__dict__)
+                continue
+        # for t in percentages:
+        #     print(t.entities)
+        return percentages
         
 
     def getAvailableOptions(self, intent, startYear, endYear) -> Dict[str, List[str]]:
@@ -200,33 +216,39 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
     async def determineMatrixToSearch(self, intent, entities, startYear, endYear):
         return await self.dataManager.determineMatrixToSearch(intent, entities, startYear, endYear)
 
-    def constructOutput(self, searchResults : List[SearchResult], intent, template):
-       #return searchResult
-       if searchResults is None or len(searchResults) == 0: 
-            return []
-       if template == "" or template == "nan":
-            return list(map(lambda x: x.answer , searchResults))
+    def constructOutput(self, searchResults : List[SearchResult], intent, template, completeSentence):
+        chatbotAnswers = []
+        if completeSentence:
+            if searchResults is None or len(searchResults) == 0: 
+                    return []
+            if template == "" or template == "nan":
+                    return list(map(lambda x: x.answer , searchResults))
 
-       constructSentenceFor = []
-       stringSentence = []
-       for result in searchResults:
-            if result.answer.lower() == "n/a":
-                constructSentenceFor.append(result)
+            constructSentenceFor = []
+            stringSentence = []
+            for result in searchResults:
+                    if result.answer.lower() == "n/a":
+                        constructSentenceFor.append(result)
+                        
+                    elif result.type == SearchResultType.STRING:
+                        stringSentence.append(str(result.answer))
+                    else:
+                        constructSentenceFor.append(result)
                 
-            elif result.type == SearchResultType.STRING:
-                stringSentence.append(str(result.answer))
-            else:
-                constructSentenceFor.append(result)
-       sentences = self.templateConverter.constructOutput(constructSentenceFor, template)
+            sentences = self.templateConverter.constructOutput(constructSentenceFor, template)
 
-       allAnswers = sentences + stringSentence
-     
-       chatbotAnswers : List[ChatbotAnswer] = []
-       for answer in allAnswers:
-           chatbotAnswer = ChatbotAnswer(answer=answer, source = self.source)
-           chatbotAnswers.append(chatbotAnswer)
-        
-       return chatbotAnswers
+            allAnswers = sentences + stringSentence
+            
+            chatbotAnswers : List[ChatbotAnswer] = []
+            for answer in allAnswers:
+                chatbotAnswer = ChatbotAnswer(answer=answer, source = self.source)
+                chatbotAnswers.append(chatbotAnswer)
+        else:
+            for result in searchResults:
+                chatbotAnswer =  ChatbotAnswer(answer=result.answer, source = self.source)
+                chatbotAnswers.append(chatbotAnswer)
+
+        return chatbotAnswers
         
        
   

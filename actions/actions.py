@@ -19,6 +19,7 @@ from Exceptions.ExceptionTypes import ExceptionTypes
 from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
 
 from Knowledgebase.IgnoreRowPiece import IgnoreRowPiece
+from Knowledgebase.QuestionAnswerKnowledgebase.GenerativeQuestionAnswerKnowledgebase import GenerativeQuestionAnswerKnowledgebase
 from Knowledgebase.SparseMatrixKnowledgeBase import SparseMatrixKnowledgeBase
 from OutputController import output
 
@@ -76,16 +77,23 @@ mongoDataManager = Cache(mongoDataManager)
 sparseMatrixKnowledgeBase = SparseMatrixKnowledgeBase(mongoDataManager)
 
 
-mongoProcessor = MongoProcessor()
-mongoProcessor = ConvertToDocumentDecorator(mongoProcessor)
-mongoDataManager = MongoDataManager(mongoProcessor)
-qaKnowledgebase = QuestionAnswerKnowledgeBase(mongoDataManager)
-asyncio.run(qaKnowledgebase.initialize())
+# mongoProcessor = MongoProcessor()
+# mongoProcessor = ConvertToDocumentDecorator(mongoProcessor)
+# mongoDataManager = MongoDataManager(mongoProcessor)
+# qaKnowledgebase = QuestionAnswerKnowledgeBase(mongoDataManager)
+# asyncio.run(qaKnowledgebase.initialize())
 
 
 
+# mongoProcessor = MongoProcessor()
+# mongoProcessor = ConvertToDocumentDecorator(mongoProcessor)
+# mongoDataManager = MongoDataManager(mongoProcessor)
+# gKnowledgebase = GenerativeQuestionAnswerKnowledgebase(mongoDataManager)
+# asyncio.run(gKnowledgebase.initialize())
 
-knowledgebaseEnsemble : List[KnowledgeBase] = [sparseMatrixKnowledgeBase, qaKnowledgebase]
+
+
+knowledgebaseEnsemble : List[KnowledgeBase] = [sparseMatrixKnowledgeBase]
 
 class ActionGetAvailableOptions(Action):
     def __init__(self) -> None:
@@ -195,15 +203,15 @@ class ActionQueryKnowledgebase(Action):
       
        
         for knowledgebase in knowledgebaseEnsemble:
-            try:
+            # try:
                 print(knowledgebase.source)
                 print("__________________________")
                 newAnswers, shouldContinue = await knowledgebase.searchForAnswer(question, intent, entitiesExtracted, startYear, endYear)
                 answers = answers + newAnswers
                 if not shouldContinue:
                     break
-            except Exception as e:
-                continue
+            # except Exception as e:
+            #     continue
             
             # divider = ["-------------------------"]
             
@@ -391,7 +399,7 @@ class ActionEventOccured(Action):
         'content': 'How many faculty do you have at rose-hulman', 
         'post_date': {'$date': '2023-03-22T16:12:07.973Z'}, 
         'is_addressed': True, 
-        'chatbotAnswers': [{answer:'the total number of instructional faculty is 192', source:"QuestionAnswerKnowledge", metadata:{}, feedback:"" }], 
+        'chatbotAnswers': [{answer:'the total number of instructional faculty is 192', source:"QuestionAnswerKnowledge", metadata:{}, feedback:"correct" }], 
         'answer': 'the total number of instructional faculty is 200'}} ] 
         """
         self.trained = 0

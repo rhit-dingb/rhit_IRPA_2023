@@ -14,37 +14,21 @@ class KnowledgeBase(ABC) :
     def __init__(self):
         pass
     
-    @abstractmethod
-    def getAvailableOptions(self, intent, entities, startYear, endYear):
-        pass
     
     @abstractmethod
     def searchForAnswer(self, question, intent, entitiesExtracted, startYear, endYear) -> Tuple[List[ChatbotAnswer], bool]:
         pass 
 
-    # # this function will aggregate number given a range, using the generator to create column name for those rows and 
-    # # sum up the value for those rows
-    # @abstractmethod
-    # def aggregateDiscreteRange(self, entities, dataModel, isSumming):
-    #     pass
-
-    # @abstractmethod
-    # def calculatePercentages(self, searchResults, entitiesForEachResult, dataModel):
-    #     pass
-
 
     @abstractmethod
     def train(self, trainingLabels : List[MultiFeedbackLabel], callback)-> bool:
-        """
-        param:
-        """
         pass
     
     @abstractmethod
-    async def dataUploaded(self, dataName):
+    async def dataUploaded(self, dataName : str, startYear : str = None, endYear : str = None ):
         pass
 
     @abstractmethod
-    def dataDeleted(self, dataName ):
+    def dataDeleted(self, dataName : str ):
         pass
     

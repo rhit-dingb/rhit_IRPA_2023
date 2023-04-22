@@ -20,13 +20,14 @@ def findDocumentWithId(id: str, documents : List[Document]) -> Document:
 def determineDocumentStore():
     environment = config('ENVIRONMENT')
     if environment == "development":
-         return InMemoryDocumentStore()
+         return InMemoryDocumentStore(embedding_dim=128)
     elif environment == "production":
          return ElasticsearchDocumentStore()
     
 
 
 async def writeDocToDocumentStore(years: List[Tuple[str, str]], yearAgnosticDataName : List[str], dataManager : DataManager, documentStore : BaseDocumentStore, process_doc_func):
+    
     dataNamesDicts = []
     for startYear, endYear in years:
         availableDataName = dataManager.getAvailableDataForSpecificYearRange(startYear, endYear)
@@ -40,6 +41,7 @@ async def writeDocToDocumentStore(years: List[Tuple[str, str]], yearAgnosticData
     
 
 async def writeDocToDocumentStoreWithDataName(dataNameDicts : List[Dict[str,str]], dataManager : DataManager, documentStore : BaseDocumentStore, process_doc_func):
+    
     for dataNameDict in dataNameDicts:
         dataName = dataNameDict["dataName"]
         startYear = None
