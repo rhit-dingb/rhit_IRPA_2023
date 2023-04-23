@@ -22,6 +22,7 @@ class MongoDbNoChangeDataWriter(DataWriter):
         sectionsInserted = []
         
         for sectionKey in sectionToQuestionAnswer:
+            print("WRITING", sectionKey)
             dataForEachSubSection = sectionToQuestionAnswer[sectionKey]
             subsectionsInserted = []
             for data in dataForEachSubSection: 
