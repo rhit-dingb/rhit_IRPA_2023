@@ -33,7 +33,7 @@ jobs:
           mongodb-version: ${{ matrix.mongodb-version }}
 
       - name: Start Rasa Server
-        run: rasa run --cors "*" --enable-api
+        run: python -m rasa run --cors "*" --enable-api
 
       - name: Test knowledgebase
         run: python -m unittest tests/test_integrationKnowledgebaseAndDataSource.py
