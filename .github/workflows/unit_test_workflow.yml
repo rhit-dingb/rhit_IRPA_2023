@@ -49,7 +49,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install ruff
           pip install pipreqs
-          pipreqs /RHIT_IRPA_2023 --force
+          pipreqs --force
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - name: Lint with ruff
         run: |
