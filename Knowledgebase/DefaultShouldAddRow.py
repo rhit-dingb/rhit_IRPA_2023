@@ -46,13 +46,13 @@ class DefaultShouldAddRowStrategy(ShouldAddRowInterface):
         #         print("MISMATCH AT", column)
         # print(row)
         # print("UNIQUE ENETITY VALUE FOUND", uniqueEntityValuesFound)
-        print("COLUMNS", columns)
+        # print("COLUMNS", columns)
       
         for entityValue in uniqueEntityValuesFound:
            
             if entityValue in processedColumn and row[entityValue] == 1:
-                print("MATCHING")
-                print(entityValue)
+                # print("MATCHING")
+                # print(entityValue)
                 temp_count = temp_count+1
             else:
                 # print("MISMATCH AT", entityValue)

@@ -10,20 +10,6 @@ from nltk.stem import WordNetLemmatizer
 
 class Corpus:
     def __init__(self, dataSourceConnector : UnansweredQuestionDbConnector, dictionaryPath):
-        # self.documents = [
-        #     "He is currently 21 years old, and lives in California",
-        #     "Travis is currently working on a senior project with his teammates, Yiqi, Bowen and Justin",
-        #     "Human machine interface for lab abc computer applications",
-        #     "A survey of user opinion of computer system response time",
-        #     "The EPS user interface management system",
-        #     "System and human system engineering testing of EPS",
-        #     "Relation of user perceived response time to error measurement",
-        #     "The generation of random binary unordered trees",
-        #     "The intersection graph of paths in trees",
-        #     "Graph minors IV Widths of trees and well quasi ordering",
-        #     "Graph minors A survey",
-        #     "A bee is a pollinating animal",
-        # ]
 
         # processedDoc = self.preprocessDocuments(self.documents)
         self.dictionaryPath = dictionaryPath

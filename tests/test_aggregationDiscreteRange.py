@@ -22,9 +22,9 @@ class test_aggregationDiscreteRange(unittest.TestCase):
     def setUp(self):
 
 
-        self.topicToParse =  [ACT_SCORE_INTENT]
+       
         self.knowledgeBase = SparseMatrixKnowledgeBase(
-            ExcelDataManager("./tests/testMaterials/testForDiscreteRange/", self.topicToParse))
+            ExcelDataManager("./tests/testMaterials/testForDiscreteRange/"))
         self.defaultShouldAddRowStrategy = DefaultShouldAddRowStrategy()
       
         self.knowledgeBase.getAllEntityForRealQuestionFoundForAnswer = self.fakeGetAllEntityForRealQuestionFoundForAnswer
