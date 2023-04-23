@@ -42,7 +42,7 @@ class knowledgebase_test(unittest.TestCase):
         # self.knowledgeBase = SparseMatrixKnowledgeBase("../Data_Ingestion/CDS_SPARSE_ENR.xlsx")
         self.knowledgeBase = SparseMatrixKnowledgeBase(
             ExcelDataManager("./tests/testMaterials/cdsTestData"))
-        self.topicToParse = ["enrollment"]
+       
         self.defaultShouldAddRowStrategy = DefaultShouldAddRowStrategy()
         self.knowledgeBase.getAllEntityForRealQuestionFoundForAnswer = self.fakeGetAllEntityForRealQuestionFoundForAnswer
         self.extractOutput = testUtils.extractOutput
@@ -51,7 +51,6 @@ class knowledgebase_test(unittest.TestCase):
     async def fakeGetAllEntityForRealQuestionFoundForAnswer(self, searchResults : List[SearchResult]):
         pass
 
-   
     
     # def test_give_no_entities_should_sum_up_everything(self):
     #     answers = asyncio.run(self.knowledgeBase.searchForAnswer("enrollment", [
@@ -94,9 +93,6 @@ class knowledgebase_test(unittest.TestCase):
         question = "how many undergraduate students are enrolled?"
         answers, shouldContinue = asyncio.run(self.knowledgeBase.searchForAnswer(question, "enrollment", [
             createEntityObjHelper("undergraduate"),
-            createEntityObjHelper("2020", "year", "from"),
-            createEntityObjHelper("2021", "year", "to")
-
         ],  2020, 2021))
         self.assertEqual(answers, [str(TOTAL_UNDERGRADUATES)])
 

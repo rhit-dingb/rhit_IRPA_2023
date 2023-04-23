@@ -193,18 +193,19 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
             denominator = chatbotAnswers[0]
             print(denominator.answer)
             
-
-            try:
-                numerator = float(searchResult.answer)
-                percentageCalc = numerator/float(denominator.answer)*100
-                percentage = round(percentageCalc, 1)
-                percentage = PERCENTAGE_FORMAT.format(value = percentage)
-                allEntityUsedAndPercentage = entitiesUsedForThisSearchResult + [percentageEntityDetected]
-                percentageSearchResult = SearchResult(percentage, allEntityUsedAndPercentage, SearchResultType.PERCENTAGE, searchResult.realQuestion)
-                percentages.append(percentageSearchResult)
-            except Exception as e:
-                print("EXCEPTION OCCURED WHILE CALCULATING PERCENTAGE", e.__dict__)
-                continue
+            # try:
+                # numerator = float(searchResult.answer)
+            numerator, type = self.typeController.determineResultType(searchResult.answer)
+            denominator, type = self.typeController.determineResultType(denominator.answer)
+            percentageCalc = (numerator/denominator)*100
+            percentage = round(percentageCalc, 1)
+            percentage = PERCENTAGE_FORMAT.format(value = percentage)
+            allEntityUsedAndPercentage = entitiesUsedForThisSearchResult + [percentageEntityDetected]
+            percentageSearchResult = SearchResult(percentage, allEntityUsedAndPercentage, SearchResultType.PERCENTAGE, searchResult.realQuestion)
+            percentages.append(percentageSearchResult)
+            # except Exception as e:
+            #     print("EXCEPTION OCCURED WHILE CALCULATING PERCENTAGE", e.__dict__)
+            #     continue
         # for t in percentages:
         #     print(t.entities)
         return percentages

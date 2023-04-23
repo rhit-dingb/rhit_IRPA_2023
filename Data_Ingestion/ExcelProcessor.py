@@ -8,8 +8,8 @@ from Data_Ingestion.TopicData import TopicData
 
 
 class ExcelProcessor():
-    def __init__(self, path, topicToParse):
-        self.data : dict[str, dict[str, TopicData]] = self.processExcelSparseMatrixByYearToSparseMatrix(path, topicToParse)
+    def __init__(self, path):
+        self.data : dict[str, dict[str, TopicData]] = self.processExcelSparseMatrixByYearToSparseMatrix(path)
         #print(self.data['2020_2021']["high_school_units"].sparseMatrices)
         
     def getData(self) -> TopicData:
@@ -22,7 +22,7 @@ class ExcelProcessor():
     Returns a dictionary, the key is each section of the cds data, the value is instance of the TopicData, which contains multiple sparse matrix,
     each sparse matrix correspond to a subsection within the section of a cds section. If that section has no subsection, it will have one sparse matrix.
     """ 
-    def processExcelSparseMatrixByYearToSparseMatrix(self, path, topicToParse):
+    def processExcelSparseMatrixByYearToSparseMatrix(self, path):
         yearToData = dict()
         for fileName in os.listdir(path):
             #Skip these extra files created by excel
@@ -31,7 +31,14 @@ class ExcelProcessor():
 
             data = dict()
             xl = pd.ExcelFile(path+"/"+fileName)
-         
+            
+            topicToParse = []
+            for sheetname in xl.sheet_names:
+                sheetnameSplit = sheetname.split("_")
+                section = sheetnameSplit[0]
+                if not section in topicToParse:
+                    topicToParse.append(section)
+
             for topic in topicToParse:
                 data[topic] = self.getAllSparseMatrixForTopic(topic, xl)
 
@@ -42,6 +49,7 @@ class ExcelProcessor():
             # get the year key.
             yearKey = fileNameSplit[len(fileNameSplit)-2]+"_"+fileNameSplit[len(fileNameSplit)-1]
             yearToData[yearKey] = data
+       
         return yearToData
 
     """ 

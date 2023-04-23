@@ -12,10 +12,9 @@ from Exceptions.ExceptionTypes import ExceptionTypes
 DataManager subclass that can handle excel file as data resource-- used for only testing purposes.
 """
 class ExcelDataManager(DataManager):
-    def __init__(self, filePath, topicToParse =["enrollment"]):
+    def __init__(self, filePath):
         super().__init__()
-        self.topicToParse = topicToParse
-        self.excelProcessor = ExcelProcessor(filePath, self.topicToParse)
+        self.excelProcessor = ExcelProcessor(filePath)
 
     async def getDataBySection(self, section, exceptionToThrow, startYear = None, endYear = None ):
         section = section.replace("_", " ")

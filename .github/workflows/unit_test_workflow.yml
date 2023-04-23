@@ -62,7 +62,9 @@ jobs:
         run: python -m unittest tests/test_knowledgebase.py
       - name: Test knowledgebase aggregate discrete range
         run: python -m unittest tests/test_aggregationDiscreteRange.py
-      - name: Upload pytest test results
+      - name: Test knowledgebase percentage calculation
+        run: python -m unittest tests/test_calculatePercentage.py
+      - name: Upload unit test results
         uses: actions/upload-artifact@v3
         with:
           name: unit-test-results-${{ matrix.python-version }}
