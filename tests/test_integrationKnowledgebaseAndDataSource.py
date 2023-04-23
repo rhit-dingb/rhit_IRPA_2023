@@ -54,6 +54,12 @@ class test_integration_knowledgebase_and_dataSource(unittest.TestCase):
 
     
     def test_integration_ask_for_total_undergraduates_enrollment(self):
+        dataParser = NoChangeDataParser()
+        excelCDSDataLoader = ExcelCDSDataLoader("./tests/testMaterials/inputData/TEST_2020_2021.xlsx")
+        dataWriter = MongoDbNoChangeDataWriter(self.testDbName, client=self.client)
+        parserFacade = ParserFacade(dataLoader=excelCDSDataLoader, dataWriter=dataWriter, dataParser=dataParser)
+        asyncio.run(parserFacade.parse())
+
         question = "how many undergraduate students are enrolled?"
         answers, shouldContinue = asyncio.run(self.knowledgeBase.searchForAnswer(question, "enrollment", [
             createEntityObjHelper("undergraduate"),
