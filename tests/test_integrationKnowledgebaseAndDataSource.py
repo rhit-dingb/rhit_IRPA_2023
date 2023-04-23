@@ -29,6 +29,8 @@ class test_integration_knowledgebase_and_dataSource(unittest.TestCase):
         self.testDbName= "TEST_2020_2021"
         self.client = MongoClient(MONGO_DB_CONNECTION_STRING)
         excelCDSDataLoader = ExcelCDSDataLoader("./tests/testMaterials/inputData/TEST_2020_2021.xlsx")
+        excelCDSDataLoader.loadData()
+        print(excelCDSDataLoader.getAllSectionDataFullName())
         dataParser = NoChangeDataParser()
         dataWriter = MongoDbNoChangeDataWriter(self.testDbName, client=self.client)
         parserFacade = ParserFacade(dataLoader=excelCDSDataLoader, dataWriter=dataWriter, dataParser=dataParser)
@@ -47,6 +49,7 @@ class test_integration_knowledgebase_and_dataSource(unittest.TestCase):
 
     def tearDown(self) -> None:
         self.dataManager.deleteData(self.testDbName)
+        pass
 
     async def fakeGetAllEntityForRealQuestionFoundForAnswer(self, searchResults):
         pass
@@ -54,11 +57,7 @@ class test_integration_knowledgebase_and_dataSource(unittest.TestCase):
 
     
     def test_integration_ask_for_total_undergraduates_enrollment(self):
-        dataParser = NoChangeDataParser()
-        excelCDSDataLoader = ExcelCDSDataLoader("./tests/testMaterials/inputData/TEST_2020_2021.xlsx")
-        dataWriter = MongoDbNoChangeDataWriter(self.testDbName, client=self.client)
-        parserFacade = ParserFacade(dataLoader=excelCDSDataLoader, dataWriter=dataWriter, dataParser=dataParser)
-        asyncio.run(parserFacade.parse())
+      
 
         question = "how many undergraduate students are enrolled?"
         answers, shouldContinue = asyncio.run(self.knowledgeBase.searchForAnswer(question, "enrollment", [

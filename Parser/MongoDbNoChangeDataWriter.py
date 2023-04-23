@@ -20,7 +20,7 @@ class MongoDbNoChangeDataWriter(DataWriter):
 
     def write(self, sectionToQuestionAnswer : Dict[str, List[Tuple[str,  List[QuestionAnswer]]]]):
         sectionsInserted = []
-        
+        print("WRITING DATA")
         for sectionKey in sectionToQuestionAnswer:
             print("WRITING", sectionKey)
             dataForEachSubSection = sectionToQuestionAnswer[sectionKey]
