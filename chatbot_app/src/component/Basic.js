@@ -25,17 +25,16 @@ function Basic() {
   const [botTyping, setbotTyping] = useState(false);
   const [conversationId, setConversationId] = useState(uuidv4());
 
-  useEffect(()=>{
-   
-    if (chat.length ==0) {
-      let body = { }
-     
-      body[CHATBOT_TEXT_MESSAGE_KEY] =  "Hi! I am a chatbot for the IPRA office, I can help you answer various questions related to Rose-Hulman."
-      const request_temp = { sender: "bot", sender_id: "test", jsonData:  body}
-      setbotTyping(true)
-      setChat([...chat, ...[request_temp]])
-      rasaAPI(conversationId, GET_AVAILABLE_OPTIONS_MESSAGE)
-      
+  useEffect(() => {
+    if (chat.length == 0) {
+      let body = {};
+
+      body[CHATBOT_TEXT_MESSAGE_KEY] =
+        "Hi! I am a chatbot for the IPRA office, I can help you answer various questions related to Rose-Hulman.";
+      const request_temp = { sender: "bot", sender_id: "test", jsonData: body };
+      setbotTyping(true);
+      setChat([...chat, ...[request_temp]]);
+      rasaAPI(conversationId, GET_AVAILABLE_OPTIONS_MESSAGE);
     }
   }, []);
 
@@ -51,10 +50,14 @@ function Basic() {
     const request_temp = { sender: "user", sender_id: name, msg: inputMessage };
 
     if (inputMessage !== "") {
-      setChat((chat) => [...chat, request_temp]);
-      setbotTyping(true);
-      setInputMessage("");
-      rasaAPI(conversationId, inputMessage);
+      if (inputMessage.length <= 400) {
+        setChat((chat) => [...chat, request_temp]);
+        setbotTyping(true);
+        setInputMessage("");
+        rasaAPI(conversationId, inputMessage);
+      } else {
+        window.alert("Question Typed Exceeds Character Limit");
+      }
     } else {
       window.alert("Please enter valid message");
     }
@@ -64,29 +67,26 @@ function Basic() {
     //chatData.push({sender : "user", sender_id : name, msg : msg});
 
     // console.log(chat);
-    await fetch(
-      `${RASA_API_STRING}/webhooks/rest/webhook`,
-      {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          charset: "UTF-8",
-        },
-        credentials: "same-origin",
-        mode: "cors",
-        body: JSON.stringify({ sender: conversationId, message: msg }),
-      }
-    )
+    await fetch(`${RASA_API_STRING}/webhooks/rest/webhook`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        charset: "UTF-8",
+      },
+      credentials: "same-origin",
+      mode: "cors",
+      body: JSON.stringify({ sender: conversationId, message: msg }),
+    })
       .then((response) => response.json())
       .then((response) => {
         if (response) {
           // const temp = response[0];
           // console.log("RESPONSE RECEIVED")
-          console.log(response)
+          console.log(response);
           // console.log("_____________________________--")
-          let messages = []
-          
+          let messages = [];
+
           // const response_temp = {
           //   sender: "bot",
           //   // recipient_id: "user"
@@ -97,23 +97,20 @@ function Basic() {
           // messages.push(response_temp)
 
           for (let r of response) {
-              const recipient_id = r["recipient_id"];
-              //Expect the backend return the following json
-              // {custom:{text:"", ...other stuff }}
-              // console.log(r)
-              const response_temp = {
-                sender: "bot",
-                recipient_id: recipient_id,
-                jsonData: r,
-              };
+            const recipient_id = r["recipient_id"];
+            //Expect the backend return the following json
+            // {custom:{text:"", ...other stuff }}
+            // console.log(r)
+            const response_temp = {
+              sender: "bot",
+              recipient_id: recipient_id,
+              jsonData: r,
+            };
 
-             
-          //     console.log(response_temp)
-              messages.push(response_temp)
+            //     console.log(response_temp)
+            messages.push(response_temp);
           }
 
-
-        
           setbotTyping(false);
 
           setChat((chat) => [...chat, ...messages]);
@@ -150,19 +147,19 @@ function Basic() {
     paddingTop: "10px",
     height: "32rem",
     overflowY: "scroll",
-     //overflowAnchor: "none",
+    //overflowAnchor: "none",
     overflowX: "hidden",
   };
 
   return (
     <div>
       <Box
-      sx={{
-        margin: "auto",
-        width: "95%",
-        height: "88%", 
-       
-      }}>
+        sx={{
+          margin: "auto",
+          width: "95%",
+          height: "88%",
+        }}
+      >
         <div className="row justify-content-center">
           <div className="card" style={styleChatbotBody}>
             <div className="cardHeader text-white" style={styleHeader}>
@@ -177,12 +174,15 @@ function Basic() {
 
             {/*  */}
             <div className="cardBody" id="messageArea" style={styleBody}>
-              <Box >
+              <Box>
                 {chat.map((user, key) => (
                   <div key={key}>
                     {user.sender === "bot" ? (
-                      
-                      <ChatbotResponse keyToUse ={key} jsonResponse = {user.jsonData} setChatbotTyping={setbotTyping}/>
+                      <ChatbotResponse
+                        keyToUse={key}
+                        jsonResponse={user.jsonData}
+                        setChatbotTyping={setbotTyping}
+                      />
                     ) : (
                       <div className="msgalignend">
                         <h5 className="usermsg">{user.msg}</h5>
