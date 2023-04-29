@@ -121,13 +121,15 @@ function Basic() {
 
   const styleChatbotBody = {
     // maxWidth: "100rem",
-    width: "100%",
+    width: "99%",
     // width: "200rem",
+    // background: `linear-gradient(to bottom right, #ffffff 45\%, #b7e0f5 100%)`,
     border: "1px solid black",
     paddingLeft: "0px",
     paddingRight: "0px",
     borderRadius: "30px",
     boxShadow: "0 16px 20px 0 rgba(0,0,0,0.4)",
+   
   };
 
   const styleHeader = {
@@ -186,7 +188,7 @@ function Basic() {
                     ) : (
                       <div className="msgalignend">
                         <h5 className="usermsg">{user.msg}</h5>
-                        <BiUser className="userIcon" />
+                        <BiUser className="userIcon" style={{"flexShrink": 0}}/>
                       </div>
                     )}
                   </div>
@@ -222,15 +224,16 @@ function Basic() {
                 style={{ display: "flex" }}
                 onSubmit={handleSubmit}
               >
-                <div className="col-10" style={{ paddingRight: "0px" }}>
+                {/* <div style={{ paddingRight: "1%", flexGrow: 1}}> */}
                   <input
                     onChange={(e) => setInputMessage(e.target.value)}
                     value={inputMessage}
                     type="text"
                     className="msginp"
+                    style={{ marginLeft: "2%", flexGrow: 1}}
                   ></input>
-                </div>
-                <div className="col-2">
+                {/* </div> */}
+                <div >
                   <button type="submit" className="circleBtn">
                     <IoMdSend className="sendBtn" />
                   </button>
