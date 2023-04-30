@@ -20,6 +20,7 @@ import { checkResponse } from "../functions/functions";
 import {ChatbotAnswer, TextAnswer} from "../chatbotResponse/TextAnswer"
 
 import CircularProgress from '@mui/material/CircularProgress';
+import Typography from '@mui/material/CircularProgress';
 import { green } from '@mui/material/colors';
 
 class Question extends React.Component {
@@ -43,20 +44,18 @@ class Question extends React.Component {
     return <div key ={this.props.questionObject.content} style={{ height:100, width:"100%", 
       margin:"auto", 
       border: "1px solid",
-      borderColor: this.props.questionObject.is_addressed || this.props.questionObject.trained? 'black' : 'red',
+      borderColor: this.props.questionObject.is_addressed? 'green': this.props.questionObject.trained? 'blue': 'red',
       overflow: "hidden",
-      height: 50,
+      height: "18%",
       padding:10,
       backgroundColor: '#E7EBF0',
       
       }} onClick={this.handleClick}>
-            {/* <div style={{
-        height: 100,
-       
-        }}> */}
-        <p style={{ overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis", color:"black"}}>{this.props.questionObject.content}</p>
-      {/* </div> */}
-      {/* <Divider variant="inset" component="li" /> */}
+         
+        <div style={{ overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis", color:"black"}}>{this.props.questionObject.content}</div>
+      <div style={{fontSize:11, color:"grey"}}>
+      {this.props.questionObject.is_addressed? 'Answer submitted': this.props.questionObject.trained? 'Trained': ''}   
+      </div>
       </div> 
       
   }
@@ -378,7 +377,7 @@ class QuestionAnswer extends React.Component {
         </Button>
         </Stack>
 
-
+                
       </CardContent>
     
     </Card>
