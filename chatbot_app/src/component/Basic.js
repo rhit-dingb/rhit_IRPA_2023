@@ -120,9 +120,10 @@ function Basic() {
   };
 
   const styleChatbotBody = {
-    // maxWidth: "100rem",
+    maxWidth: "100rem",
     width: "99%",
     // width: "200rem",
+  
     // background: `linear-gradient(to bottom right, #ffffff 45\%, #b7e0f5 100%)`,
     border: "1px solid black",
     paddingLeft: "0px",
@@ -147,7 +148,7 @@ function Basic() {
 
   const styleBody = {
     paddingTop: "10px",
-    height: "32rem",
+    height: "70vh",
     overflowY: "scroll",
     //overflowAnchor: "none",
     overflowX: "hidden",
@@ -156,14 +157,11 @@ function Basic() {
   return (
     <div>
       <Box
-        sx={{
-          margin: "auto",
-          width: "95%",
-          height: "88%",
-        }}
+      
+        id="chatbotWindow"
       >
         <div className="row justify-content-center">
-          <div className="card" style={styleChatbotBody}>
+          <div style={styleChatbotBody}>
             <div className="cardHeader text-white" style={styleHeader}>
               <div id="chatHeader">
                 <YearSelect convId={conversationId} />
