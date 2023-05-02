@@ -1,4 +1,4 @@
-import { ChatbotResponseType, RESPONSE_TYPE_KEY, CHATBOT_TEXT_MESSAGE_KEY ,CHATBOT_CUSTOM_MESSAGE_KEY } from "../constants/constants"
+import { ChatbotResponseType, RESPONSE_TYPE_KEY, CHATBOT_TEXT_MESSAGE_KEY ,CHATBOT_CUSTOM_MESSAGE_KEY, CHATBOT_IMAGE_MESSAGE_KEY } from "../constants/constants"
 import "../component/chatBot.css"
 import React from "react";
 import { useEffect, useState } from "react";
@@ -47,30 +47,26 @@ function ChatbotResponse({recipientId, keyToUse, jsonResponse}) {
             case ChatbotResponseType.ACCORDION_LIST:
               return (<AccordionList jsonResponse = {responseData}/>)
             default:
+                // Default handle the input data if not custom response type is specified.
+                //Used to parse text, and image and can be used to parse other type of ui supported.
                 let message = null
                 let source = null
-                if("custom" in jsonResponse){
+                if(CHATBOT_CUSTOM_MESSAGE_KEY in jsonResponse){
                     let customData = jsonResponse["custom"]
                     message = customData[CHATBOT_TEXT_MESSAGE_KEY ]
                     source = customData["source"]
-                } else{
-                    message = jsonResponse[CHATBOT_TEXT_MESSAGE_KEY ]
+                } else if (CHATBOT_TEXT_MESSAGE_KEY in jsonResponse) {
+                    message = jsonResponse[CHATBOT_TEXT_MESSAGE_KEY]
+                } else if (CHATBOT_IMAGE_MESSAGE_KEY in jsonResponse) {
+                    message = jsonResponse[CHATBOT_IMAGE_MESSAGE_KEY]
                 }
                 
                 let answer = message
+                console.log(jsonResponse)
+                if (answer == null) {
+                    return null
+                }
                 answer = answer.charAt(0).toUpperCase() + message.slice(1)
-
-                // console.log(jsonResponse)
-                // console.log("MESSAGE"+message)
-                
-                // return (answer ? (<div key ={keyToUse}>
-                //     <div className="msgalignstart">
-                //         <BiBot className="botIcon" />
-                //         <h5 className="botmsg">{answer}</h5>
-                //     </div> 
-                // </div>) : null) 
-               
-               
                 return  (<TextAnswer isAdmin={false} answer={answer} questionId={null} feedback={null} source={source} />)
         }
     }

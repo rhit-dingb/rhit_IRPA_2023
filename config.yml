@@ -18,29 +18,29 @@ pipeline:
   # - name: "SpacyEntityExtractor"
   # dimensions to extract
     # dimensions: ["DATE"]
-  - name: WhitespaceTokenizer
-  - name: RegexFeaturizer
-  - name: RegexEntityExtractor
-    case_sensitive: false
-    use_lookup_tables: true
-    use_regexes: false
-  - name: LexicalSyntacticFeaturizer
-  - name: CountVectorsFeaturizer
-  - name: CountVectorsFeaturizer
-    analyzer: char_wb
-    min_ngram: 1
-    max_ngram: 4
-  - name: DIETClassifier
-    epochs: 100
-    constrain_similarities: true
-  - name: EntitySynonymMapper
-    epochs: 200
-  - name: ResponseSelector
-    epochs: 100
-    constrain_similarities: true
-  - name: FallbackClassifier
-    threshold: 0.3
-    ambiguity_threshold: 0.1
+- name: WhitespaceTokenizer
+- name: RegexFeaturizer
+- name: RegexEntityExtractor
+  case_sensitive: false
+  use_lookup_tables: true
+  use_regexes: false
+- name: LexicalSyntacticFeaturizer
+- name: CountVectorsFeaturizer
+- name: CountVectorsFeaturizer
+  analyzer: char_wb
+  min_ngram: 1
+  max_ngram: 4
+- name: DIETClassifier
+  epochs: 100
+  constrain_similarities: true
+- name: EntitySynonymMapper
+  epochs: 200
+- name: ResponseSelector
+  epochs: 100
+  constrain_similarities: true
+- name: FallbackClassifier
+  threshold: 0.3
+  ambiguity_threshold: 0.1
 
 # Configuration for Rasa Core.
 # https://rasa.com/docs/rasa/core/policies/
@@ -48,15 +48,15 @@ policies:
 # # No configuration for policies was provided. The following default policies were used to train your model.
 # # If you'd like to customize them, uncomment and adjust the policies.
 # # See https://rasa.com/docs/rasa/policies for more information.
-  - name: MemoizationPolicy
-    max_history: 5
-    epochs: 200
-  - name: RulePolicy
-  - name: UnexpecTEDIntentPolicy
-    max_history: 5
-    epochs: 200
-  - name: TEDPolicy
-    max_history: 5
-    epochs: 200
-    constrain_similarities: true
-    
+- name: MemoizationPolicy
+  max_history: 5
+  epochs: 200
+- name: RulePolicy
+- name: UnexpecTEDIntentPolicy
+  max_history: 5
+  epochs: 200
+- name: TEDPolicy
+  max_history: 5
+  epochs: 200
+  constrain_similarities: true
+assistant_id: 20230502-020522-loud-region
