@@ -19,7 +19,7 @@ jobs:
         with:
           test_type: nlu
           rasa_train: false
-          rasa_version: 3.2.10
+          rasa_version: 3.2.13
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
       # The 'actions/upload-artifact' action to upload files
