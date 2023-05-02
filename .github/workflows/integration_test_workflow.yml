@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         python-version: ["3.8"]
-        mongodb-version: ['4.2', '4.4', '5.0', '6.0']
+        mongodb-version: ['6.0']
 
     # Define steps for the job
     steps:
