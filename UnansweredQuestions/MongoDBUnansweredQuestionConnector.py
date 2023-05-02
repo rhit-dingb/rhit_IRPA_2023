@@ -6,10 +6,11 @@ from bson import json_util
 import pymongo
 from bson.objectid import ObjectId
 from datetime import datetime
+from UnansweredQuestions.UnasweredQuestionDBConnector import UnansweredQuestionDbConnector
 from UnansweredQuestions.constants import DB_UNANSWERED_QUESTION_DATE_FIELD_KEY
 
 
-class MongoDBUnansweredQuestionConnector():
+class MongoDBUnansweredQuestionConnector(UnansweredQuestionDbConnector):
     def __init__(self):
         self.client = MongoClient(MONGO_DB_CONNECTION_STRING)
         self.db = self.client.freq_question_db
@@ -70,7 +71,7 @@ class MongoDBUnansweredQuestionConnector():
         print(boo1)
         return boo1
 
-    def updateFeedbackForAnswer(self, questionId, chatbotAnswer, feedback):
+    def updateFeedbackForAnswer(self, questionId, chatbotAnswer : str, feedback):
      
         filter = {'_id': ObjectId(questionId), "chatbotAnswers":{"$elemMatch": {"answer":chatbotAnswer } }}
         # data = self.questions_collection.find_one(filter)

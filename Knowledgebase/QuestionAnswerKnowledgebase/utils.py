@@ -9,6 +9,10 @@ from Data_Ingestion.constants import VALUE_FOR_ALLOW
 from Data_Ingestion.constants import TEMPLATE_LABEL
 from DataManager.constants import ANNUAL_DATA_REGEX_PATTERN, DEFINITION_DATA_REGEX_PATTERN
 
+"""
+Contain util functions for QuestionAnswerKnowledgebase
+"""
+
 def findDocumentWithId(id: str, documents : List[Document]) -> Document:
         for doc in documents:
             if doc.id == id:
@@ -18,6 +22,9 @@ def findDocumentWithId(id: str, documents : List[Document]) -> Document:
 
 
 def determineDocumentStore():
+    """
+    Determine which document store to use based on the environment 
+    """
     environment = config('ENVIRONMENT')
     if environment == "development":
          return InMemoryDocumentStore()
@@ -26,22 +33,54 @@ def determineDocumentStore():
     
 
 
-async def writeDocToDocumentStore(years: List[Tuple[str, str]], yearAgnosticDataName : List[str], dataManager : DataManager, documentStore : BaseDocumentStore, process_doc_func):
+async def writeDocToDocumentStore(years: List[Tuple[str, str]], yearAgnosticDataNames : List[str], dataManager : DataManager, documentStore : BaseDocumentStore, process_doc_func):
+    """
+    Given a list of available years that data is available and a list of year agnostic data names, write all the data for all the available year and the
+    year agnostic data to the document store. 
+
+    :param years: A list of tuple, each tuple has two elements. The first element is the start year and the second element is the end year.
+
+    :param dataManager: instance of DataManager's concrete class to fetch documents(qa pair) from the data source.
     
+    :param documentStore: DocumentStore to write the documents to.
+
+    :param process_doc_func: A function used to process the document and make any changes to it before writing to the document store
+    """
     dataNamesDicts = []
     for startYear, endYear in years:
         availableDataName = dataManager.getAvailableDataForSpecificYearRange(startYear, endYear)
         for dataName in availableDataName:
             dataNamesDicts.append({"dataName": dataName, "startYear": startYear, "endYear": endYear})
 
-    for dataName in yearAgnosticDataName:
+    for dataName in yearAgnosticDataNames:
         dataNamesDicts.append({"dataName":dataName})
 
     await writeDocToDocumentStoreWithDataName(dataNamesDicts, dataManager, documentStore, process_doc_func)
     
 
 async def writeDocToDocumentStoreWithDataName(dataNameDicts : List[Dict[str,str]], dataManager : DataManager, documentStore : BaseDocumentStore, process_doc_func):
-    
+    """
+    Given a list of dataName data dicitonaries, data manager, and document store, and a function to process each document, this functin will 
+    write all the data for each given data name to the document store and appending necessary metadata for each document as well.
+
+    :param dataNameDicts: A list of dictionary object containing necessary neccesary info about each data. For example:
+    {
+        "dataName":"CDS_2020_2021",
+        "startYear": 2020,
+        "endYear": 2021
+    }
+
+    or for year agnostic data:
+
+    {
+        "dataName":"CDS_2020_2021",
+    }
+
+
+    :param dataManager: DataManager class instance to interface with the backend data source
+    :param documentStore: The document store to store the documents into.
+    :param process_doc_func: A function used to process the document and make any changes to it before writing to the document store
+    """
     for dataNameDict in dataNameDicts:
         dataName = dataNameDict["dataName"]
         startYear = None

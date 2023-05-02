@@ -1,6 +1,7 @@
 
 from typing import List
 import pandas as pd
+from Data_Ingestion.DataProcessor import DataProcessor
 from Data_Ingestion.SparseMatrix import SparseMatrix
 from Data_Ingestion.TopicData import TopicData
 from DataManager.constants import DATABASE_SPARSE_MATRIX_ROWS_KEY, DATABASE_SPARSE_MATRIX_SUBSECTION_KEY
@@ -11,13 +12,22 @@ from DataManager.constants import QUESTION_COLUMN_KEY
 from DataManager.constants import DATABASE_METADATA_FIELD_KEY
 from DataManager.constants import DATABASE_QUESTION_ANSWERS_KEY
 from Data_Ingestion.SubsectionQnA import SubsectionQnA
+from pymongo import MongoClient
 
+class MongoProcessor(DataProcessor):
+    """
+    Class used by MongoDataManager to retrieve data. This class can be decorated to convert the data retrieved from Mongo DB to different internal
+    data models.
+    """
 
-class MongoProcessor():
-    def __init__(self):
-        pass
-
-    async def getDataByDbNameAndSection(self, client, section, dbName) -> List[SubsectionQnA]:
+    async def getDataByDbNameAndSection(self, client : MongoClient, section : str, dbName : str ) -> List[SubsectionQnA]:
+        """
+        This function retrieve all the subsection and the data for each subsection given the section into the SubsectionQnA data model.
+        :param client: Mongo client to make request to MongoDB.
+        :param section: section to retrieve data for
+        :param dbName: database name to retrieve the section for
+        :return: List of SubsectionQnA
+        """
         cur_db = client[dbName]
         subsectionsQnAList = []
         for name in cur_db.list_collection_names():
@@ -32,61 +42,3 @@ class MongoProcessor():
 
         return subsectionsQnAList
     
-
- 
-    def getSparseMatricesByDbNameAndIntent(self, client, intent, dbName):
-        cur_db = client[dbName]
-
-        topicData = self.getAllSparseMatrixForTopic(intent, cur_db)
-    
-        return topicData     
-          
-
-    """ 
-    Given a topic, this function will find all the sparse matrix for a topic. 
-    PARAMETERS: 
-    
-    topic: the topic to get the sparse matrix for
-
-    dataSourceConnector: excel connector from pandas that we can use to retrieve data.
-
-    Returns: TopicData class.
-    """
-    def getAllSparseMatrixForTopic(self, topic, curDB) -> TopicData:    
-        seperator = "_"
-        topicData = TopicData(topic)
-        #put this here for now
-        topic = topic.replace("_", " ")
-        for name in curDB.list_collection_names():
-            # topic_key_words = [x.lower() for x in name.split(seperator)]
-            # for each sheet, the name has to be in the format subsection_topic. For example: race_enrollment
-            # print("CHECKING")
-            # # print(name)
-            # print(name, topic, topic == name)
-            
-            if topic == name:
-                cursor = curDB[name].find({})
-                # print("CURSOR")
-                # print(cursor[0])
-               
-                for sparseMatrixData in cursor:
-                    questions = []
-                    subsection = sparseMatrixData.get(DATABASE_SPARSE_MATRIX_SUBSECTION_KEY)
-                    rows = sparseMatrixData.get(DATABASE_SPARSE_MATRIX_ROWS_KEY)
-                    metadata = sparseMatrixData.get(DATABASE_METADATA_FIELD_KEY)
-                    for row in rows:
-                        questions.append(row[QUESTION_COLUMN_KEY])
-                        del row[QUESTION_COLUMN_KEY]
-                    df = pd.DataFrame.from_dict(rows)
-                    # print(df.head())
-                    # print(questions)
-                    # print("GOT METADATA")
-                    # print(metadata)
-                    sparseMatrix = SparseMatrix(subsection, df,  metadata=metadata, questions = questions,)
-                    topicData.addSparseMatrix(subsection, sparseMatrix)
-
-                return topicData  
-
-    #     # If nothing found, return empty topic data        
-    #     return topicData
-                

@@ -8,9 +8,8 @@ from Exceptions.ExceptionTypes import ExceptionTypes
 
 from Exceptions.ExceptionMessages import NO_DATA_AVAILABLE_FOR_GIVEN_INTENT_FORMAT, NO_DATA_FOUND_FOR_ACADEMIC_YEAR_ERROR_MESSAGE_FORMAT
 from Exceptions.NoDataFoundException import NoDataFoundException
-from DataManager.DataSelection.TFIDFSelector import TFIDFSelector
 from Exceptions.ExceptionMessages import NO_DATA_EXIST_MESSAGE
-from DataManager.DataSelection.DecisionTreeSelector import DecisionTreeSelector
+
 import re
 from abc import ABC, abstractmethod
 
@@ -119,15 +118,16 @@ class DataManager(ABC):
 
 
 
-    """
-    Given intent and entities, this function will determine the specific sparse matrix to be searched by the knowledgebase's search algorithm
-    
-    intent: intent of the user interpreted by rasa
-    entities: list entities extracted by rasa. Each element in the list is a python dictionary. For example:
-    {'entity': 'year', 'start': 58, 'end': 62, 'confidence_entity': 0.997698962688446, 'role': 'to', 'confidence_role': 0.7497242093086243, 'value': '2022', 'extractor': 'DIETClassifier'}
 
-    """ 
     async def determineMatrixToSearch(self, intent, entities, startYear : str, endYear : str) -> SparseMatrix:
+        """
+        Given intent and entities, this function will determine the specific sparse matrix to be searched by the knowledgebase's search algorithm
+        
+        intent: intent of the user interpreted by rasa
+        entities: list entities extracted by rasa. Each element in the list is a python dictionary. For example:
+        {'entity': 'year', 'start': 58, 'end': 62, 'confidence_entity': 0.997698962688446, 'role': 'to', 'confidence_role': 0.7497242093086243, 'value': '2022', 'extractor': 'DIETClassifier'}
+
+        """ 
         section = intent.replace("_", " ")
         # if startYear == None or endYear == None:
         #     raise NoDataFoundException(NO_DATA_EXIST_MESSAGE, ExceptionTypes.NoDataFoundAtAll)
@@ -158,37 +158,37 @@ class DataManager(ABC):
        
 
 
-    """
-    This function will determine which sparse matrix under an intent should we search based on the given entities.
 
-    First, it will check if any of the entity labels includes any subsections sparse matrix for the topic
-    corresponding to the detected intent. For example, if an entity with race label was detected with enrollment intent, 
-    it will tell TopicData for enrollemnt if it has a sparse matrix of the name "race"
-    If there is one it will return it. Otherwise it will do the following:
-
-    For each sparse matrix, it will calculate the number of entities that the sparse matrix has corresponding columns for.
-    Then this function will find and return sparse matrix with the highest match number.
-    We do this because for example, for enrollment, there are two matrix, one for general enrollment info and one for enrollment by race
-    and if the user asks something like "how many hispanics male student are enrolled?" Should we use the general matrix that has gender
-    or should we use the enrollment by race that has information on hispanic student enrollment?  
-
-    If enrollment by race matrix has information about hispanic male enrollment, this algorithm would choose that. But in this case,
-    there is no such information. so we can use any matrix. 
-
-    However, if the user specify something like degree-seeking which is a column on both race and general enrollment matrix,
-    we would want to use the genereal enrollment matrix but there will be a tie. So in this case, we use the first matrix for tie,
-    which will be general enrollment.
-   
-
-    """
     def determineBestMatchingMatrix(self, topicData : TopicData, entities : Dict, errorMessage : str) ->  List[SparseMatrix]:
+        """
+        This function will determine which sparse matrix under an intent should we search based on the given entities.
+
+        First, it will check if any of the entity labels includes any subsections sparse matrix for the topic
+        corresponding to the detected intent. For example, if an entity with race label was detected with enrollment intent, 
+        it will tell TopicData for enrollemnt if it has a sparse matrix of the name "race"
+        If there is one it will return it. Otherwise it will do the following:
+
+        For each sparse matrix, it will calculate the number of entities that the sparse matrix has corresponding columns for.
+        Then this function will find and return sparse matrix with the highest match number.
+        We do this because for example, for enrollment, there are two matrix, one for general enrollment info and one for enrollment by race
+        and if the user asks something like "how many hispanics male student are enrolled?" Should we use the general matrix that has gender
+        or should we use the enrollment by race that has information on hispanic student enrollment?  
+
+        If enrollment by race matrix has information about hispanic male enrollment, this algorithm would choose that. But in this case,
+        there is no such information. so we can use any matrix. 
+
+        However, if the user specify something like degree-seeking which is a column on both race and general enrollment matrix,
+        we would want to use the genereal enrollment matrix but there will be a tie. So in this case, we use the first matrix for tie,
+        which will be general enrollment.
+    
+
+        """
         doesEntityMapToAnySubsections, sparseMatricesFound = topicData.doesEntityIncludeAnySubsections(entities)
         candidates = list(topicData.getSparseMatrices().values())
       
         if doesEntityMapToAnySubsections:
             candidates = sparseMatricesFound
             
-     
         maxMatch = []
         currMax = 0
         entityValues = []
@@ -196,8 +196,6 @@ class DataManager(ABC):
             entityValues.append(entity["value"])
 
         entityValues = list(set(entityValues))
-        # print("ENTITY VALUES")
-        # print(entityValues)
         for sparseMatrix in candidates:  
             # print(sparseMatrix.sparseMatrixDf)
             # print(sparseMatrix.subSectionName)              
@@ -209,36 +207,9 @@ class DataManager(ABC):
             elif entitiesMatchCount == currMax:
                 maxMatch.append(sparseMatrix)
 
-        
-        #NEW CODE
-        # columnsForEachMatrix  = []
-        # for sparseMatrix in candidates: 
-        #     columnsList = sparseMatrix.getColumn()
-        #     columnsForEachMatrix.append(list(columnsList))
-            
-        # best_index = self.tfidfSelector.selectBest(entities, columnsForEachMatrix)
-        # candidates = list(candidates)
-        # print(candidates[best_index].subSectionName)
-        # return candidates[best_index]
-
-        #raise an error if no best matching matrix is found
-
-        # print("CANDIDATES")
-        # print(len(maxMatch))
-        # for m in maxMatch:
-        #     print(m.subSectionName)
-
-        # decisionTreeSelector = DecisionTreeSelector()
-        # decisionTreeSelector.selectBest(entityValues, candidates)
-       
         if len(maxMatch) == 0:
             raise NoDataFoundException(errorMessage, ExceptionTypes.NoSparseMatrixDataAvailableForGivenIntent)
-        # print("CANDIDATES") 
-        # for candidate in maxMatch:
-        #     print(candidate.subSectionName)
-        
-        # print("SELECTED MATRIX")
-        # print(maxMatch[0].subSectionName)
+
         return maxMatch
 
 

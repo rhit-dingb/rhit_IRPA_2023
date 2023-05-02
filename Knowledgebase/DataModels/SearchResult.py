@@ -1,6 +1,6 @@
 
 from typing import Dict, List
-from Knowledgebase.SearchResultType import SearchResultType
+from Knowledgebase.SparseMatrixKnowledgebase.SearchResultType import SearchResultType
 from Knowledgebase.constants import PERCENTAGE_FORMAT
 from Knowledgebase.constants import DOLLAR_FORMAT
 

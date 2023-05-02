@@ -6,7 +6,6 @@ from typing import List
 from UnansweredQuestions.DocumentRetrieverByVector import DocumentRetrieverByVector
 from UnansweredQuestions.MongoDBUnansweredQuestionConnector import MongoDBUnansweredQuestionConnector
 from UnansweredQuestions.Corpus import Corpus
-from UnansweredQuestions.Doc2Vec import Doc2VecModel
 from UnansweredQuestions.DocumentIndexRetriever import DocumentIndexRetriever
 from UnansweredQuestions.TFIDFModel import TFIDFModel
 from UnansweredQuestions.Word2Vec import Word2VecModel
@@ -18,24 +17,21 @@ from UnansweredQuestions import Model
 import sys
 import os
 
-
-
-
-   #self.model = TFIDFModel(self.corpus, "./savedModels/tfidf.tfidf")
-
 class UnansweredQuestionAnswerEngine:
     # Basepath: ./UnansweredQuestions, or ../UnansweredQuestions
+
     def __init__(self, databaseConnector : UnansweredQuestionDbConnector):
         self.modelToUse = None
         self.dbConnector = databaseConnector
         basePath = self.determinePath()
         self.corpus = Corpus(self.dbConnector,  basePath +"/dictionaries/dictionary")
-        self.model : Model = Word2VecModel(self.corpus, basePath +"/savedModels/glove_vector_300")
-        self.model.initializeModel()
+        self.model : Model = Word2VecModel(self.corpus, basePath +"/savedModels/wordVectorModel")
+        # self.model.initializeModel()
         self.documentRetriever = DocumentIndexRetriever(self.corpus, self.model, basePath +"/indexes/unansweredQuestion.index")
         self.update()
         self.confidenceThreshold = 0.9
-       # self.documentRetriever= DocumentRetrieverByVector(self.corpus, self.wordToVecModel)
+     
+
     def determinePath(self):
         current_dir = os.path.dirname(os.path.abspath(__file__))
         base_dir = os.path.dirname(current_dir)
