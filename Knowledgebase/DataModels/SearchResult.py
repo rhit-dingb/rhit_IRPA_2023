@@ -6,7 +6,7 @@ from Knowledgebase.constants import DOLLAR_FORMAT
 
 class SearchResult():
     """
-    Search result data modal class for SparseMatrixKnowledgebase
+    Search result data model class for SparseMatrixKnowledgebase
     """
     def __init__(self, answer, entitiesUsed : List[Dict[str, str]], type : SearchResultType, realQuestion : str):
         # print("CHANGE ANSWER")
