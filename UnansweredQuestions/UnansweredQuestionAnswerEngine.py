@@ -17,13 +17,9 @@ from UnansweredQuestions import Model
 import sys
 import os
 
-
-
-
-   #self.model = TFIDFModel(self.corpus, "./savedModels/tfidf.tfidf")
-
 class UnansweredQuestionAnswerEngine:
     # Basepath: ./UnansweredQuestions, or ../UnansweredQuestions
+
     def __init__(self, databaseConnector : UnansweredQuestionDbConnector):
         self.modelToUse = None
         self.dbConnector = databaseConnector
@@ -34,8 +30,7 @@ class UnansweredQuestionAnswerEngine:
         self.documentRetriever = DocumentIndexRetriever(self.corpus, self.model, basePath +"/indexes/unansweredQuestion.index")
         self.update()
         self.confidenceThreshold = 0.9
-       # self.documentRetriever= DocumentRetrieverByVector(self.corpus, self.wordToVecModel)
-    
+     
 
     def determinePath(self):
         current_dir = os.path.dirname(os.path.abspath(__file__))

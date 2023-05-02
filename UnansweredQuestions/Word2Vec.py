@@ -51,6 +51,7 @@ class Word2VecModel(Model):
             #Normalize the average representation of the document
             mean = mean / np.linalg.norm(mean)
             vectors.append(mean)
+        print(vectors)
         return vectors
                 
        
