@@ -4,21 +4,17 @@ from typing import Dict, Tuple, List
 from DataManager.DataManager import DataManager
 from DataManager.constants import NUMBER_ENTITY_LABEL, RANGE_ENTITY_LABEL
 from Data_Ingestion.SparseMatrix import SparseMatrix
-from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
+from Knowledgebase.SparseMatrixKnowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
 from Knowledgebase.Knowledgebase import KnowledgeBase
-from Data_Ingestion.ExcelProcessor import ExcelProcessor
-import pandas as pd
-import numpy as np
 
 from Knowledgebase.Knowledgebase import KnowledgeBase
-from Knowledgebase.RangeExactMatchRowStrategy import  RangeExactMatchRowStrategy
+from Knowledgebase.SparseMatrixKnowledgebase.RangeExactMatchRowStrategy import  RangeExactMatchRowStrategy
 from Knowledgebase.DataModels.RangeResultData import RangeResultData
-from Knowledgebase.SearchResultType import SearchResultType
-from Knowledgebase.TypeController import TypeController
+from Knowledgebase.SparseMatrixKnowledgebase.SearchResultType import SearchResultType
+from Knowledgebase.SparseMatrixKnowledgebase.TypeController import TypeController
 
 from Knowledgebase.constants import PERCENTAGE_FORMAT
 from OutputController.TemplateConverter import TemplateConverter
-from OutputController.output import  constructSentence, identityFunc, outputFuncForPercentage
 from actions.constants import AGGREGATION_ENTITY_PERCENTAGE_VALUE, RANGE_LOWER_BOUND_VALUE, RANGE_UPPER_BOUND_VALUE
 
 from actions.entititesHelper import copyEntities, filterEntities, findEntityHelper, findMultipleSameEntitiesHelper
@@ -26,7 +22,6 @@ from Parser.RasaCommunicator import RasaCommunicator
 from Knowledgebase.DataModels.SearchResult import SearchResult
 from actions.entititesHelper import removeDuplicatedEntities
 from CustomEntityExtractor.NumberEntityExtractor import NumberEntityExtractor
-from Knowledgebase.FuzzyShouldAddRowStrategy import FuzzyShouldAddRowStrategy
 from CacheLayer.Cache import Cache
 from Knowledgebase.DataModels.ChatbotAnswer import ChatbotAnswer
 from Knowledgebase.DataModels.MultiFeedbackLabel import MultiFeedbackLabel
@@ -47,22 +42,8 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
 
     
 
-    """
-    This function will search in the sparse matrices retrieved by the given intent and calculate the total sum 
-    based on the shouldAddRowStrategy.
-    intent: intent of the user message
-
-    entitiesExtracted: list of entities extracted by user input, each individual element is an object with the entity label, value and other information
-    or this could be a list of entities used to gather information for an aggregation method, in this case, the entities could be fake or real entities from user input.
-
-    shouldAddRowStrategy: for each row, this function will determine if we should add the value of this row to the total sum.
-
-    Return: answer calculated and returned as string.
-
-    Throws: exception when given year or intent for the data is not found or when exception encountered when parsing year entity values
-
-    """
-    async def searchForAnswer(self, question, intent, entitiesExtracted, startYear, endYear, completeSentence=True) ->Tuple[List[ChatbotAnswer], bool]:
+   
+    async def searchForAnswer(self, question, intent, entitiesExtracted, startYear, endYear, completeSentence=True) ->Tuple[List[ChatbotAnswer], bool]:         
         # print("BEGAN SEARCHING")
         shouldAddRowStrategy = DefaultShouldAddRowStrategy()
         answers = []
@@ -70,18 +51,12 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         sparseMatricesToSearch = await self.determineMatrixToSearch(intent, entitiesExtracted, startYear, endYear)
         if sparseMatricesToSearch is None or len(sparseMatricesToSearch) == 0:
                 raise Exception("No valid sparse matrix found for given intent and entities", intent, entitiesExtracted)
-        
-      
+    
         print(entitiesExtracted)
         #Use the first sparse matrix.
         # 
         # for sparseMatrixToSearch in sparseMatricesToSearch:
         sparseMatrixToSearch : SparseMatrix = sparseMatricesToSearch[0]
-        # print(sparseMatrixToSearch.sparseMatrixDf)
-        # print(len(sparseMatricesToSearch))
-        # print("SELECTED")
-        # print(sparseMatrixToSearch.subSectionName)
-
         isOperationAllowed = sparseMatrixToSearch.isAnyOperationAllowed()
         template = sparseMatrixToSearch.findTemplate()
 
@@ -94,9 +69,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
 
         isPercentageAllowed = sparseMatrixToSearch.isPercentageOperationAllowed()
         
-        percentageEntityDetected = findEntityHelper(entitiesExtracted, AGGREGATION_ENTITY_PERCENTAGE_VALUE, by="value")
-       
-        
+        percentageEntityDetected = findEntityHelper(entitiesExtracted, AGGREGATION_ENTITY_PERCENTAGE_VALUE, by="value") 
         searchResults = []
     
         if isRangeAllowed and hasRangeEntity:
@@ -254,7 +227,18 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         
        
   
-    def findRange(self, entitiesFound, maxBound, minBound, sparseMatrix : SparseMatrix):
+    def findRange(self, entitiesFound, maxBound, minBound, sparseMatrix : SparseMatrix) -> List[Tuple[float, float]]:
+        """
+        This function will use the entities found from the user query, to determine whether if the user is asking
+        for lowerbound(greater than some value), upperbound(within some value) or both(a range) and determine the discrete ranges 
+        of the sparse matrix that intersect with the user specified range.
+
+        :param entitiesFound: Entities found from user query
+        :param maxBound: maxBound of the Sparse Matrix
+        :param minBound: minBound of the Sparse Matrix
+        :param sparseMatrix: sparse matrix currently being searched on
+        
+        """
         maxValue = maxBound
         minValue = minBound
         # print("MIN BOUND MAX BOUND")
@@ -308,8 +292,14 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         else:
             return False
 
-    def aggregateDiscreteRange(self, entities, sparseMatrix : SparseMatrix, isSumming):
-        
+    def aggregateDiscreteRange(self, entities, sparseMatrix : SparseMatrix, isSumming : bool) -> RangeResultData:
+        """
+        This function will aggregate over discrete ranges based on entities detected from user and either sum them up or append them 
+        as seperate answres.
+        :param entities: entities detected from user query
+        :param sparseMatrix: sparse matrix being searched
+        :param isSumming: Whether to add up the answer or append as seperate answers.
+        """
         maxBound, minBound = sparseMatrix.findMaxBoundLowerBoundForDiscreteRange()
         rangesToSumOver = self.findRange(entities, maxBound,  minBound, sparseMatrix)
         print(maxBound, minBound)

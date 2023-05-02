@@ -22,7 +22,7 @@ class Model(ABC):
             self.initializeModel()
 
 
-    # This method should only instantiate the untrained model, but not save it. We should only save a model when it is trained
+    
     @abstractmethod
     def initializeModel(self):
         pass

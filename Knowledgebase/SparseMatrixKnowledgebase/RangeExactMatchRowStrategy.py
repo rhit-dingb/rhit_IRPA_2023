@@ -1,22 +1,18 @@
 
-# """
-# Strategy where a row must have exact column to entity match. If a row has other columns marked as one beside the given entities, the row will not be used
-# likewise, if the list of entities has other entities besides the columns that are marked as 1 for the row, the row will not be used.(in the search)
-# """
-from DataManager.constants import NUMBER_ENTITY_LABEL
-from Knowledgebase.ShouldAddRowInterface import ShouldAddRowInterface
-from actions.entititesHelper import findMultipleSameEntitiesHelper, removeDuplicatedEntities
-from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
+from Knowledgebase.SparseMatrixKnowledgebase.ShouldAddRowStrategy import ShouldAddRowStrategy
+from actions.entititesHelper import removeDuplicatedEntities
+from Knowledgebase.SparseMatrixKnowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
 
 
-
-
-class RangeExactMatchRowStrategy(ShouldAddRowInterface):
-    def __init__(self):
+class RangeExactMatchRowStrategy(ShouldAddRowStrategy):
+    """
+    Strategy where a row must have exact column to entity match. If a row has other columns marked as one beside the given entities, the row will not be used
+    likewise, if the list of entities has other entities besides the columns that are marked as 1 for the row, the row will not be used.(in the search)
+    """
+    def __init__(self):  
         super().__init__()
         self.defaultShouldAddRow = DefaultShouldAddRowStrategy()
 
-        
     def determineShouldAddRow(self, row, entities, sparseMatrix):
         entities = removeDuplicatedEntities(entities)
         rangeFound  = sparseMatrix.findRangeForRow(row)
@@ -32,12 +28,6 @@ class RangeExactMatchRowStrategy(ShouldAddRowInterface):
                 rangeEntityValueProvided.append(entityValue)
             except Exception:
                 continue
-
-        # for valueFound in rangeFound:
-        #     for rangeProvided in rangeEntityValueProvided:
-        #         if valueFound == rangeProvided:
-        #             matchCount = matchCount + 1
-        #             continue
 
         entitiesUsed = self.defaultShouldAddRow.determineShouldAddRow(row, entities, sparseMatrix)
         # print(row)

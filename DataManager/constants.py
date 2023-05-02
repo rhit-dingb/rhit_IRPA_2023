@@ -47,6 +47,8 @@ QUESTION_COLUMN_KEY = "question"
 DATABASE_SUBSECTION_FIELD_KEY = "subsection"
 DATABASE_METADATA_FIELD_KEY = "metadata"
 DATABASE_QUESTION_ANSWERS_KEY = "questionAnswers"
-#REGEX PATTERN TO MATCH ANNUAL VS DEFINITION data
+
+#REGEX pattern to match annual data.
 ANNUAL_DATA_REGEX_PATTERN = ".+_\d+_\d+"
+#Regex pattern to match definite data
 DEFINITION_DATA_REGEX_PATTERN = ".+"+DEFINITION

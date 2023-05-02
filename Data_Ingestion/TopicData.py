@@ -1,11 +1,12 @@
 from Data_Ingestion.SparseMatrix import SparseMatrix
 from typing import Dict, Tuple
 
-"""
-Internal data model representing a topic in the CDS data. A topic can have many sparse matrices, each sparse matrix represents
-a subsection. For example: the topic of enrollment has both general enrollment and enrollment by race.
-"""
+
 class TopicData():
+    """
+    Internal data model representing a topic/section in the CDS data. A topic can have many sparse matrices, each sparse matrix represents
+    a subsection. For example: the section of enrollment have both general enrollment and enrollment by race.
+    """
     def __init__(self, topic : str):
         self.name : str = topic
         self.sparseMatrices : dict[str, SparseMatrix] = dict()

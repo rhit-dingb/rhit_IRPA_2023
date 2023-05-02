@@ -16,6 +16,9 @@ from Parser.DataParser import DataParser
 
 
 class SparseMatrixDataParser(DataParser):
+    """
+    Concrete implementation of DataParser that parse the list of question and answer to the internal SparseMatrix data model.
+    """
     def __init__(self):
        pass
 

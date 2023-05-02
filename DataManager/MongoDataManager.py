@@ -43,7 +43,7 @@ class MongoDataManager(DataManager):
         return self.findDefinitionData()
        
     def getAvailableOptions(self, intent, startYear, endYear):
-        availableOptions = dict() 
+        availableOptions : Dict[str, List[str]] = dict() 
         definitionDatabaseNames = self.findDefinitionData()
         annualDatabaseNames = self.getAvailableDataForSpecificYearRange(startYear, endYear)
         databaseNames = annualDatabaseNames+ definitionDatabaseNames
@@ -189,9 +189,7 @@ class MongoDataManager(DataManager):
             convertedDataModel = await self.mongoProcessor.getDataByDbNameAndSection(self.client, section, selectedDatabaseName)     
             return convertedDataModel
 
-    """
-    See documentation in DataManager.py
-    """
+
     def getMostRecentYearRange(self) -> Tuple[str, str] :
         years = self.getAllAvailableYearsSorted()
         if len(years) == 0:

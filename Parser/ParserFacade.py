@@ -22,6 +22,10 @@ from Parser import DataParser
 
 
 class ParserFacade():
+
+    """
+    Class that server as a facade to use DataLoader, DataWriter and DataParser together.
+    """
     def __init__(self, dataLoader, dataWriter, dataParser ):
         
         self.dataLoader : DataLoader = dataLoader

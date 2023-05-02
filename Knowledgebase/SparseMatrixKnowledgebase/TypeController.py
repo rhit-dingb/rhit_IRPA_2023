@@ -1,6 +1,6 @@
 from typing import Tuple
 
-from Knowledgebase.SearchResultType import SearchResultType
+from Knowledgebase.SparseMatrixKnowledgebase.SearchResultType import SearchResultType
 
 class TypeController():
     def determineResultType(self, searchResult) -> Tuple[any, SearchResultType]:
