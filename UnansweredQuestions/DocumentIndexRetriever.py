@@ -47,11 +47,10 @@ class DocumentIndexRetriever(DocumentRetriever):
         return self.getTopDocs(documentSimilarities, self.topN)
      
        
-    
-    def addNewDocuments(self,documents):
-        self.corpus.addDocuments(documents)
-        #Recreate the index
-        self.createAndSaveIndex(self.indexPath)
+    # def addNewDocuments(self,documents):
+    #     self.corpus.addDocuments(documents)
+    #     #Recreate the index
+    #     self.createAndSaveIndex(self.indexPath)
 
     def update(self):
         self.createAndSaveIndex()

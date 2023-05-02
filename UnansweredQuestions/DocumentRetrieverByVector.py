@@ -40,8 +40,8 @@ class DocumentRetrieverByVector(DocumentRetriever):
     
     
 
-    def addNewDocuments(self,documents):
-        self.corpus.addDocuments(documents)
+    # def addNewDocuments(self,documents):
+    #     self.corpus.addDocuments(documents)
         #Recreate the index
         # self.createAndSaveIndex(self.indexPath)
 
