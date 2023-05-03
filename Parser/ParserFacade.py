@@ -14,8 +14,6 @@ from Data_Ingestion.SparseMatrix import SparseMatrix
 from actions.entititesHelper import filterEntities
 from actions.entititesHelper import removeLowConfidenceEntities
 
-import aiohttp
-import asyncio
 
 from Parser import DataParser
 

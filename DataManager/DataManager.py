@@ -180,7 +180,6 @@ class DataManager(ABC):
         However, if the user specify something like degree-seeking which is a column on both race and general enrollment matrix,
         we would want to use the genereal enrollment matrix but there will be a tie. So in this case, we use the first matrix for tie,
         which will be general enrollment.
-    
 
         """
         doesEntityMapToAnySubsections, sparseMatricesFound = topicData.doesEntityIncludeAnySubsections(entities)

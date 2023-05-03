@@ -6,11 +6,7 @@ from unittest.mock import patch
 
 from pymongo import MongoClient
 from DataManager.constants import *
-from Knowledgebase.Knowledgebase import KnowledgeBase
-from Knowledgebase.SparseMatrixKnowledgeBase import SparseMatrixKnowledgeBase
-from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
-from DataManager.ExcelDataManager import ExcelDataManager
-from OutputController import output
+from Knowledgebase.SparseMatrixKnowledgebase.SparseMatrixKnowledgeBase import SparseMatrixKnowledgeBase
 from Parser.ExcelCDSDataLoader import ExcelCDSDataLoader
 from Parser.MongoDbNoChangeDataWriter import MongoDbNoChangeDataWriter
 from Parser.NoChangeDataParser import NoChangeDataParser

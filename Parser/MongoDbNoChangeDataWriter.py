@@ -35,7 +35,7 @@ class MongoDbNoChangeDataWriter(DataWriter):
                        metadata[questionAnswer.getQuestion()] = questionAnswer.getAnswer()
                    else:
                         body[questionAnswer.getQuestion()] = questionAnswer.getAnswer()
-                print(sectionKey)
+                
                 self.db[sectionKey].update_one({DATABASE_SUBSECTION_FIELD_KEY : subsection}, {
                     "$set": {
                         DATABASE_QUESTION_ANSWERS_KEY : body,

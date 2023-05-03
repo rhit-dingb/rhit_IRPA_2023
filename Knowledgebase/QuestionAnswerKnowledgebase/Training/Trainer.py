@@ -18,7 +18,7 @@ print(torch.cuda.is_available())
 class Trainer(AbstractTrainer):
     """
     Trainer class for the QuestionAnswerKnowledgebase. 
-    
+
     """
     def __init__(self):
         self.trainingDataCreator = TrainingDataCreator()
@@ -217,12 +217,9 @@ class TrainingDataCreator:
         print("THIS IS THE PAIR")
         print(questionDocumentPair) 
         
-       
         # I will use this create score margins rather than auto generate labels.
         #labelGenerator = PseudoLabelGenerator(question_producer=questionDocumentPair, retriever=retriever)
         # labelGenerator.generate_questions()
-
-
         dataToGetScoreMarginFor = []
         # Generate every possible combination of pos_doc and negative_doc:
         for trainingLabel in trainingLabels:

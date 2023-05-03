@@ -11,8 +11,8 @@ import tests.testUtils as testUtils
 from Knowledgebase.DataModels.SearchResult import SearchResult
 
 
-from Knowledgebase.SparseMatrixKnowledgeBase import SparseMatrixKnowledgeBase
-from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
+from Knowledgebase.SparseMatrixKnowledgebase.SparseMatrixKnowledgeBase import SparseMatrixKnowledgeBase
+from Knowledgebase.SparseMatrixKnowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
 from DataManager.ExcelDataManager import ExcelDataManager
 from Exceptions.NoDataFoundException import NoDataFoundException
 from Exceptions.ExceptionTypes import ExceptionTypes

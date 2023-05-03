@@ -38,7 +38,7 @@ class DocumentRetriever(ABC):
         """
         Get the top n similar documents given a list of similarity for each document.
         :param documentSimilarities: A list. The value corresponds to the document similarity to the user query for the document at
-        a particular index in the list of documents in the data source.
+        a particular index in the list of documents that reside in the data source.
         """
         counter = 0
         topDocs = []

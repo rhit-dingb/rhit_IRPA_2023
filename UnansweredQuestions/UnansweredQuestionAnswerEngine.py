@@ -18,8 +18,10 @@ import sys
 import os
 
 class UnansweredQuestionAnswerEngine:
+    """
+    This class is handles providing answer to addressed unanswered questions by using models that can be swapped out.
+    """
     # Basepath: ./UnansweredQuestions, or ../UnansweredQuestions
-
     def __init__(self, databaseConnector : UnansweredQuestionDbConnector):
         self.modelToUse = None
         self.dbConnector = databaseConnector

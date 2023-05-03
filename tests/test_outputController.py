@@ -7,7 +7,7 @@ from DataManager.constants import AGGREGATION_ENTTIY_LABEL, INITIAL_COHORT_ENTIT
 from OutputController.TemplateConverter import TemplateConverter
 from Knowledgebase.DataModels.SearchResult import SearchResult
 from tests.testUtils import checkAnswersMatch, createEntityObjHelper
-from Knowledgebase.SearchResultType import SearchResultType
+from Knowledgebase.SparseMatrixKnowledgebase.SearchResultType import SearchResultType
 # These values are from student life in 2020-2021 CDS data
 
 from actions.constants import AGGREGATION_ENTITY_AVERAGE_VALUE, AGGREGATION_ENTITY_PERCENTAGE_VALUE, RANGE_LOWER_BOUND_VALUE, RANGE_UPPER_BOUND_VALUE, STUDENT_ENROLLMENT_RESULT_ENTITY_GRADUATION_VALUE
