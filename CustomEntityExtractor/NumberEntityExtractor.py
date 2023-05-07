@@ -6,6 +6,9 @@ from Knowledgebase.SparseMatrixKnowledgebase.SearchResultType import SearchResul
 from Knowledgebase.SparseMatrixKnowledgebase.TypeController import TypeController
 from actions.entititesHelper import createEntityObj, findCharIndexForWord
 class NumberEntityExtractor():
+    """
+    Custom component to extract number entities from user query
+    """
     def __init__(self):
         self.typeController = TypeController()
 
@@ -59,7 +62,7 @@ class NumberEntityExtractor():
 
 
 
-    def createEntity(self,value, originalValue, text):
+    def createEntity(self,value : str, originalValue : str, text : str):
         entity = createEntityObj(value, entityLabel="number",  entityRole=None)
         entity["extractor"] = "custom"
         entity["processors"] = []

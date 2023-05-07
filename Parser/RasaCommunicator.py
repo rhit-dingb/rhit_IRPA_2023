@@ -23,6 +23,7 @@ class RasaCommunicator():
         body = json.dumps(body)
         async with session.post(self.connectionString+"model/"+"parse", headers ={ "Content-Type": "application/json" }, data = body) as response:
                 return await response.json()
+                
 
 
     async def parseMessagesAsync(self, messages):

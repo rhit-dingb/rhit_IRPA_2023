@@ -124,7 +124,10 @@ class ExcelHandler():
                 continue
 
             data = dict()
-            xl = pd.ExcelFile(path+"/"+fileName)
+            try:
+                xl = pd.ExcelFile(path+"/"+fileName)
+            except Exception:
+                continue
             
             topicToParse = []
             for sheetname in xl.sheet_names:
@@ -174,9 +177,9 @@ class ExcelHandler():
             if topic in topic_key_words:
                 #Assume the naming convention is: Section_Subsection
                 subsectionName = topic_key_words[len(topic_key_words)-1]
-                print(subsectionName)
+                # print(subsectionName)
                 df = dataSourceConnector.parse(name)
-                print("DF")
+                # print("DF")
                 columnAsString = [str(col) for col in df.columns]
                 df.columns = columnAsString
                 sparseMatrix = SparseMatrix(subsectionName, df)
@@ -199,12 +202,12 @@ class ExcelHandler():
             
             
             if isMetadata:
-                print("PARSINg METADATA")
+                # print("PARSINg METADATA")
                 secondColumnName = row.index[1]
                 rowValue = row["Value"]
                 if str(rowValue) == "nan":
                     continue
                 metadata[rowValue] = row[secondColumnName]
-        print("FOUND METADATA", metadata)
+        # print("FOUND METADATA", metadata)
         return metadata
       

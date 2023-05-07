@@ -4,7 +4,7 @@ import pandas as pd
 from Data_Ingestion.DataProcessor import DataProcessor
 from Data_Ingestion.SparseMatrix import SparseMatrix
 from Data_Ingestion.TopicData import TopicData
-from DataManager.constants import DATABASE_SPARSE_MATRIX_ROWS_KEY, DATABASE_SPARSE_MATRIX_SUBSECTION_KEY
+from DataManager.constants import DATABASE_ROWS_KEY, DATABASE_SUBSECTION_KEY
 from Exceptions.ExceptionMessages import NO_DATA_AVAILABLE_FOR_GIVEN_INTENT_FORMAT
 from Exceptions.ExceptionTypes import ExceptionTypes
 from Exceptions.NoDataFoundException import NoDataFoundException
@@ -13,6 +13,9 @@ from DataManager.constants import DATABASE_METADATA_FIELD_KEY
 from DataManager.constants import DATABASE_QUESTION_ANSWERS_KEY
 from Data_Ingestion.SubsectionQnA import SubsectionQnA
 from pymongo import MongoClient
+import json
+from bson import json_util
+
 
 class MongoProcessor(DataProcessor):
     """
@@ -33,8 +36,9 @@ class MongoProcessor(DataProcessor):
         for name in cur_db.list_collection_names():
             if section == name:
                 cursor = cur_db[name].find({})
+                # print(json.loads(json_util.dumps(list(cursor))))
                 for data in cursor:
-                    subsection = data.get(DATABASE_SPARSE_MATRIX_SUBSECTION_KEY)
+                    subsection = data.get(DATABASE_SUBSECTION_KEY)
                     questionAnswer = data.get(DATABASE_QUESTION_ANSWERS_KEY)
                     metadata = data.get(DATABASE_METADATA_FIELD_KEY)
                     subsectionQnA = SubsectionQnA(subsection, questionAnswer, metadata)

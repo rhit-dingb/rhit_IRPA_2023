@@ -179,7 +179,7 @@ class ActionQueryKnowledgebase(Action):
         numberEntities = numberEntityExtractor.extractEntities(question)
         entitiesExtracted = entitiesExtracted + numberEntities
         intent = tracker.latest_message["intent"]["name"]
-
+        
         print("INTENT")
         print(intent)
         print(getEntityLabel(removeDuplicatedEntities(entitiesExtracted)))
