@@ -46,7 +46,7 @@ class test_input_data_parser(unittest.TestCase):
         # sectionFullNames= jsonCdsLoader.getAllSectionDataFullName
         sectionFullName = "General Info"
         questionAnswersJson = self.data[sectionFullName]
-        questionAnswers : List[QuestionAnswer]= jsonCdsLoader.getQuestionsAnswerForSection(sectionFullName.lower()) 
+        questionAnswers : List[QuestionAnswer]= jsonCdsLoader.getQuestionsAnswerForSectionAndSubsection(sectionFullName.lower()) 
         
         self.assertEqual(questionAnswers[0].getQuestion().lower(), questionAnswersJson[0]["Question"].lower() )
 

@@ -11,9 +11,8 @@ from UnansweredQuestions.constants import DB_UNANSWERED_QUESTION_DATE_FIELD_KEY
 
 
 class MongoDBUnansweredQuestionConnector(UnansweredQuestionDbConnector):
-    def __init__(self):
-        self.client = MongoClient(MONGO_DB_CONNECTION_STRING)
-        self.db = self.client.freq_question_db
+    def __init__(self, databaseConnection):
+        self.db = databaseConnection
         self.questions_collection =  self.db.unans_question
 
     def getAllUnansweredQuestionAndAnswer(self):
@@ -47,7 +46,7 @@ class MongoDBUnansweredQuestionConnector(UnansweredQuestionDbConnector):
             return {'message': 'errors occurred while updating'}
 
   
-    def addNewUnansweredQuestion(self, question : str, chatbotAnswers : List[Dict[str, any]]):
+    def addNewUnansweredQuestion(self, question : str, chatbotAnswers : List[Dict[str, any]]) -> str:
         """
         Add new unanswered question to the mongodb database, if the unanswered question exist, replace it.
         """  
@@ -67,9 +66,12 @@ class MongoDBUnansweredQuestionConnector(UnansweredQuestionDbConnector):
             "trained": False
             }
         
-        boo1 = self.questions_collection.replace_one({"content":question}, toAdd, upsert=True)
-        print(boo1)
-        return boo1
+        result = self.questions_collection.replace_one({"content":question}, toAdd, upsert=True)
+        data = self.questions_collection.find_one({"content": question})
+        objectId : ObjectId = data["_id"]
+        print(str(objectId))
+        return str(objectId)
+
 
     def updateFeedbackForAnswer(self, questionId, chatbotAnswer : str, feedback):
      

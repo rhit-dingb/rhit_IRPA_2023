@@ -32,9 +32,11 @@ class UnansweredQuestionDbConnector(ABC):
         pass
 
     @abstractmethod
-    def addNewUnansweredQuestion(question: str,  chatbotAnswers :  List[Dict[str, any]] ):
+    def addNewUnansweredQuestion(question: str,  chatbotAnswers :  List[Dict[str, any]] ) -> str:
         """
-        Add a new unanswered question to the data source along with the answers provided by the chatbot.
+        Add a new unanswered question to the data source along with the answers provided by the chatbot. If the unanswered question already exist,
+        different policy to deal with this can be used such as: replace the old question, do nothing, add a duplicate copy. Currently we replace it in
+        the MongoDbUnansweredQuestionConnector.
         :param question: The question that the user asked and is unanswered.
         :chatbotAnswers: List of chatbot answers provided to the user's question.
         Looks something like:
@@ -51,6 +53,8 @@ class UnansweredQuestionDbConnector(ABC):
         'text': 'Students can be accepted for terms other than the fall with special permission.', 'feedback': ''}, 
 
         The main fields is the answer, and source, and the metadata can have various fields depending on the knowledgebase.
+
+        :return: The unique id of the unanswered question that was added.
         """
         pass
 

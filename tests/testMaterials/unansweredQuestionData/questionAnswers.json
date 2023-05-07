@@ -1,0 +1,16 @@
+{
+    "data":[
+        {
+            "question" : "Which planet is the hottest in the solar system?",
+            "answer": "Venus"
+          
+        },
+
+        {
+            "question":"How many molecules of oxygen does ozone have?",
+            "answer": "Three"
+        }
+
+    ]
+
+}

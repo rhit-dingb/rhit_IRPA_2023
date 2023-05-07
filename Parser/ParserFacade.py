@@ -44,7 +44,7 @@ class ParserFacade():
         for sectionFullName in sectionFullNames:
             # if not section in self.parsers.keys():
             #     continue
-            questionAnswers : List[QuestionAnswer] = self.dataLoader.getQuestionsAnswerForSection(sectionFullName)
+            questionAnswers : List[QuestionAnswer] = self.dataLoader.getQuestionsAnswerForSectionAndSubsection(sectionFullName)
             for questionAnswer in questionAnswers:
                 if questionAnswer.isMetaData: 
                     continue
@@ -55,7 +55,7 @@ class ParserFacade():
         
         index = 0
         for sectionFullName in sectionFullNames:
-            questionAnswers : List[QuestionAnswer] = self.dataLoader.getQuestionsAnswerForSection(sectionFullName)
+            questionAnswers : List[QuestionAnswer] = self.dataLoader.getQuestionsAnswerForSectionAndSubsection(sectionFullName)
             sectionAndSubSection = sectionFullName.split("_")
             section = sectionAndSubSection[0]
             subSection = sectionAndSubSection[len(sectionAndSubSection)-1]

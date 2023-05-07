@@ -70,8 +70,8 @@ class UnansweredQuestionAnswerEngine:
         print(confidences)
         print(answers)
         for answer, confidence in zip(answers, confidences):
-            # print("CONFIDENCE")
-            # print(confidence)
+            print("CONFIDENCE")
+            print(confidence)
             if confidence >=self.confidenceThreshold:
                 answersToReturn.append(answer)
         

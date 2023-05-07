@@ -164,11 +164,10 @@ class MongoDataManager(DataManager):
 
 
     def getSections(self, dataName):
-       
         return self.client[dataName].list_collection_names()
 
 
-    async def getDataBySection(self, section, exceptionToThrow: Exception,  startYear= None, endYear = None):
+    async def getDataBySection(self, section : str, exceptionToThrow: Exception,  startYear= None, endYear = None, databaseFilter = lambda x :True):
             section =  section.replace("_", " ")
             selectedDatabaseName = ""
             databaseNames = []
@@ -184,6 +183,9 @@ class MongoDataManager(DataManager):
 
 
             for databaseName in databaseNames:
+                    if not databaseFilter(databaseName):
+                        continue
+                    
                     sections = self.getSections(databaseName)
                     if section in sections:
                         selectedDatabaseName = databaseName
