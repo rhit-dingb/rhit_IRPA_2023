@@ -7,10 +7,13 @@ jobs:
 
   integration-test:
     runs-on: ubuntu-latest
+    env:
+      PYTHONUNBUFFERED: 1
     strategy:
       matrix:
         python-version: ["3.8"]
         mongodb-version: ['6.0']
+        
 
     # Define steps for the job
     steps:

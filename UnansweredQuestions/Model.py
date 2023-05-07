@@ -11,18 +11,22 @@ class Model(ABC):
     """
     Abstract model class representing a model to convert unanswered questions to number/vector representation.
     """
-    def __init__(self, corpus : Corpus, modelPath : str):
+    def __init__(self, corpus : Corpus, modelPath : str, threshold = 0.9):
         self.model = None
         self.corpus : Corpus = corpus
         self.modelPath = modelPath
         self.trained = False
+        self.scoreThreshold = threshold
    
         # print(path.exists(self.modelPath))
-        if self.model is None and path.exists(self.modelPath):
-            self.loadModel()
-            self.trained = True
+        if self.modelPath:
+            if self.model is None and path.exists(self.modelPath):
+                self.loadModel()
+                self.trained = True
+            else:
+                print("MODEL NOT FOUND At MODEL PATH, INITIALIZING MODEL..")
+                self.initializeModel()
         else:
-            print("MODEL NOT FOUND At MODEL PATH, INITIALIZING MODEL..")
             self.initializeModel()
 
     @abstractmethod

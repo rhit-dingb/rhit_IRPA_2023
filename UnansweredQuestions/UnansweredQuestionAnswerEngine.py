@@ -13,9 +13,12 @@ from UnansweredQuestions.constants import DB_UNANSWERED_QUESTION_QUESTION_FIELD_
 from UnansweredQuestions.constants import DB_UNANSWERED_QUESTION_ANSWER_FIELD_KEY
 from UnansweredQuestions.UnasweredQuestionDBConnector import UnansweredQuestionDbConnector
 from UnansweredQuestions import Model
+from UnansweredQuestions.SentenceEmbeddingModel import SentenceEmbeddingModel
+
 
 import sys
 import os
+
 
 class UnansweredQuestionAnswerEngine:
     """
@@ -27,11 +30,12 @@ class UnansweredQuestionAnswerEngine:
         self.dbConnector = databaseConnector
         basePath = self.determinePath()
         self.corpus = Corpus(self.dbConnector,  basePath +"/dictionaries/dictionary")
-        self.model : Model = Word2VecModel(self.corpus, basePath +"/savedModels/wordVectorModel")
+        # self.model : Model = Word2VecModel(self.corpus, basePath +"/savedModels/wordVectorModel")
+        self.model = SentenceEmbeddingModel(corpus = self.corpus)
         # self.model.initializeModel()
         self.documentRetriever = DocumentIndexRetriever(self.corpus, self.model, basePath +"/indexes/unansweredQuestion.index")
         self.update()
-        self.confidenceThreshold = 0.9
+       
      
 
     def determinePath(self):
@@ -70,9 +74,9 @@ class UnansweredQuestionAnswerEngine:
         print(confidences)
         print(answers)
         for answer, confidence in zip(answers, confidences):
-            print("CONFIDENCE")
-            print(confidence)
-            if confidence >=self.confidenceThreshold:
+            # print("CONFIDENCE")
+            # print(confidence)
+            if confidence >=self.model.scoreThreshold:
                 answersToReturn.append(answer)
         
         return answersToReturn
