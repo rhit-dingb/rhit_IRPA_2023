@@ -120,7 +120,7 @@ class DataManager(ABC):
 
 
 
-    async def determineMatrixToSearch(self, intent, entities, startYear : str, endYear : str) -> SparseMatrix:
+    async def determineMatrixToSearch(self, intent, entities, startYear : str, endYear : str) -> List[SparseMatrix]:
         """
         Given intent and entities, this function will determine the specific sparse matrix to be searched by the knowledgebase's search algorithm
         
@@ -128,6 +128,7 @@ class DataManager(ABC):
         entities: list entities extracted by rasa. Each element in the list is a python dictionary. For example:
         {'entity': 'year', 'start': 58, 'end': 62, 'confidence_entity': 0.997698962688446, 'role': 'to', 'confidence_role': 0.7497242093086243, 'value': '2022', 'extractor': 'DIETClassifier'}
 
+        :return: List of sparse matrix to search
         """ 
         section = intent.replace("_", " ")
         # if startYear == None or endYear == None:
@@ -154,8 +155,8 @@ class DataManager(ABC):
             sparseMatrices = await self.getDataBySection(section, exceptionToThrow, startYear, endYear)
             
         errorMessage = NO_DATA_AVAILABLE_FOR_GIVEN_INTENT_FORMAT.format(topic = section, start= str(startYear), end = str(endYear))
-        selectedSparseMatrix = self.determineBestMatchingMatrix(sparseMatrices, entities, errorMessage)     
-        return selectedSparseMatrix
+        selectedSparseMatrices = self.determineBestMatchingMatrix(sparseMatrices, entities, errorMessage)     
+        return selectedSparseMatrices
        
 
 
@@ -189,7 +190,7 @@ class DataManager(ABC):
         if doesEntityMapToAnySubsections:
             candidates = sparseMatricesFound
             
-        maxMatch = []
+        maxMatch : List[SparseMatrix] = []
         currMax = 0
         entityValues = []
         for entity in entities:
@@ -197,8 +198,7 @@ class DataManager(ABC):
 
         entityValues = list(set(entityValues))
         for sparseMatrix in candidates:  
-            # print(sparseMatrix.sparseMatrixDf)
-            # print(sparseMatrix.subSectionName)              
+                     
             entitiesMatchCount : int  = sparseMatrix.determineEntityMatchToColumnCount(entityValues)
             if entitiesMatchCount>currMax:
                 maxMatch = []
@@ -206,6 +206,10 @@ class DataManager(ABC):
                 currMax = entitiesMatchCount
             elif entitiesMatchCount == currMax:
                 maxMatch.append(sparseMatrix)
+
+        for m in maxMatch:
+            print(m.subSectionName)
+            print(m.sparseMatrixDf)
 
         if len(maxMatch) == 0:
             raise NoDataFoundException(errorMessage, ExceptionTypes.NoSparseMatrixDataAvailableForGivenIntent)

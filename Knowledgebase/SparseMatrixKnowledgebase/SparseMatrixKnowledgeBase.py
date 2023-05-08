@@ -81,7 +81,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
              
                 searchResult.addEntities(filteredEntities)
         else:
-            # print("REGULAR SEARCH")
+            print("REGULAR SEARCH")
             searchResults : List[SearchResult] = sparseMatrixToSearch.searchOnSparseMatrix(entitiesExtracted, shouldAddRowStrategy, isSumAllowed)
 
 

@@ -6,7 +6,8 @@ from actions.entititesHelper import removeDuplicatedEntities
 
 class DefaultShouldAddRowStrategy(ShouldAddRowStrategy):
     """
-    Default strategy which uses boolean search to determine whether a row of a sparse matrix should be used in the total value while searching. More detail below
+    Default strategy which uses boolean search to determine whether a row of a sparse matrix should be used in the final answer when searching.
+    
     """
 
     def __init__(self):
@@ -40,16 +41,16 @@ class DefaultShouldAddRowStrategy(ShouldAddRowStrategy):
         for entityValue in uniqueEntityValuesFound:
            
             if entityValue in processedColumn and row[entityValue] == 1:
-                # print("MATCHING")
-                # print(entityValue)
+                print("MATCHING")
+                print(entityValue)
                 temp_count = temp_count+1
             else:
                 # print("MISMATCH AT", entityValue)
                 continue
     
         if temp_count == len(uniqueEntities):
-            # print("ACCEPT ROW")
-            # print(row)
+            print("ACCEPT ROW")
+            print(row)
             return uniqueEntities
         else:
             return []
