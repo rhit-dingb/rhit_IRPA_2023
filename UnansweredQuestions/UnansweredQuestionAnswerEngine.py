@@ -30,8 +30,8 @@ class UnansweredQuestionAnswerEngine:
         self.dbConnector = databaseConnector
         basePath = self.determinePath()
         self.corpus = Corpus(self.dbConnector,  basePath +"/dictionaries/dictionary")
-        # self.model : Model = Word2VecModel(self.corpus, basePath +"/savedModels/wordVectorModel")
-        self.model = SentenceEmbeddingModel(corpus = self.corpus)
+        self.model : Model = Word2VecModel(self.corpus, basePath +"/savedModels/wordVectorModel")
+        #self.model = SentenceEmbeddingModel(corpus = self.corpus)
         # self.model.initializeModel()
         self.documentRetriever = DocumentIndexRetriever(self.corpus, self.model, basePath +"/indexes/unansweredQuestion.index")
         self.update()

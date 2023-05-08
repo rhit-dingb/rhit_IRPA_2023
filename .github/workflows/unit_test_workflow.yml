@@ -19,7 +19,7 @@ jobs:
         with:
           test_type: nlu
           rasa_train: false
-          rasa_version: '3.2.13'
+          # rasa_version: '3.2.13'
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
       # The 'actions/upload-artifact' action to upload files
@@ -48,10 +48,9 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install ruff
-          pip install pipreqs
-          pipreqs --force
           pip install farm-haystack
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          pip install "numpy>=1.22.0,<1.24.0"
       - name: Lint with ruff
         run: |
           # stop the build if there are Python syntax errors or undefined names
