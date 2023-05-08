@@ -1,6 +1,6 @@
 
 from abc import ABC, abstractmethod
-from typing import List
+from typing import Dict, List
 import pandas as pd
 from Parser.QuestionAnswer import QuestionAnswer
 class DataLoader(ABC):
@@ -8,24 +8,43 @@ class DataLoader(ABC):
     Abstract class responsible for processing and reading the input data of different forms.
     """
     def __init__(self):
-        self.sectionFullNameToQuestionAnswers = dict()
         self.METADATA_KEY = "metadata"
+        self.seperator = "_"
+        self.sectionFullNameToQuestionAnswers : Dict[str, List[QuestionAnswer]] = dict()
 
     @abstractmethod
     def loadData(self, data): 
         """
-        Given the input data represented in some way, read it and populate the sectionFullNameToQuestionAnswer dictionary.
+        Given the input data represented in some way, read it and populate the sectionFullNameToQuestionQuestionAnswer 
         """
         pass
 
+    
+    # @abstractmethod
+    # def getSectionToSubsection() -> Dict[Dict[str]]:
+    #     """
+
+    #     """
+    #     pass
+
+    def getSections(self):
+        sections = []
+        for sectionToSubsectionFullName in self.sectionFullNameToQuestionAnswers.keys():
+            sectionToSubsection = sectionToSubsectionFullName.split(self.seperator)
+            if sectionToSubsection[0] in sections:
+                continue
+            sections.append(sectionToSubsection[0])
+        
+        return sections
    
     def getAllSectionDataFullName(self) -> List[str] :
         return self.sectionFullNameToQuestionAnswers.keys()
     
     
-    def getQuestionsAnswerForSection(self, sectionName) -> QuestionAnswer :
-       if sectionName in self.sectionFullNameToQuestionAnswers.keys():
-           return self.sectionFullNameToQuestionAnswers[sectionName]
+    def getQuestionsAnswerForSectionAndSubsection(self, sectionToSubsectionFullName : str) -> QuestionAnswer :
+       sectionToSubsectionFullName = sectionToSubsectionFullName.lower()
+       if sectionToSubsectionFullName in self.sectionFullNameToQuestionAnswers.keys():
+           return self.sectionFullNameToQuestionAnswers[sectionToSubsectionFullName ]
        else:
            return []
 
@@ -52,5 +71,4 @@ class DataLoader(ABC):
             
             # print(questionAnswerObj.question)
 
-        lowerSheetName = sheetName.lower()
-        self.sectionFullNameToQuestionAnswers[lowerSheetName] = questionsAnswers
+        return questionsAnswers

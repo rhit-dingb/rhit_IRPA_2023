@@ -115,6 +115,7 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
 
         await utils.writeDocToDocumentStore(availableYears, yearAgnosticData,self.dataManager, self.documentStore, self.convertToDf)
         self.documentStore.update_embeddings(self.retriever)
+        
 
 
     def getAvailableOptions(self, intent, entities, startYear, endYear):
@@ -287,7 +288,7 @@ class QuestionToAnswer(BaseComponent):
         for document in documents:
             newDocument = Document(content= document.meta["answer"], id=document.id, meta = document.meta)
             newDocuments.append(newDocument)
-            print(document.meta)
+            # print(document.meta)
 
         output={
             "query":query,
@@ -301,7 +302,7 @@ class QuestionToAnswer(BaseComponent):
         newDocuments = []
         for query in queries:
             output, name = self.run(query=query, documents=documents)
-            print(output)
+            # print(output)
             docs = output["documents"]
             newDocuments = newDocuments + docs
 

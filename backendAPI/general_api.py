@@ -72,7 +72,9 @@ mongoDbDataManager = Cache(mongoDbDataManager)
 
 rasaCommunicator = RasaCommunicator()
 client = MongoClient(MONGO_DB_CONNECTION_STRING)
-unansweredQuestionDbConnector : UnansweredQuestionDbConnector = MongoDBUnansweredQuestionConnector()
+
+unansweredQuestionDb =client.freq_question_db
+unansweredQuestionDbConnector : UnansweredQuestionDbConnector = MongoDBUnansweredQuestionConnector(unansweredQuestionDb)
 unansweredQuestionAnswerEngine = UnansweredQuestionAnswerEngine(unansweredQuestionDbConnector)
 
 cacheEventPublisher = CacheEventPublisher()

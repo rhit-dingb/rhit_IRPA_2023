@@ -3,19 +3,19 @@
         {
             "paragraphs": [
                 {
-                    "context": "No high school computer science units are recommended for admission.",
-                    "id": "f695943ce224a13778c29157694ad8db",
+                    "context": "Test scores are optional this year due to COVID-19",
+                    "id": "e3b78150491d5fa265a071054dc188fc",
                     "qas": [
                         {
                             "answers": [
                                 {
                                     "answer_start": 0,
-                                    "text": "No high school computer science units are recommended for admission."
+                                    "text": "Test scores are optional this year due to COVID-19"
                                 }
                             ],
-                            "id": "f8aa35fe-dee6-11ed-8cc5-24ee9a197afc",
+                            "id": "454d4f61-e950-11ed-a146-24ee9a197afc",
                             "is_impossible": false,
-                            "question": "How many computer science units are required?"
+                            "question": "Is test optional this year?"
                         }
                     ]
                 }
@@ -24,35 +24,14 @@
         {
             "paragraphs": [
                 {
-                    "context": "No high school computer science units are required for admission.",
-                    "id": "6b297918e26c46b37ad8ac7e90a738ce",
-                    "qas": [
-                        {
-                            "answers": [
-                                {
-                                    "answer_start": 0,
-                                    "text": "No high school computer science units are required for admission."
-                                }
-                            ],
-                            "id": "f8aa5d56-dee6-11ed-b442-24ee9a197afc",
-                            "is_impossible": false,
-                            "question": "How many computer science units are required?"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "paragraphs": [
-                {
-                    "context": "No high school science lab units are recommended for admission.",
-                    "id": "300ecbe7c49a53df915b5739d379cd16",
+                    "context": "Standarized test score is not required",
+                    "id": "c0edd877c70a71e5557804b6e663d07e",
                     "qas": [
                         {
                             "answers": [],
-                            "id": "f8aa5d57-dee6-11ed-bac7-24ee9a197afc",
+                            "id": "454d4f62-e950-11ed-bb3c-24ee9a197afc",
                             "is_impossible": true,
-                            "question": "How many computer science units are required?"
+                            "question": "Is test optional this year?"
                         }
                     ]
                 }

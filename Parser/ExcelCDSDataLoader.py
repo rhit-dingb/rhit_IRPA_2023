@@ -10,7 +10,7 @@ class ExcelCDSDataLoader(DataLoader):
         super().__init__()
         self.path = path
         self.excelConnector = pd.ExcelFile(path)
-      
+        
     
     def loadData(self): 
        for sheetName in self.excelConnector.sheet_names:
@@ -19,6 +19,6 @@ class ExcelCDSDataLoader(DataLoader):
             questionAnswersDataFrame  =  questionAnswersDataFrame.astype(str)
            
             # questionAnswersDataFrame["Answer"] = questionAnswersDataFrame["Answer"].astype("string")
-            self.convertDataframeToQuestionAnswer(questionAnswersDataFrame, sheetName)
-        
+            questionAnswers = self.convertDataframeToQuestionAnswer(questionAnswersDataFrame, sheetName)
+            self.sectionFullNameToQuestionAnswers[sheetName.lower()] = questionAnswers
     

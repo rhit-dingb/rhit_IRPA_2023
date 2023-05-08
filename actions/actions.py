@@ -179,7 +179,7 @@ class ActionQueryKnowledgebase(Action):
         numberEntities = numberEntityExtractor.extractEntities(question)
         entitiesExtracted = entitiesExtracted + numberEntities
         intent = tracker.latest_message["intent"]["name"]
-
+        
         print("INTENT")
         print(intent)
         print(getEntityLabel(removeDuplicatedEntities(entitiesExtracted)))
@@ -395,12 +395,8 @@ class ActionEventOccured(Action):
         'is_addressed': True, 
         'chatbotAnswers': [{answer:'the total number of instructional faculty is 192', source:"QuestionAnswerKnowledge", metadata:{}, feedback:"correct" }], 
         'answer': 'the total number of instructional faculty is 200'}} ] 
-
         :param eventType: The type of event occured.
-
-        :return: List of Rasa event represented by dictionary objects
-        "
-
+        :return: List of Rasa event represented by dictionary objects. This return value will be part of the json response back to the caller
         """
         self.trained = 0
         feedbackEntity= findEntityHelper(entities, "feedback")

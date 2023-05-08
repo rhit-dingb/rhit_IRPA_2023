@@ -22,10 +22,11 @@ class DataManager(ABC):
         pass
   
     @abstractmethod
-    async def getDataBySection(self, section, exceptionToThrow, startYear = None, endYear = None ):
+    async def getDataBySection(self, section, exceptionToThrow, startYear = None, endYear = None,  databaseFilter = lambda x :True):
         """
-            Given the section, start year and end year(i.e. 2020, 2021) of CDS or any other data stored, it will look in the CDS data according to the year and 
-            inside the CDS year, retreive the list of subsections for the given section. Subsection data can be represented in any way based on the concrete class.
+            Given the section, start year and end year(i.e. 2020, 2021) of CDS or any other data stored, it will look at all database according to the start year and 
+            and end year, finding the first database containing the section. From that selected database, retreive the list of subsections data for the given section. 
+            Subsection data can be represented in any way based on the concrete class. The filter parameter can selectively choose which database use.
             :param section: The section to get data from. If startYear and endYear is not given, then subsection for the given section in year agnostic data will be returned
             "parm startYear: Start year of the cds data wanted. Optional
             :param endYear: end year of the cds data we want. Optional
@@ -180,7 +181,6 @@ class DataManager(ABC):
         However, if the user specify something like degree-seeking which is a column on both race and general enrollment matrix,
         we would want to use the genereal enrollment matrix but there will be a tie. So in this case, we use the first matrix for tie,
         which will be general enrollment.
-    
 
         """
         doesEntityMapToAnySubsections, sparseMatricesFound = topicData.doesEntityIncludeAnySubsections(entities)

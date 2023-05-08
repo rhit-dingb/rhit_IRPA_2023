@@ -19,7 +19,7 @@ jobs:
         with:
           test_type: nlu
           rasa_train: false
-          rasa_version: 3.5.6
+          rasa_version: '3.2.13'
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
       # The 'actions/upload-artifact' action to upload files
@@ -50,6 +50,7 @@ jobs:
           pip install ruff
           pip install pipreqs
           pipreqs --force
+          pip install farm-haystack
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - name: Lint with ruff
         run: |

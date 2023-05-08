@@ -11,6 +11,12 @@ class SubsectionQnA():
         self.metadata = metadata
         self.questionAnswers : Dict[str, str] = questionAnswers
 
+
+    def getQuestions(self):
+        return self.questionAnswers.keys()
+    
+    def getAnswers(self):
+        return self.questionAnswers.values()
     
     
         

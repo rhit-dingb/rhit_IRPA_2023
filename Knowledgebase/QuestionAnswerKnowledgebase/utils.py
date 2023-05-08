@@ -46,6 +46,9 @@ async def writeDocToDocumentStore(years: List[Tuple[str, str]], yearAgnosticData
 
     :param process_doc_func: A function used to process the document and make any changes to it before writing to the document store
     """
+
+    print("WRITE TO DOCUMENT STORE")
+    print(years)
     dataNamesDicts = []
     for startYear, endYear in years:
         availableDataName = dataManager.getAvailableDataForSpecificYearRange(startYear, endYear)
@@ -96,10 +99,12 @@ async def writeDocToDocumentStoreWithDataName(dataNameDicts : List[Dict[str,str]
         for section in sections:
           
             subsectionToDocument = dict()
-            try:
-                subsectionToDocument : Dict[str, List[Document]] = await dataManager.getDataBySection(section,Exception(), startYear, endYear) 
-            except Exception:
-                continue
+            # try:
+            subsectionToDocument : Dict[str, List[Document]] = await dataManager.getDataBySection(section,Exception(), startYear, endYear) 
+            print("SUBSECTION TO DOCUMENT")
+            print(subsectionToDocument)
+            # except Exception:
+            #     continue
 
             for key in subsectionToDocument:
                 documents = []
@@ -123,6 +128,6 @@ async def writeDocToDocumentStoreWithDataName(dataNameDicts : List[Dict[str,str]
                     
                     documents.append(newDoc)
                 processed_docs = process_doc_func(documents)
-                print("WRITING", dataName, "Subsection", key )
+                # print("WRITING", dataName, "Subsection", key )
                 documentStore.write_documents(processed_docs)
     

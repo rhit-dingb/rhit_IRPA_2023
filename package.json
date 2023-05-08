@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "bootstrap": "^5.2.2",
-    "recharts": "^2.5.0",
-    "uuid": "^9.0.0"
-  }
-}

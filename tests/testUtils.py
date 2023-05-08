@@ -1,6 +1,7 @@
 from typing import List
 
 from Knowledgebase.DataModels.SearchResult import SearchResult
+from Knowledgebase.DataModels.ChatbotAnswer import ChatbotAnswer
 
 
 def checkAnswersMatch(assertion, dispatcher, expectedAnswer):
@@ -23,6 +24,14 @@ def checkForKeywordInAnswer(assertion, dispatcher, keyWords : List[str]):
         # isPresent = checkIfWordsPresentInSentence(words, answers)
         # assertion(True, isPresent)
         
+def getAnswers(chatbotAnswers : List[ChatbotAnswer]):
+    answers = []
+    print("THIS IS CHATBOT ANSWERS")
+    print(chatbotAnswers)
+    for chatbotAnswer in chatbotAnswers:
+        answers.append(chatbotAnswer.answer)
+
+    return answers
 
 
 def createEntityObjHelper(entityValue, entityLabel="none",  entityRole=None):
@@ -46,7 +55,7 @@ def extractOutput(searchResults : List[SearchResult], intent,  template, complet
         answers =[]
         for res in searchResults:
             answers.append(res.answer)
-            print("THE ANSWER IS", res.answer)
+            # print("THE ANSWER IS", res.answer)
         return answers
 
 def getAllAnswersFromDispatcher(dispatcher):

@@ -10,8 +10,6 @@ class ConvertToDocumentDecorator(DataDecorator):
     Class that wraps the MongoProcessor and takes the list of SubsectionQnA class and convert them to a list of 
     Document instance used by Haystack document store.
     """
-   
-
 
     async def getDataByDbNameAndSection(self, client,section, dbName) -> Dict[str, Document]:
         subsectionQnAList : List[SubsectionQnA] = await self.decorated.getDataByDbNameAndSection(client, section, dbName)

@@ -52,7 +52,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         if sparseMatricesToSearch is None or len(sparseMatricesToSearch) == 0:
                 raise Exception("No valid sparse matrix found for given intent and entities", intent, entitiesExtracted)
     
-        print(entitiesExtracted)
+        # print(entitiesExtracted)
         #Use the first sparse matrix.
         # 
         # for sparseMatrixToSearch in sparseMatricesToSearch:
@@ -81,7 +81,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
              
                 searchResult.addEntities(filteredEntities)
         else:
-            print("REGULAR SEARCH")
+            # print("REGULAR SEARCH")
             searchResults : List[SearchResult] = sparseMatrixToSearch.searchOnSparseMatrix(entitiesExtracted, shouldAddRowStrategy, isSumAllowed)
 
 
@@ -102,7 +102,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
             if not documentationOfChange == None:
                 answers.append(documentationOfChange)
         
-        print("OKAY I AM GONNA RETURN", answers)
+        # print("OKAY I AM GONNA RETURN", answers)
         return (answers, shouldContinue)
 
 

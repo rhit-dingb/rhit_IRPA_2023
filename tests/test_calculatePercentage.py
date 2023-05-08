@@ -8,10 +8,9 @@ from DataManager.constants import *
 from Knowledgebase.DataModels.ChatbotAnswer import ChatbotAnswer
 from Knowledgebase.Knowledgebase import KnowledgeBase
 
-from Knowledgebase.SparseMatrixKnowledgeBase import SparseMatrixKnowledgeBase
-from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
+from Knowledgebase.SparseMatrixKnowledgebase.SparseMatrixKnowledgeBase import SparseMatrixKnowledgeBase
+from Knowledgebase.SparseMatrixKnowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
 from DataManager.ExcelDataManager import ExcelDataManager
-from OutputController import output
 from tests.testUtils import checkAnswersMatch, createEntityObjHelper, createFakeTracker, extractOutput
 
 #These values are from student life in 2020-2021 CDS data

@@ -2,17 +2,24 @@
 
 import asyncio
 from copy import deepcopy
-from typing import List
+import json
+from typing import Dict, List
 import unittest
 import os
 import sys
+from DataManager.MongoDataManager import MongoDataManager
+from Data_Ingestion.MongoProcessor import MongoProcessor
+from Data_Ingestion.ConvertToDocumentDecorator import ConvertToDocumentDecorator
 import Data_Ingestion.constants as metadataConstants
+from Knowledgebase.DataModels.ChatbotAnswer import ChatbotAnswer
+
 import tests.testUtils as testUtils
 from Knowledgebase.DataModels.SearchResult import SearchResult
 
 
-from Knowledgebase.SparseMatrixKnowledgeBase import SparseMatrixKnowledgeBase
-from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
+from Knowledgebase.SparseMatrixKnowledgebase.SparseMatrixKnowledgeBase import SparseMatrixKnowledgeBase
+from Knowledgebase.QuestionAnswerKnowledgebase.QuestionAnswerKnowledgebase import QuestionAnswerKnowledgeBase
+from Knowledgebase.SparseMatrixKnowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
 from DataManager.ExcelDataManager import ExcelDataManager
 from Exceptions.NoDataFoundException import NoDataFoundException
 from Exceptions.ExceptionTypes import ExceptionTypes
@@ -37,7 +44,7 @@ UNDERGRADUATE_DEGREE_SEEKING_AFRICAN_AMERICAN_STUDEN_ENROLLED = 93
 NON_FIRST_TIME = 0
 NON_DEGREE_SEEKING_STUDENTS  = 3
 
-class knowledgebase_test(unittest.TestCase):
+class SparseMatrix_knowledgebase_test(unittest.TestCase):
     def setUp(self):
         # self.knowledgeBase = SparseMatrixKnowledgeBase("../Data_Ingestion/CDS_SPARSE_ENR.xlsx")
         self.knowledgeBase = SparseMatrixKnowledgeBase(
@@ -117,6 +124,81 @@ class knowledgebase_test(unittest.TestCase):
                              NO_DATA_FOUND_FOR_ACADEMIC_YEAR_ERROR_MESSAGE_FORMAT.format(start=3000, end=3001))
         self.assertEqual(exceptionRaised.type,
                              ExceptionTypes.NoDataFoundForAcademicYearException)
+
+class Question_answer_knowledgebase_test(unittest.TestCase):
+    def setUp(self):
+        self.databaseName = "CDS_2020_2021"
+        f = open('./tests/testMaterials/cdsTestData/CDS_2020_2021.json')
+        self.data = json.load(f)
+        f.close()
+
+        with patch('pymongo.MongoClient') as mockClient:
+            self.mockClient = mockClient
+            self.mockDataSource(mockClient)
+        
+        # mockClient.list_database_names.return_value = 
+      
+        mongoProcessor = MongoProcessor()
+        mongoProcessor = ConvertToDocumentDecorator(mongoProcessor)
+        mongoDataManager = MongoDataManager(mongoProcessor, mockClient)
+      
+        self.questionAnswerKnowledgebase = QuestionAnswerKnowledgeBase(mongoDataManager)
+        asyncio.run(self.questionAnswerKnowledgebase.initialize())
+        
+        
+
+
+    def mockDataSource(self, mockClient): 
+   
+        mockClient.list_database_names.return_value = [self.databaseName]
+        sections = self.data["sections"]
+        mockClient[self.databaseName].list_collection_names.return_value = sections
+        index = 0
+        def sideEffect(filter : Dict[str, any]):
+            # print("TEST_________________________________---")
+            # print(mockClient.mock_calls)
+        
+            # for sectionName in sections: 
+            #     if sectionName == section:
+            #         break
+
+            #     index = index+1
+            nonlocal index
+            data = self.data["data"][index]
+            index = index + 1
+            return data
+
+        self.mockClient[self.databaseName][any].find.side_effect = sideEffect
+      
+        # print("FOUND _____")
+        # print(mockClient[databaseName]["test"].find())
+     
+    def test_ask_about_student_to_faculty_ratio_should_return_correct_answer(self):
+        
+        question = "What is the student to faculty ratio?"
+        intent = "faculty and class size"
+        answer = "The student to faculty ratio is 10 to 1"
+        entities = []
+        
+        chatbotAnswers, shouldContinue = asyncio.run(self.questionAnswerKnowledgebase.searchForAnswer(question, intent, entities, "2020","2021"))
+        answers : List[str] = testUtils.getAnswers(chatbotAnswers=chatbotAnswers)
+        self.assertIn(answer, answers)
+
+    def test_ask_about_undergraduate_tuition_should_return_correct_answer(self):
+        
+        question = "What is cost of undergraduate tuition?"
+        intent = "annual expense"
+        answer = "Rose-Hulman's tuition for undergraduate students is $49,479"
+        entities = []
+        
+        chatbotAnswers, shouldContinue = asyncio.run(self.questionAnswerKnowledgebase.searchForAnswer(question, intent, entities, "2020","2021"))
+        answers : List[str] = testUtils.getAnswers(chatbotAnswers=chatbotAnswers)
+        self.assertIn(answer, answers)
+
+    
+
+
+    
 
 
 if __name__ == '__main__':

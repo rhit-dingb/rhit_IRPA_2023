@@ -89,6 +89,7 @@ stories:
       - intent: transfer_admission
       - intent: freshman_profile
       - intent: basis_for_selection
+      - intent: cohort
       - intent: nlu_fallback
     - action: action_query_knowledgebase
     - action: action_store_asked_question

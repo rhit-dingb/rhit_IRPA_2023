@@ -1,5 +1,6 @@
 from typing import Dict, List, Tuple
 from DataManager.DataManager import DataManager
+from Data_Ingestion import DataProcessor
 from Data_Ingestion.ConvertToSparseMatrixDecorator import ConvertToSparseMatrixDecorator
 from Data_Ingestion.MongoProcessor import MongoProcessor
 from Data_Ingestion.SparseMatrix import SparseMatrix
@@ -23,12 +24,15 @@ from Data_Ingestion.SubsectionQnA import SubsectionQnA
 MongoDataManager subclass that can handle connections with MongoDB data
 """
 class MongoDataManager(DataManager):
-    def __init__(self, mongoProcessor):
+    def __init__(self, mongoProcessor :  DataProcessor, client : MongoClient = None):
         super().__init__()
         # self.mongoProcessor = MongoProcessor()
         # self.mongoProcessor = ConvertToSparseMatrixDecorator(self.mongoProcessor)
         self.mongoProcessor : MongoProcessor = mongoProcessor
-        self.client = MongoClient(MONGO_DB_CONNECTION_STRING)
+        if client == None:
+            self.client = MongoClient(MONGO_DB_CONNECTION_STRING)
+        else:
+            self.client = client
         self.rasaCommunicator = RasaCommunicator()
 
 
@@ -163,7 +167,7 @@ class MongoDataManager(DataManager):
         return self.client[dataName].list_collection_names()
 
 
-    async def getDataBySection(self, section, exceptionToThrow: Exception,  startYear= None, endYear = None):
+    async def getDataBySection(self, section : str, exceptionToThrow: Exception,  startYear= None, endYear = None, databaseFilter = lambda x :True):
             section =  section.replace("_", " ")
             selectedDatabaseName = ""
             databaseNames = []
@@ -179,6 +183,9 @@ class MongoDataManager(DataManager):
 
 
             for databaseName in databaseNames:
+                    if not databaseFilter(databaseName):
+                        continue
+                    
                     sections = self.getSections(databaseName)
                     if section in sections:
                         selectedDatabaseName = databaseName

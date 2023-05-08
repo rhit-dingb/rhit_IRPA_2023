@@ -13,23 +13,29 @@ from UnansweredQuestions.constants import DB_UNANSWERED_QUESTION_QUESTION_FIELD_
 from UnansweredQuestions.constants import DB_UNANSWERED_QUESTION_ANSWER_FIELD_KEY
 from UnansweredQuestions.UnasweredQuestionDBConnector import UnansweredQuestionDbConnector
 from UnansweredQuestions import Model
+from UnansweredQuestions.SentenceEmbeddingModel import SentenceEmbeddingModel
+
 
 import sys
 import os
 
-class UnansweredQuestionAnswerEngine:
-    # Basepath: ./UnansweredQuestions, or ../UnansweredQuestions
 
+class UnansweredQuestionAnswerEngine:
+    """
+    This class is handles providing answer to addressed unanswered questions by using models that can be swapped out.
+    """
+    # Basepath: ./UnansweredQuestions, or ../UnansweredQuestions
     def __init__(self, databaseConnector : UnansweredQuestionDbConnector):
         self.modelToUse = None
         self.dbConnector = databaseConnector
         basePath = self.determinePath()
         self.corpus = Corpus(self.dbConnector,  basePath +"/dictionaries/dictionary")
-        self.model : Model = Word2VecModel(self.corpus, basePath +"/savedModels/wordVectorModel")
+        # self.model : Model = Word2VecModel(self.corpus, basePath +"/savedModels/wordVectorModel")
+        self.model = SentenceEmbeddingModel(corpus = self.corpus)
         # self.model.initializeModel()
         self.documentRetriever = DocumentIndexRetriever(self.corpus, self.model, basePath +"/indexes/unansweredQuestion.index")
         self.update()
-        self.confidenceThreshold = 0.9
+       
      
 
     def determinePath(self):
@@ -70,7 +76,7 @@ class UnansweredQuestionAnswerEngine:
         for answer, confidence in zip(answers, confidences):
             # print("CONFIDENCE")
             # print(confidence)
-            if confidence >=self.confidenceThreshold:
+            if confidence >=self.model.scoreThreshold:
                 answersToReturn.append(answer)
         
         return answersToReturn

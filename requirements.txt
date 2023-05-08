@@ -1,12 +1,12 @@
-aiohttp==3.8.3
+aiohttp==3.8.4
 django_haystack==3.2.1
 fastapi==0.95.1
 gensim==4.3.0
 jose==1.0.0
 nltk==3.7
-numpy==1.23.3
+numpy==1.24.2
 openpyxl==3.0.10
-pandas==1.4.4
+pandas==1.5.3
 pymongo==4.3.2
 python-decouple==3.8
 python_jose==3.3.0
