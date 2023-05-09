@@ -22,13 +22,18 @@ class DocumentStoreConnection():
         """
         Determine which document store to use based on the environment 
         """
-        environment = config('ENVIRONMENT')
-        if environment == "development":
+        try:
+            environment = config('ENVIRONMENT')
+
+            if environment == "development":
+                return InMemoryDocumentStore()
+            elif environment == "production":
+                elasticSearch = ElasticsearchDocumentStore()
+                self.setElasticSearchDiskLimit()
+                return elasticSearch
+        except Exception: 
+            print("NO ENV FILE, Using InMemoryDocumentStore")
             return InMemoryDocumentStore()
-        elif environment == "production":
-            elasticSearch = ElasticsearchDocumentStore()
-            self.setElasticSearchDiskLimit()
-            return elasticSearch
 
 
 
