@@ -2,7 +2,7 @@ name: Unit Test Workflow
 
 on: [push]
 
-#Define a job
+#Define a jobs
 jobs:
   
   rasa-testing:
@@ -19,7 +19,9 @@ jobs:
         with:
           test_type: nlu
           rasa_train: false
-          # rasa_version: '3.2.13'
+          # rasa_version: '3.2.10'
+          rasa_version: 3.2.8
+          publish_summary: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
       # The 'actions/upload-artifact' action to upload files
@@ -67,6 +69,10 @@ jobs:
         run: python -m unittest tests/test_calculatePercentage.py
       - name: Test output controller (template)
         run: python -m unittest tests/test_outputController.py
+      - name: Test input data parser
+        run: python -m unittest tests/test_input_data_parser.py
+      - name: Test unanswered question engine
+        run: python -m unittest tests/test_unansweredQuestionEngine.py
       - name: Upload unit test results
         uses: actions/upload-artifact@v3
         with:

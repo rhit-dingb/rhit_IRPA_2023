@@ -178,6 +178,7 @@ class ActionQueryKnowledgebase(Action):
         entitiesExtracted = tracker.latest_message["entities"]
         numberEntities = numberEntityExtractor.extractEntities(question)
         entitiesExtracted = entitiesExtracted + numberEntities
+        print(tracker.latest_message["intent"])
         intent = tracker.latest_message["intent"]["name"]
         
         print("INTENT")

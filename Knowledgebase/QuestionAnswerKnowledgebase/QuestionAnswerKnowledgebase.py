@@ -17,13 +17,17 @@ import Knowledgebase.QuestionAnswerKnowledgebase.utils as utils
 from Knowledgebase.QuestionAnswerKnowledgebase.Training.Trainer import Trainer
 import pandas as pd
 
+from Knowledgebase.QuestionAnswerKnowledgebase.DocumentStoreConnection import DocumentStoreConnection
+
 class QuestionAnswerKnowledgeBase(KnowledgeBase):
     """
     Concrete implementation of knowledgebase that uses Haystack library to conduct semantic search.
     """
     def __init__(self, dataManager):
         self.dataManager : DataManager = dataManager
-        self.documentStore =  utils.determineDocumentStore()
+
+        self.documentStoreConnection = DocumentStoreConnection()
+        self.documentStore =  self.documentStoreConnection.determineDocumentStore()
         self.startingReader = "deepset/roberta-base-squad2"
         self.startingRetriever = "sentence-transformers/multi-qa-mpnet-base-dot-v1"
         self.trainedReaderPath = "TrainedModels\QAReader"
@@ -113,7 +117,7 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
         availableYears = self.dataManager.getAllAvailableYearsSorted()
         yearAgnosticData = self.dataManager.findAllYearAngosticDataName()
 
-        await utils.writeDocToDocumentStore(availableYears, yearAgnosticData,self.dataManager, self.documentStore, self.convertToDf)
+        await self.documentStoreConnection.writeDocToDocumentStore(availableYears, yearAgnosticData,self.dataManager, self.documentStore, self.convertToDf)
         self.documentStore.update_embeddings(self.retriever)
         
 
@@ -256,7 +260,7 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
         if not startYear == None and not endYear == None:
             dataDict["startYear"] = startYear
             dataDict["endYear"] = endYear
-        await utils.writeDocToDocumentStoreWithDataName([dataDict], self.dataManager, self.documentStore, self.convertToDf )
+        await self.documentStoreConnection.writeDocToDocumentStoreWithDataName([dataDict], self.dataManager, self.documentStore, self.convertToDf )
         self.documentStore.update_embeddings(self.retriever)
 
     def dataDeleted(self, dataName):
