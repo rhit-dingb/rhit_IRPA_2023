@@ -178,6 +178,8 @@ class MongoDataManager(DataManager):
                 
             else: 
                 databaseNames = self.getAvailableDataForSpecificYearRange(startYear, endYear)
+                print("ALL DATABASE NAMES")
+                print(databaseNames)
                 if len(databaseNames) == 0:
                     raise exceptionToThrow
 
@@ -185,7 +187,7 @@ class MongoDataManager(DataManager):
             for databaseName in databaseNames:
                     if not databaseFilter(databaseName):
                         continue
-                    
+
                     sections = self.getSections(databaseName)
                     if section in sections:
                         selectedDatabaseName = databaseName
@@ -224,6 +226,7 @@ class MongoDataManager(DataManager):
                 years.append((yearRange[0], yearRange[1]))
 
         years.sort(key = sortFunc, reverse= True)
+        years = list(set(years))
         return years
 
 
