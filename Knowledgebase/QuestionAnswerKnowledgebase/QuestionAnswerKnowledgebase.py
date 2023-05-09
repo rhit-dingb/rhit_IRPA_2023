@@ -152,14 +152,14 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
         chatbotAnswers : List[ChatbotAnswer]= []
        
         for answer in answers:
-            print(answer)
-            print(answer.score)
+            # print(answer)
+            # print(answer.score)
             if answer.score < self.scoreThreshold:
-                print("SKIP")
+                # print("SKIP")
                 continue
             
             chatbotAnswer = self.constructAnswer(answer, result)
-            print("APPENDING")
+        
             chatbotAnswers.append(chatbotAnswer)
 
         if len(chatbotAnswers) == 0:

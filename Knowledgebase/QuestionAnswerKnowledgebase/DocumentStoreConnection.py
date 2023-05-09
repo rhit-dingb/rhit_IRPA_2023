@@ -22,13 +22,18 @@ class DocumentStoreConnection():
         """
         Determine which document store to use based on the environment 
         """
-        environment = config('ENVIRONMENT')
-        if environment == "development":
+        try:
+            environment = config('ENVIRONMENT')
+
+            if environment == "development":
+                return InMemoryDocumentStore()
+            elif environment == "production":
+                elasticSearch = ElasticsearchDocumentStore()
+                self.setElasticSearchDiskLimit()
+                return elasticSearch
+        except Exception: 
+            print("NO ENV FILE, Using InMemoryDocumentStore")
             return InMemoryDocumentStore()
-        elif environment == "production":
-            elasticSearch = ElasticsearchDocumentStore()
-            self.setElasticSearchDiskLimit()
-            return elasticSearch
 
 
 
@@ -69,8 +74,8 @@ class DocumentStoreConnection():
         :param process_doc_func: A function used to process the document and make any changes to it before writing to the document store
         """
 
-        print("WRITE TO DOCUMENT STORE")
-        print(years)
+        # print("WRITE TO DOCUMENT STORE")
+        # print(years)
         dataNamesDicts = []
         for startYear, endYear in years:
             availableDataName = dataManager.getAvailableDataForSpecificYearRange(startYear, endYear)
@@ -123,8 +128,8 @@ class DocumentStoreConnection():
                 subsectionToDocument = dict()
                 # try:
                 subsectionToDocument : Dict[str, List[Document]] = await dataManager.getDataBySection(section,Exception(), startYear, endYear) 
-                print("SUBSECTION TO DOCUMENT")
-                print(subsectionToDocument)
+                # print("SUBSECTION TO DOCUMENT")
+                # print(subsectionToDocument)
                 # except Exception:
                 #     continue
 

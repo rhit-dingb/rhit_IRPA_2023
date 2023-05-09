@@ -95,16 +95,16 @@ class ActionGetAvailableOptions(Action):
         # print("LAST INTENT")
         # print(lastTopicIntent)
         startYear, endYear, res = getYearRangeInSlot(tracker)
-        allIntents = list(map(lambda x: x.replace("_", " "), domain["intents"]))
-        filteredListOfOption = dict()
+        # allIntents = list(map(lambda x: x.replace("_", " "), domain["intents"]))
+        # filteredListOfOption = dict()
         availableOptions = mongoDataManager.getAvailableOptions(None, startYear, endYear)
       
-        for option in availableOptions:
-            if option in allIntents:
-                filteredListOfOption[option] = availableOptions[option]
+        # for option in availableOptions:
+        #     if option in allIntents:
+        #         filteredListOfOption[option] = availableOptions[option]
     
         headerMessage = self.HEADER_MESSAGE_TEMPLATE.format(start_year = startYear, end_year = endYear)
-        response = {"type": ResponseType.ACCORDION_LIST.value, "header": headerMessage, "data": filteredListOfOption}
+        response = {"type": ResponseType.ACCORDION_LIST.value, "header": headerMessage, "data": availableOptions}
      
         dispatcher.utter_message(json_message= response)
     
