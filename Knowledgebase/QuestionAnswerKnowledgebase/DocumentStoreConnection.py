@@ -53,9 +53,7 @@ class DocumentStoreConnection():
         response = requests.put(index_settings_url, headers=headers, json=index_settings_payload)
         print(response.json())
 
-        print(response.json())
-
-        
+   
 
     async def writeDocToDocumentStore(self, years: List[Tuple[str, str]], yearAgnosticDataNames : List[str], dataManager : DataManager, documentStore : BaseDocumentStore, process_doc_func):
         """
