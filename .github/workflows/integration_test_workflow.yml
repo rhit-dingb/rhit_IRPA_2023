@@ -43,7 +43,7 @@ jobs:
         run: python -m rasa run --cors "*" --enable-api &
         
       - name: Wait for Rasa Server
-        uses: iFaxity/wait-on-action
+        uses: actions/iFaxity/wait-on-action@v1.1.0
         with:
           resource: http://localhost:5005
 
