@@ -1,4 +1,5 @@
 from typing import List
+from Data_Ingestion.DataDecorator import DataDecorator
 from Parser.RasaCommunicator import RasaCommunicator
 from Data_Ingestion.SubsectionQnA import SubsectionQnA
 from Data_Ingestion.MongoProcessor import MongoProcessor
@@ -15,12 +16,14 @@ from Data_Ingestion.MongoProcessor import MongoProcessor
 from Data_Ingestion.TopicData import TopicData
 from Parser.SparseMatrixDataParser import SparseMatrixDataParser
 
-from collections import defaultdict
-
-class ConvertToSparseMatrixDecorator():
+class ConvertToSparseMatrixDecorator(DataDecorator):
+    """
+    Class that wraps the MongoProcessor and takes the list of SubsectionQnA class and convert them to a list of 
+    Document instance used by Haystack document store.
+    """
     def __init__(self, decorated):
-        #probably will use an more abstract class.
-        self.decorated : MongoProcessor = decorated 
+        super().__init__(decorated)
+        # self.decorated : MongoProcessor = decorated 
         self.rasaCommunicator = RasaCommunicator()
         self.sparseMatrixDataParser = SparseMatrixDataParser()
         self.parserFacade : ParserFacade = ParserFacade(None, None, None)

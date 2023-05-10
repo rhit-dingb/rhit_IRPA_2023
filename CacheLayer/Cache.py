@@ -157,8 +157,8 @@ class Cache(DataManager):
         return self.dataSource.deleteData(dataName)
 
 
-    def getAllSubsectionForSection(self, section, startYear, endYear, filter=lambda x: True):
-        return self.dataSource.getAllSubsectionForSection(section, startYear, endYear, filter)
+    def getAllSubsectionForSection(self, section, startYear, endYear):
+        return self.dataSource.getAllSubsectionForSection(section, startYear, endYear)
     
     def getSectionAndSubsectionsForData(self, dataName, filter=lambda x: True):
         return self.dataSource.getSectionAndSubsectionsForData(dataName, filter)

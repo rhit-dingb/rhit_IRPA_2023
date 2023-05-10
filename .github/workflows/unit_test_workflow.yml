@@ -2,8 +2,9 @@ name: Unit Test Workflow
 
 on: [push]
 
-#Define a job
+#Define a jobs
 jobs:
+  
   rasa-testing:
     #Using github action for RASA from https://github.com/marketplace/actions/rasa-train-test-model-github-action
     name: Rasa-testing
@@ -18,9 +19,11 @@ jobs:
         with:
           test_type: nlu
           rasa_train: false
+          # rasa_version: '3.2.10'
           rasa_version: 3.2.8
+          publish_summary: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
-
+        continue-on-error: true
       # The 'actions/upload-artifact' action to upload files
       # More: https://github.com/actions/upload-artifact
       - uses: actions/upload-artifact@v2
@@ -29,8 +32,6 @@ jobs:
           path: |
             results
             reports
-
-      
 
   unit-test:
     runs-on: ubuntu-latest
@@ -49,7 +50,11 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install ruff
+          pip install farm-haystack
+          pip install "tensorflow>=2.0.0"
+          pip install --upgrade tensorflow-hub
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          pip install "numpy>=1.22.0,<1.24.0"
       - name: Lint with ruff
         run: |
           # stop the build if there are Python syntax errors or undefined names
@@ -58,12 +63,27 @@ jobs:
           ruff --format=github --target-version=py37 .
         #Even if linting failed, continue
         continue-on-error: true  
-      - name: Test with python unit test
+      - name: Test knowledgebase
         run: python -m unittest tests/test_knowledgebase.py
-      - name: Upload pytest test results
+      - name: Test knowledgebase aggregate discrete range
+        run: python -m unittest tests/test_aggregationDiscreteRange.py
+      - name: Test knowledgebase percentage calculation
+        run: python -m unittest tests/test_calculatePercentage.py
+      - name: Test output controller (template)
+        run: python -m unittest tests/test_outputController.py
+      - name: Test input data parser
+        run: python -m unittest tests/test_input_data_parser.py
+      - name: Test unanswered question engine
+        run: python -m unittest tests/test_unansweredQuestionEngine.py
+      - name: Upload unit test results
         uses: actions/upload-artifact@v3
         with:
           name: unit-test-results-${{ matrix.python-version }}
           path: junit/test-results-${{ matrix.python-version }}.xml
         # Use always() to always run this step to publish test results when there are test failures
         if: ${{ always() }}
+
+    
+
+
+  

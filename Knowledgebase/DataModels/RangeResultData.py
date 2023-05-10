@@ -31,28 +31,8 @@ class RangeResultData():
                 intention = "lowerBound"
             else:
                 intention = "between"
-            
-            # entityValues =  getEntityValueHelper(searchResult.entitiesUsed)
-            # print("ENTITY VALUES")
-            # print(entityValues)
             finalEntities = self.constructRangeEntityHelper(intention, range)
             self.addResult(searchResult, finalEntities)
-
-        # if isSumming:
-        #     numbersUsed = []
-        #     for entities in entitiesUsedInEachSearch:
-        #         entityValues =  getEntityValueHelper(entities)
-        #         numbersUsed = numbersUsed + entityValues
-        #     finalEntities = self.constructRangeEntityHelper(intention, numbersUsed)
-        #     self.addResult(answers[0], finalEntities)
-        # else:
-        #     for answer, entities in zip(answers, entitiesUsedInEachSearch):
-        #         intention = "between"
-        #         if len(entities) == 1: 
-        #             intention = "upperBound"
-        #         entityValues =  getEntityValueHelper(entities)
-        #         finalEntities = self.constructRangeEntityHelper(intention, entityValues)
-        #         self.addResult(answer, finalEntities)
 
     def constructRangeEntityHelper(self, intention, numbersUsed):
         entities = []

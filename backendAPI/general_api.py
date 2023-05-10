@@ -28,7 +28,6 @@ from DataManager.constants import CDS_DEFINITION_DATABASE_NAME
 from Parser.JsonDataLoader import JsonDataLoader
 from DataManager.constants import CDS_DATABASE_NAME_TEMPLATE
 from DataManager.MongoDataManager import MongoDataManager
-from Parser.MongoDBSparseMatrixDataWriter import MongoDBSparseMatrixDataWriter
 from Parser.MongoDbNoChangeDataWriter import MongoDbNoChangeDataWriter
 
 from Parser.ParserFacade import ParserFacade
@@ -37,8 +36,6 @@ from DataManager.constants import DATABASE_PRENAME, MONGO_DB_CONNECTION_STRING
 from fastapi.middleware.cors import CORSMiddleware
 from DataManager.constants import ANNUAL_DATA_REGEX_PATTERN, DEFINITION_DATA_REGEX_PATTERN
 from UnansweredQuestions.UnansweredQuestionAnswerEngine import UnansweredQuestionAnswerEngine
-
-from Parser.SparseMatrixDataParser import SparseMatrixDataParser
 from Parser.NoChangeDataParser import NoChangeDataParser
 from backendAPI.AuthenticationManager import AuthenticationManager
 from UnansweredQuestions.MongoDBUnansweredQuestionConnector import MongoDBUnansweredQuestionConnector
@@ -64,6 +61,18 @@ from Data_Ingestion.MongoProcessor import MongoProcessor
 from Data_Ingestion.ConvertToSparseMatrixDecorator import ConvertToSparseMatrixDecorator
 
 from backendAPI.constants import EVENT_OCCURED_KEY
+import nltk
+
+try:
+    nltk.find('corpora/wordnet')
+except Exception:
+    nltk.download('wordnet')
+
+try:
+    nltk.find('omw-1.4')
+except Exception:
+    nltk.download('omw-1.4')
+
 
 
 authenticationManager = AuthenticationManager()
@@ -75,7 +84,9 @@ mongoDbDataManager = Cache(mongoDbDataManager)
 
 rasaCommunicator = RasaCommunicator()
 client = MongoClient(MONGO_DB_CONNECTION_STRING)
-unansweredQuestionDbConnector : UnansweredQuestionDbConnector = MongoDBUnansweredQuestionConnector()
+
+unansweredQuestionDb =client.freq_question_db
+unansweredQuestionDbConnector : UnansweredQuestionDbConnector = MongoDBUnansweredQuestionConnector(unansweredQuestionDb)
 unansweredQuestionAnswerEngine = UnansweredQuestionAnswerEngine(unansweredQuestionDbConnector)
 
 cacheEventPublisher = CacheEventPublisher()
@@ -114,7 +125,7 @@ app.add_middleware(
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 SECRET_KEY = config('SECRET_KEY')
 ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 60
+ACCESS_TOKEN_EXPIRE_MINUTES = 240
 from fastapi import status
 
 
@@ -170,7 +181,7 @@ async def parse_data(request : Request):
         try:
             jsonCdsLoader.loadData(excelData)
             # dataWriter = MongoDBSp arseMatrixDataWriter(outputName)
-            # dataParser = SparseMatrixDataParser()c
+            # dataParser = SparseMatrixDataParser()
             dataParser = NoChangeDataParser()
             dataWriter = MongoDbNoChangeDataWriter(outputName, client=client)
             parserFacade = ParserFacade(dataLoader=jsonCdsLoader, dataWriter=dataWriter, dataParser=dataParser)
@@ -323,11 +334,14 @@ async def handle_delete_answer(request: Request):
     else:
         return {'message': 'question maybe not found and issue occurred'}
 
+
+
 @app.post("/question_add")
 async def handle_add_unanswered_question(request : Request):
     jsonData = await request.json()
     question = jsonData["content"]
     chatbotAnswers : List[Dict[str, any]] = jsonData["chatbotAnswers"]
+    # print(chatbotAnswers)
     success = unansweredQuestionDbConnector.addNewUnansweredQuestion(question, chatbotAnswers)
     if success:
         print("QUESTION ADDED SUCCESSFULLY")

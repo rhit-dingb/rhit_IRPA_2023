@@ -1,14 +1,12 @@
-"""
-Internal data model representing a sparse matrix
-"""
+
 
 import json
 from typing import Dict, List, Tuple
-from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
-from Knowledgebase.SearchResultType import SearchResultType
 
-from Knowledgebase.TypeController import TypeController
-from actions.entititesHelper import createEntityObj
+from Knowledgebase.SparseMatrixKnowledgebase.SearchResultType import SearchResultType
+
+
+from Knowledgebase.SparseMatrixKnowledgebase.TypeController import TypeController
 import Data_Ingestion.constants as constants
 import pandas as pd
 
@@ -16,6 +14,9 @@ from actions.constants import RANGE_LOWER_BOUND_VALUE
 from Knowledgebase.DataModels.SearchResult import SearchResult
 
 class SparseMatrix():
+    """
+    Internal data model representing a sparse matrix
+    """
     def __init__(self, subSectionName, sparseMatrixDf, metadata = dict(),  questions=[]):
         self.subSectionName = subSectionName
         self.sparseMatrixDf : pd.DataFrame  = sparseMatrixDf
@@ -25,7 +26,9 @@ class SparseMatrix():
             self.questions = questions
 
         self.metadata : Dict[str, str]= metadata
-
+        # print(self.subSectionName)
+        # print("MY METADATA IS", self.metadata)
+        
 
     def setMetadata(self,metadata : Dict[str, str]):
         self.metadata = metadata
@@ -72,12 +75,12 @@ class SparseMatrix():
     
     # #This function determines how many elements in the first array is in the second array.
     def determineMatchCountHelper(self, entities: List[str], columns: List[str]):
-        print("FOR", self.subSectionName)
+        # print("FOR", self.subSectionName)
      
         entitiesMatchCount = 0
         for entity in entities:
             if entity in columns:
-                print("MATCHED", entity)
+                # print("MATCHED", entity)
                 entitiesMatchCount = entitiesMatchCount + 1
         # print("ENTITY MATCH COUNT FOR")
         # print(self.subSectionName)
@@ -101,7 +104,7 @@ class SparseMatrix():
         return (maxBound, minBound)
 
     
-    def findAllDiscreteRange(self) :
+    def findAllDiscreteRange(self) -> List[Tuple[float, float]] :
         discreteRanges = []
         for i in range(self.sparseMatrixDf.shape[0]):
             row = self.sparseMatrixDf.loc[i]

@@ -5,20 +5,25 @@ from Knowledgebase.DataModels.MultiFeedbackLabel import MultiFeedbackLabel
 from haystack.nodes import  EmbeddingRetriever, BM25Retriever, BaseRetriever, FARMReader
 from haystack.nodes.question_generator import QuestionGenerator
 from Knowledgebase.DataModels.FeedbackLabel import FeedbackType
+from Knowledgebase.Trainer.AbstractTrainer import AbstractTrainer
 from haystack.nodes.label_generator import PseudoLabelGenerator
 import uuid
 import logging
 
 import torch
+
 print("GPU AVAILABLE?")
 print(torch.cuda.is_available())
 
-class Trainer:
+class Trainer(AbstractTrainer):
+    """
+    Trainer class for the QuestionAnswerKnowledgebase. 
+
+    """
     def __init__(self):
         self.trainingDataCreator = TrainingDataCreator()
         # Download the model 
-        questionAnswerPair = [{"question":"What is my name", "document": "Travis Zheng"}]
-        
+        # questionAnswerPair = [{"question":"What is my name", "document": "Travis Zheng"}]
          #labelGenerator = PseudoLabelGenerator(question_producer=questionAnswerPair, retriever=BM25Retriever())
     
 
@@ -50,7 +55,6 @@ class Trainer:
             print("NO TRAINING DATA AFTER FILTER")
             return True
         
-        
         trainingDataFileName = "SQUADTrainingData"
         self.trainingDataCreator.createSQUADTrainingDataSet(filteredTrainingLabel, trainingDataFileName)
         
@@ -58,28 +62,6 @@ class Trainer:
              train_filename=trainingDataFileName ,use_gpu=True,
              n_epochs=1,
              save_dir=saveDirectory)
-        
-
-    
-    def filterTrainingLabelForSource(self, trainingLabels : List[MultiFeedbackLabel], source : str):
-        filteredTrainingLabel = []
-        for container in trainingLabels:
-                fitleredFeedbackLabels = []
-                for singleFeedbackLabel in container.feedbackLabels:
-                    # print("FEEDBACK SOURCE VS CURRENT SOURCE")
-                    # print(singleFeedbackLabel.source)
-                    # print(source)
-                    if singleFeedbackLabel.source == source:
-                       
-                        fitleredFeedbackLabels.append(singleFeedbackLabel)
-                        print("ADDING", singleFeedbackLabel.answerProvided)
-
-                if len(fitleredFeedbackLabels) > 0:
-                    newMultiFeedbackLabel = MultiFeedbackLabel(container.query, fitleredFeedbackLabels)
-              
-                    filteredTrainingLabel.append(newMultiFeedbackLabel)
-
-        return filteredTrainingLabel
 
 
 
@@ -235,12 +217,9 @@ class TrainingDataCreator:
         print("THIS IS THE PAIR")
         print(questionDocumentPair) 
         
-       
         # I will use this create score margins rather than auto generate labels.
         #labelGenerator = PseudoLabelGenerator(question_producer=questionDocumentPair, retriever=retriever)
         # labelGenerator.generate_questions()
-
-
         dataToGetScoreMarginFor = []
         # Generate every possible combination of pos_doc and negative_doc:
         for trainingLabel in trainingLabels:

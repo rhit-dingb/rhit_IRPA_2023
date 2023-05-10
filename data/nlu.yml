@@ -16,6 +16,10 @@ nlu:
     - goodmorning
     - goodevening
     - good afternoon
+    - how is your day?
+    - whats up
+    - sup
+  
     
 
 - intent: goodbye
@@ -52,39 +56,39 @@ nlu:
     - not really
     - this response was not helpful
 
-# - intent: mood_great
-#   examples: |
-#     - perfect
-#     - great
-#     - amazing
-#     - feeling like a king
-#     - wonderful
-#     - I am feeling very good
-#     - I am great
-#     - I am amazing
-#     - I am going to save the world
-#     - super stoked
-#     - extremely good
-#     - so so perfect
-#     - so good
-#     - so perfect
+- intent: mood_great
+  examples: |
+    - perfect
+    - great
+    - amazing
+    - feeling like a king
+    - wonderful
+    - I am feeling very good
+    - I am great
+    - I am amazing
+    - I am going to save the world
+    - super stoked
+    - extremely good
+    - so so perfect
+    - so good
+    - so perfect
 
-# - intent: mood_unhappy
-#   examples: |
-#     - my day was horrible
-#     - I am sad
-#     - I don't feel very well
-#     - I am disappointed
-#     - super sad
-#     - I'm so sad
-#     - sad
-#     - very sad
-#     - unhappy
-#     - not good
-#     - not very good
-#     - extremly sad
-#     - so saad
-#     - so sad
+- intent: mood_unhappy
+  examples: |
+    - my day was horrible
+    - I am sad
+    - I don't feel very well
+    - I am disappointed
+    - super sad
+    - I'm so sad
+    - sad
+    - very sad
+    - unhappy
+    - not good
+    - not very good
+    - extremly sad
+    - so saad
+    - so sad
 
 - intent: bot_challenge
   examples: |
@@ -92,6 +96,8 @@ nlu:
     - are you a human?
     - am I talking to a bot?
     - am I talking to a human?
+
+
 
 - intent: enrollment
   examples: |
@@ -103,8 +109,9 @@ nlu:
     - How many students?
     - number of students
     - How many students do you have?
-    - [male]{"entity": "gender", "value": "male"} to [female]{"entity": "gender", "value": "female"} [ratio]{"entity":"aggregation", "value":"percent"}?
-    - 
+    - [percentage]{"entity":"aggregation", "value": "percent"} of students?
+    - [male]{"entity": "gender", "value": "male"} to [female]{"entity": "gender", "value": "female"} [ratio]{"entity":"aggregation", "value":"ratio"}?
+    - [percentage]{"entity":"aggregation", "value": "percent"} of [male]{"entity": "gender", "value": "male"} students [enrolled]{"entity":"action", "value": "enrolled"}?
     - How many students does your school have?
     - How many [full time]{"entity": "enrollment_status", "value": "full-time"} students do you have?
     - How many [part-time]{"entity": "enrollment_status", "value": "part-time"} students do you have?

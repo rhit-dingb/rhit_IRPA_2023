@@ -1,3 +1,4 @@
+from typing import Iterable, List
 from gensim import models
 
 from UnansweredQuestions.Corpus import Corpus
@@ -7,24 +8,32 @@ from os import path
 
 
 class Model(ABC):
-    def __init__(self, corpus : Corpus, modelPath : str):
+    """
+    Abstract model class representing a model to convert unanswered questions to number/vector representation.
+    """
+    def __init__(self, corpus : Corpus, modelPath : str, threshold = 0.9):
         self.model = None
         self.corpus : Corpus = corpus
         self.modelPath = modelPath
         self.trained = False
+        self.scoreThreshold = threshold
    
         # print(path.exists(self.modelPath))
-        if self.model is None and path.exists(self.modelPath):
-            self.loadModel()
-            self.trained = True
+        if self.modelPath:
+            if self.model is None and path.exists(self.modelPath):
+                self.loadModel()
+                self.trained = True
+            else:
+                print("MODEL NOT FOUND At MODEL PATH, INITIALIZING MODEL..")
+                self.initializeModel()
         else:
-            print("MODEL NOT FOUND At MODEL PATH, INITIALIZING MODEL..")
             self.initializeModel()
 
-
-    # This method should only instantiate the untrained model, but not save it. We should only save a model when it is trained
     @abstractmethod
     def initializeModel(self):
+        """
+        This function is called when no model is found to be saved in the savedModels folder.
+        """
         pass
 
 
@@ -33,7 +42,6 @@ class Model(ABC):
         self.trained = True
 
     def fitOnDocuments(self, documents):
-    
         return self._fit(documents)
         # if self.trained:
         #     return self._fit(documents)
@@ -41,25 +49,47 @@ class Model(ABC):
         #     return []
 
     @abstractmethod
-    def _train(self, documents, update):
+    def _train(self, documents : Iterable[str], update: bool):
+       """
+       Train the model given a list of documents. The update flag specifies whether new documents that the model
+       has never seen before is given
+       This method may not be fully flushed out as no model current trains.
+
+       """
        pass
 
  
     @abstractmethod  
-    def _fit(self, documents):
+    def _fit(self, documents : Iterable[str]) -> List[List[float]]:
+        """
+        This function should convert the list of documents to their vectorized representation based on the model.
+        :param documents: A iterable object -- list of strings or the any class that implement the __iter__ function that returns a string on 
+        each iteration such as the Corpus class 
+
+        :return: 2D list. For each document, there is a vector representation of that document.
+        """
         pass
 
     @abstractmethod
-    def getNumFeatures(self):
+    def getNumFeatures(self) -> float:
+       """
+       Get the length of the vector that will be used to represent one document.
+       """
        pass
 
     
     @abstractmethod
     def loadModel(self):
+        """
+        Load the model.
+        """
         pass
     
     @abstractmethod
     def saveModel(self):
+        """
+        Save the model to disk.
+        """
         pass
 
 

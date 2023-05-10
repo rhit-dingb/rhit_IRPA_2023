@@ -7,13 +7,18 @@ from UnansweredQuestions.Model import Model
 from gensim.models import KeyedVectors
 import gensim.downloader
 import numpy as np
+import os
+
 class Word2VecModel(Model):
     def __init__(self, corpus : Corpus, modelPath : str):
 
         super().__init__(corpus= corpus, modelPath = modelPath)
         
     def initializeModel(self):
-        pass
+        glove_vectors = gensim.downloader.load('glove-wiki-gigaword-300')
+        glove_vectors.save(self.modelPath)
+        self.model = glove_vectors
+        # self.loadModel()
 
     def _train(self, documents, update):
         # glove_vectors = gensim.downloader.load('glove-twitter-25')
@@ -47,6 +52,7 @@ class Word2VecModel(Model):
             #Normalize the average representation of the document
             mean = mean / np.linalg.norm(mean)
             vectors.append(mean)
+       
         return vectors
                 
        

@@ -6,21 +6,15 @@
 
 
 import asyncio
-import json
 import requests
 from CacheLayer.Cache import Cache
-from enum import Enum
-
 
 from CustomEntityExtractor.NumberEntityExtractor import NumberEntityExtractor
-from DataManager.ExcelDataManager import ExcelDataManager
-from DataManager.constants import  COHORT_BY_YEAR_ENTITY_LABEL, COHORT_INTENT, ENROLLMENT_INTENT, EXEMPTION_ENTITY_LABEL, FRESHMAN_PROFILE_INTENT, HIGH_SCHOOL_UNITS_INTENT, INITIAL_COHORT_ENTITY_LABEL,  AID_ENTITY_LABEL, NO_AID_ENTITY_LABEL, RANGE_ENTITY_LABEL, RECIPIENT_OF_PELL_GRANT_ENTITY_LABEL, RECIPIENT_OF_STAFFORD_LOAN_NO_PELL_GRANT_ENTITY_LABEL, STUDENT_LIFE_INTENT, TRANSFER_ADMISSION_INTENT, YEAR_FOR_COLLEGE_ENTITY_LABEL
 from Exceptions.ExceptionTypes import ExceptionTypes
-from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
+from Knowledgebase.SparseMatrixKnowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
 
-from Knowledgebase.IgnoreRowPiece import IgnoreRowPiece
-from Knowledgebase.SparseMatrixKnowledgeBase import SparseMatrixKnowledgeBase
-from OutputController import output
+
+from Knowledgebase.SparseMatrixKnowledgebase.SparseMatrixKnowledgeBase import SparseMatrixKnowledgeBase
 
 from actions.constants import  BACKEND_API_URL, LAST_ANSWERS_PROVIDED_SLOT_NAME, YEAR_RANGE_SELECTED_SLOT_NAME, AGGREGATION_ENTITY_PERCENTAGE_VALUE, ANY_AID_COLUMN_NAME, NO_AID_COLUMN_NAME, PELL_GRANT_COLUMN_NAME, RANGE_BETWEEN_VALUE, RANGE_UPPER_BOUND_VALUE, STAFFORD_LOAN_COLUMN_NAME, STUDENT_ENROLLMENT_RESULT_ENTITY_GRADUATION_VALUE
 from actions.entititesHelper import changeEntityValue, changeEntityValueByRole, copyEntities, createEntityObj, filterEntities, findEntityHelper, findMultipleSameEntitiesHelper, getEntityLabel, getEntityValueHelper, removeDuplicatedEntities
@@ -54,15 +48,15 @@ except Exception:
     print("FAILED TO SET TOKENIZER PARALLELISM TO FALSE")
     pass 
 
-try:
-    nltk.find('corpora/wordnet')
-except Exception:
-    nltk.download('wordnet')
+# try:
+#     nltk.find('corpora/wordnet')
+# except Exception:
+#     nltk.download('wordnet')
 
-try:
-    nltk.find('omw-1.4')
-except Exception:
-    nltk.download('omw-1.4')
+# try:
+#     nltk.find('omw-1.4')
+# except Exception:
+#     nltk.download('omw-1.4')
 
 # ExcelDataManager("./CDSData", [ENROLLMENT_INTENT, COHORT_INTENT, ADMISSION_INTENT, HIGH_SCHOOL_UNITS_INTENT, BASIS_FOR_SELECTION_INTENT, FRESHMAN_PROFILE_INTENT, TRANSFER_ADMISSION_INTENT, STUDENT_LIFE_INTENT])
 
@@ -101,16 +95,16 @@ class ActionGetAvailableOptions(Action):
         # print("LAST INTENT")
         # print(lastTopicIntent)
         startYear, endYear, res = getYearRangeInSlot(tracker)
-        allIntents = list(map(lambda x: x.replace("_", " "), domain["intents"]))
-        filteredListOfOption = dict()
+        # allIntents = list(map(lambda x: x.replace("_", " "), domain["intents"]))
+        # filteredListOfOption = dict()
         availableOptions = mongoDataManager.getAvailableOptions(None, startYear, endYear)
       
-        for option in availableOptions:
-            if option in allIntents:
-                filteredListOfOption[option] = availableOptions[option]
+        # for option in availableOptions:
+        #     if option in allIntents:
+        #         filteredListOfOption[option] = availableOptions[option]
     
         headerMessage = self.HEADER_MESSAGE_TEMPLATE.format(start_year = startYear, end_year = endYear)
-        response = {"type": ResponseType.ACCORDION_LIST.value, "header": headerMessage, "data": filteredListOfOption}
+        response = {"type": ResponseType.ACCORDION_LIST.value, "header": headerMessage, "data": availableOptions}
      
         dispatcher.utter_message(json_message= response)
     
@@ -150,6 +144,10 @@ class ActionAnswerNotHelpful(Action):
 
 
 class ActionQueryKnowledgebase(Action):
+    """
+    Action class responsible for searching in the list of knowledgebase, get the answer from unanswered question system and 
+    aggregate those together to return back to the user.
+    """
     def name(self) -> Text:
         return "action_query_knowledgebase"
 
@@ -180,8 +178,9 @@ class ActionQueryKnowledgebase(Action):
         entitiesExtracted = tracker.latest_message["entities"]
         numberEntities = numberEntityExtractor.extractEntities(question)
         entitiesExtracted = entitiesExtracted + numberEntities
+        print(tracker.latest_message["intent"])
         intent = tracker.latest_message["intent"]["name"]
-
+        
         print("INTENT")
         print(intent)
         print(getEntityLabel(removeDuplicatedEntities(entitiesExtracted)))
@@ -384,15 +383,21 @@ class ActionEventOccured(Action):
 
 
 
-    def handleTrainKnowledgebase(self, trainingLabels, entities, eventType):
+    def handleTrainKnowledgebase(self, trainingLabels, entities, eventType) -> List[Dict]:
         """
-        The feedback labels object looks like:
+        This function is responsible for parsing the feedback labels in json to the FeedbackLabel and MultiFeedbackLabel data models and call train 
+        on the list of knowledgebase. 
+
+        :param trainingLabels: Empty list of trainingLabels to populate
+        :param entities:  The entities consisting of training labels objects looks like:
         {'entity': 'feedback', 'value': [ {'_id': {'$oid': '641b6117a799c3a9b43f72c1'},
         'content': 'How many faculty do you have at rose-hulman', 
         'post_date': {'$date': '2023-03-22T16:12:07.973Z'}, 
         'is_addressed': True, 
-        'chatbotAnswers': [{answer:'the total number of instructional faculty is 192', source:"QuestionAnswerKnowledge", metadata:{}, feedback:"" }], 
+        'chatbotAnswers': [{answer:'the total number of instructional faculty is 192', source:"QuestionAnswerKnowledge", metadata:{}, feedback:"correct" }], 
         'answer': 'the total number of instructional faculty is 200'}} ] 
+        :param eventType: The type of event occured.
+        :return: List of Rasa event represented by dictionary objects. This return value will be part of the json response back to the caller
         """
         self.trained = 0
         feedbackEntity= findEntityHelper(entities, "feedback")

@@ -61,8 +61,9 @@ nlu:
 
     - What is the [average]{"entity": "aggregation", "value": "average"} score for [SAT]{"entity":"standarized_test", "value": "sat"} [composite](test_component)
     - What is the [average]{"entity": "aggregation", "value": "average"} score for [ACT]{"entity":"standarized_test", "value": "act"} [composite](test_component)
-    - What is the [average]{"entity": "aggregation", "value": "average"} score for [ACT]{"entity":"standarized_test", "value": "act"} [writing](test_component)
+    - What is the [mean]{"entity": "aggregation", "value": "average"} score for [ACT]{"entity":"standarized_test", "value": "act"} [writing](test_component)
     - What is the [average]{"entity": "aggregation", "value": "average"} score for [SAT]{"entity":"standarized_test", "value": "sat"} evidence-based [reading](test_component) and [writing](test_component)
+    - What is the [mean]{"entity": "aggregation", "value": "average"} score for [SAT]{"entity":"standarized_test", "value": "sat"} evidence-based [reading](test_component) and [writing](test_component)
 
 
     - What is the [percent]{"entity":"aggregation", "value": "percent"} of [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} students with [ACT]{"entity":"standarized_test", "value": "act"} score in the [range]{"entity":"range", "value":"between"} 11 [to]{"entity":"range", "value":"between"} 6 for [composite](test_component)

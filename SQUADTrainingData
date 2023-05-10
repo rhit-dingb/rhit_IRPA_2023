@@ -3,19 +3,19 @@
         {
             "paragraphs": [
                 {
-                    "context": "The percentage of full-time and part-time undergraduate students who join sororities is 35.5%",
-                    "id": "cdcff24a867ecf79ad45f76c2fc69b6e",
+                    "context": "Test scores are optional this year due to COVID-19",
+                    "id": "e3b78150491d5fa265a071054dc188fc",
                     "qas": [
                         {
                             "answers": [
                                 {
                                     "answer_start": 0,
-                                    "text": "The percentage of full-time and part-time undergraduate students who join sororities is 35.5%"
+                                    "text": "Test scores are optional this year due to COVID-19"
                                 }
                             ],
-                            "id": "1886a115-de2d-11ed-ac32-24ee9a197afc",
+                            "id": "454d4f61-e950-11ed-a146-24ee9a197afc",
                             "is_impossible": false,
-                            "question": "How many students join sororities"
+                            "question": "Is test optional this year?"
                         }
                     ]
                 }
@@ -24,35 +24,14 @@
         {
             "paragraphs": [
                 {
-                    "context": "The percentage of full-time and part-time first-year, first-time freshman students who joined sororities is 29.1%",
-                    "id": "99ade06d838dce2743ebf6d642d1449b",
-                    "qas": [
-                        {
-                            "answers": [
-                                {
-                                    "answer_start": 0,
-                                    "text": "The percentage of full-time and part-time first-year, first-time freshman students who joined sororities is 29.1%"
-                                }
-                            ],
-                            "id": "1886ef47-de2d-11ed-9e78-24ee9a197afc",
-                            "is_impossible": false,
-                            "question": "How many students join sororities"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "paragraphs": [
-                {
-                    "context": "The percentage of full-time and part-time undergraduate students who joined fraternity is 22.9%",
-                    "id": "f52b03192fd2b71d5541a09d7964e6c",
+                    "context": "Standarized test score is not required",
+                    "id": "c0edd877c70a71e5557804b6e663d07e",
                     "qas": [
                         {
                             "answers": [],
-                            "id": "1886ef48-de2d-11ed-a956-24ee9a197afc",
+                            "id": "454d4f62-e950-11ed-bb3c-24ee9a197afc",
                             "is_impossible": true,
-                            "question": "How many students join sororities"
+                            "question": "Is test optional this year?"
                         }
                     ]
                 }

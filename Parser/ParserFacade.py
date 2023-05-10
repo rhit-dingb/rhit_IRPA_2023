@@ -14,14 +14,16 @@ from Data_Ingestion.SparseMatrix import SparseMatrix
 from actions.entititesHelper import filterEntities
 from actions.entititesHelper import removeLowConfidenceEntities
 
-import aiohttp
-import asyncio
 
 from Parser import DataParser
 
 
 
 class ParserFacade():
+
+    """
+    Class that server as a facade to use DataLoader, DataWriter and DataParser together.
+    """
     def __init__(self, dataLoader, dataWriter, dataParser ):
         
         self.dataLoader : DataLoader = dataLoader
@@ -42,7 +44,7 @@ class ParserFacade():
         for sectionFullName in sectionFullNames:
             # if not section in self.parsers.keys():
             #     continue
-            questionAnswers : List[QuestionAnswer] = self.dataLoader.getQuestionsAnswerForSection(sectionFullName)
+            questionAnswers : List[QuestionAnswer] = self.dataLoader.getQuestionsAnswerForSectionAndSubsection(sectionFullName)
             for questionAnswer in questionAnswers:
                 if questionAnswer.isMetaData: 
                     continue
@@ -53,7 +55,7 @@ class ParserFacade():
         
         index = 0
         for sectionFullName in sectionFullNames:
-            questionAnswers : List[QuestionAnswer] = self.dataLoader.getQuestionsAnswerForSection(sectionFullName)
+            questionAnswers : List[QuestionAnswer] = self.dataLoader.getQuestionsAnswerForSectionAndSubsection(sectionFullName)
             sectionAndSubSection = sectionFullName.split("_")
             section = sectionAndSubSection[0]
             subSection = sectionAndSubSection[len(sectionAndSubSection)-1]

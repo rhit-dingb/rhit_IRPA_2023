@@ -36,7 +36,7 @@ nlu:
     
     - How [small]{"entity": "size", "value": "size"} is a class at Rose-Hulman?
     - What is the [average]{"entity":"aggregation", "value":"average"} class [size]{"entity": "size", "value": "size"} at Rose-Hulman?
-    - What is the [average]{"entity":"aggregation", "value":"average"} class [size]{"entity": "size", "value": "size"} at Rose-Hulman?
+    - What is the [mean]{"entity":"aggregation", "value":"average"} class [size]{"entity": "size", "value": "size"} at Rose-Hulman?
     - What is the [average]{"entity":"aggregation", "value":"average"} class [size](size) at Rose-Hulman?
     - What is the student to [faculty](people) [ratio]{"entity":"aggregation", "value": "ratio"}?
     - What is the student to [prof]{"entity": "people", "value": "faculty"} [ratio]{"entity":"aggregation", "value": "ratio"}?

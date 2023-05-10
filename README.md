@@ -63,6 +63,6 @@ Open anaconda terminal, cd into the project directory
  Don't need to cd into test directory. At the project's root directory run the following command:
    - To run all test: python -m unittest discover tests test*.py
    - To run individual test: python -m unittest tests/{name of test}.py 
-      - For example: python -m unittest tests/test_knowledgebase_enrollment.py
+      - For example: python -m unittest tests/test_knowledgebase.py
       - Note: all test files should start with prefix "test"
 

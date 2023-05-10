@@ -384,21 +384,6 @@ stories:
     intent: deny
   - action: utter_no_more_question
 
-- story: ask_about_percentile_score_act
-  steps:
-  - user: |
-      What is the [75th percentile]{"entity": "test_percentile", "value": "75th percentile"} score for [ACT writing]{"entity": "act_test_component"}
-    intent: basis_for_selection
-  - action: action_query_basis_for_selection
-  - action: utter_ask_answer_helpful
-  - user: |
-      yes
-    intent: affirm
-  - action: action_ask_more_question
-  - user: |
-      nope
-    intent: deny
-  - action: utter_no_more_question
 
 
 

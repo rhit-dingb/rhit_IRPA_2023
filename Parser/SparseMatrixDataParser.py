@@ -16,6 +16,9 @@ from Parser.DataParser import DataParser
 
 
 class SparseMatrixDataParser(DataParser):
+    """
+    Concrete implementation of DataParser that parse the list of question and answer to the internal SparseMatrix data model.
+    """
     def __init__(self):
        pass
 
@@ -57,6 +60,7 @@ class SparseMatrixDataParser(DataParser):
         columns = ["Value"]
         columns = columns + everyUniqueEntity
         sparseMatrixDataFrame = pd.DataFrame(columns=columns, data = matrixData)
+        # sparseMatrixDataFrame = sparseMatrixDataFrame.astype(str)
         questions = []
 
         for qa in questionAnswersWithNoMetadata:

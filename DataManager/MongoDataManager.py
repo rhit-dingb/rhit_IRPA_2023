@@ -1,5 +1,6 @@
 from typing import Dict, List, Tuple
 from DataManager.DataManager import DataManager
+from Data_Ingestion import DataProcessor
 from Data_Ingestion.ConvertToSparseMatrixDecorator import ConvertToSparseMatrixDecorator
 from Data_Ingestion.MongoProcessor import MongoProcessor
 from Data_Ingestion.SparseMatrix import SparseMatrix
@@ -23,12 +24,15 @@ from Data_Ingestion.SubsectionQnA import SubsectionQnA
 MongoDataManager subclass that can handle connections with MongoDB data
 """
 class MongoDataManager(DataManager):
-    def __init__(self, mongoProcessor):
+    def __init__(self, mongoProcessor :  DataProcessor, client : MongoClient = None):
         super().__init__()
         # self.mongoProcessor = MongoProcessor()
         # self.mongoProcessor = ConvertToSparseMatrixDecorator(self.mongoProcessor)
         self.mongoProcessor : MongoProcessor = mongoProcessor
-        self.client = MongoClient(MONGO_DB_CONNECTION_STRING)
+        if client == None:
+            self.client = MongoClient(MONGO_DB_CONNECTION_STRING)
+        else:
+            self.client = client
         self.rasaCommunicator = RasaCommunicator()
 
 
@@ -43,7 +47,7 @@ class MongoDataManager(DataManager):
         return self.findDefinitionData()
        
     def getAvailableOptions(self, intent, startYear, endYear):
-        availableOptions = dict() 
+        availableOptions : Dict[str, List[str]] = dict() 
         definitionDatabaseNames = self.findDefinitionData()
         annualDatabaseNames = self.getAvailableDataForSpecificYearRange(startYear, endYear)
         databaseNames = annualDatabaseNames+ definitionDatabaseNames
@@ -78,8 +82,7 @@ class MongoDataManager(DataManager):
         return availableOptions
 
 
-
-    def getAllSubsectionForSection(self, section, startYear = None, endYear = None, filter = lambda x: True):
+    def getAllSubsectionForSection(self, section, startYear = None, endYear = None):
         subsectionForSection = []
         dataNames = []
         #might refactor this later
@@ -91,6 +94,7 @@ class MongoDataManager(DataManager):
         
         def filter(collection):
             return collection == section
+        
         for databaseName in dataNames:
            sectionToSubSection = self.getSectionAndSubsectionsForData(databaseName, filter=filter)
            if section in sectionToSubSection:
@@ -163,7 +167,7 @@ class MongoDataManager(DataManager):
         return self.client[dataName].list_collection_names()
 
 
-    async def getDataBySection(self, section, exceptionToThrow: Exception,  startYear= None, endYear = None):
+    async def getDataBySection(self, section : str, exceptionToThrow: Exception,  startYear= None, endYear = None, databaseFilter = lambda x :True):
             section =  section.replace("_", " ")
             selectedDatabaseName = ""
             databaseNames = []
@@ -174,11 +178,16 @@ class MongoDataManager(DataManager):
                 
             else: 
                 databaseNames = self.getAvailableDataForSpecificYearRange(startYear, endYear)
+                print("ALL DATABASE NAMES")
+                print(databaseNames)
                 if len(databaseNames) == 0:
                     raise exceptionToThrow
 
 
             for databaseName in databaseNames:
+                    if not databaseFilter(databaseName):
+                        continue
+
                     sections = self.getSections(databaseName)
                     if section in sections:
                         selectedDatabaseName = databaseName
@@ -189,9 +198,7 @@ class MongoDataManager(DataManager):
             convertedDataModel = await self.mongoProcessor.getDataByDbNameAndSection(self.client, section, selectedDatabaseName)     
             return convertedDataModel
 
-    """
-    See documentation in DataManager.py
-    """
+
     def getMostRecentYearRange(self) -> Tuple[str, str] :
         years = self.getAllAvailableYearsSorted()
         if len(years) == 0:
@@ -219,6 +226,7 @@ class MongoDataManager(DataManager):
                 years.append((yearRange[0], yearRange[1]))
 
         years.sort(key = sortFunc, reverse= True)
+        years = list(set(years))
         return years
 
 

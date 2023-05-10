@@ -2,17 +2,24 @@
 
 import asyncio
 from copy import deepcopy
-from typing import List
+import json
+from typing import Dict, List
 import unittest
 import os
 import sys
+from DataManager.MongoDataManager import MongoDataManager
+from Data_Ingestion.MongoProcessor import MongoProcessor
+from Data_Ingestion.ConvertToDocumentDecorator import ConvertToDocumentDecorator
 import Data_Ingestion.constants as metadataConstants
+from Knowledgebase.DataModels.ChatbotAnswer import ChatbotAnswer
+
 import tests.testUtils as testUtils
 from Knowledgebase.DataModels.SearchResult import SearchResult
 
 
-from Knowledgebase.SparseMatrixKnowledgeBase import SparseMatrixKnowledgeBase
-from Knowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
+from Knowledgebase.SparseMatrixKnowledgebase.SparseMatrixKnowledgeBase import SparseMatrixKnowledgeBase
+from Knowledgebase.QuestionAnswerKnowledgebase.QuestionAnswerKnowledgebase import QuestionAnswerKnowledgeBase
+from Knowledgebase.SparseMatrixKnowledgebase.DefaultShouldAddRow import DefaultShouldAddRowStrategy
 from DataManager.ExcelDataManager import ExcelDataManager
 from Exceptions.NoDataFoundException import NoDataFoundException
 from Exceptions.ExceptionTypes import ExceptionTypes
@@ -37,20 +44,20 @@ UNDERGRADUATE_DEGREE_SEEKING_AFRICAN_AMERICAN_STUDEN_ENROLLED = 93
 NON_FIRST_TIME = 0
 NON_DEGREE_SEEKING_STUDENTS  = 3
 
-class knowledgebase_test(unittest.TestCase):
+class SparseMatrix_knowledgebase_test(unittest.TestCase):
     def setUp(self):
         # self.knowledgeBase = SparseMatrixKnowledgeBase("../Data_Ingestion/CDS_SPARSE_ENR.xlsx")
         self.knowledgeBase = SparseMatrixKnowledgeBase(
             ExcelDataManager("./tests/testMaterials/cdsTestData"))
-        self.topicToParse = ["enrollment"]
+       
         self.defaultShouldAddRowStrategy = DefaultShouldAddRowStrategy()
         self.knowledgeBase.getAllEntityForRealQuestionFoundForAnswer = self.fakeGetAllEntityForRealQuestionFoundForAnswer
         self.extractOutput = testUtils.extractOutput
+        self.knowledgeBase.constructOutput = self.extractOutput
 
     async def fakeGetAllEntityForRealQuestionFoundForAnswer(self, searchResults : List[SearchResult]):
         pass
 
-   
     
     # def test_give_no_entities_should_sum_up_everything(self):
     #     answers = asyncio.run(self.knowledgeBase.searchForAnswer("enrollment", [
@@ -59,178 +66,140 @@ class knowledgebase_test(unittest.TestCase):
 
     
     def test_when_ask_for_total_graduates_enrollment_should_return_correct_value(self):
-        answers = asyncio.run(self.knowledgeBase.searchForAnswer("enrollment", [
+        question = "How many graduate students are enrolled?"
+        # question, intent, entitiesExtracted, startYear, endYear, 
+
+        answers, shouldContinue = asyncio.run(self.knowledgeBase.searchForAnswer(question, "enrollment", [
             createEntityObjHelper("graduate"),
-        ], self.defaultShouldAddRowStrategy, self.extractOutput, 2020, 2021))
+        ], 2020, 2021))
         
         self.assertEqual(answers, [str(TOTAL_GRADUATES)])
 
 
     def test_when_ask_for_non_degree_seeking_should_return_correct_value(self):
-        answers = asyncio.run(self.knowledgeBase.searchForAnswer("enrollment", [
+        question = "How many non-degree-seeking students are there?"
+        answers, shouldContinue = asyncio.run(self.knowledgeBase.searchForAnswer(question, "enrollment", [
             createEntityObjHelper("non-degree-seeking"),
-        ], self.defaultShouldAddRowStrategy, self.extractOutput, 2020, 2021))
+        ], 2020, 2021))
 
         self.assertEqual(answers, [str(NON_DEGREE_SEEKING_STUDENTS)])
 
     def test_ask_for_full_time_undergraduate_men_non_freshmans(self):
-        answers = asyncio.run(self.knowledgeBase.searchForAnswer("enrollment", [
+        question = "How many undergraduate men are non-freshman?"
+        answers, shouldContinue = asyncio.run(self.knowledgeBase.searchForAnswer(question, "enrollment", [
             createEntityObjHelper("full-time"),
             createEntityObjHelper("degree-seeking"),
             createEntityObjHelper("male"),
             createEntityObjHelper("non-freshman"),
-            ], self.defaultShouldAddRowStrategy, self.extractOutput, 2020, 2021))
+            ],  2020, 2021))
         
         self.assertEqual(answers, [str(DEGREE_SEEKING_FIRST_TIME_NON_FRESHMAN)])
 
 
     def test_ask_for_total_undergraduates_enrollment(self):
-        answers = asyncio.run(self.knowledgeBase.searchForAnswer("enrollment", [
+        question = "how many undergraduate students are enrolled?"
+        answers, shouldContinue = asyncio.run(self.knowledgeBase.searchForAnswer(question, "enrollment", [
             createEntityObjHelper("undergraduate"),
-            createEntityObjHelper("2020", "year", "from"),
-            createEntityObjHelper("2021", "year", "to")
-
-        ], self.defaultShouldAddRowStrategy, self.extractOutput,  2020, 2021))
+        ],  2020, 2021))
         self.assertEqual(answers, [str(TOTAL_UNDERGRADUATES)])
 
     def test_ask_for_full_time_undergraduates_enrollment(self):
-        answers = asyncio.run(self.knowledgeBase.searchForAnswer("enrollment", [
+        question = "what is the full-time undergraduate enrollment?"
+        answers, shouldContinue = asyncio.run(self.knowledgeBase.searchForAnswer(question, "enrollment", [
             createEntityObjHelper("undergraduate"),
-            createEntityObjHelper("full-time")], self.defaultShouldAddRowStrategy, self.extractOutput, 2020, 2021))
+            createEntityObjHelper("full-time")], 2020, 2021))
         self.assertEqual(answers, [str(TOTAL_UNDERGRADUATES - TOTAL_UNDERGRADUATE_PART_TIME)])
 
 
     def test_ask_for_data_for_invalid_year_should_throw_error(self):
        
         with self.assertRaises(NoDataFoundException) as cm:
-            asyncio.run(self.knowledgeBase.searchForAnswer("enrollment", [
+            question = "what is the full-time undergraduate enrollment?"
+            asyncio.run(self.knowledgeBase.searchForAnswer(question, "enrollment", [
                 createEntityObjHelper("african american"),
-            ], self.defaultShouldAddRowStrategy, self.extractOutput, 3000, 3001))
+            ],  3000, 3001))
             
         exceptionRaised = cm.exception
         self.assertEqual(exceptionRaised.fallBackMessage,
                              NO_DATA_FOUND_FOR_ACADEMIC_YEAR_ERROR_MESSAGE_FORMAT.format(start=3000, end=3001))
         self.assertEqual(exceptionRaised.type,
                              ExceptionTypes.NoDataFoundForAcademicYearException)
-       
-    # def test_ask_for_data_with_no_data_for_given_year_should_throw_error_message(self):
-    #     parsedData = deepcopy(
-    #         self.knowledgeBase.dataManager.excelProcessor.data)
-    #     yearToRemove = "2019_2020"
-    #     if yearToRemove in parsedData:
-    #         del parsedData[yearToRemove]
 
-    #     with patch("Data_Ingestion.ExcelProcessor") as mock:
-    #         mockExcelProcessor = mock.return_value
-    #         mockExcelProcessor.getData.return_value = parsedData
+class Question_answer_knowledgebase_test(unittest.TestCase):
+    def setUp(self):
+        self.databaseName = "CDS_2020_2021"
+        f = open('./tests/testMaterials/cdsTestData/CDS_2020_2021.json')
+        self.data = json.load(f)
+        f.close()
 
-    #         with self.assertRaises(NoDataFoundException) as cm:
-    #             asyncio.run(self.knowledgeBase.searchForAnswer("enrollment", [
-    #                 createEntityObjHelper("degree-seeking"),
-    #                 createEntityObjHelper("non-first-time"),
-    #             ], self.defaultShouldAddRowStrategy, self.extractOutput, 2019,2020))
-
-    #         exceptionRaised = cm.exception
-    #         self.assertEqual(exceptionRaised.fallBackMessage,
-    #                          NO_DATA_FOUND_FOR_ACADEMIC_YEAR_ERROR_MESSAGE_FORMAT.format(start=2019, end=2020))
-    #         self.assertEqual(exceptionRaised.type,
-    #                          ExceptionTypes.NoDataFoundForAcademicYearException)
-
+        with patch('pymongo.MongoClient') as mockClient:
+            self.mockClient = mockClient
+            self.mockDataSource(mockClient)
+        
+        # mockClient.list_database_names.return_value = 
+      
+        mongoProcessor = MongoProcessor()
+        mongoProcessor = ConvertToDocumentDecorator(mongoProcessor)
+        mongoDataManager = MongoDataManager(mongoProcessor, mockClient)
+      
+        self.questionAnswerKnowledgebase = QuestionAnswerKnowledgeBase(mongoDataManager)
+        asyncio.run(self.questionAnswerKnowledgebase.initialize())
+        
+        
 
 
-    # # degree-seeking, first_time, freshman/all other, first-year
-    # def test_ask_for_full_time_undergradutes_enrollment(self):
-    #     answers = asyncio.run(self.knowledgeBase.searchForAnswer("enrollment", [
-    #         createEntityObjHelper("degree-seeking"),
-    #         createEntityObjHelper("first-time", 2020, 2021),
-    #         createEntityObjHelper("2020", "year", "from"),
-    #         createEntityObjHelper("2021", "year", "to"),
-    #         createEntityObjHelper("freshman")], self.defaultShouldAddRowStrategy, self.extractOutput)
-    #     self.assertEqual(answers, [str(DEGREE_SEEKING_FIRST_TIME_FRESHMAN)])
-
-
-    # def test_ask_for_non_freshmans(self):
-    #     answers = asyncio.run(self.knowledgeBase.searchForAnswer("enrollment",
-    #                                                 [
-    #                                                     createEntityObjHelper(
-    #                                                         "non-freshman")
-    #                                                 ], self.defaultShouldAddRowStrategy, self.extractOutput)
-    #     self.assertEqual(answers, [str(NON_FRESHMAN)])
-
- 
-
-    # def test_ask_for_hispanics_students_enrollment(self):
-    #     answers = asyncio.run(self.knowledgeBase.searchForAnswer("enrollment", [
-    #         createEntityObjHelper("hispanic"),
-    #     ], self.defaultShouldAddRowStrategy, self.extractOutput, 2020, 2021)
-    #     self.assertEqual(answers, [str(HISPANIC_STUDENTS_ENROLLMENT)])
-
-
-    # # # for this test, I am assuming if we asked for data that the CDS does not have,
-    # # # the algorithm current will try to answers to its best of its ability.
-    # def test_ask_for_out_of_scope_data_should_answers_to_best_ability(self):
-    #     answers = asyncio.run(self.knowledgeBase.searchForAnswer("enrollment",
-    #                                                 [createEntityObjHelper("male"),
-    #                                                  createEntityObjHelper("asian", entityLabel="race"), 
-    #                                                 createEntityObjHelper("2020", "year", "from"),
-    #                                                 createEntityObjHelper("2021", "year", "to")],
-    #                                                 self.defaultShouldAddRowStrategy, self.extractOutput, 2020,2021)
-    #     self.assertEqual(answers, [str(DEGREE_SEEKING_UNDERGRADUATE_ASIAN_STUDENTS_ENROLLED)])
-
-
-
-    # # # It might be worth thinking about which matrix will be used for this test case compared to the previous test case.
-    # # # The entities in the above test case are mutually exclusive, meaning one exist in the first matrix(general enrollment) for enrollment while
-    # # # the second one exist in the second matrix(enrollment by race) for enrollment. So there will be a tie. For this case,
-    # # # degree-seeking exist in the first matrix but also the second, and "asian" exist only in the second matrix,
-    # # # since more entities are in the second matrix, the second matrix will be used.
-    # def test_ask_for_degree_seeking_asian_student_enrolled_should_return_degree_seeking_undergraduate_asian_students(self):
-    #     answers = asyncio.run(self.knowledgeBase.searchForAnswer("enrollment",
-    #                                                 [createEntityObjHelper("degree-seeking"),
-    #                                                  createEntityObjHelper("asian", 2020, 2021)],
-    #                                                 self.defaultShouldAddRowStrategy, self.extractOutput)
-    #     self.assertEqual(answers, [str(DEGREE_SEEKING_UNDERGRADUATE_ASIAN_STUDENTS_ENROLLED)])
-
-    # def test_ask_for_african_american_first_time_first_year_degree_seeking(self):
-    #     answers = asyncio.run(self.knowledgeBase.searchForAnswer("enrollment", [createEntityObjHelper("african american"),
-    #                                                                createEntityObjHelper(
-    #                                                                    "first-year", 2020, 2021),
-    #                                                                createEntityObjHelper(
-    #                                                                    "first-time"),
-    #                                                                createEntityObjHelper("degree-seeking")], self.defaultShouldAddRowStrategy, self.extractOutput)
-    #     self.assertEqual(answers, [str(31)])
-
-    # def test_ask_for_asian_student_enrollment_should_not_sum_up_two_row(self):
-    #     answers = asyncio.run(self.knowledgeBase.searchForAnswer("enrollment", [
-    #         createEntityObjHelper("asian"),
-    #     ], self.defaultShouldAddRowStrategy, self.extractOutput, 2020, 2021)
-    #     self.assertEqual(answers, [str(
-    #         DEGREE_SEEKING_UNDERGRADUATE_ASIAN_STUDENTS_ENROLLED)])
-
-    # def test_ask_for_hispanic_enrollment_but_given_included_invalid_entity_should_return_only_hispanic_enrollment(self):
-    #     answers = asyncio.run(self.knowledgeBase.searchForAnswer("enrollment", [
-    #         createEntityObjHelper("hispanic"),
-    #         createEntityObjHelper("pizza", 2020, 2021)
-    #     ], self.defaultShouldAddRowStrategy, self.extractOutput)
-    #     self.assertEqual(answers, [str(HISPANIC_STUDENTS_ENROLLMENT)])
-
-    # def test_ask_for_first_time_unknown_race_but_entity_provided_twice(self):
-    #     answers = asyncio.run(self.knowledgeBase.searchForAnswer("enrollment", [
-    #         createEntityObjHelper("unknown"),
-    #         createEntityObjHelper("first-time", 2020, 2021),
-    #         createEntityObjHelper("first-time"),
-    #     ], self.defaultShouldAddRowStrategy, self.extractOutput)
-    #     self.assertEqual(answers, [str(
-    #         UNDERGRADUATE_FIRST_TIME_DEGREE_SEEKING_UNKNOWN_RACE_STUDENT_ENROLLED)])
-
-    # def test_ask_for_african_american_student_enrollment(self):
-    #     answers = asyncio.run(self.knowledgeBase.searchForAnswer("enrollment", [
-    #         createEntityObjHelper("african american"),
-    #     ], self.defaultShouldAddRowStrategy, self.extractOutput, 2020, 2021)
-    #     self.assertEqual(answers, [str(
-    #         UNDERGRADUATE_DEGREE_SEEKING_AFRICAN_AMERICAN_STUDEN_ENROLLED)])
-
+    def mockDataSource(self, mockClient): 
    
+        mockClient.list_database_names.return_value = [self.databaseName]
+        sections = self.data["sections"]
+        mockClient[self.databaseName].list_collection_names.return_value = sections
+        index = 0
+        def sideEffect(filter : Dict[str, any]):
+            # print("TEST_________________________________---")
+            # print(mockClient.mock_calls)
+        
+            # for sectionName in sections: 
+            #     if sectionName == section:
+            #         break
+
+            #     index = index+1
+            nonlocal index
+            data = self.data["data"][index]
+            index = index + 1
+            return data
+
+        self.mockClient[self.databaseName][any].find.side_effect = sideEffect
+      
+        # print("FOUND _____")
+        # print(mockClient[databaseName]["test"].find())
+     
+    def test_ask_about_student_to_faculty_ratio_should_return_correct_answer(self):
+        
+        question = "What is the student to faculty ratio?"
+        intent = "faculty and class size"
+        answer = "The student to faculty ratio is 10 to 1"
+        entities = []
+        
+        chatbotAnswers, shouldContinue = asyncio.run(self.questionAnswerKnowledgebase.searchForAnswer(question, intent, entities, "2020","2021"))
+        answers : List[str] = testUtils.getAnswers(chatbotAnswers=chatbotAnswers)
+        self.assertIn(answer, answers)
+
+    def test_ask_about_undergraduate_tuition_should_return_correct_answer(self):
+        
+        question = "What is cost of undergraduate tuition?"
+        intent = "annual expense"
+        answer = "Rose-Hulman's tuition for undergraduate students is $49,479"
+        entities = []
+        
+        chatbotAnswers, shouldContinue = asyncio.run(self.questionAnswerKnowledgebase.searchForAnswer(question, intent, entities, "2020","2021"))
+        answers : List[str] = testUtils.getAnswers(chatbotAnswers=chatbotAnswers)
+        self.assertIn(answer, answers)
+
+    
+
+
+    
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -65,7 +65,11 @@
 
 .botmsg {
   /* background-color: rgb(205, 173, 241); */
-  background-color: rgb(205, 173, 241);
+  /* background-image: linear-gradient(135deg, #00bfff 0%, #6dc2e8 100%); */
+  /* background-color: #f5f5f5; */
+
+  /* #a9d0f7 */
+  background-color: #a1c4fd; 
   padding-left: 15px;
   padding-right: 15px;
   height: auto;
@@ -73,11 +77,34 @@
   padding-top: 6px;
   padding-bottom: 10px;
   border-radius: 25px;
-  max-width: 30rem;
+  max-width: 45rem;
+  border-radius: 18px; 
+  margin-right:10px; 
+  overflow-x: auto;
 }
 
+#chatbotWindow{
+  margin: auto;
+  width: 95%;
+}
+
+
+@media (max-width: 479px) {
+  #chatbotWindow{
+    width: 85%;
+  }
+  
+}
+
+
+
+
+
+
 .usermsg {
-  background-color: rgb(235, 220, 252);
+  background-color: #cce0f5;
+  /* #c7ecee */
+  /* background-image: linear-gradient(135deg, #a1c4fd 0%,#c7ecee   100%); */
   padding-left: 15px;
   padding-right: 15px;
   height: auto;
@@ -86,6 +113,7 @@
   padding-bottom: 4px;
   border-radius: 25px;
   max-width: 25rem;
+
 }
 
 /* width */
@@ -101,13 +129,14 @@
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: rgb(140, 27, 185);
+  /* background: rgb(140, 27, 185); */
+  background:#8c8c8c;
   border-radius: 10px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #b909e6;
+  background: rgb(0 0 0 / 10%);
 }
 
 .botIcon {
@@ -117,6 +146,8 @@
   margin-left: 5px;
   margin-right: 5px;
   padding: 5px;
+  flex-shrink: 0;
+  
 }
 
 .userIcon {
@@ -140,20 +171,6 @@
   margin-left: 1%;
 }
 
-/* .loading {
-  display: flex;
-  align-items: center;
-}
-
-.loading-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: #333;
-  margin: 0 5px;
-  animation: loading 1s ease-in-out infinite;
-}
-
 
 
 
@@ -171,7 +188,7 @@
   100% {
     opacity: 0;
   }
-} */
+} 
 
 
 @keyframes blink {

@@ -5,6 +5,9 @@ import asyncio
 import aiohttp
 #Im using request url to make request https://requests.readthedocs.io/en/latest/user/quickstart/
 class RasaCommunicator():
+    """
+    Class used to communicate with Rasa to run certain actions in the action certain.
+    """
     def __init__(self):
         #Connection string to Rasa Server, right now I'm assuming its localhost.
         # "http://137.112.208.157:5005/webhooks/rest/webhook"
@@ -20,6 +23,7 @@ class RasaCommunicator():
         body = json.dumps(body)
         async with session.post(self.connectionString+"model/"+"parse", headers ={ "Content-Type": "application/json" }, data = body) as response:
                 return await response.json()
+                
 
 
     async def parseMessagesAsync(self, messages):
@@ -36,6 +40,10 @@ class RasaCommunicator():
         
     # http://localhost:5005/conversations/{conversation_id}/trigger_intent
     async def injectIntent(self, intent, entities, session, convId):
+        """
+        This function will inject an intent to rasa which will trigger an action we specified in the stories.yml
+        that the Rasa model was trained on. 
+        """
         print("USING INTENT")
         print(intent)
         body={
@@ -48,14 +56,4 @@ class RasaCommunicator():
         headers ={ "Content-Type": "application/json" }, data = body) as response:
             return await response.json()
 
-# def main():
-#     comm = RasaCommunicator()
-#     result = comm.parseMessage("How important is extracurricular-activities in admission decision? ")
-#     print(result)
-
-# if __name__ == "__main__":
-#     main()
-        
-    
-    
     

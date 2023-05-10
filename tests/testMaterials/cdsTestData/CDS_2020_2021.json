@@ -1,0 +1,1144 @@
+{
+   "sections": ["sat act policy", "admission", "annual expense", "academic offering and policy", "transfer admission", "student life", "cohort", "freshman profile", "enrollment", "financial aid", "faculty and class size", "basis for selection", "degree conferred", "general info"],
+  "data": [
+   [
+    {
+       "_id":{
+          "$oid":"64436e29f2166d8fd6b2a6a5"
+       },
+       "subsection":"sat act policy",
+       "metadata":{
+          "about":"Rose-Hulman's SAT and ACT policies. If Rose-Hulman makes use of ACT and SAT or ACT and SAT subject test in admission decisions for first-time first-year degree-seeking applicants. If Rose-Hulman uses ACT or SAT test scores for academic advising. The latest date SAT and ACT scores must be received for fall term admission. ACT and SAT test policies -  if tests are optional are not. The tests Rose-Hulman uses for placement."
+       },
+       "questionAnswers":{
+          "are  act and sat or act and sat subject test used admission decisions for first-time first-year degree-seeking applicants? if yes, please state how the tests will be used.":"ACT and SAT scores are considered in admission decisions if submitted. ACT and SAT scores without essay component are accepted.",
+          "are act or sat test scores for used academic advising?":"SAT or ACT test scores is not used for academic advising.",
+          "what date by which sat or act scores must be received for fall term admission?":"The latest date by which SAT and ACT score must be received for fall term admission is February 1st",
+          "what are the sat and act test policies? are tests recommended for some students, or if tests are not required to be submitted for some students or are they optional?":"Test scores are optional this year due to COVID-19",
+          "are the following tests used for placement : sat, act, sat subject test, ap test, clep test, and institutional exam?":"AP and institutional exams are used for placement."
+       }
+    }
+ ],[
+    {
+       "_id":{
+          "$oid":"64436e29f2166d8fd6b2a693"
+       },
+       "subsection":"applied",
+       "metadata":{
+          "about":"The number of first-time first-year freshman students who applied by gender",
+          "template":"The number of first-time, first-year [gender] freshmen who applied to Rose-Hulman is <value> ",
+          "operation-allowed?":"Yes",
+          "sum-allowed?":"Yes",
+          "range-allowed?":"No",
+          "percentage-allowed?":"No"
+       },
+       "questionAnswers":{
+          "total first-time, first-year (freshman) male students who applied?":"3338",
+          "total first-time, first-year (freshman) female students who applied":"1038"
+       }
+    },
+    {
+       "_id":{
+          "$oid":"64436e29f2166d8fd6b2a695"
+       },
+       "subsection":"admitted",
+       "metadata":{
+          "about":"The number of first-time first-year freshman students who who were admitted by gender",
+          "template":"The number of first-time, first-year [gender] freshmen who were admitted to Rose-Hulman is <value> ",
+          "operation-allowed?":"Yes",
+          "sum-allowed?":"Yes",
+          "range-allowed?":"No",
+          "percentage-allowed?":"No"
+       },
+       "questionAnswers":{
+          "what is the total first-time, first-year (freshman) male students  who were admitted":"2502",
+          "what is the total first-time, first-year (freshman)  female students who were admitted":"851"
+       }
+    },
+    {
+       "_id":{
+          "$oid":"64436e29f2166d8fd6b2a697"
+       },
+       "subsection":"enrolled",
+       "metadata":{
+          "about":"The number of first-time first-year freshman students who enrolled by gender",
+          "template":"The number of [enrollment_status] first-time, first-year [gender] freshman who enrolled at Rose-Hulman is <value> ",
+          "operation-allowed?":"Yes",
+          "sum-allowed?":"Yes",
+          "range-allowed?":"No",
+          "percentage-allowed?":"No"
+       },
+       "questionAnswers":{
+          "total full-time, first-time, first-year (freshman) male students who enrolled":"401",
+          "total part-time, first-time, first-year (freshman) male students who enrolled":"1",
+          "total full-time, first-time, first-year (freshman) female students who enrolled":"145",
+          "total part-time, first-time, first-year (freshman) female students who enrolled":"0"
+       }
+    },
+    {
+       "_id":{
+          "$oid":"64436e29f2166d8fd6b2a699"
+       },
+       "subsection":"waitlist",
+       "metadata":{
+          "about":"Admission policies and requirement including waitlist policies, high school completion requirement, and requirement/recommendation for college-prepartory program "
+       },
+       "questionAnswers":{
+          "do you have a policy of placing students on a waiting list?":"Rose-Hulman have a policy of placing student on the waiting list. The number of qualified applicants offered a place on waiting list is 119, the number of accepting a place on the waiting list is 43, the number of wait-listed students admitted 14",
+          "is your waiting list ranked?":"Rose-Hulman's waitlist is not ranked",
+          "what is your high school completion requirement for degree-seeking entering students?":"High school diploma is required and GED is not accepted",
+          "does your institution require or recommend a general college-preparatory program for degree-seeking students?":"A general college-preparatory program for degree-seeking students is required"
+       }
+    },
+    {
+       "_id":{
+          "$oid":"64436e29f2166d8fd6b2a69b"
+       },
+       "subsection":"high school required",
+       "metadata":{
+          "about":"High school units for various subjects required for admission to Rose-Hulman",
+          "operation-allowed?":"No",
+          "sum-allowed?":"No",
+          "range-allowed?":"No",
+          "percentage-allowed?":"No",
+          "complete sentence":"Yes"
+       },
+       "questionAnswers":{
+          "how many high school english units are required for admission?":"Four high school english units are required for admission.",
+          "how many high school mathematics units are required for admission?":"Four high school mathematics units are required for admission.",
+          "how many high school science units are required for admission?":"Three high school science units are required for admission.",
+          "of the science credit, how many high school lab units required for admission?":"Three high school science lab units are required for admission from the previous units.",
+          "how many high school foreign language units are required for admission?":"No high school foreign language units are required for admission.",
+          "how many high school social studies units are required for admission?":"Two high school social studies units are required for admission.",
+          "how many high school history units are required for admission?":"No high school history units are required for admission.",
+          "how many high school academic elective units are required for admission?":"No high school academic elective units are required for admission.",
+          "how many high school computer science units are required for admission?":"No high school computer science units are required for admission.",
+          "how many high school visual/performing art units are required for admission?":"No high school visual/performing art units are required for admission."
+       }
+    },
+    {
+       "_id":{
+          "$oid":"64436e29f2166d8fd6b2a69d"
+       },
+       "subsection":"high school recommend",
+       "metadata":{
+          "about":"High school units for various subjects recommended for admission to Rose-Hulman",
+          "operation-allowed?":"No",
+          "sum-allowed?":"No",
+          "range-allowed?":"No",
+          "percentage-allowed?":"No",
+          "complete sentence?":"Yes"
+       },
+       "questionAnswers":{
+          "how many high school english units are recommended for admission?":"0 high school english units are recommended for admission.",
+          "how many high school mathematics units are recommended for admission?":"Five high school mathematics units are recommended for admission.",
+          "how many high school science units are recommended for admission?":"Four science high school units are recommended for admission.",
+          "of the science units, how many high school lab units are recommended for admission?":"No high school science lab units are recommended for admission.",
+          "how many high school foreign language units are recommended for admission?":"No high school foreign language units are recommended for admission.",
+          "how many high school social studies units are recommended for admission?":"No high school social studies units are recommended for admission.",
+          "how many high school history units are recommended for admission?":"No high school history units are recommended for admission.",
+          "how many high school academic elective units are recommended for admission?":"Four high school academic elective units are recommended for admission.",
+          "how many high school computer science units are recommended for admission?":"No high school computer science units are recommended for admission.",
+          "how many high school visual/performing art units are recommended for admission?":"No high school visual/performing art units are recommended for admission."
+       }
+    },
+    {
+       "_id":{
+          "$oid":"64436e29f2166d8fd6b2a69f"
+       },
+       "subsection":"policies",
+       "metadata":{
+          "about":"Rose-Hulman's admission policies, including application fee, waiver, early action and early decision policy, postpone enrollment policy and early admission of high school students is allowed",
+          "complete sentence?":"Yes"
+       },
+       "questionAnswers":{
+          "is there an application fee, if so how much?":"To apply, the application fee is 60 dollars",
+          "can application fee be waived for applicants with financial need?":"Application can be waived for applicants with financial need",
+          "is there an application fee for online applicants?":"The application fee for online applicants is the same as the normal application fee of 60 dollars.",
+          "when is the application closing date and priority date for admissions?":"Application closing and priority date for admissions is februrary 1st for regular decision and November 1st for early action",
+          "are students accepted for terms other than the fall?":"Students can be accepted for terms other than the fall with special permission.",
+          "when are notification of admission decisions to students sent?":"Admission decision for early decision is sent by December 15th. Regular decision is sent by March 15th.",
+          "what is the reply policy for applicants\\xa0":"Applicants must reply to admission decision by May 1. The deadline for housing deposit is not available. ",
+          "are students allowed to postpone enrollment after admission?":"Students can postpone their enrollment after admission",
+          "are early admission of high school students allowed?":"High school students cannot enroll as full-time, first-time,\r\nfirst-year (freshman) students one year or more before high school graduation",
+          "what is the early decision policy?":"Early decision is not allowed.",
+          "what is the early action policy?":"The early action closing date is November 1st and early action notification date is December 15th. Students can still apply to other early action programs after applying for early action at Rose-Hulman."
+       }
+    }
+ ],[
+    {
+       "_id":{
+          "$oid":"64436e29f2166d8fd6b2a6c8"
+       },
+       "subsection":"general",
+       "metadata":{
+          "about":"Cost of undergraduate tuition, room, and board, book and supplies, for undergraduate or freshman. Cost for freshman laptop. The url to Rose-Hulman's net price calculator."
+       },
+       "questionAnswers":{
+          "what is the url of your institution's net price calculator?":"The Url of the net price calculator is : https://prod11gbss8.rose-hulman.edu/BanSS/RHIT_NPCALC.P_Index",
+          "what is the approximate date that the final tuition fee cost or cost of attendance for this year will be available":"The approximate date that the final cost of attendance for this year will be available is April 1st.",
+          "what is the tuition for first-year students?":"Rose-Hulman's tuition for first-year students is $49,479",
+          "what is the tuition for undergraduate students?":"Rose-Hulman's tuition for undergraduate students is $49,479",
+          "what is the required fee for first-year or undergraduate students?":"The cost of required fee for undergraduate students is $1,035",
+          "what is the room and board fee for first-year or undergraduate students?":"The room and board fee for first-year undergraduate students is $15,690",
+          "what is the room fee only for first-year or undergraduate students?":"The room fee for first-year and undergraduate students is $9,441",
+          "what is the board fee only for first-year or undergraduate students?":"The board fee for first-year and undergraduate students is $6,249",
+          "is there any other fee cost for first-year or undergraduate students?":"Other fee cost for undergraduate student includes: Freshman Laptop $2,400 (First Fall Term for freshman only)"
+       }
+    },
+    {
+       "_id":{
+          "$oid":"64436e29f2166d8fd6b2a6ca"
+       },
+       "subsection":"commuterresident",
+       "metadata":{
+          "about":"The estimated cost of books and supplies, or miscellaneous costs for residents (students who live on campus) or commuters. The estimated cost for room and board for commuters. Also includes per credit hour cost. ",
+          "complete sentence?":"Yes"
+       },
+       "questionAnswers":{
+          "what is the cost of book and supplies for residents or students who live on campus?":"The estimated cost of book and supplies for students who live on campus is $1500",
+          "what is the cost of book and supplies for commuters?":"The estimated cost of book and supplies for commuters is $1500",
+          "what is the cost of room only for commuters?":"For commuters not living at home, the room cost is estimated to be  $9,441, for commuter living at home, there is no estimated room cost.",
+          "what is the cost of board only for commuters?":"For commuters living at home, the cost for board it is estimated to be $900, and for commuters not living at home, it is estimated to be $6,249",
+          "how much is other miscellanous cost for residents, or students who live on campus":"Other estimated miscellaneous cost for students who live on campus is $1,557",
+          "what is the estimated amount of other miscellaneous costs for commuters? ":"The estimated amount of miscellanous cost for students who live off campus is $1,557",
+          "how much does a credit cost?":"A per-credit-hour charges $1,444"
+       }
+    },
+    {
+       "_id":{
+          "$oid":"64436e29f2166d8fd6b2a6cc"
+       },
+       "subsection":"policy",
+       "metadata":{
+          "about":"Number of credit a student can take for full time tuition. If tuition change by year of study or undergraduate instructional program",
+          "complete sentence?":"Yes"
+       },
+       "questionAnswers":{
+          "what is the number of credits a student can take for the stated full-time tuition":"The number of credits a student can take for the stated full tuition is from 12 to 18",
+          "does tuition and fee change by year of study?":"Tuition and fee does not change by year of study",
+          "do tuition and fees changes by undergraduate instructional program?":"Tuition and fee do not change by the undergraduate instructional program."
+       }
+    }
+ ],[
+    {
+       "_id":{
+          "$oid":"64436e29f2166d8fd6b2a6be"
+       },
+       "subsection":"academic offering and policy",
+       "metadata":{
+          "about":"Special study programs offered at Rose-Hulman, and disciplinary areas students are required to complete coursework in",
+          "operation-allowed?":"No",
+          "sum-allowed?":"No",
+          "range-allowed?":"No",
+          "percentage-allowed?":"No"
+       },
+       "questionAnswers":{
+          "what special study programs are offered?":"The special study programs offered includes the following: Accelerated program, Cooperative education program, Cross-registration, Double major, Dual enrollment, English as Second Language(ESL), Exchange student program (domestic) , Independent study, and Study abroad",
+          "what are the areas in which students are required to complete some coursework prior to graduation?":"The areas in which all or most students are requried to complete some course work prior to graduation are the following: computer literacy, English(including composition), Humanities, Mathematics, Sciences(biological or physical) and Social science"
+       }
+    }
+ ],[
+    {
+       "_id":{
+          "$oid":"64436e29f2166d8fd6b2a6b9"
+       },
+       "subsection":"statistic",
+       "metadata":{
+          "about":"Number of transfer students applied, admitted and enrolled in general or by gender",
+          "template":"The number of [gender] transfer applicants that are [^action] is <value>",
+          "operation-allowed?":"Yes",
+          "sum-allowed?":"Yes",
+          "range-allowed?":"No",
+          "percentage-allowed?":"No"
+       },
+       "questionAnswers":{
+          "how many high school male transfer students/applicants students applied?":"59",
+          "how many high school male transfer students/applicants are admitted":"30",
+          "how many high school male transfer students//applicants are enrolled?":"9",
+          "how many high school female transfer students applied?":"23",
+          "how many high school female transfer students are admitted":"13",
+          "how many high school female transfer students are enrolled?":"2"
+       }
+    },
+    {
+       "_id":{
+          "$oid":"64436e29f2166d8fd6b2a6bb"
+       },
+       "subsection":"general",
+       "metadata":{
+          "about":"Various transfer applicants requirements, such as what materials and gpa are required for transfer applicants, and the minimum/maximum credit that transfer students must complete to earn a bachelors degree.",
+          "operation-allowed?":"No",
+          "sum-allowed?":"No",
+          "range-allowed?":"No",
+          "percentage-allowed?":"No"
+       },
+       "questionAnswers":{
+          "are transfer students enrolled?":"Rose-Hulman does enroll transfer students",
+          "may transfer students earn advanced standing credit by transferring credits earned from course work completed at other colleges/universities?":"Students may earn advanced standing credit by transferring credit earned from course work completed at other college/university",
+          "at which term may transfer applicants enroll":"Transfer students may enroll during the fall term.",
+          "does a transfer applicant need to have minimum number of credits completed or else they must apply as an entering freshman? if so what is the minimum credit and the unit of measure?":"Transfer students do not need to have minimum number of credit completed",
+          "is high school transcript to required apply for transfer applicants?":"High school transcript is recommended of some for transfer applicants.",
+          "is college transcript required for transfer applicants?":"College transcript is required for transfer applicants",
+          "is essay required for transfer applicants?":"Essays or personal statement is required for transfer applicants.",
+          "is interview  required for transfer applicants?":"Interview is recommended of some to apply for transfer applicants",
+          "is standardized test score required for transfer applicants?":"Standarized test score is not required",
+          "is a statement of good standing required for transfer applicants?":"Statement of good standing from prior institutions is recommended of all transfer applicants.",
+          "what is the minimum high school grade point average required\\xa0for transfer applicants?":"There is no minimum high school gpa requirement for transfer applicants",
+          "what is the minimum college grade point average required for transfer applicants?":"The minimum gpa required of transfer applicants is 3.0",
+          "when are student applications reviewed?":"Transfer applications are reviewed on a rolling basis (year round).",
+          "does an open admission policy apply to transfer students?":"Open admission policy does not apply to transfer students",
+          "are there any additional requirements for transfer students?":"Transfer Students must have a semester of calculus, as well as calculus-based physics and chemistry. ",
+          "what is the lowest grade earn for any course that maybe transferred for credit":"The lowest grade earned from any course that may be transferred for credit is C or 2.0",
+          "what is the maximum number of credit that maybe transferred from a 2-year institution":"The maximum number of credit that maybe tranferred from a 2 year institution is 90 credits",
+          "what is the maximum number of credit that maybe transferred from a 4-year institution":"The maximum number of credit that maybe tranferred from a 4 year institution is 90 credits",
+          "what is the minimum number of credits that transfer students must complete to earn a associates degree":" For associate degree, it is not offered here.",
+          "what is the minimum number of credits that transfer students must complete to earn a bachelor degree":"The maximum number of credits tranfer student must complete to earn bachelor degree is 45 credits",
+          "are there any additional transfer credit policies?":"Credits to be transferred are reviewed by each department and the final decision to award credit is up to the appropriate department chairs."
+       }
+    }
+ ],[
+    {
+       "_id":{
+          "$oid":"64436e29f2166d8fd6b2a6c1"
+       },
+       "subsection":"categoryfreshman",
+       "metadata":{
+          "about":"Percentage of full-time and part-time first-year freshman students who are from out of state, who joined fraternities, or sororities, live in college-owned housing, live off campus, or are 25 years or older. The average age of full-time and part-time freshman students",
+          "operation-allowed?":"No",
+          "sum-allowed?":"No",
+          "range-allowed?":"No",
+          "percentage-allowed?":"No"
+       },
+       "questionAnswers":{
+          "what is the percentage of full-time and part-time first year first time freshman students who are out of state?":"The percentage of full-time and part-time first-year, first-time freshman students who are out of state is 70.7%",
+          "what is the percentage of full-time and part-time first year first time students who joined fraternities?":"The percentage of full-time and part-time first year first time freshman students who joined fraternities is 32.5%",
+          "what is the percentage of full-time and part-time first year first time freshman students who joined sororities?":"The percentage of full-time and part-time first-year, first-time freshman students who joined sororities is 29.1%",
+          "what is the percentage of full-time and part-time first year first time freshman students who live on campus or in college owned, operated, or affiliated housing?":"The percentage of full-time and part-time first-year first-time freshman students who live in college-owned, operated or affiliated housing is 93.0%",
+          "what is the percentage of full-time and part-time first year first time freshman students who live off campus or commute?":"The percentage of full-time and part-time first-year first-time students who live off campus or commute is 7.0%",
+          "what is the percentage of full-time and part-time first year first time freshman students who are age 25 and older?":"The percentage of full-time and part-time first year first time freshman students who are age 25 and older is 0.2%",
+          "what is the average age of only full-time first year first time freshman students?":"The average age of full-time freshman students is 18.1",
+          "what is the average age of both full-time and part-time first year first time freshman students":"The average age of all (full-time and part-time) freshman students is 18.1"
+       }
+    },
+    {
+       "_id":{
+          "$oid":"64436e29f2166d8fd6b2a6c3"
+       },
+       "subsection":"categoryundergrad",
+       "metadata":{
+          "about":"Percentage of full-time and part-time undergraduates who are from out of state, who joined fraternities, or sororities, live in college-owned housing, live off campus, or are 25 years or older. The average age of full-time and part-time undergraduate ",
+          "operation-allowed?":"No",
+          "sum-allowed?":"No",
+          "range-allowed?":"No",
+          "percentage-allowed?":"No"
+       },
+       "questionAnswers":{
+          "what is the percentage of full-time and part-time undergraduate students who are out of state?":"The percentage of full-time and part-time first-year, first-time freshman students who are out of state is 66.1%",
+          "what is the percentage of full-time and part-time undergraduate students who joined fraternities?":"The percentage of full-time and part-time undergraduate students who joined fraternity is 22.9%",
+          "what is the percentage of full-time and part-time undergraduate students who joined sororities":"The percentage of full-time and part-time undergraduate students who join sororities is 35.5%",
+          "what is the percentage of full-time and part-time undergraduate students who live on campus or in college owned, operated, or affiliated housing?":"The percentage of full-time and part-time undergraduate students who live in college-owned operated or affiliated housing is 57.8%",
+          "what is the percentage of full-time and part-time undergraduate students who live off campus or commute?":"The percentage of full-time and part-time undergraduate students who live off campus or commute is 42.2%",
+          "what is percentage of full-time and part-time undergraduate students who are age 25 and older":"The percentage of full-time and part-time undergraduate students who are age 25 and older is 0.4%",
+          "what is the average age of only full-time undergraduate students?":"The average age of full-time undergraduate student is 19.7",
+          "what is the average age of both full-time and part-time undergraduate students":"The average age of all (full-time and part-time) undergraduate students is 18.1"
+       }
+    },
+    {
+       "_id":{
+          "$oid":"64436e29f2166d8fd6b2a6c5"
+       },
+       "subsection":"offered",
+       "metadata":{
+          "about":"The extracurricular activities or clubs Rose-Hulman offers, the different types of rotc offered at Rose-Hulman and the type of college owned/affiliated housing available at Rose-Hulman",
+          "operation-allowed?":"No",
+          "sum-allowed?":"No",
+          "range-allowed?":"No",
+          "percentage-allowed?":"No"
+       },
+       "questionAnswers":{
+          "what extracurricular activities are offered?":"The activities and clubs offered include the following: campus ministries, choral groups, concert bands, dance, drama/theater, international student organizations, jazz band, music ensembles, musical theater, pep band, radio station, student governement, student newspaper, and symphony orchestra",
+          "is army rotc offered ?":"Army ROTC is offerd on campus.",
+          "is naval rotc offered?":"Naval ROTC is not offered.",
+          "is air force rotc offered?":"Air Force ROTC is offered on campus.",
+          "what type of college owned, operated, or affiliated housing is available?":"The type of college-owned, -operated, or -affiliated housing available include the following: coed dorms, men's dorms, apartment for single students, fraternity/sorority housing, and theme housing"
+       }
+    }
+ ],[
+    {
+       "_id":{
+          "$oid":"64436e29f2166d8fd6b2a68a"
+       },
+       "subsection":"2014",
+       "metadata":{
+          "about":"The cohort of students who enrolled at Rose-Hulman in 2014, and graduated within four, five, or six year and graduation rate for those years. You can also ask all of the things paired with financial aid in terms of student who received pell-grant, student who received stafford loan but not pell grant and student who received neither.",
+          "operation-allowed?":"No",
+          "sum-allowed?":"No",
+          "range-allowed?":"No",
+          "percentage-allowed?":"No",
+          "complete sentence":"Yes"
+       },
+       "questionAnswers":{
+          "how many high school students in the initial cohort were recipients of a federal pell grant?":"There were 83 students in the initial 2014 cohort who were recipients of a Federal Pell Grant.",
+          "how many high school of those students in the initial cohort were recipients of only federal subsidized stafford loan":"Out of the initial 2014 cohort, 199 students were recipients of only federal Subsidized Stafford Loan.",
+          "how many high school of those students in the initial cohort did not receive pell grant or subsidized stafford loan":"300 students in the 2014 initial cohort did not receive either Pell Grant or Subsidized Stafford Loan."
+       }
+    },
+    {
+       "_id":{
+          "$oid":"64436e29f2166d8fd6b2a68c"
+       },
+       "subsection":"graduation 2014",
+       "metadata":{
+          "operation-allowed?":"No",
+          "sum-allowed?":"No",
+          "range-allowed?":"No",
+          "percentage-allowed?":"No",
+          "complete sentence":"Yes"
+       },
+       "questionAnswers":{
+          "how many high school students in the initial cohort graduated within four years and were recipients of a federal pell grant?":"Out of the initial 2014 cohort, 61 students who graduated within four years were recipients of a Federal Pell Grant.",
+          "how many high school students in the initial cohort who graduated within four years were recipients of only a subsidized stafford loan?":"144 students who graduated within four years were recipients of only a Subsidized Stafford Loan in the 2014 cohort",
+          "how many high school students in the initial cohort who graduated within four years but did not receive a pell grant or a subsidized stafford loan?":"220 students who graduated within four years did not receive either Pell Grant or Subsidized Stafford Loan in the 2014 cohort.",
+          "how many high school students  in the initial cohort who graduated in between four and five years were recipients of a federal pell grant?":"In the initial 2015 cohort, 7 students who graduated between four and five years were recipients of a Federal Pell Grant in the 2014 cohort.",
+          "how many high school students  in the initial cohort who graduated in between four and five years were recipients of only a subsidized stafford loan?":"Only 9 students who graduated between four and five years were recipients of only a Subsidized Stafford Loan in the 2014 cohort.",
+          "how many high school students in the initial cohort who graduated in between four and five years did not receive a pell grant or a subsidized stafford loan?":"33 students who graduated between four and five years did not receive either Pell Grant or Subsidized Stafford Loan in the 2014 cohort.",
+          "how many high school students who graduated between five and six years were recipients of a federal pell grant?":"Only 1 student who graduated between five and six years was a recipient of a Federal Pell Grant in the 2014 cohort.",
+          "how many high school students who graduated between five and six years were recipients of only subsidized stafford loan?":"5 students who graduated between five and six years were recipients of only a Subsidized Stafford Loan in the 2014 cohort.",
+          "how many high school students in the initial cohort who graduated in between five and six years did not receive a pell grant or a subsidized stafford loan?":"3 students who graduated between five and six years did not receive either Pell Grant or Subsidized Stafford Loan in the 2014 cohort.",
+          "what is the total six year graduation rate and six year graduation rate for students who received a federal pell grant, who only received a subsidized stafford loan and who received neither aid respectively?":"The six year graduation rate in the 2014 for students who received pell grant is 83%, for students who received only subsidized stafford loan, it is 79% and for students who recived neither is 85.6% and the total six year graduation rate for 2014 cohort is 83% "
+       }
+    },
+    {
+       "_id":{
+          "$oid":"64436e29f2166d8fd6b2a68e"
+       },
+       "subsection":"exemptions 2014",
+       "metadata":{
+          
+       },
+       "questionAnswers":{
+          "how many high school exempted student were recipients of a federal pell grant?":"None of the exempted students were recipients of a Federal Pell Grant in the 2014 cohort.",
+          "how many high school of exempted students were recipients of only subsidized stafford loan?":"No exempted students were recipients of only Subsidized Stafford Loan in the 2014 cohort.",
+          "how many high school of exempted student did not receive pell grant or subsidized stafford loan":"One exempted student did not receive either Pell Grant or Subsidized Stafford Loan in the 2014 cohort.",
+          "how many high school students in the final cohort after exemptions, were recipients of a federal pell grant?":"In the final 2014 cohort after exemptions, 83 students were recipients of a Federal Pell Grant.",
+          "how many high school students in the final cohort after exemptions, were recipients of only a subsidized stafford loan?":"Out of the final 2014 cohort after exemptions, 199 students were recipients of only a Subsidized Stafford Loan.",
+          "how many high school students in the final cohort after exemptions did not receive a pell grant or a subsidized stafford loan?":"In the final 2014 cohort after exemptions, 299 students did not receive either Pell Grant or Subsidized Stafford Loan."
+       }
+    },
+    {
+       "_id":{
+          "$oid":"64436e29f2166d8fd6b2a690"
+       },
+       "subsection":"retention 2019",
+       "metadata":{
+          "about":"The retention rate of full-time bachelor’s (or equivalent) degree-seeking undergraduate students who entered Rose-Hulman as\r\nfreshmen.",
+          "complete sentence":"Yes"
+       },
+       "questionAnswers":{
+          "what is the retention rate for 2019 cohort?":"The retention rate for 2019 cohort is 89.7% (445/496)"
+       }
+    }
+ ],[
+    {
+       "_id":{
+          "$oid":"64436e29f2166d8fd6b2a6a8"
+       },
+       "subsection":"sat comp range",
+       "metadata":{
+          "about":"Percentage of freshman students with sat composite score within a certain number or more than that number. For example: percentage of freshman student with sat composite score less than or more than 1500(or any arbitrary value)",
+          "template":"The percentage of freshman students with sat composite score (xor {between [^number] and [^number]} {[^range] [^number]}) is <value> ",
+          "operation-allowed?":"Yes",
+          "sum-allowed?":"No",
+          "range-allowed?":"Yes",
+          "percentage-allowed?":"No"
+       },
+       "questionAnswers":{
+          "what is the percentage of freshman students with sat score in the 1400-1600 range for sat composite":"39.7%",
+          "what is the percentage of freshman students with sat score in the 1200-1399 range for sat composite":"50%",
+          "what is the percentage of freshman students with sat score in the 1000-1199 range for sat composite\\xa0\\xa0\\xa0\\xa0":"10.3%",
+          "what is the percentage of freshman students with sat score in the 800-999 range for sat composite":"0%",
+          "what is the percentage of freshman students with sat score in the 600-799 range for sat composite":"0%",
+          "what is the percentage of freshman students with sat score in the 400-599 range for sat composite":"0%"
+       }
+    },
+    {
+       "_id":{
+          "$oid":"64436e29f2166d8fd6b2a6aa"
+       },
+       "subsection":"sat sub range ",
+       "metadata":{
+          "about":"Percentage of freshman students who has sat math, or evidence-based reading and writing scores within a certain number or more than that number",
+          "template":"The percentage of freshman students with sat (xor [^test_component] [^subject]) score (xor {between [^number] and [^number]} {[^range] [^number]}) is <value> ",
+          "operation-allowed?":"Yes",
+          "sum-allowed?":"No",
+          "range-allowed?":"Yes",
+          "percentage-allowed?":"No"
+       },
+       "questionAnswers":{
+          "what is the percentage of freshman students with sat score in the 700-800 range for sat evidence-based reading and writing":"27.1%",
+          "what is the percentage of freshman students with sat score in the 700-800 range for sat math":"54%",
+          "what is the percentage of freshman students with sat score in the 600-699 range for sat evidence-based reading and writing":"54%",
+          "what is the percentage of freshman students with sat score in the 600-699 range for sat math":"38.3%",
+          "what is the percentage of freshman students with sat score in the 500-599 range for sat evidence-based reading and writing":"18.9%",
+          "what is the percentage of freshman students with sat score in the 500-599 range for sat math":"7.7%",
+          "what is the percentage of freshman students with sat score in the 400-499 range for sat evidence-based reading and writing":"0%",
+          "what is the percentage of freshman students with sat score in the 400-499 range for sat math":"0%",
+          "what is the percentage of freshman students with sat score in the 300-399 range for sat evidence-based reading and writing":"0%",
+          "what is the percentage of freshman students with sat score in the 300-399 range for sat math":"0%",
+          "what is the percentage of freshman students with sat score in the 200-299 range for sat evidence-based reading and writing":"0%",
+          "what is the percentage of freshman students with sat score in the 200-299 range for sat math":"0%"
+       }
+    },
+    {
+       "_id":{
+          "$oid":"64436e29f2166d8fd6b2a6ac"
+       },
+       "subsection":"act comp range",
+       "metadata":{
+          "about":"Percentage of freshman students who has sat composite scores within a certain number or more than that number. ",
+          "template":"The percentage of freshman students with act composite score (xor {between [^number] and [^number]} {[^range] [^number]}) is <value> ",
+          "operation-allowed?":"Yes",
+          "sum-allowed?":"No",
+          "range-allowed?":"Yes",
+          "percentage-allowed?":"No"
+       },
+       "questionAnswers":{
+          "what is the percentage of freshman students with act score in the range 30-36 for act composite":"63.2%",
+          "what is the percentage of freshman students with act score in the range 24-29 for act composite":"30.7%",
+          "what is the percentage of freshman students with act score in the range 18-23 for act composite":"6.1%",
+          "what is the percentage of freshman students with act score in the range 12-17 for act composite":"0%",
+          "what is the percentage of freshman students with act score in the range 6-11 for act composite":"0%",
+          "what is the percentage of freshman students with act composite score below 6":"0%"
+       }
+    },
+    {
+       "_id":{
+          "$oid":"64436e29f2166d8fd6b2a6ae"
+       },
+       "subsection":"act sub range",
+       "metadata":{
+          "about":"Percentage of freshman students who has act math, or english scores within a certain number or more than that number",
+          "template":"The percentage of freshman students with act (xor [test_component] [subject]) score (xor {between [^number] and [^number]} {[^range] [^number]}) is <value> ",
+          "operation-allowed?":"Yes",
+          "sum-allowed?":"No",
+          "range-allowed?":"Yes",
+          "percentage-allowed?":"No"
+       },
+       "questionAnswers":{
+          "what is the percentage of freshman students with act score in the range 30-36 for act english":"60.1%",
+          "what is the percentage of freshman students with act score in the range 30-36 for act math":"61.5%",
+          "what is the percentage of freshman students with act score in the range 24-29 for act english":"29.1%",
+          "what is the percentage of freshman students with act score in the range 24-29 for act math":"37.5%",
+          "what is the percentage of freshman students with act score in the range 18-23 for act english":"10.1%",
+          "what is the percentage of freshman students with act score in the range 18-23 for act math":"1.0%",
+          "what is the percentage of freshman students with act score in the range 12-17 for act english":"0.7%",
+          "what is the percentage of freshman students with act score in the range 12-17 for act math":"0%",
+          "what is the percentage of freshman students with act score in the range 6-11 for act english":"0%",
+          "what is the percentage of freshman students with act score in the range 6-11 for act math":"0%",
+          "what is the percentage of freshman students with act score in the range below 6 for act english":"0%",
+          "what is the percentage of freshman students with act score below 6 for act math":"0%"
+       }
+    },
+    {
+       "_id":{
+          "$oid":"64436e29f2166d8fd6b2a6b0"
+       },
+       "subsection":"submit",
+       "metadata":{
+          "about":"Percentage or number of students who submitted ACT or SAT",
+          "operation-allowed?":"No",
+          "sum-allowed?":"No",
+          "range-allowed?":"No",
+          "percentage-allowed?":"No",
+          "complete-sentence?":"Yes"
+       },
+       "questionAnswers":{
+          "what is the percent of freshman students submitting sat":"The percent of freshman students submitting SAT is 65.9%",
+          "what is the percent of freshman students submitting act":"The percent of freshman students submitting ACT is 55.7%",
+          "how many high school freshman student submitted act":"The numer of freshman student that submitted ACT is 350",
+          "how many high school freshman student submitted sat":"The number of freshman student who submitted SAT is 296"
+       }
+    },
+    {
+       "_id":{
+          "$oid":"64436e29f2166d8fd6b2a6b2"
+       },
+       "subsection":"percentile",
+       "metadata":{
+          "about":"The 25th, 50th, 75th percentile score and also mean score for ACT compsite, math, and english, or for SAT composite math, and evidence-based reading and writing. ",
+          "template":"The (xor [^aggregation] [^percentile])  [^standarized_test] [^test_component] score for incoming freshmen is <value>",
+          "operation-allowed?":"No",
+          "sum-allowed?":"No",
+          "range-allowed?":"No",
+          "percentage-allowed?":"No",
+          "complete sentence?":"No"
+       },
+       "questionAnswers":{
+          "what is the 25th percentile score for sat composite for incoming freshman":"1270",
+          "what is the 25th percentile score for sat evidence-based reading and writing for incoming freshman":"610",
+          "what is the 25th percentile score for sat math for incoming freshman":"650",
+          "what is the 25th percentile score for sat essay for incoming freshman":"n/a",
+          "what is the 50th percentile score for sat composite for incoming freshman":"1355",
+          "what is the 50th percentile score for sat evidence-based reading and writing for incoming freshman":"650",
+          "what is the 50th percentile score for sat math for incoming freshman":"700",
+          "what is the 50th percentile score for sat essay for incoming freshman ":"n/a",
+          "what is the 75th percentile score for sat composite for incoming freshman":"1440",
+          "what is the 75th percentile score for\\xa0 sat evidence-based reading and writing for incoming freshman":"700",
+          "what is the 75th percentile score for sat math for incoming freshman":"760",
+          "what is the mean score for sat composite for incoming freshman":"1352",
+          "what is the mean score for sat evidence-based reading and writing for incoming freshman":"652",
+          "what is the mean score for sat math for incoming freshman":"700",
+          "what is the mean score for sat essay for incoming freshman":"n/a",
+          "what is the 25th percentile score for act composite for incoming freshman":"27",
+          "what is the 25th percentile score for act math for incoming freshman":"28",
+          "what is the 25th percentile score for act english for incoming freshman":"26",
+          "what is the 25th percentile score for act writing for incoming freshman":" n/a",
+          "what is the 50th percentile score for act composite for incoming freshman":"31",
+          "what is the 50th percentile score for act math for incoming freshman":"31",
+          "what is the 50th percentile score for act english for incoming freshman":"31.5",
+          "what is the 50th percentile score for act writing for incoming freshman":"n/a",
+          "what is the 75th percentile score for act composite for incoming freshman":"33",
+          "what is the 75th percentile score for act math for incoming freshman":"34",
+          "what is the 75th percentile score for act english for incoming freshman":"35",
+          "what is the 75th percentile score for act writing for incoming freshman":"n/a",
+          "what is the mean score for act composite for incoming freshman":"30",
+          "what is the mean score for act english for incoming freshman":"30",
+          "what is the mean score for act math for incoming freshman":"30",
+          "what is the mean score for act writing for incoming freshman":"n/a"
+       }
+    },
+    {
+       "_id":{
+          "$oid":"64436e29f2166d8fd6b2a6b4"
+       },
+       "subsection":"gpa",
+       "metadata":{
+          "about":"The percentage of freshman with gpa within a certain number of more than that number, or both.",
+          "template":"The percentage of freshman students with gpa (xor {[^range] [^number] and [^number]} {[^range] [^number]}) is <value>",
+          "operation-allowed?":"Yes",
+          "sum-allowed?":"No",
+          "range-allowed?":"Yes",
+          "percentage-allowed?":"No"
+       },
+       "questionAnswers":{
+          "what is the percentage of freshman students with gpa within 4.00?":"60.1% (303/504)",
+          "what is the percentage of freshman students with gpa between 3.75 and 3.99?":"22.6% (114/504)",
+          "what is the percentage of freshman students with gpa between 3.50 and 3.74?":"11.5% (58/504)",
+          "what is the percentage of freshman students with gpa between 3.25 and 3.49?":"4.4% (22/504)",
+          "what is the percentage of freshman students with gpa between 3.00 and 3.24?":"1.2% (6/504)",
+          "what is the percentage of freshman students with gpa between 2.50 and 2.99?":"0.2% (1/504)",
+          "what is the percentage of freshman students with gpa between 2.00 and 2.49?":"0%",
+          "what is the percentage of freshman students with gpa between 1.00 and 1.99?":"0%",
+          "what is the percentage of freshman students with gpa between below 1.00?":"0%",
+          "what is the average high school gpa for freshman students who submitted gpa?":" The average high school gpa for freshman student who submitted gpa is 4.02",
+          "  what is the percentage of freshman students who submitted gpa?":"The percentage of freshman students who submitted gpa is 94.9 % (504/531)"
+       }
+    },
+    {
+       "_id":{
+          "$oid":"64436e29f2166d8fd6b2a6b6"
+       },
+       "subsection":"class rank",
+       "metadata":{
+          "about":"The percentage of freshman who graduated in the top tenth, top quarter, bottom half or bottom quarter of their high school graduating class  and the percentage of students who submitted their class rank.  ",
+          "template":"The percentage of freshman students in the [class_rank] of their high school graduating class is <value>?",
+          "operation-allowed?":"No",
+          "sum-allowed?":"No",
+          "range-allowed?":"No",
+          "percentage-allowed?":"No"
+       },
+       "questionAnswers":{
+          "what is the percentage of freshman students in the top tenth of their high school graduating class?":"66%",
+          "what is the percentage of freshman students in the top quarter of their high school graduating class?":"91%",
+          "what is the percentage of freshman students in the top half of their high school graduating class?":"99%",
+          "what is the percentage of freshman students in the bottom half of their high school graduating class?":"1%",
+          "what is the percentage of freshman students in the bottom quarter of their high school graduating class?":"0%",
+          "what is the percentage of freshman students who submitted high school class rank?":"46%"
+       }
+    }
+ ],[
+    {
+       "_id":{
+          "$oid":"64436e29f2166d8fd6b2a683"
+       },
+       "subsection":"general",
+       "metadata":{
+          "about":"Number of students enrolled. This can vary from male or female students, undergraduate or graduate, degree-seeking or non-degree-seeking, full-time and part-time, first-year or non-first-year, and first-time and non-first-time, and freshman and non-freshman and combinations of these variations.",
+          "template":"The (xor [*percent] number) of [gender] [is_first_time] [is_first_year] [undergraduate_grade_level] [enrollment_status] [degree-goal] [student_level] students enrolled is <value>",
+          "operation-allowed?":"Yes",
+          "sum-allowed?":"Yes",
+          "range-allowed?":"Yes",
+          "percentage-allowed?":"Yes",
+          "denominator-question":"how many high school students are enrolled?"
+       },
+       "questionAnswers":{
+          "how many high school male full-time undergraduate degree-seeking first-time freshmen students are enrolled?":"387",
+          "how many high school female full-time undergraduate degree-seeking first-time freshmen students are enrolled?":"143",
+          "how many high school male part-time undergraduate degree-seeking first-time freshmen students are enrolled?":"1",
+          "how many high school female part-time undergraduate degree-seeking first-time freshmen students are enrolled?":"0",
+          "how many high school male full-time undergraduate non-first-time freshman first-year students are enrolled?":"9",
+          "how many high school female full-time undergraduate non-first-time freshman first-year students are enrolled?":"2",
+          "how many high school male part-time undergraduate non-first-time freshman first-year students are enrolled?":"0",
+          "how many high school female part-time undergraduate non-first-time freshman first-year students are enrolled?":"0",
+          "how many high school male full-time undergraduate degree-seeking non-freshmen students are enrolled?":"1082",
+          "how many high school female full-time undergraduate degree-seeking non-freshmen students are enrolled?":"329",
+          "how many high school male part-time undergraduate degree-seeking non-freshmen student are enrolled?":"15",
+          "how many high school female part-time undergraduate degree-seeking non-freshmen student are enrolled?":"1",
+          "how many high school male full-time undergraduate non-degree-seeking students are enrolled?":"0",
+          "how many high school female full-time undergraduate non-degree-seeking students are enrolled?":"0",
+          "how many high school male part-time undergraduate non-degree-seeking students are enrolled?":"2",
+          "how many high school female part-time undergraduate non-degree-seeking students are enrolled?":"1",
+          "how many high school male full-time graduate degree-seeking first-time students are enrolled?":"3",
+          "how many high school female full-time graduate degree-seeking first-time students are enrolled?":"0",
+          "how many high school male part-time graduate degree-seeking first-time students are enrolled?":"2",
+          "how many high school female part-time graduate degree-seeking first-time students are enrolled?":"1",
+          "how many high school male full-time graduate degree-seeking non-first-time students are enrolled?":"6",
+          "how many high school female full-time graduate degree-seeking non-first-time students are enrolled?":"1",
+          "how many high school male part-time graduate degree-seeking non-first-time students are enrolled?":"5",
+          "how many high school female part-time graduate degree-seeking non-first-time students are enrolled?":"0",
+          "how many high school male full-time graduate non-degree-seeking students are enrolled?":"0",
+          "how many high school female full-time graduate non-degree-seeking students are enrolled?":"0",
+          "how many high school male part-time graduate non-degree-seeking students are enrolled?":"0",
+          "how many high school female part-time graduate non-degree-seeking students are enrolled?":"0"
+       }
+    },
+    {
+       "_id":{
+          "$oid":"64436e29f2166d8fd6b2a685"
+       },
+       "subsection":"race undergraduate",
+       "metadata":{
+          "about":"The number of undergraduate degree-seeking students enrolled by race and nonresident-alien(immigration status). This includes students enrolled who are either Hispanics, African American, Caucasian, or Pacific Islander, have two or more races or whose race is unknown.",
+          "template":"The  (xor [*percent] number) of degree-seeking undergraduate students enrolled    (xor {of [^*unknown] race} (xor {who are [^race]} {nonresidence alien})) is  <value>",
+          "operation-allowed?":"Yes",
+          "sum-allowed?":"No",
+          "range-allowed?":"No",
+          "percentage-allowed?":"Yes",
+          "denominator-question":"how many high school degree-seeking undergraduate students are enrolled?"
+       },
+       "questionAnswers":{
+          "how many high school degree-seeking undergraduate nonresident aliens students are enrolled?":"226",
+          "how many high school degree-seeking undergraduate hispanics students are enrolled?":"104",
+          "how many high school degree-seeking undergraduate african americans students are enrolled?":"93",
+          "how many high school degree-seeking undergraduate caucasian students are enrolled?":"1295",
+          "how many high school degree-seeking undergraduate american indians students are enrolled?":"3",
+          "how many high school degree-seeking undergraduate asians students are enrolled?":"127",
+          "how many high school degree-seeking undergraduate pacific islanders students are enrolled?":"0",
+          "how many high school degree-seeking undergraduate students of two or more races are enrolled?":"99",
+          "how many high school degree-seeking undergraduate students of unknown race are enrolled?":"22"
+       }
+    },
+    {
+       "_id":{
+          "$oid":"64436e29f2166d8fd6b2a687"
+       },
+       "subsection":"race first time year",
+       "metadata":{
+          "about":"Enrollment by race and nonresident-alien(immigration status) for first-time first-year students.",
+          "template":"The (xor [*percent] number) of degree-seeking first-time first-year students enrolled (xor {of [^*unknown] race} (xor {who are [^race]} {nonresidence alien})) is <value>",
+          "operation-allowed?":"Yes",
+          "sum-allowed?":"No",
+          "range-allowed?":"No",
+          "percentage-allowed?":"Yes",
+          "denominator-question":"how many high school degree-seeking first-time first-year students are enrolled?"
+       },
+       "questionAnswers":{
+          "how many high school degree-seeking first-time first-year nonresident aliens students are enrolled?":"36",
+          "how many high school degree-seeking first-time first-year hispanics students are enrolled?":"34",
+          "how many high school degree-seeking first-time first-year african americans students are enrolled?":"31",
+          "how many high school degree-seeking first-time first-year white students are enrolled?":"356",
+          "how many high school degree-seeking first-time first-year american indians students are enrolled?":"1",
+          "how many high school degree-seeking first-time first-year asians students are enrolled?":"36",
+          "how many high school degree-seeking first-time first-year pacific islanders students are enrolled?":"0",
+          "how many high school degree-seeking first-time first-year students of two or more races are enrolled?":"31",
+          "how many high school degree-seeking first-time first-year students of unknown race are enrolled?":"6"
+       }
+    }
+ ],[
+    {
+       "_id":{
+          "$oid":"64436e29f2166d8fd6b2a6cf"
+       },
+       "subsection":"type",
+       "metadata":{
+          "about":"Rose-Hulman's policy regarding institutional scholarship and grant aid for undergraduate degree-seeking nonresident\r\naliens. Financial aid forms required to be submitted by domestic or non-resident alien financial aid applicants. Deadline for financial applications. Priority date, Reply date and notification date for financial aid. The type of financial aid loan and scholarship or grants available to undergraduate students. The criteria used in awarding institutional aid.",
+          "complete sentence?":"Yes"
+       },
+       "questionAnswers":{
+          "what is your institution’s policy regarding institutional scholarship and grant aid for undergraduate degree-seeking nonresident\r\naliens?":"Institutional non-need-based scholarship or grant aid is available. There are 220 undergraduate degree-seeking nonresident took aid. Average dollar amount is 7,453 dollars, the amount is  1,647,183 dollars",
+          "what forms nonresident alien first-year financial aid applicants must fill out and submit for financial aid?":"First-year financial aid applicants who are Nonresident Aliens must submit International Student’s Certification of Finances",
+          "what forms domestic first-year financial aid applicants must fill out and submit for financial aid?":"The financial aid forms domestic first-year (freshman) financial aid applicants must submit is FAFSA",
+          "what is the priority date for filling out and submitting required financial-aid forms for first-year students?":"Priority date for filing required financial aid forms: March 10. ",
+          "is there any deadline for first year students filing out and submitting required financial-aid forms":"There is no deadline for filing the required financial-aid form for first-year students. (Applications are processed on a rolling basis)",
+          "what is the notification date for first-year students apply for financial-aid ?":"Students notified on or about (date): January 15 (early action) - March 15 (regular decision). Students notified on a rolling basis: No",
+          "what is the reply date for first-year students?":"Students must reply by May 1 after receiving their financial aid award letter.",
+          "what kinds of financial-aid loan is avaliable to undergraduate students?":"The type of financial-aid loan available to undergraduate students include: Direct Subsidized Stafford Loans, Direct Unsubsidized Stafford Loans, Direct PLUS Loans, and Federal Perkins Loans",
+          "what kinds of financial-aid scholarship or grants is avaliable to undergraduate students?":"Financial aid scholarship or grants available to undergraduate students include the following: Federal Pell, SEOG, State scholarships/grants, Private scholarships, College/university scholarship or grant aid from institutional funds",
+          "please list all critieria used in awarding institutional aid.":"The criteria used in awarding institutional aid include the following: Academics(Non-need, need-based), ROTC (Non-need), Minority Status(Non-need, Need-based), State/District residency(Need-Based)"
+       }
+    },
+    {
+       "_id":{
+          "$oid":"64436e29f2166d8fd6b2a6d1"
+       },
+       "subsection":"awarded",
+       "metadata":{
+          "about":"Amount of non-need-based or need-based federal, state, or institutional scholarships or grants, awarded to students. The amount of need-based or non-need-based state or federal self-help work study awarded to students. The amount of need-based or non-need-based athletic awards, parent loan, tuition waiver awarded to students.",
+          "operation-allowed?":"No",
+          "sum-allowed?":"No",
+          "range-allowed?":"No",
+          "percentage-allowed?":"No",
+          "documentation-of-change":"Aid related to CARES Act or unique to the COVID-19 pandemic are not included in financial aid calculations.",
+          "complete sentence?":"Yes"
+       },
+       "questionAnswers":{
+          "which needs-analysis methodology does your institution use in awarding institutional aid?":"Rose-Hulman uses federal methodology in awarding institutional aid.",
+          "what is the amount of need-based federal scholarship or grants awarded to students?":"The amount of need-based federal scholarship or grants awarded to students is $1355304.",
+          "what is the amount of non-need-based federal scholarship or grants awarded to students?":"The amount of non-need-based federal scholarship or grants awarded to students is $0.",
+          "what is the amount of need-based state scholarship or grants awarded to students?":"The amount of need-based state scholarship or grants awarded to students is $856068.",
+          "what is the amount of non-need-based state scholarship or grants awarded to students?":"The amount of non-need-based state scholarship or grants awarded to students is $8748.",
+          "what is the amount of need-based institutional scholarship or grants awarded to students?":"The amount of need-based institutional scholarship or grants awarded to students is $34630806.",
+          "what is the amount of non-need-based institutional scholarship or grants awarded to students?":"The amount of non-need-based institutional scholarship or grants awarded to students is $13098841.",
+          "what is the amount of need-based scholarship or grants from external sources awarded to students?":"The amount of need-based scholarship or grants from external sources awarded to students is $0.",
+          "what is the amount of non-need-based scholarship or grants from external sources awarded to students?":"The amount of non-need-based scholarship or grants from external sources awarded to students is $738685.",
+          "what is the amount of need-based self-help student loan awarded to students?":"The amount of need-based self-help student loan awarded to students is not provided.",
+          "what is the amount of non-need-based self-help student loan awarded to students?":"The amount of non-need-based self-help student loan awarded to students is not provided.",
+          "what is the amount of need-based self-help federal work study awarded to students?":"The amount of need-based self-help federal work study awarded to students is $771042.",
+          "what is the amount of non-need-based self-help federal work study awarded to students?":"The amount of non-need-based self-help federal work study awarded to students is $0.",
+          "what is the amount of need-based state and other self-help work study awarded to students?":"The amount of need-based state and other self-help work study awarded to students is $0.",
+          "what is the amount of non-need-based state and other self-help work study awarded to students?":"The amount of non-need-based state and other self-help work study awarded to students is $0.",
+          "what is the amount of need-based parent loans awarded to students?":"The amount of need-based parent loans awarded to students is $4938549.",
+          "what is the amount of non-need-based parent loans awarded to students?":"The amount of non-need-based parent loans awarded to students is $375919.",
+          "what is the amount of need-based tuition waiver aid awarded to students?":"The amount of need-based tuition waiver aid awarded to students is not available (n/a).",
+          "what is the amount of non-need-based tuition waiver aid awarded to students?":"The amount of non-need-based tuition waiver aid awarded to students is not available (n/a).",
+          "what is the amount of need-based athletic award awarded to students?":"The amount of need-based athletic award awarded to students is not available (n/a).",
+          "what is the amount of non-based athletic award awarded to students?":"The amount of non-based athletic award awarded to students is not available (n/a)."
+       }
+    },
+    {
+       "_id":{
+          "$oid":"64436e29f2166d8fd6b2a6d3"
+       },
+       "subsection":"awarded freshman",
+       "metadata":{
+          "about":"Various statistics on financial aid, including the number of degree-seeking, full-time freshman students who applied for need-based financial aid. The number of freshmen who were determined to have financial aid. The number of freshmen who were awarded any need-based or non-need-based scholarship or grants and need-based self-help aid. The number of freshmen whose financial need was fully met. The average amount of financial aid package, need-based scholarships or grants, need-based self-help, or loans, awarded to freshman students. The average amount of non-need-based institutional scholarships or grants awarded o freshman students who had no financial need. The number of freshman students who were awarded a non-needed-based institutional athletic scholarship or grant and the average amount of such aid awarded. All information is for full-time freshman students.",
+          "operation-allowed?":"No",
+          "sum-allowed?":"No",
+          "range-allowed?":"No",
+          "percentage-allowed?":"No",
+          "documentation-of-change":"Aid related to CARES Act or unique to the COVID-19 pandemic are not included in financial aid calculations.",
+          "complete sentence?":"Yes"
+       },
+       "questionAnswers":{
+          "what is the number of degree-seeking first-time full-time freshman students who applied for need-based financial aid":"The number of degree-seeking full-time full-time freshman students who applied for need-based financial aid is 466",
+          "what is the number of\\xa0 degree-seeking first-time full-time freshman students that applied for need-based financial aid and were determined to have financial need":"The number of degree-seeking first-time full-time freshman students that applied for need-based aid and were determined to have financial need is 360",
+          "what is the number of degree-seeking first-time full-time freshman students who were determined to have financial need and were awarded any financial aid.":" The number of degree-seeking first-time full-time freshman students who were determined to have financial need and were awarded any financial aid is 360",
+          "what is the number of degree-seeking first-time full-time freshman students who were awarded any need-based scholarship or grant aid?":"The number of degree-seeking first-time full-time freshman students who were awarded any need-based scholarship or grant aid is 357",
+          "what is the number of degree-seeking first-time full-time freshman students who were awarded any need-based self-help aid":"The number of degree-seeking first-time full-time freshman students who were awarded any need-based self-help aid is 236",
+          "what is the number of degree-seeking first-time full-time freshman students who were awarded any non-need-based scholarship or grant aid":"The number of degree-seeking first-time full-time freshman students who were awarded any non-need-based scholarship or grant aid is 168",
+          "what is the number of degree-seeking first-time full-time freshman students whose financial need was fully met\\xa0":"The number of degree-seeking first-time full-time freshman students whose financial need was fully met is 124",
+          "on average, what is the percentage of financial need that was met for degree-seeking first-time full-time freshman students who were awarded any need-based aid?":"On average, the percentage of financial need that was met for degree-seeking first-time full-time freshman who were awarded any need-based aid is 73.5%",
+          "what is the average financial aid package for degree-seeking first-time full-time freshman students who were awarded any financial aid?":"The average financial aid package for degree-seeking first time full-time freshman students who were awarded any financial aid is $39903",
+          "what is the average amount of need-based scholarship or grant awarded to degree-seeking first-time full-time freshman students?":"The average amount  of need-based scholarship or grant awarded to degree-seeking first-time full-time freshman is $38185",
+          "what is the average need-based self-help awarded to degree-seeking first-time full-time freshman students ?":"The average need-based self-help awarded to degree-seeking first-time full-time freshman students is $3840",
+          "what is the average need-based loan awarded to degree-seeking first-time full-time freshman students who were awarded any need-based self-help aid?":"The average need-based loan awarded to degree-seeing first-time full-time freshman students who were awarded any need-based self-help aid is $3327",
+          "what is the number of degree-seeking first-time full-time freshman students who had no financial need and who were awarded institutional non-need-based scholarship or grant aid?":"The number of degree-seeking first-time full-time freshman students who had no financial need and who were awarded institutional non-need-based scholarship or grant aid is 170",
+          "what is the average amount of institutional non-need-based scholarship and grant aid awarded to degree-seeking full-time freshman students who had no financial need and who were awarded institutional non-need-based scholarship or grant aid?":"The average amount of institutional non-need-based scholarship and grant aid awarded to degree-seeking full-time freshman students who had no financial need and who were awarded institutional non-need-based scholarship or grant aid is $21,671.",
+          "what is the number of degree-seeking first-time full-time freshman students who were awarded an institutional non-need-based athletic scholarship or grant?":"There is no available information on the number of degree-seeking first-time full-time freshman students who were awarded an institutional non-need-based athletic scholarship or grant.",
+          "what is the average amount of institutional non-need-based athletic scholarship and grant to degree-seeking first-time full-time freshman students?":"There is no available information on the average amount of institutional non-need-based athletic scholarship and grant aid awarded to degree-seeking first-time full-time freshman students."
+       }
+    },
+    {
+       "_id":{
+          "$oid":"64436e29f2166d8fd6b2a6d5"
+       },
+       "subsection":"awarded undergrad",
+       "metadata":{
+          "about":"Same as the previous description, but for full-time degree-seeking undergraduate students.",
+          "operation-allowed?":"No",
+          "sum-allowed?":"No",
+          "range-allowed?":"No",
+          "percentage-allowed?":"No",
+          "documentation-of-change":"Aid related to CARES Act or unique to the COVID-19 pandemic are not included in financial aid calculations.",
+          "complete sentence?":"Yes"
+       },
+       "questionAnswers":{
+          "what is the number of degree-seeking full-time undergraduate students who applied for need-based financial aid":"The number of degree-seeking full-time undergraduate students who applied for need-based financial aid is 1,394.",
+          "what is the number of degree-seeking full-time undergraduate students that applied for need-based financial aid and were determined to have financial need":"Out of the total number of students who applied for need-based financial aid, 1,151 were determined to have financial need.",
+          "what is the number of degree-seeking full-time undergraduate students who were determined to have financial need and were awarded any financial aid.":"Among those who had financial need, 1,150 were awarded some form of financial aid.",
+          "what is the number of degree-seeking full-time undergraduate students who were awarded any need-based scholarship or grant aid?":"The number of degree-seeking full-time undergraduate students who were awarded any need-based scholarship or grant aid is 1,144.",
+          "what is the number of degree-seeking full-time undergraduate students who were awarded any need-based self-help aid":"A total of 829 degree-seeking full-time undergraduate students were awarded any need-based self-help aid.",
+          "what is the number of degree-seeking full-time undergraduate students who were awarded any non-need-based scholarship or grant aid":"The number of degree-seeking full-time undergraduate students who were awarded any non-need-based scholarship or grant aid is 1,009.",
+          "what is the number of degree-seeking full-time undergraduate students whose financial need was fully met\\xa0":"284 degree-seeking full-time undergraduate students had their financial need fully met.",
+          "on average, what is the percentage of financial need that was met for degree-seeking full-time undergraduate students who were awarded any need-based aid?":"On average, the percentage of financial need that was met for degree-seeking full-time undergraduate students who were awarded any need-based aid is 65.9%.",
+          "what is the average financial aid package for degree-seeking full-time undergraduate students who were awarded any financial aid?":"The average financial aid package for degree-seeking full-time undergraduate students who were awarded any financial aid is $35,451.",
+          "what is the average need-based scholarship or grant awarded to degree-seeking full-time undergraduate students?":"The average need-based scholarship or grant awarded to degree-seeking full-time undergraduate students is $33,608.",
+          "what is the average need-based self-help awarded to degree-seeking full-time undergraduate students ?":"Degree-seeking full-time undergraduate students who were awarded any need-based self-help aid received an average of $4,679.",
+          "what is the average need-based loan for students who were awarded any need-based self-help aid?":"Among those who were awarded any need-based self-help aid, the average need-based loan amount was $4,351.",
+          "what is the number of degree-seeking full-time undergraduate students who had no financial need and who were awarded institutional non-need-based scholarship or grant aid?":"The number of degree-seeking full-time undergraduate students who had no financial need and were awarded institutional non-need-based scholarship or grant aid is 794.",
+          "what is the average amount of institutional non-need-based scholarship and grant aid award to degree-seeking full-time students who had no financial need and who were awarded institutional non-need-based scholarship or grant aid?":"The average amount of institutional non-need-based scholarship and grant aid awarded to degree-seeking full-time students who had no financial need and who were awarded institutional non-need-based scholarship or grant aid is $16,643.",
+          "what is the number of degree-seeking full-time undergraduate students who were awarded an institutional non-need-based athletic scholarship or grant?":"There is no available information on the number of degree-seeking full-time undergraduate students who were awarded an institutional non-need-based athletic scholarship or grant, or the average amount of such aid.",
+          "what is the average amount of institutional non-need-based athletic scholarship and grant to degree-seeking full-time undergraduate students?":"N/A"
+       }
+    },
+    {
+       "_id":{
+          "$oid":"64436e29f2166d8fd6b2a6d7"
+       },
+       "subsection":"awarded part-time",
+       "metadata":{
+          "about":"Same as the previous description, but for part-time degree-seeking undergraduate students.",
+          "operation-allowed?":"No",
+          "sum-allowed?":"No",
+          "range-allowed?":"No",
+          "percentage-allowed?":"No",
+          "documentation-of-change":"Aid related to CARES Act or unique to the COVID-19 pandemic are not included in financial aid calculations.",
+          "complete sentence?":"Yes"
+       },
+       "questionAnswers":{
+          "what is the number of degree-seeking part-time undergraduate students who applied for need-based financial aid":"There were 6 degree-seeking part-time undergraduate students who applied for need-based financial aid.",
+          "what is the number of degree-seeking part-time undergraduate students that applied for need-based financial aid and were determined to have financial need":"Out of the degree-seeking part-time undergraduate students who applied for need-based financial aid, 5 were determined to have financial need.",
+          "what is the number of degree-seeking part-time undergraduate students who were determined to have financial need and were awarded any financial aid.":"Among the degree-seeking part-time undergraduate students who were determined to have financial need, 5 were awarded some form of financial aid.",
+          "what is the number of degree-seeking part-time undergraduate students who were awarded any need-based scholarship or grant aid?":"A total of 5 degree-seeking part-time undergraduate students were awarded need-based scholarship or grant aid.",
+          "what is the number of degree-seeking part-time undergraduate students who were awarded any need-based self-help aid":"Only 2 degree-seeking part-time undergraduate students were awarded need-based self-help aid.",
+          "what is the number of degree-seeking part-time undergraduate students who were awarded any non-need-based scholarship or grant aid":"The number of degree-seeking part-time undergraduate students whose financial need was fully met was 1.",
+          "what is the number of degree-seeking part-time undergraduate students whose financial need was fully met\\xa0":"On average, 64.7% of financial need was met for degree-seeking part-time undergraduate students who were awarded any need-based aid.",
+          "on average, what is the percentage of financial need that was met for degree-seeking part-time undergraduate students who were awarded any need-based aid?":"The average financial aid package awarded to degree-seeking part-time undergraduate students who were awarded any financial aid was $26732.",
+          "what is the average financial aid package for degree-seeking part-time undergraduate students who were awarded any financial aid?":"The average need-based scholarship or grant awarded to degree-seeking part-time undergraduate students was $24932.",
+          "what is the average need-based scholarship or grant awarded to degree-seeking part-time undergraduate students?":"The average need-based self-help awarded to degree-seeking part-time undergraduate students was $4500.",
+          "what is the average need-based self-help awarded to degree-seeking part-time undergraduate students ?":"The average need-based loan awarded to students who were awarded any need-based self-help aid was $4500.",
+          "what is the average need-based loan of students who were awarded any need-based self-help aid?":"A total of 10 degree-seeking part-time undergraduate students who had no financial need were awarded institutional non-need-based scholarship or grant aid.",
+          "what is the number of degree-seeking part-time undergraduate students who had no financial need and who were awarded institutional non-need-based scholarship or grant aid?":"The average amount of institutional non-need-based scholarship and grant aid awarded to degree-seeking part-time students who had no financial need was $14293.",
+          "what is the average amount of institutional non-need-based scholarship and grant aid award to degree-seeking part-time students who had no financial need and who were awarded institutional non-need-based scholarship or grant aid?":"There is no information available regarding the number of degree-seeking part-time undergraduate students who were awarded an institutional non-need-based athletic scholarship or grant.",
+          "what is the number of degree-seeking part-time undergraduate students who were awarded an institutional non-need-based athletic scholarship or grant?":"There is no information available regarding the average amount of institutional non-need-based athletic scholarship and grant awarded to degree-seeking part-time undergraduate students.",
+          "what is the average amount of institutional non-need-based athletic scholarship and grants awarded to degree-seeking part-time undergraduate students?":"There is no available information on the average amount of institutional non-need-based athletic scholarships and grants awarded to degree-seeking part-time undergraduate students."
+       }
+    }
+ ],[
+    {
+       "_id":{
+          "$oid":"64436e29f2166d8fd6b2a6da"
+       },
+       "subsection":"gender",
+       "metadata":{
+          "about":"The total number of full-time instructional faculty in general, or by gender",
+          "template":"The total number of [enrollment_status] instructional faculty {who are [gender]} is <value>",
+          "operation-allowed?":"Yes",
+          "sum-allowed?":"Yes",
+          "range-allowed?":"No",
+          "percentage-allowed?":"No"
+       },
+       "questionAnswers":{
+          "what is the total number of full-time instructional faculty who are women?":"50",
+          "what is the total number of part-time instructional faculty who are women?":"4",
+          "what is the total number of full-time instructional faculty who are men?":"137",
+          "what is the total number of part-time instructional faculty who are men?":"1"
+       }
+    },
+    {
+       "_id":{
+          "$oid":"64436e29f2166d8fd6b2a6dc"
+       },
+       "subsection":"degree",
+       "metadata":{
+          "about":"The total number of full-time or part-time(or both) instructional faculty whose highest degree is a doctorate, or master's or bachelor, or whose highest degree is unknown. ",
+          "template":"The total number of [enrollment_status] instructional faculty whose highest degree is a (xor {doctorate or [*terminal]} [degree_level]) degree is <value>",
+          "operation-allowed?":"Yes",
+          "sum-allowed?":"Yes",
+          "range-allowed?":"No",
+          "percentage-allowed?":"No"
+       },
+       "questionAnswers":{
+          "what is the total number of full-time instructional faculty whose highest degree is a doctorate or terminal degree?":"182",
+          "what is the total number of part-time instructional faculty whose highest degree is a doctorate or terminal degree?":"4",
+          "what is the total number of full-time instructional faculty whose highest degree is a masters\\xa0":"3",
+          "what is the total number of part-time instructional faculty whose highest degree is a masters":"0",
+          "what is the total number of full-time instructional faculty whose highest degree is a bachelors\\xa0":"2",
+          "what is the total number of part-time instructional faculty whose highest degree is a bachelor":"1",
+          "what is the total number of full-time instructional faculty whose highest degree is unknown":"0",
+          "what is the total number of part-time instructional faculty whose highest degree is unknown or other":"0"
+       }
+    },
+    {
+       "_id":{
+          "$oid":"64436e29f2166d8fd6b2a6de"
+       },
+       "subsection":"ra",
+       "metadata":{
+          "about":"the total number of full-time or part-time(or both) instructional faculty who are members of minority groups, or nonresident aliens.",
+          "template":"The total number of [^enrollment_status] instructional faculty who are (xor {member of [*minority] group} {nonresident alien})   is <value>",
+          "operation-allowed?":"No",
+          "sum-allowed?":"No",
+          "range-allowed?":"No",
+          "percentage-allowed?":"No"
+       },
+       "questionAnswers":{
+          "what is the total number of full-time instructional faculty who are members of minority groups?":"33",
+          "what is the total number of part-time instructional faculty who are members of minority groups?":"0",
+          "what is the total number of full-time instructional faculty who are nonresident aliens?":"8",
+          "what is the total number of part-time instructional faculty who are nonresident aliens?":"1"
+       }
+    },
+    {
+       "_id":{
+          "$oid":"64436e29f2166d8fd6b2a6e0"
+       },
+       "subsection":"other",
+       "metadata":{
+          "about":"The total number of full-time and part-time instructional faculty in stand-alone graduate/professional programs in which faculty teach only graduate level students.",
+          "operation-allowed?":"No",
+          "sum-allowed?":"No",
+          "range-allowed?":"No",
+          "percentage-allowed?":"No",
+          "complete sentence?":"Yes"
+       },
+       "questionAnswers":{
+          "what is the total number of full-time and part-time instructional faculty in stand-alone graduate/professional programs in which instructional faculty teach virtually only graduate level students":"There are no full-time or part-time faculty in stand-alone\r\ngraduate/professional programs in which faculty teach virtually only graduate-level\r\nstudents.",
+          "what is the average class size?":"The average class size is 16",
+          "what is the student to faculty ratio?":"The student to faculty ratio is 10 to 1"
+       }
+    },
+    {
+       "_id":{
+          "$oid":"64436e29f2166d8fd6b2a6e2"
+       },
+       "subsection":"section",
+       "metadata":{
+          "about":"The average class size at Rose-Hulman. The number of class sections with a number of students more than or within a arbitrary number or in a arbitrary range",
+          "template":"From CDS, the number of class sections with number of students (xor {between [^number] and [^number]} {[^range] [^number]}) is <value>  ",
+          "operation-allowed?":"Yes",
+          "sum-allowed?":"No",
+          "range-allowed?":"Yes",
+          "percentage-allowed?":"No"
+       },
+       "questionAnswers":{
+          "what is the number of class sections with 2 - 9 students?":"76",
+          "what is the number of class sections with 10 - 19 students?":"216",
+          "what is the number of class sections with 20 - 29 students?":"129",
+          "what is the number of class sections with 30 - 39 students?":"9",
+          "what is the number of class sections with 40 - 49 students?":"1",
+          "what is the number of class sections with 50 - 99 students?":"0",
+          "what is the number of class sections with 100 or more students?":"0"
+       }
+    },
+    {
+       "_id":{
+          "$oid":"64436e29f2166d8fd6b2a6e4"
+       },
+       "subsection":"subsec",
+       "metadata":{
+          "about":"Number of class subsections with a number of students within an arbitrary number or more than that number or in an arbitrary range.",
+          "template":"The number of class subsections with number of students (xor {between [^number] and [^number]} {[^range] [^number]}) is <value> ",
+          "operation-allowed?":"Yes",
+          "sum-allowed?":"No",
+          "range-allowed?":"Yes",
+          "percentage-allowed?":"No"
+       },
+       "questionAnswers":{
+          "what is the number of class subsections with 2 - 9 students?":"8",
+          "what is the number of class subsections with 10 - 19 students?":"33",
+          "what is the number of class subsections with 20 - 29 students?":"31",
+          "what is the number of class subsections with 30 - 39 students?":"2",
+          "what is the number of class subsections with 40 - 49 students?":"0",
+          "what is the number of class subsections with 50 - 99 students?":"0",
+          "what is the number of class subsections with 100 or more students?":"0"
+       }
+    }
+ ],[
+    {
+       "_id":{
+          "$oid":"64436e29f2166d8fd6b2a6a2"
+       },
+       "subsection":"basis for selection",
+       "metadata":{
+          "about":"The importance of different factors in admission decisions which includes rigor of secondary school records, class rank, gpa, standardized test scores, recommendation letter, interview, extracirricular activities, talent/ability, character/personal qualities, first generation student, alumni relation, geographic residence, religious affiliation/commitment, racial/ethnic status, volunteer work, work experience, level of applicant's interest."
+       },
+       "questionAnswers":{
+          "what is the importance of the rigor of secondary school records in admission decisions?":"Rigor of secondary school record is very important in admission decisions",
+          "what is the importance of class rank in admission decisions?":"Class rank is important in admission decisions ",
+          "what is the importance of academic gpa in admission decisions?":"Academic gpa is very important  in admission decisions.",
+          "what is the importance of standardized test scores in admission decisions?":"Standardized test score is not as important but considered in admission decisions",
+          "what is the importance of application essays in admission decisions?":"Application essay is considered in admission decisions.",
+          "what is the importance of recommendation in admission decisions?":"Recommendation letters is important in admission decisions.",
+          "what is the importance of interviews in admission decisions?":"Interviews are considered in admission decisions",
+          "what is the importance of extracurricular activities in admission decisions":"Extracirricular activities are considered in admission decisions",
+          "what is the importance of talent/ability in admission decisions?":"Talent/ability of the applicant is considered in admission decisions",
+          "what is the importance of character/personal qualities in admission decisions?":"Character or personal qualities is considered in admission decisions",
+          "what is the importance of being a first generation student in admission decisions?":"The applicant being a first generation student is considered in admission decisions",
+          "what is the importance of alumni/ae relation in admission decisions":"Alumni/ae relation is considered in admission decisions.",
+          "what is the importance of geographical residence in admission decisions?":"Geographical residence is considered in admission decisions.",
+          "what is the importance of state residency in admission decisions?":"State residency is not considered in admission decisions.",
+          "what is the importance of religious affiliation/commitment in admission decisions?":"Religious affiliation and commitment is not considerd in admission decisions.",
+          "what is the importance of racial/ethnic status in admission decisions?":"Racial/ethnic status is considered in admission decisions.",
+          "what is the importance of volunteer work in admission decisions?":"Volunteer work is considered in admission decisions",
+          "what is the importance of work experience in admission decisions?":"Work experience is considered in admission decisions.",
+          "what is the importance of the level of applicant’s interest in admission decisions?":"The level of applicant's interest is considered in admission decisions."
+       }
+    }
+ ],[
+    {
+       "_id":{
+          "$oid":"64436e29f2166d8fd6b2a6e7"
+       },
+       "subsection":"major",
+       "metadata":{
+          "about":"Majors offered by Rose-Hulman. The percentage of degrees conferred/awarded for the following disciplinary areas: engineering, biological/life sciences, mathematics and statistics, interdisciplinary studies, physical sciences, and social sciences. ",
+          "complete sentence?":"yes"
+       },
+       "questionAnswers":{
+          "how many high school computer and information degrees are conferred?":"15.7% bachelor's degrees conferred are Computer and information science",
+          "how many high school engineering degrees are conferred?":"73.1% bachelor's degrees conferred are Engineering",
+          "how many high school biological/life sciences degrees are conferred?":"2.2% bachelor's degrees conferred are  Biological/life sciences.",
+          "how many high school mathematics and statistics degrees are conferred?":"5.2% bachelor's degrees conferred are Mathematics and statistics.",
+          "how many high school interdisciplinary studies degrees are conferred?":" 0.7% bachelor's degrees conferred are Interdisciplinary studies.",
+          "how many high school physical sciences degrees are conferred?":"3.0% bachelor's degrees conferred are Physical sciences",
+          "how many high school social sciences degrees are conferred?":"0.2% bachelor's degrees conferred are Social sciences",
+          "what majors are offered?":"Rose-Hulman offers degree in  Computer science,  engineering degrees, biological/life sciences,  physical sciences and social sciences"
+       }
+    },
+    {
+       "_id":{
+          "$oid":"64436e29f2166d8fd6b2a6e9"
+       },
+       "subsection":"degree",
+       "metadata":{
+          "about":"Number of bachelors and masters degree awarded by Rose-Hulman",
+          "complete sentence?":"yes"
+       },
+       "questionAnswers":{
+          "how many high school bachelor's degree are awarded by your institution?":"415 bachelors degree were offered from July 1, 2021, to June 30, 2022.",
+          "how many high school master's degree are awarded by your institution ":"18 masters degree were offered from July 1, 2021, to June 30, 2022."
+       }
+    }
+ ],[
+    {
+       "_id":{
+          "$oid":"64436e29f2166d8fd6b2a680"
+       },
+       "subsection":"general info",
+       "metadata":{
+          "about":"General information about Rose-Hulman, such as phone number, website, college type, degrees offered, academic calendar system.",
+          "operation-allowed?":"No",
+          "sum-allowed?":"No",
+          "range-allowed?":"No",
+          "percentage-allowed?":"No"
+       },
+       "questionAnswers":{
+          "what is the mailing address?":"Rose-Hulman's mailing address is 5500 Wabash Ave, Terre Haute, IN 47803",
+          "what is the main phone number?":"Rose-Hulman's main phone number is (812) 877-1511",
+          "what is the www home page address / website?":"Rose-Hulman's website is www.rose-hulman.edu",
+          "what is the admissions phone number?":"Rose-Hulman's admissions number is (812) 877-8213",
+          "what is the admissions toll free phone number?":"Rose-Hulman's admissions toll free phone number is 800-248-7448",
+          "what is the admissions office's mailing address?":"Rose-Hulman's admission office mailing address is: Admissions Office, Rose-Hulman Institute of Technology\r\n5500 Wabash Ave, Terre Haute, IN 47803",
+          "what is the admission fax number?":"Rose-Hulman's fax number is (812) 877-8941",
+          "what is the admission email address?":"Rose-Hulman admissions email address is admissions@rose-hulman.edu",
+          "what is the url for online application?":"The url for Rose-Hulman's online application is: https://www.commonapp.org/explore/rose-hulman-institute-technology",
+          "what is the source of institutional control? is the institution a private or public college?":"Rose-Hulman is a private college",
+          "is your institution a coeducational college, men’s college or women’s college?":"Rose-Hulman is a coeducational college",
+          "what academic year calendar is used? is it quarter, semester, trimester, continuous, 4-1-4, or does it differ by program?":"Rose-Hulman uses quarter system.",
+          "what degrees are offered?":"Rose-Hulman offers bachelors and masters degree"
+       }
+    }
+ ]]
+}

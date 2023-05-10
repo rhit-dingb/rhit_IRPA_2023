@@ -81,10 +81,14 @@ export function TextAnswer({isAdmin, questionId, answer, feedback, source}) {
             {!isAdmin &&
             (
                 <div key={answer} className="msgalignstart">
-               
-                <BiBot className="botIcon" />
+                    
+                    <Stack direction = "row" >
+                        <BiBot className="botIcon" />
                     <Stack className="botmsg"  direction="row" >
-                        <h5 style={{textAlign:"left"}} >{answer} </h5>
+                        <h5 style={{textAlign:"left"}} >
+                        {answer}
+                  
+                        </h5>
                         <div>
                       
                         {/* {renderThumbsUpAndDown()} */}
@@ -92,7 +96,7 @@ export function TextAnswer({isAdmin, questionId, answer, feedback, source}) {
                         </div>
                     </Stack>
 
-                    
+                    </Stack>
                 </div> 
             )
             }

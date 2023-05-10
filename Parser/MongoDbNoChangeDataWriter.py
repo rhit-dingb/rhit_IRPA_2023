@@ -20,8 +20,9 @@ class MongoDbNoChangeDataWriter(DataWriter):
 
     def write(self, sectionToQuestionAnswer : Dict[str, List[Tuple[str,  List[QuestionAnswer]]]]):
         sectionsInserted = []
-        
+        print("WRITING DATA")
         for sectionKey in sectionToQuestionAnswer:
+            print("WRITING", sectionKey)
             dataForEachSubSection = sectionToQuestionAnswer[sectionKey]
             subsectionsInserted = []
             for data in dataForEachSubSection: 
@@ -34,7 +35,7 @@ class MongoDbNoChangeDataWriter(DataWriter):
                        metadata[questionAnswer.getQuestion()] = questionAnswer.getAnswer()
                    else:
                         body[questionAnswer.getQuestion()] = questionAnswer.getAnswer()
-                print(sectionKey)
+                
                 self.db[sectionKey].update_one({DATABASE_SUBSECTION_FIELD_KEY : subsection}, {
                     "$set": {
                         DATABASE_QUESTION_ANSWERS_KEY : body,
