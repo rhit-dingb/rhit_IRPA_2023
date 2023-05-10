@@ -28,100 +28,100 @@ from UnansweredQuestions.MongoDBUnansweredQuestionConnector import MongoDBUnansw
 from UnansweredQuestions.UnasweredQuestionDBConnector import UnansweredQuestionDbConnector
 
 
-# class test_integration_knowledgebase_and_dataSource(unittest.TestCase):
-#     def setUp(self):
+class test_integration_knowledgebase_and_dataSource(unittest.TestCase):
+    def setUp(self):
         
-#         #SET UP THE TEST DATABASE'
-#         self.testDbName= "TEST_2020_2021"
-#         self.client = MongoClient(MONGO_DB_CONNECTION_STRING)
-#         excelCDSDataLoader = ExcelCDSDataLoader("./tests/testMaterials/inputData/TEST_2020_2021.xlsx")
-#         excelCDSDataLoader.loadData()
-#         print(excelCDSDataLoader.getAllSectionDataFullName())
-#         dataParser = NoChangeDataParser()
-#         dataWriter = MongoDbNoChangeDataWriter(self.testDbName, client=self.client)
-#         parserFacade = ParserFacade(dataLoader=excelCDSDataLoader, dataWriter=dataWriter, dataParser=dataParser)
-#         asyncio.run(parserFacade.parse())
+        #SET UP THE TEST DATABASE'
+        self.testDbName= "TEST_2020_2021"
+        self.client = MongoClient(MONGO_DB_CONNECTION_STRING)
+        excelCDSDataLoader = ExcelCDSDataLoader("./tests/testMaterials/inputData/TEST_2020_2021.xlsx")
+        excelCDSDataLoader.loadData()
+        print(excelCDSDataLoader.getAllSectionDataFullName())
+        dataParser = NoChangeDataParser()
+        dataWriter = MongoDbNoChangeDataWriter(self.testDbName, client=self.client)
+        parserFacade = ParserFacade(dataLoader=excelCDSDataLoader, dataWriter=dataWriter, dataParser=dataParser)
+        asyncio.run(parserFacade.parse())
 
 
-#         mongoProcessor = MongoProcessor()
-#         mongoProcessor = ConvertToSparseMatrixDecorator(mongoProcessor)
-#         self.dataManager = MongoDataManager(mongoProcessor)
-#         self.knowledgeBase = SparseMatrixKnowledgeBase(
-#            self.dataManager)
+        mongoProcessor = MongoProcessor()
+        mongoProcessor = ConvertToSparseMatrixDecorator(mongoProcessor)
+        self.dataManager = MongoDataManager(mongoProcessor)
+        self.knowledgeBase = SparseMatrixKnowledgeBase(
+           self.dataManager)
         
-#         self.knowledgeBase.getAllEntityForRealQuestionFoundForAnswer = self.fakeGetAllEntityForRealQuestionFoundForAnswer
-#         # self.extractOutput = extractOutput
-#         # self.knowledgeBase.constructOutput = self.extractOutput
+        self.knowledgeBase.getAllEntityForRealQuestionFoundForAnswer = self.fakeGetAllEntityForRealQuestionFoundForAnswer
+        # self.extractOutput = extractOutput
+        # self.knowledgeBase.constructOutput = self.extractOutput
 
-#     def tearDown(self) -> None:
-#         self.dataManager.deleteData(self.testDbName)
-#         self.client.close()
+    def tearDown(self) -> None:
+        self.dataManager.deleteData(self.testDbName)
+        self.client.close()
         
 
-#     async def fakeGetAllEntityForRealQuestionFoundForAnswer(self, searchResults):
-#         pass
+    async def fakeGetAllEntityForRealQuestionFoundForAnswer(self, searchResults):
+        pass
 
 
     
-#     def test_integration_ask_for_total_undergraduates_enrollment(self):
+    def test_integration_ask_for_total_undergraduates_enrollment(self):
       
 
-#         question = "how many undergraduate students are enrolled?"
-#         answers, shouldContinue = asyncio.run(self.knowledgeBase.searchForAnswer(question, "enrollment", [
-#             createEntityObjHelper("undergraduate"),
-#         ],  2020, 2021, completeSentence=False))
+        question = "how many undergraduate students are enrolled?"
+        answers, shouldContinue = asyncio.run(self.knowledgeBase.searchForAnswer(question, "enrollment", [
+            createEntityObjHelper("undergraduate"),
+        ],  2020, 2021, completeSentence=False))
 
-#         answerStr = [answer.answer for answer in answers]
-#         self.assertEqual(answerStr, [str(TOTAL_UNDERGRADUATES)])
+        answerStr = [answer.answer for answer in answers]
+        self.assertEqual(answerStr, [str(TOTAL_UNDERGRADUATES)])
 
 
-# class test_integration_data_parser_and_dataSource(unittest.TestCase):
-#     def setUp(self):
-#         self.testDbName= "TEST_2020_2021"
-#         mongoProcessor = MongoProcessor()
-#         self.dataManager = MongoDataManager(mongoProcessor)
-#         f = open('./tests/testMaterials/parserData/JsonInputExcelData.json')
-#         self.data : Dict[str, any] = json.load(f)
-#         f.close()
+class test_integration_data_parser_and_dataSource(unittest.TestCase):
+    def setUp(self):
+        self.testDbName= "TEST_2020_2021"
+        mongoProcessor = MongoProcessor()
+        self.dataManager = MongoDataManager(mongoProcessor)
+        f = open('./tests/testMaterials/parserData/JsonInputExcelData.json')
+        self.data : Dict[str, any] = json.load(f)
+        f.close()
 
-#         self.client = MongoClient(MONGO_DB_CONNECTION_STRING)
-#         self.jsonCdsLoader = JsonDataLoader()
-#         self.jsonCdsLoader.loadData(self.data)
-#         self.dataParser = NoChangeDataParser()
-#         self.dataWriter = MongoDbNoChangeDataWriter(self.testDbName, client = self.client)
-#         self.parserFacade = ParserFacade(dataLoader=self.jsonCdsLoader, dataWriter=self.dataWriter, dataParser=self.dataParser)
+        self.client = MongoClient(MONGO_DB_CONNECTION_STRING)
+        self.jsonCdsLoader = JsonDataLoader()
+        self.jsonCdsLoader.loadData(self.data)
+        self.dataParser = NoChangeDataParser()
+        self.dataWriter = MongoDbNoChangeDataWriter(self.testDbName, client = self.client)
+        self.parserFacade = ParserFacade(dataLoader=self.jsonCdsLoader, dataWriter=self.dataWriter, dataParser=self.dataParser)
 
-#         #Write to database
-#         asyncio.run(self.parserFacade.parse())
+        #Write to database
+        asyncio.run(self.parserFacade.parse())
 
-#     def tearDown(self) -> None:
-#         self.dataManager.deleteData(self.testDbName)
-#         self.client.close()
+    def tearDown(self) -> None:
+        self.dataManager.deleteData(self.testDbName)
+        self.client.close()
         
 
     
-#     def test_integration_data_written_to_datasource_should_have_correct_sections(self):
-#         expectedSections = self.jsonCdsLoader.getSections()
-#         writtenSections = self.dataManager.getSections(self.testDbName)
-#         print(expectedSections)
-#         print(writtenSections)
-#         self.assertCountEqual(expectedSections, writtenSections)
+    def test_integration_data_written_to_datasource_should_have_correct_sections(self):
+        expectedSections = self.jsonCdsLoader.getSections()
+        writtenSections = self.dataManager.getSections(self.testDbName)
+        print(expectedSections)
+        print(writtenSections)
+        self.assertCountEqual(expectedSections, writtenSections)
 
-#     def test_integration_data_written_to_datasource_should_have_correct_data(self):
-#         sectionToSubsections = self.dataManager.getSectionAndSubsectionsForData(self.testDbName)
+    def test_integration_data_written_to_datasource_should_have_correct_data(self):
+        sectionToSubsections = self.dataManager.getSectionAndSubsectionsForData(self.testDbName)
     
-#         def useTestDb(db):
-#             return db == self.testDbName
+        def useTestDb(db):
+            return db == self.testDbName
         
-#         for section in sectionToSubsections:
-#             subsectionQnAs : List[SubsectionQnA] = asyncio.run(self.dataManager.getDataBySection(section.lower(), Exception(), "2020", "2021", databaseFilter = useTestDb))
-#             for subsectionQnA in subsectionQnAs:
-#                 sectionFullName = section + subsectionQnA.subSectionName
-#                 actualQuestionAnswers : List[QuestionAnswer]= self.jsonCdsLoader.getQuestionsAnswerForSectionAndSubsection(sectionFullName)
-#                 for questionAnswer in actualQuestionAnswers:
-#                     self.assertIn(questionAnswer.getQuestion(), subsectionQnA.getQuestions())
-#                     self.assertIn(questionAnswer.getAnswer(), subsectionQnA.getAnswers())
-#             # self.assertEqual(data)
+        for section in sectionToSubsections:
+            subsectionQnAs : List[SubsectionQnA] = asyncio.run(self.dataManager.getDataBySection(section.lower(), Exception(), "2020", "2021", databaseFilter = useTestDb))
+            for subsectionQnA in subsectionQnAs:
+                sectionFullName = section + subsectionQnA.subSectionName
+                actualQuestionAnswers : List[QuestionAnswer]= self.jsonCdsLoader.getQuestionsAnswerForSectionAndSubsection(sectionFullName)
+                for questionAnswer in actualQuestionAnswers:
+                    self.assertIn(questionAnswer.getQuestion(), subsectionQnA.getQuestions())
+                    self.assertIn(questionAnswer.getAnswer(), subsectionQnA.getAnswers())
+            # self.assertEqual(data)
 
 
 
@@ -149,7 +149,7 @@ class test_integration_unansweredQuestionUnit_and_dataSource(unittest.TestCase):
 
 
     def tearDown(self) -> None:
-        # self.client.drop_database(self.testDbName)
+        self.client.drop_database(self.testDbName)
         self.client.close()    
 
     def test_integration_ask_question_with_low_confidence_should_return_no_answer(self):

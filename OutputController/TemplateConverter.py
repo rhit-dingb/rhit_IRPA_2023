@@ -1,13 +1,24 @@
-from typing import List
+from typing import Dict, List
 from OutputController.EntityExpression import EntityExpression
 from OutputController.LiteralExpression import LiteralExpression
 from OutputController.PhraseExpression import PhraseExpression
 from OutputController.ValueExpression import ValueExpression
 from OutputController.XorExpression import XorExpression
 from Knowledgebase.DataModels.SearchResult import SearchResult
+from OutputController.Expression import Expression
 
 
 class TemplateConverter():
+    """
+    Class to construct full sentence response for data in which operation is performed on.
+    The full sentence response is created using the template metadata in a particular sheet on the input excel file
+    and the entities detected from the user query and on the actual question corresponding to the 
+    answer being returned.
+
+    The template converter works by parsing the template into different expression that can be evaluated 
+    to diffferent values based its inner expression or the entities from the user query and on the actual question corresponding to the 
+    answer being returned.
+    """
     def __init__(self):
         self.entityExpBracket = "["
         self.phraseBracket = "{"
@@ -20,7 +31,18 @@ class TemplateConverter():
             self.operationBracket
         ]
 
-    def parseTemplate(self,template):
+    def parseTemplate(self,template : str) -> List[Expression]:
+        """
+        For the possible expressions on the template, please checkout the architecture and design document.
+        Given a template string This function will recursively parse template string to create a 
+        list of tree structure.
+        Each space seperated token in a string is a expression which can have many child expressions 
+        and each child expression and can have many child expression. "Evaluate" can be called on the 
+        root expression to evaluate the entire expression tree recursively to return a final value.
+
+        :param template: The template to parse into a list of expressions. 
+        :return: List of expressions parsed from template.
+        """
         if template == "" or template==" ":
             return []
 
@@ -89,7 +111,12 @@ class TemplateConverter():
             
 
 
-    def evaluateExpressions(self, expressions,entities, realQuestionEntities, answer): 
+    def evaluateExpressions(self, expressions : List[Expression] , entities : List[Dict[str, str]], realQuestionEntities : List[Dict[str, str]], answer : str) -> List[str] : 
+        """
+        Given the list of expressions, an particular answer for a user questions, 
+        entities detected from user query and the entities detected from the actual question corresponding to the answer
+        return a list of string where each string is the result from evaluating each corresponding expression.
+        """
         evaluatedValues = []  
         for expression in expressions:
            value = expression.evaluate(entities, realQuestionEntities, answer)
@@ -98,6 +125,10 @@ class TemplateConverter():
 
     
     def match(self,openBracket, closingBracket):
+        """
+        Given the opening bracket and closting bracket, determine if they match,
+        representing a defined expression.
+        """
         if openBracket == self.entityExpBracket and closingBracket == "]":
             return True
 
@@ -112,7 +143,11 @@ class TemplateConverter():
 
 
 
-    def lookForMatch(self,bracket, start, template):
+    def lookForMatch(self,bracket : str, start : int , template : str) -> int:
+        """
+        Given a start index in the template and the opening bracket, find the closing bracket that 
+        match the opening brack and return the index of the closing bracket.
+        """
         stack = []
         stack.append(bracket)
         for i in range(start, len(template)):
@@ -127,7 +162,7 @@ class TemplateConverter():
         return -1
 
 
-    def constructOutput(self, searchResults : List[SearchResult], template):
+    def constructOutput(self, searchResults : List[SearchResult], template) -> List[str]:
         fullSentenceAnswers = []
         expressions = self.parseTemplate(template)
         
