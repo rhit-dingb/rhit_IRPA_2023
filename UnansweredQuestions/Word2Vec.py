@@ -17,7 +17,8 @@ class Word2VecModel(Model):
     def initializeModel(self):
         glove_vectors = gensim.downloader.load('glove-wiki-gigaword-300')
         glove_vectors.save(self.modelPath)
-        self.loadModel()
+        self.model = glove_vectors
+        # self.loadModel()
 
     def _train(self, documents, update):
         # glove_vectors = gensim.downloader.load('glove-twitter-25')
