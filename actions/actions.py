@@ -48,15 +48,15 @@ except Exception:
     print("FAILED TO SET TOKENIZER PARALLELISM TO FALSE")
     pass 
 
-try:
-    nltk.find('corpora/wordnet')
-except Exception:
-    nltk.download('wordnet')
+# try:
+#     nltk.find('corpora/wordnet')
+# except Exception:
+#     nltk.download('wordnet')
 
-try:
-    nltk.find('omw-1.4')
-except Exception:
-    nltk.download('omw-1.4')
+# try:
+#     nltk.find('omw-1.4')
+# except Exception:
+#     nltk.download('omw-1.4')
 
 # ExcelDataManager("./CDSData", [ENROLLMENT_INTENT, COHORT_INTENT, ADMISSION_INTENT, HIGH_SCHOOL_UNITS_INTENT, BASIS_FOR_SELECTION_INTENT, FRESHMAN_PROFILE_INTENT, TRANSFER_ADMISSION_INTENT, STUDENT_LIFE_INTENT])
 

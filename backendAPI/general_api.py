@@ -61,6 +61,18 @@ from Data_Ingestion.MongoProcessor import MongoProcessor
 from Data_Ingestion.ConvertToSparseMatrixDecorator import ConvertToSparseMatrixDecorator
 
 from backendAPI.constants import EVENT_OCCURED_KEY
+import nltk
+
+try:
+    nltk.find('corpora/wordnet')
+except Exception:
+    nltk.download('wordnet')
+
+try:
+    nltk.find('omw-1.4')
+except Exception:
+    nltk.download('omw-1.4')
+
 
 
 authenticationManager = AuthenticationManager()
