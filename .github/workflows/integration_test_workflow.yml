@@ -28,16 +28,24 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install ruff
-          pip install rasa==3.2.13
+          pip install rasa==3.2.8
+          pip install farm-haystack
+          pip install "tensorflow>=2.0.0"
+          pip install --upgrade tensorflow-hub
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-
+          pip install "numpy>=1.22.0,<1.24.0"
       - name: Start MongoDB
         uses: supercharge/mongodb-github-action@1.8.0
         with:
           mongodb-version: ${{ matrix.mongodb-version }}
 
       - name: Start Rasa Server
-        run: python -m rasa run --cors "*" --enable-api
+        run: python -m rasa run --cors "*" --enable-api &
+        
+      - name: Wait for Rasa Server
+        uses: iFaxity/wait-on-action@v1.1.0
+        with:
+          resource: 127.0.0.1:5005
 
       - name: Test knowledgebase
         run: python -m unittest tests/test_integrationKnowledgebaseAndDataSource.py

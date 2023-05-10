@@ -18,6 +18,17 @@ from UnansweredQuestions.SentenceEmbeddingModel import SentenceEmbeddingModel
 
 import sys
 import os
+import nltk
+
+try:
+    nltk.find('corpora/wordnet')
+except Exception:
+    nltk.download('wordnet')
+
+try:
+    nltk.find('omw-1.4')
+except Exception:
+    nltk.download('omw-1.4')
 
 
 class UnansweredQuestionAnswerEngine:
