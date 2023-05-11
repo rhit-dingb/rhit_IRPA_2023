@@ -15,10 +15,9 @@ Rose-hulman Institute of Technology Class of Senior Design 2023 IRPA Chatbots Pr
 5. Run "pip install farm-haystack==1.16.0"
 
 6. Create an .env file with the following fields:
-  SECRET_KEY
-  ROOT_USERNAME
-  #Options: development, production
-  ENVIRONMENT
+  - SECRET_KEY
+  - ROOT_USERNAME
+  - ENVIRONMENT #Options: development, production
 
   See the .env_template file for an example.
   SECRET_KEY specifies a a key used to create authorization token for the admin
