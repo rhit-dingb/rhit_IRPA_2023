@@ -16,6 +16,7 @@ dependencies:
   - nltk
   - conda-forge::watchdog
   - openpyxl
+  - conda-forge::huggingface_hub
  
 
   - pip
