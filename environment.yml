@@ -26,8 +26,8 @@ dependencies:
     - python-jose[cryptography]
     - python-decouple 
     - rasa==3.2.10
-    - farm-haystack
+    # - farm-haystack
  
-    - sentence-transformers
+    - sentence-transformers==2.2.2
     - websockets==10.0
     
