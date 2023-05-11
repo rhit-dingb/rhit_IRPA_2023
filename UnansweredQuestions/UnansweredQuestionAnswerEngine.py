@@ -47,7 +47,7 @@ class UnansweredQuestionAnswerEngine:
         self.dictionaryPath = os.path.join(basePath, self.dictionaryDir, "dictionary")
        
 
-        self.modelDir = os.path.join(basePath, "savedModel")
+        self.modelDir = os.path.join(basePath, "savedModels")
         self.modelPath = os.path.join(basePath, self.modelDir, "wordVectorModel")
 
         self.indexDir = os.path.join(basePath, "indexes")
