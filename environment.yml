@@ -1,0 +1,33 @@
+# File to install list of packages to set up the conda environment
+name: irpa_chatbot
+dependencies:
+  - python=3.8
+  # - bokeh=2.4.2
+  # - conda-forge::numpy=1.21.*
+  # - nodejs=16.13.*
+  # - flask
+
+  - ujson
+  - tensorflow
+  - conda-forge::packaging=21.3
+  - requests
+  - conda-forge::word2number
+  - pandas
+  - fastapi
+  - uvicorn
+  - gensim
+  - nltk
+  - conda-forge::watchdog
+  - openpyxl
+
+  - pip
+  - pip:
+  # Note to developers: rasa and haystack should be upgraded to use the latest version.
+    - python-multipart
+    - python-jose[cryptography]
+    - python-decouple 
+    - rasa==3.2.10
+    - -U farm-haystack
+    - -U sentence-transformers
+    - websockets==10.0
+    

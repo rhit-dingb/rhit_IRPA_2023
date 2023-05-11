@@ -5,11 +5,11 @@ from Knowledgebase.Knowledgebase import KnowledgeBase
 from haystack.nodes import EmbeddingRetriever
 from haystack.document_stores import InMemoryDocumentStore
 from haystack.pipelines import ExtractiveQAPipeline,  FAQPipeline,  Pipeline
-from haystack.nodes import FARMReader, RouteDocuments
-from haystack import Document, Label, Answer
+from haystack.nodes import FARMReader
+from haystack import Document, Answer
 from DataManager.DataManager import DataManager
 import os
-from haystack import Document, Label, Answer
+from haystack import Document, Answer
 from Data_Ingestion.constants import TEMPLATE_LABEL
 from Knowledgebase.DataModels.ChatbotAnswer import ChatbotAnswer
 from Knowledgebase.DataModels.MultiFeedbackLabel import MultiFeedbackLabel
@@ -30,8 +30,8 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
         self.documentStore =  self.documentStoreConnection.determineDocumentStore()
         self.startingReader = "deepset/roberta-base-squad2"
         self.startingRetriever = "sentence-transformers/multi-qa-mpnet-base-dot-v1"
-        self.trainedReaderPath = "TrainedModels\QAReader"
-        self.trainedRetrieverPath = "TrainedModels\QARetriever"
+        self.trainedReaderPath = os.path.join("TrainedModels", "QAReader")
+        self.trainedRetrieverPath = os.path.join("TrainedModels", "QARetriever")
         self.yearToDocumentStore = dict()
         self.source = "QuestionAnswerKnowledgebase"
         dirname = os.path.dirname(__file__)
