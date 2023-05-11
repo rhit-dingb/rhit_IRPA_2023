@@ -16,11 +16,13 @@ from Parser.ParserFacade import ParserFacade
 from Parser.JsonDataLoader import JsonDataLoader
 from Data_Ingestion.SubsectionQnA import SubsectionQnA
 from Parser.QuestionAnswer import QuestionAnswer
+
 from tests.testUtils import checkAnswersMatch, createEntityObjHelper, createFakeTracker, extractOutput
 from Data_Ingestion.ConvertToSparseMatrixDecorator import ConvertToSparseMatrixDecorator
 from Data_Ingestion.MongoProcessor import MongoProcessor
 from DataManager.MongoDataManager import MongoDataManager
 from tests.test_knowledgebase import TOTAL_UNDERGRADUATES
+from tests.test_knowledgebase import TOTAL_UNDERGRADUATE_MALE
 import json
 from bson import json_util
 from UnansweredQuestions.UnansweredQuestionAnswerEngine import UnansweredQuestionAnswerEngine
@@ -69,10 +71,21 @@ class test_integration_knowledgebase_and_dataSource(unittest.TestCase):
         question = "how many undergraduate students are enrolled?"
         answers, shouldContinue = asyncio.run(self.knowledgeBase.searchForAnswer(question, "enrollment", [
             createEntityObjHelper("undergraduate"),
-        ],  2020, 2021, completeSentence=False))
+        ],  "2020", "2021", completeSentence=False))
 
         answerStr = [answer.answer for answer in answers]
         self.assertEqual(answerStr, [str(TOTAL_UNDERGRADUATES)])
+
+
+    def test_integration_ask_for_total_undergraduates_enrollment(self):
+        question = "How many male undergraduate students enrolled??"
+        answers, shouldContinue = asyncio.run(self.knowledgeBase.searchForAnswer(question, "enrollment", [
+            createEntityObjHelper("male"),
+            createEntityObjHelper("undergraduate"),
+        ],  "2020", "2021", completeSentence=False))
+
+        answerStr = [answer.answer for answer in answers]
+        self.assertEqual(answerStr, [str(TOTAL_UNDERGRADUATE_MALE)])
 
 
 class test_integration_data_parser_and_dataSource(unittest.TestCase):

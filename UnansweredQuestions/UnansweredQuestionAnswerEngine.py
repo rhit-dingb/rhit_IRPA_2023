@@ -40,20 +40,46 @@ class UnansweredQuestionAnswerEngine:
         self.modelToUse = None
         self.dbConnector = databaseConnector
         basePath = self.determinePath()
-        self.corpus = Corpus(self.dbConnector,  basePath +"/dictionaries/dictionary")
-        self.model : Model = Word2VecModel(self.corpus, basePath +"/savedModels/wordVectorModel")
+       
+
+      
+        self.dictionaryDir = os.path.join(basePath, "dictionaries")
+        self.dictionaryPath = os.path.join(basePath, self.dictionaryDir, "dictionary")
+       
+
+        self.modelDir = os.path.join(basePath, "savedModels")
+        self.modelPath = os.path.join(basePath, self.modelDir, "wordVectorModel")
+
+        self.indexDir = os.path.join(basePath, "indexes")
+        self.indexPath =  os.path.join(basePath, "unansweredQuestion.index")
+        self.makeDirectory()
+        
+        self.corpus = Corpus(self.dbConnector, self.dictionaryPath)
+        self.model : Model = Word2VecModel(self.corpus, self.modelPath )
         #self.model = SentenceEmbeddingModel(corpus = self.corpus)
         # self.model.initializeModel()
-        self.documentRetriever = DocumentIndexRetriever(self.corpus, self.model, basePath +"/indexes/unansweredQuestion.index")
+        self.documentRetriever = DocumentIndexRetriever(self.corpus, self.model, self.indexPath)
         self.update()
        
      
+    def makeDirectory(self):
+        if not os.path.exists(self.modelDir):
+            os.makedirs(self.modelDir)
+
+        if not os.path.exists(self.dictionaryDir):
+            os.makedirs(self.dictionaryDir)
+
+        if not os.path.exists(self.indexDir):
+            os.makedirs(self.indexDir)
+
 
     def determinePath(self):
-        current_dir = os.path.dirname(os.path.abspath(__file__))
-        base_dir = os.path.dirname(current_dir)
-        unansweredQues_dir = os.path.join(base_dir, "UnansweredQuestions")
-        return unansweredQues_dir 
+        # base_dir = os.path.relpath()
+        # unansweredQues_dir = os.path.join(base_dir, "UnansweredQuestions")
+        # print(unansweredQues_dir)
+        # return unansweredQues_dir 
+        return os.path.dirname(os.path.abspath(__file__))
+        
 
     def update(self):
         print("UPDATE CALLED")
