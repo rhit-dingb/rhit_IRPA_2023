@@ -4,55 +4,50 @@ Rose-hulman Institute of Technology Class of Senior Design 2023 IRPA Chatbots Pr
 
 ## Setup instructions:
 
-- Required: Python 3.8.x; Anaconda; Rasa; ujson; Tensorflow
-  Instructions are from this video: https://www.youtube.com/watch?v=oNLhg29aykc
+1. Install Anaconda.
 
-Install Anaconda.
+2. Open Anaconda Terminal.
 
-**Windows:** Search anaconda prompt on the windows tab and open anaconda prompt
-**Mac:** open terminal
+3. Run "conda env create -f environment.yml" in anaconda terminal this will create an environment called irpa_chatbot and install the necessary libraries.
 
-cd into the github folder.
+4. Activate the environment that was created by running "conda activate irpa_chatbot"
 
-Create a new environment by typing this into the prompt: conda create --name irpa_chatbot python==3.8
+5. Run "pip install farm-haystack==1.16.0"
 
-Activate the environment: conda activate irpa_chatbot
+6. Create an .env file with the following fields:
+  SECRET_KEY
+  ROOT_USERNAME
+  #Options: development, production
+  ENVIRONMENT
 
-Install the following packages:
+  See the .env_template file for an example.
+  SECRET_KEY specifies a a key used to create authorization token for the admin
+  ROOT_USERNAME specifies the initial root administrator user who can access the system and add admins. It should be a Rose-Hulman username.
+  ENVIRONMENT specifies the environment the software is in. The options are development and production.
 
-conda install ujson
+## Running Locally
 
-Conda install tensorflow
+1. open four anaconda terminal and each should be in the irpa_chatbot environment. (conda activate irpa_chatbot). Each
+  terminal is for starting each of the services below:
 
-pip install rasa
+  ### Starting Rasa API
+  In the anaconda terminal, run "python -m  rasa run --cors "*" --enable-api"
+  
+  ### Starting Rasa Action Server
+  In the anaconda terminal, run "python -m rasa run actions"
 
-- NEVER run rasa init, it will recreate another project
-- run 'rasa train' everytime after git pull
-- run 'rasa shell' to open interactive shell
-- run 'rasa data validate' to validate the training data after making changes.
+  ### Starting Backend API
+  In the anaconda terminal, run "uvicorn general_api:app --reload"
 
-1. Open anaconda terminal, cd into the project directory
-2. Don't need to cd into test directory. At the project's root directory run the following command:
-   - To run all test: python -m unittest discover tests test*.py
-   - To run individual test: python -m unittest tests/{name of test}.py 
-      - For example: python -m unittest tests/test_knowledgebase_enrollment.py
-      - Note: all test files should start with prefix "test"
-- To activate rasa server, run 'rasa run --cors "*" --enable-api'
-- Also need to run 'rasa run actions' to start action server so custom actions can be run
+  ### Starting Frontend
+  1. cd into chatbot_app folder
+  2. Run "npm install"
 
-**Frontend environment**
-Here are the packages I install, you may try go to the chatbot_app folder and run 'npm install'
-- npm install -g create-react-app
-- npm i bootstrap@4.4.1
-- npm i --save bootstrap jquery popper.js
-- npm install react-router-dom@5.2.0
-
-
-### Testing:
+## Testing:
 Open anaconda terminal, cd into the project directory
-#### Test Rasa Model:
+### Test Rasa Model:
  Type rasa test in the terminal. The test results will be in failed_stories.yml in the results directory.
-##### Test backend logic:
+### Unit Test and Integration Test
  Don't need to cd into test directory. At the project's root directory run the following command:
    - To run all test: python -m unittest discover tests test*.py
    - To run individual test: python -m unittest tests/{name of test}.py 
