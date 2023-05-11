@@ -1,7 +1,0 @@
-python-multipart
-python-jose[cryptography]
-python-decouple
-rasa==3.2.10
-farm-haystack=1.15.1
-sentence-transformers
-websockets==10.0
