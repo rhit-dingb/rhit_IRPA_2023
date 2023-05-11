@@ -40,13 +40,18 @@ jobs:
           mongodb-version: ${{ matrix.mongodb-version }}
       
       - name: Start Rasa Server
-        uses: cypress-io/github-action@v5
+        run: python -m rasa run --cors "*" --enable-api &
+
+      - name: Wait For HTTP Responses
+        uses: cygnetdigital/wait_for_response@v2.0.0
         with:
-          start: python -m rasa run --cors "*" --enable-api &
-          # quote the url to be safe against YML parsing surprises
-          wait-on: 'http://localhost:5005'
-     
-      
+          url: 'http://localhost:5005/'
+          responseCode: '200,500'
+          timeout: 2000
+          interval: 500
+        
+        
+
       - name: Test knowledgebase
         run: python -m unittest tests/test_integrationKnowledgebaseAndDataSource.py
       - name: Upload unit test results

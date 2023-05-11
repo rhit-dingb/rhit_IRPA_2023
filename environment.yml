@@ -22,12 +22,12 @@ dependencies:
 
   - pip
   - pip:
-  # Note to developers: rasa and haystack should be upgraded to use the latest version.
+  # Note to developers: rasa and haystack should be upgraded to use the latest version for development. I specify the version here so there is no error when running locally.
     - python-multipart
     - python-jose[cryptography]
     - python-decouple 
     - rasa==3.2.10
-    - -U farm-haystack
-    - -U sentence-transformers
+    - farm-haystack=1.15.1
+    - sentence-transformers
     - websockets==10.0
     

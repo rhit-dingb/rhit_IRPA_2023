@@ -20,7 +20,7 @@ jobs:
           test_type: nlu
           rasa_train: false
           # rasa_version: '3.2.10'
-          rasa_version: 3.2.8
+          rasa_version: '3.2.8'
           publish_summary: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
         continue-on-error: true
