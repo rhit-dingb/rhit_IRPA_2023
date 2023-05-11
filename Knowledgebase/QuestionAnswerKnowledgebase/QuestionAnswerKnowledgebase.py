@@ -34,9 +34,13 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
         self.trainedRetrieverPath = os.path.join("TrainedModels", "QARetriever")
         self.yearToDocumentStore = dict()
         self.source = "QuestionAnswerKnowledgebase"
-        dirname = os.path.dirname(__file__)
+        dirname = os.path.dirname(os.path.abspath(__file__))
         self.fullReaderPath = os.path.join(dirname, self.trainedReaderPath)   
         self.fullRetrieverPath = os.path.join(dirname, self.trainedRetrieverPath)  
+
+        print("READER AND RETRIEVER PATH")
+        print(self.fullReaderPath)
+        print(self.fullRetrieverPath)
 
         self.retriever = None
         self.reader = None
