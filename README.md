@@ -26,7 +26,7 @@ Rose-hulman Institute of Technology Class of Senior Design 2023 IRPA Chatbots Pr
 
 ## Running Locally
 
-1. open four anaconda terminal and each should be in the irpa_chatbot environment. (conda activate irpa_chatbot). Each
+- Open four anaconda terminal and each should be in the irpa_chatbot environment. (conda activate irpa_chatbot). Each
   terminal is for starting each of the services below:
 
   ### Starting Rasa API
