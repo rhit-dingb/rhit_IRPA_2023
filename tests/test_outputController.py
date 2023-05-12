@@ -24,16 +24,7 @@ class test_output_controller(unittest.TestCase):
        self.templateConverter = TemplateConverter()
 
 
-    # def test_parse_template_for_entity_expression(self):
-    #    expressions = self.templateConverter.parseTemplate(self.testTemplate_1)
-    #    print(expressions)
-    #    for expression in expressions:
-    #         print(expression.value)
-    #         if len(expression.childrenExpression) > 0:
-    #             print("PRINTING CHILDREN-------")
-    #             for exp in expression.childrenExpression:
-    #                 print(exp.value)
-    #             print("-------------")
+
 
    def test_construct_output_for_range_template_should_return_correct_sentence(self):
         searchAnswers = ["5"]

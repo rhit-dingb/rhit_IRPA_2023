@@ -67,11 +67,7 @@ class Trainer(AbstractTrainer):
 
 class TrainingDataCreator:
     def __init__(self):
-        # self.questions_producer = QuestionGenerator(model_name_or_path="doc2query/msmarco-t5-base-v1", 
-        #                                  max_length=64, 
-        #                                  split_length=128, 
-        #                                  batch_size=32,
-        #                                  num_queries_per_doc=3)
+   
         self.logger = logging.getLogger(__name__)
 
 

@@ -38,18 +38,8 @@ class DocumentRetrieverByVector(DocumentRetriever):
         return self.getTopDocs(documentSimilarities, self.topN)
 
     
-    
-
-    # def addNewDocuments(self,documents):
-    #     self.corpus.addDocuments(documents)
-        #Recreate the index
-        # self.createAndSaveIndex(self.indexPath)
 
     def update(self):
         pass
 
     
-
-    #lsi = models.LsiModel(corpus, id2word=dictionary, num_topics=2) -- Model is created with something like this
-    #index = similarities.MatrixSimilarity(lsi[corpus])  -- Index is created in something like this
-

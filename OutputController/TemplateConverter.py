@@ -56,10 +56,9 @@ class TemplateConverter():
                 matchIndex = self.lookForMatch(template[currIndex], currIndex+1 ,template)
                 if matchIndex == -1:
                     raise Exception("No matching bracket found for "+ template[currIndex])
-                # expressionsParsed = self.parseTemplate(newTemplate)
+              
                 newTemplate = template[currIndex+1:matchIndex]
-                # print("STARTING AGAIN on"+str(currIndex))
-                # print("FOUND MATCH On"+ str(matchIndex))
+               
                
                 if template[currIndex] == self.entityExpBracket:
                     entityExpression = EntityExpression(newTemplate)

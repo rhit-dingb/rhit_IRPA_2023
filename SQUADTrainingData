@@ -13,25 +13,9 @@
                                     "text": "Test scores are optional this year due to COVID-19"
                                 }
                             ],
-                            "id": "454d4f61-e950-11ed-a146-24ee9a197afc",
+                            "id": "2f17cf1b-f08b-11ed-bb39-24ee9a197afc",
                             "is_impossible": false,
-                            "question": "Is test optional this year?"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "paragraphs": [
-                {
-                    "context": "Standarized test score is not required",
-                    "id": "c0edd877c70a71e5557804b6e663d07e",
-                    "qas": [
-                        {
-                            "answers": [],
-                            "id": "454d4f62-e950-11ed-bb3c-24ee9a197afc",
-                            "is_impossible": true,
-                            "question": "Is test optional this year?"
+                            "question": "are test optional?"
                         }
                     ]
                 }

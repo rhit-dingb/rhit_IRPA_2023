@@ -32,7 +32,7 @@ from Data_Ingestion.MongoProcessor import MongoProcessor
 from Data_Ingestion.ConvertToDocumentDecorator import ConvertToDocumentDecorator
 
 # import backendAPI.general_api  as API 
-import nltk
+
 
 from Knowledgebase.Knowledgebase import KnowledgeBase
 from Knowledgebase.QuestionAnswerKnowledgebase.QuestionAnswerKnowledgebase import QuestionAnswerKnowledgeBase
@@ -204,18 +204,12 @@ class ActionQueryKnowledgebase(Action):
             except Exception as e:
                 continue
             
-            # divider = ["-------------------------"]
-            
-            # if len(answers)>0:
-            #     break
         
         answerFromUnansweredQuestion = getAnswerForUnansweredQuestion(question)
         for answer in answerFromUnansweredQuestion:
             answers.insert(0, answer)
 
-        # print(list(dict.fromkeys(answers)))
-
-        # print("ANSWERS", answers)
+    
         if len(answers) == 0:
             answers = [ChatbotAnswer("Sorry, I couldn't find any answer to your question", source="")]
             answersAsDict = [answers[0].as_dict()]
@@ -225,12 +219,7 @@ class ActionQueryKnowledgebase(Action):
         event = utterAllAnswers(answers, dispatcher) 
         events.append(event)       
 
-        # except Exception as e:
-        #     if len(answers) <= 0:
-        #         answers = ["Sorry, I couldn't find any answer to your question"]
-        #         addUnansweredQuestion(question, answers)
-                
-        #     self.utterAppropriateAnswerWhenExceptionHappen(question, answers, e, dispatcher)
+     
              
         return events
 

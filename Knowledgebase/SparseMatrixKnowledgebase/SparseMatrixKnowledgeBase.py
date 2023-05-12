@@ -171,7 +171,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
             print(denominator.answer)
             
             try:
-                # numerator = float(searchResult.answer)
+              
                 numerator, type = self.typeController.determineResultType(searchResult.answer)
                 denominator, type = self.typeController.determineResultType(denominator.answer)
                 percentageCalc = (numerator/denominator)*100
@@ -183,8 +183,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
             except Exception as e:
                 print("EXCEPTION OCCURED WHILE CALCULATING PERCENTAGE", e.__dict__)
                 continue
-        # for t in percentages:
-        #     print(t.entities)
+      
         return percentages
         
 
@@ -208,9 +207,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         :return: List of sparse matrix to search
         """ 
         section = intent.replace("_", " ")
-        # if startYear == None or endYear == None:
-        #     raise NoDataFoundException(NO_DATA_EXIST_MESSAGE, ExceptionTypes.NoDataFoundAtAll)
-        
+     
 
         isYearAgnostic = False
         yearAgnosticDataName = self.dataManager.findAllYearAngosticDataName()

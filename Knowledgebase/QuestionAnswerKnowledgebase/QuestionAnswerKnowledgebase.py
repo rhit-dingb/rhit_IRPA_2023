@@ -156,10 +156,7 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
         chatbotAnswers : List[ChatbotAnswer]= []
        
         for answer in answers:
-            # print(answer)
-            # print(answer.score)
             if answer.score < self.scoreThreshold:
-                # print("SKIP")
                 continue
             
             chatbotAnswer = self.constructAnswer(answer, result)
@@ -184,7 +181,7 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
         # print(document.meta)
         chatbotAnswer = ChatbotAnswer(answer = document.content, source=self.source, metadata= metadata)
         return chatbotAnswer
-        # chatbotAnswers.append(chatbotAnswer)
+       
     
 
     def getBackupAnswer(self, answers : List[Answer], result):
@@ -237,17 +234,15 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
                 print("TRAINING THREAD IS ALIVE")
                 return False        
 
-        # try:
-            # self.trainer.trainDataForEmbeddingRetriever(trainingLabels, self.retriever, saveDirectory=self.fullRetrieverPath,documentStore= self.documentStore, source=self.source, useQuestion=True )
-            # self.trainer.trainDataForModelWithSQUAD(trainingLabels=trainingLabels, model=self.reader, saveDirectory= self.fullReaderPath, source=self.source)
-        trainingThread = TrainingThread("trainingThread"+str(random.random()), "traingThread", trainingLabels, self.trainer,self)
-        trainingThread.start()
-        self.trainThread = trainingThread
-        self.trainingCallback = callback
-        print("TRAINING STARTED")
-        return True
-        # except Exception:
-        #     return False
+        try:
+            trainingThread = TrainingThread("trainingThread"+str(random.random()), "traingThread", trainingLabels, self.trainer,self)
+            trainingThread.start()
+            self.trainThread = trainingThread
+            self.trainingCallback = callback
+            print("TRAINING STARTED")
+            return True
+        except Exception:
+            return False
         
     def doneTraining(self, isSuccess):
         print("TRAINING DONE")

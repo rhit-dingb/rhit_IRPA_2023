@@ -93,9 +93,7 @@ class Cache(DataManager):
 
     async def getDataAndPopulateCache(self, section, exceptionToThrow, startYear = None, endYear = None, ):
         topicData : TopicData = await self.dataSource.getDataBySection(section,exceptionToThrow,startYear, endYear)
-        # print(intent)
-        # print(topicData.sparseMatrices.keys())
-        # print("_________________")
+     
         subsectionsForSection = self.getAllSubsectionForSection(section, startYear, endYear)
 
         if startYear == None or endYear == None:
