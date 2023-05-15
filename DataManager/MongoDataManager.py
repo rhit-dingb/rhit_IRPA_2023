@@ -225,8 +225,9 @@ class MongoDataManager(DataManager):
             if not yearRange in years:
                 years.append((yearRange[0], yearRange[1]))
 
-        years.sort(key = sortFunc, reverse= True)
+      
         years = list(set(years))
+        years.sort(key = sortFunc, reverse= True)
         return years
 
 

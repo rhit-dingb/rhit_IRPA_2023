@@ -38,14 +38,19 @@ jobs:
         uses: supercharge/mongodb-github-action@1.8.0
         with:
           mongodb-version: ${{ matrix.mongodb-version }}
-
+      
       - name: Start Rasa Server
         run: python -m rasa run --cors "*" --enable-api &
-        
-      - name: Wait for Rasa Server
-        uses: iFaxity/wait-on-action@v1.1.0
+
+      - name: Wait For HTTP Responses
+        uses: cygnetdigital/wait_for_response@v2.0.0
         with:
-          resource: 127.0.0.1:5005
+          url: 'http://localhost:5005/'
+          responseCode: '200,500'
+          timeout: 50000000
+          interval: 500
+        
+        
 
       - name: Test knowledgebase
         run: python -m unittest tests/test_integrationKnowledgebaseAndDataSource.py

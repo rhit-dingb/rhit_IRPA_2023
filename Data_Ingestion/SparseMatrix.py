@@ -26,8 +26,7 @@ class SparseMatrix():
             self.questions = questions
 
         self.metadata : Dict[str, str]= metadata
-        # print(self.subSectionName)
-        # print("MY METADATA IS", self.metadata)
+
         
 
     def setMetadata(self,metadata : Dict[str, str]):
@@ -35,17 +34,6 @@ class SparseMatrix():
         
     def getColumn(self):
         return self.sparseMatrixDf.columns
-
-    # def getColumnWithOneForEachRow(self):
-    #     columnList : List[List[str]]
-    #     for row in self:
-    #         columnVals = []
-    #         for column in row.index:
-    #             if row[column] == 1:
-    #                 columnVals.append(column)
-            
-    #         columnList.append(columnVals)
-    #     return columnList
 
     def __iter__(self):
         for i in range(self.sparseMatrixDf.shape[0]):
@@ -82,9 +70,7 @@ class SparseMatrix():
             if entity in columns:
                 # print("MATCHED", entity)
                 entitiesMatchCount = entitiesMatchCount + 1
-        # print("ENTITY MATCH COUNT FOR")
-        # print(self.subSectionName)
-        # print(entitiesMatchCount)
+      
         return entitiesMatchCount
 
 
@@ -203,9 +189,7 @@ class SparseMatrix():
 
 
     def findValueForMetadata(self, metadataLabel):
-        # booleanSearchStrategy = DefaultShouldAddRowStrategy()
-        # operationAllowedEntity = createEntityObj(metadataLabel, entityLabel="none",  entityRole=None)
-        # searchResults = self.searchOnSparseMatrix([operationAllowedEntity], booleanSearchStrategy, False)
+      
         if self.metadata == None:
             return None
             

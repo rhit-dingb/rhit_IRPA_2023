@@ -81,12 +81,12 @@
        },
        "subsection":"waitlist",
        "metadata":{
-          "about":"Admission policies and requirement including waitlist policies, high school completion requirement, and requirement/recommendation for college-prepartory program "
+          "about":"Admission policies and requirement including waitlist policies, completion requirement, and requirement/recommendation for college-prepartory program "
        },
        "questionAnswers":{
           "do you have a policy of placing students on a waiting list?":"Rose-Hulman have a policy of placing student on the waiting list. The number of qualified applicants offered a place on waiting list is 119, the number of accepting a place on the waiting list is 43, the number of wait-listed students admitted 14",
           "is your waiting list ranked?":"Rose-Hulman's waitlist is not ranked",
-          "what is your high school completion requirement for degree-seeking entering students?":"High school diploma is required and GED is not accepted",
+          "what is your completion requirement for degree-seeking entering students?":"diploma is required and GED is not accepted",
           "does your institution require or recommend a general college-preparatory program for degree-seeking students?":"A general college-preparatory program for degree-seeking students is required"
        }
     },
@@ -94,9 +94,9 @@
        "_id":{
           "$oid":"64436e29f2166d8fd6b2a69b"
        },
-       "subsection":"high school required",
+       "subsection":"required",
        "metadata":{
-          "about":"High school units for various subjects required for admission to Rose-Hulman",
+          "about":"units for various subjects required for admission to Rose-Hulman",
           "operation-allowed?":"No",
           "sum-allowed?":"No",
           "range-allowed?":"No",
@@ -104,25 +104,25 @@
           "complete sentence":"Yes"
        },
        "questionAnswers":{
-          "how many high school english units are required for admission?":"Four high school english units are required for admission.",
-          "how many high school mathematics units are required for admission?":"Four high school mathematics units are required for admission.",
-          "how many high school science units are required for admission?":"Three high school science units are required for admission.",
-          "of the science credit, how many high school lab units required for admission?":"Three high school science lab units are required for admission from the previous units.",
-          "how many high school foreign language units are required for admission?":"No high school foreign language units are required for admission.",
-          "how many high school social studies units are required for admission?":"Two high school social studies units are required for admission.",
-          "how many high school history units are required for admission?":"No high school history units are required for admission.",
-          "how many high school academic elective units are required for admission?":"No high school academic elective units are required for admission.",
-          "how many high school computer science units are required for admission?":"No high school computer science units are required for admission.",
-          "how many high school visual/performing art units are required for admission?":"No high school visual/performing art units are required for admission."
+          "how many english units are required for admission?":"Four english units are required for admission.",
+          "how many mathematics units are required for admission?":"Four mathematics units are required for admission.",
+          "how many science units are required for admission?":"Three science units are required for admission.",
+          "of the science credit, how many lab units required for admission?":"Three science lab units are required for admission from the previous units.",
+          "how many foreign language units are required for admission?":"No foreign language units are required for admission.",
+          "how many social studies units are required for admission?":"Two social studies units are required for admission.",
+          "how many history units are required for admission?":"No history units are required for admission.",
+          "how many academic elective units are required for admission?":"No academic elective units are required for admission.",
+          "how many computer science units are required for admission?":"No computer science units are required for admission.",
+          "how many visual/performing art units are required for admission?":"No visual/performing art units are required for admission."
        }
     },
     {
        "_id":{
           "$oid":"64436e29f2166d8fd6b2a69d"
        },
-       "subsection":"high school recommend",
+       "subsection":"recommend",
        "metadata":{
-          "about":"High school units for various subjects recommended for admission to Rose-Hulman",
+          "about":"units for various subjects recommended for admission to Rose-Hulman",
           "operation-allowed?":"No",
           "sum-allowed?":"No",
           "range-allowed?":"No",
@@ -130,16 +130,16 @@
           "complete sentence?":"Yes"
        },
        "questionAnswers":{
-          "how many high school english units are recommended for admission?":"0 high school english units are recommended for admission.",
-          "how many high school mathematics units are recommended for admission?":"Five high school mathematics units are recommended for admission.",
-          "how many high school science units are recommended for admission?":"Four science high school units are recommended for admission.",
-          "of the science units, how many high school lab units are recommended for admission?":"No high school science lab units are recommended for admission.",
-          "how many high school foreign language units are recommended for admission?":"No high school foreign language units are recommended for admission.",
-          "how many high school social studies units are recommended for admission?":"No high school social studies units are recommended for admission.",
-          "how many high school history units are recommended for admission?":"No high school history units are recommended for admission.",
-          "how many high school academic elective units are recommended for admission?":"Four high school academic elective units are recommended for admission.",
-          "how many high school computer science units are recommended for admission?":"No high school computer science units are recommended for admission.",
-          "how many high school visual/performing art units are recommended for admission?":"No high school visual/performing art units are recommended for admission."
+          "how many english units are recommended for admission?":"0 english units are recommended for admission.",
+          "how many mathematics units are recommended for admission?":"Five mathematics units are recommended for admission.",
+          "how many science units are recommended for admission?":"Four science units are recommended for admission.",
+          "of the science units, how many lab units are recommended for admission?":"No science lab units are recommended for admission.",
+          "how many foreign language units are recommended for admission?":"No foreign language units are recommended for admission.",
+          "how many social studies units are recommended for admission?":"No social studies units are recommended for admission.",
+          "how many history units are recommended for admission?":"No history units are recommended for admission.",
+          "how many academic elective units are recommended for admission?":"Four academic elective units are recommended for admission.",
+          "how many computer science units are recommended for admission?":"No computer science units are recommended for admission.",
+          "how many visual/performing art units are recommended for admission?":"No visual/performing art units are recommended for admission."
        }
     },
     {
@@ -148,7 +148,7 @@
        },
        "subsection":"policies",
        "metadata":{
-          "about":"Rose-Hulman's admission policies, including application fee, waiver, early action and early decision policy, postpone enrollment policy and early admission of high school students is allowed",
+          "about":"Rose-Hulman's admission policies, including application fee, waiver, early action and early decision policy, postpone enrollment policy and early admission of students is allowed",
           "complete sentence?":"Yes"
        },
        "questionAnswers":{
@@ -160,7 +160,7 @@
           "when are notification of admission decisions to students sent?":"Admission decision for early decision is sent by December 15th. Regular decision is sent by March 15th.",
           "what is the reply policy for applicants\\xa0":"Applicants must reply to admission decision by May 1. The deadline for housing deposit is not available. ",
           "are students allowed to postpone enrollment after admission?":"Students can postpone their enrollment after admission",
-          "are early admission of high school students allowed?":"High school students cannot enroll as full-time, first-time,\r\nfirst-year (freshman) students one year or more before high school graduation",
+          "are early admission of students allowed?":"students cannot enroll as full-time, first-time,\r\nfirst-year (freshman) students one year or more before graduation",
           "what is the early decision policy?":"Early decision is not allowed.",
           "what is the early action policy?":"The early action closing date is November 1st and early action notification date is December 15th. Students can still apply to other early action programs after applying for early action at Rose-Hulman."
        }
@@ -253,12 +253,12 @@
           "percentage-allowed?":"No"
        },
        "questionAnswers":{
-          "how many high school male transfer students/applicants students applied?":"59",
-          "how many high school male transfer students/applicants are admitted":"30",
-          "how many high school male transfer students//applicants are enrolled?":"9",
-          "how many high school female transfer students applied?":"23",
-          "how many high school female transfer students are admitted":"13",
-          "how many high school female transfer students are enrolled?":"2"
+          "how many male transfer students/applicants students applied?":"59",
+          "how many male transfer students/applicants are admitted":"30",
+          "how many male transfer students//applicants are enrolled?":"9",
+          "how many female transfer students applied?":"23",
+          "how many female transfer students are admitted":"13",
+          "how many female transfer students are enrolled?":"2"
        }
     },
     {
@@ -278,13 +278,13 @@
           "may transfer students earn advanced standing credit by transferring credits earned from course work completed at other colleges/universities?":"Students may earn advanced standing credit by transferring credit earned from course work completed at other college/university",
           "at which term may transfer applicants enroll":"Transfer students may enroll during the fall term.",
           "does a transfer applicant need to have minimum number of credits completed or else they must apply as an entering freshman? if so what is the minimum credit and the unit of measure?":"Transfer students do not need to have minimum number of credit completed",
-          "is high school transcript to required apply for transfer applicants?":"High school transcript is recommended of some for transfer applicants.",
+          "is transcript to required apply for transfer applicants?":"transcript is recommended of some for transfer applicants.",
           "is college transcript required for transfer applicants?":"College transcript is required for transfer applicants",
           "is essay required for transfer applicants?":"Essays or personal statement is required for transfer applicants.",
           "is interview  required for transfer applicants?":"Interview is recommended of some to apply for transfer applicants",
           "is standardized test score required for transfer applicants?":"Standarized test score is not required",
           "is a statement of good standing required for transfer applicants?":"Statement of good standing from prior institutions is recommended of all transfer applicants.",
-          "what is the minimum high school grade point average required\\xa0for transfer applicants?":"There is no minimum high school gpa requirement for transfer applicants",
+          "what is the minimum grade point average required\\xa0for transfer applicants?":"There is no minimum gpa requirement for transfer applicants",
           "what is the minimum college grade point average required for transfer applicants?":"The minimum gpa required of transfer applicants is 3.0",
           "when are student applications reviewed?":"Transfer applications are reviewed on a rolling basis (year round).",
           "does an open admission policy apply to transfer students?":"Open admission policy does not apply to transfer students",
@@ -379,9 +379,9 @@
           "complete sentence":"Yes"
        },
        "questionAnswers":{
-          "how many high school students in the initial cohort were recipients of a federal pell grant?":"There were 83 students in the initial 2014 cohort who were recipients of a Federal Pell Grant.",
-          "how many high school of those students in the initial cohort were recipients of only federal subsidized stafford loan":"Out of the initial 2014 cohort, 199 students were recipients of only federal Subsidized Stafford Loan.",
-          "how many high school of those students in the initial cohort did not receive pell grant or subsidized stafford loan":"300 students in the 2014 initial cohort did not receive either Pell Grant or Subsidized Stafford Loan."
+          "how many students in the initial cohort were recipients of a federal pell grant?":"There were 83 students in the initial 2014 cohort who were recipients of a Federal Pell Grant.",
+          "how many of those students in the initial cohort were recipients of only federal subsidized stafford loan":"Out of the initial 2014 cohort, 199 students were recipients of only federal Subsidized Stafford Loan.",
+          "how many of those students in the initial cohort did not receive pell grant or subsidized stafford loan":"300 students in the 2014 initial cohort did not receive either Pell Grant or Subsidized Stafford Loan."
        }
     },
     {
@@ -397,15 +397,15 @@
           "complete sentence":"Yes"
        },
        "questionAnswers":{
-          "how many high school students in the initial cohort graduated within four years and were recipients of a federal pell grant?":"Out of the initial 2014 cohort, 61 students who graduated within four years were recipients of a Federal Pell Grant.",
-          "how many high school students in the initial cohort who graduated within four years were recipients of only a subsidized stafford loan?":"144 students who graduated within four years were recipients of only a Subsidized Stafford Loan in the 2014 cohort",
-          "how many high school students in the initial cohort who graduated within four years but did not receive a pell grant or a subsidized stafford loan?":"220 students who graduated within four years did not receive either Pell Grant or Subsidized Stafford Loan in the 2014 cohort.",
-          "how many high school students  in the initial cohort who graduated in between four and five years were recipients of a federal pell grant?":"In the initial 2015 cohort, 7 students who graduated between four and five years were recipients of a Federal Pell Grant in the 2014 cohort.",
-          "how many high school students  in the initial cohort who graduated in between four and five years were recipients of only a subsidized stafford loan?":"Only 9 students who graduated between four and five years were recipients of only a Subsidized Stafford Loan in the 2014 cohort.",
-          "how many high school students in the initial cohort who graduated in between four and five years did not receive a pell grant or a subsidized stafford loan?":"33 students who graduated between four and five years did not receive either Pell Grant or Subsidized Stafford Loan in the 2014 cohort.",
-          "how many high school students who graduated between five and six years were recipients of a federal pell grant?":"Only 1 student who graduated between five and six years was a recipient of a Federal Pell Grant in the 2014 cohort.",
-          "how many high school students who graduated between five and six years were recipients of only subsidized stafford loan?":"5 students who graduated between five and six years were recipients of only a Subsidized Stafford Loan in the 2014 cohort.",
-          "how many high school students in the initial cohort who graduated in between five and six years did not receive a pell grant or a subsidized stafford loan?":"3 students who graduated between five and six years did not receive either Pell Grant or Subsidized Stafford Loan in the 2014 cohort.",
+          "how many students in the initial cohort graduated within four years and were recipients of a federal pell grant?":"Out of the initial 2014 cohort, 61 students who graduated within four years were recipients of a Federal Pell Grant.",
+          "how many students in the initial cohort who graduated within four years were recipients of only a subsidized stafford loan?":"144 students who graduated within four years were recipients of only a Subsidized Stafford Loan in the 2014 cohort",
+          "how many students in the initial cohort who graduated within four years but did not receive a pell grant or a subsidized stafford loan?":"220 students who graduated within four years did not receive either Pell Grant or Subsidized Stafford Loan in the 2014 cohort.",
+          "how many students  in the initial cohort who graduated in between four and five years were recipients of a federal pell grant?":"In the initial 2015 cohort, 7 students who graduated between four and five years were recipients of a Federal Pell Grant in the 2014 cohort.",
+          "how many students  in the initial cohort who graduated in between four and five years were recipients of only a subsidized stafford loan?":"Only 9 students who graduated between four and five years were recipients of only a Subsidized Stafford Loan in the 2014 cohort.",
+          "how many students in the initial cohort who graduated in between four and five years did not receive a pell grant or a subsidized stafford loan?":"33 students who graduated between four and five years did not receive either Pell Grant or Subsidized Stafford Loan in the 2014 cohort.",
+          "how many students who graduated between five and six years were recipients of a federal pell grant?":"Only 1 student who graduated between five and six years was a recipient of a Federal Pell Grant in the 2014 cohort.",
+          "how many students who graduated between five and six years were recipients of only subsidized stafford loan?":"5 students who graduated between five and six years were recipients of only a Subsidized Stafford Loan in the 2014 cohort.",
+          "how many students in the initial cohort who graduated in between five and six years did not receive a pell grant or a subsidized stafford loan?":"3 students who graduated between five and six years did not receive either Pell Grant or Subsidized Stafford Loan in the 2014 cohort.",
           "what is the total six year graduation rate and six year graduation rate for students who received a federal pell grant, who only received a subsidized stafford loan and who received neither aid respectively?":"The six year graduation rate in the 2014 for students who received pell grant is 83%, for students who received only subsidized stafford loan, it is 79% and for students who recived neither is 85.6% and the total six year graduation rate for 2014 cohort is 83% "
        }
     },
@@ -418,12 +418,12 @@
           
        },
        "questionAnswers":{
-          "how many high school exempted student were recipients of a federal pell grant?":"None of the exempted students were recipients of a Federal Pell Grant in the 2014 cohort.",
-          "how many high school of exempted students were recipients of only subsidized stafford loan?":"No exempted students were recipients of only Subsidized Stafford Loan in the 2014 cohort.",
-          "how many high school of exempted student did not receive pell grant or subsidized stafford loan":"One exempted student did not receive either Pell Grant or Subsidized Stafford Loan in the 2014 cohort.",
-          "how many high school students in the final cohort after exemptions, were recipients of a federal pell grant?":"In the final 2014 cohort after exemptions, 83 students were recipients of a Federal Pell Grant.",
-          "how many high school students in the final cohort after exemptions, were recipients of only a subsidized stafford loan?":"Out of the final 2014 cohort after exemptions, 199 students were recipients of only a Subsidized Stafford Loan.",
-          "how many high school students in the final cohort after exemptions did not receive a pell grant or a subsidized stafford loan?":"In the final 2014 cohort after exemptions, 299 students did not receive either Pell Grant or Subsidized Stafford Loan."
+          "how many exempted student were recipients of a federal pell grant?":"None of the exempted students were recipients of a Federal Pell Grant in the 2014 cohort.",
+          "how many of exempted students were recipients of only subsidized stafford loan?":"No exempted students were recipients of only Subsidized Stafford Loan in the 2014 cohort.",
+          "how many of exempted student did not receive pell grant or subsidized stafford loan":"One exempted student did not receive either Pell Grant or Subsidized Stafford Loan in the 2014 cohort.",
+          "how many students in the final cohort after exemptions, were recipients of a federal pell grant?":"In the final 2014 cohort after exemptions, 83 students were recipients of a Federal Pell Grant.",
+          "how many students in the final cohort after exemptions, were recipients of only a subsidized stafford loan?":"Out of the final 2014 cohort after exemptions, 199 students were recipients of only a Subsidized Stafford Loan.",
+          "how many students in the final cohort after exemptions did not receive a pell grant or a subsidized stafford loan?":"In the final 2014 cohort after exemptions, 299 students did not receive either Pell Grant or Subsidized Stafford Loan."
        }
     },
     {
@@ -556,8 +556,8 @@
        "questionAnswers":{
           "what is the percent of freshman students submitting sat":"The percent of freshman students submitting SAT is 65.9%",
           "what is the percent of freshman students submitting act":"The percent of freshman students submitting ACT is 55.7%",
-          "how many high school freshman student submitted act":"The numer of freshman student that submitted ACT is 350",
-          "how many high school freshman student submitted sat":"The number of freshman student who submitted SAT is 296"
+          "how many freshman student submitted act":"The numer of freshman student that submitted ACT is 350",
+          "how many freshman student submitted sat":"The number of freshman student who submitted SAT is 296"
        }
     },
     {
@@ -631,7 +631,7 @@
           "what is the percentage of freshman students with gpa between 2.00 and 2.49?":"0%",
           "what is the percentage of freshman students with gpa between 1.00 and 1.99?":"0%",
           "what is the percentage of freshman students with gpa between below 1.00?":"0%",
-          "what is the average high school gpa for freshman students who submitted gpa?":" The average high school gpa for freshman student who submitted gpa is 4.02",
+          "what is the average gpa for freshman students who submitted gpa?":" The average gpa for freshman student who submitted gpa is 4.02",
           "  what is the percentage of freshman students who submitted gpa?":"The percentage of freshman students who submitted gpa is 94.9 % (504/531)"
        }
     },
@@ -641,20 +641,20 @@
        },
        "subsection":"class rank",
        "metadata":{
-          "about":"The percentage of freshman who graduated in the top tenth, top quarter, bottom half or bottom quarter of their high school graduating class  and the percentage of students who submitted their class rank.  ",
-          "template":"The percentage of freshman students in the [class_rank] of their high school graduating class is <value>?",
+          "about":"The percentage of freshman who graduated in the top tenth, top quarter, bottom half or bottom quarter of their graduating class  and the percentage of students who submitted their class rank.  ",
+          "template":"The percentage of freshman students in the [class_rank] of their graduating class is <value>?",
           "operation-allowed?":"No",
           "sum-allowed?":"No",
           "range-allowed?":"No",
           "percentage-allowed?":"No"
        },
        "questionAnswers":{
-          "what is the percentage of freshman students in the top tenth of their high school graduating class?":"66%",
-          "what is the percentage of freshman students in the top quarter of their high school graduating class?":"91%",
-          "what is the percentage of freshman students in the top half of their high school graduating class?":"99%",
-          "what is the percentage of freshman students in the bottom half of their high school graduating class?":"1%",
-          "what is the percentage of freshman students in the bottom quarter of their high school graduating class?":"0%",
-          "what is the percentage of freshman students who submitted high school class rank?":"46%"
+          "what is the percentage of freshman students in the top tenth of their graduating class?":"66%",
+          "what is the percentage of freshman students in the top quarter of their graduating class?":"91%",
+          "what is the percentage of freshman students in the top half of their graduating class?":"99%",
+          "what is the percentage of freshman students in the bottom half of their graduating class?":"1%",
+          "what is the percentage of freshman students in the bottom quarter of their graduating class?":"0%",
+          "what is the percentage of freshman students who submitted class rank?":"46%"
        }
     }
  ],[
@@ -670,37 +670,37 @@
           "sum-allowed?":"Yes",
           "range-allowed?":"Yes",
           "percentage-allowed?":"Yes",
-          "denominator-question":"how many high school students are enrolled?"
+          "denominator-question":"how many students are enrolled?"
        },
        "questionAnswers":{
-          "how many high school male full-time undergraduate degree-seeking first-time freshmen students are enrolled?":"387",
-          "how many high school female full-time undergraduate degree-seeking first-time freshmen students are enrolled?":"143",
-          "how many high school male part-time undergraduate degree-seeking first-time freshmen students are enrolled?":"1",
-          "how many high school female part-time undergraduate degree-seeking first-time freshmen students are enrolled?":"0",
-          "how many high school male full-time undergraduate non-first-time freshman first-year students are enrolled?":"9",
-          "how many high school female full-time undergraduate non-first-time freshman first-year students are enrolled?":"2",
-          "how many high school male part-time undergraduate non-first-time freshman first-year students are enrolled?":"0",
-          "how many high school female part-time undergraduate non-first-time freshman first-year students are enrolled?":"0",
-          "how many high school male full-time undergraduate degree-seeking non-freshmen students are enrolled?":"1082",
-          "how many high school female full-time undergraduate degree-seeking non-freshmen students are enrolled?":"329",
-          "how many high school male part-time undergraduate degree-seeking non-freshmen student are enrolled?":"15",
-          "how many high school female part-time undergraduate degree-seeking non-freshmen student are enrolled?":"1",
-          "how many high school male full-time undergraduate non-degree-seeking students are enrolled?":"0",
-          "how many high school female full-time undergraduate non-degree-seeking students are enrolled?":"0",
-          "how many high school male part-time undergraduate non-degree-seeking students are enrolled?":"2",
-          "how many high school female part-time undergraduate non-degree-seeking students are enrolled?":"1",
-          "how many high school male full-time graduate degree-seeking first-time students are enrolled?":"3",
-          "how many high school female full-time graduate degree-seeking first-time students are enrolled?":"0",
-          "how many high school male part-time graduate degree-seeking first-time students are enrolled?":"2",
-          "how many high school female part-time graduate degree-seeking first-time students are enrolled?":"1",
-          "how many high school male full-time graduate degree-seeking non-first-time students are enrolled?":"6",
-          "how many high school female full-time graduate degree-seeking non-first-time students are enrolled?":"1",
-          "how many high school male part-time graduate degree-seeking non-first-time students are enrolled?":"5",
-          "how many high school female part-time graduate degree-seeking non-first-time students are enrolled?":"0",
-          "how many high school male full-time graduate non-degree-seeking students are enrolled?":"0",
-          "how many high school female full-time graduate non-degree-seeking students are enrolled?":"0",
-          "how many high school male part-time graduate non-degree-seeking students are enrolled?":"0",
-          "how many high school female part-time graduate non-degree-seeking students are enrolled?":"0"
+          "how many male full-time undergraduate degree-seeking first-time freshmen students are enrolled?":"387",
+          "how many female full-time undergraduate degree-seeking first-time freshmen students are enrolled?":"143",
+          "how many male part-time undergraduate degree-seeking first-time freshmen students are enrolled?":"1",
+          "how many female part-time undergraduate degree-seeking first-time freshmen students are enrolled?":"0",
+          "how many male full-time undergraduate non-first-time freshman first-year students are enrolled?":"9",
+          "how many female full-time undergraduate non-first-time freshman first-year students are enrolled?":"2",
+          "how many male part-time undergraduate non-first-time freshman first-year students are enrolled?":"0",
+          "how many female part-time undergraduate non-first-time freshman first-year students are enrolled?":"0",
+          "how many male full-time undergraduate degree-seeking non-freshmen students are enrolled?":"1082",
+          "how many female full-time undergraduate degree-seeking non-freshmen students are enrolled?":"329",
+          "how many male part-time undergraduate degree-seeking non-freshmen student are enrolled?":"15",
+          "how many female part-time undergraduate degree-seeking non-freshmen student are enrolled?":"1",
+          "how many male full-time undergraduate non-degree-seeking students are enrolled?":"0",
+          "how many female full-time undergraduate non-degree-seeking students are enrolled?":"0",
+          "how many male part-time undergraduate non-degree-seeking students are enrolled?":"2",
+          "how many female part-time undergraduate non-degree-seeking students are enrolled?":"1",
+          "how many male full-time graduate degree-seeking first-time students are enrolled?":"3",
+          "how many female full-time graduate degree-seeking first-time students are enrolled?":"0",
+          "how many male part-time graduate degree-seeking first-time students are enrolled?":"2",
+          "how many female part-time graduate degree-seeking first-time students are enrolled?":"1",
+          "how many male full-time graduate degree-seeking non-first-time students are enrolled?":"6",
+          "how many female full-time graduate degree-seeking non-first-time students are enrolled?":"1",
+          "how many male part-time graduate degree-seeking non-first-time students are enrolled?":"5",
+          "how many female part-time graduate degree-seeking non-first-time students are enrolled?":"0",
+          "how many male full-time graduate non-degree-seeking students are enrolled?":"0",
+          "how many female full-time graduate non-degree-seeking students are enrolled?":"0",
+          "how many male part-time graduate non-degree-seeking students are enrolled?":"0",
+          "how many female part-time graduate non-degree-seeking students are enrolled?":"0"
        }
     },
     {
@@ -715,18 +715,18 @@
           "sum-allowed?":"No",
           "range-allowed?":"No",
           "percentage-allowed?":"Yes",
-          "denominator-question":"how many high school degree-seeking undergraduate students are enrolled?"
+          "denominator-question":"how many degree-seeking undergraduate students are enrolled?"
        },
        "questionAnswers":{
-          "how many high school degree-seeking undergraduate nonresident aliens students are enrolled?":"226",
-          "how many high school degree-seeking undergraduate hispanics students are enrolled?":"104",
-          "how many high school degree-seeking undergraduate african americans students are enrolled?":"93",
-          "how many high school degree-seeking undergraduate caucasian students are enrolled?":"1295",
-          "how many high school degree-seeking undergraduate american indians students are enrolled?":"3",
-          "how many high school degree-seeking undergraduate asians students are enrolled?":"127",
-          "how many high school degree-seeking undergraduate pacific islanders students are enrolled?":"0",
-          "how many high school degree-seeking undergraduate students of two or more races are enrolled?":"99",
-          "how many high school degree-seeking undergraduate students of unknown race are enrolled?":"22"
+          "how many degree-seeking undergraduate nonresident aliens students are enrolled?":"226",
+          "how many degree-seeking undergraduate hispanics students are enrolled?":"104",
+          "how many degree-seeking undergraduate african americans students are enrolled?":"93",
+          "how many degree-seeking undergraduate caucasian students are enrolled?":"1295",
+          "how many degree-seeking undergraduate american indians students are enrolled?":"3",
+          "how many degree-seeking undergraduate asians students are enrolled?":"127",
+          "how many degree-seeking undergraduate pacific islanders students are enrolled?":"0",
+          "how many degree-seeking undergraduate students of two or more races are enrolled?":"99",
+          "how many degree-seeking undergraduate students of unknown race are enrolled?":"22"
        }
     },
     {
@@ -741,18 +741,18 @@
           "sum-allowed?":"No",
           "range-allowed?":"No",
           "percentage-allowed?":"Yes",
-          "denominator-question":"how many high school degree-seeking first-time first-year students are enrolled?"
+          "denominator-question":"how many degree-seeking first-time first-year students are enrolled?"
        },
        "questionAnswers":{
-          "how many high school degree-seeking first-time first-year nonresident aliens students are enrolled?":"36",
-          "how many high school degree-seeking first-time first-year hispanics students are enrolled?":"34",
-          "how many high school degree-seeking first-time first-year african americans students are enrolled?":"31",
-          "how many high school degree-seeking first-time first-year white students are enrolled?":"356",
-          "how many high school degree-seeking first-time first-year american indians students are enrolled?":"1",
-          "how many high school degree-seeking first-time first-year asians students are enrolled?":"36",
-          "how many high school degree-seeking first-time first-year pacific islanders students are enrolled?":"0",
-          "how many high school degree-seeking first-time first-year students of two or more races are enrolled?":"31",
-          "how many high school degree-seeking first-time first-year students of unknown race are enrolled?":"6"
+          "how many degree-seeking first-time first-year nonresident aliens students are enrolled?":"36",
+          "how many degree-seeking first-time first-year hispanics students are enrolled?":"34",
+          "how many degree-seeking first-time first-year african americans students are enrolled?":"31",
+          "how many degree-seeking first-time first-year white students are enrolled?":"356",
+          "how many degree-seeking first-time first-year american indians students are enrolled?":"1",
+          "how many degree-seeking first-time first-year asians students are enrolled?":"36",
+          "how many degree-seeking first-time first-year pacific islanders students are enrolled?":"0",
+          "how many degree-seeking first-time first-year students of two or more races are enrolled?":"31",
+          "how many degree-seeking first-time first-year students of unknown race are enrolled?":"6"
        }
     }
  ],[
@@ -1087,13 +1087,13 @@
           "complete sentence?":"yes"
        },
        "questionAnswers":{
-          "how many high school computer and information degrees are conferred?":"15.7% bachelor's degrees conferred are Computer and information science",
-          "how many high school engineering degrees are conferred?":"73.1% bachelor's degrees conferred are Engineering",
-          "how many high school biological/life sciences degrees are conferred?":"2.2% bachelor's degrees conferred are  Biological/life sciences.",
-          "how many high school mathematics and statistics degrees are conferred?":"5.2% bachelor's degrees conferred are Mathematics and statistics.",
-          "how many high school interdisciplinary studies degrees are conferred?":" 0.7% bachelor's degrees conferred are Interdisciplinary studies.",
-          "how many high school physical sciences degrees are conferred?":"3.0% bachelor's degrees conferred are Physical sciences",
-          "how many high school social sciences degrees are conferred?":"0.2% bachelor's degrees conferred are Social sciences",
+          "how many computer and information degrees are conferred?":"15.7% bachelor's degrees conferred are Computer and information science",
+          "how many engineering degrees are conferred?":"73.1% bachelor's degrees conferred are Engineering",
+          "how many biological/life sciences degrees are conferred?":"2.2% bachelor's degrees conferred are  Biological/life sciences.",
+          "how many mathematics and statistics degrees are conferred?":"5.2% bachelor's degrees conferred are Mathematics and statistics.",
+          "how many interdisciplinary studies degrees are conferred?":" 0.7% bachelor's degrees conferred are Interdisciplinary studies.",
+          "how many physical sciences degrees are conferred?":"3.0% bachelor's degrees conferred are Physical sciences",
+          "how many social sciences degrees are conferred?":"0.2% bachelor's degrees conferred are Social sciences",
           "what majors are offered?":"Rose-Hulman offers degree in  Computer science,  engineering degrees, biological/life sciences,  physical sciences and social sciences"
        }
     },
@@ -1107,8 +1107,8 @@
           "complete sentence?":"yes"
        },
        "questionAnswers":{
-          "how many high school bachelor's degree are awarded by your institution?":"415 bachelors degree were offered from July 1, 2021, to June 30, 2022.",
-          "how many high school master's degree are awarded by your institution ":"18 masters degree were offered from July 1, 2021, to June 30, 2022."
+          "how many bachelor's degree are awarded by your institution?":"415 bachelors degree were offered from July 1, 2021, to June 30, 2022.",
+          "how many master's degree are awarded by your institution ":"18 masters degree were offered from July 1, 2021, to June 30, 2022."
        }
     }
  ],[

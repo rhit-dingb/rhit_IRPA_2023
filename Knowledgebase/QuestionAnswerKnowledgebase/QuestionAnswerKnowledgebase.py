@@ -5,11 +5,11 @@ from Knowledgebase.Knowledgebase import KnowledgeBase
 from haystack.nodes import EmbeddingRetriever
 from haystack.document_stores import InMemoryDocumentStore
 from haystack.pipelines import ExtractiveQAPipeline,  FAQPipeline,  Pipeline
-from haystack.nodes import FARMReader, RouteDocuments
-from haystack import Document, Label, Answer
+from haystack.nodes import FARMReader
+from haystack import Document, Answer
 from DataManager.DataManager import DataManager
 import os
-from haystack import Document, Label, Answer
+from haystack import Document, Answer
 from Data_Ingestion.constants import TEMPLATE_LABEL
 from Knowledgebase.DataModels.ChatbotAnswer import ChatbotAnswer
 from Knowledgebase.DataModels.MultiFeedbackLabel import MultiFeedbackLabel
@@ -30,13 +30,17 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
         self.documentStore =  self.documentStoreConnection.determineDocumentStore()
         self.startingReader = "deepset/roberta-base-squad2"
         self.startingRetriever = "sentence-transformers/multi-qa-mpnet-base-dot-v1"
-        self.trainedReaderPath = "TrainedModels\QAReader"
-        self.trainedRetrieverPath = "TrainedModels\QARetriever"
+        self.trainedReaderPath = os.path.join("TrainedModels", "QAReader")
+        self.trainedRetrieverPath = os.path.join("TrainedModels", "QARetriever")
         self.yearToDocumentStore = dict()
         self.source = "QuestionAnswerKnowledgebase"
-        dirname = os.path.dirname(__file__)
+        dirname = os.path.dirname(os.path.abspath(__file__))
         self.fullReaderPath = os.path.join(dirname, self.trainedReaderPath)   
         self.fullRetrieverPath = os.path.join(dirname, self.trainedRetrieverPath)  
+
+        print("READER AND RETRIEVER PATH")
+        print(self.fullReaderPath)
+        print(self.fullRetrieverPath)
 
         self.retriever = None
         self.reader = None
@@ -152,10 +156,7 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
         chatbotAnswers : List[ChatbotAnswer]= []
        
         for answer in answers:
-            # print(answer)
-            # print(answer.score)
             if answer.score < self.scoreThreshold:
-                # print("SKIP")
                 continue
             
             chatbotAnswer = self.constructAnswer(answer, result)
@@ -180,7 +181,7 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
         # print(document.meta)
         chatbotAnswer = ChatbotAnswer(answer = document.content, source=self.source, metadata= metadata)
         return chatbotAnswer
-        # chatbotAnswers.append(chatbotAnswer)
+       
     
 
     def getBackupAnswer(self, answers : List[Answer], result):
@@ -233,17 +234,15 @@ class QuestionAnswerKnowledgeBase(KnowledgeBase):
                 print("TRAINING THREAD IS ALIVE")
                 return False        
 
-        # try:
-            # self.trainer.trainDataForEmbeddingRetriever(trainingLabels, self.retriever, saveDirectory=self.fullRetrieverPath,documentStore= self.documentStore, source=self.source, useQuestion=True )
-            # self.trainer.trainDataForModelWithSQUAD(trainingLabels=trainingLabels, model=self.reader, saveDirectory= self.fullReaderPath, source=self.source)
-        trainingThread = TrainingThread("trainingThread"+str(random.random()), "traingThread", trainingLabels, self.trainer,self)
-        trainingThread.start()
-        self.trainThread = trainingThread
-        self.trainingCallback = callback
-        print("TRAINING STARTED")
-        return True
-        # except Exception:
-        #     return False
+        try:
+            trainingThread = TrainingThread("trainingThread"+str(random.random()), "traingThread", trainingLabels, self.trainer,self)
+            trainingThread.start()
+            self.trainThread = trainingThread
+            self.trainingCallback = callback
+            print("TRAINING STARTED")
+            return True
+        except Exception:
+            return False
         
     def doneTraining(self, isSuccess):
         print("TRAINING DONE")

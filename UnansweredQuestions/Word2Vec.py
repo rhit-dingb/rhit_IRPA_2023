@@ -16,7 +16,10 @@ class Word2VecModel(Model):
         
     def initializeModel(self):
         glove_vectors = gensim.downloader.load('glove-wiki-gigaword-300')
-        glove_vectors.save(self.modelPath)
+        try:
+            glove_vectors.save(self.modelPath)
+        except Exception:
+            print("Saving model failed")
         self.model = glove_vectors
         # self.loadModel()
 
