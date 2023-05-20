@@ -102,13 +102,14 @@ nlu:
 - intent: enrollment
   examples: |
     - I want to know about enrollment.
-    - I want to know about enrollment at Rose-Hulman
+    - I want to know about enrollment
     - What is the number of students at Rose?
     - Yo, tell me about the number of students?
     - Student number
     - How many students?
     - number of students
     - How many students do you have?
+    - What is the total student enrollment?
     - [percentage]{"entity":"aggregation", "value": "percent"} of students?
     - [male]{"entity": "gender", "value": "male"} to [female]{"entity": "gender", "value": "female"} [ratio]{"entity":"aggregation", "value":"ratio"}?
     - [percentage]{"entity":"aggregation", "value": "percent"} of [male]{"entity": "gender", "value": "male"} students [enrolled]{"entity":"action", "value": "enrolled"}?
@@ -1722,30 +1723,30 @@ nlu:
   examples: |
     - I want to know about admission.
     - I want to know about admission data.
-    - What is Rose-Hulman's admission [policy]{"entity":"policy", "value":"policy"}??
+    - What is the admission [policy]{"entity":"policy", "value":"policy"}??
     - How many student are [admitted]{"entity": "action", "value": "accepted"}
     - how many student are [accepted]{"entity": "action", "value": "accepted"}
-    - How many [male]{"entity": "gender", "value": "male"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}  [applied]{"entity": "action", "value": "applied"} in Rose-Hulman?
-    - How many [female]{"entity": "gender", "value": "female"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} [applied]{"entity": "action", "value": "applied"} in Rose-Hulman?
+    - How many [male]{"entity": "gender", "value": "male"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}  [applied]{"entity": "action", "value": "applied"} ?
+    - How many [female]{"entity": "gender", "value": "female"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} [applied]{"entity": "action", "value": "applied"} ?
 
-    - How many [men]{"entity": "gender", "value": "male"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}  [applied]{"entity": "action", "value": "applied"} in Rose-Hulman?
-    - How many [women]{"entity": "gender", "value": "female"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}  [applied]{"entity": "action", "value": "applied"} in Rose-Hulman?
+    - How many [men]{"entity": "gender", "value": "male"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}  [applied]{"entity": "action", "value": "applied"} ?
+    - How many [women]{"entity": "gender", "value": "female"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}  [applied]{"entity": "action", "value": "applied"} ?
 
-    - How many [male]{"entity": "gender", "value": "male"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} [admitted]{"entity": "action", "value": "accepted"} in Rose-Hulman?
-    - How many [female]{"entity": "gender", "value": "female"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}  [admitted]{"entity": "action", "value": "accepted"} in Rose-Hulman?
+    - How many [male]{"entity": "gender", "value": "male"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"} [admitted]{"entity": "action", "value": "accepted"} ?
+    - How many [female]{"entity": "gender", "value": "female"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}  [admitted]{"entity": "action", "value": "accepted"} ?
 
-    - How many [men]{"entity": "gender", "value": "male"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}  [admitted]{"entity": "action", "value": "accepted"} in Rose-Hulman?
-    - How many [women]{"entity": "gender", "value": "female"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}  [admitted]{"entity": "action", "value": "accepted"} in Rose-Hulman?
+    - How many [men]{"entity": "gender", "value": "male"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}  [admitted]{"entity": "action", "value": "accepted"} ?
+    - How many [women]{"entity": "gender", "value": "female"} [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}  [admitted]{"entity": "action", "value": "accepted"} ?
 
-    - How many [male]{"entity": "gender", "value": "male"} [first-time]{"entity": "is_first_time", "value": "first-time"} [first-year]{"entity": "is_first_year", "value": "first-year"}   [applied]{"entity": "action", "value": "applied"} in Rose-Hulman?
-    - How many [female]{"entity": "gender", "value": "female"} [first-time]{"entity": "is_first_time", "value": "first-time"} [first-year]{"entity": "is_first_year", "value": "first-year"}  [applied]{"entity": "action", "value": "applied"} in Rose-Hulman?
+    - How many [male]{"entity": "gender", "value": "male"} [first-time]{"entity": "is_first_time", "value": "first-time"} [first-year]{"entity": "is_first_year", "value": "first-year"}   [applied]{"entity": "action", "value": "applied"} ?
+    - How many [female]{"entity": "gender", "value": "female"} [first-time]{"entity": "is_first_time", "value": "first-time"} [first-year]{"entity": "is_first_year", "value": "first-year"}  [applied]{"entity": "action", "value": "applied"} ?
 
-    - How many [male]{"entity": "gender", "value": "male"} [first-time]{"entity": "is_first_time", "value": "first-time"} [first-year]{"entity": "is_first_year", "value": "first-year"}  [admitted]{"entity": "action", "value": "accepted"} in Rose-Hulman?
-    - How many [female]{"entity": "gender", "value": "female"} [first-time]{"entity": "is_first_time", "value": "first-time"} [first-year]{"entity": "is_first_year", "value": "first-year"}  [admitted]{"entity": "action", "value": "accepted"} in Rose-Hulman?
+    - How many [male]{"entity": "gender", "value": "male"} [first-time]{"entity": "is_first_time", "value": "first-time"} [first-year]{"entity": "is_first_year", "value": "first-year"}  [admitted]{"entity": "action", "value": "accepted"} ?
+    - How many [female]{"entity": "gender", "value": "female"} [first-time]{"entity": "is_first_time", "value": "first-time"} [first-year]{"entity": "is_first_year", "value": "first-year"}  [admitted]{"entity": "action", "value": "accepted"} ?
 
     - Do you have [policy]{"entity":"policy", "value":"policy"} of placing student on [waiting-list]{"entity":"waiting-list", "value": "waiting-list"}?
     - Is there any [wait list]{"entity":"waiting-list", "value": "waiting-list"} [policy]{"entity":"policy", "value":"policy"}
-    - Is rose-hulman's [waitlist]{"entity":"waiting-list", "value": "waiting-list"} ranked?
+    - Is the [waitlist]{"entity":"waiting-list", "value": "waiting-list"} ranked?
     - What's the number of students did you offered a place on [waiting-list]{"entity":"waiting-list", "value": "waiting-list"}?
 
     - How many students are offered a [waitlist]{"entity":"waiting-list", "value": "waiting-list"} position?
@@ -1789,7 +1790,7 @@ nlu:
    
     - Do your [institute]{"entity":"education_level", "value": "college"} have [early action]{"entity": "early-admission", "value": "early action" }?
 
-    - Do Rose-Hulman have [early-decision]{"entity": "early-admission", "value": "early decision" }?
+    - Is there [early-decision]{"entity": "early-admission", "value": "early decision" }?
 
     - Do your [institute]{"entity":"education_level", "value": "college"} have [early decision]{"entity": "early-admission", "value": "early decision"}?
 
@@ -1820,7 +1821,7 @@ nlu:
     - What is the [deadline]{"entity":"time", "value": "date"} for [housing]{"entity": "housing", "value": "housing"} deposit?
     
 
-    - What should I take in [high school] for admission to rose-hulman?
+    - What should I take in [high school] for admission decisions?
     - total [units]{"entity": "academic_credit", "value": "unit"} [recommended]{"entity": "condition", "value":"recommend"}?
     - total [units]{"entity": "academic_credit", "value": "unit"} [required]{"entity": "condition", "value": "require"}?
     - How many academic [units]{"entity": "academic_credit", "value": "unit"} are [required]{"entity": "condition", "value": "require"}?

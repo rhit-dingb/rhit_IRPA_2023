@@ -27,10 +27,10 @@ nlu:
     - What is the [percentage]{"entity":"aggregation", "value": "percent"} of [statistics]{"entity":"subject", "value": "statistic"} degree offered?
 
     - How many [social science]{"entity":"subject", "value": "social science"} degrees are [handed out]{"entity":"action", "value": "awarded"}?
-    - What [majors]{"entity":"major", "value": "major"} does rose-hulman offer?
-    - What type of [majors]{"entity":"major", "value": "major"} does rose-hulman offer?
-    - What kind of [majors]{"entity":"major", "value": "major"} does rose-hulman offer?
-    - What kind of [disciplinary area]{"entity":"major", "value": "major"} does rose-hulman offer?
+    - What [majors]{"entity":"major", "value": "major"} are offer?
+    - What type of [majors]{"entity":"major", "value": "major"} are offer?
+    - What kind of [majors]{"entity":"major", "value": "major"} are offer?
+    - What kind of [disciplinary area]{"entity":"major", "value": "major"} are offer?
     - What kind of [area]{"entity":"major", "value": "major"} of [discipline]{"entity":"major", "value": "major"} is offered?
     - What kind of [discipline]{"entity":"major", "value": "major"} does the school offer?
   

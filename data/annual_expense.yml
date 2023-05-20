@@ -5,7 +5,7 @@ nlu:
 - intent: annual_expense
   examples: |
     - How much do I gotta [pay]{"entity":"money", "value": "cost"} for [tuition]{"entity":"money", "value": "cost"} for [first-year]{"entity":"is_first_year", "value": "first-year"} student?
-    - What [cost]{"entity":"money", "value": "cost"} is [required]{"entity":"condition", "value": "require"} to attend rose-hulman
+    - What [cost]{"entity":"money", "value": "cost"} is [required]{"entity":"condition", "value": "require"} to attend?
     - What is the [URL]{"entity":"way_of_contact", "value": "website"} of your institution's [net-price calculator]{"entity":"net_price_calculator", "value": "net price calculator"}?
     - What is the [web page]{"entity":"way_of_contact", "value": "website"} of your institution's [net price calculator]{"entity":"net_price_calculator", "value": "net price calculator"}?
     - Is there any [URL]{"entity":"way_of_contact", "value": "website"} that i can use to [calculator for net price]{"entity":"net_price_calculator", "value": "net price calculator"}?

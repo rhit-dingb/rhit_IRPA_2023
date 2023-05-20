@@ -143,8 +143,8 @@ nlu:
     #Retention rate training data:
     - What is the [retention]{"entity":"student_enrollment_result", "value": "retention"} [rate]{"entity": "aggregation", "value": "percent"}{"entity": "retention-rate", "value": "retention-rate"} for cohort?
     - I want to know about the [retention]{"entity":"student_enrollment_result", "value": "retention"} [rate]{"entity": "aggregation", "value": "percent"}{"entity": "retention-rate", "value": "retention-rate"}
-    - [retention]{"entity":"student_enrollment_result", "value": "retention"} [rate]{"entity": "aggregation", "value": "percent"} at rose-hulman in 2019
-    - What is the [rate]{"entity": "aggregation", "value": "percent"} of [retention]{"entity":"student_enrollment_result", "value": "retention"}{"entity": "retention-rate", "value": "retention-rate"} for 2021 academic year ?
+    - [retention]{"entity":"student_enrollment_result", "value": "retention"} [rate]{"entity": "aggregation", "value": "percent"} 
+    - What is the [rate]{"entity": "aggregation", "value": "percent"} of [retention]{"entity":"student_enrollment_result", "value": "retention"}{"entity": "retention-rate", "value": "retention-rate"}?
 
 
 
