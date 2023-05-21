@@ -61,6 +61,8 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
         # 
         # for sparseMatrixToSearch in sparseMatricesToSearch:
         sparseMatrixToSearch : SparseMatrix = sparseMatricesToSearch[0]
+        print("To SEARCH")
+        print(sparseMatrixToSearch.subSectionName)
         isOperationAllowed = sparseMatrixToSearch.isAnyOperationAllowed()
         template = sparseMatrixToSearch.findTemplate()
 
@@ -281,6 +283,7 @@ class SparseMatrixKnowledgeBase(KnowledgeBase):
             elif entitiesMatchCount == currMax:
                 maxMatch.append(sparseMatrix)
 
+        print("BEST MATCH")
         for m in maxMatch:
             print(m.subSectionName)
             print(m.sparseMatrixDf)

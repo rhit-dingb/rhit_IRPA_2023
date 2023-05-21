@@ -109,7 +109,9 @@ nlu:
     - How many students?
     - number of students
     - How many students do you have?
-    - What is the total student enrollment?
+    - What is the student enrollment?
+    - What is the [undergrad]{"entity": "student_level", "value": "undergraduate"} enrollment?
+    - What is the student enrollment at here?
     - [percentage]{"entity":"aggregation", "value": "percent"} of students?
     - [male]{"entity": "gender", "value": "male"} to [female]{"entity": "gender", "value": "female"} [ratio]{"entity":"aggregation", "value":"ratio"}?
     - [percentage]{"entity":"aggregation", "value": "percent"} of [male]{"entity": "gender", "value": "male"} students [enrolled]{"entity":"action", "value": "enrolled"}?
