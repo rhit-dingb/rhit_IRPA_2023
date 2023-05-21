@@ -35,14 +35,16 @@ class DefaultShouldAddRowStrategy(ShouldAddRowStrategy):
                 filteredEntities.append(entity)
 
         uniqueEntities = removeDuplicatedEntities(filteredEntities)
-        uniqueEntityValuesFound = [e["value"].lower() for e in uniqueEntities]
+    
+        #uniqueEntityValuesFound = [e["value"].lower() for e in uniqueEntities]
 
         
-        finalEntityValues = []
-        for entity in uniqueEntityValuesFound:
-            if entityValue in processedColumn:
-                finalEntityValues.append(entity)
+        finalEntities = []
+        for entity in uniqueEntities:
+            if entity["value"] in processedColumn:
+                finalEntities.append(entity)
 
+        finalEntityValues = [e["value"].lower() for e in finalEntities]
         for entityValue in finalEntityValues:
            
             if entityValue in processedColumn and row[entityValue] == 1:
@@ -58,6 +60,6 @@ class DefaultShouldAddRowStrategy(ShouldAddRowStrategy):
             # print(row)
            # print("RETUNRING")
             #print(uniqueEntities)
-            return uniqueEntities
+            return finalEntities
         else:
             return []
