@@ -1,14 +1,8 @@
 
 from typing import Dict, List, Tuple
-# from DataManager.YearDataSelector import YearlyDataSelector
-# from DataManager.YearDataSelectorByCohort import YearlyDataSelectorByCohort
-from Data_Ingestion.SparseMatrix import SparseMatrix
-from Data_Ingestion.TopicData import TopicData
 from Exceptions.ExceptionTypes import ExceptionTypes
 
-from Exceptions.ExceptionMessages import NO_DATA_AVAILABLE_FOR_GIVEN_INTENT_FORMAT, NO_DATA_FOUND_FOR_ACADEMIC_YEAR_ERROR_MESSAGE_FORMAT
-from Exceptions.NoDataFoundException import NoDataFoundException
-from Exceptions.ExceptionMessages import NO_DATA_EXIST_MESSAGE
+
 
 import re
 from abc import ABC, abstractmethod

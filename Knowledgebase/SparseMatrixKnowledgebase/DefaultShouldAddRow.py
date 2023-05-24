@@ -35,22 +35,31 @@ class DefaultShouldAddRowStrategy(ShouldAddRowStrategy):
                 filteredEntities.append(entity)
 
         uniqueEntities = removeDuplicatedEntities(filteredEntities)
-        uniqueEntityValuesFound = [e["value"].lower() for e in uniqueEntities]
-
     
-        for entityValue in uniqueEntityValuesFound:
+        #uniqueEntityValuesFound = [e["value"].lower() for e in uniqueEntities]
+
+        
+        finalEntities = []
+        for entity in uniqueEntities:
+            if entity["value"] in processedColumn:
+                finalEntities.append(entity)
+
+        finalEntityValues = [e["value"].lower() for e in finalEntities]
+        for entityValue in finalEntityValues:
            
             if entityValue in processedColumn and row[entityValue] == 1:
                 # print("MATCHING")
                 # print(entityValue)
                 temp_count = temp_count+1
             else:
-                # print("MISMATCH AT", entityValue)
+                print("MISMATCH AT", entityValue)
                 continue
     
-        if temp_count == len(uniqueEntities):
+        if temp_count == len(finalEntityValues):
             # print("ACCEPT ROW")
             # print(row)
-            return uniqueEntities
+           # print("RETUNRING")
+            #print(uniqueEntities)
+            return finalEntities
         else:
             return []

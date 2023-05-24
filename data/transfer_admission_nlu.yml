@@ -4,45 +4,45 @@ nlu:
 - intent: transfer_admission
   examples: |
     - At which [term]{"entity": "academic_term", "value": "term" } may [transfer]{"entity":"category", "value":"transfer"} student [enroll]{"entity": "action", "value": "enrolled"}
-    - Does Rose-Hulman [accept]{"entity":"action", "value":"accepted"} [credits]{"entity":"academic_credit", "value":"credit"} [transferred]{"entity":"category", "value":"transfer"}
-    - Does Rose-Hulman [accept]{"entity":"action", "value":"accepted"} [transfer]{"entity":"category", "value":"transfer"} [credit]{"entity":"academic_credit", "value":"credit"}
-    - Does Rose-Hulman [accept]{"entity":"action", "value":"accepted"} [transfer]{"entity":"category", "value":"transfer"} [credits]{"entity":"academic_credit", "value":"credit"}
+    - does the school [accept]{"entity":"action", "value":"accepted"} [credits]{"entity":"academic_credit", "value":"credit"} [transferred]{"entity":"category", "value":"transfer"}
+    - does the school [accept]{"entity":"action", "value":"accepted"} [transfer]{"entity":"category", "value":"transfer"} [credit]{"entity":"academic_credit", "value":"credit"}
+    - does the school [accept]{"entity":"action", "value":"accepted"} [transfer]{"entity":"category", "value":"transfer"} [credits]{"entity":"academic_credit", "value":"credit"}
  
-    - Does Rose-Hulman [allow]{"entity":"action", "value":"accepted"} [transferred]{"entity":"category", "value":"transfer"} [credits]{"entity":"academic_credit", "value":"credit"} 
-    - Does Rose-Hulman [allow]{"entity":"action", "value":"accepted"} [transfering]{"entity":"category", "value":"transfer"} [credits]{"entity":"academic_credit", "value":"credit"} 
-    - Does Rose-Hulman [allow]{"entity":"action", "value":"accepted"} [transfer]{"entity":"category", "value":"transfer"} [credits]{"entity":"academic_credit", "value":"credit"} 
-    - Does rose-hulman [allow]{"entity":"action", "value":"accepted"} student to [tranfer their credit] from previous school?
+    - does the school [allow]{"entity":"action", "value":"accepted"} [transferred]{"entity":"category", "value":"transfer"} [credits]{"entity":"academic_credit", "value":"credit"} 
+    - does the school [allow]{"entity":"action", "value":"accepted"} [transfering]{"entity":"category", "value":"transfer"} [credits]{"entity":"academic_credit", "value":"credit"} 
+    - does the school [allow]{"entity":"action", "value":"accepted"} [transfer]{"entity":"category", "value":"transfer"} [credits]{"entity":"academic_credit", "value":"credit"} 
+    - does the school [allow]{"entity":"action", "value":"accepted"} student to [tranfer their credit] from previous school?
  
-    - Does Rose-Hulman [enroll]{"entity":"action", "value":"enrolled"} [transfer]{"entity":"category", "value":"transfer"} student
+    - does the school [enroll]{"entity":"action", "value":"enrolled"} [transfer]{"entity":"category", "value":"transfer"} student
 
-    - Does Rose-Hulman let [transfer] student in
+    - does the school let [transfer] student in
 
-    - Does Rose-Hulman [require]{"entity":"condition", "value": "require"} [essay](essay) to apply for [transfer]{"entity":"category", "value":"transfer"} admission?
-    - Does Rose-Hulman [require]{"entity":"condition", "value": "require"} [good standing statement]{"entity": "academic_factor", "value": "statement of good standing"} to apply for [transfer]{"entity":"category", "value":"transfer"} admission?
-    - Does Rose-Hulman [require]{"entity":"condition", "value": "require"} [interview](academic_factor) to apply for [transfer]{"entity":"category", "value":"transfer"} admission?
-    - Does Rose-Hulman [require]{"entity":"condition", "value": "require"} [personal statement]{"entity": "academic_factor", "value": "essay"} to apply for [transfer]{"entity":"category", "value":"transfer"} admission?
-    - Does Rose-Hulman [require]{"entity":"condition", "value": "require"} [statement of good standing](academic_factor) to apply for [transfer]{"entity":"category", "value":"transfer"} admission?
-    - Does Rose-Hulman [require]{"entity":"condition", "value": "require"} [test score]{"entity": "academic_factor", "value": "standardized test scores"} to apply for [transfer]{"entity":"category", "value":"transfer"} admission?
-    - Does Rose-Hulman [require]{"entity":"condition", "value": "require"} [test scores]{"entity": "academic_factor", "value": "standardized test scores"} to apply for [transfer]{"entity":"category", "value":"transfer"} admission?
+    - does the school [require]{"entity":"condition", "value": "require"} [essay](essay) to apply for [transfer]{"entity":"category", "value":"transfer"} admission?
+    - does the school [require]{"entity":"condition", "value": "require"} [good standing statement]{"entity": "academic_factor", "value": "statement of good standing"} to apply for [transfer]{"entity":"category", "value":"transfer"} admission?
+    - does the school [require]{"entity":"condition", "value": "require"} [interview](academic_factor) to apply for [transfer]{"entity":"category", "value":"transfer"} admission?
+    - does the school [require]{"entity":"condition", "value": "require"} [personal statement]{"entity": "academic_factor", "value": "essay"} to apply for [transfer]{"entity":"category", "value":"transfer"} admission?
+    - does the school [require]{"entity":"condition", "value": "require"} [statement of good standing](academic_factor) to apply for [transfer]{"entity":"category", "value":"transfer"} admission?
+    - does the school [require]{"entity":"condition", "value": "require"} [test score]{"entity": "academic_factor", "value": "standardized test scores"} to apply for [transfer]{"entity":"category", "value":"transfer"} admission?
+    - does the school [require]{"entity":"condition", "value": "require"} [test scores]{"entity": "academic_factor", "value": "standardized test scores"} to apply for [transfer]{"entity":"category", "value":"transfer"} admission?
 
-    - Is [college](education_level) [transcript]{"entity": "academic_factor", "value": "grades" } [required]{"entity":"condition", "value": "require"}  for [transfer]{"entity":"category", "value":"transfer"} student to apply for admission at Rose-Hulman
-    - Is personal [essay](essay) [required]{"entity":"condition", "value": "require"} for [transfer]{"entity":"category", "value":"transfer"} student to apply for admission at Rose-Hulman
-    - Is [good standing statement]{"entity": "academic_factor", "value": "statement of good standing"} [required]{"entity":"condition", "value": "require"}  for [transfer]{"entity":"category", "value":"transfer"} student to apply for admission at Rose-Hulman
-    - Is [high school](education_level) [transcript]{"entity": "academic_factor", "value": "grades" } [required]{"entity":"condition", "value": "require"}  for [transfer]{"entity":"category", "value":"transfer"} student to apply for admission at Rose-Hulman
-    - Is [high-school]{"entity": "education_level", "value": "high school"} [transcript]{"entity": "academic_factor", "value": "grades" } [required]{"entity":"condition", "value": "require"}  for [transfer]{"entity":"category", "value":"transfer"} student to apply for admission at Rose-Hulman
-    - Is [interview](academic_factor) [required]{"entity":"condition", "value": "require"} for [transfer]{"entity":"category", "value":"transfer"} student to apply for admission at Rose-Hulman
-    - Is [personal statement]{"entity": "academic_factor", "value": "essay"} [required]{"entity":"condition", "value": "require"} for [transfer]{"entity":"category", "value":"transfer"} student to apply for admission at Rose-Hulman
-    - Is [secondary school]{"entity": "education_level", "value": "high school"} [transcript]{"entity": "academic_factor", "value": "grades" } [required]{"entity":"condition", "value": "require"}  for [transfer]{"entity":"category", "value":"transfer"} student to apply for admission at Rose-Hulman
-    - Is [statement of good standing](academic_factor) [required]{"entity":"condition", "value": "require"} for [transfer]{"entity":"category", "value":"transfer"} student to apply for admission at Rose-Hulman
-    - Is [test score]{"entity": "academic_factor", "value": "standardized test scores"} [required]{"entity":"condition", "value": "require"}  for [transfer]{"entity":"category", "value":"transfer"} student to apply for admission at Rose-Hulman
-    - Is [test scores]{"entity": "academic_factor", "value": "standardized test scores"} [required]{"entity":"condition", "value": "require"}  for [transfer]{"entity":"category", "value":"transfer"} student to apply for admission at Rose-Hulman
+    - Is [college](education_level) [transcript]{"entity": "academic_factor", "value": "grades" } [required]{"entity":"condition", "value": "require"}  for [transfer]{"entity":"category", "value":"transfer"} student to apply for admission 
+    - Is personal [essay](essay) [required]{"entity":"condition", "value": "require"} for [transfer]{"entity":"category", "value":"transfer"} student to apply for admission 
+    - Is [good standing statement]{"entity": "academic_factor", "value": "statement of good standing"} [required]{"entity":"condition", "value": "require"}  for [transfer]{"entity":"category", "value":"transfer"} student to apply for admission 
+    - Is [high school](education_level) [transcript]{"entity": "academic_factor", "value": "grades" } [required]{"entity":"condition", "value": "require"}  for [transfer]{"entity":"category", "value":"transfer"} student to apply for admission 
+    - Is [high-school]{"entity": "education_level", "value": "high school"} [transcript]{"entity": "academic_factor", "value": "grades" } [required]{"entity":"condition", "value": "require"}  for [transfer]{"entity":"category", "value":"transfer"} student to apply for admission 
+    - Is [interview](academic_factor) [required]{"entity":"condition", "value": "require"} for [transfer]{"entity":"category", "value":"transfer"} student to apply for admission 
+    - Is [personal statement]{"entity": "academic_factor", "value": "essay"} [required]{"entity":"condition", "value": "require"} for [transfer]{"entity":"category", "value":"transfer"} student to apply for admission 
+    - Is [secondary school]{"entity": "education_level", "value": "high school"} [transcript]{"entity": "academic_factor", "value": "grades" } [required]{"entity":"condition", "value": "require"}  for [transfer]{"entity":"category", "value":"transfer"} student to apply for admission 
+    - Is [statement of good standing](academic_factor) [required]{"entity":"condition", "value": "require"} for [transfer]{"entity":"category", "value":"transfer"} student to apply for admission 
+    - Is [test score]{"entity": "academic_factor", "value": "standardized test scores"} [required]{"entity":"condition", "value": "require"}  for [transfer]{"entity":"category", "value":"transfer"} student to apply for admission 
+    - Is [test scores]{"entity": "academic_factor", "value": "standardized test scores"} [required]{"entity":"condition", "value": "require"}  for [transfer]{"entity":"category", "value":"transfer"} student to apply for admission 
    
     - Is there any [other]{"entity": "other", "value": "other"} [additional]{"entity": "other", "value": "other"} [requirement]{"entity": "condition", "value": "require"}  specific to [transfer]{"entity":"category", "value":"transfer"} applicants?
     - Is there any [other]{"entity": "other", "value": "other"} application [requirement]{"entity": "condition", "value": "require"}  specific to [transfer]{"entity":"category", "value":"transfer"} applicants?
     - Is there any [other]{"entity": "other", "value": "other"} [requirement]{"entity": "condition", "value": "require"}  specific to [transfer]{"entity":"category", "value":"transfer"} applicants?
     - Is there any [additional]{"entity": "other", "value": "other"} [requirements]{"entity": "condition", "value": "require"}  specific to [transfer]{"entity":"category", "value":"transfer"} applicants?
 
-    - Is [university]{"entity": "education_level", "value": "college"} [transcript]{"entity": "academic_factor", "value": "grades" } [required]{"entity":"condition", "value": "require"}  for [transfer]{"entity":"category", "value":"transfer"} student to apply for admission at Rose-Hulman
+    - Is [university]{"entity": "education_level", "value": "college"} [transcript]{"entity": "academic_factor", "value": "grades" } [required]{"entity":"condition", "value": "require"}  for [transfer]{"entity":"category", "value":"transfer"} student to apply for admission 
 
     - Does a [transfer]{"entity":"category", "value":"transfer"} applicant [need]{"entity":"condition", "value": "require"} to have [lowest]{"entity": "range", "value": "minimum"} number of [credit](academic_credit) completed or else they [must]{"entity":"condition","value":"require"} apply as an entering [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}?
     - Does a [transfer]{"entity":"category", "value":"transfer"} applicant [need]{"entity":"condition", "value": "require"} to have [lowest]{"entity": "range", "value": "minimum"} number of [credits]{"entity": "academic_credit", "value": "credit"} completed or else they [must]{"entity":"condition","value":"require"} apply as an entering [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}?
@@ -51,54 +51,54 @@ nlu:
     - Does a [transfer]{"entity":"category", "value":"transfer"} applicant [need]{"entity":"condition", "value": "require"} to have [minimum](aggregation) number of [credit](academic_credit) completed or else they [must]{"entity":"condition","value":"require"} apply as an entering [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}?
     - Does a [transfer]{"entity":"category", "value":"transfer"} applicant [need]{"entity":"condition", "value": "require"} to have [minimum](aggregation) number of [credits]{"entity": "academic_credit", "value": "credit"} completed or else they [must]{"entity":"condition","value":"require"} apply as an entering [freshman]{"entity": "undergraduate_grade_level", "value": "freshman"}?
 
-    - How many [female](gender) [transfer]{"entity":"category", "value":"transfer"} student [admit]{"entity": "action", "value": "accepted"} to Rose-Hulman?
-    - How many [female](gender) [transfer]{"entity":"category", "value":"transfer"} student [admitted]{"entity": "action", "value": "accepted"} to Rose-Hulman?
-    - How many [female](gender) [transfer]{"entity":"category", "value":"transfer"} student [admitting]{"entity": "action", "value": "accepted"} to Rose-Hulman?
-    - How many [female](gender) [transfer]{"entity":"category", "value":"transfer"} student [applied](action) to Rose-Hulman?
-    - How many [female](gender) [transfer]{"entity":"category", "value":"transfer"} student [apply]{"entity": "action", "value": "applied"} to Rose-Hulman?
-    - How many [female](gender) [transfer]{"entity":"category", "value":"transfer"} student [applying]{"entity": "action", "value": "applied"} to Rose-Hulman?
-    - How many [female](gender) [transfer]{"entity":"category", "value":"transfer"} student [enroll]{"entity": "action", "value": "enrolled"} to Rose-Hulman?
-    - How many [female](gender) [transfer]{"entity":"category", "value":"transfer"} student [enrolled](action) to Rose-Hulman?
-    - How many [female](gender) [transfer]{"entity":"category", "value":"transfer"} student are [enrolling]{"entity": "action", "value": "enrolled"} to Rose-Hulman?
+    - How many [female](gender) [transfer]{"entity":"category", "value":"transfer"} student [admit]{"entity": "action", "value": "accepted"} ?
+    - How many [female](gender) [transfer]{"entity":"category", "value":"transfer"} student [admitted]{"entity": "action", "value": "accepted"} ?
+    - How many [female](gender) [transfer]{"entity":"category", "value":"transfer"} student [admitting]{"entity": "action", "value": "accepted"} ?
+    - How many [female](gender) [transfer]{"entity":"category", "value":"transfer"} student [applied](action) ?
+    - How many [female](gender) [transfer]{"entity":"category", "value":"transfer"} student [apply]{"entity": "action", "value": "applied"} ?
+    - How many [female](gender) [transfer]{"entity":"category", "value":"transfer"} student [applying]{"entity": "action", "value": "applied"} ?
+    - How many [female](gender) [transfer]{"entity":"category", "value":"transfer"} student [enroll]{"entity": "action", "value": "enrolled"} ?
+    - How many [female](gender) [transfer]{"entity":"category", "value":"transfer"} student [enrolled](action) ?
+    - How many [female](gender) [transfer]{"entity":"category", "value":"transfer"} student are [enrolling]{"entity": "action", "value": "enrolled"} ?
 
-    - How many [woman]{"entity": "gender", "value": "female"} [transfer]{"entity":"category", "value":"transfer"} student [admit]{"entity": "action", "value": "accepted"} to Rose-Hulman?
-    - How many [woman]{"entity": "gender", "value": "female"} [transfer]{"entity":"category", "value":"transfer"} student [admitted]{"entity": "action", "value": "accepted"} to Rose-Hulman?
-    - How many [woman]{"entity": "gender", "value": "female"} [transfer]{"entity":"category", "value":"transfer"} student [admitting]{"entity": "action", "value": "accepted"} to Rose-Hulman?
-    - How many [woman]{"entity": "gender", "value": "female"} [transfer]{"entity":"category", "value":"transfer"} student [applied](action) to Rose-Hulman?
-    - How many [woman]{"entity": "gender", "value": "female"} [transfer]{"entity":"category", "value":"transfer"} student [apply]{"entity": "action", "value": "applied"} to Rose-Hulman?
-    - How many [woman]{"entity": "gender", "value": "female"} [transfer]{"entity":"category", "value":"transfer"} student [applying]{"entity": "action", "value": "applied"} to Rose-Hulman?
-    - How many [woman]{"entity": "gender", "value": "female"} [transfer]{"entity":"category", "value":"transfer"} student [enroll]{"entity": "action", "value": "enrolled"} to Rose-Hulman?
-    - How many [woman]{"entity": "gender", "value": "female"} [transfer]{"entity":"category", "value":"transfer"} student [enrolled](action) to Rose-Hulman?
-    - How many [woman]{"entity": "gender", "value": "female"} [transfer]{"entity":"category", "value":"transfer"} student [enrolling]{"entity": "action", "value": "enrolled"} to Rose-Hulman?
+    - How many [woman]{"entity": "gender", "value": "female"} [transfer]{"entity":"category", "value":"transfer"} student [admit]{"entity": "action", "value": "accepted"} ?
+    - How many [woman]{"entity": "gender", "value": "female"} [transfer]{"entity":"category", "value":"transfer"} student [admitted]{"entity": "action", "value": "accepted"} ?
+    - How many [woman]{"entity": "gender", "value": "female"} [transfer]{"entity":"category", "value":"transfer"} student [admitting]{"entity": "action", "value": "accepted"} ?
+    - How many [woman]{"entity": "gender", "value": "female"} [transfer]{"entity":"category", "value":"transfer"} student [applied](action) ?
+    - How many [woman]{"entity": "gender", "value": "female"} [transfer]{"entity":"category", "value":"transfer"} student [apply]{"entity": "action", "value": "applied"} ?
+    - How many [woman]{"entity": "gender", "value": "female"} [transfer]{"entity":"category", "value":"transfer"} student [applying]{"entity": "action", "value": "applied"} ?
+    - How many [woman]{"entity": "gender", "value": "female"} [transfer]{"entity":"category", "value":"transfer"} student [enroll]{"entity": "action", "value": "enrolled"} ?
+    - How many [woman]{"entity": "gender", "value": "female"} [transfer]{"entity":"category", "value":"transfer"} student [enrolled](action) ?
+    - How many [woman]{"entity": "gender", "value": "female"} [transfer]{"entity":"category", "value":"transfer"} student [enrolling]{"entity": "action", "value": "enrolled"} ?
 
-    - How many [male](gender) [transfer]{"entity":"category", "value":"transfer"} student [admit]{"entity": "action", "value": "accepted"} to Rose-Hulman?
-    - How many [male](gender) [transfer]{"entity":"category", "value":"transfer"} student [admitted]{"entity": "action", "value": "accepted"} to Rose-Hulman?
-    - How many [male](gender) [transfer]{"entity":"category", "value":"transfer"} student [admitting]{"entity": "action", "value": "accepted"} to Rose-Hulman?
-    - How many [male](gender) [transfer]{"entity":"category", "value":"transfer"} student [applied](action) to Rose-Hulman?
-    - How many [male](gender) [transfer]{"entity":"category", "value":"transfer"} student [apply]{"entity": "action", "value": "applied"} to Rose-Hulman?
-    - How many [male](gender) [transfer]{"entity":"category", "value":"transfer"} student [applying]{"entity": "action", "value": "applied"} to Rose-Hulman?
-    - How many [male](gender) [transfer]{"entity":"category", "value":"transfer"} student [enroll]{"entity": "action", "value": "enrolled"} to Rose-Hulman?
-    - How many [male](gender) [transfer]{"entity":"category", "value":"transfer"} student [enrolled](action) to Rose-Hulman?
-    - How many [male](gender) [transfer]{"entity":"category", "value":"transfer"} student [enrolling]{"entity": "action", "value": "enrolled"} to Rose-Hulman?
-    - How many [men]{"entity": "gender", "value": "male"} [transfer]{"entity":"category", "value":"transfer"} student [admit]{"entity": "action", "value": "accepted"} to Rose-Hulman?
-    - How many [men]{"entity": "gender", "value": "male"} [transfer]{"entity":"category", "value":"transfer"} student [admitted]{"entity": "action", "value": "accepted"} to Rose-Hulman?
-    - How many [men]{"entity": "gender", "value": "male"} [transfer]{"entity":"category", "value":"transfer"} student [admitting]{"entity": "action", "value": "accepted"} to Rose-Hulman?
-    - How many [men]{"entity": "gender", "value": "male"} [transfer]{"entity":"category", "value":"transfer"} student [applied](action) to Rose-Hulman?
-    - How many [men]{"entity": "gender", "value": "male"} [transfer]{"entity":"category", "value":"transfer"} student [apply]{"entity": "action", "value": "applied"} to Rose-Hulman?
-    - How many [men]{"entity": "gender", "value": "male"} [transfer]{"entity":"category", "value":"transfer"} student [applying]{"entity": "action", "value": "applied"} to Rose-Hulman?
-    - How many [men]{"entity": "gender", "value": "male"} [transfer]{"entity":"category", "value":"transfer"} student [enroll]{"entity": "action", "value": "enrolled"} to Rose-Hulman?
-    - How many [men]{"entity": "gender", "value": "male"} [transfer]{"entity":"category", "value":"transfer"} student [enrolled](action) to Rose-Hulman?
-    - How many [men]{"entity": "gender", "value": "male"} [transfer]{"entity":"category", "value":"transfer"} student [enrolling]{"entity": "action", "value": "enrolled"} to Rose-Hulman?
-    - How many [transfer]{"entity":"category", "value":"transfer"} student [admit]{"entity": "action", "value": "accepted"} to Rose-Hulman?
+    - How many [male](gender) [transfer]{"entity":"category", "value":"transfer"} student [admit]{"entity": "action", "value": "accepted"} ?
+    - How many [male](gender) [transfer]{"entity":"category", "value":"transfer"} student [admitted]{"entity": "action", "value": "accepted"} ?
+    - How many [male](gender) [transfer]{"entity":"category", "value":"transfer"} student [admitting]{"entity": "action", "value": "accepted"} ?
+    - How many [male](gender) [transfer]{"entity":"category", "value":"transfer"} student [applied](action) ?
+    - How many [male](gender) [transfer]{"entity":"category", "value":"transfer"} student [apply]{"entity": "action", "value": "applied"} ?
+    - How many [male](gender) [transfer]{"entity":"category", "value":"transfer"} student [applying]{"entity": "action", "value": "applied"} ?
+    - How many [male](gender) [transfer]{"entity":"category", "value":"transfer"} student [enroll]{"entity": "action", "value": "enrolled"} ?
+    - How many [male](gender) [transfer]{"entity":"category", "value":"transfer"} student [enrolled](action) ?
+    - How many [male](gender) [transfer]{"entity":"category", "value":"transfer"} student [enrolling]{"entity": "action", "value": "enrolled"} ?
+    - How many [men]{"entity": "gender", "value": "male"} [transfer]{"entity":"category", "value":"transfer"} student [admit]{"entity": "action", "value": "accepted"} ?
+    - How many [men]{"entity": "gender", "value": "male"} [transfer]{"entity":"category", "value":"transfer"} student [admitted]{"entity": "action", "value": "accepted"} ?
+    - How many [men]{"entity": "gender", "value": "male"} [transfer]{"entity":"category", "value":"transfer"} student [admitting]{"entity": "action", "value": "accepted"} ?
+    - How many [men]{"entity": "gender", "value": "male"} [transfer]{"entity":"category", "value":"transfer"} student [applied](action) ?
+    - How many [men]{"entity": "gender", "value": "male"} [transfer]{"entity":"category", "value":"transfer"} student [apply]{"entity": "action", "value": "applied"} ?
+    - How many [men]{"entity": "gender", "value": "male"} [transfer]{"entity":"category", "value":"transfer"} student [applying]{"entity": "action", "value": "applied"} ?
+    - How many [men]{"entity": "gender", "value": "male"} [transfer]{"entity":"category", "value":"transfer"} student [enroll]{"entity": "action", "value": "enrolled"} ?
+    - How many [men]{"entity": "gender", "value": "male"} [transfer]{"entity":"category", "value":"transfer"} student [enrolled](action) ?
+    - How many [men]{"entity": "gender", "value": "male"} [transfer]{"entity":"category", "value":"transfer"} student [enrolling]{"entity": "action", "value": "enrolled"} ?
+    - How many [transfer]{"entity":"category", "value":"transfer"} student [admit]{"entity": "action", "value": "accepted"} ?
 
-    - How many [transfer]{"entity":"category", "value":"transfer"} student [admitted]{"entity": "action", "value": "accepted"} to Rose-Hulman?
-    - How many [transfer]{"entity":"category", "value":"transfer"} student [admitting]{"entity": "action", "value": "accepted"} to Rose-Hulman?
-    - How many [transfer]{"entity":"category", "value":"transfer"} student [applied](action) to Rose-Hulman?
-    - How many [transfer]{"entity":"category", "value":"transfer"} student [apply]{"entity": "action", "value": "applied"} to Rose-Hulman?
-    - How many [transfer]{"entity":"category", "value":"transfer"} student [applying]{"entity": "action", "value": "applied"} to Rose-Hulman?
-    - How many [transfer]{"entity":"category", "value":"transfer"} student [enroll]{"entity": "action", "value": "enrolled"} to Rose-Hulman?
-    - How many [transfer]{"entity":"category", "value":"transfer"} student [enrolled](action) to Rose-Hulman?
-    - How many [transfer]{"entity":"category", "value":"transfer"} student [enrolling]{"entity": "action", "value": "enrolled"} to Rose-Hulman?
+    - How many [transfer]{"entity":"category", "value":"transfer"} student [admitted]{"entity": "action", "value": "accepted"} ?
+    - How many [transfer]{"entity":"category", "value":"transfer"} student [admitting]{"entity": "action", "value": "accepted"} ?
+    - How many [transfer]{"entity":"category", "value":"transfer"} student [applied](action) ?
+    - How many [transfer]{"entity":"category", "value":"transfer"} student [apply]{"entity": "action", "value": "applied"} ?
+    - How many [transfer]{"entity":"category", "value":"transfer"} student [applying]{"entity": "action", "value": "applied"} ?
+    - How many [transfer]{"entity":"category", "value":"transfer"} student [enroll]{"entity": "action", "value": "enrolled"} ?
+    - How many [transfer]{"entity":"category", "value":"transfer"} student [enrolled](action) ?
+    - How many [transfer]{"entity":"category", "value":"transfer"} student [enrolling]{"entity": "action", "value": "enrolled"} ?
     - How many [transfer]{"entity":"category", "value":"transfer"} student [enrolling]{"entity": "action", "value": "enrolled"}?
     - How many [transfer]{"entity":"category", "value":"transfer"} student [enrolled]{"entity": "action", "value": "enrolled"}
 
